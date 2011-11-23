@@ -1,0 +1,30 @@
+<h1>{{ person.name }}</h1>
+
+<p>{{ person.date_of_birth }} &ndash; {{ person.date_of_death|default:"" }}
+
+<p>{{ person.description }}</p>
+
+<h2>Positions</h2>
+
+<ul>
+{% for position in person.position_set.all %}
+<li>{{ position }}
+{% endfor %}
+</ul>
+
+<h2>Codes</h2>
+
+<ul>
+{% for code in person.codes.all %}
+<li>{{ code.type }}: {{ code.code }}
+{% endfor %}
+</ul>
+
+<h2>Data</h2>
+
+<ul>
+{% for data in person.data.all %}
+<li>{{ data.key }}: {{ data.value }}
+{% endfor %}
+</ul>
+

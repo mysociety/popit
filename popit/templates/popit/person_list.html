@@ -1,0 +1,8 @@
+<h1>People</h1>
+
+<ul>
+{% for person in person_list %}
+<li><a href="{{ person.get_absolute_url }}">{{ person }}</a>
+{% endfor %}
+</ul>
+
