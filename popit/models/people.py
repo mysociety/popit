@@ -2,7 +2,7 @@ import re
 
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.gis.db import models
+from django.db import models
 from django.template.defaultfilters import slugify
 
 from django_date_extensions.fields import ApproximateDateField

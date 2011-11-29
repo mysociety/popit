@@ -1,5 +1,5 @@
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.gis.db import models
+from django.db import models
 from django.core.urlresolvers import reverse
 
 date_help_text = "Format: '2011-12-31', '31 Jan 2011', 'Jan 2011' or '2011' or 'future'"
@@ -56,7 +56,7 @@ class Data(ModelBase):
     def __unicode__(self):
         return u'%s = %s' % (self.key, self.value)
 
-class ManagerBase(models.GeoManager):
+class ManagerBase(models.Manager):
     def update_or_create(self, filter_attrs, attrs):
         """Given unique look-up attributes, and extra data attributes, either
         updates the entry referred to if it exists, or creates it if it doesn't.

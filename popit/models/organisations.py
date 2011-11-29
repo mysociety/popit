@@ -1,6 +1,6 @@
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
-from django.contrib.gis.db import models
+from django.db import models
 
 from django_date_extensions.fields import ApproximateDateField
 from markitup.fields import MarkupField
