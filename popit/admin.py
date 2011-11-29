@@ -54,6 +54,8 @@ admin.site.register( models.OrganisationDataKey, OrgDataKeyAdmin )
 
 # Positions
 
+class PositionCategoryAdmin(admin.ModelAdmin):
+    pass
 class PositionDataKeyAdmin(admin.ModelAdmin):
     pass
 class PositionDataInlineAdmin(admin.TabularInline):
@@ -88,4 +90,5 @@ class PositionAdmin(admin.ModelAdmin):
 admin.site.register( models.Position, PositionAdmin )
 admin.site.register( models.PositionType, PositionTypeAdmin )
 admin.site.register( models.PositionDataKey, PositionDataKeyAdmin )
+admin.site.register( models.PositionCategory, PositionCategoryAdmin )
 

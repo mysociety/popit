@@ -23,6 +23,7 @@ class PositionCategory(ModelBase):
     class Meta:
         ordering = [ 'category' ]
         app_label = 'popit'
+        verbose_name_plural = 'position categories'
 
     def __unicode__(self):
         return self.category

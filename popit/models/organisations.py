@@ -40,6 +40,7 @@ class OrganisationData(Data):
     key = models.ForeignKey(OrganisationDataKey, related_name='values')
     class Meta:
         app_label = 'popit'
+        verbose_name_plural = 'organisation data'
 
 class OrganisationName(ModelBase):
     organisation = models.ForeignKey(Organisation, related_name='names')
