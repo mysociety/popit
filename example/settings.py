@@ -1,5 +1,15 @@
 # Django settings for example popit project.
 
+# Try and simply import popit first, in case it's been installed with e.g. pip.
+try:
+    import popit
+except:
+    import os.path, sys
+    path = os.path.abspath( os.path.join( os.path.dirname(__file__), '..' ) )
+    if path not in sys.path:
+        sys.path.insert(0, path)
+    import popit
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -120,6 +130,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
     'south',
+    'popit',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -144,3 +155,7 @@ LOGGING = {
         },
     }
 }
+
+MARKITUP_FILTER = ('markdown.markdown', {'safe_mode': True})
+MARKITUP_SET = 'markitup/sets/markdown'
+

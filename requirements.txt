@@ -1,0 +1,10 @@
+# List all Python package requirements this project has.
+#
+# more details: http://www.pip-installer.org/en/latest/requirements.html
+
+Django==1.3.1
+Markdown==2.1.0
+South==0.7.3
+-e git://github.com/dracos/django-date-extensions.git@988572f1b018c64ff2f93c7f401a49ffd3f9d6bf#egg=django_date_extensions-dev
+django-markitup==1.0.0
+
