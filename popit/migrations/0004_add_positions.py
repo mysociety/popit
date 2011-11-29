@@ -56,7 +56,7 @@ class Migration(SchemaMigration):
             ('summary', self.gf('markitup.fields.MarkupField')(default='', no_rendered_field=True, blank=True)),
             ('requires_place', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('organisation', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['popit.Organisation'], null=True, blank=True)),
-            ('category', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['popit.PositionCategory'], null=True))
+            ('category', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['popit.PositionCategory'], null=True)),
             ('_summary_rendered', self.gf('django.db.models.fields.TextField')(blank=True)),
         ))
         db.send_create_signal('popit', ['PositionType'])
@@ -90,6 +90,25 @@ class Migration(SchemaMigration):
 
 
     models = {
+        'popit.codetype': {
+            'Meta': {'object_name': 'CodeType'},
+            'created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'desc': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'type': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'})
+        },
+        'popit.organisationname': {
+            'Meta': {'ordering': "['-main', '-start_date', 'end_date', 'name']", 'object_name': 'OrganisationName'},
+            'created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'end_date': ('django_date_extensions.fields.ApproximateDateField', [], {'max_length': '10', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'main': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '300'}),
+            'organisation': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'names'", 'to': "orm['popit.Organisation']"}),
+            'start_date': ('django_date_extensions.fields.ApproximateDateField', [], {'max_length': '10', 'blank': 'True'}),
+            'updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'})
+        },
         'popit.positioncategory': {
             'Meta': {'ordering': "['category']", 'object_name': 'PositionCategory'},
             'category': ('django.db.models.fields.CharField', [], {'max_length': '100'}),

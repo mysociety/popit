@@ -24,7 +24,7 @@ class Migration(SchemaMigration):
             ('created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
             ('updated', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
             ('person', self.gf('django.db.models.fields.related.ForeignKey')(related_name='codes', to=orm['popit.Person'])),
-            ('type', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['popit.CodeType']))
+            ('type', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['popit.CodeType'])),
             ('code', self.gf('django.db.models.fields.CharField')(max_length=100)),
         ))
         db.send_create_signal('popit', ['PersonCode'])

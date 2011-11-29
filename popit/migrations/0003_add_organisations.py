@@ -34,7 +34,7 @@ class Migration(SchemaMigration):
         db.create_table('popit_organisationcode', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('organisation', self.gf('django.db.models.fields.related.ForeignKey')(related_name='codes', to=orm['popit.Organisation'])),
-            ('type', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['popit.CodeType']))
+            ('type', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['popit.CodeType'])),
             ('code', self.gf('django.db.models.fields.CharField')(max_length=100)),
         ))
         db.send_create_signal('popit', ['OrganisationCode'])
@@ -83,6 +83,14 @@ class Migration(SchemaMigration):
 
 
     models = {
+        'popit.codetype': {
+            'Meta': {'object_name': 'CodeType'},
+            'created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'desc': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'type': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'})
+        },
         'popit.organisationname': {
             'Meta': {'ordering': "['-main', '-start_date', 'end_date', 'name']", 'object_name': 'OrganisationName'},
             'created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
