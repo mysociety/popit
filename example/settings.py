@@ -1,10 +1,12 @@
 # Django settings for example popit project.
 
+import os.path
+
 # Try and simply import popit first, in case it's been installed with e.g. pip.
 try:
     import popit
 except:
-    import os.path, sys
+    import sys
     path = os.path.abspath( os.path.join( os.path.dirname(__file__), '..' ) )
     if path not in sys.path:
         sys.path.insert(0, path)
@@ -12,6 +14,8 @@ except:
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -116,6 +120,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    os.path.join(BASE_DIR, 'templates'),
 )
 
 INSTALLED_APPS = (
