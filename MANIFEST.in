@@ -1,0 +1,4 @@
+include LICENSE.txt
+include requirements.txt
+recursive-include example_popit_project *.py *.html
+recursive-include popit/templates *.html
