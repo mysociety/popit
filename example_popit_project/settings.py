@@ -1,21 +1,10 @@
 # Django settings for example popit project.
 
 import os.path
-
-# Try and simply import popit first, in case it's been installed with e.g. pip.
-try:
-    import popit
-except:
-    import sys
-    path = os.path.abspath( os.path.join( os.path.dirname(__file__), '..' ) )
-    if path not in sys.path:
-        sys.path.insert(0, path)
-    import popit
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -114,7 +103,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'example.urls'
+ROOT_URLCONF = 'example_popit_project.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
