@@ -3,6 +3,16 @@
 import os.path
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
+import sys
+path = os.path.abspath( os.path.join( os.path.dirname(__file__), '..' ) )
+
+# We don't want two copies of this on the path, so remove it if it's
+# already there.
+while path in sys.path: 
+    sys.path.remove(path)
+
+sys.path.insert(0, path)
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
