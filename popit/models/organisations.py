@@ -1,11 +1,14 @@
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from django.db import models
+from django.template.defaultfilters import slugify
 
 from django_date_extensions.fields import ApproximateDateField
 from markitup.fields import MarkupField
 
 from popit.models import ModelBase, DataKey, Data, date_help_text, CodeType
+
+
 
 class Organisation(ModelBase):
     slug    = models.SlugField(editable=False)
@@ -23,7 +26,7 @@ class Organisation(ModelBase):
     @property
     def name(self):
         try:
-            return self.names.all()[0]
+            return self.names.all()[0].name
         except:
             return 'Unknown'
 
@@ -55,12 +58,24 @@ class OrganisationName(ModelBase):
 
     def save(self, *args, **kwargs):
         super(OrganisationName, self).save(*args, **kwargs)
-        try:
-            org = self.organisation
-            org.slug = slugify(org.name)
+
+        org = self.organisation
+
+        if self.main == True:            
+            # If we are main check that no other names for this org are            
+            for name in org.names.filter(main=True).exclude(id=self.id):
+                name.main = False
+                name.save()
+
+            # create the orgs slug based on our name
+            org.slug = slugify(self.name)
             org.save()
-        except:
-            pass
+            
+        else:
+            # if there are no mained names set main on ourselves
+            if org.names.filter(main=True).count() == 0:
+                self.main = True
+                self.save()
 
     def __unicode__(self):
         return self.name
