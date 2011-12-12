@@ -24,6 +24,13 @@ class ModelBase(models.Model):
             args=[ self.id ],
         )
         return url
+    
+    def fetch_fresh_from_database(self):
+        "Load and return a fresh copy of the current object from the database."
+        # Note - ideally this would refresh the object in place. Until then the 
+        # clunky name should prevent confusion. Useful in test suite.
+        return self.__class__.objects.get( id = self.id )
+
 
 class CodeType(ModelBase):
     type = models.CharField(max_length=100)
