@@ -1,27 +1,19 @@
-from django.conf.urls.defaults import patterns, url
-from django.views.generic import TemplateView, ListView, DetailView
+# TODO
+# HTML representations - not implemented in tastypie yet, not sure if one of
+#   the many issues or forks on github deals with this.
+# Index page etc. documentation
 
-from popit.models import Person, Organisation
+from django.conf.urls.defaults import patterns, url, include
+
+from tastypie.api import Api
+from popit.api import PersonResource, OrganisationResource, PositionResource
+
+v1_api = Api(api_name='v1')
+v1_api.register(PersonResource())
+v1_api.register(OrganisationResource())
+v1_api.register(PositionResource())
 
 urlpatterns = patterns('',
-    url( r'^$', TemplateView.as_view(template_name='popit/index.html') ),
-
-    # TODO Apply lookup query string to people to filter
-    (r'^people$', ListView.as_view(
-        model=Person,
-        context_object_name='person_list',
-    )),
-    url(r'^person/(?P<pk>.*?)/(?P<slug>.*)$', DetailView.as_view(
-        model=Person,
-    ), name='person'),
-
-    (r'^organisations$', ListView.as_view(
-        model=Organisation,
-        context_object_name='org_list',
-    )),
-    (r'^organisation/(?P<pk>.*?)/(?P<slug>[-\w]+)$', DetailView.as_view(
-        model=Organisation,
-    )),
-
+    url( r'', include(v1_api.urls)),
 )
 

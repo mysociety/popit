@@ -92,3 +92,4 @@ admin.site.register( models.PositionType, PositionTypeAdmin )
 admin.site.register( models.PositionDataKey, PositionDataKeyAdmin )
 admin.site.register( models.PositionCategory, PositionCategoryAdmin )
 
+admin.site.register( models.CodeType )
