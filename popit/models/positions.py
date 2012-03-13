@@ -79,7 +79,8 @@ class Position(ModelBase):
 
     # XXX: Working with South here presumably, umm, tricky
     if 'mapit' in settings.INSTALLED_APPS:
-        place       = models.ForeignKey('Place', null=True, blank=True, help_text="use if needed to identify the position - eg add constituency for an 'MP'" )
+        from mapit import models as mapit_models
+        place       = models.ForeignKey(mapit_models.Area, null=True, blank=True, help_text="use if needed to identify the position - eg add constituency for an 'MP'" )
     else:
         place       = models.CharField(max_length=100, blank=True, help_text="use if needed to identify the position - eg add constituency for an 'MP'")
 
