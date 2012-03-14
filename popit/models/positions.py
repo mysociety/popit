@@ -77,13 +77,8 @@ class Position(ModelBase):
     type            = models.ForeignKey(PositionType, null=True, blank=True)
     title           = models.CharField(max_length=200, blank=True, default='')
 
-    # XXX: Working with South here presumably, umm, tricky
-    if 'mapit' in settings.INSTALLED_APPS:
-        from mapit import models as mapit_models
-        place       = models.ForeignKey(mapit_models.Area, null=True, blank=True, help_text="use if needed to identify the position - eg add constituency for an 'MP'" )
-    else:
-        place       = models.CharField(max_length=100, blank=True, help_text="use if needed to identify the position - eg add constituency for an 'MP'")
-
+    place           = models.CharField(max_length=100, blank=True, help_text="use if needed to identify the position - eg add constituency for an 'MP'")
+    
     note            = models.CharField(max_length=300, blank=True, default='')
 
     start_date      = ApproximateDateField(blank=True, help_text=date_help_text)
