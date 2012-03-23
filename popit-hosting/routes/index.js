@@ -11,3 +11,16 @@ exports.index = function(req, res){
         }
     );
 };
+
+exports.new = function(req, res){
+
+    console.log(req.query);
+
+    res.render(
+        'new.html',
+        {
+            locals: { title: 'New instance' }
+        }
+    );
+};
+
