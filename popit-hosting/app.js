@@ -22,6 +22,8 @@ app.configure(function(){
 
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+  app.use(express.logger({ format: ':method :url' }));
+  
 });
 
 app.configure('production', function(){
