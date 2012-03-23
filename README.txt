@@ -14,4 +14,3 @@ Key features:
 * Data structure built on learning from our mistakes - so you don't have to
 * Supports websites written in any language - uses REST
 * Interfaces for adding data by hand, or via import
-* Can be used either as a web service, or as a Django app.
