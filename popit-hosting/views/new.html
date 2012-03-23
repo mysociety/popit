@@ -5,16 +5,25 @@
 
 <p>To start using PopIt you need to create a new instance. This is quick, easy, free and you do it by filling in the form below.</p>
 
-<form method="post" class="well form-horizontal">
+<form method="get" action="" class="well form-horizontal">
 
     <fieldset>
         <legend>Create a new Instance</legend>
-        <div class="control-group">
+
+        <div class="control-group {{#errors.instance_key}}error{{/errors.instance_key}}">
              <label class="control-label" for="instance_key">Instance Name</label>
              <div class="controls">
-                 <input type="text" class="input-xlarge" id="instance_key">
+                 <input type="text" class="input-xlarge" id="instance_key" name="instance_key" value="{{ instance_key }}">
                  <span class="add-on">.popitdomain.org</span>
-                 <p class="help-block">This is the name that your instance will have.</p>
+                 <p class="help-block">This is the name that your instance will have. Length between 4 and 20. Chars 'a' to 'z', '0' to '9' and '-' only.</p>
+            </div>
+        </div>
+          
+        <div class="control-group {{#errors.email}}error{{/errors.email}}">
+             <label class="control-label" for="email">Your Email address</label>
+             <div class="controls">
+                 <input type="text" class="input-xlarge" id="email" name="email" value="{{ email }}">
+                 <p class="help-block">We need to know who you are.</p>
             </div>
         </div>
           
