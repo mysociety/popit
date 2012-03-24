@@ -1,5 +1,6 @@
 var Validator = require('validator').Validator,
-    sanitize = require('validator').sanitize;
+    sanitize = require('validator').sanitize,
+    Instance = require('../models/instance');
 
 
 exports.route = function (app) {

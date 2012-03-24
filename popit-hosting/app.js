@@ -4,7 +4,12 @@
  */
 
 var express = require('express')
-  , expressHogan = require('express-hogan.js');
+  , expressHogan = require('express-hogan.js')
+  , mongoose = require('mongoose');
+
+
+// Connect to the default database
+mongoose.connect('mongodb://localhost/all');
 
 var app = module.exports = express.createServer();
 
