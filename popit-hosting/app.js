@@ -4,7 +4,6 @@
  */
 
 var express = require('express')
-  , routes = require('./routes')
   , expressHogan = require('express-hogan.js');
 
 var app = module.exports = express.createServer();
@@ -30,9 +29,8 @@ app.configure('production', function(){
 });
 
 // Routes
+require('./routes').route(app);
 
-app.get('/', routes.index);
-app.all('/new', routes.new); // Nasty hack
 
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
