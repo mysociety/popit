@@ -17,39 +17,42 @@ exports.route = function (app) {
 
     // Handle the post
     var new_post = function (req, res) {
-        var instance_key = req.param('instance_key', '').trim();
-        var email        = req.param('email', '').trim();
-        var password     = '';
+        var slug     = req.param('slug', '').trim();
+        var email    = req.param('email', '').trim();
+        var password = '';
 
+        // save all the values in case validation fails.
         res.locals({
-            instance_key: instance_key,
+            slug: slug,
             email: email,
-            password: password,        
         });
 
-        var errors = {};
-        res.local('errors', errors );
-        
-        var v = new Validator;
-        v.error = function (msg) {
-            errors[msg] = true;
-            return this;
-        };
-        
-        v.check(instance_key, 'instance_key').len(4,20).is(/^[a-z][a-z0-9\-]+$/);
-        v.check(email, 'email').isEmail();
+        // var instance = new Instance();
+        // instance.slug = slug;
+        // instance.email = email;
+        var instance = new Instance({
+            slug:  slug,
+            email: email,
+        });
 
-        // Check that the instance name is not is use.
+        instance.save(function (err) {
+            if ( err ) {
+                console.log( err );
+                res.local( 'errors', err['errors'] );
+                return new_get(req, res);
+            } else {
+                // FIXME no errors - should really do some creating here
+                res.local('title','Instance Created');    
+                res.render(
+                    'new.html', { locals: res.locals() } // why are locals not being passed through?
+                );
+            }
+            
+        });
+        
+        console.log( instance );
+        Instance.findOne({ slug: slug }, function(err, doc) { console.log(err,doc) });
 
-        if ( errors.length ) {
-            return new_get(req, res);
-        } else {
-            // FIXME no errors - should really do some creating here
-            res.local('title','Instance Created');    
-            res.render(
-                'new.html', { locals: res.locals() } // why are locals not being passed through?
-            );
-        }
     };
 
     var new_get = function (req, res) {
