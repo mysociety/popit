@@ -9,7 +9,6 @@ exports.route = function (app) {
         res.render( 'index.html' );
     });
 
-
     // Handle the post
     var new_post = function (req, res) {
         var slug     = req.param('slug', '').trim();
@@ -22,46 +21,38 @@ exports.route = function (app) {
             email: email,
         });
 
-        // var instance = new Instance();
-        // instance.slug = slug;
-        // instance.email = email;
+        // create a new instance
         var instance = new Instance({
             slug:  slug,
             email: email,
         });
 
+        // save the instance
         instance.save(function (err) {
             if ( err ) {
-                console.log( err );
+                // store error and pass control to get method
                 res.local( 'errors', err['errors'] );
                 return new_get(req, res);
             } else {
-                // FIXME no errors - should really do some creating here
-                res.local('title','Instance Created');    
-                res.render(
-                    'new.html', { locals: res.locals() } // why are locals not being passed through?
-                );
-            }
-            
+                // Have a new instance - redirect to 
+                res.redirect( '/instance/' + instance.slug )
+
+                // send an email with the create link in it
+                // FIXME
+            }            
         });
-        
-        console.log( instance );
-        Instance.findOne({ slug: slug }, function(err, doc) { console.log(err,doc) });
 
     };
 
     var new_get = function (req, res) {
-
         res.local('title','New Instance');    
         res.render(
             'new.html', { locals: res.locals() } // why are locals not being passed through?
         );
-
     };
 
-
-    app.post( '/new', new_post );
-    app.get(  '/new', new_get  );
+    app.post( '/instances/new', new_post );
+    app.get(  '/instances/new', new_get  );
     
 
 };
