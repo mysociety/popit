@@ -54,5 +54,24 @@ exports.route = function (app) {
     app.post( '/instances/new', new_post );
     app.get(  '/instances/new', new_get  );
     
+    
+    // auto-load instance for the param instanceSlug
+    app.param('instanceSlug', function(req, res, next, slug){
+        Instance.findOne(
+            { slug: slug },
+            function ( err, instance ) {
+                if (err) return next(err);
+                if (!instance) return next( new Error('no instance found') );
+                req.instance = instance;
+                next();
+            }
+        );
+    });
+
+    app.get( '/instance/:instanceSlug', function (req, res) {
+            res.render( 'instance_view.html', {
+                locals: { instance: req.instance },
+            } );
+    });
 
 };
