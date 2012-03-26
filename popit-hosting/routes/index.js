@@ -42,6 +42,7 @@ exports.route = function (app) {
                         layout: false,
                         locals: {
                             instance: instance,
+                            token: instance.setup_info.confirmation_token,
                             host: req.header('Host'),
                         },
                     },
@@ -100,6 +101,38 @@ exports.route = function (app) {
                     instance: req.instance,
                 },
             } );
+    });
+
+
+    // Check that the token is correct.
+    function check_pending_and_token (req, res, next) {
+        var instance = req.instance,
+            token    = req.param.token;
+
+        // if the instance is not pending redirect to the instance page
+        if ( instance.status != 'pending' ) {
+            return res.redirect( '/instance/' + instance.slug );
+        }
+        
+        // if the token is wrong show the bad token page
+        if (  req.params.token != req.instance.setup_info.confirmation_token ) {
+            return res.render(
+                'instance_confirm_wrong_token.html',
+                {
+                    locals: { instance: instance },
+                }
+            );
+        }
+        
+        // nothing wrong here :)
+        next();
+    }
+    
+    app.all( '/instance/:instanceSlug/confirm/:token', check_pending_and_token, function (req, res) {
+
+        res.send('good');
+
+
     });
 
 };
