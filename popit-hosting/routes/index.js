@@ -61,7 +61,10 @@ exports.route = function (app) {
             { slug: slug },
             function ( err, instance ) {
                 if (err) return next(err);
+
+                // should 404 here instead.
                 if (!instance) return next( new Error('no instance found') );
+
                 req.instance = instance;
                 next();
             }
