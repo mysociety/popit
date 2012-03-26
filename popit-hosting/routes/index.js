@@ -70,7 +70,7 @@ exports.route = function (app) {
     var new_get = function (req, res) {
         res.local('title','New Instance');    
         res.render(
-            'new.html', { locals: res.locals() } // why are locals not being passed through?
+            'instance_new.html', { locals: res.locals() } // why are locals not being passed through?
         );
     };
 
