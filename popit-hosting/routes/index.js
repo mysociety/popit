@@ -1,6 +1,6 @@
-var Validator = require('validator').Validator,
-    sanitize = require('validator').sanitize,
-    Instance = require('../models/instance');
+var Validator     = require('validator').Validator,
+    sanitize      = require('validator').sanitize,
+    Instance      = require('../models/instance');
 
 
 exports.route = function (app) {
@@ -34,11 +34,33 @@ exports.route = function (app) {
                 res.local( 'errors', err['errors'] );
                 return new_get(req, res);
             } else {
-                // Have a new instance - redirect to 
-                res.redirect( '/instance/' + instance.slug )
 
-                // send an email with the create link in it
-                // FIXME
+                // send an email with the create link in it                
+                res.render(
+                    'emails/new_instance.txt',
+                    {
+                        layout: false,
+                        locals: {
+                            instance: instance,
+                            host: req.header('Host'),
+                        },
+                    },
+                    function( err, output ) {
+                        if (err) console.log( err );
+                        console.log( output );
+                        req.app.nodemailer_transport.sendMail(
+                            {
+                                // FIXME - replace with better email sending
+                                to: instance.email,
+                                subject: "New instance confirmation",
+                                text: output,
+                            }
+                        );
+                    }
+                );
+
+                // Have a new instance - redirect to 
+                res.redirect( '/instance/' + instance.slug );
             }            
         });
 
@@ -72,11 +94,11 @@ exports.route = function (app) {
     });
 
     app.get( '/instance/:instanceSlug', function (req, res) {
-
             var template_file = 'instance_' + req.instance.status + '.html';
-
             res.render( template_file, {
-                locals: { instance: req.instance },
+                locals: {
+                    instance: req.instance,
+                },
             } );
     });
 

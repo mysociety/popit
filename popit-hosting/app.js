@@ -3,9 +3,10 @@
  * Module dependencies.
  */
 
-var express = require('express')
-  , expressHogan = require('express-hogan.js')
-  , mongoose = require('mongoose');
+var express       = require('express'),
+    expressHogan  = require('express-hogan.js'),
+    mongoose      = require('mongoose'),
+    nodemailer    = require('nodemailer');
 
 
 // Connect to the default database
@@ -17,6 +18,7 @@ var app = module.exports = express.createServer();
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
+  app.register('.txt',  expressHogan);
   app.register('.html', expressHogan);
   app.use(express.bodyParser());
   app.use(express.methodOverride());
@@ -32,6 +34,8 @@ app.configure('development', function(){
 app.configure('production', function(){
   app.use(express.errorHandler());
 });
+
+app.nodemailer_transport = nodemailer.createTransport("Sendmail");
 
 // Routes
 require('./routes').route(app);

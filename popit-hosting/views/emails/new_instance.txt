@@ -1,0 +1,9 @@
+Hello,
+
+A new PopIt instance will be created from you after you confirm your email
+address by visiting the link below:
+
+  http://{{ host }}/instance/{{ instance.slug }}/confirm/{{ instance.setup_info.confirmation_token }}
+
+Yours,
+  The PopIt team.
