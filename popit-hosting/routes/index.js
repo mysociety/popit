@@ -72,7 +72,10 @@ exports.route = function (app) {
     });
 
     app.get( '/instance/:instanceSlug', function (req, res) {
-            res.render( 'instance_view.html', {
+
+            var template_file = 'instance_' + req.instance.status + '.html';
+
+            res.render( template_file, {
                 locals: { instance: req.instance },
             } );
     });
