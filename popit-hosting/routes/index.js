@@ -168,7 +168,7 @@ exports.route = function (app) {
 
                 // redirect user to new domain once save has completed
                 // res.redirect( 'http://' + instance.slug + '.popitdomain.org' );
-                res.send( 'http://' + instance.slug + '.popitdomain.org' );            
+                res.send( 'Should redirect you to http://' + instance.slug + '.popitdomain.org at this point, but there is nothing there to receive you --- yet.' );            
             });
         });
         
