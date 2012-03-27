@@ -24,7 +24,7 @@ var InstanceSchema = new Schema({
             function( v, fn ) {
                 // run on insert only, when we don't have an ID
                 // FIXME - find better way to handle this and test
-                if ( this._id ) return fn( true );
+                if ( ! this.isNew ) return fn( true );
 
                 Instance.count(
                     { slug: v },
