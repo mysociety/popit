@@ -2,16 +2,8 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
     check = require('validator').check,
-    passgen = require('passgen');
-
-var is_email = function (val) {
-    try {
-        check(val).isEmail();
-        return true;
-    } catch(err) {
-        return false;
-    }
-}
+    passgen = require('passgen')
+    utils = require('../lib/utils');
 
 
 var InstanceSchema = new Schema({
@@ -55,7 +47,7 @@ var InstanceSchema = new Schema({
     email: {
         type: String,
         required: true,
-        validate: [ is_email, 'not_an_email' ]
+        validate: [ utils.is_email, 'not_an_email' ]
     },
 
     // Initial info needed to set up the instance - should be cleared once
