@@ -17,6 +17,7 @@ var app = module.exports = express.createServer();
 // Configuration
 
 app.configure(function(){
+  app.use(express.logger('dev'));
   app.set('views', __dirname + '/views');
   app.register('.txt',  expressHogan);
   app.register('.html', expressHogan);
@@ -28,7 +29,6 @@ app.configure(function(){
 
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-  app.use(express.logger({ format: ':method :status :url' }));
 });
 
 app.configure('production', function(){
