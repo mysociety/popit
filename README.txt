@@ -1,3 +1,6 @@
+NOTE - the PopIt project is undergoing some design changes and in future may be
+significantly different to the code that you currently see here.
+
 =====
 PopIt
 =====
