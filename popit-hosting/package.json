@@ -1,12 +1,13 @@
 {
-    "name": "application-name"
-  , "version": "0.0.1"
-  , "private": true
-  , "dependencies": {
-      "express": "2.5.8"
-    , "express-hogan.js": ">= 0.1.0"
-    , "validator": ">= 0.4.5"
-    , "passgen": ">= 1.0.1"
-    , "nodemailer": ">= 0.3.10"
+    "name": "application-name",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+      "express":          "2.5.8",
+      "express-hogan.js": ">= 0.1.0",
+      "validator":        ">= 0.4.5",
+      "passgen":          ">= 1.0.1",
+      "nodemailer":       ">= 0.3.10",
+      "mongoose":         ">=2.5.10"
   }
 }
