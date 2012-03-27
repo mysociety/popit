@@ -158,15 +158,20 @@ exports.route = function (app) {
             email: instance.email,
             hashed_password: instance.setup_info.password, // FIXME - should be hashed
         });
-        user.save();
+        user.save( function (err ) {
+            if (err) throw err;
+
+            // update the all database
+            instance.status = 'active';
+            instance.save( function (err) {
+                if ( err ) throw err;
+
+                // redirect user to new domain once save has completed
+                // res.redirect( 'http://' + instance.slug + '.popitdomain.org' );
+                res.send( 'http://' + instance.slug + '.popitdomain.org' );            
+            });
+        });
         
-        // update the all database
-        instance.status = 'active';
-        instance.save();
-        
-        // redirect user to new domain once save has completed
-        // res.redirect( 'http://' + instance.slug + '.popitdomain.org' );
-        res.send( 'http://' + instance.slug + '.popitdomain.org' );
     });
     
 };
