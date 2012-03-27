@@ -37,6 +37,12 @@ No auth was set up - but should be in production.
     # Created a new user `popit` to run service under.
     adduser popit
 
+    # check that the popit user can see sendmail
+    which sendmail
+    
+    # if nothing returned then as root do something like
+    ln -s `which sendmail` /usr/bin/
+
     # Change to `popit` user and cd to home dir.
     ssh popit@host
     cd
