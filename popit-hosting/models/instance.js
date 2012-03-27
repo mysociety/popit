@@ -22,6 +22,10 @@ var InstanceSchema = new Schema({
         match:     /^[a-z][a-z0-9\-]{3,19}$/,
         validate:  [
             function( v, fn ) {
+                // run on insert only, when we don't have an ID
+                // FIXME - find better way to handle this and test
+                if ( this._id ) return fn( true );
+
                 Instance.count(
                     { slug: v },
                     function (err, count) {

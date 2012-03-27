@@ -1,6 +1,8 @@
 var Validator     = require('validator').Validator,
     sanitize      = require('validator').sanitize,
-    Instance      = require('../models/instance');
+    Instance      = require('../models/instance'),
+    UserSchema    = require('../models/schemas').UserSchema,
+    mongoose      = require('mongoose');
 
 
 exports.route = function (app) {
@@ -14,19 +16,19 @@ exports.route = function (app) {
         var slug     = req.param('slug', '').trim();
         var email    = req.param('email', '').trim();
         var password = '';
-
+    
         // save all the values in case validation fails.
         res.locals({
             slug: slug,
             email: email,
         });
-
+    
         // create a new instance
         var instance = new Instance({
             slug:  slug,
             email: email,
         });
-
+    
         // save the instance
         instance.save(function (err) {
             if ( err ) {
@@ -34,7 +36,7 @@ exports.route = function (app) {
                 res.local( 'errors', err['errors'] );
                 return new_get(req, res);
             } else {
-
+    
                 // send an email with the create link in it                
                 res.render(
                     'emails/new_instance.txt',
@@ -59,21 +61,21 @@ exports.route = function (app) {
                         );
                     }
                 );
-
+    
                 // Have a new instance - redirect to 
                 res.redirect( '/instance/' + instance.slug );
             }            
         });
-
+    
     };
-
+    
     var new_get = function (req, res) {
         res.local('title','New Instance');    
         res.render(
             'instance_new.html', { locals: res.locals() } // why are locals not being passed through?
         );
     };
-
+    
     app.post( '/instances/new', new_post );
     app.get(  '/instances/new', new_get  );
     
@@ -84,16 +86,16 @@ exports.route = function (app) {
             { slug: slug },
             function ( err, instance ) {
                 if (err) return next(err);
-
+    
                 // should 404 here instead.
                 if (!instance) return next( new Error('no instance found') );
-
+    
                 req.instance = instance;
                 next();
             }
         );
     });
-
+    
     app.get( '/instance/:instanceSlug', function (req, res) {
             var template_file = 'instance_' + req.instance.status + '.html';
             res.render( template_file, {
@@ -102,20 +104,20 @@ exports.route = function (app) {
                 },
             } );
     });
-
-
+    
+    
     // Check that the token is correct.
     function check_pending_and_token (req, res, next) {
         var instance = req.instance,
-            token    = req.param.token;
-
+            token    = req.params.token;
+    
         // if the instance is not pending redirect to the instance page
         if ( instance.status != 'pending' ) {
             return res.redirect( '/instance/' + instance.slug );
         }
         
         // if the token is wrong show the bad token page
-        if (  req.params.token != req.instance.setup_info.confirmation_token ) {
+        if (  token != req.instance.setup_info.confirmation_token ) {
             return res.render(
                 'instance_confirm_wrong_token.html',
                 {
@@ -125,14 +127,48 @@ exports.route = function (app) {
         }
         
         // nothing wrong here :)
+        res.locals({
+            instance: instance,
+            token: token,
+        });
         next();
     }
     
-    app.all( '/instance/:instanceSlug/confirm/:token', check_pending_and_token, function (req, res) {
-
-        res.send('good');
-
-
+      
+    // for a get request just show the form - can't dive straight into creating the
+    // instance as it may not be the user that is clicking on the confirm link - a
+    // issue that caused FMT pain:
+    //   https://nodpi.org/2011/06/22/vodastalk-vodafone-and-bluecoat-stalking-subscribers/
+    app.get( '/instance/:instanceSlug/confirm/:token', check_pending_and_token, function (req, res) {
+        return res.render( 'instance_confirm.html', { locals: res.locals() } );
     });
-
+    
+    app.post( '/instance/:instanceSlug/confirm/:token', check_pending_and_token, function (req, res) {
+        var instance = req.instance;
+        
+        // If we've gotten this far then we should be able to create the new
+        // instance.  If we can't we should regard it as a 500 error.
+    
+        // hook up to the new datbase
+        var instance_db = mongoose.createConnection('mongodb://localhost/' + instance.slug );
+        var User = instance_db.model('User', UserSchema);
+        
+        // create the entry needed in the users table
+        user = new User({
+            email: instance.email,
+            hashed_password: instance.setup_info.password, // FIXME - should be hashed
+        });
+        user.save();
+        
+        // update the all database
+        instance.status = 'active';
+        instance.save();
+        
+        // redirect user to new domain once save has completed
+        // res.redirect( 'http://' + instance.slug + '.popitdomain.org' );
+        res.send( 'http://' + instance.slug + '.popitdomain.org' );
+    });
+    
 };
+
+
