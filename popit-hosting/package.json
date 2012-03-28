@@ -1,5 +1,5 @@
 {
-    "name": "application-name",
+    "name": "popit-hosting",
     "version": "0.0.1",
     "private": true,
     "dependencies": {
@@ -8,6 +8,11 @@
       "validator":        ">= 0.4.5",
       "passgen":          ">= 1.0.1",
       "nodemailer":       ">= 0.3.10",
-      "mongoose":         ">=2.5.10"
+      "mongoose":         ">= 2.5.10",
+      "nodeunit":         ">= 0.7.4",
+      "underscore":       ">= 1.3.1"
+  },
+  "scripts": {
+      "test": "./run_tests.js"
   }
 }
