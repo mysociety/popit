@@ -5,6 +5,7 @@ exports.test_is_email = function ( test ) {
 
     var good = [
         'bob@example.com',
+        'fred@thisdomaindoesnotexist.bogus'
     ];
     
     var bad = [
