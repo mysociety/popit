@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
     check = require('validator').check,
-    passgen = require('passgen')
+    passgen = require('passgen'),
     utils = require('../lib/utils');
 
 
@@ -54,9 +54,8 @@ var InstanceSchema = new Schema({
     // instance configured.
     setup_info: {
         // initial password for
-        password: {
+        password_hash: {
             type: String,
-            default: function () { return passgen.create(8) },
         },
         confirmation_token: {
             type: String,

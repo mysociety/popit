@@ -77,3 +77,19 @@ exports.test_password_crypting = function (test) {
     });
     
     };
+
+exports.password_and_hash_generate = function (test) {
+    test.expect(3);
+    
+    utils.password_and_hash_generate( function (plaintext, hash) {
+        test.ok( plaintext, "got plaintext: " + plaintext );
+        test.ok( hash,      "got hash: " + hash );
+    
+        utils.password_hash_compare( plaintext, hash, function(is_same) {
+            test.ok( is_same, "the two match" );
+            test.done();
+        });
+    });
+
+};
+

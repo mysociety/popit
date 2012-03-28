@@ -2,7 +2,8 @@ var Validator     = require('validator').Validator,
     sanitize      = require('validator').sanitize,
     Instance      = require('../models/instance'),
     UserSchema    = require('../models/schemas').UserSchema,
-    mongoose      = require('mongoose');
+    mongoose      = require('mongoose'),
+    utils         = require('../lib/utils');
 
 
 exports.route = function (app) {
@@ -15,7 +16,6 @@ exports.route = function (app) {
     var new_post = function (req, res) {
         var slug     = req.param('slug', '').trim();
         var email    = req.param('email', '').trim();
-        var password = '';
     
         // save all the values in case validation fails.
         res.locals({
@@ -23,51 +23,59 @@ exports.route = function (app) {
             email: email,
         });
     
-        // create a new instance
-        var instance = new Instance({
-            slug:  slug,
-            email: email,
+        utils.password_and_hash_generate( function (password, hash) {
+    
+            // create a new instance
+            var instance = new Instance({
+                slug:       slug,
+                email:      email,
+                setup_info: { password_hash: hash },
+            });
+            
+            // save the instance
+            instance.save(function (err) {
+                if ( err ) {
+                    // store error and pass control to get method
+                    res.local( 'errors', err['errors'] );
+                    return new_get(req, res);
+                } else {
+            
+                    // send an email with the create link in it                
+                    send_new_instance_email( req, res, instance, password );
+            
+                    // Have a new instance - redirect to 
+                    res.redirect( '/instance/' + instance.slug );
+                }            
+            });
         });
+    };
     
-        // save the instance
-        instance.save(function (err) {
-            if ( err ) {
-                // store error and pass control to get method
-                res.local( 'errors', err['errors'] );
-                return new_get(req, res);
-            } else {
-    
-                // send an email with the create link in it                
-                res.render(
-                    'emails/new_instance.txt',
+    function send_new_instance_email ( req, res, instance, password ) {
+        res.render(
+            'emails/new_instance.txt',
+            {
+                layout: false,
+                locals: {
+                    instance: instance,
+                    token: instance.setup_info.confirmation_token,
+                    host: req.header('Host'),
+                    password: password,
+                },
+            },
+            function( err, output ) {
+                if (err) console.log( err );
+                console.log( output );
+                req.app.nodemailer_transport.sendMail(
                     {
-                        layout: false,
-                        locals: {
-                            instance: instance,
-                            token: instance.setup_info.confirmation_token,
-                            host: req.header('Host'),
-                        },
-                    },
-                    function( err, output ) {
-                        if (err) console.log( err );
-                        console.log( output );
-                        req.app.nodemailer_transport.sendMail(
-                            {
-                                // FIXME - replace with better email sending
-                                to: instance.email,
-                                subject: "New instance confirmation",
-                                text: output,
-                            }
-                        );
+                        // FIXME - replace with better email sending
+                        to: instance.email,
+                        subject: "New instance confirmation",
+                        text: output,
                     }
                 );
-    
-                // Have a new instance - redirect to 
-                res.redirect( '/instance/' + instance.slug );
-            }            
-        });
-    
-    };
+            }
+        );        
+    }
     
     var new_get = function (req, res) {
         res.local('title','New Instance');    
@@ -156,7 +164,7 @@ exports.route = function (app) {
         // create the entry needed in the users table
         user = new User({
             email: instance.email,
-            hashed_password: instance.setup_info.password, // FIXME - should be hashed
+            hashed_password: instance.setup_info.password_hash,
         });
         user.save( function (err ) {
             if (err) throw err;

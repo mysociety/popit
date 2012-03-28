@@ -1,5 +1,6 @@
 var check      = require('validator').check,
-    bcrypt     = require('bcrypt');
+    bcrypt     = require('bcrypt'),
+    passgen    = require('passgen');
 
 
 module.exports.is_email = function (val) {
@@ -27,4 +28,13 @@ module.exports.password_hash_compare = function (plaintext, hash, cb) {
         if (err) throw err;
         cb(is_same);
     });
-}
+};
+
+
+module.exports.password_and_hash_generate = function (cb) {
+    var password = passgen.create(8);
+
+    module.exports.password_hash( password, function (hash) {
+        cb( password, hash );
+    });
+};
