@@ -1,6 +1,10 @@
-var utils = require('../lib/utils'),
-    _     = require('underscore'),
-    async = require('async');
+
+// switch to testing mode
+process.env.NODE_ENV = 'testing';
+
+var utils    = require('../lib/utils'),
+    _        = require('underscore'),
+    async    = require('async');
 
 exports.test_is_email = function ( test ) {
 
@@ -92,4 +96,26 @@ exports.password_and_hash_generate = function (test) {
     });
 
 };
+
+exports.mongodb_connection_string = function (test) {
+    test.expect(3);
+    
+    test.equal( process.env.NODE_ENV, 'testing', 'running in test mode' );
+    
+    test.equal(
+        utils.mongodb_connection_string(),
+        'mongodb://localhost/popittest_all',
+        "no param"
+    ); 
+    
+    test.equal(
+        utils.mongodb_connection_string('foobar'),
+        'mongodb://localhost/popittest_foobar',
+        "instance slug provided"
+    ); 
+    
+    test.done();
+}
+
+
 

@@ -158,7 +158,7 @@ exports.route = function (app) {
         // instance.  If we can't we should regard it as a 500 error.
     
         // hook up to the new datbase
-        var instance_db = mongoose.createConnection('mongodb://localhost/' + instance.slug );
+        var instance_db = mongoose.createConnection( utils.mongodb_connection_string( instance.slug ) );
         var User = instance_db.model('User', UserSchema);
         
         // create the entry needed in the users table

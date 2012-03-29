@@ -1,6 +1,7 @@
 var check      = require('validator').check,
     bcrypt     = require('bcrypt'),
-    passgen    = require('passgen');
+    passgen    = require('passgen'),
+    config     = require('config');
 
 
 module.exports.is_email = function (val) {
@@ -38,3 +39,12 @@ module.exports.password_and_hash_generate = function (cb) {
         cb( password, hash );
     });
 };
+
+
+module.exports.mongodb_connection_string = function(name) {
+    
+    if (!name) name = 'all';
+    
+    return 'mongodb://' + config.MongoDB.host + '/'+ config.MongoDB.prefix + name;
+};
+
