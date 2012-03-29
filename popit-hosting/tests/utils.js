@@ -117,5 +117,13 @@ exports.mongodb_connection_string = function (test) {
     test.done();
 }
 
+exports.delete_all_testing_databases = function (test) {
 
+    test.expect(1);
+    utils.delete_all_testing_databases(function(){
+        test.ok(true, 'done');
+        test.done();        
+    });
+
+}
 

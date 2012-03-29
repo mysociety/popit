@@ -14,7 +14,8 @@
       "bcrypt":           ">= 0.5.0",
       "async":            ">= 0.1.18",
       "soda":             ">= 0.2.5",
-      "config":           ">= 0.4.11"
+      "config":           ">= 0.4.11",
+      "mongodb":          ">= 0.9.9-7"
   },
   "scripts": {
       "test": "./run_tests.js"

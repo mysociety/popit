@@ -1,7 +1,20 @@
 var check      = require('validator').check,
     bcrypt     = require('bcrypt'),
     passgen    = require('passgen'),
-    config     = require('config');
+    config     = require('config'),
+    _          = require('underscore'),
+    mongodb    = require('mongodb').Db,
+    Server     = require('mongodb').Server,
+    async      = require('async');
+
+    // Server = require('mongodb').Server,
+    // ReplSetServers = require('mongodb').ReplSetServers,
+    // ObjectID = require('mongodb').ObjectID,
+    // Binary = require('mongodb').Binary,
+    // GridStore = require('mongodb').GridStore,
+    // Code = require('mongodb').Code,
+    // BSON = require('mongodb').pure().BSON,
+    // assert = require('assert');
 
 
 module.exports.is_email = function (val) {
@@ -46,5 +59,76 @@ module.exports.mongodb_connection_string = function(name) {
     if (!name) name = 'all';
     
     return 'mongodb://' + config.MongoDB.host + '/'+ config.MongoDB.prefix + name;
+};
+
+
+module.exports.delete_all_testing_databases = function (done_deleting_cb) {
+
+    // sanity check
+    if ( ! config.testing_config_loaded )
+        throw new Error("Will not delete databases unless testing config has been loaded" );
+
+    // what is our prefix
+    var prefix = config.MongoDB.prefix;
+
+    // connect to the main database
+    var db = new mongodb(
+        prefix + 'all',
+        new Server(config.MongoDB.host, config.MongoDB.port)
+    );
+
+    // handle all the listing of database names
+    var list_testing_databases = function (cb) {
+        db.open(function(err, db) {
+            if (err) throw err;
+            db.admin(function(err, adminDb) {
+                if (err) throw err;
+                adminDb.listDatabases(function(err, dbs) {
+                    if (err) throw err;
+
+                    var all_db_names     = _.pluck( dbs.databases, 'name' );
+                    var testing_db_names = _.filter( all_db_names, function (name) { return name.indexOf(prefix) == 0 });
+
+                    cb( testing_db_names );
+                });
+            });
+        });        
+    };
+
+    // delete a specific database
+    var delete_database = function ( name, cb ) {
+
+        // console.log( "Will delete " + name );
+        
+        var to_delete_db = new mongodb(
+            name,
+            new Server(config.MongoDB.host, config.MongoDB.port)
+        );
+
+        to_delete_db.open( function(err, db) {
+            if (err) throw err;
+            to_delete_db.dropDatabase(function(err, done) {
+                if (err) throw err;
+                to_delete_db.close();
+                cb();
+            });
+        });                                
+    };
+
+
+    list_testing_databases( function(testing_db_names) {
+        async.forEachSeries(
+            testing_db_names,
+            function ( name, cb ) {
+                delete_database( name, cb );
+            },
+            function (err) {
+                if (err) throw err;
+                db.close();
+                done_deleting_cb();
+            }
+        );
+    });
+    
 };
 
