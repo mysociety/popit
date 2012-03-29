@@ -6,11 +6,13 @@
 var express       = require('express'),
     expressHogan  = require('express-hogan.js'),
     mongoose      = require('mongoose'),
-    nodemailer    = require('nodemailer');
+    nodemailer    = require('nodemailer'),
+    config        = require('config');
 
 
 // Connect to the default database
-mongoose.connect('mongodb://localhost/all');
+var mongodb_connection_string = 'mongodb://' + config.MongoDB.host + '/'+ config.MongoDB.prefix + config.MongoDB.name;
+mongoose.connect(mongodb_connection_string);
 
 var app = module.exports = express.createServer();
 

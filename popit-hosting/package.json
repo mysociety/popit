@@ -13,7 +13,8 @@
       "underscore":       ">= 1.3.1",
       "bcrypt":           ">= 0.5.0",
       "async":            ">= 0.1.18",
-      "soda":             ">= 0.2.5"
+      "soda":             ">= 0.2.5",
+      "config":           ">= 0.4.11"
   },
   "scripts": {
       "test": "./run_tests.js"
