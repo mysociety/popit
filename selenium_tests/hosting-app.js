@@ -56,5 +56,65 @@ module.exports = {
                 test.done();
             });        
     },
+    
+    create_instance: function (test) {
+
+        var browser = new_browser( config.server.port );
+        
+        test.expect(1);
+
+        browser
+
+            // go to the create a new instance page
+            .clickAndWait("link=Create a new instance")
+
+            // submit the form check that both fields error
+            .clickAndWait("css=input.btn.btn-primary")
+            .assertTextPresent("Error is 'regexp'.")
+            .assertTextPresent("Error is 'required'.")
+
+
+            // .getHtmlSource(function (html) {
+            //     console.log(html);
+            // })
+
+            // too short slug
+            .type("id=slug", "foo")
+            .clickAndWait("css=input.btn.btn-primary")
+            .assertTextPresent("Error is 'regexp'.")
+
+            // good slug
+            .type("id=slug", "foobar")
+            .clickAndWait("css=input.btn.btn-primary")
+
+            // bad email
+            .type("id=email", "bob")
+            .clickAndWait("css=input.btn.btn-primary")
+            .assertTextPresent("Error is 'not_an_email'.")
+
+            // good details
+            .type("id=email", "bob@example.com")
+            .clickAndWait("css=input.btn.btn-primary")
+            .assertTextPresent("This site has been reserved but not created yet.")
+
+            // check that the site is now reserved
+            .clickAndWait("link=Create an instance")
+            .type("id=slug", "foobar")
+            .clickAndWait("css=input.btn.btn-primary")
+            .assertTextPresent("Error is 'slug_not_unique'.")
+
+            // check that the instance page works
+            .open("/instance/foobar")
+
+            // all done
+            .testComplete()
+            .end(function (err) {
+                if (err) throw err;
+                test.ok(true, 'all tests passed');
+                test.done();
+            });
+
+    },
+    
 };
 
