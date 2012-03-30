@@ -14,7 +14,7 @@ var app = module.exports = express.createServer();
 
 
 // Connect to the default database, and close it when the app closes
-mongoose.connect( utils.mongodb_connection_string() );
+mongoose.connect( utils.mongodb_connection_string( config.MongoDB.master_name ) );
 app.on('close', function() {
     mongoose.close();
 });

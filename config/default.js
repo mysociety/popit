@@ -9,9 +9,9 @@ module.exports = {
         port: 3000,
     },
     MongoDB: {
-        name:            'all',
         host:         'localhost',
         port:         27017,
+        master_name:  '_master',
         popit_prefix: 'popit_',
         
     },

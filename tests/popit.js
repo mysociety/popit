@@ -25,8 +25,8 @@ module.exports = {
 
         var popit = this.popit;
 
-        var all_db = popit.all_db();
-        test.ok( all_db, "got a connection to the all db" );
+        var master_db = popit.master_db();
+        test.ok( master_db, "got a connection to the master db" );
 
         test.done();
     },

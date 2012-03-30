@@ -171,7 +171,7 @@ exports.route = function (app) {
         user.save( function (err ) {
             if (err) throw err;
 
-            // update the all database
+            // update the master database
             instance.status = 'active';
             instance.save( function (err) {
                 if ( err ) throw err;

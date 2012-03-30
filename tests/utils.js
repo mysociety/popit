@@ -102,10 +102,10 @@ exports.mongodb_connection_string = function (test) {
     
     test.equal( process.env.NODE_ENV, 'testing', 'running in test mode' );
     
-    test.equal(
-        utils.mongodb_connection_string(),
-        'mongodb://localhost/popittest_all',
-        "no param"
+    test.throws(
+        function() {utils.mongodb_connection_string()},
+        /must provide a db name to mongodb_connection_string/,
+        "no name leads to exception being thrown"
     ); 
     
     test.equal(
