@@ -9,10 +9,11 @@ module.exports = {
         port: 3000,
     },
     MongoDB: {
-        host: 'localhost',
-        port: 27017,
-        name: 'all',
-        prefix: 'popit_',
+        name:            'all',
+        host:         'localhost',
+        port:         27017,
+        popit_prefix: 'popit_',
+        
     },
     email: {
         transport:         'Sendmail',

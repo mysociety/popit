@@ -11,7 +11,7 @@ module.exports = {
     },
 
     MongoDB: {
-        prefix: 'popittest_',
+        popit_prefix: 'popittest_',
     },
     
     email: {
