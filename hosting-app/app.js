@@ -45,5 +45,5 @@ app.configure('production', function(){
 require('./routes').route(app);
 
 
-app.listen( config.server.port );
+app.listen( config.hosting_server.port );
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

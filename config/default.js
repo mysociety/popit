@@ -5,7 +5,7 @@
  */
 
 module.exports = {
-    server: {
+    hosting_server: {
         port: 3000,
     },
     MongoDB: {

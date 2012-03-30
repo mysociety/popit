@@ -42,7 +42,7 @@ module.exports = {
 
     check_title: function (test) {
 
-        var browser = new_browser( config.server.port );
+        var browser = new_browser( config.hosting_server.port );
         
         test.expect(2);
         
@@ -59,7 +59,7 @@ module.exports = {
     
     create_instance: function (test) {
 
-        var browser = new_browser( config.server.port );
+        var browser = new_browser( config.hosting_server.port );
         
         test.expect(1);
 

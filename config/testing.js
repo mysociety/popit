@@ -6,7 +6,7 @@
 
 module.exports = {
 
-    server: {
+    hosting_server: {
         port: 3001,
     },
 
