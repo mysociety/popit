@@ -80,7 +80,7 @@ exports.test_password_crypting = function (test) {
         test.done()
     });
     
-    };
+};
 
 exports.password_and_hash_generate = function (test) {
     test.expect(3);
@@ -115,7 +115,8 @@ exports.mongodb_connection_string = function (test) {
     ); 
     
     test.done();
-}
+
+};
 
 exports.delete_all_testing_databases = function (test) {
 
@@ -125,5 +126,5 @@ exports.delete_all_testing_databases = function (test) {
         test.done();        
     });
 
-}
+};
 

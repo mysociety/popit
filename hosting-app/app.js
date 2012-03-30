@@ -6,7 +6,7 @@
 var express       = require('express'),
     expressHogan  = require('express-hogan.js'),
     mongoose      = require('mongoose'),
-    utils         = require('./lib/utils');
+    utils         = require('../lib/utils');
 
 
 // Connect to the default database
