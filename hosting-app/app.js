@@ -6,13 +6,19 @@
 var express       = require('express'),
     expressHogan  = require('express-hogan.js'),
     mongoose      = require('mongoose'),
-    utils         = require('../lib/utils');
+    utils         = require('../lib/utils'),
+    config        = require('config');
 
-
-// Connect to the default database
-mongoose.connect( utils.mongodb_connection_string() );
 
 var app = module.exports = express.createServer();
+
+
+// Connect to the default database, and close it when the app closes
+mongoose.connect( utils.mongodb_connection_string() );
+app.on('close', function() {
+    mongoose.close();
+});
+
 
 // Configuration
 
@@ -39,5 +45,5 @@ app.configure('production', function(){
 require('./routes').route(app);
 
 
-app.listen(3000);
+app.listen( config.server.port );
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

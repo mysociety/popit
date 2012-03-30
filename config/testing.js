@@ -5,6 +5,11 @@
  */
 
 module.exports = {
+
+    server: {
+        port: 3001,
+    },
+
     MongoDB: {
         prefix: 'popittest_',
     },

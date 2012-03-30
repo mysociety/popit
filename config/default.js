@@ -5,6 +5,9 @@
  */
 
 module.exports = {
+    server: {
+        port: 3000,
+    },
     MongoDB: {
         host: 'localhost',
         port: 27017,
