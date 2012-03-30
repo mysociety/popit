@@ -10,11 +10,8 @@ module.exports = {
     },
     
     email: {
-        send_by_transport: false,
+        send_by_transport: true,
         save_to_database:  true,
+        print_to_console:  true,
     },
-
-    // set this so that we can check that the testing config has been loaded
-    testing_config_loaded: true,
-
 };

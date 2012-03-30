@@ -6,7 +6,6 @@
 var express       = require('express'),
     expressHogan  = require('express-hogan.js'),
     mongoose      = require('mongoose'),
-    nodemailer    = require('nodemailer'),
     utils         = require('./lib/utils');
 
 
@@ -35,8 +34,6 @@ app.configure('development', function(){
 app.configure('production', function(){
   app.use(express.errorHandler());
 });
-
-app.nodemailer_transport = nodemailer.createTransport("Sendmail");
 
 // Routes
 require('./routes').route(app);

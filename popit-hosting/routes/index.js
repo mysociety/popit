@@ -3,7 +3,8 @@ var Validator     = require('validator').Validator,
     Instance      = require('../models/instance'),
     UserSchema    = require('../models/schemas').UserSchema,
     mongoose      = require('mongoose'),
-    utils         = require('../lib/utils');
+    utils         = require('../lib/utils'),
+    mailer        = require('../lib/mailer');
 
 
 exports.route = function (app) {
@@ -64,10 +65,9 @@ exports.route = function (app) {
             },
             function( err, output ) {
                 if (err) console.log( err );
-                console.log( output );
-                req.app.nodemailer_transport.sendMail(
+                mailer.send(
+                    req,
                     {
-                        // FIXME - replace with better email sending
                         to: instance.email,
                         subject: "New instance confirmation",
                         text: output,
