@@ -1,11 +1,13 @@
 var Validator     = require('validator').Validator,
     sanitize      = require('validator').sanitize,
     mongoose      = require('mongoose'),
-    Instance      = require('../../lib/models/instance'),
-    UserSchema    = require('../../lib/models/schemas').UserSchema,
+    InstanceSchema = require('../../lib/schemas').Instance,
+    UserSchema     = require('../../lib/schemas').User,
     utils         = require('../../lib/utils'),
     mailer        = require('../../lib/mailer');
 
+
+var Instance = mongoose.model('Instance', InstanceSchema);
 
 exports.route = function (app) {
 
