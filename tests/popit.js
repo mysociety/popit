@@ -4,6 +4,7 @@ process.env.NODE_ENV = 'testing';
 
 var utils    = require('../lib/utils'),
     PopIt    = require('../lib/popit'),
+    config   = require('config'),
     _        = require('underscore'),
     async    = require('async');
 
@@ -20,13 +21,25 @@ module.exports = {
         cb(null);
     },
     
-    "get general database handle": function ( test ) {    
+    "get master database handle": function ( test ) {    
         test.expect( 1 );
 
         var popit = this.popit;
 
         var master_db = popit.master_db();
         test.ok( master_db, "got a connection to the master db" );
+
+        test.done();
+    },
+    
+    "set master instance": function ( test ) {    
+        test.expect( 2 );
+
+        var popit = this.popit;
+
+        test.equal( popit._instance_name, null, "no instance set");
+        popit.set_as_master();
+        test.equal( popit._instance_name, config.MongoDB.master_name, "master instance set");
 
         test.done();
     },
