@@ -3,12 +3,12 @@
  * Module dependencies.
  */
 
-var express       = require('express'),
-    expressHogan  = require('express-hogan.js'),
-    mongoose      = require('mongoose'),
-    utils         = require('../lib/utils'),
-    config        = require('config');
-
+var express           = require('express'),
+    expressHogan      = require('express-hogan.js'),
+    mongoose          = require('mongoose'),
+    config            = require('config'),
+    utils             = require('../lib/utils'),
+    masterSelector    = require('../lib/middleware/master-selector');
 
 var app = module.exports = express.createServer();
 
@@ -24,6 +24,7 @@ app.on('close', function() {
 
 app.configure(function(){
   app.use(express.logger('dev'));
+  app.use(masterSelector());
   app.set('views', __dirname + '/views');
   app.register('.txt',  expressHogan);
   app.register('.html', expressHogan);
