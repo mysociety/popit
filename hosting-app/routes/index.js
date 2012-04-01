@@ -1,13 +1,9 @@
 var Validator     = require('validator').Validator,
     sanitize      = require('validator').sanitize,
     mongoose      = require('mongoose'),
-    InstanceSchema = require('../../lib/schemas').Instance,
-    UserSchema     = require('../../lib/schemas').User,
+    PopIt         = require('../../lib/popit'),
     utils         = require('../../lib/utils'),
     mailer        = require('../../lib/mailer');
-
-
-var Instance = mongoose.model('Instance', InstanceSchema);
 
 exports.route = function (app) {
 
@@ -29,6 +25,7 @@ exports.route = function (app) {
         utils.password_and_hash_generate( function (password, hash) {
     
             // create a new instance
+            var Instance = req.popit.model('Instance');
             var instance = new Instance({
                 slug:       slug,
                 email:      email,
@@ -92,7 +89,7 @@ exports.route = function (app) {
     
     // auto-load instance for the param instanceSlug
     app.param('instanceSlug', function(req, res, next, slug){
-        Instance.findOne(
+        req.popit.model('Instance').findOne(
             { slug: slug },
             function ( err, instance ) {
                 if (err) return next(err);
@@ -160,8 +157,10 @@ exports.route = function (app) {
         // instance.  If we can't we should regard it as a 500 error.
     
         // hook up to the new datbase
-        var instance_db = mongoose.createConnection( utils.mongodb_connection_string( instance.slug ) );
-        var User = instance_db.model('User', UserSchema);
+        var new_popit = new PopIt();
+        new_popit.set_instance( instance.slug );
+
+        var User = new_popit.model('User');
         
         // create the entry needed in the users table
         user = new User({
