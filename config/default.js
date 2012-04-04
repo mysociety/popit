@@ -21,5 +21,10 @@ module.exports = {
         send_by_transport: true,
         save_to_database:  false,
         print_to_console:  false,
-    }
+    },
+    
+    // default settings used if a site has not overidden them
+    default_settings: {
+    },
+    
 };

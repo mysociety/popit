@@ -22,4 +22,8 @@ module.exports = {
     // set this so that we can check that the testing config has been loaded
     testing_config_loaded: true,
 
+    default_settings: {
+        default_test_key: 'default test value',
+    },
+
 };

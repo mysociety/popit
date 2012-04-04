@@ -115,5 +115,25 @@ module.exports = {
             test.done()
         });
     },
+    
+    "test that default settings are used and ignored correctly": function (test) {
+        test.expect(6);
+        
+        var foo = this.foo;
+        var bar = this.bar;
+        
+        test.equal( foo.setting('default_test_key'), 'default test value', "default value returned for foo");
+        test.equal( bar.setting('default_test_key'), 'default test value', "default value returned for bar");
+
+        foo.set_setting('default_test_key','new foo value', function (err) {
+            test.ifError(err);
+            test.ok( true, "new value saved");
+
+            test.equal( foo.setting('default_test_key'), 'new foo value', "new value returned for foo");
+            test.equal( bar.setting('default_test_key'), 'default test value', "default value returned for bar");
+
+            test.done();
+        });
+    },
 
 };
