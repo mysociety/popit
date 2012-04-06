@@ -47,20 +47,23 @@ No auth was set up - but should be in production.
     ssh popit@host
     cd
 
-    # get the code
+    # get the code and change dir into it
     git clone git://github.com/mysociety/popit.git
     cd popit
-    git checkout -b js-try-out origin/js-try-out # TODO - change when on master
     
     # start a screen session (naughty, but convenient)
     screen
     
-    # go to the hosting app and setup env
-    cd popit-hosting
+    # install all the dependecies
     npm install .
     
-    # run the app
-    NODE_ENV=development supervisor app.js
+    # look at the configuration files in config - if you want to make local
+    # changes then do so by creating a new file that overides the settings in
+    # default.js. Use the filename as the NODE_ENV - so if you create
+    # 'config/foobar.js' then use 'foobar'.
+    
+    # run the hosting app
+    NODE_ENV=development supervisor hosting-app/app.js
     
     # you should now be able to connect to the app with your browser
     
