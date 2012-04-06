@@ -4,6 +4,10 @@ These notes are for installing PopIt onto a debian-like system.
 
 The resulting installation is not suitable for production use, this is mainly intended for developers and test sites.
 
+## Developers
+
+In addition to these notes please see 'Developer Setup' section in the file `docs/contributing.md` if you want to work on the code.
+
 ## Node install notes
 
 Complied and installed from source as per instructions here https://github.com/joyent/node/wiki/Installation. Didn't attempt to use packages as my debian is too old.
