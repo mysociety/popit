@@ -50,15 +50,21 @@ module.exports = {
     },
     
     "test calling 'setting' before 'load_settings' throws error": function ( test ) {    
-        test.expect(1);
+        test.expect(2);
 
         var pop = new PopIt();
         pop.set_instance('pop');
 
         test.throws(
-            function () {pop.setting('foo')},
+            function () { pop.setting('foo') },
             /Settings not loaded - have you called load_settings?/,
             "can't call 'setting' before 'load_settings'"
+        );
+
+        test.throws(
+            function () { pop.set_setting('foo', 'val', function () {} ) },
+            /Settings not loaded - have you called load_settings?/,
+            "can't call 'set_setting' before 'load_settings'"
         );
 
         test.done();
