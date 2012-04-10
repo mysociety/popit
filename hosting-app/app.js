@@ -13,15 +13,7 @@ var express           = require('express'),
 var app = module.exports = express.createServer();
 
 
-// Connect to the default database, and close it when the app closes
-mongoose.connect( utils.mongodb_connection_string( config.MongoDB.master_name ) );
-app.on('close', function() {
-    mongoose.close();
-});
-
-
 // Configuration
-
 app.configure(function(){
   app.use(express.logger('dev'));
   app.use(masterSelector());
