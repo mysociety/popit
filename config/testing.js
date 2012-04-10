@@ -7,9 +7,15 @@
 module.exports = {
 
     hosting_server: {
-        port: 3001,
+        port:   3100,
+        domain: 'www.vcap.me:3100',
     },
 
+    instance_server: {
+        port:          3101,
+        domain_suffix: 'vcap.me:3101',
+    },
+    
     MongoDB: {
         popit_prefix: 'popittest_',
     },

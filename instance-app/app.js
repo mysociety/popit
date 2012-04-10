@@ -1,6 +1,6 @@
 
 /**
- *  Hosting server
+ *  Instance Server
  */
 
 var express           = require('express'),
@@ -8,15 +8,16 @@ var express           = require('express'),
     mongoose          = require('mongoose'),
     config            = require('config'),
     utils             = require('../lib/utils'),
-    masterSelector    = require('../lib/middleware/master-selector');
+    instanceSelector  = require('../lib/middleware/instance-selector');
 
 var app = module.exports = express.createServer();
 
 
 // Configuration
+
 app.configure(function(){
   app.use(express.logger('dev'));
-  app.use(masterSelector());
+  app.use(instanceSelector());
   app.set('views', __dirname + '/views');
   app.register('.txt',  expressHogan);
   app.register('.html', expressHogan);
@@ -38,8 +39,8 @@ app.configure('production', function(){
 require('./routes').route(app);
 
 
-app.listen( config.hosting_server.port );
+app.listen( config.instance_server.port );
 console.log(
-    "PopIt Hosting server listening on port %d in %s mode: %s",
-    app.address().port, app.settings.env, config.hosting_server.domain
+    "PopIt Instance server listening on port %d in %s mode: foo.%s",
+    app.address().port, app.settings.env, config.instance_server.domain_suffix
 );
