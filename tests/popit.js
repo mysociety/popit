@@ -33,19 +33,23 @@ module.exports = {
     },
     
     "set master instance": function ( test ) {    
-        test.expect( 2 );
+        test.expect( 4 );
 
         var popit = this.popit;
-
+        
         test.equal( popit._instance_name, null, "no instance set");
+        test.ok( ! popit.is_master(), "not master" );
+
         popit.set_as_master();
+
         test.equal( popit._instance_name, config.MongoDB.master_name, "master instance set");
+        test.ok( popit.is_master(), "is master" );
 
         test.done();
     },
     
     "get an instance specific database": function (test) {
-        test.expect( 3 );
+        test.expect( 4 );
 
         var popit = this.popit;
 
@@ -58,6 +62,7 @@ module.exports = {
         );
 
         test.ok( popit.set_instance( 'foobar' ), 'set the instance' );
+        test.ok( ! popit.is_master(), "not master" );
 
         test.ok( popit.instance_db(), "got a connection to the foobar instance" );
 
