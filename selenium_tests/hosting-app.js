@@ -105,7 +105,18 @@ module.exports = {
 
             // check that the instance page works
             .open("/instance/foobar")
+            
+            // go to the last email page
+            .open("/_testing/last_email")
+            .clickAndWait("css=a")
 
+            // on the confirm app page
+            .assertTextPresent( 'Please click the button below to create your site!')
+            .clickAndWait("css=input[type=submit]")
+
+            // .setSpeed( 10000 )
+            .assertTextPresent( 'Should redirect you to http://foobar.popitdomain.org')
+            
             // all done
             .testComplete()
             .end(function (err) {

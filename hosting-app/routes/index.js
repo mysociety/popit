@@ -161,25 +161,54 @@ exports.route = function (app) {
         new_popit.set_instance( instance.slug );
 
         var User = new_popit.model('User');
-        
-        // create the entry needed in the users table
-        user = new User({
-            email: instance.email,
-            hashed_password: instance.setup_info.password_hash,
-        });
-        user.save( function (err ) {
-            if (err) throw err;
 
-            // update the master database
-            instance.status = 'active';
-            instance.save( function (err) {
-                if ( err ) throw err;
-
-                // redirect user to new domain once save has completed
-                // res.redirect( 'http://' + instance.slug + '.popitdomain.org' );
-                res.send( 'Should redirect you to http://' + instance.slug + '.popitdomain.org at this point, but there is nothing there to receive you --- yet.' );            
+        // save the user's email address to the 'email_from' setting
+        new_popit.load_settings( function (err) {
+            new_popit.set_setting( 'email_from', instance.email, function (err) {
+                if (err) throw err;
+            
+                // create the entry needed in the users table
+                user = new User({
+                    email: instance.email,
+                    hashed_password: instance.setup_info.password_hash,
+                });
+                user.save( function (err ) {
+                    if (err) throw err;
+            
+                    // update the master database
+                    instance.status = 'active';
+                    instance.save( function (err) {
+                        if ( err ) throw err;
+            
+                        // redirect user to new domain once save has completed
+                        // res.redirect( 'http://' + instance.slug + '.popitdomain.org' );
+                        res.send( 'Should redirect you to http://' + instance.slug + '.popitdomain.org at this point, but there is nothing there to receive you --- yet.' );            
+                    });
+                });            
             });
         });
+        
+    });
+    
+    
+    // FIXME - extract to seperate app so it can be shared, and conditionally loaded
+    app.get( '/_testing/last_email', function (req, res) {
+                
+        // only run on testing
+        var env = req.app.settings.env;
+        if ( ! env == 'testing' ) {
+            throw new Error('testing only, not ' + env );
+        }
+        
+        req.popit.model('Email').find( function (err, docs) {
+            if (err) throw err;
+            
+            var html = docs[0].message.text;
+            
+            html = html.replace( /(http\S+)/, '<a href="$1">$1</a>' );
+            
+            res.send( '<pre>' + html + '</pre>' );
+        })
         
     });
     
