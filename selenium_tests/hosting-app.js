@@ -1,64 +1,31 @@
 // switch to testing mode
 process.env.NODE_ENV = 'testing';
 
-var utils           = require('../lib/utils'),
-    browser_helpers = require('../lib/testing/browser'),
-    config          = require('config'),
-    async           = require('async');
+var utils               = require('../lib/utils'),
+    selenium_helpers    = require('../lib/testing/selenium'),
+    config              = require('config'),
+    async               = require('async');
 
 
 
 module.exports = {
 
     setUp: function (setUp_done) {
-        var self = this;
-
-        async.auto({
-            start_hosting_app: function (callback) {
-                self.hosting_app = browser_helpers.start_hosting_app(callback);
-            },
-            start_instance_app: function (callback) {
-                self.instance_app = browser_helpers.start_instance_app(callback);
-            },
-            delete_all_testing_databases: function (callback) {
-                utils.delete_all_testing_databases( callback );                
-            },
-            all_done: [
-                'start_hosting_app',
-                'start_instance_app',
-                'delete_all_testing_databases',
-                function (cb) {
-                    setUp_done(null);
-                    cb(null);
-                }
-            ],
+        
+        utils.delete_all_testing_databases( function () {
+            selenium_helpers.start_servers( function () {
+                setUp_done();
+            });            
         });
     },
 
     tearDown: function (tearDown_done) {
-        var self = this;
-    
-        async.auto({
-            stop_hosting_app: function (callback) {
-                browser_helpers.stop_app( self.hosting_app, callback);
-            },
-            stop_instance_app: function (callback) {
-                browser_helpers.stop_app( self.instance_app, callback);
-            },
-            all_done: [
-                'stop_hosting_app',
-                'stop_instance_app',
-                function (cb) {
-                    tearDown_done(null);
-                    cb(null);
-                }
-            ],
-        });
+        selenium_helpers.stop_servers(tearDown_done);
     },
     
     check_title: function (test) {
 
-        var browser = browser_helpers.new_hosting_browser();
+        var browser = selenium_helpers.new_hosting_browser();
         
         test.expect(2);
         
@@ -76,7 +43,7 @@ module.exports = {
     create_instance: function (test) {
     
     
-        var browser = browser_helpers.new_hosting_browser();
+        var browser = selenium_helpers.new_hosting_browser();
         
         test.expect(2);
     
