@@ -17,14 +17,14 @@ var app = module.exports = express.createServer();
 
 app.configure(function(){
   app.use(express.logger('dev'));
-  app.use(instanceSelector());
   app.set('views', __dirname + '/views');
   app.register('.txt',  expressHogan);
   app.register('.html', expressHogan);
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(app.router);
   app.use(express.static(__dirname + '/public'));
+  app.use(instanceSelector());
+  app.use(app.router);
 });
 
 app.configure('development', function(){

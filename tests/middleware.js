@@ -16,7 +16,7 @@ exports.exports = {
 
     "extact slug from popit domain name": function (test) {
     
-        var suffix = config.instance_server.domain_suffix;
+        var suffix = 'popitdomain.org:1234';
         var tests = {};
     
         // slug.popitdomain.org tests
