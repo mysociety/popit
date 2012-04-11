@@ -10,6 +10,10 @@ exports.route = function (app) {
         res.render( 'index.html', { locals: res.locals() } );
     });
     
+    app.get('/welcome', function(req, res){
+        res.render( 'welcome.html', { locals: res.locals() } );
+    });
+    
 };
 
 

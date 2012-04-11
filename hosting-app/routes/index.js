@@ -3,7 +3,8 @@ var Validator     = require('validator').Validator,
     mongoose      = require('mongoose'),
     PopIt         = require('../../lib/popit'),
     utils         = require('../../lib/utils'),
-    mailer        = require('../../lib/mailer');
+    mailer        = require('../../lib/mailer'),
+    config        = require('config');
 
 exports.route = function (app) {
 
@@ -181,8 +182,7 @@ exports.route = function (app) {
                         if ( err ) throw err;
             
                         // redirect user to new domain once save has completed
-                        // res.redirect( 'http://' + instance.slug + '.popitdomain.org' );
-                        res.send( 'Should redirect you to http://' + instance.slug + '.popitdomain.org at this point, but there is nothing there to receive you --- yet.' );            
+                        res.redirect( 'http://' + instance.slug + '.' + config.instance_server.domain_suffix + '/welcome' );
                     });
                 });            
             });

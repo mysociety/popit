@@ -78,7 +78,7 @@ module.exports = {
     
         var browser = browser_helpers.new_hosting_browser();
         
-        test.expect(1);
+        test.expect(2);
     
         browser
     
@@ -132,7 +132,10 @@ module.exports = {
             .clickAndWait("css=input[type=submit]")
     
             // .setSpeed( 10000 )
-            .assertTextPresent( 'Should redirect you to http://foobar.popitdomain.org')
+            .getLocation( function (loc) {
+                test.ok( /http:\/\/foobar\./.test(loc), "loc contains http://foobar." );
+            })
+            .assertTextPresent( 'Welcome to foobar')
             
             // all done
             .testComplete()
