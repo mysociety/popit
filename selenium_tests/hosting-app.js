@@ -1,48 +1,64 @@
 // switch to testing mode
 process.env.NODE_ENV = 'testing';
 
-var utils         = require('../lib/utils'),
-    new_browser   = require('../lib/testing/browser').new_browser,
-    child_process = require('child_process'),
-    config        = require('config');
+var utils           = require('../lib/utils'),
+    browser_helpers = require('../lib/testing/browser'),
+    config          = require('config'),
+    async           = require('async');
 
 
 
 module.exports = {
 
-    setUp: function (cb) {
+    setUp: function (setUp_done) {
+        var self = this;
 
-        // spawn a testing server
-        this.app = child_process.spawn(
-            'node', [ __dirname + '/../hosting-app/app.js' ]
-        );
-        
-        // forward all errors
-        this.app.stderr.on('data', function (data) {
-          console.log('stderr: ' + data);
+        async.auto({
+            start_hosting_app: function (callback) {
+                self.hosting_app = browser_helpers.start_hosting_app(callback);
+            },
+            start_instance_app: function (callback) {
+                self.instance_app = browser_helpers.start_instance_app(callback);
+            },
+            delete_all_testing_databases: function (callback) {
+                utils.delete_all_testing_databases( callback );                
+            },
+            all_done: [
+                'start_hosting_app',
+                'start_instance_app',
+                'delete_all_testing_databases',
+                function (cb) {
+                    setUp_done(null);
+                    cb(null);
+                }
+            ],
         });
-        // this.app.stdout.on('data', function (data) {
-        //   console.log('stdout: ' + data);
-        // });
-        
-        
-        utils.delete_all_testing_databases( function () {
-            // wait for the server to start
-            setTimeout( cb, 2000 );
-        });
-
     },
 
-    tearDown: function (cb) {
-
-        // trap the close
-        this.app.on( 'exit', function () {cb()} );        
-        this.app.kill();
+    tearDown: function (tearDown_done) {
+        var self = this;
+    
+        async.auto({
+            stop_hosting_app: function (callback) {
+                browser_helpers.stop_app( self.hosting_app, callback);
+            },
+            stop_instance_app: function (callback) {
+                browser_helpers.stop_app( self.instance_app, callback);
+            },
+            all_done: [
+                'stop_hosting_app',
+                'stop_instance_app',
+                function (cb) {
+                    tearDown_done(null);
+                    cb(null);
+                }
+            ],
+        });
     },
-
+    
     check_title: function (test) {
 
-        var browser = new_browser( config.hosting_server.port );
+        var browser = browser_helpers.new_hosting_browser();
         
         test.expect(2);
         
@@ -58,62 +74,63 @@ module.exports = {
     },
     
     create_instance: function (test) {
-
-        var browser = new_browser( config.hosting_server.port );
+    
+    
+        var browser = browser_helpers.new_hosting_browser();
         
         test.expect(1);
-
+    
         browser
-
+    
             // go to the create a new instance page
             .clickAndWait("link=Create a new instance")
-
+    
             // submit the form check that both fields error
             .clickAndWait("css=input.btn.btn-primary")
             .assertTextPresent("Error is 'regexp'.")
             .assertTextPresent("Error is 'required'.")
-
-
+    
+    
             // .getHtmlSource(function (html) {
             //     console.log(html);
             // })
-
+    
             // too short slug
             .type("id=slug", "foo")
             .clickAndWait("css=input.btn.btn-primary")
             .assertTextPresent("Error is 'regexp'.")
-
+    
             // good slug
             .type("id=slug", "foobar")
             .clickAndWait("css=input.btn.btn-primary")
-
+    
             // bad email
             .type("id=email", "bob")
             .clickAndWait("css=input.btn.btn-primary")
             .assertTextPresent("Error is 'not_an_email'.")
-
+    
             // good details
             .type("id=email", "bob@example.com")
             .clickAndWait("css=input.btn.btn-primary")
             .assertTextPresent("This site has been reserved but not created yet.")
-
+    
             // check that the site is now reserved
             .clickAndWait("link=Create an instance")
             .type("id=slug", "foobar")
             .clickAndWait("css=input.btn.btn-primary")
             .assertTextPresent("Error is 'slug_not_unique'.")
-
+    
             // check that the instance page works
             .open("/instance/foobar")
             
             // go to the last email page
             .open("/_testing/last_email")
             .clickAndWait("css=a")
-
+    
             // on the confirm app page
             .assertTextPresent( 'Please click the button below to create your site!')
             .clickAndWait("css=input[type=submit]")
-
+    
             // .setSpeed( 10000 )
             .assertTextPresent( 'Should redirect you to http://foobar.popitdomain.org')
             
@@ -124,7 +141,7 @@ module.exports = {
                 test.ok(true, 'all tests passed');
                 test.done();
             });
-
+    
     },
     
 };
