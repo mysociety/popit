@@ -6,16 +6,16 @@ var utils               = require('../lib/utils'),
     config              = require('config'),
     async               = require('async');
 
-
-
 module.exports = {
 
     setUp: function (setUp_done) {
         
         utils.delete_all_testing_databases( function () {
-            selenium_helpers.start_instance_server( function () {
-                setUp_done();
-            });            
+            utils.load_test_fixtures( function () {
+                selenium_helpers.start_instance_server( function () {                
+                    setUp_done();
+                });            
+            });
         });
 
     },
