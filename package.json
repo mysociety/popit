@@ -16,7 +16,8 @@
       "soda":             ">= 0.2.5",
       "config":           ">= 0.4.11",
       "mongodb":          ">= 0.9.9-7",
-      "bson":             ">= 0.0.4" 
+      "bson":             ">= 0.0.4",
+      "jquery":           ">= 1.6.3"
   },
   "scripts": {
       "test": "./run_tests.js"
