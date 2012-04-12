@@ -12,14 +12,14 @@ module.exports = {
     },
     instance_server: {
         port:          3001,
-        domain_suffix: 'vcap.me:3001'
+        domain_suffix: 'vcap.me:3001',
+        cookie_secret: 'hurgleflurdle',
     },
     MongoDB: {
         host:         'localhost',
         port:         27017,
         master_name:  '_master',
-        popit_prefix: 'popit_',
-        
+        popit_prefix: 'popit_',        
     },
     email: {
         transport:         'Sendmail',

@@ -23,7 +23,14 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.static(__dirname + '/public'));
+
   app.use(instanceSelector());
+
+  // sessions and auth
+  app.use( express.cookieParser( config.instance_server.cookie_secret ) );
+  app.use( express.cookieSession({ cookie: { maxAge: 86400 * 100 } }) );
+  require('../everyauth-setup')(app);
+
   app.use(app.router);
 });
 
