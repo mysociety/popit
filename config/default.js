@@ -19,6 +19,7 @@ module.exports = {
         host:         'localhost',
         port:         27017,
         master_name:  '_master',
+        session_name: '_session',
         popit_prefix: 'popit_',        
     },
     email: {
