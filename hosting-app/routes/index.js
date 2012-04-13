@@ -9,7 +9,7 @@ var Validator     = require('validator').Validator,
 exports.route = function (app) {
 
     app.get('/', function(req, res){
-        res.render( 'index.html' );
+        res.render( 'index' );
     });
 
     // Handle the post
@@ -80,7 +80,7 @@ exports.route = function (app) {
     var new_get = function (req, res) {
         res.local('title','New Instance');    
         res.render(
-            'instance_new.html', { locals: res.locals() } // why are locals not being passed through?
+            'instance_new'
         );
     };
     
@@ -105,7 +105,7 @@ exports.route = function (app) {
     });
     
     app.get( '/instance/:instanceSlug', function (req, res) {
-            var template_file = 'instance_' + req.instance.status + '.html';
+            var template_file = 'instance_' + req.instance.status;
             res.render( template_file, {
                 locals: {
                     instance: req.instance,
@@ -127,7 +127,7 @@ exports.route = function (app) {
         // if the token is wrong show the bad token page
         if (  token != req.instance.setup_info.confirmation_token ) {
             return res.render(
-                'instance_confirm_wrong_token.html',
+                'instance_confirm_wrong_token',
                 {
                     locals: { instance: instance },
                 }
@@ -148,7 +148,7 @@ exports.route = function (app) {
     // issue that caused FMT pain:
     //   https://nodpi.org/2011/06/22/vodastalk-vodafone-and-bluecoat-stalking-subscribers/
     app.get( '/instance/:instanceSlug/confirm/:token', check_pending_and_token, function (req, res) {
-        return res.render( 'instance_confirm.html', { locals: res.locals() } );
+        return res.render( 'instance_confirm', { locals: res.locals() } );
     });
     
     app.post( '/instance/:instanceSlug/confirm/:token', check_pending_and_token, function (req, res) {

@@ -17,9 +17,10 @@ var app = module.exports = express.createServer();
 app.configure(function(){
   app.use(express.logger('dev'));
   app.use(masterSelector());
+  app.set('view engine', 'jade');
   app.set('views', __dirname + '/views');
+  app.set('view options', { layout: false });
   app.register('.txt',  expressHogan);
-  app.register('.html', expressHogan);
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);

@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  .page-header
+    h1 #{ instance.slug }
+  p
+    | This site is up and running!
+  p
+    a(href='http://#{ instance.slug }.popitdomain.com') http://#{ instance.slug }.popitdomain.com
+    | FIXME - use correct domain here
+  p
+    | More details about this site go here so that people browsing for instance to
+    | contribute to can find them. Should have proper name, description, country of
+    | interest etc etc.

@@ -1,0 +1,35 @@
+extends layout
+    
+block content
+
+  - var errors = locals.errors || {}
+
+  .page-header
+      h1 Create a new instance
+    p
+      | To start using PopIt you need to create a new instance. This is quick, easy, free and you do it by filling in the form below.
+        
+    form.well.form-horizontal(method='post', action='')
+      fieldset
+        legend Create a new Instance
+        
+        .control-group(class="#{ errors.slug ? 'error' : '' }")
+          label.control-label(for='slug') Instance Slug
+          .controls
+            input#slug.input-xlarge(type='text', name='slug', value='#{ locals.slug || '' }')
+            span.add-on .popitdomain.org
+            p.help-block
+              | This is the url that your instance will have. Length between 4 and 20. Chars 'a' to 'z', '0' to '9' and '-' only.
+            if errors.slug
+              p.help-block Error is '#{ errors.slug.type }'.
+
+        .control-group(class="#{ errors.email ? 'error' : '' }")
+          label.control-label(for='email') Your Email address
+          .controls
+            input#email.input-xlarge(type='text', name='email', value='#{ locals.email || '' }')
+            p.help-block We need to know who you are.
+            if errors.email
+              p.help-block Error is '#{ errors.email.type }'.            
+
+        .form-actions
+          input.btn.btn-primary(type='submit', value='Create Instance')
