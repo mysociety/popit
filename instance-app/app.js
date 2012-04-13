@@ -4,7 +4,6 @@
  */
 
 var express           = require('express'),
-    expressHogan      = require('express-hogan.js'),
     mongoose          = require('mongoose'),
     config            = require('config'),
     utils             = require('../lib/utils'),
@@ -23,9 +22,11 @@ var app = module.exports = express.createServer();
 
 app.configure(function(){
   app.use(express.logger('dev'));
+
+  app.set('view engine', 'jade');
   app.set('views', __dirname + '/views');
-  app.register('.txt',  expressHogan);
-  app.register('.html', expressHogan);
+  app.set('view options', { layout: false });
+
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.static(__dirname + '/public'));

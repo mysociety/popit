@@ -13,7 +13,8 @@ These are the more major tools used to create the PopIt app:
 
 ## Templates
 
-* [Mustache](http://mustache.github.com/mustache.5.html) logic less templates
+* [Jade](https://github.com/visionmedia/jade#readme) for html pages
+* [Mustache](http://mustache.github.com/mustache.5.html) used for emails and text content
 
 ## Utilities
 

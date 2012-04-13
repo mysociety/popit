@@ -7,11 +7,11 @@ var Validator     = require('validator').Validator,
 exports.route = function (app) {
 
     app.get('/', function(req, res){
-        res.render( 'index.html', { locals: res.locals() } );
+        res.render( 'index' );
     });
     
     app.get('/welcome', function(req, res){
-        res.render( 'welcome.html', { locals: res.locals() } );
+        res.render( 'welcome' );
     });
     
 };
