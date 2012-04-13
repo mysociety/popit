@@ -49,15 +49,15 @@ module.exports = {
     },
     
     
-    "Check that existing site gives correct error": function (test) {
-
+    "Check that existing site loads as expected": function (test) {
+    
         var browser = selenium_helpers.new_instance_browser( 'foobar' );
         
         test.expect(3);
         
         browser
             .assertTextPresent('Welcome to PopIt')
-
+    
             .getHtmlSource(function (html) {
                 test.equal(
                     $(html).find("#popit_instance_name").text(),
@@ -65,7 +65,50 @@ module.exports = {
                     "correct instance loaded"
                 );
             })
+    
+            // all done
+            .testComplete()
+            .end(function (err) {
+                test.ifError(err);
+                test.ok(true, "end of tests");
+                test.done();
+            });        
+    },
+    
+    "Test login and logout": function (test) {
 
+        var browser = selenium_helpers.new_instance_browser( 'foobar' );
+        
+        test.expect(2);
+        
+        browser
+            // .setSpeed(1000)
+            .assertTextPresent('Welcome to PopIt')
+            .clickAndWait("link=log in")
+            .clickAndWait("css=input[type=\"submit\"]")
+            .assertTextPresent("Missing login")
+
+            .type("name=email", "foo")
+            .clickAndWait("css=input[type=\"submit\"]")
+            .assertTextPresent("Missing password")
+            
+            .type("name=password", "bad")
+            .clickAndWait("css=input[type=\"submit\"]")
+            .assertTextPresent("credentials wrong")
+            
+            .type("name=email", "")
+            .type("name=password", "bad")
+            .clickAndWait("css=input[type=\"submit\"]")
+            .assertTextPresent("Missing login")
+            
+            .type("name=email", "test@example.com")
+            .type("name=password", "secret")
+            .clickAndWait("css=input[type=\"submit\"]")
+            .assertTextPresent("logout test@example.com")
+
+            .clickAndWait("link=logout test@example.com")
+            .assertTextPresent("log in")
+            
             // all done
             .testComplete()
             .end(function (err) {

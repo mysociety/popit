@@ -33,10 +33,14 @@ html(lang='en')
             ul.nav
               li
                 a(href='/') Home
+              li
+                if everyauth.loggedIn
+                  a(href="/logout") logout #{user.email}
+                else
+                  a(href="/login") log in
 
     .container
       block content
         p Create a 'content' block in your template!
-
 
     script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')

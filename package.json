@@ -3,7 +3,8 @@
     "version": "0.0.1",
     "private": true,
     "dependencies": {
-      "express":          "2.5.8",
+      "express":          "2.5.9",
+      "connect":          ">=1 <2",      
       "express-hogan.js": ">= 0.1.0",
       "jade":             ">= 0.24.0",
       "validator":        ">= 0.4.5",
