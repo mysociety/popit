@@ -9,6 +9,6 @@ block content
       label Name
       input(name="name")
       if errors.name
-        span.error #{errors.name}
+        span.error #{errors.name.type}
 
     input(type="submit", value="Create new person")

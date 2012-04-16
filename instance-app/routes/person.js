@@ -1,13 +1,12 @@
 exports.route = function (app) {
 
   function requireUser(req, res, next) {
+    // FIXME - check that we have a user
     next();
   }
 
   function person_new_display_form (req, res) {
-    if( ! res.local('errors') )
-      res.local('errors', {} );
-
+    if( ! res.local('errors') ) res.local('errors', {} );
     res.render( 'person_new' );    
   }
 
@@ -15,17 +14,18 @@ exports.route = function (app) {
       
   app.post('/person/new', requireUser, function(req, res) {
     var PersonModel = req.popit.model('Person');
-    var name        = req.param('name');
-    
-    if (!name) {
-      res.local( 'errors', { name: 'bad name'} );
-      return person_new_display_form(req, res);
-    }
-    
-    var person = new PersonModel({name: name});
+        
+    var person = new PersonModel({
+      name: req.param('name'),
+    });
+
     person.save(function(err, obj){
-        if (err) throw err;
+      if ( err ) {
+        res.local( 'errors', err['errors'] );
+        return person_new_display_form(req,res);
+      } else {
         res.redirect( '/person/' + obj.id );        
+      }
     });
     
   });
@@ -40,8 +40,18 @@ exports.route = function (app) {
     });
   });
 
+
   app.get('/person/:personId', function(req,res) {
     res.render('person_view');
+  });
+
+    
+  app.get('/person/:personId/edit', requireUser, function(req,res) {
+    res.json({
+      params: req.params,
+      query: req.query,
+      body: req.body,
+    });
   });
 
 };
