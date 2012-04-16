@@ -34,7 +34,7 @@ Because the PopIt instance server can host several instances which are different
 
 There are selenium tests that test the website and the interactions with it. They expect to find a Selenium Server running on `localhost` port `4444` (the default). The server is available free from http://seleniumhq.org/download/ - download it and then leave it running in a shell. You'll also need FireFox installed as the browser that will be used for the testing.
 
-If you use Mac OSX then the homebrew package `selenium-server-standalone might be of interest.
+If you use Mac OSX then the homebrew package `selenium-server-standalone` might be of interest.
 
 ### Running the tests
 
