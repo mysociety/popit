@@ -13,6 +13,10 @@ exports.route = function (app) {
     app.get('/welcome', function(req, res){
         res.render( 'welcome' );
     });
+
+
+    require('./person').route(app);
+
     
 };
 

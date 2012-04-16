@@ -1,0 +1,14 @@
+extend layout
+
+block content
+  .page-header
+    h1 Create a new person
+
+  form(method="post", action="")
+    #person_new_name
+      label Name
+      input(name="name")
+      if errors.name
+        span.error #{errors.name}
+
+    input(type="submit", value="Create new person")
