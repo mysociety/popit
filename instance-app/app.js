@@ -104,7 +104,7 @@ app.configure(function(){
   
   app.use( everyauth.middleware() );
   
-  // app.use(app.router);
+  app.use(app.router);
 });
 
 app.configure('development', function(){
