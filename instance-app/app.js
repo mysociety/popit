@@ -105,6 +105,9 @@ app.configure(function(){
   app.use( everyauth.middleware() );
   
   app.use(app.router);
+  
+  app.use( require('../lib/errors').errorHandler );
+    
 });
 
 app.configure('development', function(){

@@ -1,3 +1,6 @@
+var Error404 = require('../../lib/errors').Error404;
+
+
 exports.route = function (app) {
 
   function requireUser(req, res, next) {
@@ -33,10 +36,13 @@ exports.route = function (app) {
 
   app.param('personId', function loadPerson (req, res, next, id) {
     req.popit.model('Person').findById(id, function(err, doc) {
-      if (err) throw err;
-      if (!doc) throw new Error('PageNotFound');
-      res.local('person', doc);
-      next();
+      if (err) console.log( err );
+      if (!doc) {
+        next( new Error404() );
+      } else {
+        res.local('person', doc);
+        next();
+      }
     });
   });
 
