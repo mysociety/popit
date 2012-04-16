@@ -74,6 +74,7 @@ app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view options', {
       layout: false,
+      pretty: true,
       // debug: true,
   });
   
