@@ -3,6 +3,17 @@ var Error404 = require('../../lib/errors').Error404;
 
 exports.route = function (app) {
 
+  app.get('/person', function (req,res) {
+    var query = req.popit.model('Person').find().asc('name');
+
+    query.run(function(err, docs) {
+      if (err) throw err;
+      
+      res.local('people', docs);
+      res.render('person_list');
+    });
+  });
+
   function requireUser(req, res, next) {
     // FIXME - check that we have a user
     next();

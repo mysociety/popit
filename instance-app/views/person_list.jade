@@ -1,0 +1,17 @@
+extend layout
+
+block content
+  .page-header
+    h1 People
+  
+  p
+    a(href="/person/new") Create a new person
+
+  if people.length
+    ul
+      for person in people
+        li
+          a(href="#{ 'person/' + person.id }") #{ person.name }
+          pre #{ JSON.stringify( person ) }
+  else
+    p.error There are no people in the system yet

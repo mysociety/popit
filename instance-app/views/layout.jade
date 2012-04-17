@@ -34,6 +34,8 @@ html(lang='en')
               li
                 a(href='/') Home
               li
+                a(href='/person') People
+              li
                 if everyauth.loggedIn
                   a(href="/logout") logout #{user.email}
                 else
