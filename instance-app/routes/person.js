@@ -62,13 +62,51 @@ exports.route = function (app) {
     res.render('person_view');
   });
 
+  function create_edit_form ( options ) {
+
+    var edit_form_prep = function (req, res, next) {
+      res.locals({
+        form_fields: options.form_fields,
+        errors:     {},
+        object:     res.local( options.object_key ), 
+      });
+      next();
+    };
+  
+    var edit_post = function (req,res) {
+      var object = res.local('object');
+  
+      res.local('form_fields').forEach( function (key) {
+        object.set( key, req.param(key, null) );
+      });
+  
+      object.save(function(err, doc) {
+  
+        if ( err ) {
+          res.local('errors', err.errors );
+          return edit_form(req,res);
+        }
+  
+        // FIXME - should not be hardcoded
+        res.redirect('/person/' + object.id);      
+      });
+    };
+  
+    var edit_form = function (req,res) {
+      res.render("generic_form");
+    };
+      
+    app.get(  options.base_path + '/edit', options.middleware, edit_form_prep, edit_form );
+    app.post( options.base_path + '/edit', options.middleware, edit_form_prep, edit_post );
+
+  }
     
-  app.get('/person/:personId/edit', requireUser, function(req,res) {
-    res.json({
-      params: req.params,
-      query: req.query,
-      body: req.body,
-    });
+  create_edit_form({
+    base_path: '/person/:personId',
+    form_fields: ['name','summary', 'foo.bar'],
+    middleware: requireUser,
+    object_key: 'person',
   });
+
 
 };

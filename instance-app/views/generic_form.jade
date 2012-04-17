@@ -1,0 +1,35 @@
+extends layout
+
+
+
+
+block content
+
+  mixin form_field(field_name)
+    div
+      - var opts        = object.schema.path(field_name).options;
+      - var field_id    = 'form-' + object.id + '-' + field_name.replace('.','-')
+      - var field_value = object.get(field_name);
+      
+      label(for=field_id) #{ opts.form_label || field_name }
+
+      case opts.form_input_type
+        when 'textarea'
+          textarea(id=field_id, name=field_name) #{ field_value }
+        default
+          input(type="text", id=field_id, name=field_name, value=field_value )
+
+      if opts.form_help_text
+        div.help #{opts.form_help_text}
+
+      if errors[field_name]
+        span.error #{ errors[field_name].type }
+
+  
+  form(action="", method="post")
+
+    for field_name in form_fields
+      mixin form_field(field_name)
+        
+    div
+      input(type="submit", value="Save")
