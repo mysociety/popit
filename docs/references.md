@@ -6,7 +6,7 @@ These are the more major tools used to create the PopIt app:
 * [node-mongodb-native](http://christkv.github.com/node-mongodb-native/index.html) raw MongoDB driver
 * [MongoDB](http://www.mongodb.org/display/DOCS/Home) database docs
 
-## Web framwork
+## Web framework
 
 * [Express](http://expressjs.com/guide.html) framework
 * [Node.js](http://nodejs.org/api/) server and runtime
