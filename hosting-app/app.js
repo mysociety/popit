@@ -19,7 +19,7 @@ app.configure(function(){
   app.use(masterSelector());
   app.set('view engine', 'jade');
   app.set('views', __dirname + '/views');
-  app.set('view options', { layout: false });
+  app.set('view options', { layout: false, pretty: true, });
   app.register('.txt',  expressHogan);
   app.use(express.bodyParser());
   app.use(express.methodOverride());
