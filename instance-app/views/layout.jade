@@ -52,7 +52,7 @@ body#popit-united_kingdom.brand_page
     h1.logo
       abbr(title='People Organisations Politicians') Pop
       | It
-      span.popit-instance : United Kingdom
+      span.popit-instance : #{ popit.instance_name() }
     #user_menu
       if everyauth.loggedIn
         #signed_in
