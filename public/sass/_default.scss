@@ -74,26 +74,6 @@ body.brand_page #user_menu{
 	}
 }
 
-/*
-To prevent both boxes from being accidentaly shown and to demonstrate in the templates Hide/Show the signin
-*/
-body{
-	
-	#signed_in{
-		display:none;
-	}
-}
-body.signed_in{
-	#signed_in{
-		display:block;
-	}
-	#sign_in{
-		display:none;
-	}
-}
-
-
-
 
 // -----------------------
 //	Main Content Area

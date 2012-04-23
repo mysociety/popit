@@ -54,19 +54,18 @@ body#popit-united_kingdom.brand_page
       | It
       span.popit-instance : United Kingdom
     #user_menu
-      //
-         Show this box for un-authenticated users 
-      #sign_in
-        | already have an account?
-        a(href='#sign-in-url') Sign in
-      //
-         Show this box for authenticated users 
-      #signed_in
-        | Hello
-        span.username Tom Steinberg
-        | ,
-        a(href='#user-preferences') View Settings
-        a(href='#sign-out-url') Sign Out
+      if everyauth.loggedIn
+        #signed_in
+          | Hello
+          span.username #{user.email}
+          | ,
+          //- a(href='#user-preferences') View Settings
+          a(href='/logout') Sign Out
+      else
+        #sign_in
+          | already have an account?
+          a(href='/login') Sign in
+
   
   #content
     block content

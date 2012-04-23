@@ -468,17 +468,6 @@ header#header h1.logo .popit-instance {
   body.brand_page #user_menu {
     padding-top: 4.4286em; } }
 
-/*
-To prevent both boxes from being accidentaly shown and to demonstrate in the templates Hide/Show the signin
-*/
-body #signed_in {
-  display: none; }
-
-body.signed_in #signed_in {
-  display: block; }
-body.signed_in #sign_in {
-  display: none; }
-
 #content {
   clear: both;
   max-width: 60em;
