@@ -1,49 +1,104 @@
-doctype 5
+!!! 5
 
-html(lang='en')
-  head
-    meta(charset='utf-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    meta(name='description', content='')
-    link(href='/css/bootstrap.css', rel='stylesheet')
-    
-    title
-      block title
-        | PopIt
 
-    style
-      body {
-      padding: 60px 10px;
-      }
+
+//if lt IE 7
+  <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en-gb">
+//if IE 7
+  <html class="no-js lt-ie9 lt-ie8" lang="en-gb">
+//if IE 8
+  <html class="no-js lt-ie9" lang="en-gb">
+//if gt IE 8
+  // 
+  <html lang="en-gb" class="no-js">
+
+head
+
+  meta(charset='UTF-8')
+  //
+    |
+    | -------------------------------------
+    | PopIt
+    | -------------------------------------
+    | A really easy way to store and share information about politicians or other public figures brought to you by mySociety, a charitable project which builds websites that give people simple, tangible benefits in the civic and community, and teaches through demonstration, how to use the internet most efficiently to improve lives. (http://www.mysociety.org/)
+    | --------------------------------- 
+  meta(name='creator', content='http://www.mysociety.org/')
   
-  body
-    .navbar.navbar-fixed-top
-      .navbar-inner
-        .container
-          a.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-          a.brand(href='/') 
-            if locals.popit
-              //- the popit_instance_name id is used in the test suite to check that the correct instance has been loaded
-              span#popit_instance_name #{ locals.popit ? locals.popit.instance_name() : '' }
-            else
-              | PopIt Instance Server
-          .nav-collapse
-            ul.nav
-              li
-                a(href='/') Home
-              li
-                a(href='/person') People
-              li
-                if everyauth.loggedIn
-                  a(href="/logout") logout #{user.email}
-                else
-                  a(href="/login") log in
+  //- Stop IE messing up layout with silly buttons on every image 
+  meta(http-equiv='imagetoolbar', content='false')
+  
+  //- Make sure this is different on each page, populate this with the generated summary when viewing people pages 
+  //- FIXME imprement in a block
+  meta(name='description', content='PopIt, a really easy way to store and share information about politicians or other public figures.')
+  
+  
+  title
+    block title
+      | PopIt 
+  
+  link(rel='stylesheet', href='/css/popit.css', type='text/css', media='screen, print', charset='utf-8')
+  link(rel='stylesheet', href='/css/print.css', type='text/css', media='print', charset='utf-8')
+  
+  //- Mobile viewport optimised: h5bp.com/viewport 
+  meta(name='viewport', content='width=device-width,initial-scale=1')
+  
+  //- Modernizr
+  //- In the head to stop conflicts with jQuery 
+  //- Full & uncompressed for now until finished then we can do a custom cutdown build with just the bits we need 
+  script(src='/js/libs/modernizr-2.5.3.js', type='text/javascript', charset='utf-8')
+  
+body#popit-united_kingdom.brand_page
+  header#header
+    h1.logo
+      abbr(title='People Organisations Politicians') Pop
+      | It
+      span.popit-instance : United Kingdom
+    #user_menu
+      //
+         Show this box for un-authenticated users 
+      #sign_in
+        | already have an account?
+        a(href='#sign-in-url') Sign in
+      //
+         Show this box for authenticated users 
+      #signed_in
+        | Hello
+        span.username Tom Steinberg
+        | ,
+        a(href='#user-preferences') View Settings
+        a(href='#sign-out-url') Sign Out
+  
+  #content
+    block content
+    
+  footer#footer
+    div
+      #sitemap
+        a.logo(href='/') PopIt
+        ul
+          li
+            a(href='#') About PopIt
+          li
+            a(href='#') API / Data Freedom
+          li
+            a(href='#') Corporate Use & Pricing
+          li
+            a(href='#') Self Hosting
+          li
+            a(href='#') Terms & Privacy Policy
+      #about-mysociety
+        p
+          | PopIt is a project from mySociety, a charitable project which builds websites that give people simple, tangible benefits in the civic and community, and teaches through demonstration, how to use the internet most efficiently to improve lives.
+        p
+          | Learn more at
+          a(href='http://www.mysociety.org', title='mySociety') www.mysociety.org
+    .copyright
+      | ©
+  //
+     Javascript 
+  script(src='/js/libs/jquery-1.7.2.min.js', type='text/javascript', charset='utf-8')
+  script(src='/js/libs/json2_us_bb.min.js', type='text/javascript', charset='utf-8')
+  script(src='/js/popit.js', type='text/javascript', charset='utf-8')
 
-    .container
-      block content
-        p Create a 'content' block in your template!
-
-    script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')
+//- manually close the html tag as we opened it in a funny way using the conditional comments above
+</html>
