@@ -67,9 +67,16 @@ var app =  express.createServer();
 
 // Configuration
 
-app.configure(function(){
+app.configure('development', function(){
   app.use(express.logger('dev'));
-  
+});
+
+app.configure('production', function(){
+  app.use(express.logger());
+});
+
+app.configure(function(){
+    
   app.set('view engine', 'jade');
   app.set('views', __dirname + '/views');
   app.set('view options', {
