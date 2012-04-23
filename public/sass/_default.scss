@@ -1,0 +1,358 @@
+/* Baseline Styles - Starting point for custom user themes */
+
+body{
+	//	Here until the responsive bit is working
+		min-width: 60em;
+}
+
+
+// -----------------------
+//	Main Page Header, Logo SigninBox
+// -----------------------
+header#header{
+	max-width: 60em;
+	
+	padding: 0.625em;
+	margin: auto;
+	
+	h1.logo{
+		color: #4D4D4D;
+		max-width:100%;
+		margin:0;
+		
+		@media screen and (min-width: 60em){
+			float:left;
+			width: 9.667em;
+		}
+		
+		abbr{
+			border:none;
+			text-decoration:none;
+			color: #333333;
+		}
+		
+		.popit-instance{
+			font-size: 0.5em;
+			opacity: 0.5;
+		}
+		
+	}
+}
+body.brand_page header#header h1.logo{
+	
+	@media screen and (min-width: 60em){
+		font-size: 3.75em;
+		margin: 0.35em 0;
+	}
+}
+
+//	Signin Box
+// -----------------------
+
+#user_menu
+{
+	font-size: 0.875em;
+	max-width:100%;
+	
+	@media screen and (min-width: 60em){
+		width: 21.25em;
+		text-align: right;
+		padding-top: 1.6em;
+		float:right;
+	}
+	
+	.username{
+		font-weight: bold;
+	}
+	a{
+		color: #333;
+	}
+}
+body.brand_page #user_menu{
+	@media screen and (min-width: 60em){
+		padding-top: 4.4286em;
+	}
+}
+
+/*
+To prevent both boxes from being accidentaly shown and to demonstrate in the templates Hide/Show the signin
+*/
+body{
+	
+	#signed_in{
+		display:none;
+	}
+}
+body.signed_in{
+	#signed_in{
+		display:block;
+	}
+	#sign_in{
+		display:none;
+	}
+}
+
+
+
+
+// -----------------------
+//	Main Content Area
+// -----------------------
+#content{
+	clear:both;
+	max-width: 60em;
+	padding-top:1.25em;
+	margin: auto;
+}
+
+
+
+// -----------------------
+//	Person Header and nav
+// -----------------------
+header.person-header-nav{
+	
+	margin-left:-1.6875em;
+	margin-right: -1.6875em;
+	margin-bottom:1em;
+	clear:both;
+	
+	nav{
+		display:inline;
+	}
+	&>*, nav>a{
+		display: inline-block;
+		vertical-align:top;
+		height: 3.75em;
+		overflow:hidden;
+	}
+	
+	.find-person{
+		margin:0;
+		float:right;
+//		width: 7.5em;
+		width: 10.875em;
+		padding: 1.25em 1.25em 1.25em 2.5em;
+		background: #cbcbcb url(../img/search.png) no-repeat scroll 0.625em center;
+		
+		label{
+			display:none;
+		}
+		
+		input{
+			vertical-align:middle;
+			width:100%;
+			opacity:0.5;
+			&:focus{
+				opacity:1;
+			}
+		}
+	}
+	&.focus-search .find-person{
+		width: 29.5em;
+	}
+	
+	.current-person{
+		width: 16em;
+		height: 2em;
+		background-color: #dbdbdb;
+		margin:0;
+		padding: 0.5em;
+		font-size:1.875em;
+		text-align: center;
+		font-family: 'MuseoSlab500', 'sans-serif';
+		font-weight: normal;
+		overflow:hidden;
+		text-overflow: ellipsis; 
+	}
+	&.focus-search .current-person{
+		width: 6em;
+	}
+	
+	.find-person, .current-person{
+		-webkit-transition: width 0.5s ease-out;
+		   -moz-transition: width 0.5s ease-out;
+		     -o-transition: width 0.5s ease-out;
+		        transition: width 0.5s ease-out;
+	}
+	
+	a.previous-person, a.next-person{
+		width:11.25em;
+		text-decoration: none;
+		color: #fff;
+		background-color: #b3b3b3;
+		padding:0.75em 0.625em 0.75em 2.8125em;
+		margin:0;
+		background: #b3b3b3 url(../img/arrow-left.png) no-repeat scroll left center;
+		
+		em{
+			text-transform: uppercase;
+			font-style: normal;
+			font-size: 0.625em;
+			color: #e5e5e5;
+		}
+		strong{
+			display:block;
+			overflow:hidden;
+			text-overflow: ellipsis;
+			width:100%;
+			color:#eeeeee;
+		}
+		&:hover strong{
+			color:#fff;
+		}
+		
+//		&:hover{
+//			margin-top:-3px;
+//		}
+	}
+	a.next-person{
+		text-align: right;
+		padding:0.75em 2.8125em 0.75em 0.625em;
+		background: #b3b3b3 url(../img/arrow-right.png) no-repeat scroll right center;
+		float:right;
+	}
+}
+
+
+
+article.person{
+	.admin-options{
+		float:right;
+		padding:0;
+		margin:0;
+		text-indent:0;
+		list-style:none;
+		
+		a{
+			font-size: 0.875em;
+			color: #4c4c4c;
+			&.add strong{
+				color: #7aa701;
+			}
+			&.edit strong{
+				color: #c26400;
+			}
+			&.delete strong{
+				color: #c20000;
+			}
+		}
+	}
+	&>aside{
+		width:22.5em;
+		float:left;
+		padding:0.625em;
+		
+		.admin-options{
+			float:left;
+		}
+		
+		ul.photos, ul.photos li{
+			display:block;
+			padding:0;
+			margin:0;
+			list-style:none;
+		}
+		img{
+			max-width:100%;
+		}
+		.photo-source{
+			text-align:right;
+			font-size: 0.625em;
+			width:28em;
+			color:#999;
+			a{color:#999;}
+		}
+	}
+	&>section{
+		border-top: 1px solid #ddd;
+		float:right;
+		padding:0.625em;
+		margin-top:0.625em;
+		width:37.5em;
+		h2{
+			margin-top:0;
+		}
+	}
+	
+	.description{
+		p{
+			font-size:1.125em;
+			line-height: 1.667em;
+		}
+	}
+	
+	&>footer{
+		clear:both;
+	}
+	
+}
+// Just to demo design states admin options shouldn't be in the html if not signed in.
+.admin-options{ display:none; }
+body.signed_in .admin-options{ display:block; }
+
+
+
+// -----------------------
+//	Main Page Footer
+// -----------------------
+#footer{
+	clear:both;
+	width:100%;
+	background-color:#eeeeee;
+	padding: 2.5em 0;
+	line-height:1.875em;
+	color:#666666;
+	margin-top: 3em;
+	
+	&>div{
+		max-width:60em;
+		margin:auto;
+		clear:both;
+	}
+	
+	#sitemap{
+		width: 22.5em;
+		float:left;
+		padding:0.625em;
+		
+		ul{
+			list-style:none;
+			margin:0;
+			padding:0;
+			text-indent:0;
+			margin-left:4.375em;
+			margin-bottom: 2em;
+			li{
+				font-size: 0.875em;
+				display:block;
+				margin:0;
+				padding:0;
+			}
+		}
+		a.logo{
+			font-family: 'MuseoSlab500', 'sans-serif';
+			font-weight: normal;
+			font-size: 2.5em;
+			line-height: 1.5em;
+			text-decoration:none;
+			color: #d2d2d2;
+		}
+	}
+	
+	#about-mysociety{
+		width: 37.5em;
+		float:right;
+		padding: 3.4375em 0.625em;
+		p{
+			font-size: 0.875em;
+			margin-bottom: 2.143em;
+		}
+	}
+	.copyright{
+		text-align:center;
+		font-size:0.625em;
+		color: #ccc;
+	}
+}
+
