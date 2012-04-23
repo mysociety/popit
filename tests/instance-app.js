@@ -84,7 +84,7 @@ module.exports = {
         browser
             // .setSpeed(1000)
             .assertTextPresent('Welcome to PopIt')
-            .clickAndWait("link=log in")
+            .clickAndWait("link=Sign in")
             .clickAndWait("css=input[type=\"submit\"]")
             .assertTextPresent("Missing login")
 
@@ -104,10 +104,10 @@ module.exports = {
             .type("name=email", "test@example.com")
             .type("name=password", "secret")
             .clickAndWait("css=input[type=\"submit\"]")
-            .assertTextPresent("logout test@example.com")
+            .assertTextPresent("Sign Out")
 
-            .clickAndWait("link=logout test@example.com")
-            .assertTextPresent("log in")
+            .clickAndWait("link=Sign Out")
+            .assertTextPresent("Sign in")
             
             // all done
             .testComplete()

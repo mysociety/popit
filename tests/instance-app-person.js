@@ -33,7 +33,7 @@ module.exports = {
         
         browser
             // go to new person page
-            .clickAndWait('link=People')
+            .clickAndWait('link=all the people')
             .clickAndWait("link=Create a new person")
 
             // try to enter an empty name
@@ -46,7 +46,8 @@ module.exports = {
             .assertTextPresent("Joe Bloggs")
             
             // go to the people list
-            .clickAndWait('link=People')
+            .open('/')
+            .clickAndWait('link=all the people')
             .assertTextPresent("Joe Bloggs")
             .clickAndWait("link=Joe Bloggs")
     
