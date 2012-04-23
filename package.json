@@ -6,7 +6,7 @@
       "express":          "2.5.9",
       "connect":          ">=1 <2",      
       "express-hogan.js": ">= 0.1.0",
-      "jade":             ">= 0.24.0",
+      "jade":             "0.25.0",
       "validator":        ">= 0.4.5",
       "passgen":          ">= 1.0.1",
       "nodemailer":       ">= 0.3.10",

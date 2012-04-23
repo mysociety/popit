@@ -53,14 +53,14 @@ body#popit-united_kingdom.brand_page
       abbr(title='People Organisations Politicians') Pop
       | It
       if locals.popit
-        span.popit-instance : 
+        span.popit-instance  : 
           span#popit_instance_name #{ popit.instance_name() }
     #user_menu
       if everyauth.loggedIn
         #signed_in
-          | Hello
+          | Hello 
           span.username #{user.email}
-          | ,
+          | , 
           //- a(href='#user-preferences') View Settings
           a(href='/logout') Sign Out
       else
@@ -91,7 +91,7 @@ body#popit-united_kingdom.brand_page
         p
           | PopIt is a project from mySociety, a charitable project which builds websites that give people simple, tangible benefits in the civic and community, and teaches through demonstration, how to use the internet most efficiently to improve lives.
         p
-          | Learn more at
+          | Learn more at 
           a(href='http://www.mysociety.org', title='mySociety') www.mysociety.org
     .copyright
       | ©
