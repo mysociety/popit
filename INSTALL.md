@@ -26,7 +26,11 @@ After installing made the following changes to `/etc/mongodb.conf` and then `/et
 
 Could also change `nssize` to be smaller, but left it untouched at default of 16MB.
 
-No auth was set up - but should be in production.
+Only bind to the localhost address - so open only to local machine:
+
+    bind_ip = 127.0.0.1
+
+You can check this is working as expected using `netstat -a` and looking for ports `27017` and `28017`.
 
 ## MongoDB Node Driver
 
@@ -72,3 +76,45 @@ No auth was set up - but should be in production.
     # you should now be able to connect to the app with your browser
     
     # detach from the screen session using Ctrl-A Ctrl-D
+
+# Installing behind varnish
+
+[Varnish](https://www.varnish-cache.org/) is a web application accelerator. We can use it to route the HTTP traffic to the right port for the hosting/instance servers.
+
+    # Install varnish as per instructions at https://www.varnish-cache.org/installation/debian
+
+    # Copy `/etc/varnish/default.vcl` to `/etc/varnish/popit.vcl`
+    
+    # Edit `/etc/varnish/popit.vcl` so that it has the following uncommented lines in it:
+    
+    backend hosting_server {
+        .host = "127.0.0.1";
+        .port = "3000";
+    }
+
+    backend default {
+        .host = "127.0.0.1";
+        .port = "3001";
+    }
+
+    sub vcl_recv {
+        if(req.http.host == "your-hosting-site-domain.com") {
+            set req.backend = hosting_server;
+        }
+    }
+    
+    # Edit /etc/default/varnish so that it is listening to port 80, and use the popit.vcl
+    
+    # restart varnish
+    /etc/init.d/varnish restart
+    
+    # set up the production config
+    cp config/sample-production.js ../production.js
+    ln -s ../../production.js config/
+    nano config/production.js
+    
+    # Run the servers in production env
+    # FIXME - should do this at startup using startdard scripts etc
+    NODE_ENV=production supervisor hosting-app/app.js
+    NODE_ENV=production supervisor instance-app/app.js
+    
