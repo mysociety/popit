@@ -213,9 +213,6 @@ exports.route = function (app) {
         
     });
 
-    
-    require('./info').route(app);
-
     // Throw a 404 error
     app.all('/*', function(req, res, next) {
       next(new Error404());

@@ -32,6 +32,7 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.static(__dirname + '/../public'));
 
+  app.use('/info', require('../lib/apps/info') );
   app.use(app.router);
 
   app.use( require('../lib/errors').errorHandler );
