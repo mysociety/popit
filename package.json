@@ -1,32 +1,48 @@
 {
-    "name": "popit-hosting",
-    "version": "0.0.1",
-    "private": true,
-    "dependencies": {
-      "express":                          ">=2 <3",
-      "connect":                          ">=1 <2",      
-      "express-hogan.js":                 ">= 0.1.0",
-      "jade":                             ">= 0.25.0",
-      "validator":                        ">= 0.4.5",
-      "passgen":                          ">= 1.0.1",
-      "nodemailer":                       ">= 0.3.10",
-      "mongoose":                         ">= 2.5.10",
-      "nodeunit":                         ">= 0.7.4",
-      "underscore":                       ">= 1.3.1",
-      "bcrypt":                           ">= 0.5.0",
-      "async":                            ">= 0.1.18",
-      "soda":                             ">= 0.2.5",
-      "config":                           ">= 0.4.11",
-      "mongodb":                          ">= 0.9.9-7",
-      "bson":                             ">= 0.0.4",
-      "jquery":                           ">= 1.6.3",
-      "connect-mongodb":                  ">= 1.1.3",
-      "pow-mongodb-fixtures":             ">= 0.6.0",
+  "name": "popit",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "async":                     ">= 0.1.18",
+    "bcrypt":                    ">= 0.5.0",
+    "bson":                      ">= 0.0.4",
+    "config":                    ">= 0.4.11",
+    "connect":                   ">=1 <2",
+    "connect-mongodb":           ">= 1.1.3",
+    "express":                   ">=2 <3",
+    "express-hogan.js":          ">= 0.1.0",
+    "jade":                      ">= 0.25.0",
+    "jquery":                    ">= 1.6.3",
+    "mongodb":                   ">= 0.9.9-7",
+    "mongoose":                  ">= 2.5.10",
+    "nodemailer":                ">= 0.3.10",
+    "nodeunit":                  ">= 0.7.4",
+    "passgen":                   ">= 1.0.1",
+    "pow-mongodb-fixtures":      ">= 0.6.0",    
+    "soda":                      ">= 0.2.5",
+    "underscore":                ">= 1.3.1",
+    "validator":                 ">= 0.4.5",
 
-      "everyauth": "https://github.com/evdb/everyauth/tarball/master"
-      
+    "everyauth":                 "https://github.com/evdb/everyauth/tarball/master"
+
   },
   "scripts": {
-      "test": "./run_tests.js"
+    "test": "./run_tests.js"
+  },
+  "devDependencies": {
+  },
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  },
+  "author": "mySociety <popit@mysociety.org> (http://www.mysociety.org/)",
+  "description": "People, Organisations and Positions database website",
+  "homepage": "http://popit.mysociety.org/",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/mysociety/popit.git"
+  },
+  "bugs": {
+    "url" : "http://github.com/mysociety/popit/issues"
   }
 }

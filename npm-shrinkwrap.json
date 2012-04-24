@@ -1,18 +1,32 @@
 {
-  "name": "popit-hosting",
+  "name": "popit",
   "version": "0.0.1",
   "dependencies": {
-    "express": {
-      "version": "2.5.9",
+    "async": {
+      "version": "0.1.18"
+    },
+    "bcrypt": {
+      "version": "0.5.0"
+    },
+    "bson": {
+      "version": "0.0.4"
+    },
+    "config": {
+      "version": "0.4.11",
       "dependencies": {
-        "mime": {
-          "version": "1.2.4"
+        "yaml": {
+          "version": "0.2.3"
         },
-        "qs": {
-          "version": "0.4.2"
+        "vows": {
+          "version": "0.5.13",
+          "dependencies": {
+            "eyes": {
+              "version": "0.1.7"
+            }
+          }
         },
-        "mkdirp": {
-          "version": "0.3.0"
+        "coffee-script": {
+          "version": "1.3.1"
         }
       }
     },
@@ -27,6 +41,42 @@
         },
         "formidable": {
           "version": "1.0.9"
+        }
+      }
+    },
+    "connect-mongodb": {
+      "version": "1.1.3",
+      "dependencies": {
+        "mongodb": {
+          "version": "0.9.7"
+        },
+        "connect": {
+          "version": "1.8.5",
+          "dependencies": {
+            "qs": {
+              "version": "0.4.2"
+            },
+            "mime": {
+              "version": "1.2.5"
+            },
+            "formidable": {
+              "version": "1.0.9"
+            }
+          }
+        }
+      }
+    },
+    "express": {
+      "version": "2.5.9",
+      "dependencies": {
+        "mime": {
+          "version": "1.2.4"
+        },
+        "qs": {
+          "version": "0.4.2"
+        },
+        "mkdirp": {
+          "version": "0.3.0"
         }
       }
     },
@@ -52,19 +102,44 @@
         }
       }
     },
-    "validator": {
-      "version": "0.4.6-2"
-    },
-    "passgen": {
-      "version": "1.0.1",
+    "jquery": {
+      "version": "1.6.3",
       "dependencies": {
-        "vows": {
-          "version": "0.6.2",
+        "jsdom": {
+          "version": "0.2.14",
           "dependencies": {
-            "eyes": {
-              "version": "0.1.7"
+            "request": {
+              "version": "2.9.202"
+            },
+            "cssom": {
+              "version": "0.2.3"
+            },
+            "contextify": {
+              "version": "0.1.2",
+              "dependencies": {
+                "bindings": {
+                  "version": "0.3.0"
+                }
+              }
             }
           }
+        },
+        "htmlparser": {
+          "version": "1.7.6"
+        }
+      }
+    },
+    "mongodb": {
+      "version": "0.9.9-8"
+    },
+    "mongoose": {
+      "version": "2.6.0",
+      "dependencies": {
+        "hooks": {
+          "version": "0.2.1"
+        },
+        "mongodb": {
+          "version": "0.9.9-7"
         }
       }
     },
@@ -89,17 +164,6 @@
         }
       }
     },
-    "mongoose": {
-      "version": "2.6.0",
-      "dependencies": {
-        "hooks": {
-          "version": "0.2.1"
-        },
-        "mongodb": {
-          "version": "0.9.9-7"
-        }
-      }
-    },
     "nodeunit": {
       "version": "0.7.4",
       "dependencies": {
@@ -110,7 +174,7 @@
               "version": "1.0.0"
             },
             "yamlish": {
-              "version": "0.0.5"
+              "version": "0.0.4"
             },
             "slide": {
               "version": "1.1.3"
@@ -165,87 +229,14 @@
         }
       }
     },
-    "underscore": {
-      "version": "1.3.3"
-    },
-    "bcrypt": {
-      "version": "0.5.0"
-    },
-    "async": {
-      "version": "0.1.18"
-    },
-    "soda": {
-      "version": "0.2.5"
-    },
-    "config": {
-      "version": "0.4.11",
+    "passgen": {
+      "version": "1.0.1",
       "dependencies": {
-        "yaml": {
-          "version": "0.2.3"
-        },
         "vows": {
-          "version": "0.5.13",
+          "version": "0.6.2",
           "dependencies": {
             "eyes": {
               "version": "0.1.7"
-            }
-          }
-        },
-        "coffee-script": {
-          "version": "1.3.1"
-        }
-      }
-    },
-    "mongodb": {
-      "version": "0.9.9-8"
-    },
-    "bson": {
-      "version": "0.0.4"
-    },
-    "jquery": {
-      "version": "1.6.3",
-      "dependencies": {
-        "jsdom": {
-          "version": "0.2.14",
-          "dependencies": {
-            "request": {
-              "version": "2.9.202"
-            },
-            "cssom": {
-              "version": "0.2.3"
-            },
-            "contextify": {
-              "version": "0.1.2",
-              "dependencies": {
-                "bindings": {
-                  "version": "0.3.0"
-                }
-              }
-            }
-          }
-        },
-        "htmlparser": {
-          "version": "1.7.6"
-        }
-      }
-    },
-    "connect-mongodb": {
-      "version": "1.1.3",
-      "dependencies": {
-        "mongodb": {
-          "version": "0.9.7"
-        },
-        "connect": {
-          "version": "1.8.5",
-          "dependencies": {
-            "qs": {
-              "version": "0.4.2"
-            },
-            "mime": {
-              "version": "1.2.5"
-            },
-            "formidable": {
-              "version": "1.0.9"
             }
           }
         }
@@ -256,19 +247,17 @@
       "dependencies": {
         "async": {
           "version": "0.1.15"
-        },
-        "mongodb": {
-          "version": "0.9.9-8",
-          "dependencies": {
-            "bson": {
-              "version": "0.0.4"
-            }
-          }
-        },
-        "underscore": {
-          "version": "1.3.3"
         }
       }
+    },
+    "soda": {
+      "version": "0.2.5"
+    },
+    "underscore": {
+      "version": "1.3.3"
+    },
+    "validator": {
+      "version": "0.4.6-2"
     },
     "everyauth": {
       "version": "0.2.32",
