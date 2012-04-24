@@ -23,8 +23,8 @@
 
       "everyauth": "https://github.com/evdb/everyauth/tarball/master",
 
-      "connect-mongodb":   ">= 1.1.3"
-      
+      "connect-mongodb":      ">= 1.1.3",
+      "pow-mongodb-fixtures": "0.6.0"
   },
   "scripts": {
       "test": "./run_tests.js"
