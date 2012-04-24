@@ -15,8 +15,12 @@ exports.route = function (app) {
   });
 
   function requireUser(req, res, next) {
-    // FIXME - check that we have a user
-    next();
+    // if we have a user then continue
+    if ( req.user ) return next();
+
+    // otherwise store our url on the session and get the user to log in
+    req.session.post_login_redirect_to = req.url;    
+    res.redirect('/login');
   }
 
   function person_new_display_form (req, res) {

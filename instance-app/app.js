@@ -21,7 +21,10 @@ everyauth
     .findUserById( function (req, userId, callback) {
         var User = req.popit.model('User');
         User.findById(userId, callback);
-    });    
+    })
+    .performRedirect( function (res, location) {
+      res.redirect(location);
+    });
 
 everyauth
   .password
@@ -53,7 +56,13 @@ everyauth
     
           return promise;
     })
-    .loginSuccessRedirect('/')
+    .respondToLoginSucceed( function (res, user, data) {
+      if (user) {
+        var post_login_redirect_to = data.session.post_login_redirect_to;
+        delete data.session.post_login_redirect_to;
+        this.redirect(res, post_login_redirect_to || 'home' );
+      }   
+    })
     .getRegisterPath('/register')
     .postRegisterPath('/register')
     .registerView('does-not-exist.html')
