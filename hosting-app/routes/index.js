@@ -182,7 +182,7 @@ exports.route = function (app) {
                         if ( err ) throw err;
             
                         // redirect user to new domain once save has completed
-                        res.redirect( 'http://' + instance.slug + '.' + config.instance_server.domain_suffix + '/welcome' );
+                        res.redirect( instance.base_url + '/welcome' );
                     });
                 });            
             });
