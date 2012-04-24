@@ -35,6 +35,11 @@ module.exports = {
             // go to new person page
             .clickAndWait('link=all the people')
             .clickAndWait("link=Create a new person")
+            
+            // check that we are at the login page
+            .assertTitle('Login')
+            .and(selenium_helpers.login())
+            .assertTitle('New Person')
 
             // try to enter an empty name
             .clickAndWait("css=input[type=\"submit\"]")

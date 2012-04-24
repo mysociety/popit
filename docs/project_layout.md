@@ -41,3 +41,10 @@ Each app has it's own folder with the usual sub folders:
 
 Note that many of the `require` statements will refer to files one level above
 the app folder, so there may be more `../` than normal :)
+
+### Views
+
+In each app folder there is a `views` folder that contains the templates. There
+is also a folders in `views` called `info`. Any template put in there will be
+served when requested at a url like `/info/foobar` - which would serve the
+`info/foobar.jade` template. This is useful for privacy policies etc.

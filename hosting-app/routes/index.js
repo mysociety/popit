@@ -4,7 +4,8 @@ var Validator     = require('validator').Validator,
     PopIt         = require('../../lib/popit'),
     utils         = require('../../lib/utils'),
     mailer        = require('../../lib/mailer'),
-    config        = require('config');
+    config        = require('config'),
+    Error404      = require('../../lib/errors').Error404;
 
 exports.route = function (app) {
 
@@ -210,6 +211,11 @@ exports.route = function (app) {
             res.send( '<pre>' + html + '</pre>' );
         })
         
+    });
+
+    // Throw a 404 error
+    app.all('/*', function(req, res, next) {
+      next(new Error404());
     });
     
 };

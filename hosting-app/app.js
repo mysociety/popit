@@ -30,8 +30,13 @@ app.configure(function(){
   app.register('.txt',  expressHogan);
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(app.router);
   app.use(express.static(__dirname + '/../public'));
+
+  app.use('/info', require('../lib/apps/info') );
+  app.use(app.router);
+
+  app.use( require('../lib/errors').errorHandler );
+
 });
 
 app.configure('development', function(){
