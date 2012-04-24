@@ -82,7 +82,8 @@ module.exports = {
             .assertTextPresent("This site has been reserved but not created yet.")
     
             // check that the site is now reserved
-            .clickAndWait("link=Create an instance")
+            .open('/')
+            .clickAndWait("link=Create a new instance")
             .type("id=slug", "foobar")
             .clickAndWait("css=input.btn.btn-primary")
             .assertTextPresent("Error is 'slug_not_unique'.")
