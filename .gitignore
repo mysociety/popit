@@ -1,6 +1,5 @@
-*.pyc
 *~
+.DS_Store
 MANIFEST
-dist
 npm-debug.log
 node_modules
