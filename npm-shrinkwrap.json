@@ -1,0 +1,310 @@
+{
+  "name": "popit-hosting",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": {
+      "version": "2.5.9",
+      "dependencies": {
+        "mime": {
+          "version": "1.2.4"
+        },
+        "qs": {
+          "version": "0.4.2"
+        },
+        "mkdirp": {
+          "version": "0.3.0"
+        }
+      }
+    },
+    "connect": {
+      "version": "1.8.7",
+      "dependencies": {
+        "qs": {
+          "version": "0.4.2"
+        },
+        "mime": {
+          "version": "1.2.5"
+        },
+        "formidable": {
+          "version": "1.0.9"
+        }
+      }
+    },
+    "express-hogan.js": {
+      "version": "0.1.0",
+      "dependencies": {
+        "hogan.js": {
+          "version": "1.0.2"
+        },
+        "underscore": {
+          "version": "1.3.0"
+        }
+      }
+    },
+    "jade": {
+      "version": "0.25.0",
+      "dependencies": {
+        "commander": {
+          "version": "0.5.2"
+        },
+        "mkdirp": {
+          "version": "0.3.0"
+        }
+      }
+    },
+    "validator": {
+      "version": "0.4.6-2"
+    },
+    "passgen": {
+      "version": "1.0.1",
+      "dependencies": {
+        "vows": {
+          "version": "0.6.2",
+          "dependencies": {
+            "eyes": {
+              "version": "0.1.7"
+            }
+          }
+        }
+      }
+    },
+    "nodemailer": {
+      "version": "0.3.18",
+      "dependencies": {
+        "mailcomposer": {
+          "version": "0.1.14",
+          "dependencies": {
+            "mimelib-noiconv": {
+              "version": "0.1.6"
+            }
+          }
+        },
+        "simplesmtp": {
+          "version": "0.1.17",
+          "dependencies": {
+            "rai": {
+              "version": "0.1.6"
+            }
+          }
+        }
+      }
+    },
+    "mongoose": {
+      "version": "2.6.0",
+      "dependencies": {
+        "hooks": {
+          "version": "0.2.1"
+        },
+        "mongodb": {
+          "version": "0.9.9-7"
+        }
+      }
+    },
+    "nodeunit": {
+      "version": "0.7.4",
+      "dependencies": {
+        "tap": {
+          "version": "0.2.4",
+          "dependencies": {
+            "inherits": {
+              "version": "1.0.0"
+            },
+            "yamlish": {
+              "version": "0.0.5"
+            },
+            "slide": {
+              "version": "1.1.3"
+            },
+            "runforcover": {
+              "version": "0.0.2",
+              "dependencies": {
+                "bunker": {
+                  "version": "0.1.1",
+                  "dependencies": {
+                    "burrito": {
+                      "version": "0.2.11",
+                      "dependencies": {
+                        "traverse": {
+                          "version": "0.5.2"
+                        },
+                        "uglify-js": {
+                          "version": "1.0.7"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "nopt": {
+              "version": "1.0.10",
+              "dependencies": {
+                "abbrev": {
+                  "version": "1.0.3"
+                }
+              }
+            },
+            "mkdirp": {
+              "version": "0.3.1"
+            },
+            "difflet": {
+              "version": "0.2.1",
+              "dependencies": {
+                "traverse": {
+                  "version": "0.6.1"
+                },
+                "charm": {
+                  "version": "0.0.6"
+                }
+              }
+            },
+            "deep-equal": {
+              "version": "0.0.0"
+            }
+          }
+        }
+      }
+    },
+    "underscore": {
+      "version": "1.3.3"
+    },
+    "bcrypt": {
+      "version": "0.5.0"
+    },
+    "async": {
+      "version": "0.1.18"
+    },
+    "soda": {
+      "version": "0.2.5"
+    },
+    "config": {
+      "version": "0.4.11",
+      "dependencies": {
+        "yaml": {
+          "version": "0.2.3"
+        },
+        "vows": {
+          "version": "0.5.13",
+          "dependencies": {
+            "eyes": {
+              "version": "0.1.7"
+            }
+          }
+        },
+        "coffee-script": {
+          "version": "1.3.1"
+        }
+      }
+    },
+    "mongodb": {
+      "version": "0.9.9-8"
+    },
+    "bson": {
+      "version": "0.0.4"
+    },
+    "jquery": {
+      "version": "1.6.3",
+      "dependencies": {
+        "jsdom": {
+          "version": "0.2.14",
+          "dependencies": {
+            "request": {
+              "version": "2.9.202"
+            },
+            "cssom": {
+              "version": "0.2.3"
+            },
+            "contextify": {
+              "version": "0.1.2",
+              "dependencies": {
+                "bindings": {
+                  "version": "0.3.0"
+                }
+              }
+            }
+          }
+        },
+        "htmlparser": {
+          "version": "1.7.6"
+        }
+      }
+    },
+    "connect-mongodb": {
+      "version": "1.1.3",
+      "dependencies": {
+        "mongodb": {
+          "version": "0.9.7"
+        },
+        "connect": {
+          "version": "1.8.5",
+          "dependencies": {
+            "qs": {
+              "version": "0.4.2"
+            },
+            "mime": {
+              "version": "1.2.5"
+            },
+            "formidable": {
+              "version": "1.0.9"
+            }
+          }
+        }
+      }
+    },
+    "pow-mongodb-fixtures": {
+      "version": "0.6.0",
+      "dependencies": {
+        "async": {
+          "version": "0.1.15"
+        },
+        "mongodb": {
+          "version": "0.9.9-8",
+          "dependencies": {
+            "bson": {
+              "version": "0.0.4"
+            }
+          }
+        },
+        "underscore": {
+          "version": "1.3.3"
+        }
+      }
+    },
+    "everyauth": {
+      "version": "0.2.32",
+      "from": "https://github.com/evdb/everyauth/tarball/master",
+      "dependencies": {
+        "oauth": {
+          "version": "0.9.6",
+          "from": "https://github.com/ciaranj/node-oauth/tarball/master"
+        },
+        "restler": {
+          "version": "2.0.0"
+        },
+        "request": {
+          "version": "2.9.202"
+        },
+        "openid": {
+          "version": "0.4.2"
+        },
+        "xml2js": {
+          "version": "0.1.13",
+          "dependencies": {
+            "sax": {
+              "version": "0.4.0"
+            }
+          }
+        },
+        "node-swt": {
+          "version": "0.1.1"
+        },
+        "node-wsfederation": {
+          "version": "0.1.1"
+        },
+        "debug": {
+          "version": "0.5.0"
+        }
+      }
+    }
+  }
+}
