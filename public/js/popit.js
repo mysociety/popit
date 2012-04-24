@@ -10,11 +10,6 @@ $(document).ready(function() {
 		$('.person-header-nav').removeClass('focus-search');
 	});
 	
-
-	/*
-		Design State Demos 
-		- the different sized headers, toggle by clicking on logo
-	*/ 
-	$('.logo').click(function(e) { $('body').toggleClass('brand_page'); });
+	
 	
 });
