@@ -5,7 +5,8 @@ var utils               = require('../lib/utils'),
     selenium_helpers    = require('../lib/testing/selenium'),
     config              = require('config'),
     async               = require('async'),
-    $                   = require('jquery');
+    $                   = require('jquery'),
+    url                 = require('url');
 
 module.exports = {
 
@@ -29,7 +30,7 @@ module.exports = {
     
         var browser = selenium_helpers.new_instance_browser( 'foobar' );
         
-        test.expect(2);
+        test.expect(3);
         
         browser
             // go to new person page
@@ -63,6 +64,14 @@ module.exports = {
             .type("name=name", "Joé Bloggs")
             .clickAndWait("css=input[type=\"submit\"]")
             .assertTitle("Joé Bloggs")
+            .getLocation( function (loc) {
+                test.equal(
+                  url.parse(loc).pathname,
+                  '/person/joe-bloggs-1',
+                  "loc is /person/joe-bloggs-1"
+                );
+            })
+            
 
             // add a person with an unsluggable name
             .open('/')

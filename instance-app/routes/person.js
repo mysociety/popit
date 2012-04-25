@@ -23,7 +23,7 @@ exports.route = function (app) {
     res.redirect('/login');
   }
 
-  function person_new_display_form (req, res) {
+  function person_new_display_form (req, res, next) {
     if( ! res.local('errors') ) res.local('errors', {} );
     if( ! res.local('person') ) res.local('person', {} );
     res.render( 'person_new' );    
@@ -44,20 +44,22 @@ exports.route = function (app) {
       return person_new_display_form(req,res);
     }
 
-    person.save(function(err, obj){
-      if ( err ) {
-        res.local( 'errors', err['errors'] );
-        return person_new_display_form(req,res);
-      } else {
-        res.redirect( '/person/' + obj.id );        
-      }
-    });
-    
+    person.deduplicate_slug(function(err){
+      if (err) return next(err);
+      person.save(function(err, obj){
+        if ( err ) {
+          res.local( 'errors', err['errors'] );
+          return person_new_display_form(req,res);
+        } else {
+          res.redirect( obj.slug_url );        
+        }
+      });      
+    });    
   });
 
 
-  app.param('personId', function loadPerson (req, res, next, id) {
-    req.popit.model('Person').findById(id, function(err, doc) {
+  app.param('personSlug', function loadPerson (req, res, next, slug) {
+    req.popit.model('Person').findOne({slug: slug}, function(err, doc) {
       if (err) console.log( err );
       if (!doc) {
         next( new Error404() );
@@ -69,7 +71,7 @@ exports.route = function (app) {
   });
 
 
-  app.get('/person/:personId', function(req,res) {
+  app.get('/person/:personSlug', function(req,res) {
     res.render('person_view');
   });
 
@@ -113,7 +115,7 @@ exports.route = function (app) {
   }
     
   create_edit_form({
-    base_path: '/person/:personId',
+    base_path: '/person/:personSlug',
     form_fields: ['name','summary', 'foo.bar'],
     middleware: requireUser,
     object_key: 'person',
