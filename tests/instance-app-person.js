@@ -48,13 +48,32 @@ module.exports = {
             // enter a proper name, get sent to person page
             .type("name=name", "Joe Bloggs")
             .clickAndWait("css=input[type=\"submit\"]")
-            .assertTextPresent("Joe Bloggs")
+            .assertTitle("Joe Bloggs")
             
             // go to the people list
             .open('/')
             .clickAndWait('link=all the people')
             .assertTextPresent("Joe Bloggs")
             .clickAndWait("link=Joe Bloggs")
+            
+            // create another person with the same slug
+            .open('/')
+            .clickAndWait('link=all the people')
+            .clickAndWait("link=Create a new person")            
+            .type("name=name", "Joé Bloggs")
+            .clickAndWait("css=input[type=\"submit\"]")
+            .assertTitle("Joé Bloggs")
+
+            // add a person with an unsluggable name
+            .open('/')
+            .clickAndWait('link=all the people')
+            .clickAndWait("link=Create a new person")            
+            .type("name=name", "网页")
+            .clickAndWait("css=input[type=\"submit\"]")
+            .assertTextPresent("Can't create one automatically from the name")
+            .type("name=slug", "chinese-name")
+            .clickAndWait("css=input[type=\"submit\"]")
+            .assertTitle("网页")
     
             // all done
             .testComplete()

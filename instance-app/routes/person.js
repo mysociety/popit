@@ -25,6 +25,7 @@ exports.route = function (app) {
 
   function person_new_display_form (req, res) {
     if( ! res.local('errors') ) res.local('errors', {} );
+    if( ! res.local('person') ) res.local('person', {} );
     res.render( 'person_new' );    
   }
 
@@ -34,8 +35,14 @@ exports.route = function (app) {
     var PersonModel = req.popit.model('Person');
         
     var person = new PersonModel({
-      name: req.param('name'),
+      name: req.param('name', ''),
+      slug: req.param('slug', ''),
     });
+    
+    if (person.name && !person.slug) {
+      res.locals({ require_slug: true, person: person });
+      return person_new_display_form(req,res);
+    }
 
     person.save(function(err, obj){
       if ( err ) {
