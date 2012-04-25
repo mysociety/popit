@@ -50,7 +50,7 @@ module.exports = {
         browser
     
             // go to the create a new instance page
-            .clickAndWait("link=Create a new instance")
+            .clickAndWait("link=Create your PopIt site")
     
             // submit the form check that both fields error
             .clickAndWait("css=input.btn.btn-primary")
@@ -83,7 +83,7 @@ module.exports = {
     
             // check that the site is now reserved
             .open('/')
-            .clickAndWait("link=Create a new instance")
+            .clickAndWait("link=Create your PopIt site")
             .type("id=slug", "foobar")
             .clickAndWait("css=input.btn.btn-primary")
             .assertTextPresent("Error is 'slug_not_unique'.")
