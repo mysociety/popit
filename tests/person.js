@@ -55,4 +55,42 @@ module.exports = {
         test.done();
     },
     
+    "increment slug": function (test) {
+      test.expect(5);
+      
+      var Person = this.Person;
+      var joe = new Person({name: 'Joe'});
+      test.equal( joe.slug, 'joe', 'slug is Joe');
+      
+      joe.save(function(err, doc) {
+        test.ifError(err);
+      
+        var joe2 = new Person({name: 'Joe'});
+        test.equal( joe2.slug, 'joe', 'slug is joe for second joe');
+      
+        joe2.deduplicate_slug(function(err) {
+          test.ifError(err);
+          test.equal( joe2.slug, 'joe-1', 'slug has been de-duped');
+          test.done();
+        });
+      });
+    },
+
+    "don't increment our own slug": function (test) {
+      test.expect(4);
+      
+      var Person = this.Person;
+      var joe = new Person({name: 'Joe'});
+      test.equal( joe.slug, 'joe', 'slug is Joe');
+      
+      joe.save(function(err, doc) {
+        test.ifError(err);
+      
+        joe.deduplicate_slug(function(err) {
+          test.ifError(err);
+          test.equal( joe.slug, 'joe', 'slug has not changed');
+          test.done();
+        });
+      });
+    },
 };
