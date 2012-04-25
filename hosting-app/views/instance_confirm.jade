@@ -4,11 +4,22 @@ block title
   | Confirm #{ instance.slug }
 
 block content
-  .page-header
-    h1 #{ instance.slug }
+    
+  h1 Fantastic
+  
   p
-    | Please click the button below to create your site!
-  form.well.form-horizontal(method='post', action='')
-    fieldset
-      .form-actions
-        input.btn.btn-primary(type='submit', value='Create your PopIt website')
+    | thanks for confirming your email - now choose the type of the first 
+    | politician to add to the site
+    
+  //- The various options are dummy options for now
+  form(method='post', action='')
+    div
+      input(type='submit', name='elected', value='a politician in an elected assembly')
+    div
+      input(type='submit', disabled, value='a president, prime minister, dictator or supreme leader')
+    div
+      input(type='submit', disabled, value='a candidate for election to an assembly')
+    div
+      input(type='submit', disabled, value='an elected public servant (judge, sheriff)')
+    div
+      input(type='submit', disabled, value='other - create your own custom position')
