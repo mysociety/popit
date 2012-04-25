@@ -14,7 +14,7 @@ block content
     ul
       for person in people
         li
-          a(href="#{ 'person/' + person.id }") #{ person.name }
+          a(href="#{ person.slug_url }") #{ person.name }
           pre #{ JSON.stringify( person ) }
   else
     p.error There are no people in the system yet

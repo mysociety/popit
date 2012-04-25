@@ -250,6 +250,24 @@
         }
       }
     },
+    "slug": {
+      "version": "0.2.2",
+      "dependencies": {
+        "unicode": {
+          "version": "0.3.1",
+          "dependencies": {
+            "bufferstream": {
+              "version": "0.5.1",
+              "dependencies": {
+                "buffertools": {
+                  "version": "1.0.9"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "soda": {
       "version": "0.2.5"
     },

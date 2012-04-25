@@ -50,7 +50,7 @@ module.exports = {
         browser
     
             // go to the create a new instance page
-            .clickAndWait("link=Create a new instance")
+            .clickAndWait("link=Create your PopIt site")
     
             // submit the form check that both fields error
             .clickAndWait("css=input.btn.btn-primary")
@@ -79,11 +79,11 @@ module.exports = {
             // good details
             .type("id=email", "bob@example.com")
             .clickAndWait("css=input.btn.btn-primary")
-            .assertTextPresent("This site has been reserved but not created yet.")
+            .assertTextPresent("Nearly Done! Now check your email...")
     
             // check that the site is now reserved
             .open('/')
-            .clickAndWait("link=Create a new instance")
+            .clickAndWait("link=Create your PopIt site")
             .type("id=slug", "foobar")
             .clickAndWait("css=input.btn.btn-primary")
             .assertTextPresent("Error is 'slug_not_unique'.")
@@ -96,7 +96,7 @@ module.exports = {
             .clickAndWait("css=a")
     
             // on the confirm app page
-            .assertTextPresent( 'Please click the button below to create your site!')
+            .assertTextPresent( 'choose the type of the first politician to add to the site')
             .clickAndWait("css=input[type=submit]")
     
             // .setSpeed( 10000 )
