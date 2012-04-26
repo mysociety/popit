@@ -115,7 +115,7 @@ exports.route = function (app) {
     
   create_edit_form({
     base_path: '/person/:personSlug',
-    form_fields: ['name','summary', 'foo.bar'],
+    form_fields: ['name','summary'],
     middleware: requireUser,
     object_key: 'person',
   });
