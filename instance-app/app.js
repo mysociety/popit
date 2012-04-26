@@ -120,8 +120,6 @@ app.configure(function(){
   
   app.use( everyauth.middleware() );
   
-  app.use('/info',  require('../lib/apps/info') );
-  app.use('/token', require('../lib/apps/token') );
   // This is a bodge to deal with everyauth not seeming to attach info to the
   // responses in apps that have been mounted on the parent app. By putting
   // the user (or null) onto locals we can sidestep this issue. Perhaps we
@@ -130,6 +128,11 @@ app.configure(function(){
     res.local('user', req.user );
     next();
   });
+
+  app.use('/info',   require('../lib/apps/info') );
+  app.use('/token',  require('../lib/apps/token') );
+  app.use('/person', require('../lib/apps/object') );
+
   app.use(app.router);
   
   app.use( require('../lib/errors').errorHandler );

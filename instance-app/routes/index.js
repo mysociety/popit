@@ -10,16 +10,11 @@ exports.route = function (app) {
     app.get('/', function(req, res){
         res.render( 'index' );
     });
-    
-
-    require('./person').route(app);
-    
-    
     // Throw a 404 error
     app.all('/*', function(req, res, next) {
       next(new Error404());
     });
-    
+        
 };
 
 
