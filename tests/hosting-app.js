@@ -105,6 +105,9 @@ module.exports = {
             })
             .assertTextPresent( 'Welcome to foobar')
             
+            // check that we are logged in
+            .assertTextPresent('Hello bob@example.com')
+            
             // all done
             .testComplete()
             .end(function (err) {
