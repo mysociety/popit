@@ -11,9 +11,6 @@ block content
     | #{ person.summary }
     a(href="#{person.slug_url}/edit") Edit
   
-  pre
-    #{ JSON.stringify( person ) }
-
   h2 Contact details
   
   ul
@@ -35,3 +32,9 @@ block content
         a(href="#{person.slug_url}/links/#{link.id}/edit") Edit
     li 
       a(href="#{person.slug_url}/links/new/edit") create new link
+
+  h2 Raw data
+  
+  pre
+    #{ JSON.stringify( person ) }
+
