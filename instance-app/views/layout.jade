@@ -56,7 +56,7 @@ body#popit-united_kingdom.brand_page
         span.popit-instance  : 
           span#popit_instance_name #{ popit.instance_name() }
     #user_menu
-      if everyauth.loggedIn
+      if locals.user
         #signed_in
           | Hello 
           span.username #{user.email}
