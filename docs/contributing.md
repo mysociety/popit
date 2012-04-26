@@ -22,6 +22,17 @@ These notes are in addition to the notes in `INSTALL.md`. If you'd like to work 
 
 You'll need access to a MongoDB server on which you can create and delete databases. The test suite does this a lot, so you'll probably want to run it with `smallfiles` and `noprealloc` to save on time consuming disk writes.
 
+Sometimes it is useful to delete all your databases. Easiest way is to stop your
+`mongod` process, delete databases on disk and then start up again. Crude, but
+effective:
+
+    # assuming a MangoDB installed on Mac using homebrew
+    launchctl stop homebrew.mxcl.mongodb
+    rm -v /usr/local/var/mongodb/popitdev_*
+    launchctl start homebrew.mxcl.mongodb
+
+Note that all the dev site databases should have the prefix `popitdev_`.
+
 ### Two free ports
 
 The test suite will start a hosting and instance server on your machine and will use the ports specified in `config/testing.js`. You'll need to check that these are not used. The loopback address `127.0.0.1` will be used to access these servers.

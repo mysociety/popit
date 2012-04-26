@@ -100,8 +100,7 @@ exports.route = function (app) {
           return edit_form(req,res);
         }
   
-        // FIXME - should not be hardcoded
-        res.redirect('/person/' + object.id);      
+        res.redirect( object.slug_url );      
       });
     };
   
