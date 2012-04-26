@@ -188,7 +188,7 @@ exports.route = function (app) {
                           action: 'login',
                           args: {
                             user_id: user.id,
-                            redirect_to: instance.base_url + '/welcome'
+                            redirect_to: instance.base_url + '/person/new'
                           },
                         })
 

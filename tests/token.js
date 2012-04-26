@@ -29,7 +29,7 @@ module.exports = {
           action: 'log_in_user',
           args: {
             email: 'test@example.com',
-            redirect_to: '/welcome',
+            redirect_to: '/foobar',
           },
         });
 
