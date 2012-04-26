@@ -11,10 +11,6 @@ exports.route = function (app) {
         res.render( 'index' );
     });
     
-    app.get('/welcome', function(req, res){
-        res.render( 'welcome' );
-    });
-
 
     require('./person').route(app);
     

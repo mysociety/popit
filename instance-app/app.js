@@ -120,7 +120,8 @@ app.configure(function(){
   
   app.use( everyauth.middleware() );
   
-  app.use('/info', require('../lib/apps/info') );
+  app.use('/info',  require('../lib/apps/info') );
+  app.use('/token', require('../lib/apps/token') );
   app.use(app.router);
   
   app.use( require('../lib/errors').errorHandler );

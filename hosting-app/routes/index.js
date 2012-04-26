@@ -181,9 +181,21 @@ exports.route = function (app) {
                     instance.status = 'active';
                     instance.save( function (err) {
                         if ( err ) throw err;
-            
-                        // redirect user to new domain once save has completed
-                        res.redirect( instance.base_url + '/welcome' );
+
+                        // create a token in the instance to log the user in
+                        var Token = new_popit.model('Token');
+                        var token = new Token({
+                          action: 'login',
+                          args: {
+                            user_id: user.id,
+                            redirect_to: instance.base_url + '/person/new'
+                          },
+                        })
+
+                        token.save(function(err) {
+                          if (err) throw err;
+                          res.redirect( instance.base_url + '/token/' + token.id );
+                        });
                     });
                 });            
             });

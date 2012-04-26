@@ -103,7 +103,12 @@ module.exports = {
             .getLocation( function (loc) {
                 test.ok( /http:\/\/foobar\./.test(loc), "loc contains http://foobar." );
             })
-            .assertTextPresent( 'Welcome to foobar')
+            .assertTextPresent( 'PopIt : foobar')
+            .assertTextPresent( 'Create a new person')
+            .assertTitle( 'New Person')
+            
+            // check that we are logged in
+            .assertTextPresent('Hello bob@example.com')
             
             // all done
             .testComplete()
