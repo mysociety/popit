@@ -24,3 +24,14 @@ block content
         a(href="#{person.slug_url}/contacts/#{contact.id}/edit") Edit
     li 
       a(href="#{person.slug_url}/contacts/new/edit") create new contact
+
+  h2 Links
+  
+  ul
+    for link in person.links
+      li
+        a(href=link.url) #{ link.url }: 
+        | #{ link.comment } 
+        a(href="#{person.slug_url}/links/#{link.id}/edit") Edit
+    li 
+      a(href="#{person.slug_url}/links/new/edit") create new link
