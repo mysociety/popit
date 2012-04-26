@@ -51,6 +51,13 @@ module.exports = {
             .clickAndWait("css=input[type=\"submit\"]")
             .assertTitle("Joe Bloggs")
             
+            // edit the person
+            .clickAndWait('link=Edit')
+            .type("name=summary", "Test Summary blah blah")
+            .clickAndWait("css=input[type=\"submit\"]")
+            .assertTitle("Joe Bloggs")
+            .assertTextPresent("Test Summary blah blah")
+    
             // go to the people list
             .open('/')
             .clickAndWait('link=all the people')

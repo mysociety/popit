@@ -101,7 +101,7 @@ exports.route = function (app) {
         }
   
         // FIXME - should not be hardcoded
-        res.redirect('/person/' + object.id);      
+        res.redirect( object.slug_url );      
       });
     };
   
