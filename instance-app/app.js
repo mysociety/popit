@@ -131,7 +131,9 @@ app.configure(function(){
 
   app.use('/info',   require('../lib/apps/info') );
   app.use('/token',  require('../lib/apps/token') );
-  app.use('/person', require('../lib/apps/object') );
+
+  var object_app_factory = require('../lib/apps/object');
+  app.use('/person', object_app_factory() );
 
   app.use(app.router);
   
