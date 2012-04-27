@@ -11,6 +11,10 @@ $(document).ready(function() {
 	});
 	
 	
+	
+	// ------------------------
+	// Instance Name Validation
+	
 	$('#slug').keypress(function(e) {
 		
 		/* FIXME EVDB check this is the best way to do this and also to match with serverside checks */
@@ -37,6 +41,25 @@ $(document).ready(function() {
 		var changedText = $(this).val();
 		var cleanedText = changedText.replace(/[^a-z0-9_\-]/gi, '-').toLowerCase();
 		$(this).val(cleanedText);
+	});
+	
+	
+	// ------------------------
+	// Email Validation / Mailcheck
+	// ------------------------
+	var email_suggestion_box = $('.suggestion');
+	email_suggestion_box.hide();
+	var domains = ['hotmail.com', 'gmail.com', 'aol.com', 'mysociety.org'];
+	$('#email').on('blur', function() {
+		$(this).mailcheck({
+			domains: domains,   // optional
+			suggested: function(element, suggestion) {
+				email_suggestion_box.html(' Did you mean <strong>'+suggestion.full+'</strong>').slideDown();
+			},
+			empty: function(element) {
+				email_suggestion_box.slideUp().html('');
+			}
+		});
 	});
 	
 });

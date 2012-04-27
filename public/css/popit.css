@@ -726,6 +726,8 @@ form {
     margin-left: 3em;
     position: absolute;
     display: none; }
+  form .suggestion {
+    display: block; }
 
 input,
 .append {
