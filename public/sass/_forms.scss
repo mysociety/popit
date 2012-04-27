@@ -1,15 +1,38 @@
 form{
 	margin: 2.8em 0;
+	
+	p{
+		margin-bottom: 1.4em;
+	}
+	
+	label{
+		display: block;
+		margin-bottom: 5px;
+		color: #333333;
+	}
+
+	.form-action{
+		margin-top: 2em;
+	}
+
+	.help-block{
+		display:block;
+		background-color: #fff;
+		width:32em;
+		font-size:0.75em;
+		max-width:100%;
+		border: 1px solid red;
+		padding: 0.625em 1em;
+		margin-top:1em;
+		margin-left:3em;
+		position: absolute;
+		display:none;
+	}
 }
-form p{
-	margin-bottom: 1.4em;
-}
-label{
-	display: block;
-	margin-bottom: 5px;
-	color: #333333;
-}
-input{
+
+input,
+.append
+{
 	-webkit-border-radius: 0.625em;
 	   -moz-border-radius: 0.625em;
 	        border-radius: 0.625em;
@@ -22,39 +45,28 @@ input{
 	   -moz-transition: all 0.5s linear;
 	     -o-transition: all 0.5s linear;
 	        transition: all 0.5s linear;
-	
+
 	&:hover{
 		border: 1px solid #888;
 	}
-	
+
 	&:focus{
 	 	outline:none;
 	 	border: 1px solid #006480;
 	 }
 }
-
-.form-action{
-	margin-top: 2em;
-}
-
-.help-block{
-	display:block;
-	background-color: #fff;
-	width:32em;
-	font-size:0.75em;
-	max-width:100%;
-	border: 1px solid red;
-	padding: 0.625em 1em;
-	margin-top:1em;
-	margin-left:3em;
-	position: absolute;
-	display:none;
-}
-
-input:focus + .help-block,
-input:focus + .add-on + .help-block
-{
-	display:block;
+.append{
+	input{
+		border:none;
+		padding:0;
+		width:20em;
+		max-width:70%;
+		text-align:right;
+	}
+	.add-on{
+		max-width:30%;
+		color: #888;
+	}
 }
 
 

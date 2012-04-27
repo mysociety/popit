@@ -17,7 +17,7 @@ block content
     form.well.form-horizontal(method='post', action='')
         p.control-group(class="#{ errors.slug ? 'error' : '' }")
           label.control-label(for='slug') Pick a website name
-          span.controls
+          span.controls.append
             input#slug.input-xlarge(type='text', name='slug', data-validation='required url_safe', value='#{ locals.slug || '' }')
             span.add-on .#{ popit.instance_domain_suffix }
             if errors.slug
