@@ -38,7 +38,7 @@ module.exports = {
             .clickAndWait("link=Create a new person")
             
             // check that we are at the login page
-            .assertTitle('Login')
+            .assertTitle('Welcome back')
             .and(selenium_helpers.login())
             .assertTitle('New Person')
 
