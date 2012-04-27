@@ -242,7 +242,12 @@ article.person{
 		
 		a{
 			font-size: 0.875em;
-			color: #4c4c4c;
+			color: rgba(76, 76, 76, 0.3);
+			text-shadow: rgba(0,0,0,0) 0 0 0;
+			-webkit-transition: opacity, color 0.3s linear;
+			   -moz-transition: opacity, color 0.3s linear;
+			     -o-transition: opacity, color 0.3s linear;
+			        transition: opacity, color 0.3s linear;
 			&.add strong{
 				color: #7aa701;
 			}
@@ -254,6 +259,19 @@ article.person{
 			}
 		}
 	}
+	
+	section:hover .admin-options a
+	{
+		color: rgba(76, 76, 76, 1);
+	}
+	
+	.photos li:hover a,
+	aside a.add
+	{
+		color: rgba(76, 76, 76, 1);
+		opacity:1;
+	}
+	
 	&>aside{
 		width:18.75em;
 		float:left;
@@ -264,23 +282,42 @@ article.person{
 			margin-bottom:2em;
 		}
 		
-		ul.photos, ul.photos li{
+		ul.photos,
+		ul.photos li{
 			display:block;
 			padding:0;
 			margin:0;
 			list-style:none;
 		}
+		ul.photos>li{
+			.photo-source{
+				display:block;
+				text-align:right;
+				font-size: 0.625em;
+				width:28em;
+				color:#999;
+				margin:-0.6em 0 0 0;
+				opacity:0.2;
+				//background-color: #fff;
+				a{color:#999;}
+				-webkit-transform: rotate(-90deg) translate(50%, -15em);
+				   -moz-transform: rotate(-90deg) translate(50%, -15em);
+				    -ms-transform: rotate(-90deg) translate(50%, -15em);
+				     -o-transform: rotate(-90deg) translate(50%, -15em);
+				        transform: rotate(-90deg) translate(50%, -15em);
+					-webkit-transition: opacity 0.3s linear;
+					   -moz-transition: opacity 0.3s linear;
+					     -o-transition: opacity 0.3s linear;
+					        transition: opacity 0.3s linear;
+			}
+			&:hover .photo-source{
+				opacity:1;
+			}
+		}
 		img{
 			max-width:100%;
 		}
-		.photo-source{
-			text-align:right;
-			font-size: 0.625em;
-			width:28em;
-			color:#999;
-			margin:-0.6em 0 0 0;
-			a{color:#999;}
-		}
+		
 	}
 	&>section{
 		border-top: 1px solid #ddd;

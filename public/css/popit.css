@@ -615,13 +615,24 @@ article.person .admin-options {
   list-style: none; }
   article.person .admin-options a {
     font-size: 0.875em;
-    color: #4c4c4c; }
+    color: rgba(76, 76, 76, 0.3);
+    text-shadow: rgba(0, 0, 0, 0) 0 0 0;
+    -webkit-transition: opacity, color 0.3s linear;
+    -moz-transition: opacity, color 0.3s linear;
+    -o-transition: opacity, color 0.3s linear;
+    transition: opacity, color 0.3s linear; }
     article.person .admin-options a.add strong {
       color: #7aa701; }
     article.person .admin-options a.edit strong {
       color: #c26400; }
     article.person .admin-options a.delete strong {
       color: #c20000; }
+article.person section:hover .admin-options a {
+  color: #4c4c4c; }
+article.person .photos li:hover a,
+article.person aside a.add {
+  color: #4c4c4c;
+  opacity: 1; }
 article.person > aside {
   width: 18.75em;
   float: left;
@@ -629,21 +640,35 @@ article.person > aside {
   article.person > aside .admin-options {
     float: left;
     margin-bottom: 2em; }
-  article.person > aside ul.photos, article.person > aside ul.photos li {
+  article.person > aside ul.photos,
+  article.person > aside ul.photos li {
     display: block;
     padding: 0;
     margin: 0;
     list-style: none; }
-  article.person > aside img {
-    max-width: 100%; }
-  article.person > aside .photo-source {
+  article.person > aside ul.photos > li .photo-source {
+    display: block;
     text-align: right;
     font-size: 0.625em;
     width: 28em;
     color: #999;
-    margin: -0.6em 0 0 0; }
-    article.person > aside .photo-source a {
+    margin: -0.6em 0 0 0;
+    opacity: 0.2;
+    -webkit-transform: rotate(-90deg) translate(50%, -15em);
+    -moz-transform: rotate(-90deg) translate(50%, -15em);
+    -ms-transform: rotate(-90deg) translate(50%, -15em);
+    -o-transform: rotate(-90deg) translate(50%, -15em);
+    transform: rotate(-90deg) translate(50%, -15em);
+    -webkit-transition: opacity 0.3s linear;
+    -moz-transition: opacity 0.3s linear;
+    -o-transition: opacity 0.3s linear;
+    transition: opacity 0.3s linear; }
+    article.person > aside ul.photos > li .photo-source a {
       color: #999; }
+  article.person > aside ul.photos > li:hover .photo-source {
+    opacity: 1; }
+  article.person > aside img {
+    max-width: 100%; }
 article.person > section {
   border-top: 1px solid #ddd;
   float: right;
