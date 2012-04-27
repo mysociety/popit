@@ -8,30 +8,30 @@ block content
   - var errors = locals.errors || {}
 
   .page-header
-      h1 Make your own PopIt politician monitoring website
+      h1 Make your own PopIt 
+        span(class='long-title') politician monitoring web
+        |site
     p
-      | To start using PopIt you need to create a new instance. This is quick, easy, free and you do it by filling in the form below.
-        
+      | To start using PopIt you need to create a new instance. This is quick, easy, free and you do it by filling in the form below. A temporary password will be emailed to you that you can change once you login.
+    
     form.well.form-horizontal(method='post', action='')
-      fieldset
-        legend Create a new PopIt Website
-        
-        .control-group(class="#{ errors.slug ? 'error' : '' }")
+        p.control-group(class="#{ errors.slug ? 'error' : '' }")
           label.control-label(for='slug') Pick a website name
-          .controls
-            input#slug.input-xlarge(type='text', name='slug', value='#{ locals.slug || '' }')
+          span.controls
+            input#slug.input-xlarge(type='text', name='slug', data-validation='required url_safe', value='#{ locals.slug || '' }')
             span.add-on .#{ popit.instance_domain_suffix }
             if errors.slug
-              p.help-block Length between 4 and 20. Chars 'a' to 'z', '0' to '9' and '-' only.
-              p.help-block Error is '#{ errors.slug.type }'.
+              span.help-block Your website name can only contain letters and numbers. It should be at least four letters long but no longer than 20.
+              span.help-block Error is '#{ errors.slug.type }'.
+            else
+              span.help-block.hide Your website name can only contain letters and numbers. It should be at least four letters long but no longer than 20.
 
-        .control-group(class="#{ errors.email ? 'error' : '' }")
+        p.control-group(class="#{ errors.email ? 'error' : '' }")
           label.control-label(for='email') Your Email address
-          .controls
-            input#email.input-xlarge(type='text', name='email', value='#{ locals.email || '' }')
-            p.help-block We need to know who you are.
+          span.controls
+            input#email.input-xlarge(type='text', name='email', data-validation='required email', value='#{ locals.email || '' }')
             if errors.email
-              p.help-block Error is '#{ errors.email.type }'.            
+              span.help-block Error is '#{ errors.email.type }'.            
 
         .form-actions
-          input.btn.btn-primary(type='submit', value='Go')
+          input.btn.btn-primary(type='submit', value='Create your own PopIt')

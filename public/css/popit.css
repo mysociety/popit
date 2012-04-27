@@ -6,13 +6,25 @@
 /*
  * Corrects block display not defined in IE6/7/8/9 & FF3
  */
-article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section,
+summary {
   display: block; }
 
 /*
  * Corrects inline-block display not defined in IE6/7/8/9 & FF3
  */
-audio, canvas, video {
+audio,
+canvas,
+video {
   display: inline-block;
   *display: inline;
   *zoom: 1; }
@@ -52,7 +64,11 @@ html {
 /*
  * Addresses font-family inconsistency between 'textarea' and other form elements.
  */
-html, button, input, select, textarea {
+html,
+button,
+input,
+select,
+textarea {
   font-family: sans-serif; }
 
 /*
@@ -74,7 +90,8 @@ a:focus {
  * Improves readability when focused and also mouse hovered in all browsers
  * people.opera.com/patrickl/experiments/keyboard/test
  */
-a:hover, a:active {
+a:hover,
+a:active {
   outline: 0; }
 
 /* =============================================================================
@@ -117,7 +134,8 @@ abbr[title] {
 /*
  * Addresses style set to 'bolder' in FF3+, S4/5, Chrome
 */
-b, strong {
+b,
+strong {
   font-weight: bold; }
 
 blockquote {
@@ -139,14 +157,18 @@ mark {
 /*
  * Addresses margins set differently in IE6/7
  */
-p, pre {
+p,
+pre {
   margin: 1em 0; }
 
 /*
  * Corrects font family set oddly in IE6, S4/5, Chrome
  * en.wikipedia.org/wiki/User:Davidgothberg/Test59
  */
-pre, code, kbd, samp {
+pre,
+code,
+kbd,
+samp {
   font-family: monospace, serif;
   _font-family: 'courier new', monospace;
   font-size: 1em; }
@@ -168,7 +190,8 @@ q {
   quotes: none; }
 
 /* 2 */
-q:before, q:after {
+q:before,
+q:after {
   content: '';
   content: none; }
 
@@ -179,7 +202,8 @@ small {
  * Prevents sub and sup affecting line-height in all browsers
  * gist.github.com/413930
  */
-sub, sup {
+sub,
+sup {
   font-size: 75%;
   line-height: 0;
   position: relative;
@@ -197,7 +221,10 @@ sub {
 /*
  * Addresses margins set differently in IE6/7
  */
-dl, menu, ol, ul {
+dl,
+menu,
+ol,
+ul {
   margin: 1em 0; }
 
 dd {
@@ -206,13 +233,16 @@ dd {
 /*
  * Addresses paddings set differently in IE6/7
  */
-menu, ol, ul {
+menu,
+ol,
+ul {
   padding: 0 0 0 40px; }
 
 /*
  * Corrects list images handled incorrectly in IE7
  */
-nav ul, nav ol {
+nav ul,
+nav ol {
   list-style: none;
   list-style-image: none; }
 
@@ -281,7 +311,10 @@ legend {
  * 2. Addresses margins set differently in IE6/7, FF3+, S5, Chrome
  * 3. Improves appearance and consistency in all browsers
  */
-button, input, select, textarea {
+button,
+input,
+select,
+textarea {
   font-size: 100%;
   /* 1 */
   margin: 0;
@@ -294,7 +327,8 @@ button, input, select, textarea {
 /*
  * Addresses FF3/4 setting line-height on 'input' using !important in the UA stylesheet
  */
-button, input {
+button,
+input {
   line-height: normal;
   /* 1 */ }
 
@@ -304,7 +338,10 @@ button, input {
  * 3. Removes inner spacing in IE7 without affecting normal text inputs
  *    Known issue: inner spacing remains in IE6
  */
-button, input[type="button"], input[type="reset"], input[type="submit"] {
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
   cursor: pointer;
   /* 1 */
   -webkit-appearance: button;
@@ -315,7 +352,8 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
 /*
  * Re-set default cursor for disabled elements
  */
-button[disabled], input[disabled] {
+button[disabled],
+input[disabled] {
   cursor: default; }
 
 /*
@@ -324,7 +362,8 @@ button[disabled], input[disabled] {
  * 3. Removes excess padding in IE7
       Known issue: excess padding remains in IE6
  */
-input[type="checkbox"], input[type="radio"] {
+input[type="checkbox"],
+input[type="radio"] {
   box-sizing: border-box;
   /* 1 */
   padding: 0;
@@ -349,14 +388,16 @@ input[type="search"] {
 /*
  * Removes inner padding and search cancel button in S5, Chrome on OS X
  */
-input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-search-cancel-button {
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: none; }
 
 /*
  * Removes inner padding and border in FF3+
  * www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/
  */
-button::-moz-focus-inner, input::-moz-focus-inner {
+button::-moz-focus-inner,
+input::-moz-focus-inner {
   border: 0;
   padding: 0; }
 
@@ -409,11 +450,11 @@ dl dd {
 a {
   color: #006480;
   text-decoration: none; }
-a:hover {
-  color: #007899;
-  text-decoration: underline; }
-a:visited:hover {
-  color: #006480; }
+  a:hover {
+    color: #006480;
+    text-decoration: underline; }
+  a:visited:hover {
+    color: #006480; }
 
 body {
   color: #555; }
@@ -429,21 +470,25 @@ header#header {
   max-width: 60em;
   padding: 0.625em;
   margin: auto; }
-header#header h1.logo {
-  color: #4D4D4D;
-  max-width: 100%;
-  margin: 0; }
-@media screen and (min-width: 60em) {
   header#header h1.logo {
-    float: left;
-    width: 9.667em; } }
-header#header h1.logo abbr {
-  border: none;
-  text-decoration: none;
-  color: #333333; }
-header#header h1.logo .popit-instance {
-  font-size: 0.5em;
-  opacity: 0.5; }
+    color: #4D4D4D;
+    max-width: 100%;
+    margin: 0; }
+    header#header h1.logo a {
+      display: block;
+      color: #4D4D4D;
+      text-decoration: none; }
+    @media screen and (min-width: 60em) {
+      header#header h1.logo {
+        float: left;
+        width: 9.667em; } }
+    header#header h1.logo abbr {
+      border: none;
+      text-decoration: none;
+      color: #333333; }
+    header#header h1.logo .popit-instance {
+      font-size: 0.5em;
+      opacity: 0.5; }
 
 @media screen and (min-width: 60em) {
   body.brand_page header#header h1.logo {
@@ -453,16 +498,14 @@ header#header h1.logo .popit-instance {
 #user_menu {
   font-size: 0.875em;
   max-width: 100%; }
-@media screen and (min-width: 60em) {
-  #user_menu {
-    width: 21.25em;
-    text-align: right;
-    padding-top: 1.6em;
-    float: right; } }
-#user_menu .username {
-  font-weight: bold; }
-#user_menu a {
-  color: #333; }
+  @media screen and (min-width: 60em) {
+    #user_menu {
+      width: 21.25em;
+      text-align: right;
+      padding-top: 1.6em;
+      float: right; } }
+  #user_menu .username {
+    font-weight: bold; }
 
 @media screen and (min-width: 60em) {
   body.brand_page #user_menu {
@@ -473,80 +516,91 @@ header#header h1.logo .popit-instance {
   max-width: 60em;
   padding-top: 1.25em;
   margin: auto; }
+  #content h1 .long-title {
+    display: none; }
+  #content p {
+    font-size: 1.125em;
+    line-height: 1.667em; }
+
+.login-form {
+  padding: 0.625em 0.625em 0.625em 4.375em; }
+
+#slug {
+  text-transform: lowercase; }
 
 header.person-header-nav {
   margin-left: -1.688em;
   margin-right: -1.688em;
   margin-bottom: 1em;
   clear: both; }
-header.person-header-nav nav {
-  display: inline; }
-header.person-header-nav > *, header.person-header-nav nav > a {
-  display: inline-block;
-  vertical-align: top;
-  height: 3.75em;
-  overflow: hidden; }
-header.person-header-nav .find-person {
-  margin: 0;
-  float: right;
-  width: 10.875em;
-  padding: 1.25em 1.25em 1.25em 2.5em;
-  background: #cbcbcb url(../img/search.png) no-repeat scroll 0.625em center; }
-header.person-header-nav .find-person label {
-  display: none; }
-header.person-header-nav .find-person input {
-  vertical-align: middle;
-  width: 100%;
-  opacity: 0.5; }
-header.person-header-nav .find-person input:focus {
-  opacity: 1; }
-header.person-header-nav.focus-search .find-person {
-  width: 29.5em; }
-header.person-header-nav .current-person {
-  width: 16em;
-  height: 2em;
-  background-color: #dbdbdb;
-  margin: 0;
-  padding: 0.5em;
-  font-size: 1.875em;
-  text-align: center;
-  font-family: 'MuseoSlab500', 'sans-serif';
-  font-weight: normal;
-  overflow: hidden;
-  text-overflow: ellipsis; }
-header.person-header-nav.focus-search .current-person {
-  width: 6em; }
-header.person-header-nav .find-person, header.person-header-nav .current-person {
-  -webkit-transition: width 0.5s ease-out;
-  -moz-transition: width 0.5s ease-out;
-  -o-transition: width 0.5s ease-out;
-  transition: width 0.5s ease-out; }
-header.person-header-nav a.previous-person, header.person-header-nav a.next-person {
-  width: 11.25em;
-  text-decoration: none;
-  color: #fff;
-  background-color: #b3b3b3;
-  padding: 0.75em 0.625em 0.75em 2.8125em;
-  margin: 0;
-  background: #b3b3b3 url(../img/arrow-left.png) no-repeat scroll left center; }
-header.person-header-nav a.previous-person em, header.person-header-nav a.next-person em {
-  text-transform: uppercase;
-  font-style: normal;
-  font-size: 0.625em;
-  color: #e5e5e5; }
-header.person-header-nav a.previous-person strong, header.person-header-nav a.next-person strong {
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 100%;
-  color: #eeeeee; }
-header.person-header-nav a.previous-person:hover strong, header.person-header-nav a.next-person:hover strong {
-  color: #fff; }
-header.person-header-nav a.next-person {
-  text-align: right;
-  padding: 0.75em 2.8125em 0.75em 0.625em;
-  background: #b3b3b3 url(../img/arrow-right.png) no-repeat scroll right center;
-  float: right; }
+  header.person-header-nav nav {
+    display: inline; }
+  header.person-header-nav > *, header.person-header-nav nav > a {
+    display: inline-block;
+    vertical-align: top;
+    height: 3.75em;
+    overflow: hidden; }
+  header.person-header-nav .find-person {
+    margin: 0;
+    float: right;
+    width: 10.875em;
+    padding: 1.25em 1.25em 1.25em 2.5em;
+    background: #cbcbcb url(../img/search.png) no-repeat scroll 0.625em center; }
+    header.person-header-nav .find-person label {
+      display: none; }
+    header.person-header-nav .find-person input {
+      vertical-align: middle;
+      width: 100%;
+      opacity: 0.5; }
+      header.person-header-nav .find-person input:focus {
+        opacity: 1; }
+  header.person-header-nav.focus-search .find-person {
+    width: 29.5em; }
+  header.person-header-nav .current-person {
+    width: 16em;
+    height: 2em;
+    background-color: #dbdbdb;
+    margin: 0;
+    padding: 0.5em;
+    font-size: 1.875em;
+    text-align: center;
+    font-family: 'MuseoSlab500', 'sans-serif';
+    font-weight: normal;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+  header.person-header-nav.focus-search .current-person {
+    width: 6em; }
+  header.person-header-nav .find-person, header.person-header-nav .current-person {
+    -webkit-transition: width 0.5s ease-out;
+    -moz-transition: width 0.5s ease-out;
+    -o-transition: width 0.5s ease-out;
+    transition: width 0.5s ease-out; }
+  header.person-header-nav a.previous-person, header.person-header-nav a.next-person {
+    width: 11.25em;
+    text-decoration: none;
+    color: #fff;
+    background-color: #b3b3b3;
+    padding: 0.75em 0.625em 0.75em 2.8125em;
+    margin: 0;
+    background: #b3b3b3 url(../img/arrow-left.png) no-repeat scroll left center; }
+    header.person-header-nav a.previous-person em, header.person-header-nav a.next-person em {
+      text-transform: uppercase;
+      font-style: normal;
+      font-size: 0.625em;
+      color: #e5e5e5; }
+    header.person-header-nav a.previous-person strong, header.person-header-nav a.next-person strong {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+      color: #eeeeee; }
+    header.person-header-nav a.previous-person:hover strong, header.person-header-nav a.next-person:hover strong {
+      color: #fff; }
+  header.person-header-nav a.next-person {
+    text-align: right;
+    padding: 0.75em 2.8125em 0.75em 0.625em;
+    background: #b3b3b3 url(../img/arrow-right.png) no-repeat scroll right center;
+    float: right; }
 
 article.person .admin-options {
   float: right;
@@ -554,43 +608,43 @@ article.person .admin-options {
   margin: 0;
   text-indent: 0;
   list-style: none; }
-article.person .admin-options a {
-  font-size: 0.875em;
-  color: #4c4c4c; }
-article.person .admin-options a.add strong {
-  color: #7aa701; }
-article.person .admin-options a.edit strong {
-  color: #c26400; }
-article.person .admin-options a.delete strong {
-  color: #c20000; }
+  article.person .admin-options a {
+    font-size: 0.875em;
+    color: #4c4c4c; }
+    article.person .admin-options a.add strong {
+      color: #7aa701; }
+    article.person .admin-options a.edit strong {
+      color: #c26400; }
+    article.person .admin-options a.delete strong {
+      color: #c20000; }
 article.person > aside {
   width: 22.5em;
   float: left;
   padding: 0.625em; }
-article.person > aside .admin-options {
-  float: left; }
-article.person > aside ul.photos, article.person > aside ul.photos li {
-  display: block;
-  padding: 0;
-  margin: 0;
-  list-style: none; }
-article.person > aside img {
-  max-width: 100%; }
-article.person > aside .photo-source {
-  text-align: right;
-  font-size: 0.625em;
-  width: 28em;
-  color: #999; }
-article.person > aside .photo-source a {
-  color: #999; }
+  article.person > aside .admin-options {
+    float: left; }
+  article.person > aside ul.photos, article.person > aside ul.photos li {
+    display: block;
+    padding: 0;
+    margin: 0;
+    list-style: none; }
+  article.person > aside img {
+    max-width: 100%; }
+  article.person > aside .photo-source {
+    text-align: right;
+    font-size: 0.625em;
+    width: 28em;
+    color: #999; }
+    article.person > aside .photo-source a {
+      color: #999; }
 article.person > section {
   border-top: 1px solid #ddd;
   float: right;
   padding: 0.625em;
   margin-top: 0.625em;
   width: 37.5em; }
-article.person > section h2 {
-  margin-top: 0; }
+  article.person > section h2 {
+    margin-top: 0; }
 article.person .description p {
   font-size: 1.125em;
   line-height: 1.667em; }
@@ -611,41 +665,109 @@ body.signed_in .admin-options {
   line-height: 1.875em;
   color: #666666;
   margin-top: 3em; }
-#footer > div {
-  max-width: 60em;
-  margin: auto;
-  clear: both; }
-#footer #sitemap {
-  width: 22.5em;
-  float: left;
-  padding: 0.625em; }
-#footer #sitemap ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  text-indent: 0;
-  margin-left: 4.375em;
-  margin-bottom: 2em; }
-#footer #sitemap ul li {
-  font-size: 0.875em;
+  #footer > div {
+    max-width: 60em;
+    margin: auto;
+    clear: both; }
+  #footer #sitemap {
+    width: 22.5em;
+    float: left;
+    padding: 0.625em; }
+    #footer #sitemap ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      text-indent: 0;
+      margin-left: 4.375em;
+      margin-bottom: 2em; }
+      #footer #sitemap ul li {
+        font-size: 0.875em;
+        display: block;
+        margin: 0;
+        padding: 0; }
+    #footer #sitemap a.logo {
+      font-family: 'MuseoSlab500', 'sans-serif';
+      font-weight: normal;
+      font-size: 2.5em;
+      line-height: 1.5em;
+      text-decoration: none;
+      color: #d2d2d2; }
+  #footer #about-mysociety {
+    width: 37.5em;
+    float: right;
+    padding: 3.4375em 0.625em; }
+    #footer #about-mysociety p {
+      font-size: 0.875em;
+      margin-bottom: 2.143em; }
+  #footer .copyright {
+    text-align: center;
+    font-size: 0.625em;
+    color: #ccc; }
+
+form {
+  margin: 2.8em 0; }
+
+form p {
+  margin-bottom: 1.4em; }
+
+label {
   display: block;
-  margin: 0;
-  padding: 0; }
-#footer #sitemap a.logo {
-  font-family: 'MuseoSlab500', 'sans-serif';
-  font-weight: normal;
-  font-size: 2.5em;
-  line-height: 1.5em;
-  text-decoration: none;
-  color: #d2d2d2; }
-#footer #about-mysociety {
-  width: 37.5em;
-  float: right;
-  padding: 3.4375em 0.625em; }
-#footer #about-mysociety p {
-  font-size: 0.875em;
-  margin-bottom: 2.143em; }
-#footer .copyright {
-  text-align: center;
-  font-size: 0.625em;
-  color: #ccc; }
+  margin-bottom: 5px;
+  color: #333333; }
+
+input {
+  -webkit-border-radius: 0.625em;
+  -moz-border-radius: 0.625em;
+  border-radius: 0.625em;
+  border: 1px solid #ccc;
+  padding: 0.625em 1em;
+  width: 25em;
+  max-width: 100%;
+  color: #444;
+  -webkit-transition: all 0.5s linear;
+  -moz-transition: all 0.5s linear;
+  -o-transition: all 0.5s linear;
+  transition: all 0.5s linear; }
+  input:hover {
+    border: 1px solid #888; }
+  input:focus {
+    outline: none;
+    border: 1px solid #006480; }
+
+.form-action {
+  margin-top: 2em; }
+
+.help-block {
+  display: block;
+  background-color: #fff;
+  width: 32em;
+  font-size: 0.75em;
+  max-width: 100%;
+  border: 1px solid red;
+  padding: 0.625em 1em;
+  margin-top: 1em;
+  margin-left: 3em;
+  position: absolute;
+  display: none; }
+
+input:focus + .help-block,
+input:focus + .add-on + .help-block {
+  display: block; }
+
+button, a.btn, input.btn {
+  border: none;
+  display: inline-block;
+  padding: 0.625em;
+  width: inherit;
+  min-width: 12.5em;
+  color: #fff;
+  background-color: #006480;
+  -webkit-border-radius: 0.625em;
+  -moz-border-radius: 0.625em;
+  border-radius: 0.625em;
+  -webkit-transition: background-color 0.25s linear;
+  -moz-transition: background-color 0.25s linear;
+  -o-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear; }
+  button:hover, a.btn:hover, input.btn:hover {
+    background-color: #007899; }

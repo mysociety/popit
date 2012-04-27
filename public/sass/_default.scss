@@ -20,6 +20,12 @@ header#header{
 		max-width:100%;
 		margin:0;
 		
+		a{
+			display:block;
+			color: #4D4D4D;
+			text-decoration:none;
+		}
+		
 		@media screen and (min-width: 60em){
 			float:left;
 			width: 9.667em;
@@ -46,7 +52,7 @@ body.brand_page header#header h1.logo{
 	}
 }
 
-//	Signin Box
+//	Main Menu Signin Box
 // -----------------------
 
 #user_menu
@@ -64,9 +70,9 @@ body.brand_page header#header h1.logo{
 	.username{
 		font-weight: bold;
 	}
-	a{
-		color: #333;
-	}
+//	a{
+//		color: #333;
+//	}
 }
 body.brand_page #user_menu{
 	@media screen and (min-width: 60em){
@@ -83,8 +89,33 @@ body.brand_page #user_menu{
 	max-width: 60em;
 	padding-top:1.25em;
 	margin: auto;
+	
+	h1{
+		.long-title{
+			display:none;
+		}
+	}
+	
+	p{
+		font-size: 1.125em;
+		line-height: 1.667em;
+	}
 }
 
+
+// -----------------------
+//	Login Form
+// -----------------------
+.login-form{
+	padding: 0.625em 0.625em 0.625em 4.375em;
+}
+
+// -----------------------
+//	New Instance Form
+// -----------------------
+#slug{
+	text-transform:lowercase;
+}
 
 
 // -----------------------
@@ -335,4 +366,3 @@ body.signed_in .admin-options{ display:block; }
 		color: #ccc;
 	}
 }
-

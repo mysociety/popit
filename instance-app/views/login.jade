@@ -1,24 +1,24 @@
 extends layout
 
 block title
-  | Login
+  | Welcome back
 
 block content
-  .page-header
-    h1 Login
+  div.login-form
+    h1 Welcome back
+    p.instructions Log back in to manage your PopIt site. 
+           a(href='#FIXME') Forgotton your details?
+    if locals.errors && errors.length
+       ul#errors
+         each error in errors
+           li.error= error
 
-  if locals.errors && errors.length
-    ul#errors
-      each error in errors
-        li.error= error
-
-  form(action='/login', method='post')
-    #login
-      label(for=everyauth.password.loginFormFieldName ) Login
-      input(type='text', name=everyauth.password.loginFormFieldName, value=email)
-    #password
-      label(for=everyauth.password.passwordFormFieldName ) Password
-      input(type='password', name=everyauth.password.passwordFormFieldName )
-    #submit
-      input(type='submit') Login
-  
+     form(action='/login', method='post')
+       p
+         label(for=everyauth.password.loginFormFieldName ) Email:
+         input#email(type='text', name=everyauth.password.loginFormFieldName, value=email)
+       p
+         label(for=everyauth.password.passwordFormFieldName ) Password:
+         input#password(type='password', name=everyauth.password.passwordFormFieldName )
+       p.form-action
+         input#login.btn(type='submit', value='Login')

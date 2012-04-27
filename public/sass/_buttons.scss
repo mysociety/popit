@@ -1,0 +1,20 @@
+button, a.btn, input.btn{
+	border:none;
+	display: inline-block;
+	padding: 0.625em;
+	width: inherit;
+	min-width: 12.5em;
+	color: #fff;
+	background-color: #006480;
+	-webkit-border-radius: 0.625em;
+	   -moz-border-radius: 0.625em;
+	        border-radius: 0.625em;
+	-webkit-transition: background-color 0.25s linear;
+	   -moz-transition: background-color 0.25s linear;
+	     -o-transition: background-color 0.25s linear;
+	        transition: background-color 0.25s linear;
+	&:hover{
+		background-color: #007899;
+	}
+}
+

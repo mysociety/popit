@@ -50,11 +50,12 @@ head
 body#popit-united_kingdom.brand_page
   header#header
     h1.logo
-      abbr(title='People Organisations Politicians') Pop
-      | It
-      if locals.popit
-        span.popit-instance  : 
-          span#popit_instance_name #{ popit.instance_name() }
+      a(href='/')
+        abbr(title='People Organisations Politicians') Pop
+        | It
+        if locals.popit
+          span.popit-instance  : 
+            span#popit_instance_name #{ popit.instance_name() }
     #user_menu
       if everyauth.loggedIn
         #signed_in
