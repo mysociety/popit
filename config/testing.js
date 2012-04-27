@@ -1,9 +1,3 @@
-/*  Configuration file
- *
- *
- *
- */
-
 module.exports = {
 
     hosting_server: {
@@ -14,6 +8,7 @@ module.exports = {
     instance_server: {
         port:          3101,
         domain_suffix: 'vcap.me:3101',
+        files_dir:     '/tmp/popit_files',
     },
     
     MongoDB: {

@@ -1,8 +1,4 @@
-/*  Configuration file
- *
- *
- *
- */
+var path = require('path');
 
 module.exports = {
     hosting_server: {
@@ -14,6 +10,7 @@ module.exports = {
         port:          3001,
         domain_suffix: 'vcap.me:3001',
         cookie_secret: 'hurgleflurdle',
+        files_dir:     path.normalize(__dirname + '/../../popit_files'),
     },
     MongoDB: {
         host:         'localhost',
