@@ -697,6 +697,8 @@ body.signed_in .admin-options {
   line-height: 1.875em;
   color: #666666;
   margin-top: 3em; }
+  #footer .mysociety-logo {
+    display: block; }
   #footer > div {
     max-width: 60em;
     margin: auto;
@@ -708,7 +710,7 @@ body.signed_in .admin-options {
     #footer #sitemap ul {
       list-style: none;
       margin: 0;
-      padding: 0;
+      padding: 0.625em;
       text-indent: 0;
       margin-left: 4.375em;
       margin-bottom: 2em; }
@@ -727,7 +729,7 @@ body.signed_in .admin-options {
   #footer #about-mysociety {
     width: 37.5em;
     float: right;
-    padding: 3.4375em 0.625em; }
+    padding: 0.625em; }
     #footer #about-mysociety p {
       font-size: 0.875em;
       margin-bottom: 2.143em; }
