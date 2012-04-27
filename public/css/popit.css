@@ -627,7 +627,8 @@ article.person > aside {
   float: left;
   padding: 0.625em; }
   article.person > aside .admin-options {
-    float: left; }
+    float: left;
+    margin-bottom: 2em; }
   article.person > aside ul.photos, article.person > aside ul.photos li {
     display: block;
     padding: 0;
@@ -639,7 +640,8 @@ article.person > aside {
     text-align: right;
     font-size: 0.625em;
     width: 28em;
-    color: #999; }
+    color: #999;
+    margin: -0.6em 0 0 0; }
     article.person > aside .photo-source a {
       color: #999; }
 article.person > section {

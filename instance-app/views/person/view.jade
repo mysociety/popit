@@ -37,31 +37,31 @@ block content
           a.add(href="#{person.slug_url}/upload_image")
               strong + add 
               | a photograph
-    - if((person.summary) && (locals.user))
-        section.description(itemprop="description")
-          ul.admin-options
-            - if(!person.summary)
-              li
-                a.add(href="#FIXME-add")
-                  strong + add 
-                  | a summary of this person
-            else
-              li
-                a.edit(href="#FIXME-edit")
-                  strong + edit 
-                  | the summary
+    //- if((!person.summary) && (!locals.user))
+    section.description(itemprop="description")
+      ul.admin-options
+        - if(!person.summary)
+          li
+            a.add(href="#{person.slug_url}/edit")
+              strong + add 
+              | a summary of this person
+        else
+          li
+            a.edit(href="#{person.slug_url}/edit")
+              strong ^ edit 
+              | the summary
                   
-          p #{person.summary}
+      p #{person.summary}
     
     section.personal-details
       ul.admin-options
         li
-          a.add(href="#FIXME-add")
+          a.add(href="#FIXME")
             strong + add 
             | information
         li
           a.edit(href="#FIXME-edit")
-            strong + edit 
+            strong ^ edit 
             | this section
   
       h2 Name, birthday & similar:
@@ -76,12 +76,12 @@ block content
     section.contact-information
       ul.admin-options
         li
-          a.add(href="#FIXME-add")
+          a.add(href="#{person.slug_url}/contacts/new/edit")
             strong + add 
             | information
         li
           a.edit(href="#FIXME-edit")
-            strong + edit 
+            strong ^ edit 
             | this section
       h2 Contact Information:
       dl
