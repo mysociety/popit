@@ -46,6 +46,7 @@ block content
 
   h2 Raw data
   
-  pre
-    #{ JSON.stringify( person, null, '  ' ) }
-
+  p
+    | The details for this person are also available in 
+    a(href="#{person.slug_url}/json") JSON
+    | .
