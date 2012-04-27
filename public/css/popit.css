@@ -518,9 +518,10 @@ header#header {
   margin: auto; }
   #content h1 .long-title {
     display: none; }
-  #content p {
-    font-size: 1.125em;
-    line-height: 1.667em; }
+
+.person p {
+  font-size: 1.125em;
+  line-height: 1.667em; }
 
 .login-form {
   padding: 0.625em 0.625em 0.625em 4.375em; }
@@ -532,7 +533,9 @@ header.person-header-nav {
   margin-left: -1.688em;
   margin-right: -1.688em;
   margin-bottom: 1em;
-  clear: both; }
+  float: left;
+  clear: both;
+  width: 63.375em; }
   header.person-header-nav nav {
     display: inline; }
   header.person-header-nav > *, header.person-header-nav nav > a {
@@ -559,6 +562,7 @@ header.person-header-nav {
   header.person-header-nav .current-person {
     width: 16em;
     height: 2em;
+    float: left;
     background-color: #dbdbdb;
     margin: 0;
     padding: 0.5em;
@@ -577,6 +581,7 @@ header.person-header-nav {
     transition: width 0.5s ease-out; }
   header.person-header-nav a.previous-person, header.person-header-nav a.next-person {
     width: 11.25em;
+    float: left;
     text-decoration: none;
     color: #fff;
     background-color: #b3b3b3;
@@ -618,7 +623,7 @@ article.person .admin-options {
     article.person .admin-options a.delete strong {
       color: #c20000; }
 article.person > aside {
-  width: 22.5em;
+  width: 18.75em;
   float: left;
   padding: 0.625em; }
   article.person > aside .admin-options {
@@ -728,39 +733,40 @@ form {
     display: none; }
   form .suggestion {
     display: block; }
-
-input,
-.append {
-  -webkit-border-radius: 0.625em;
-  -moz-border-radius: 0.625em;
-  border-radius: 0.625em;
-  border: 1px solid #ccc;
-  padding: 0.625em 1em;
-  width: 25em;
-  max-width: 100%;
-  color: #444;
-  -webkit-transition: all 0.5s linear;
-  -moz-transition: all 0.5s linear;
-  -o-transition: all 0.5s linear;
-  transition: all 0.5s linear; }
-  input:hover,
-  .append:hover {
-    border: 1px solid #888; }
-  input:focus,
-  .append:focus {
-    outline: none;
-    border: 1px solid #006480; }
-
-.append input {
-  border: none;
-  padding: 0;
-  width: 18em;
-  max-width: 70%;
-  text-align: right; }
-.append .add-on {
-  max-width: 30%;
-  width: 5em;
-  color: #888; }
+  form input,
+  form .append,
+  form textarea {
+    -webkit-border-radius: 0.625em;
+    -moz-border-radius: 0.625em;
+    border-radius: 0.625em;
+    border: 1px solid #ccc;
+    padding: 0.625em 1em;
+    width: 25em;
+    max-width: 100%;
+    color: #444;
+    -webkit-transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    transition: all 0.5s linear; }
+    form input:hover,
+    form .append:hover,
+    form textarea:hover {
+      border: 1px solid #888; }
+    form input:focus,
+    form .append:focus,
+    form textarea:focus {
+      outline: none;
+      border: 1px solid #006480; }
+  form .append input {
+    border: none;
+    padding: 0;
+    width: 18em;
+    max-width: 70%;
+    text-align: right; }
+  form .append .add-on {
+    max-width: 30%;
+    width: 5em;
+    color: #888; }
 
 button, a.btn, input.btn {
   border: none;

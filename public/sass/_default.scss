@@ -95,7 +95,8 @@ body.brand_page #user_menu{
 			display:none;
 		}
 	}
-	
+}
+.person{
 	p{
 		font-size: 1.125em;
 		line-height: 1.667em;
@@ -126,7 +127,9 @@ header.person-header-nav{
 	margin-left:-1.6875em;
 	margin-right: -1.6875em;
 	margin-bottom:1em;
+	float:left;
 	clear:both;
+	width: 63.375em;
 	
 	nav{
 		display:inline;
@@ -166,6 +169,7 @@ header.person-header-nav{
 	.current-person{
 		width: 16em;
 		height: 2em;
+		float:left;
 		background-color: #dbdbdb;
 		margin:0;
 		padding: 0.5em;
@@ -189,6 +193,7 @@ header.person-header-nav{
 	
 	a.previous-person, a.next-person{
 		width:11.25em;
+		float:left;
 		text-decoration: none;
 		color: #fff;
 		background-color: #b3b3b3;
@@ -250,7 +255,7 @@ article.person{
 		}
 	}
 	&>aside{
-		width:22.5em;
+		width:18.75em;
 		float:left;
 		padding:0.625em;
 		

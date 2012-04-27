@@ -46,8 +46,11 @@ head
   //- In the head to stop conflicts with jQuery 
   //- Full & uncompressed for now until finished then we can do a custom cutdown build with just the bits we need 
   script(src='/js/libs/modernizr-2.5.3.js', type='text/javascript', charset='utf-8')
-  
-body#popit-united_kingdom.brand_page
+
+if locals.user
+  bodyClasses = ['signed_in']
+// FIXME set the body ID to be the slug version of the instance name instead of united-kingdom
+body#popit-united_kingdom(class=bodyClasses)
   header#header
     h1.logo
       a(href='/')

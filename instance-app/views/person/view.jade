@@ -4,49 +4,94 @@ block title
   | #{ person.name }
 
 block content
-  .page-header
-    h1 #{ person.name }
-
-  p 
-    | #{ person.summary }
-    a(href="#{person.slug_url}/edit") Edit
+  article(class="person", id="person-james_gordon_brown", itemscope, itemtype="http://schema.org/Person")
+    header.person-header-nav(id="person-#{person.slug}")
+      nav
+        a.previous-person(href="#FIXME-previous-person", title="Previous Person: Person Name")
+          em Previous&nbsp;Person:
+          strong Person&nbsp;Name
+        a.next-person(href="#FIXME-next-person", title="Next Person: Person Name")
+          em Next&nbsp;Person:
+          strong Person&nbsp;Name
+      h1.current-person(title="#{ person.name }") #{ person.name }
+      div.find-person
+        label(for="person-search") Search for Person
+        input#person-search(type="search", name="person-search")
+      
+    aside
+      ul.photos
+        for image_id in person.images
+          li
+            //- FIXME - don't use the full size image here, resize it on the server before sending
+            img(src="/image/#{image_id}-original")
+            p.photo-source source:
+              a(href="http://www.flickr.com/photos/pasokphotos/4092898590/") ΠΑΣΟΚ
+              abbr.license(title="Creative Commons - By Attribution - Share Alike") CC-BY-SA
+              ul.admin-options
+                li
+                  a.delete(href="#FIXME-delete-img-url")
+                    strong - delete 
+                    | this photograph
+      ul.admin-options
+        li
+          a.add(href="#{person.slug_url}/upload_image")
+              strong + add 
+              | a photograph
+    // FIXME trying to make it so when not logged in and there is no summary to not show the summary section
+    - if((!person.summary) && (!locals.user))
+        section.description(itemprop="description")
+          ul.admin-options
+            - if(!person.summary)
+              li
+                a.add(href="#FIXME-add")
+                  strong + add 
+                  | a summary of this person
+            else
+              li
+                a.edit(href="#FIXME-edit")
+                  strong + edit 
+                  | the summary
+                  
+          p #{person.summary}
+    
+    section.personal-details
+      ul.admin-options
+        li
+          a.add(href="#FIXME-add")
+            strong + add 
+            | information
+        li
+          a.edit(href="#FIXME-edit")
+            strong + edit 
+            | this section
   
-  h2 Images
+      h2 Name, birthday & similar:
+      dl
+        dt Full Name:
+        dd(itemprop="name") #{ person.name }
+        
+        dt Birthdate:
+        dd
+          time(itemprop="birthDate", datetime="1951-02-20") 20 February 1951
+    
+    section.contact-information
+      ul.admin-options
+        li
+          a.add(href="#FIXME-add")
+            strong + add 
+            | information
+        li
+          a.edit(href="#FIXME-edit")
+            strong + edit 
+            | this section
+      h2 Contact Information:
+      dl
+        for contact in person.contact_details
+          dt #{ contact.kind }:
+          dd #{ contact.value }
   
-  ul
-    for image_id in person.images
-      li
-        //- FIXME - don't use the full size image here, resize it on the server before sending
-        img(src="/image/#{image_id}-original", height="100")
-        | license etc text goes here
-    li
-      a(href="#{person.slug_url}/upload_image") Upload new image
-  
-  h2 Contact details
-  
-  ul
-    for contact in person.contact_details
-      li
-        b #{ contact.kind }: 
-        | #{ contact.value } 
-        a(href="#{person.slug_url}/contacts/#{contact.id}/edit") Edit
-    li 
-      a(href="#{person.slug_url}/contacts/new/edit") create new contact
-
-  h2 Links
-  
-  ul
-    for link in person.links
-      li
-        a(href=link.url) #{ link.url }: 
-        | #{ link.comment } 
-        a(href="#{person.slug_url}/links/#{link.id}/edit") Edit
-    li 
-      a(href="#{person.slug_url}/links/new/edit") create new link
-
-  h2 Raw data
-  
-  p
-    | The details for this person are also available in 
-    a(href="#{person.slug_url}/json") JSON
-    | .
+    section.raw-data
+      h2 Raw data
+      p The details for this person are also available in 
+        a(href="#{person.slug_url}/json") JSON
+        | .
