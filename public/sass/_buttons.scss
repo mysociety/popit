@@ -5,6 +5,8 @@ button, a.btn, input.btn{
 	width: inherit;
 	min-width: 12.5em;
 	color: #fff;
+	color: rgba(255,255,255,0.9);
+	text-align:center;
 	background-color: #006480;
 	-webkit-border-radius: 0.625em;
 	   -moz-border-radius: 0.625em;
@@ -15,6 +17,9 @@ button, a.btn, input.btn{
 	        transition: background-color 0.25s linear;
 	&:hover{
 		background-color: #007899;
+		color: #fff;
+		color: rgba(255,255,255,1);
+		text-decoration:none;
 	}
 }
 

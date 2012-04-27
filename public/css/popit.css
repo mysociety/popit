@@ -752,11 +752,12 @@ input,
 .append input {
   border: none;
   padding: 0;
-  width: 20em;
+  width: 18em;
   max-width: 70%;
   text-align: right; }
 .append .add-on {
   max-width: 30%;
+  width: 5em;
   color: #888; }
 
 button, a.btn, input.btn {
@@ -766,6 +767,8 @@ button, a.btn, input.btn {
   width: inherit;
   min-width: 12.5em;
   color: #fff;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
   background-color: #006480;
   -webkit-border-radius: 0.625em;
   -moz-border-radius: 0.625em;
@@ -775,4 +778,7 @@ button, a.btn, input.btn {
   -o-transition: background-color 0.25s linear;
   transition: background-color 0.25s linear; }
   button:hover, a.btn:hover, input.btn:hover {
-    background-color: #007899; }
+    background-color: #007899;
+    color: #fff;
+    color: white;
+    text-decoration: none; }
