@@ -88,6 +88,23 @@ block content
         for contact in person.contact_details
           dt #{ contact.kind }:
           dd #{ contact.value }
+
+    section.contact-information
+      ul.admin-options
+        li
+          a.add(href="#{person.slug_url}/links/new/edit")
+            strong + add 
+            | information
+        li
+          a.edit(href="#FIXME-edit")
+            strong ^ edit 
+            | this section
+      h2 Links:
+      dl
+        for link in person.links
+          dt #{ link.comment }:
+          dd
+            a(href=link.url) #{ link.url }
   
     section.raw-data
       h2 Raw data
