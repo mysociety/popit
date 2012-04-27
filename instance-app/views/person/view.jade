@@ -4,6 +4,13 @@ block title
   | #{ person.name }
 
 block content
+  style
+    a.hover_edit {
+      float: right;
+      color: #bbb;
+    }    
+    
+
   article(class="person", id="person-james_gordon_brown", itemscope, itemtype="http://schema.org/Person")
     header.person-header-nav(id="person-#{person.slug}")
       nav
@@ -79,32 +86,35 @@ block content
           a.add(href="#{person.slug_url}/contacts/new/edit")
             strong + add 
             | information
-        li
-          a.edit(href="#FIXME-edit")
-            strong ^ edit 
-            | this section
+        //- li
+        //-   a.edit(href="#FIXME-edit")
+        //-     strong edit 
+        //-     | this section
       h2 Contact Information:
       dl
         for contact in person.contact_details
           dt #{ contact.kind }:
           dd #{ contact.value }
+            a.hover_edit(href="#{person.slug_url}/contacts/#{contact.id}/edit") edit
+            
 
     section.contact-information
       ul.admin-options
         li
           a.add(href="#{person.slug_url}/links/new/edit")
             strong + add 
-            | information
-        li
-          a.edit(href="#FIXME-edit")
-            strong ^ edit 
-            | this section
+            | link
+        //- li
+        //-   a.edit(href="#FIXME-edit")
+        //-     strong ^ edit 
+        //-     | this section
       h2 Links:
       dl
         for link in person.links
           dt #{ link.comment }:
           dd
             a(href=link.url) #{ link.url }
+            a.hover_edit(href="#{person.slug_url}/links/#{link.id}/edit") edit
   
     section.raw-data
       h2 Raw data
