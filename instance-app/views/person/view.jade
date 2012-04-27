@@ -16,7 +16,8 @@ block content
   ul
     for image_id in person.images
       li
-        img(src="/image/#{image_id}-original")
+        //- FIXME - don't use the full size image here, resize it on the server before sending
+        img(src="/image/#{image_id}-original", height="100")
         | license etc text goes here
     li
       a(href="#{person.slug_url}/upload_image") Upload new image
