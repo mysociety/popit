@@ -1,0 +1,23 @@
+extends ../layout
+
+
+
+
+block content
+
+  form(action="", method="post", enctype="multipart/form-data")
+
+    div
+
+      label(for="image_upload") Image
+
+      input(type="file", id="image_upload", name="image" )
+
+      //- if opts.form_help_text
+      //-   div.help #{opts.form_help_text}
+      //- 
+      //- if errors[field_name]
+      //-   span.error #{ errors[field_name].type }
+        
+    div
+      input(type="submit", value="Upload")

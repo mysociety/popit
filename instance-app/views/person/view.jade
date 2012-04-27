@@ -11,6 +11,16 @@ block content
     | #{ person.summary }
     a(href="#{person.slug_url}/edit") Edit
   
+  h2 Images
+  
+  ul
+    for image_id in person.images
+      li
+        img(src="/image/#{image_id}-original")
+        | license etc text goes here
+    li
+      a(href="#{person.slug_url}/upload_image") Upload new image
+  
   h2 Contact details
   
   ul
