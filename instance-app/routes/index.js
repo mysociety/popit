@@ -8,7 +8,8 @@ var Validator     = require('validator').Validator,
 exports.route = function (app) {
 
   app.get('/', function(req, res){
-    res.render( 'index' );
+    res.redirect( '/person' ); // until we have a more interesting homepage to show
+    // res.render( 'index' );
   });
 
   app.get('/image/:image_spec', function (req,res,next) {
