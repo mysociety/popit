@@ -725,7 +725,7 @@ body.signed_in .admin-options {
       font-size: 2.5em;
       line-height: 1.5em;
       text-decoration: none;
-      color: #d2d2d2; }
+      color: #999; }
   #footer #about-mysociety {
     width: 37.5em;
     float: right;
@@ -786,6 +786,8 @@ form {
     form textarea:focus {
       outline: none;
       border: 1px solid #006480; }
+  form textarea {
+    min-height: 10em; }
   form .append input {
     border: none;
     padding: 0;

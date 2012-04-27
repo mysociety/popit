@@ -1,9 +1,19 @@
 $(document).ready(function() {
 	
+	// ------------------------
+	//  Replace spaces in h1 with nbsp. FIXME can we do this server side
+	// ------------------------
+	var h1_person_name = $('.person-header-nav h1').text();
+	h1_person_name = h1_person_name.replace(/ /i, ' ');
+	$('.person-header-nav h1').text(h1_person_name);
 	
-	/*
-		Enlarge and shrink the search box on focus
-	*/
+	
+	
+	
+	
+	// ------------------------
+	//  Enlarge and shrink the search box on focus
+	// ------------------------
 	$('#person-search').focus(function(event) {
 		$('.person-header-nav').addClass('focus-search');
 	}).blur(function(event) {
@@ -14,7 +24,7 @@ $(document).ready(function() {
 	
 	// ------------------------
 	// Instance Name Validation
-	
+	// ------------------------
 	$('#slug').keypress(function(e) {
 		
 		/* FIXME EVDB check this is the best way to do this and also to match with serverside checks */
