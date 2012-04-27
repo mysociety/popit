@@ -179,6 +179,7 @@ header.person-header-nav{
 		font-weight: normal;
 		overflow:hidden;
 		text-overflow: ellipsis; 
+		white-space: nowrap;
 	}
 	&.focus-search .current-person{
 		width: 6em;
