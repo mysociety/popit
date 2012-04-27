@@ -571,7 +571,8 @@ header.person-header-nav {
     font-family: 'MuseoSlab500', 'sans-serif';
     font-weight: normal;
     overflow: hidden;
-    text-overflow: ellipsis; }
+    text-overflow: ellipsis;
+    white-space: nowrap; }
   header.person-header-nav.focus-search .current-person {
     width: 6em; }
   header.person-header-nav .find-person, header.person-header-nav .current-person {
