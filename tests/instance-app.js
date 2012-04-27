@@ -56,7 +56,8 @@ module.exports = {
         test.expect(3);
         
         browser
-            .assertTextPresent('Welcome to PopIt')
+            // .assertTextPresent('Welcome to PopIt')
+            .assertTextPresent('People')
     
             .getHtmlSource(function (html) {
                 test.equal(
@@ -83,7 +84,8 @@ module.exports = {
         
         browser
             // .setSpeed(1000)
-            .assertTextPresent('Welcome to PopIt')
+            // .assertTextPresent('Welcome to PopIt')
+            .assertTextPresent('People')
             .clickAndWait("link=Sign In")
             .clickAndWait("css=input[type=\"submit\"]")
             .assertTextPresent("Missing login")

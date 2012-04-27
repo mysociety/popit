@@ -34,7 +34,7 @@ module.exports = {
         
         browser
             // go to new person page
-            .clickAndWait('link=all the people')
+            // .clickAndWait('link=all the people')
             .clickAndWait("link=Create a new person")
             
             // check that we are at the login page
@@ -60,13 +60,13 @@ module.exports = {
     
             // go to the people list
             .open('/')
-            .clickAndWait('link=all the people')
+            // .clickAndWait('link=all the people')
             .assertTextPresent("Joe Bloggs")
             .clickAndWait("link=Joe Bloggs")
             
             // create another person with the same slug
             .open('/')
-            .clickAndWait('link=all the people')
+            // .clickAndWait('link=all the people')
             .clickAndWait("link=Create a new person")            
             .type("name=name", "Joé Bloggs")
             .clickAndWait("css=input[type=\"submit\"]")
@@ -82,7 +82,7 @@ module.exports = {
 
             // add a person with an unsluggable name
             .open('/')
-            .clickAndWait('link=all the people')
+            // .clickAndWait('link=all the people')
             .clickAndWait("link=Create a new person")            
             .type("name=name", "网页")
             .clickAndWait("css=input[type=\"submit\"]")
