@@ -37,8 +37,7 @@ block content
           a.add(href="#{person.slug_url}/upload_image")
               strong + add 
               | a photograph
-    // FIXME trying to make it so when not logged in and there is no summary to not show the summary section
-    - if((!person.summary) && (!locals.user))
+    - if((person.summary) && (locals.user))
         section.description(itemprop="description")
           ul.admin-options
             - if(!person.summary)
