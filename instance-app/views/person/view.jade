@@ -7,9 +7,14 @@ block content
   style
     a.hover_edit {
       float: right;
-      color: #bbb;
+      color: #ddd;
+      font-size: 80%;
     }    
-    
+
+    a.hover_edit:hover {
+      color: #333;
+    }
+            
 
   article(class="person", id="person-james_gordon_brown", itemscope, itemtype="http://schema.org/Person")
     header.person-header-nav(id="person-#{person.slug}")
