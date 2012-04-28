@@ -7,7 +7,7 @@ block content
 
   form(action="", method="post", enctype="multipart/form-data")
 
-    div
+    p
 
       label(for="image_upload") Image
 
@@ -20,4 +20,4 @@ block content
       //-   span.error #{ errors[field_name].type }
         
     div
-      input(type="submit", value="Upload")
+      input(type="submit", class="btn", value="Upload")

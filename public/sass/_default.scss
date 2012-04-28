@@ -102,7 +102,11 @@ body.brand_page #user_menu{
 		line-height: 1.667em;
 	}
 }
-
+p.intro{
+	line-height: 1.667em;
+	max-width:100%;
+	width: 35em;
+}
 
 // -----------------------
 //	Login Form

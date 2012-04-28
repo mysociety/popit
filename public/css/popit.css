@@ -523,6 +523,11 @@ header#header {
   font-size: 1.125em;
   line-height: 1.667em; }
 
+p.intro {
+  line-height: 1.667em;
+  max-width: 100%;
+  width: 35em; }
+
 .login-form {
   padding: 0.625em 0.625em 0.625em 4.375em; }
 
@@ -766,6 +771,7 @@ form {
   form input,
   form .append,
   form textarea {
+    display: block;
     -webkit-border-radius: 0.625em;
     -moz-border-radius: 0.625em;
     border-radius: 0.625em;
@@ -792,9 +798,10 @@ form {
   form .append input {
     border: none;
     padding: 0;
-    width: 18em;
+    width: 17em;
     max-width: 70%;
-    text-align: right; }
+    text-align: right;
+    float: left; }
   form .append .add-on {
     max-width: 30%;
     width: 5em;

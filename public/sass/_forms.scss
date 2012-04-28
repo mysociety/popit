@@ -37,6 +37,7 @@ form{
 	.append,
 	textarea
 	{
+		display:block;
 		-webkit-border-radius: 0.625em;
 		   -moz-border-radius: 0.625em;
 		        border-radius: 0.625em;
@@ -66,9 +67,10 @@ form{
 		input{
 			border:none;
 			padding:0;
-			width:18em;
+			width:17em;
 			max-width:70%;
 			text-align:right;
+			float:left;
 		}
 		.add-on{
 			max-width:30%;

@@ -6,7 +6,7 @@ extends layout
 block content
 
   mixin form_field(field_name)
-    div
+    p
       - var opts        = object.schema.path(field_name).options;
       - var field_id    = 'form-' + object.id + '-' + field_name.replace('.','-')
       - var field_value = object.get(field_name);
@@ -31,5 +31,5 @@ block content
     for field_name in form_fields
       mixin form_field(field_name)
         
-    div
-      input(type="submit", value="Save")
+    p
+      input(type="submit", class="btn", value="Save")
