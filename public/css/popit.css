@@ -828,4 +828,5 @@ button, a.btn, input.btn {
     background-color: #007899;
     color: #fff;
     color: white;
-    text-decoration: none; }
+    text-decoration: none;
+    border: none; }
