@@ -1,0 +1,128 @@
+extend ../layout
+
+block title
+  | #{ organisation.name }
+
+block content
+  style
+    a.hover_edit {
+      float: right;
+      color: #ddd;
+      font-size: 80%;
+    }    
+
+    a.hover_edit:hover {
+      color: #333;
+    }
+            
+
+  article(class="person", id="person-james_gordon_brown", itemscope, itemtype="http://schema.org/Organisation")
+    header.person-header-nav(id="person-#{organisation.slug}")
+      nav
+        a.previous-person(href="#FIXME-previous-person", title="Previous Organisation: Organisation Name")
+          em Previous&nbsp;Organisation:
+          strong Organisation&nbsp;Name
+        a.next-person(href="#FIXME-next-person", title="Next Organisation: Organisation Name")
+          em Next&nbsp;Organisation:
+          strong Organisation&nbsp;Name
+      h1.current-person(title="#{ organisation.name }") #{ organisation.name }
+      div.find-person
+        label(for="person-search") Search for Organisation
+        input#person-search(type="search", name="person-search")
+      
+    aside
+      //- ul.photos
+      //-   for image_id in organisation.images
+      //-     li
+      //-       //- FIXME - don't use the full size image here, resize it on the server before sending
+      //-       img(src="/image/#{image_id}-original")
+      //-       p.photo-source source:
+      //-         a(href="#photogrpaher-url") Photographer 
+      //-         abbr.license(title="Creative Commons - By Attribution - Share Alike") CC-BY-SA
+      //-         ul.admin-options
+      //-           li
+      //-             a.delete(href="#FIXME-delete-img-url")
+      //-               strong - delete 
+      //-               | this photograph
+      //- ul.admin-options
+      //-   li
+      //-     a.add(href="#{organisation.slug_url}/upload_image")
+      //-         strong + add 
+      //-         | a photograph
+    //- if((!organisation.summary) && (!locals.user))
+    //- section.description(itemprop="description")
+    //-   ul.admin-options
+    //-     - if(!organisation.summary)
+    //-       li
+    //-         a.add(href="#{organisation.slug_url}/edit")
+    //-           strong + add 
+    //-           | a summary of this organisation
+    //-     else
+    //-       li
+    //-         a.edit(href="#{organisation.slug_url}/edit")
+    //-           strong ^ edit 
+    //-           | the summary
+                  
+      p #{organisation.summary}
+    
+    //- section.organisational-details
+    //-   ul.admin-options
+    //-     li
+    //-       a.add(href="#FIXME")
+    //-         strong + add 
+    //-         | information
+    //-     li
+    //-       a.edit(href="#FIXME-edit")
+    //-         strong ^ edit 
+    //-         | this section
+    //-   
+    //-   h2 Name, birthday & similar:
+    //-   dl
+    //-     dt Full Name:
+    //-     dd(itemprop="name") #{ organisation.name }
+    //-     
+    //-     dt Birthdate:
+    //-     dd
+    //-       time(itemprop="birthDate", datetime="1951-02-20") 20 February 1951
+    
+    //- section.contact-information
+    //-   ul.admin-options
+    //-     li
+    //-       a.add(href="#{organisation.slug_url}/contacts/new/edit")
+    //-         strong + add 
+    //-         | information
+    //-     //- li
+    //-     //-   a.edit(href="#FIXME-edit")
+    //-     //-     strong edit 
+    //-     //-     | this section
+    //-   h2 Contact Information:
+    //-   dl
+    //-     for contact in organisation.contact_details
+    //-       dt #{ contact.kind }:
+    //-       dd #{ contact.value }
+    //-         a.hover_edit(href="#{organisation.slug_url}/contacts/#{contact.id}/edit") edit
+            
+
+    //- section.contact-information
+    //-   ul.admin-options
+    //-     li
+    //-       a.add(href="#{organisation.slug_url}/links/new/edit")
+    //-         strong + add 
+    //-         | link
+    //-     //- li
+    //-     //-   a.edit(href="#FIXME-edit")
+    //-     //-     strong ^ edit 
+    //-     //-     | this section
+    //-   h2 Links:
+    //-   dl
+    //-     for link in organisation.links
+    //-       dt #{ link.comment }:
+    //-       dd
+    //-         a(href=link.url) #{ link.url }
+    //-         a.hover_edit(href="#{organisation.slug_url}/links/#{link.id}/edit") edit
+  
+    section.raw-data
+      h2 Raw data
+      p The details for this organisation are also available in 
+        a(href="#{organisation.slug_url}/json") JSON
+        | .

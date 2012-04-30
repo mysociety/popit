@@ -136,6 +136,9 @@ app.configure(function(){
   var person_app_factory = require('../lib/apps/person');
   app.use('/person', person_app_factory() );
 
+  var organisation_app_factory = require('../lib/apps/organisation');
+  app.use('/organisation', organisation_app_factory() );
+
   app.use(app.router);
   
   app.use( require('../lib/errors').errorHandler );
