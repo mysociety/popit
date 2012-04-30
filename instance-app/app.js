@@ -116,6 +116,7 @@ app.configure(function(){
   
   // Select the instance now so that it is available to everyauth to refer to
   // the correct db with.
+  app.use( require('../lib/middleware/config')() );
   app.use(instanceSelector());
   
   app.use( everyauth.middleware() );

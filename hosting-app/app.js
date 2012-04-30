@@ -23,7 +23,6 @@ app.configure('production', function(){
 });
 
 app.configure(function(){
-  app.use(masterSelector());
   app.set('view engine', 'jade');
   app.set('views', __dirname + '/views');
   app.set('view options', { layout: false, pretty: true, });
@@ -31,6 +30,9 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.static(__dirname + '/../public'));
+
+  app.use( require('../lib/middleware/config')() );
+  app.use(masterSelector());
 
   app.use('/info', require('../lib/apps/info') );
   app.use(app.router);
