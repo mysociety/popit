@@ -52,7 +52,7 @@ module.exports = {
             .assertTitle("Joe Bloggs")
             
             // edit the person
-            .clickAndWait('link=Edit')
+            .clickAndWait('link=+ add a summary of this person')
             .type("name=summary", "Test Summary blah blah")
             .clickAndWait("css=input[type=\"submit\"]")
             .assertTitle("Joe Bloggs")
