@@ -9,8 +9,7 @@ var utils    = require('../lib/utils'),
 
 module.exports = {
   // tearDown: function (cb) {
-  //   (new PopIt()).close_db_connections();
-  //   cb();
+  //   (new PopIt()).close_db_connections(cb);
   // },
   
   test_is_email: function ( test ) {

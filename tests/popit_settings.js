@@ -45,8 +45,7 @@ module.exports = {
     tearDown: function(cb) {
         // cose the connections so that the test script can exit
         var p = new PopIt();
-        p.close_db_connections();
-        cb(null);
+        p.close_db_connections(cb);
     },
     
     "test calling 'setting' before 'load_settings' throws error": function ( test ) {    

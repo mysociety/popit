@@ -16,8 +16,7 @@ module.exports = {
   },
   
   tearDown: function(cb) {
-    this.popit.close_db_connections();
-    cb(null);
+    this.popit.close_db_connections(cb);
   },
   
   "image local path": function ( test ) {    

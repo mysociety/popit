@@ -17,8 +17,7 @@ module.exports = {
     
     tearDown: function(cb) {
         // close the connections so that the test script can exit
-        this.popit.close_db_connections();
-        cb(null);
+        this.popit.close_db_connections(cb);
     },
     
     "person name and slug": function ( test ) {    
