@@ -36,8 +36,9 @@ head
     block title
       | PopIt 
   
-  link(rel='stylesheet', href='/css/popit.css', type='text/css', media='screen, print', charset='utf-8')
-  link(rel='stylesheet', href='/css/print.css', type='text/css', media='print', charset='utf-8')
+  block css_loading
+    link(rel='stylesheet', href='/css/popit.css', type='text/css', media='screen, print', charset='utf-8')
+    link(rel='stylesheet', href='/css/print.css', type='text/css', media='print', charset='utf-8')
   
   //- Mobile viewport optimised: h5bp.com/viewport 
   meta(name='viewport', content='width=device-width,initial-scale=1')
@@ -118,9 +119,10 @@ body#popit-united_kingdom(class=bodyClasses)
     .copyright
   //
      Javascript 
-  script(src='/js/libs/jquery-1.7.2.min.js', type='text/javascript', charset='utf-8')
-  script(src='/js/libs/json2_us_bb.min.js', type='text/javascript', charset='utf-8')
-  script(src='/js/popit.js', type='text/javascript', charset='utf-8')
+  block javascript_loading
+    script(src='/js/libs/jquery-1.7.2.min.js', type='text/javascript', charset='utf-8')
+    script(src='/js/libs/json2_us_bb.min.js', type='text/javascript', charset='utf-8')
+    script(src='/js/popit.js', type='text/javascript', charset='utf-8')
 
 //- manually close the html tag as we opened it in a funny way using the conditional comments above
 </html>
