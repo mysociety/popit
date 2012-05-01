@@ -86,6 +86,23 @@ block content
           time(itemprop="birthDate", datetime="1951-02-20") 20 February 1951
     
     section.contact-information
+      //- ul.admin-options
+      //-   li
+      //-     a.add(href="#{person.slug_url}/contacts/new/edit")
+      //-       strong + add 
+      //-       | information
+        //- li
+        //-   a.edit(href="#FIXME-edit")
+        //-     strong edit 
+        //-     | this section
+      h2 Positions:
+      dl
+        for position in positions
+          dt #{ position.title }:
+          dd #{ position.organisation ? position.organisation.name : 'unkown' }
+            //- a.hover_edit(href="#{person.slug_url}/contacts/#{contact.id}/edit") edit
+            
+    section.contact-information
       ul.admin-options
         li
           a.add(href="#{person.slug_url}/contacts/new/edit")
