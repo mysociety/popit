@@ -11,9 +11,11 @@ append javascript_loading
   script(src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js")
   script
     $(function() {
-      console.log('adding autocomplete');
+      $('input[name=title]').autocomplete({
+        source: '/autocomplete/position_title',
+      });
       $('input[name=organisation_name]').autocomplete({
-        source: '/organisation/autocomplete_name',
+        source: '/autocomplete/organisation_name',
         search: function(event, ui) {
           $('#org_help_text').text('New organisation with this name will be created');
           $('input[name=organisation_slug]').val('');

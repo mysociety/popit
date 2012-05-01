@@ -133,6 +133,8 @@ app.configure(function(){
   app.use('/info',   require('../lib/apps/info') );
   app.use('/token',  require('../lib/apps/token') );
 
+  app.use('/autocomplete',  require('../lib/apps/autocomplete') );
+
   var person_app_factory = require('../lib/apps/person');
   app.use('/person', person_app_factory() );
 
