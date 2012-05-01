@@ -17,17 +17,6 @@ module.exports = {
     
     tearDown: function(cb) {
         // cose the connections so that the test script can exit
-    },
-    
-    "get master database handle": function ( test ) {    
-        test.expect( 1 );
-
-        var popit = this.popit;
-
-        var master_db = popit.master_db();
-        test.ok( master_db, "got a connection to the master db" );
-
-        test.done();
         this.popit.close_db_connections(cb);
     },
     
