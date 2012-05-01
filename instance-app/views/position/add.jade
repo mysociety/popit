@@ -1,0 +1,35 @@
+extend ../layout
+
+block title
+  | Add position
+
+block content
+  .page-header
+    h1 Create a new position
+
+  form(method="post", action="")
+
+    #position_new_title
+      label Job title
+      input(name="title", value=position.title)
+
+    if locals.show_person
+      #position_new_person_name
+        label Person Name
+        input(name="person_name", value=person.name)
+      
+      #position_new_person_slug
+        label Person Slug
+        input(name="person_slug", value=person.slug)
+
+    if locals.show_organisation
+      #position_new_organisation_name
+        label Organisation Name
+        input(name="organisation_name", value=organisation.name)
+      
+      #position_new_organisation_slug
+        label Organisation Slug
+        input(name="organisation_slug", value=organisation.slug)
+
+
+    input(type="submit", class="btn", value="Create new organisation")
