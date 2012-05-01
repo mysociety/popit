@@ -99,7 +99,11 @@ block content
       dl
         for position in positions
           dt #{ position.title }:
-          dd #{ position.organisation ? position.organisation.name : 'unkown' }
+          dd
+            if position.organisation
+              a(href=position.organisation.slug_url) #{ position.organisation.name }
+            else
+              | unknown
             //- a.hover_edit(href="#{person.slug_url}/contacts/#{contact.id}/edit") edit
             
     section.contact-information
