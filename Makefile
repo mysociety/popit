@@ -1,7 +1,7 @@
 
 REPORTER = verbose
 
-all: scss minify
+all: npm-install
 
 
 npm-install:
@@ -11,8 +11,6 @@ npm-update:
 	rm npm-shrinkwrap.json
 	npm update
 	npm shrinkwrap
-
-
 
 
 scss:
@@ -25,7 +23,6 @@ minify:
 	rm    public-minified/js/app.build.js 
 	rm -r public-minified/sass/
 	find public-minified -name '*.png' | xargs optipng -o 5 -clobber -quiet
-
 
 
 tidy:
@@ -47,11 +44,8 @@ test-selenium: scss minify
 		tests/selenium
 
 
-
 clean:
 	rm -rfv .sass-cache
-
-
 
 
 .PHONY: test test-unit test-selenium scss minify clean tidy npm-install npm-update
