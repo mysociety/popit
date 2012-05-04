@@ -3,9 +3,20 @@ REPORTER = verbose
 
 all: scss minify
 
+
+npm-install:
+	npm install
+
+npm-update:
+	rm npm-shrinkwrap.json
+	npm update
+	npm shrinkwrap
+
+
+
+
 scss:
 	compass compile
-
 
 minify:
 	rm -rf public-minified
@@ -43,5 +54,5 @@ clean:
 
 
 
-.PHONY: test test-unit test-selenium scss clean tidy
+.PHONY: test test-unit test-selenium scss minify clean tidy npm-install npm-update
 
