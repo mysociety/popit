@@ -1,10 +1,20 @@
 
 REPORTER = verbose
 
-all: scss
+all: scss clean minify
 
 scss:
 	compass compile
+
+
+minify:
+	rm -rf public-minified
+	r.js -o public/js/app.build.js
+	rm    public-minified/build.txt
+	rm    public-minified/js/app.build.js 
+	rm -r public-minified/sass/
+	find public-minified -name '*.png' | xargs optipng -o 5 -clobber -quiet
+
 
 
 tidy:
@@ -28,7 +38,7 @@ test-selenium:
 
 
 clean:
-	rm -rf .sass-cache
+	rm -rfv .sass-cache
 
 
 

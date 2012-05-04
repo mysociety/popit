@@ -4,14 +4,14 @@
    * NOTE - this is duplicated from main-hosting and main-instance.
   **/
    
-  appDir: "../",
-  dir: "../../public-production",
+  appDir:  '../',
+  dir:     '../../public-minified',
   baseUrl: 'js',
   
   paths: {
     // external libraries
-    "jquery":           './libs/jquery-1.7.2.min',
-    "jquery.mailcheck": './libs/jquery.mailcheck.1.0.3.min',
+    'jquery':           './libs/jquery-1.7.2.min',
+    'jquery.mailcheck': './libs/jquery.mailcheck.1.0.3.min',
     // underscore: 'libs/underscore/underscore-min', // https://github.com/amdjs
     // backbone:   'libs/backbone/backbone-min', // https://github.com/amdjs
   
@@ -22,10 +22,10 @@
   
   modules: [
     {
-      name: "main-hosting",
+      name: 'main-hosting',
     },
     {
-      name: "main-instance",
+      name: 'main-instance',
     },
   ]
 
