@@ -49,8 +49,7 @@ head
   // script(src='/js/libs/modernizr-2.5.3.js', type='text/javascript', charset='utf-8')
 
   //- Javascript 
-  block javascript_loading
-    script(src='/js/require.js', data-main="/js/main-instance", type='text/javascript', charset='utf-8')
+  script(src='/js/require.js',data-main="/js/main-instance", type='text/javascript', charset='utf-8')
 
 if locals.user
   bodyClasses = ['signed_in']
