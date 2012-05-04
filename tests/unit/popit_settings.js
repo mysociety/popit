@@ -6,11 +6,11 @@
 process.env.NODE_ENV = 'testing';
 
 var 
-    utils    = require('../lib/utils'),
+    utils    = require('../../lib/utils'),
     // config   = require('config'),
     // _        = require('underscore'),
     async    = require('async')
-    PopIt    = require('../lib/popit');
+    PopIt    = require('../../lib/popit');
 
 module.exports = {
     

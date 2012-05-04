@@ -2,8 +2,8 @@
 // switch to testing mode
 process.env.NODE_ENV = 'testing';
 
-var utils    = require('../lib/utils'),
-    PopIt    = require('../lib/popit');
+var utils    = require('../../lib/utils'),
+    PopIt    = require('../../lib/popit');
     
 module.exports = {
     

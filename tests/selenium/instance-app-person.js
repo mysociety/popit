@@ -1,8 +1,8 @@
 // switch to testing mode
 process.env.NODE_ENV = 'testing';
 
-var utils               = require('../lib/utils'),
-    selenium_helpers    = require('../lib/testing/selenium'),
+var utils               = require('../../lib/utils'),
+    selenium_helpers    = require('../../lib/testing/selenium'),
     config              = require('config'),
     async               = require('async'),
     $                   = require('jquery'),

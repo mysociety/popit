@@ -2,10 +2,10 @@
 // switch to testing mode
 process.env.NODE_ENV = 'testing';
 
-var utils    = require('../lib/utils'),
+var utils    = require('../../lib/utils'),
     _        = require('underscore'),
     async    = require('async'),
-    PopIt    = require('../lib/popit');
+    PopIt    = require('../../lib/popit');
 
 module.exports = {
   // tearDown: function (cb) {
