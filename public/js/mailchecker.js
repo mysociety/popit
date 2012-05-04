@@ -13,8 +13,9 @@
 // TODO: make the suggested email clickable to put the email into the form
 // field.
 
-require(['order!jquery', 'order!jquery.mailcheck'], function() {
-  
+"use strict";
+
+require(['order!jquery', 'order!jquery.mailcheck'], function ($) {
   var domains = [
     // These are the default domains that ship with the plugin
     'yahoo.com', 'google.com', 'hotmail.com', 'gmail.com', 'me.com', 
@@ -29,25 +30,24 @@ require(['order!jquery', 'order!jquery.mailcheck'], function() {
   $(document).on('change', 'input[type=email]', function() {
 
     // capture the input field that triggered the event
-    var $input = $(this);
-  
-    var $suggestion = $input.next('.suggestion');
+    var $input      = $(this),
+        $suggestion = $input.next('.suggestion');
 
     if (!$suggestion) {
       $suggestion = $('<div class="suggestion" />');
       $input.after($suggestion).hide();
     }
 
-  	$input.mailcheck({
-  		domains: domains,   // optional
-  		suggested: function(element, suggestion) {
-        var message = 'Did you mean <strong>'+suggestion.full+'</strong>?';          
+    $input.mailcheck({
+      domains: domains,   // optional
+      suggested: function (element, suggestion) {
+        var message = 'Did you mean <strong>' + suggestion.full + '</strong>?';          
         $suggestion.html(message).slideDown();
-  		},
-  		empty: function(element) {
+      },
+      empty: function (element) {
         $suggestion.slideUp();
-  		}
-  	});
+      }
+    });
 
   });
 
