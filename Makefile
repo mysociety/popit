@@ -1,5 +1,8 @@
 
 REPORTER = verbose
+LINT = ./node_modules/.bin/jslint --indent 2 --white --nomen
+
+
 
 all: npm-install
 
@@ -11,6 +14,13 @@ npm-update:
 	rm npm-shrinkwrap.json
 	npm update
 	npm shrinkwrap
+
+
+lint:
+	find lib          -name '*.js' | xargs -n 1 $(LINT) --node --
+	find instance-app -name '*.js' | xargs -n 1 $(LINT) --node --
+	find hosting-app  -name '*.js' | xargs -n 1 $(LINT) --node --
+	find public/js    -name '*.js' | xargs -n 1 $(LINT) --browser --
 
 
 scss:

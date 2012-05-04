@@ -126,6 +126,19 @@
         }
       }
     },
+    "jslint": {
+      "version": "0.1.8",
+      "dependencies": {
+        "nopt": {
+          "version": "1.0.10",
+          "dependencies": {
+            "abbrev": {
+              "version": "1.0.3"
+            }
+          }
+        }
+      }
+    },
     "mkdirp": {
       "version": "0.3.2"
     },
