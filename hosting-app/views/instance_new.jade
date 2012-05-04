@@ -29,7 +29,7 @@ block content
         p.control-group(class="#{ errors.email ? 'error' : '' }")
           label.control-label(for='email') Your Email address
           span.controls
-            input#email.input-xlarge(type='text', name='email', data-validation='required email', value='#{ locals.email || '' }')
+            input#email.input-xlarge(type='email', name='email', data-validation='required email', value='#{ locals.email || '' }')
             span.suggestion
             if errors.email
               span.help-block Error is '#{ errors.email.type }'.            
