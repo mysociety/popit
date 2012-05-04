@@ -1,6 +1,18 @@
 
 REPORTER = verbose
 
+all: scss
+
+scss:
+	compass compile
+
+
+tidy:
+	# this should tidy, but not implemented yet
+	# The output is not as nice as I'd like
+	# sass-convert --recursive --in-place --from scss --to scss public/sass/
+
+
 test: test-unit test-selenium
 
 test-unit:
@@ -13,5 +25,13 @@ test-selenium:
 		--reporter $(REPORTER) \
 		tests/selenium
 
-.PHONY: test test-unit test-selenium
+
+
+clean:
+	rm -rf .sass-cache
+
+
+
+
+.PHONY: test test-unit test-selenium scss clean tidy
 

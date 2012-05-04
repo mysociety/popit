@@ -3,7 +3,8 @@
   src: url("../fonts/exljbris-museoslab-500.eot");
   src: local("☺"), url("../fonts/exljbris-museoslab-500.woff") format("woff"), url("../fonts/exljbris-museoslab-500.ttf") format("truetype"), url("../fonts/exljbris-museoslab-500.svg#MuseoSlab500") format("svg");
   font-weight: normal;
-  font-style: normal; }
+  font-style: normal;
+}
 
 @font-face {}
 	/* -------------------------------------------------------------- 
@@ -11,6 +12,7 @@
 	 Hartija Css Print  Framework
 	   * Version:   0.8 (2008-03-10)
 	-------------------------------------------------------------- */
+/* line 25, ../sass/print.scss */
 body {
   width: 100% !important;
   margin: 0 !important;
@@ -21,97 +23,154 @@ body {
   font-family: "Helvetica Neue", Arial, sans-serif;
   color: #333;
   background: none;
-  font-size: 12pt; }
+  font-size: 12pt;
+}
 
 /*Headings */
+/* line 34, ../sass/print.scss */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'MuseoSlab500', 'sans-serif';
-  font-weight: normal; }
+  font-weight: normal;
+}
 
+/* line 35, ../sass/print.scss */
 h1 {
   font-size: 48pt;
-  width: 100%; }
+  width: 100%;
+}
 
+/* line 36, ../sass/print.scss */
 h2 {
-  font-size: 17pt; }
+  font-size: 17pt;
+}
 
+/* line 37, ../sass/print.scss */
 h3 {
-  font-size: 15pt; }
+  font-size: 15pt;
+}
 
+/* line 38, ../sass/print.scss */
 h4, h5, h6 {
-  font-size: 12pt; }
+  font-size: 12pt;
+}
 
+/* line 40, ../sass/print.scss */
 code {
-  font: 10pt Courier, monospace; }
+  font: 10pt Courier, monospace;
+}
 
+/* line 41, ../sass/print.scss */
 blockquote {
   margin: 1.3em;
   padding: 1em;
-  font-size: 10pt; }
+  font-size: 10pt;
+}
 
+/* line 42, ../sass/print.scss */
 hr {
-  background-color: #ccc; }
+  background-color: #ccc;
+}
 
 /* Images */
+/* line 45, ../sass/print.scss */
 img {
   float: left;
-  margin: 1em 1.5em 1.5em 0; }
+  margin: 1em 1.5em 1.5em 0;
+}
 
+/* line 46, ../sass/print.scss */
 a img {
-  border: none; }
+  border: none;
+}
 
 /* Links */
+/* line 49, ../sass/print.scss */
 a:link, a:visited {
   background: transparent;
   font-weight: 700;
   text-decoration: underline;
-  color: #333; }
+  color: #333;
+}
 
+/* line 50, ../sass/print.scss */
 a:link[href^="http://"]:after, a[href^="http://"]:visited:after {
   content: " (" attr(href) ") ";
-  font-size: 90%; }
+  font-size: 90%;
+}
 
+/* line 51, ../sass/print.scss */
 a[href^="http://"] {
-  color: #000; }
+  color: #000;
+}
 
 /* Table */
+/* line 54, ../sass/print.scss */
 table {
   margin: 1px;
-  text-align: left; }
+  text-align: left;
+}
 
+/* line 55, ../sass/print.scss */
 th {
   border-bottom: 1px solid #333;
-  font-weight: bold; }
+  font-weight: bold;
+}
 
+/* line 56, ../sass/print.scss */
 td {
-  border-bottom: 1px solid #333; }
+  border-bottom: 1px solid #333;
+}
 
+/* line 57, ../sass/print.scss */
 th, td {
-  padding: 4px 10px 4px 0; }
+  padding: 4px 10px 4px 0;
+}
 
+/* line 58, ../sass/print.scss */
 tfoot {
-  font-style: italic; }
+  font-style: italic;
+}
 
+/* line 59, ../sass/print.scss */
 caption {
   background: #fff;
   margin-bottom: 2em;
-  text-align: left; }
+  text-align: left;
+}
 
+/* line 60, ../sass/print.scss */
 thead {
-  display: table-header-group; }
+  display: table-header-group;
+}
 
+/* line 61, ../sass/print.scss */
 tr {
-  page-break-inside: avoid; }
+  page-break-inside: avoid;
+}
 
+/* line 63, ../sass/print.scss */
 aside {
   width: 15%;
-  display: block; }
+  display: block;
+}
 
+/* line 64, ../sass/print.scss */
 aside img {
   width: 100%;
   margin: 0;
-  float: none; }
+  float: none;
+}
 
 /*hide various parts from the site */
-#user_menu, #footer, .person > footer, .admin-options, .find-person, .person-header-nav nav, nav, .previous-person, .next-person {
-  display: none !important; }
+/* line 77, ../sass/print.scss */
+#user_menu,
+#footer,
+.person > footer,
+.admin-options,
+.find-person,
+.person-header-nav nav,
+nav,
+.previous-person,
+.next-person {
+  display: none !important;
+}
