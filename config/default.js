@@ -1,6 +1,7 @@
 var path = require('path');
 
 module.exports = {
+    public_dir: 'public-minify',
     hosting_server: {
         port:       3000,
         domain:     'www.vcap.me:3000',  // *.vcap.me points to 127.0.0.1

@@ -1,6 +1,7 @@
 var path = require('path');
 
 module.exports = {
+  public_dir: 'public',
     MongoDB: {
         popit_prefix: 'popitdev_',
     },

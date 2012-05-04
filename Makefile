@@ -1,7 +1,7 @@
 
 REPORTER = verbose
 
-all: scss clean minify
+all: scss minify
 
 scss:
 	compass compile
@@ -30,7 +30,7 @@ test-unit:
 		--reporter $(REPORTER) \
 		tests/unit
 
-test-selenium:
+test-selenium: scss minify
 	@NODE_ENV=testing ./node_modules/.bin/nodeunit \
 		--reporter $(REPORTER) \
 		tests/selenium

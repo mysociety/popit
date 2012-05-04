@@ -29,7 +29,7 @@ app.configure(function(){
   app.register('.txt',  expressHogan);
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(express.static(__dirname + '/../public'));
+  app.use(express.static(__dirname + '/../' + config.public_dir));
 
   app.use( require('../lib/middleware/config')() );
   app.use(masterSelector());
