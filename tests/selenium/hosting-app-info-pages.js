@@ -3,6 +3,7 @@ process.env.NODE_ENV = 'testing';
 
 var utils               = require('../../lib/utils'),
     selenium_helpers    = require('../../lib/testing/selenium'),
+    test_server_helpers = require('../../lib/testing/server'),
     config              = require('config'),
     async               = require('async');
 
@@ -13,14 +14,14 @@ module.exports = {
   setUp: function (setUp_done) {
     
     utils.delete_all_testing_databases( function () {
-      selenium_helpers.start_servers( function () {
+      test_server_helpers.start_servers( function () {
         setUp_done();
       });            
     });
   },
   
   tearDown: function (tearDown_done) {
-    selenium_helpers.stop_servers(tearDown_done);
+    test_server_helpers.stop_servers(tearDown_done);
   },
   
   "Check info pages": function (test) {

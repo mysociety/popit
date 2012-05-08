@@ -3,6 +3,7 @@ process.env.NODE_ENV = 'testing';
 
 var utils               = require('../../lib/utils'),
     selenium_helpers    = require('../../lib/testing/selenium'),
+    test_server_helpers = require('../../lib/testing/server'),
     config              = require('config'),
     async               = require('async'),
     $                   = require('jquery'),
@@ -14,7 +15,7 @@ module.exports = {
         
         utils.delete_all_testing_databases( function () {
             utils.load_test_fixtures( function () {
-                selenium_helpers.start_instance_server( function () {                
+                test_server_helpers.start_instance_server( function () {                
                     setUp_done();
                 });            
             });
@@ -23,7 +24,7 @@ module.exports = {
     },
 
     tearDown: function (tearDown_done) {
-        selenium_helpers.stop_servers(tearDown_done);
+        test_server_helpers.stop_servers(tearDown_done);
     },
 
     "Create a new person": function (test) {
