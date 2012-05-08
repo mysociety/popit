@@ -77,6 +77,13 @@ You can check this is working as expected using `netstat -a` and looking for por
     
     # detach from the screen session using Ctrl-A Ctrl-D
 
+# DNS config
+
+You'll need to setup a wildcard DNS if you want to let instances be created. If
+your main site is `your-hosting-site-domain.com` you'll need to wildcard
+`*.your-hosting-site-domain.com`, or create DNS entries for
+`your-instance.your-hosting-site-domain.com`,
+
 # Installing behind varnish
 
 [Varnish](https://www.varnish-cache.org/) is a web application accelerator. We can use it to route the HTTP traffic to the right port for the hosting/instance servers.
