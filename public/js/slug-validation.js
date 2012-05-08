@@ -26,7 +26,7 @@ require(['jquery'], function($) {
 	    keypress: function(e) {
 	      // Return True/False to prevent or allow the key being pressed or add an 
 	      //error class to display the hint when a disallowed key is pressed
-	      return check_allowed_letter(e.keyCode);
+	      return check_allowed_letter(e.which);
 	    },
 	    change: function(e) {
       	// Check pasted text
