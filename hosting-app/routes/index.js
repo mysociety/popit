@@ -70,7 +70,6 @@ exports.route = function (app) {
                     req,
                     {
                         to: instance.email,
-                        bcc: 'popit@mysociety.org', // TODO - remove after demoing in US
                         subject: "New instance confirmation",
                         text: output,
                     }

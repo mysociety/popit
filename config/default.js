@@ -30,6 +30,7 @@ module.exports = {
         send_by_transport: true,
         save_to_database:  false,
         print_to_console:  false,
+        bcc_to_sender:     true,
     },
     
     // default settings used if a site has not overidden them
