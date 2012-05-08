@@ -1,7 +1,11 @@
 var path = require('path');
 
 module.exports = {
+
+    // by default use the compressed assets - this will apply to the test suite 
+    // too
     public_dir: 'public-minified',
+
     hosting_server: {
         port:       3000,
         domain:     'www.vcap.me:3000',  // *.vcap.me points to 127.0.0.1

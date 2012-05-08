@@ -1,7 +1,10 @@
 var path = require('path');
 
 module.exports = {
-  public_dir: 'public',
+
+    // Don't use minified assets - makes dev easier as no js rebuild required
+    public_dir: 'public',
+
     MongoDB: {
         popit_prefix: 'popitdev_',
     },
