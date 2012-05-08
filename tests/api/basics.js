@@ -5,7 +5,8 @@ var utils               = require('../../lib/utils'),
     rest                = require('../../lib/testing/rest'),
     test_server_helpers = require('../../lib/testing/server'),
     config              = require('config'),
-    async               = require('async');
+    async               = require('async'),
+    _                   = require('underscore');
 
 
 
@@ -62,5 +63,23 @@ module.exports = {
       });
     },
     
+    "search for person" : function (test) {
+        test.expect(1);
+
+        this.rest
+          .get('person')
+          .on('success', function(data, response) {
+            test.deepEqual(
+              _.pluck(data, 'slug').sort(),
+              [ 'george-bush', 'bill-clinton', 'george-w-bush', 'barack-obama' ].sort(),
+              "got president slugs"
+            );
+            test.done();
+          })
+          .on('fail', function (err, response) {
+            test.ok(null, 'bad response');
+            test.done();
+          });
+    },
 };
 
