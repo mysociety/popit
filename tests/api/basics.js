@@ -44,5 +44,23 @@ module.exports = {
         test.done();
       });
     },
+    
+    "access API bit that does not exist": function (test) {
+
+      test.expect(3);
+      
+      this.rest.get('this/does/not/exist').on('complete', function(data, response) {
+    
+        // check for 200 and json
+        test.equal(response.statusCode, 404, "got 404 response");
+        test.equal(response.headers['content-type'], 'application/json; charset=utf-8', "got JSON");
+    
+        // check that data looks right
+        test.deepEqual(data, {error: 'page not found'}, "data is error message");
+    
+        test.done();
+      });
+    },
+    
 };
 
