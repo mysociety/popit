@@ -274,6 +274,9 @@
     "requirejs": {
       "version": "1.0.8"
     },
+    "restler": {
+      "version": "2.0.1"
+    },
     "slug": {
       "version": "0.2.2",
       "dependencies": {
