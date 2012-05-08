@@ -41,7 +41,7 @@ tidy:
 	# sass-convert --recursive --in-place --from scss --to scss public/sass/
 
 
-test: test-unit test-selenium
+test: test-unit test-api test-selenium
 
 test-unit:
 	@NODE_ENV=testing ./node_modules/.bin/nodeunit \
@@ -53,10 +53,15 @@ test-selenium: scss minify
 		--reporter $(REPORTER) \
 		tests/selenium
 
+test-api:
+	@NODE_ENV=testing ./node_modules/.bin/nodeunit \
+		--reporter $(REPORTER) \
+		tests/api
+
 
 clean:
 	rm -rfv .sass-cache
 
 
-.PHONY: test test-unit test-selenium scss minify clean tidy npm-install npm-update
+.PHONY: test test-unit test-selenium test-api scss minify clean tidy npm-install npm-update
 
