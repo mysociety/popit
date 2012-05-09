@@ -69,8 +69,12 @@ module.exports = {
         this.rest
           .get('person')
           .on('success', function(data, response) {
+
+            var results = data.results;
+
+            // test we got the first four presidents
             test.deepEqual(
-              _.pluck(data, 'slug').sort(),
+              _.pluck(results, 'slug').sort(),
               [ 'george-bush', 'bill-clinton', 'george-w-bush', 'barack-obama' ].sort(),
               "got president slugs"
             );
