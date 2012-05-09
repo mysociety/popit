@@ -64,7 +64,7 @@ module.exports = {
     },
     
     "search for person" : function (test) {
-        test.expect(1);
+        test.expect(2);
 
         this.rest
           .get('person')
@@ -78,6 +78,19 @@ module.exports = {
               [ 'george-bush', 'bill-clinton', 'george-w-bush', 'barack-obama' ].sort(),
               "got president slugs"
             );
+            
+            // test that a person object looks correct
+            test.deepEqual(
+              results.sort()[0],
+              { 
+                _id:     '4f9ea1306e8770d854c45a1d',
+                 slug:   'george-bush',
+                name:    'George Bush',
+                summary: '41th President of the United States',
+              },
+              "george-bush details correct"
+            );
+            
             test.done();
           })
           .on('fail', function (err, response) {
@@ -85,5 +98,11 @@ module.exports = {
             test.done();
           });
     },
+    
+    // test pagination
+    
+    // test sorting
+    
+    
 };
 
