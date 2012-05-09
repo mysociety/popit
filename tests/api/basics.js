@@ -64,42 +64,74 @@ module.exports = {
     },
     
     "search for person" : function (test) {
-        test.expect(2);
-
-        this.rest
-          .get('person')
-          .on('success', function(data, response) {
-
-            var results = data.results;
-
-            // test we got the first four presidents
-            test.deepEqual(
-              _.pluck(results, 'slug').sort(),
-              [ 'george-bush', 'bill-clinton', 'george-w-bush', 'barack-obama' ].sort(),
-              "got president slugs"
-            );
-            
-            // test that a person object looks correct
-            test.deepEqual(
-              results.sort()[0],
-              { 
-                _id:     '4f9ea1306e8770d854c45a1d',
-                 slug:   'george-bush',
-                name:    'George Bush',
-                summary: '41th President of the United States',
-                meta: {
-                  api_url: 'http://foobar.vcap.me:3101/api/v1/person/4f9ea1306e8770d854c45a1d',
-                },
+      test.expect(3);
+      
+      this.rest
+        .get('person')
+        .on('complete', function(data, response) {
+      
+          test.equal(response.statusCode, 200, "got 200 response");
+      
+          var results = data.results;
+      
+          // test we got the first four presidents
+          test.deepEqual(
+            _.pluck(results, 'slug').sort(),
+            [ 'george-bush', 'bill-clinton', 'george-w-bush', 'barack-obama' ].sort(),
+            "got president slugs"
+          );
+          
+          // test that a person object looks correct
+          test.deepEqual(
+            results.sort()[0],
+            { 
+              _id:     '4f9ea1306e8770d854c45a1d',
+               slug:   'george-bush',
+              name:    'George Bush',
+              summary: '41th President of the United States',
+              meta: {
+                api_url:  'http://foobar.vcap.me:3101/api/v1/person/4f9ea1306e8770d854c45a1d',
+                edit_url: 'http://foobar.vcap.me:3101/person/george-bush',
               },
-              "george-bush details correct"
-            );
-            
-            test.done();
-          })
-          .on('fail', function (err, response) {
-            test.ok(null, 'bad response');
-            test.done();
-          });
+            },
+            "george-bush details correct"
+          );
+          
+          test.done();
+        });
+    },
+    
+    "load one person" : function (test) {
+      test.expect(2);
+      
+      this.rest
+        .get('person/4f9ea1306e8770d854c45a1d')
+        .on('complete', function(data, response) {
+      
+          test.equal(response.statusCode, 200, "got 200 response");
+      
+          var result = data.result;
+      
+          // test that a person object looks correct
+          test.deepEqual(
+            result,
+            {
+              _id:     '4f9ea1306e8770d854c45a1d',
+              name:    'George Bush',
+              slug:    'george-bush',
+              summary: '41th President of the United States',
+              images:          [],
+              links:           [],
+              contact_details: [],
+              meta: {
+                edit_url: 'http://foobar.vcap.me:3101/person/george-bush',
+              },
+            },
+            "george-bush details correct"
+          );
+          
+          test.done();
+        });
     },
     
     // test pagination
