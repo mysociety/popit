@@ -87,6 +87,9 @@ module.exports = {
                  slug:   'george-bush',
                 name:    'George Bush',
                 summary: '41th President of the United States',
+                meta: {
+                  api_url: 'http://foobar.vcap.me:3101/api/v1/person/4f9ea1306e8770d854c45a1d',
+                },
               },
               "george-bush details correct"
             );
