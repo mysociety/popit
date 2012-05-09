@@ -1,5 +1,8 @@
 
-REPORTER = verbose
+# note - this needs to be default so that the nodeunit process will exit with
+# error if tests fail. Otherwise make will not abort.
+REPORTER = default 
+
 LINT = ./node_modules/.bin/jslint --indent 2 --white --nomen
 
 
