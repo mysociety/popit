@@ -131,7 +131,7 @@ app.configure(function(){
     next();
   });
 
-  app.use('/api/v1',   require('../lib/apps/api') );
+  app.use('/api',   require('../lib/apps/api') );
 
   app.use('/info',   require('../lib/apps/info') );
   app.use('/token',  require('../lib/apps/token') );
