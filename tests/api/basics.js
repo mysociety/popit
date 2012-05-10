@@ -63,7 +63,7 @@ module.exports = {
       });
     },
     
-    "search for person" : function (test) {
+    "list people" : function (test) {
       test.expect(3);
       
       this.rest
@@ -97,6 +97,35 @@ module.exports = {
             "george-bush details correct"
           );
           
+          test.done();
+        });
+    },
+    
+    "limit people by name" : function (test) {
+      test.expect(3);
+      
+      this.rest
+        .get('person?name=bush')
+        .on('complete', function(data, response) {
+      
+          test.equal(response.statusCode, 200, "got 200 response");
+      
+          var results = data.results;
+      
+          // test we got the first four presidents
+          test.deepEqual(
+            _.pluck(results, 'slug').sort(),
+            [ 'george-bush', 'george-w-bush', ].sort(),
+            "got Bush president slugs"
+          );
+          
+          // test that the api_url is correct
+          test.equal(
+            _.sortBy( results, 'slug')[0].meta.api_url,
+            'http://foobar.vcap.me:3101/api/v1/person/4f9ea1306e8770d854c45a1d',
+            "got api_url as expected"
+          );
+                    
           test.done();
         });
     },
