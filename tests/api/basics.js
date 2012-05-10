@@ -29,6 +29,20 @@ module.exports = {
       test_server_helpers.stop_servers(tearDown_done);
     },
     
+    "access API docs": function (test) {
+
+      test.expect(2);
+      
+      this.rest.get('/api').on('complete', function(data, response) {
+    
+        // check for 200 and json
+        test.equal(response.statusCode, 200, "got 200 response");
+        test.equal(response.headers['content-type'], 'text/html; charset=utf-8', "got HTML");
+        
+        test.done();
+      });
+    },
+    
     "access API": function (test) {
 
       test.expect(3);
@@ -40,7 +54,18 @@ module.exports = {
         test.equal(response.headers['content-type'], 'application/json; charset=utf-8', "got JSON");
     
         // check that data looks right
-        test.deepEqual(data, [], "data is empty array");
+        test.deepEqual(
+          data,
+          {
+            comment: 'This is the API entry point - use a link in \'meta\' to search a collection.',
+            meta: {
+              person_api_url:       'http://foobar.vcap.me:3101/api/v1/person',
+              organisation_api_url: 'http://foobar.vcap.me:3101/api/v1/organisation',
+              position_api_url:     'http://foobar.vcap.me:3101/api/v1/position',
+            },
+          },
+          "response in links to parts of the API"
+        );
     
         test.done();
       });
