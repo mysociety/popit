@@ -44,7 +44,7 @@ tidy:
 	# sass-convert --recursive --in-place --from scss --to scss public/sass/
 
 
-test: test-unit test-api test-selenium
+test: npm-install test-unit test-api test-selenium
 
 test-unit:
 	@NODE_ENV=testing ./node_modules/.bin/nodeunit \
