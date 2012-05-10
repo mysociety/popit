@@ -101,7 +101,7 @@ module.exports = {
         });
     },
     
-    "load one person" : function (test) {
+    "load one person (by ObjectId)" : function (test) {
       test.expect(2);
       
       this.rest
@@ -130,6 +130,50 @@ module.exports = {
             "george-bush details correct"
           );
           
+          test.done();
+        });
+    },
+    
+    "load one person (by slug)" : function (test) {
+
+      // find the entry, and then redirect to the ObjectId based api url
+
+      test.expect(2);
+      
+      this.rest
+        .get('person/george-bush')
+        .on('complete', function(data, response) {
+      
+          test.equal(response.statusCode, 200, "got 200 response");
+      
+          test.equal(
+            response.client._httpMessage.path, // note - can't see how to get this through proper calls
+            '/api/v1/person/4f9ea1306e8770d854c45a1d',
+            "redirected to ObjectId url"
+          );
+          
+          test.done();
+        });
+    },
+        
+    "load a not found objectid" : function (test) {
+      test.expect(1);
+      
+      this.rest
+        .get('person/4f9ea1306e8770d854c4aaaa')
+        .on('complete', function(data, response) {
+          test.equal(response.statusCode, 404, "got 404 response");
+          test.done();
+        });
+    },
+
+    "load a not found slug" : function (test) {
+      test.expect(1);
+      
+      this.rest
+        .get('person/i-dont-exist')
+        .on('complete', function(data, response) {
+          test.equal(response.statusCode, 404, "got 404 response");
           test.done();
         });
     },
