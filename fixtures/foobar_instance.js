@@ -43,21 +43,25 @@ exports.organisations = [
 
 exports.positions = [
   {
+    "_id":        id("4f9ea1326e8770d854c45a22"),
     title:        "President",
     person:       id("4f9ea1326e8770d854c45a1d"), // george-bush
     organisation: id("4f9ea1326e8770d854c45a21"),
   },
   {
+    "_id":        id("4f9ea1326e8770d854c45a23"),
     title:        "President",
     person:       id("4f9ea1326e8770d854c45a1e"), // bill-clinton
     organisation: id("4f9ea1326e8770d854c45a21"),
   },
   {
+    "_id":        id("4f9ea1326e8770d854c45a24"),
     title:        "President",
     person:       id("4f9ea1326e8770d854c45a1f"), // george-w-bush
     organisation: id("4f9ea1326e8770d854c45a21"),
   },
   {
+    "_id":        id("4f9ea1326e8770d854c45a25"),
     title:        "President",
     person:       id("4f9ea1326e8770d854c45a20"), // barack-obama
     organisation: id("4f9ea1326e8770d854c45a21"),

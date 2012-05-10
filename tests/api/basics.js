@@ -207,6 +207,54 @@ module.exports = {
         });
     },
     
+    "list all positions": function (test) {
+      test.expect(2);
+      
+      this.rest
+        .get('position')
+        .on('complete', function(data, response) {
+          test.equal(response.statusCode, 200, "got 200 response");
+
+          // test we got the first four presidents
+          test.deepEqual(
+            _.pluck(data.results, 'title').sort(),
+            [ 'President', 'President', 'President', 'President' ].sort(),
+            "got expected titles"
+          );          
+
+          test.done();
+        });
+      
+    },
+    
+    "list one persons positions": function (test) {
+      test.expect(2);
+      
+      this.rest
+        .get('position?person=4f9ea1326e8770d854c45a1e') // Clinton
+        .on('complete', function(data, response) {
+          test.equal(response.statusCode, 200, "got 200 response");
+
+          // test we got the first four presidents
+          test.deepEqual(
+            data.results,
+            [{
+              _id:          '4f9ea1326e8770d854c45a23',
+              title:        'President',
+              person:       '4f9ea1326e8770d854c45a1e',
+              organisation: '4f9ea1326e8770d854c45a21',
+              meta: {
+                api_url: 'http://foobar.vcap.me:3101/api/v1/position/4f9ea1326e8770d854c45a23',
+              },
+            }],
+            "got Clinton's Presidency"
+          );          
+
+          test.done();
+        });
+      
+    },
+    
     // test pagination
     
     // test sorting
