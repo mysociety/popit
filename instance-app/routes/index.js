@@ -18,9 +18,8 @@ exports.route = function (app) {
         image_id   = image_bits[0],
         image_size = image_bits[1];
   
-    // check that the ObjectId does indeed look like an ObjectID
-    var checkForHexRegExp = new RegExp("^[0-9a-fA-F]{24}$");
-    if( ! checkForHexRegExp.test( image_id) ) return next(new Error404());
+    // TODO - use an image 404 rather than an HTML one
+    if( ! utils.is_ObjectId(image_id) ) return next(new Error404());
   
     req.popit.model("Image").findOne( {_id: image_id}, function(err,image) {
       if (err)    return next(err);

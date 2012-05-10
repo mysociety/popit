@@ -41,6 +41,28 @@ module.exports = {
   },
   
   
+  "test is_ObjectId": function (test) {
+
+    var tests = {
+      '':    false,
+      'foo': false,
+      '4f99219333fa2efc68000006': true,
+      '4F99219333FA2EFC68000006': true,
+    };
+
+    test.expect( tests.length );
+
+    _.map( tests, function (value, key) {
+      test.ok(
+        utils.is_ObjectId(key) == value,
+        "testing '" + key + "' is " + ( value ? 'true' : 'false')
+      );
+    });
+
+    test.done()
+  },
+  
+  
   test_password_crypting: function (test) {
   
       test.expect( 5 );
