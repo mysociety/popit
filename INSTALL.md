@@ -16,6 +16,18 @@ If you want to contribute code or run the test suite you'll need the following a
   * [Compass](http://compass-style.org/) - to compile the stylesheets
   * [optipng](http://optipng.sourceforge.net/) - used to compress the image assets.
 
+
+### MacOS X
+
+If you use [Homebrew](http://mxcl.github.com/homebrew/) on a Mac then these commands will install some of the needed components:
+
+    # to run PopIt
+    brew install git node mongodb
+
+    # to develop PopIt (in addition to the above)
+    brew install optipng selenium-server-standalone
+
+
 ## Getting PopIt
 
 Currently PopIt is not available over npm - perhaps it will be in future if there is sufficient demand.

@@ -2,6 +2,8 @@
 
 Contributions to the PopIt project are very welcome. Really very welcome indeed. If you submit a pull request we'll be sure to look at it as soon as we can and hopefully merge it in or comment on it.
 
+If you just want to keep up with developments there is a [dev blog](http://www.tumblr.com/blog/popit-dev) that you might find interesting.
+
 ## Code (and test) contributions
 
 We use the _Fork & Pull_ development model and so the easiest way to contribute code changes is via a [pull request](http://help.github.com/send-pull-requests/).
