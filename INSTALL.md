@@ -28,7 +28,7 @@ If you use [Homebrew](http://mxcl.github.com/homebrew/) on a Mac then these comm
     brew install optipng selenium-server-standalone
 
 
-## Getting PopIt
+## Getting the PopIt code
 
 Currently PopIt is not available over npm - perhaps it will be in future if there is sufficient demand.
 
@@ -56,7 +56,7 @@ To install from git do the following:
 
 All the config is in the `config` folder. These are loaded by the [config](http://lorenwest.github.com/node-config/latest/index.html) module. There is a sample production config that you'll want to copy and edit. For dev and testing the provided config should be fine.
 
-# DNS config
+## DNS config
 
 You'll need to setup a wildcard DNS if you want to let instances be created. If
 your main site is `your-hosting-site-domain.com` you'll need to wildcard
@@ -69,7 +69,7 @@ In addition to these notes please see 'Developer Setup' section in the file `doc
 
 ## MongoDB suggestion
 
-PopIt creates and destroys lots of MongoDB database during testing. To make this less disk intensive set the following in the MongoDB config file:
+PopIt creates and destroys lots of MongoDB databases during testing. To make this less disk intensive set the following in the MongoDB config file:
 
     noprealloc = true
     smallfiles = true
