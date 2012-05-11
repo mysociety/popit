@@ -6,6 +6,10 @@ The software that powers http://popit.mysociety.org/
 
 Here be dragons! This is **alpha** software - it is currently undergoing active development so should be used with caution.
 
+## Installing
+
+Please see  [INSTALL.md](https://github.com/mysociety/popit/blob/master/INSTALL.md) for full instructions.
+
 ## About
 
 PopIt is an easy-to-install web service for storing and sharing the names and career histories of public figures like politicians and celebrities. We built it to save time and save pain for anyone building a website that is built on top of a list of people, whether a politician-watching site or a celeb-spotting one.
