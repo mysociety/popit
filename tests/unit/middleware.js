@@ -14,20 +14,16 @@ exports.exports = {
         cb();
     },
 
-    "extact slug from popit domain name": function (test) {
+    "extract slug from popit domain name": function (test) {
     
         var suffix = 'popitdomain.org:1234';
         var tests = {};
     
         // slug.popitdomain.org tests
-        tests['foo.' + suffix]    = 'foo';
+        tests['foo.'    + suffix] = 'foo';
         tests['foobar.' + suffix] = 'foobar';
         tests['f12345.' + suffix] = 'f12345';
-    
-        // requests that should not match anything
-        tests['www.example.com'] = null;
-        tests[suffix]            = null;
-        
+            
         test.expect(tests.length);
     
         var selector = instanceSelector();        

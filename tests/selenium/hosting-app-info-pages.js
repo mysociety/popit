@@ -14,14 +14,14 @@ module.exports = {
   setUp: function (setUp_done) {
     
     utils.delete_all_testing_databases( function () {
-      test_server_helpers.start_servers( function () {
+      test_server_helpers.start_server( function () {
         setUp_done();
       });            
     });
   },
   
   tearDown: function (tearDown_done) {
-    test_server_helpers.stop_servers(tearDown_done);
+    test_server_helpers.stop_server(tearDown_done);
   },
   
   "Check info pages": function (test) {

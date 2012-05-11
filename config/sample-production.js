@@ -5,11 +5,18 @@
  */
 
 module.exports = {
+
+    server: {
+        port: 3000,
+    },
+
     hosting_server: {
-        domain:     'popit.example.com',
+        host:       'popit.example.com',
+        base_url:   'http://popit.example.com:3000',
+        email_from: 'PopIt <popit@mysociety.org>', 
     },
     instance_server: {
-        domain_suffix: 'popit.example.com',
+        base_url_format: "http://%s.popit.example.com:3000",
         cookie_secret: 'something-really-secret',
     },
     email: {

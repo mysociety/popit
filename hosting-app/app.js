@@ -10,6 +10,7 @@ var express           = require('express'),
     utils             = require('../lib/utils'),
     masterSelector    = require('../lib/middleware/master-selector');
 
+
 var app = module.exports = express.createServer();
 
 
@@ -35,7 +36,7 @@ app.configure(function(){
   app.use( require('../lib/middleware/config')() );
   app.use(masterSelector());
 
-  app.use('/info', require('../lib/apps/info') );
+  app.use('/info', require('../lib/apps/info')() );
   app.use(app.router);
 
   app.use( require('../lib/errors').errorHandler );
@@ -54,8 +55,3 @@ app.configure('production', function(){
 require('./routes').route(app);
 
 
-app.listen( config.hosting_server.port );
-console.log(
-    "PopIt Hosting server listening on port %d in %s mode: %s",
-    app.address().port, app.settings.env, config.hosting_server.domain
-);

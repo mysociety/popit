@@ -70,7 +70,7 @@ everyauth
     .registerSuccessRedirect('/');
 
 
-var app =  express.createServer();
+var app = module.exports = express.createServer();
 
 
 
@@ -133,7 +133,7 @@ app.configure(function(){
 
   app.use('/api',   require('../lib/apps/api') );
 
-  app.use('/info',   require('../lib/apps/info') );
+  app.use('/info',   require('../lib/apps/info')() );
   app.use('/token',  require('../lib/apps/token') );
 
   app.use('/autocomplete',  require('../lib/apps/autocomplete') );
@@ -161,11 +161,4 @@ app.configure('production', function(){
 
 require('./routes').route(app);      
 
-app.listen( config.instance_server.port );
 
-console.log(
-    "PopIt Instance server listening on port %d in %s mode: foo.%s",
-    app.address().port, app.settings.env, config.instance_server.domain_suffix
-);
-
-module.exports = app;

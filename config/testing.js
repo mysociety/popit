@@ -1,13 +1,16 @@
 module.exports = {
 
+    server: {
+        port: 3100,
+    },
+
     hosting_server: {
-        port:   3100,
-        domain: 'www.vcap.me:3100',
+        host:       'www.vcap.me',
+        base_url:   'http://www.vcap.me:3100',
     },
 
     instance_server: {
-        port:          3101,
-        domain_suffix: 'vcap.me:3101',
+        base_url_format: "http://%s.vcap.me:3100",
         files_dir:     '/tmp/popit_files',
     },
     

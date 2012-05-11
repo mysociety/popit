@@ -14,19 +14,19 @@ module.exports = {
 
     setUp: function (setUp_done) {
         
+      this.rest = new rest('foobar','v1');
+
       utils.delete_all_testing_databases( function () {
         utils.load_test_fixtures( function () {
-            test_server_helpers.start_instance_server( function () {                
+            test_server_helpers.start_server( function () {                
                 setUp_done();
             });            
         });
       });
-      
-      this.rest = new rest('foobar','v1');
     },
 
     tearDown: function (tearDown_done) {
-      test_server_helpers.stop_servers(tearDown_done);
+      test_server_helpers.stop_server(tearDown_done);
     },
     
     "access API docs": function (test) {
@@ -59,9 +59,9 @@ module.exports = {
           {
             comment: 'This is the API entry point - use a link in \'meta\' to search a collection.',
             meta: {
-              person_api_url:       'http://foobar.vcap.me:3101/api/v1/person',
-              organisation_api_url: 'http://foobar.vcap.me:3101/api/v1/organisation',
-              position_api_url:     'http://foobar.vcap.me:3101/api/v1/position',
+              person_api_url:       'http://foobar.vcap.me:3100/api/v1/person',
+              organisation_api_url: 'http://foobar.vcap.me:3100/api/v1/organisation',
+              position_api_url:     'http://foobar.vcap.me:3100/api/v1/position',
             },
           },
           "response in links to parts of the API"
@@ -115,8 +115,8 @@ module.exports = {
               name:    'George Bush',
               summary: '41th President of the United States',
               meta: {
-                api_url:  'http://foobar.vcap.me:3101/api/v1/person/4f9ea1306e8770d854c45a1d',
-                edit_url: 'http://foobar.vcap.me:3101/person/george-bush',
+                api_url:  'http://foobar.vcap.me:3100/api/v1/person/4f9ea1306e8770d854c45a1d',
+                edit_url: 'http://foobar.vcap.me:3100/person/george-bush',
               },
             },
             "george-bush details correct"
@@ -147,7 +147,7 @@ module.exports = {
           // test that the api_url is correct
           test.equal(
             _.sortBy( results, 'slug')[0].meta.api_url,
-            'http://foobar.vcap.me:3101/api/v1/person/4f9ea1306e8770d854c45a1d',
+            'http://foobar.vcap.me:3100/api/v1/person/4f9ea1306e8770d854c45a1d',
             "got api_url as expected"
           );
                     
@@ -178,7 +178,7 @@ module.exports = {
               links:           [],
               contact_details: [],
               meta: {
-                edit_url: 'http://foobar.vcap.me:3101/person/george-bush',
+                edit_url: 'http://foobar.vcap.me:3100/person/george-bush',
               },
             },
             "george-bush details correct"
@@ -269,7 +269,7 @@ module.exports = {
               person:       '4f9ea1326e8770d854c45a1e',
               organisation: '4f9ea1326e8770d854c45a21',
               meta: {
-                api_url: 'http://foobar.vcap.me:3101/api/v1/position/4f9ea1326e8770d854c45a23',
+                api_url: 'http://foobar.vcap.me:3100/api/v1/position/4f9ea1326e8770d854c45a23',
               },
             }],
             "got Clinton's Presidency"

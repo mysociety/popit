@@ -6,14 +6,21 @@ module.exports = {
     // too
     public_dir: 'public-minified',
 
+    server: {
+      port: 3000,
+    },
+
+    // *.vcap.me points to 127.0.0.1
+
     hosting_server: {
-        port:       3000,
-        domain:     'www.vcap.me:3000',  // *.vcap.me points to 127.0.0.1
+        host:       'www.vcap.me',
+        base_url:   'http://www.vcap.me:3000',
         email_from: 'PopIt <popit@mysociety.org>', 
     },
     instance_server: {
-        port:          3001,
-        domain_suffix: 'vcap.me:3001',
+        // This is used to create the url to the instance site. '%s' is
+        // replaced with the instance name.
+        base_url_format: "http://%s.vcap.me:3000",
         cookie_secret: 'hurgleflurdle',
         files_dir:     path.normalize(__dirname + '/../../popit_files'),
     },

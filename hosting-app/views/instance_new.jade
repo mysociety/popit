@@ -19,12 +19,10 @@ block content
           label.control-label(for='slug') Pick a website name
           span.controls.append
             input#slug.input-xlarge(type='text', name='slug', data-validation='required url_safe', value='#{ locals.slug || '' }')
-            span.add-on .#{ popit.instance_domain_suffix }
-            if errors.slug
-              span.help-block Your website name can only contain letters and numbers. It should be at least four letters long but no longer than 20.
-              span.help-block Error is '#{ errors.slug.type }'.
-            else
-              span.help-block.hide Your website name can only contain letters and numbers. It should be at least four letters long but no longer than 20.
+            span.add-on #{ config.instance_site_base_url_suffix }
+          if errors.slug
+            span.help-block Your website name can only contain letters and numbers. It should be at least four letters long but no longer than 20.
+            span.help-block Error is '#{ errors.slug.type }'.
 
         p.control-group(class="#{ errors.email ? 'error' : '' }")
           label.control-label(for='email') Your Email address

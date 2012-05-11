@@ -1022,8 +1022,6 @@ form .help-block {
   padding: 0.625em 1em;
   margin-top: 1em;
   margin-left: 3em;
-  position: absolute;
-  display: none;
 }
 /* line 32, ../sass/_forms.scss */
 form .suggestion {
@@ -1060,11 +1058,17 @@ form textarea:focus {
   outline: none;
   border: 1px solid #006480;
 }
-/* line 63, ../sass/_forms.scss */
+/* line 62, ../sass/_forms.scss */
+form input[disabled],
+form .append[disabled],
+form textarea[disabled] {
+  opacity: 0.3;
+}
+/* line 66, ../sass/_forms.scss */
 form textarea {
   min-height: 10em;
 }
-/* line 67, ../sass/_forms.scss */
+/* line 70, ../sass/_forms.scss */
 form .append input {
   border: none;
   padding: 0;
@@ -1073,7 +1077,7 @@ form .append input {
   text-align: right;
   float: left;
 }
-/* line 75, ../sass/_forms.scss */
+/* line 78, ../sass/_forms.scss */
 form .append .add-on {
   max-width: 30%;
   width: 5em;
