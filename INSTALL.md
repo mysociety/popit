@@ -2,6 +2,10 @@
 
 We hope that PopIt is quite easy to install and get running. If you have any issues please let us know at popit@mysociety.org or by reporting it on the [GitHub issue tracker](https://github.com/mysociety/popit/issues).
 
+## Just want a PopIt site?
+
+We run a free PopIt hosting service at http://popit.mysociety.org/ - if you just want to create a site to put data in that might be a better option. If you want to run your own, or contribute to the code then read on!
+
 ## Pre-requisites
 
 The following services are needed by PopIt and you'll need to install them manually:
