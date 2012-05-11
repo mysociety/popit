@@ -1,8 +1,10 @@
 # PopIt
 
+The software that powers http://popit.mysociety.org/
+
 ## Warning
 
-This is **alpha** software - it is currently undergoing active development so should be used with caution.
+Here be dragons! This is **alpha** software - it is currently undergoing active development so should be used with caution.
 
 ## About
 

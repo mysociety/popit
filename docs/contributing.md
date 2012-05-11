@@ -1,6 +1,6 @@
 # Contributing
 
-Contributions to the PopIt project are very welcome.
+Contributions to the PopIt project are very welcome. Really very welcome indeed. If you submit a pull request we'll be sure to look at it as soon as we can and hopefully merge it in or comment on it.
 
 ## Code (and test) contributions
 
@@ -14,40 +14,36 @@ We welcome pull requests for several things:
 
 Please note that no contribution is too small :) If you do **not** want to be added to the thanks page please let us know.
 
+
 ## Developer Setup
 
 These notes are in addition to the notes in `INSTALL.md`. If you'd like to work on the code and run the tests you'll need the following:
 
-### MongoDB
 
-You'll need access to a MongoDB server on which you can create and delete databases. The test suite does this a lot, so you'll probably want to run it with `smallfiles` and `noprealloc` to save on time consuming disk writes.
+## SCSS to CSS
 
-Sometimes it is useful to delete all your databases. Easiest way is to stop your
-`mongod` process, delete databases on disk and then start up again. Crude, but
-effective:
+Generate the CSS from the SCSS by running `make scss`. When developing it is more convenient to run `compass watch` and let it detect changes to the SCSS and recompile as needed.
 
-    # assuming a MangoDB installed on Mac using homebrew
-    launchctl stop homebrew.mxcl.mongodb
-    rm -v /usr/local/var/mongodb/popitdev_*
-    launchctl start homebrew.mxcl.mongodb
 
-Note that all the dev site databases should have the prefix `popitdev_`.
+## Emails
 
-### Two free ports
+The system send emails at various points. When developing these are also output to the logs so that it is easy to see them and follow embedded links etc.
 
-The test suite will start a hosting and instance server on your machine and will use the ports specified in `config/testing.js`. You'll need to check that these are not used. The loopback address `127.0.0.1` will be used to access these servers.
 
-### Working DNS
+## Minifying public to public-minified
 
-Because the PopIt instance server can host several instances which are differentiated by the host name used to access them we use the `*.vcap.me` domain name for the tests. This is wildcarded to `127.0.0.1` but you'll need a network connection for the DNS lookups.
+This is done by running `make minify` and the results committed to the repository. When NODE_ENV is 'development' the unminified assets are used to make development easier. Otherwise the minified assets are used (this includes testing - minifying the assets is a part of the `make test` process).
 
-### Selenium
+Note that the paths used in the templates are the same for both - the JS is either a loader script which gets the required parts individually, or the single combined script.
+
+
+## Selenium
 
 There are selenium tests that test the website and the interactions with it. They expect to find a Selenium Server running on `localhost` port `4444` (the default). The server is available free from http://seleniumhq.org/download/ - download it and then leave it running in a shell. You'll also need FireFox installed as the browser that will be used for the testing.
 
 If you use Mac OSX then the homebrew package `selenium-server-standalone` might be of interest.
 
-### Running the tests
+
+## Running the tests
 
 In the `popit` directory just run `npm test`.
-
