@@ -39,7 +39,7 @@ To install from git do the following:
     cd popit
     
     # Optional - change to the 'production' branch (more stable). If you're 
-    # hoping to conttribute please stay on the 'master' branch.
+    # hoping to contribute please stay on the 'master' branch.
     git checkout -b production origin/production
     
     # Install the dependencies
