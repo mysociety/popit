@@ -160,7 +160,7 @@ module.exports = {
     test.expect(1);
     test.deepEqual(
       utils.instance_base_url_from_slug('foo'),
-      "http://foo.vcap.me:3100",
+      "http://foo.127-0-0-1.org.uk:3100",
       "got correct base url for 'foo'"
     );
     test.done();

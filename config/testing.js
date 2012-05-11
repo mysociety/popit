@@ -5,12 +5,12 @@ module.exports = {
     },
 
     hosting_server: {
-        host:       'www.vcap.me',
-        base_url:   'http://www.vcap.me:3100',
+        host:       'www.127-0-0-1.org.uk',
+        base_url:   'http://www.127-0-0-1.org.uk:3100',
     },
 
     instance_server: {
-        base_url_format: "http://%s.vcap.me:3100",
+        base_url_format: "http://%s.127-0-0-1.org.uk:3100",
         files_dir:     '/tmp/popit_files',
     },
     
