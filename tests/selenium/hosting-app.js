@@ -5,7 +5,8 @@ var utils               = require('../../lib/utils'),
     selenium_helpers    = require('../../lib/testing/selenium'),
     test_server_helpers = require('../../lib/testing/server'),
     config              = require('config'),
-    async               = require('async');
+    async               = require('async'),
+    superagent          = require('superagent');
 
 
 
@@ -39,6 +40,16 @@ module.exports = {
                 test.ok(true, "end of tests");
                 test.done();
             });        
+    },
+
+    "check instance/notfound 404s correctly": function(test) {
+      test.expect(1);
+      superagent
+      .get( config.hosting_server.base_url + '/instance/notfound' )
+      .end(function(res){
+        test.equal( res.status, 404, "Got a 404");
+        test.done();
+      });
     },
     
     create_instance: function (test) {

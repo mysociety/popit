@@ -97,7 +97,7 @@ exports.route = function (app) {
                 if (err) return next(err);
     
                 // should 404 here instead.
-                if (!instance) return next( new Error('no instance found') );
+                if (!instance) return next( new Error404('no instance found') );
     
                 req.instance = instance;
                 next();
