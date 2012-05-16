@@ -17,6 +17,13 @@ We welcome pull requests for several things:
 Please note that no contribution is too small :) If you do **not** want to be added to the thanks page please let us know.
 
 
+## Branches
+
+We use a modified form of this [Git branch strategy](http://nvie.com/posts/a-successful-git-branching-model/). The `master` branch is used for development and the `production` branch is deployed to our servers. So before a deploy we merge `master` into `production`.
+
+Once the code is more stable and has more users we will probably add in release branches, and start tagging with released version numbers.
+
+
 ## Developer Setup
 
 These notes are in addition to the notes in `INSTALL.md`. If you'd like to work on the code and run the tests you'll need the following:
