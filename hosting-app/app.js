@@ -27,7 +27,6 @@ app.configure(function(){
   app.set('view engine', 'jade');
   app.set('views', __dirname + '/views');
   app.set('view options', { layout: false, pretty: true, });
-  app.set("jsonp callback", true);
   app.register('.txt',  expressHogan);
   app.use(express.bodyParser());
   app.use(express.methodOverride());

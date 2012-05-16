@@ -93,7 +93,6 @@ app.configure(function(){
       pretty: true,
       // debug: true,
   });
-  app.set("jsonp callback", true);
   
   app.use(express.bodyParser());
   app.use(express.methodOverride());
