@@ -193,5 +193,59 @@ module.exports = {
           });
     },
     
+    "check that PUT on collection gives 405 error": function (test) {
+      var rest = this.rest;
+
+      test.expect(3);
+      
+      rest
+        .put('person')
+        .on('complete', function(data, response) {
+    
+          // check for 405 and json
+          test.equal(response.statusCode, 405, "got 405");
+          test.equal(
+            response.headers['content-type'],
+            'application/json; charset=utf-8',
+            "got JSON"
+          );
+          
+          test.deepEqual(
+            data,
+            { error: 'method not allowed' },
+            "response data correct"
+          );
+
+          test.done();
+        });
+      },
+
+    "check that DELETE on collection gives 405 error": function (test) {
+      var rest = this.rest;
+
+      test.expect(3);
+      
+      rest
+        .del('person')
+        .on('complete', function(data, response) {
+    
+          // check for 405 and json
+          test.equal(response.statusCode, 405, "got 405");
+          test.equal(
+            response.headers['content-type'],
+            'application/json; charset=utf-8',
+            "got JSON"
+          );
+          
+          test.deepEqual(
+            data,
+            { error: 'method not allowed' },
+            "response data correct"
+          );
+
+          test.done();
+        });
+      },
+
 };
 
