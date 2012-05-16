@@ -71,6 +71,29 @@ module.exports = {
       });
     },
     
+    "access API using JSONP": function (test) {
+
+      test.expect(3);
+      
+      this.rest.get('?callback=name_of_callback').on('complete', function(data, response) {
+    
+        test.equal(response.statusCode, 200, "got 200 response");
+
+        test.equal(
+          response.headers['content-type'],
+          'text/javascript; charset=utf-8',
+          "got JavaScript"
+        );
+
+        test.ok(
+          /^name_of_callback\({.+}\);$/.test(data),
+          "response JSON is wrapped in a callback"
+        );
+    
+        test.done();
+      });
+    },
+    
     "access API bit that does not exist": function (test) {
 
       test.expect(3);
