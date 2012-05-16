@@ -67,7 +67,7 @@ module.exports = {
         var joe2 = new Person({name: 'Joe'});
         test.equal( joe2.slug, 'joe', 'slug is joe for second joe');
       
-        joe2.deduplicate_slug(function(err) {
+        joe2.save(function(err) {
           test.ifError(err);
           test.equal( joe2.slug, 'joe-1', 'slug has been de-duped');
           test.done();
@@ -85,7 +85,7 @@ module.exports = {
       joe.save(function(err, doc) {
         test.ifError(err);
       
-        joe.deduplicate_slug(function(err) {
+        joe.save(function(err) {
           test.ifError(err);
           test.equal( joe.slug, 'joe', 'slug has not changed');
           test.done();
