@@ -100,3 +100,20 @@ block content
     |  to be returned. This might be useful if querying the API from a browser 
     | on another website.
 
+
+  h3 Auth
+  
+  p
+    | For write operations on the API you need to be authenticated. This can 
+    | either be done using 
+    a(href="http://en.wikipedia.org/wiki/Basic_access_authentication") Basic Authentication
+    |  or by cookie auth. Basic is probably best for scripts and pragramatic 
+    | access, cookie based for Ajax calls etc.
+
+  p 
+    | We will probably need to add token based auth 
+    a(href="https://github.com/mysociety/popit/issues/113") (#113) 
+    |  in the future, as well as adding CSRF protection 
+    a(href="https://github.com/mysociety/popit/issues/112") (#112)
+    | . Tickets have been created for these in the issue tracker.
+
