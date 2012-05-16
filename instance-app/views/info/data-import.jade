@@ -6,18 +6,42 @@ block title
 block content
   h1 Data Import
 
-  p This is a future feature that we intend to add to PopIt.
+  p
+    | PopIt will let you enter and access data easily from your code. It will 
+    | also let you upload existing data that you have to quickly populate a new 
+    | site.
+  
 
-  P
-    | You will be able to import and update data by uploading CSV files or
-    | programatically using an API.
+  h2 Migration Tool
   
-  p
-    | For more details on this feature please see 
-    a(href="https://github.com/mysociety/popit/wiki/Data-import") this wiki page 
-    | which has some rough notes.
+  p 
+    | If you have been collecting information on people in a spreadsheet this 
+    | will let you quickly upload it all into PopIt rather than manually 
+    | entering it in. We expect that this will be in the form of a CSV file with 
+    | the columns given specific names.
+
+  p The migration tool is intended to add data to PopIt, not to edit it.
+    
+  p This is a 
+    a(href="https://github.com/mysociety/popit/issues/search?q=migration+tool") work in progress
+    | .
   
-  p
-    | If you have particular suggestions or questions please let us know on the 
+
+  h2 API
+
+  p 
+    | The API will let you access and modify all the data in PopIt, as well as 
+    | storing your own custom data. Please see the 
+    a(href="/api") API docs
+    |  for more details.
+  
+  p 
+    | We use the API from the editing interface on the website to be sure that 
+    | all interactions with PopIt can be achieved through the API. It is not an 
+    | afterthought - it is a core piece of the site.
+  
+  p API improvements is an ongoing task with several 
+    a(href="https://github.com/mysociety/popit/issues?labels=API&milestone=&page=1&state=open") open issues
+    | . If you have particular suggestions or questions please let us know on the 
     a(href="https://secure.mysociety.org/admin/lists/mailman/listinfo/components") components mailing list
     | .
