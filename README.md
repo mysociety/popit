@@ -21,6 +21,16 @@ PopIt is an easy-to-install web service for storing and sharing the names and ca
 * Supports websites written in any language - uses REST
 * Interfaces for adding data by hand, or via import
 
+## Get in touch
+
+You can contact at us at any of the following:
+
+  * The [Components mailing list](https://secure.mysociety.org/admin/lists/mailman/listinfo/components) for general discussion about PopIt and other similar components.
+  * The [PopIt-dev mailing list](https://secure.mysociety.org/admin/lists/mailman/listinfo/popit-dev) for development questions and discussion about PopIt.
+  * Chat on the [#popit IRC channel](irc://irc.mysociety.org/popit) on `irc.mysociety.org`.
+  * Read our [development diary](http://popit-dev.tumblr.com/) for frequent updates and musings.
+  * Email us direct at [popit@mysociety.org](mailto:popit@mysociety.org).
+
 ## Original Django based code
 
 Originally the PopIt project was started in Django, but has now changed to a different technology stack. The old code is still available on a [branch](https://github.com/mysociety/popit/tree/popit-v0.1dev).
