@@ -193,59 +193,51 @@ module.exports = {
           });
     },
     
-    "check that PUT on collection gives 405 error": function (test) {
+    "check that we get correct errors for not allowed methods" : function (test) {
       var rest = this.rest;
 
-      test.expect(3);
-      
-      rest
-        .put('person')
-        .on('complete', function(data, response) {
-    
-          // check for 405 and json
-          test.equal(response.statusCode, 405, "got 405");
-          test.equal(
-            response.headers['content-type'],
-            'application/json; charset=utf-8',
-            "got JSON"
-          );
+      function create_error_test ( method, url ) {
+        return function (cb) {
+
+          // console.log( method, url );
+
+          // rest.request(url, {method: method})  <-- does not appear to handle
+          // the returned JSON for us - it comes through as a string. Also needs
+          // 'delete' instead of 'del'. Should dig deeper in restler to find
+          // what the issue is. The direct access trick below works.
+
+          rest[method](url)
+            .on('complete', function(data, response) {
           
-          test.deepEqual(
-            data,
-            { error: 'method not allowed' },
-            "response data correct"
-          );
-
-          test.done();
-        });
-      },
-
-    "check that DELETE on collection gives 405 error": function (test) {
-      var rest = this.rest;
-
-      test.expect(3);
-      
-      rest
-        .del('person')
-        .on('complete', function(data, response) {
-    
-          // check for 405 and json
-          test.equal(response.statusCode, 405, "got 405");
-          test.equal(
-            response.headers['content-type'],
-            'application/json; charset=utf-8',
-            "got JSON"
-          );
+              // check for 405 and json
+              test.equal(response.statusCode, 405, "got 405");
+              test.equal(
+                response.headers['content-type'],
+                'application/json; charset=utf-8',
+                "got JSON"
+              );
           
-          test.deepEqual(
-            data,
-            { error: 'method not allowed' },
-            "response data correct"
-          );
+              test.deepEqual(
+                data,
+                { error: "method not allowed" },
+                "response data correct"
+              );
+          
+              cb();
+            });
+        };
+      }
+      
+      var tests = [
+        create_error_test( 'put', 'person' ),
+        create_error_test( 'del', 'person' ),
+      ];
 
-          test.done();
-        });
-      },
+      test.expect( tests.length * 3 );
+      async.series( tests, test.done );
+      
+    },
+    
 
 };
 
