@@ -283,5 +283,62 @@ module.exports = {
       );
     },
 
+    "check deleting embedded document": function (test) {
+      var rest = this.rest;
+      var embedded_url = 'person/4f9ea1316e8770d854c45a1e/links/4f9ea1326e8770d854c45a26';
+      var document_url = 'person/4f9ea1316e8770d854c45a1e';
+
+      test.expect(7);
+      
+      async.series(
+        [
+          // check that the document exists
+          function(cb) {
+            rest.get(document_url).on('complete', function(data, response) {
+              test.equal(response.statusCode, 200, "got 200 - parent document exists");              
+              cb();
+            });
+          },
+          // check that the embedded document exists
+          function(cb) {
+            rest.get(embedded_url).on('complete', function(data, response) {
+              test.equal(response.statusCode, 200, "got 200 - embedded document exists");              
+              cb();
+            });
+          },
+          // delete the document
+          function(cb) {
+            rest.del(embedded_url).on('complete', function(data, response) {
+              test.equal(response.statusCode, 204, "got 204 - embedded document deleted");
+              test.equal( data.length, 0, "no content returned" );      
+              cb();
+            });
+          },
+          // check that the document is now gone
+          function(cb) {
+            rest.get(embedded_url).on('complete', function(data,response) {
+              test.equal(response.statusCode, 404, "got 404 - embedded document gone");              
+              cb();
+            });
+          },
+          // delete the document again, should 404 as not found
+          function(cb) {
+            rest.del(embedded_url).on('complete', function(data, response) {
+              test.equal(response.statusCode, 404, "got 404 - not found for subsequent delete");
+              cb();
+            });
+          },
+          // check that the document has not been deleted
+          function(cb) {
+            rest.get(document_url).on('complete', function(data, response) {
+              test.equal(response.statusCode, 200, "got 200 - parent document exists");              
+              cb();
+            });
+          },
+        ],
+        test.done
+      );
+    },
+
 };
 
