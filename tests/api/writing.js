@@ -239,9 +239,49 @@ module.exports = {
 
       test.expect( tests.length * 3 );
       async.series( tests, test.done );
-      
     },
     
+    "check deleting top level document": function (test) {
+      var rest = this.rest;
+      var url = 'person/4f9ea1316e8770d854c45a1e';
+
+      test.expect(5);
+      
+      async.series(
+        [
+          // check that the document exists
+          function(cb) {
+            rest.get(url).on('complete', function(data, response) {
+              test.equal(response.statusCode, 200, "got 200 - document exists");              
+              cb();
+            });
+          },
+          // delete the document
+          function(cb) {
+            rest.del(url).on('complete', function(data, response) {
+              test.equal(response.statusCode, 204, "got 204 - document deleted");
+              test.equal( data.length, 0, "no content returned" );      
+              cb();
+            });
+          },
+          // check that the document is now gone
+          function(cb) {
+            rest.get(url).on('complete', function(data,response) {
+              test.equal(response.statusCode, 404, "got 404 - document gone");              
+              cb();
+            });
+          },
+          // delete the document again, should 404 as not found
+          function(cb) {
+            rest.del(url).on('complete', function(data, response) {
+              test.equal(response.statusCode, 404, "got 404 - not found for subsequent delete");
+              cb();
+            });
+          },
+        ],
+        test.done
+      );
+    },
 
 };
 
