@@ -18,6 +18,13 @@ exports.people = [
     name: "Bill Clinton",
     slug: "bill-clinton",
     summary: "42nd President of the United States",
+    links: [
+      {
+        "_id": id("4f9ea1326e8770d854c45a26"),
+        url: "http://www.clintonfoundation.org/",
+        comment: "William J. Clinton Foundation",
+       }
+    ],
   },
   {
     "_id": id("4f9ea1316e8770d854c45a1f"),

@@ -229,8 +229,12 @@ module.exports = {
       }
       
       var tests = [
-        create_error_test( 'put', 'person' ),
-        create_error_test( 'del', 'person' ),
+        create_error_test( 'put',  'person' ),
+        create_error_test( 'del',  'person' ),
+        create_error_test( 'post', 'person/4f9ea1316e8770d854c45a1e' ),
+        create_error_test( 'del',  'person/4f9ea1316e8770d854c45a1e/links' ),
+        create_error_test( 'put',  'person/4f9ea1316e8770d854c45a1e/links' ),
+        create_error_test( 'post', 'person/4f9ea1316e8770d854c45a1e/links/4f9ea1326e8770d854c45a26' ),
       ];
 
       test.expect( tests.length * 3 );
