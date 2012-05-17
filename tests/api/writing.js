@@ -340,5 +340,77 @@ module.exports = {
       );
     },
 
+
+    "create embedded document": function (test) {
+      var rest = this.rest;
+      var document_url       = 'person/4f9ea1316e8770d854c45a1e';
+      var sub_collection_url = 'person/4f9ea1316e8770d854c45a1e/links';
+      var embedded_url       = 'person/4f9ea1316e8770d854c45a1e/links/4f9ea1326e8770d854c45a26';
+
+      // fill these in in the tests
+      var original_sub_collection_ids = [];
+      var sub_document_url = null;
+
+      test.expect(9);
+      
+      async.series(
+        [
+          // check that subcollection has some items in it, store the ids
+          function(cb) {
+            rest.get(sub_collection_url).on('complete', function(data, response) {
+              test.equal(response.statusCode, 200, "got 200 - sub_collection exists");              
+              
+              original_sub_collection_ids = _.pluck( data.results, '_id' );
+              test.ok( original_sub_collection_ids.length >= 1, "Got some existing content" );
+
+              cb();
+            });
+          },
+          // add a document to the collection
+          function (cb) {
+            rest
+              .post(sub_collection_url, { data: { url: 'http://foobar.com', comment: "sample url"}})
+              .on('complete', function (data, response) {
+                test.equal(response.statusCode, 201, "got 201 - embedded document created");              
+
+                // get the location of the new document
+                sub_document_url = response.headers['location'];
+                test.ok(
+                  (new RegExp(sub_collection_url + '/[0-9a-f]{24}')).test(sub_document_url),
+                  "New entity in subcollection"
+                );
+
+                test.equal(data.ok, true, "got 'ok' in JSON" );
+                test.equal(data.api_url, sub_document_url, "got correct sub-document url" );
+                cb();
+              });
+          },
+          // check that the sub_document_url works
+          function (cb) {
+            rest.get(sub_document_url).on('complete', function(data, response) {
+              test.equal(data.result.url, 'http://foobar.com', "new link url correct");
+              cb();
+            })
+          },
+          // check that subcollection has more items in now
+          function(cb) {
+            rest.get(sub_collection_url).on('complete', function(data, response) {
+              test.equal(response.statusCode, 200, "got 200 - sub_collection exists");              
+              
+              var post_create_sub_collection_ids = _.pluck( data.results, '_id' );
+
+              test.ok(
+                original_sub_collection_ids.length == post_create_sub_collection_ids.length - 1,
+                "Got one more entry in collection"
+              );
+
+              cb();
+            });
+          },
+        ],
+        test.done
+      );
+    },
+
 };
 
