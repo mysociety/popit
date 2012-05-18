@@ -445,6 +445,51 @@ module.exports = {
         }
       );
     },
+
+    "update a sub document": function (test) {
+      var rest         = this.rest;
+      var embedded_url       = 'person/4f9ea1316e8770d854c45a1e/links/4f9ea1326e8770d854c45a26';
+
+      test.expect(3);
+      
+      async.series(
+        [
+          // update one field
+          function (cb) {
+
+            // FIXME: should test updating using the dot notation too
+
+            rest
+              .put(embedded_url, { data: { url: 'http://update.test/', thisShouldBeIgnored: 1234 } })
+              .on('complete', function(data, response) {
+                test.equal(response.statusCode, 204, "got 204");
+                cb();
+              });
+          },
+          // check it is changed (and other not)
+          function (cb) {
+            rest
+              .get(embedded_url)
+              .on('complete', function(data, response) {
+                test.deepEqual(
+                  data.result,
+                  {
+                    _id:     '4f9ea1326e8770d854c45a26',
+                    url:     'http://update.test/',
+                    comment: 'William J. Clinton Foundation',
+                  },
+                  "Embedded document updated as expected"
+                );
+                cb();
+              });
+          },
+        ],
+        function(err) {
+          test.ifError(err, 'No errors caught');
+          test.done();
+        }
+      );
+    },
     
 };
 
