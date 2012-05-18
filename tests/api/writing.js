@@ -108,56 +108,6 @@ module.exports = {
         });
     },
 
-    "create a new person": function (test) {
-      var rest = this.rest;
-
-      test.expect(8);
-      
-      rest
-        .post(
-          'person',
-          {
-            data: {
-              name: "Joe Bloggs",
-            },
-          }
-        )
-        .on('complete', function(data, response) {
-    
-          // check for 200 and json
-          test.equal(response.statusCode, 201, "got 201");
-          test.equal(
-            response.headers['content-type'],
-            'application/json; charset=utf-8',
-            "got JSON"
-          );
-          
-          var url_regex = /^http:\/\/foobar.127-0-0-1.org.uk:3100\/api\/v1\/person\/[0-9a-f]{24}$/;
-          
-          test.ok(
-            url_regex.test( response.headers['location'] ),
-            "got newly created location"
-          );
-          
-          test.equal( data.ok, true, "response data.ok correct");
-          test.ok( data.api_url, response.headers['location'], "response data.api_url correct");
-                  
-          // get the new location and check that it is correct
-          rest
-            .get(response.headers['location'])
-            .on('complete', function (data, response) {
-          
-              test.equal(response.statusCode, 200, "got 200");
-
-              test.equal(data.result.name, 'Joe Bloggs', "got name");
-              test.equal(data.result.slug, 'joe-bloggs', "got slug");
-
-              test.done();
-            });
-        
-        });
-    },
-    
     "create a new person (duplicate name - expect new slug)": function (test) {
       var rest = this.rest;
 
@@ -412,5 +362,89 @@ module.exports = {
       );
     },
 
+    "update a document": function (test) {
+      var rest         = this.rest;
+      var document_url = null;
+      var document_id  = null;
+
+      test.expect(5);
+      
+      async.series(
+        [
+          // create a new person
+          function(cb) {
+            rest
+              .post( 'person', { data: { name: "Joe Bloggs", summary: "Just another Joe" } })
+              .on('complete', function (data, response) {
+                test.equal(response.statusCode, 201, "got 201");
+                document_url = response.headers['location'];
+                document_id = _.last(document_url.split('/'));
+                cb();
+              });
+          },
+          // check that person created as expected
+          function (cb) {
+            rest
+              .get(document_url)
+              .on('complete', function(data, response) {
+                test.deepEqual(
+                  data.result,
+                  {
+                    _id:             document_id,
+                    name:            "Joe Bloggs",
+                    slug:            "joe-bloggs",
+                    summary:         "Just another Joe",
+                    images:          [],
+                    links:           [],
+                    contact_details: [],
+                    meta: { edit_url: 'http://foobar.127-0-0-1.org.uk:3100/person/joe-bloggs' },
+                  },
+                  "Person created as expected"
+                );
+                cb();
+              });
+          },
+          // update one field
+          function (cb) {
+
+            // FIXME: should test updating using the dot notation too
+
+            rest
+              .put(document_url, { data: { name: 'Fred Jones', thisShouldBeIgnored: 1234 } })
+              .on('complete', function(data, response) {
+                test.equal(response.statusCode, 204, "got 204");
+                cb();
+              });
+          },
+          // check it is changed (and other not)
+          function (cb) {
+            rest
+              .get(document_url)
+              .on('complete', function(data, response) {
+                test.deepEqual(
+                  data.result,
+                  {
+                    _id:             document_id,
+                    name:            "Fred Jones",
+                    slug:            "joe-bloggs",
+                    summary:         "Just another Joe",
+                    images:          [],
+                    links:           [],
+                    contact_details: [],
+                    meta: { edit_url: 'http://foobar.127-0-0-1.org.uk:3100/person/joe-bloggs' },
+                  },
+                  "Person updated as expected"
+                );
+                cb();
+              });
+          },
+        ],
+        function(err) {
+          test.ifError(err, 'No errors caught');
+          test.done();
+        }
+      );
+    },
+    
 };
 
