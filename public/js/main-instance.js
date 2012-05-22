@@ -21,6 +21,7 @@ require(
   [
   'mailchecker',
   'search-box',
-  'slug-validation'
+  'slug-validation',
+  'sign-in-toggle',
   ]
 );
