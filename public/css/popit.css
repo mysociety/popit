@@ -1111,3 +1111,11 @@ button:hover, a.btn:hover, input.btn:hover {
   text-decoration: none;
   border: none;
 }
+
+/* line 1, ../sass/_warnings.scss */
+#no-js-warning {
+  text-align: center;
+  background-color: #ffcccc;
+  border-bottom: 1px solid red;
+  padding: 0.25em;
+}

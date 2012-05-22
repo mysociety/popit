@@ -55,6 +55,11 @@ if locals.user
   bodyClasses = ['signed_in']
 // FIXME set the body ID to be the slug version of the instance name instead of united-kingdom
 body#popit-united_kingdom(class=bodyClasses)
+
+  if locals.user
+    noscript
+      #no-js-warning Please <a href="http://www.enable-javascript.com/" target="_blank">enable JavaScript</a> - without it much of the admin on this website will not work.
+    
   header#header
     h1.logo
       a(href='/')

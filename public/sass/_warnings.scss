@@ -1,0 +1,6 @@
+#no-js-warning {
+  text-align: center;
+  background-color: lighten($warning_colour, 40%);
+  border-bottom: 1px solid $warning_colour;
+  padding: 0.25em;
+}
