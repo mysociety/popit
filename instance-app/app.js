@@ -143,6 +143,8 @@ app.configure(function(){
   var organisation_app_factory = require('../lib/apps/organisation');
   app.use('/organisation', organisation_app_factory() );
 
+  app.use('/migration', require('../lib/apps/migration'));
+
   app.use(app.router);
   
   app.use( require('../lib/errors').errorHandler );
