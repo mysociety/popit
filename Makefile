@@ -7,7 +7,7 @@ LINT = ./node_modules/.bin/jslint --indent 2 --white --nomen
 
 
 
-all: npm-install
+all: npm-install minify
 
 
 npm-install:
@@ -29,7 +29,14 @@ lint:
 scss:
 	compass compile
 
-minify:
+
+js-templates:
+	jade-amd --runtime > public/js/jadeRuntime.js
+	rm -rf public/js/templates
+	jade-amd --pretty --from hosting-app/views --to public/js/templates
+
+
+minify: scss js-templates
 	rm -rf public-minified
 	r.js -o public/js/app.build.js
 	rm    public-minified/build.txt
@@ -51,7 +58,7 @@ test-unit:
 		--reporter $(REPORTER) \
 		tests/unit
 
-test-selenium: scss minify
+test-selenium: minify
 	@NODE_ENV=testing ./node_modules/.bin/nodeunit \
 		--reporter $(REPORTER) \
 		tests/selenium
