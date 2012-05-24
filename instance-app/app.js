@@ -137,13 +137,13 @@ app.configure(function(){
 
   app.use('/autocomplete',  require('../lib/apps/autocomplete') );
 
+  app.use('/migration', require('../lib/apps/migration'));
+
   var person_app_factory = require('../lib/apps/person');
   app.use('/person', person_app_factory() );
 
   var organisation_app_factory = require('../lib/apps/organisation');
   app.use('/organisation', organisation_app_factory() );
-
-  app.use('/migration', require('../lib/apps/migration'));
 
   app.use(app.router);
   
