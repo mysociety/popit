@@ -13,74 +13,78 @@ buf.push('>\n  <meta');
 buf.push(attrs({ terse: true, 'http-equiv':('imagetoolbar'), 'content':('false') }, {"http-equiv":true,"content":true}));
 buf.push('>\n  <meta');
 buf.push(attrs({ terse: true, 'name':('description'), 'content':('PopIt, a really easy way to store and share information about politicians or other public figures.') }, {"name":true,"content":true}));
-buf.push('>\n  <title>Create your PopIt site</title>\n  <link');
+buf.push('>\n  <title>PopIt </title>\n  <link');
 buf.push(attrs({ terse: true, 'rel':('stylesheet'), 'href':('/css/popit.css'), 'type':('text/css'), 'media':('screen, print'), 'charset':('utf-8') }, {"rel":true,"href":true,"type":true,"media":true,"charset":true}));
 buf.push('>\n  <link');
 buf.push(attrs({ terse: true, 'rel':('stylesheet'), 'href':('/css/print.css'), 'type':('text/css'), 'media':('print'), 'charset':('utf-8') }, {"rel":true,"href":true,"type":true,"media":true,"charset":true}));
 buf.push('>\n  <meta');
 buf.push(attrs({ terse: true, 'name':('viewport'), 'content':('width=device-width,initial-scale=1') }, {"name":true,"content":true}));
-buf.push('>\n  <!-- script(src=\'/js/libs/modernizr-2.5.3.js\', type=\'text/javascript\', charset=\'utf-8\')-->\n  <!-- Javascript -->\n  <script');
-buf.push(attrs({ terse: true, 'src':('/js/require.js'), 'data-main':("/js/main-hosting"), 'type':('text/javascript'), 'charset':('utf-8') }, {"src":true,"data-main":true,"type":true,"charset":true}));
-buf.push('></script>\n</head>\n<body');
-buf.push(attrs({ terse: true, 'id':('popit-united_kingdom'), "class": ('brand_page') }, {}));
-buf.push('>\n  <header');
+buf.push('>\n  <!-- script(src=\'/js/libs/modernizr-2.5.3.js\', type=\'text/javascript\', charset=\'utf-8\')-->\n  <script');
+buf.push(attrs({ terse: true, 'src':('/js/require.js'), 'data-main':("/js/main-instance"), 'type':('text/javascript'), 'charset':('utf-8') }, {"src":true,"data-main":true,"type":true,"charset":true}));
+buf.push('></script>\n</head>');
+if ( locals.user)
+{
+var bodyClasses = (['signed_in']);
+}
+buf.push('\n<!-- FIXME set the body ID to be the slug version of the instance name instead of united-kingdom-->\n<body');
+buf.push(attrs({ terse: true, 'id':('popit-united_kingdom'), "class": (bodyClasses) }, {"class":true}));
+buf.push('>');
+if ( locals.user)
+{
+buf.push('\n  <noscript>\n    <div');
+buf.push(attrs({ terse: true, 'id':('no-js-warning') }, {}));
+buf.push('>Please <a href="http://www.enable-javascript.com/" target="_blank">enable JavaScript</a> - without it much of the admin on this website will not work.</div>\n  </noscript>');
+}
+buf.push('\n  <header');
 buf.push(attrs({ terse: true, 'id':('header') }, {}));
 buf.push('>\n    <h1');
 buf.push(attrs({ terse: true, "class": ('logo') }, {}));
+buf.push('><a');
+buf.push(attrs({ terse: true, 'href':('/') }, {"href":true}));
 buf.push('><abbr');
 buf.push(attrs({ terse: true, 'title':('People Organisations Positions') }, {"title":true}));
-buf.push('>Pop</abbr>It</h1>\n  </header>\n  <div');
-buf.push(attrs({ terse: true, 'id':('content') }, {}));
+buf.push('>Pop</abbr>It');
+if ( locals.popit)
+{
+buf.push('<span');
+buf.push(attrs({ terse: true, "class": ('popit-instance') }, {}));
+buf.push('> : <span');
+buf.push(attrs({ terse: true, 'id':('popit_instance_name') }, {}));
+buf.push('>' + escape((interp =  popit.instance_name() ) == null ? '' : interp) + '</span></span>');
+}
+buf.push('</a></h1>\n    <div');
+buf.push(attrs({ terse: true, 'id':('user_menu') }, {}));
 buf.push('>');
- var errors = locals.errors || {}
-buf.push('\n    <div');
-buf.push(attrs({ terse: true, "class": ('page-header') }, {}));
-buf.push('>\n      <h1>Make your own PopIt <span');
-buf.push(attrs({ terse: true, "class": ('long-title') }, {"class":true}));
-buf.push('>politician monitoring web</span>site</h1>\n    </div>\n    <p');
-buf.push(attrs({ terse: true, "class": ('intro') }, {}));
-buf.push('>To start using PopIt you need to create a new instance. This is quick, easy, free and you do it by filling in the form below. A temporary password will be emailed to you that you can change once you login.</p>\n    <form');
-buf.push(attrs({ terse: true, 'method':('post'), 'action':(''), "class": ('well') + ' ' + ('form-horizontal') }, {"method":true,"action":true}));
-buf.push('>\n      <p');
-buf.push(attrs({ terse: true, "class": ('control-group') + ' ' + ("" + ( errors.slug ? 'error' : '' ) + "") }, {"class":true}));
-buf.push('>\n        <label');
-buf.push(attrs({ terse: true, 'for':('slug'), "class": ('control-label') }, {"for":true}));
-buf.push('>Pick a website name</label><span');
-buf.push(attrs({ terse: true, "class": ('controls') + ' ' + ('append') }, {}));
-buf.push('>\n          <input');
-buf.push(attrs({ terse: true, 'id':('slug'), 'type':('text'), 'name':('slug'), 'data-validation':('required url_safe'), 'value':('' + ( locals.slug || '' ) + ''), "class": ('input-xlarge') }, {"type":true,"name":true,"data-validation":true,"value":true}));
-buf.push('><span');
-buf.push(attrs({ terse: true, "class": ('add-on') }, {}));
-buf.push('>' + escape((interp =  config.instance_site_base_url_suffix ) == null ? '' : interp) + '</span></span>');
-if ( errors.slug)
+if ( locals.user)
 {
-buf.push('<span');
-buf.push(attrs({ terse: true, "class": ('help-block') }, {}));
-buf.push('>Your website name can only contain letters and numbers. It should be at least four letters long but no longer than 20.</span><span');
-buf.push(attrs({ terse: true, "class": ('help-block') }, {}));
-buf.push('>Error is \'' + escape((interp =  errors.slug.type ) == null ? '' : interp) + '\'.</span>');
+buf.push('\n      <div');
+buf.push(attrs({ terse: true, 'id':('signed_in') }, {}));
+buf.push('>Hello <span');
+buf.push(attrs({ terse: true, "class": ('username') }, {}));
+buf.push('>' + escape((interp = user.email) == null ? '' : interp) + '</span>, <a');
+buf.push(attrs({ terse: true, 'href':('/logout') }, {"href":true}));
+buf.push('>Sign Out</a>\n      </div>');
 }
-buf.push('\n      </p>\n      <p');
-buf.push(attrs({ terse: true, "class": ('control-group') + ' ' + ("" + ( errors.email ? 'error' : '' ) + "") }, {"class":true}));
-buf.push('>\n        <label');
-buf.push(attrs({ terse: true, 'for':('email'), "class": ('control-label') }, {"for":true}));
-buf.push('>Your Email address</label><span');
-buf.push(attrs({ terse: true, "class": ('controls') }, {}));
-buf.push('>\n          <input');
-buf.push(attrs({ terse: true, 'id':('email'), 'type':('email'), 'name':('email'), 'data-validation':('required email'), 'value':('' + ( locals.email || '' ) + ''), "class": ('input-xlarge') }, {"type":true,"name":true,"data-validation":true,"value":true}));
-buf.push('><span');
-buf.push(attrs({ terse: true, "class": ('suggestion') }, {}));
-buf.push('></span>');
-if ( errors.email)
+else
 {
-buf.push('<span');
-buf.push(attrs({ terse: true, "class": ('help-block') }, {}));
-buf.push('>Error is \'' + escape((interp =  errors.email.type ) == null ? '' : interp) + '\'.            </span>');
+buf.push('\n      <div');
+buf.push(attrs({ terse: true, 'id':('sign_in') }, {}));
+buf.push('>already have an account? <a');
+buf.push(attrs({ terse: true, 'href':('/login') }, {"href":true}));
+buf.push('>Sign In</a></div>');
 }
-buf.push('</span>\n      </p>\n      <div');
-buf.push(attrs({ terse: true, "class": ('form-actions') }, {}));
-buf.push('>\n        <input');
-buf.push(attrs({ terse: true, 'type':('submit'), 'value':('Create your own PopIt'), "class": ('btn') + ' ' + ('btn-primary') }, {"type":true,"value":true}));
+buf.push('\n      <div><a');
+buf.push(attrs({ terse: true, 'href':('/info/data-import') }, {"href":true}));
+buf.push('>Import data automatically</a></div>\n    </div>\n  </header>\n  <div');
+buf.push(attrs({ terse: true, 'id':('content') }, {}));
+buf.push('>\n    <form');
+buf.push(attrs({ terse: true, 'action':(""), 'method':("post"), 'enctype':("multipart/form-data") }, {"action":true,"method":true,"enctype":true}));
+buf.push('>\n      <p>\n        <label');
+buf.push(attrs({ terse: true, 'for':("image_upload") }, {"for":true}));
+buf.push('>Image</label>\n        <input');
+buf.push(attrs({ terse: true, 'type':("file"), 'id':("image_upload"), 'name':("image") }, {"type":true,"id":true,"name":true}));
+buf.push('>\n      </p>\n      <div>\n        <input');
+buf.push(attrs({ terse: true, 'type':("submit"), 'value':("Upload"), "class": ("btn") }, {"type":true,"class":true,"value":true}));
 buf.push('>\n      </div>\n    </form>\n  </div>\n  <footer');
 buf.push(attrs({ terse: true, 'id':('footer') }, {}));
 buf.push('>\n    <div>\n      <div');
@@ -88,10 +92,16 @@ buf.push(attrs({ terse: true, 'id':('sitemap') }, {}));
 buf.push('><a');
 buf.push(attrs({ terse: true, 'href':('/'), "class": ('logo') }, {"href":true}));
 buf.push('>PopIt</a>\n        <ul>\n          <li><a');
+buf.push(attrs({ terse: true, 'href':('/person') }, {"href":true}));
+buf.push('>People</a>, <a');
+buf.push(attrs({ terse: true, 'href':('/organisation') }, {"href":true}));
+buf.push('>Organisations</a></li>\n          <li><a');
 buf.push(attrs({ terse: true, 'href':('/FIXME') }, {"href":true}));
 buf.push('>About PopIt</a></li>\n          <li><a');
+buf.push(attrs({ terse: true, 'href':('/api') }, {"href":true}));
+buf.push('>API</a> / <a');
 buf.push(attrs({ terse: true, 'href':('/info/data-import') }, {"href":true}));
-buf.push('>API / Data Freedom</a></li>\n          <li><a');
+buf.push('>Data Freedom</a></li>\n          <li><a');
 buf.push(attrs({ terse: true, 'href':('/FIXME') }, {"href":true}));
 buf.push('>Self Hosting</a></li>\n          <li><a');
 buf.push(attrs({ terse: true, 'href':('/info/privacy') }, {"href":true}));

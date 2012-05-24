@@ -13,37 +13,124 @@ buf.push('>\n  <meta');
 buf.push(attrs({ terse: true, 'http-equiv':('imagetoolbar'), 'content':('false') }, {"http-equiv":true,"content":true}));
 buf.push('>\n  <meta');
 buf.push(attrs({ terse: true, 'name':('description'), 'content':('PopIt, a really easy way to store and share information about politicians or other public figures.') }, {"name":true,"content":true}));
-buf.push('>\n  <title>Privacy</title>\n  <link');
+buf.push('>\n  <title>Organisations</title>\n  <link');
 buf.push(attrs({ terse: true, 'rel':('stylesheet'), 'href':('/css/popit.css'), 'type':('text/css'), 'media':('screen, print'), 'charset':('utf-8') }, {"rel":true,"href":true,"type":true,"media":true,"charset":true}));
 buf.push('>\n  <link');
 buf.push(attrs({ terse: true, 'rel':('stylesheet'), 'href':('/css/print.css'), 'type':('text/css'), 'media':('print'), 'charset':('utf-8') }, {"rel":true,"href":true,"type":true,"media":true,"charset":true}));
 buf.push('>\n  <meta');
 buf.push(attrs({ terse: true, 'name':('viewport'), 'content':('width=device-width,initial-scale=1') }, {"name":true,"content":true}));
-buf.push('>\n  <!-- script(src=\'/js/libs/modernizr-2.5.3.js\', type=\'text/javascript\', charset=\'utf-8\')-->\n  <!-- Javascript -->\n  <script');
-buf.push(attrs({ terse: true, 'src':('/js/require.js'), 'data-main':("/js/main-hosting"), 'type':('text/javascript'), 'charset':('utf-8') }, {"src":true,"data-main":true,"type":true,"charset":true}));
-buf.push('></script>\n</head>\n<body');
-buf.push(attrs({ terse: true, 'id':('popit-united_kingdom'), "class": ('brand_page') }, {}));
-buf.push('>\n  <header');
+buf.push('>\n  <!-- script(src=\'/js/libs/modernizr-2.5.3.js\', type=\'text/javascript\', charset=\'utf-8\')-->\n  <script');
+buf.push(attrs({ terse: true, 'src':('/js/require.js'), 'data-main':("/js/main-instance"), 'type':('text/javascript'), 'charset':('utf-8') }, {"src":true,"data-main":true,"type":true,"charset":true}));
+buf.push('></script>\n</head>');
+if ( locals.user)
+{
+var bodyClasses = (['signed_in']);
+}
+buf.push('\n<!-- FIXME set the body ID to be the slug version of the instance name instead of united-kingdom-->\n<body');
+buf.push(attrs({ terse: true, 'id':('popit-united_kingdom'), "class": (bodyClasses) }, {"class":true}));
+buf.push('>');
+if ( locals.user)
+{
+buf.push('\n  <noscript>\n    <div');
+buf.push(attrs({ terse: true, 'id':('no-js-warning') }, {}));
+buf.push('>Please <a href="http://www.enable-javascript.com/" target="_blank">enable JavaScript</a> - without it much of the admin on this website will not work.</div>\n  </noscript>');
+}
+buf.push('\n  <header');
 buf.push(attrs({ terse: true, 'id':('header') }, {}));
 buf.push('>\n    <h1');
 buf.push(attrs({ terse: true, "class": ('logo') }, {}));
+buf.push('><a');
+buf.push(attrs({ terse: true, 'href':('/') }, {"href":true}));
 buf.push('><abbr');
 buf.push(attrs({ terse: true, 'title':('People Organisations Positions') }, {"title":true}));
-buf.push('>Pop</abbr>It</h1>\n  </header>\n  <div');
+buf.push('>Pop</abbr>It');
+if ( locals.popit)
+{
+buf.push('<span');
+buf.push(attrs({ terse: true, "class": ('popit-instance') }, {}));
+buf.push('> : <span');
+buf.push(attrs({ terse: true, 'id':('popit_instance_name') }, {}));
+buf.push('>' + escape((interp =  popit.instance_name() ) == null ? '' : interp) + '</span></span>');
+}
+buf.push('</a></h1>\n    <div');
+buf.push(attrs({ terse: true, 'id':('user_menu') }, {}));
+buf.push('>');
+if ( locals.user)
+{
+buf.push('\n      <div');
+buf.push(attrs({ terse: true, 'id':('signed_in') }, {}));
+buf.push('>Hello <span');
+buf.push(attrs({ terse: true, "class": ('username') }, {}));
+buf.push('>' + escape((interp = user.email) == null ? '' : interp) + '</span>, <a');
+buf.push(attrs({ terse: true, 'href':('/logout') }, {"href":true}));
+buf.push('>Sign Out</a>\n      </div>');
+}
+else
+{
+buf.push('\n      <div');
+buf.push(attrs({ terse: true, 'id':('sign_in') }, {}));
+buf.push('>already have an account? <a');
+buf.push(attrs({ terse: true, 'href':('/login') }, {"href":true}));
+buf.push('>Sign In</a></div>');
+}
+buf.push('\n      <div><a');
+buf.push(attrs({ terse: true, 'href':('/info/data-import') }, {"href":true}));
+buf.push('>Import data automatically</a></div>\n    </div>\n  </header>\n  <div');
 buf.push(attrs({ terse: true, 'id':('content') }, {}));
-buf.push('>\n    <h1>Privacy</h1>\n    <p>FIXME: privacy text goes here</p>\n    <h1>Terms and Conditions</h1>\n    <p>\n       \n      By uploading and ethering data to PopIt (except your private login \n      details) you consent for that data to be released under the Open Data \n      Commons Open Database License (<a');
-buf.push(attrs({ terse: true, 'href':("http://opendatacommons.org/licenses/odbl/") }, {"href":true}));
-buf.push('>ODbL</a>). You will always be able to download all your data for re-use elsewhere, \n      including on local instances of PopIt.\n    </p>\n    <p>\n      We reserve the right to remove data or block accounts if the continued \n      functioning of the wider PopIt site is threatened, or if your use of the \n      site is clearly anti-social.\n    </p>\n    <p>\n       \n      We will not share your private login details with anyone else, but the \n      data you author on the site will be public and world readable by default.\n    </p>\n    <p>\n      PopIt is a platform. mySociety does not pre-moderate content, and the \n      content does not belong to mySociety. Any concerns about bad data should \n      be initially directed at the person who owns and maintains the individual \n      PopIt site. If this is unsuccessful, then you can contact us at \n      hello@mysociety.org\n    </p>\n    <p>\n      As a UK registered charity mySociety cannot subsidise commercial companies \n      by providing them with free services. If you want to make use of PopIt for \n      commercial purposes, please mail commercial@mysociety.org to discuss the \n      options.\n    </p>\n    <p>\n      mySociety is keen for the data on PopIt instances to be up to date. To \n      that extent we reserve the right to post warnings that data is potentially \n      out of data on pages and in the API when we believe that it might be \n      misleading.\n    </p>\n  </div>\n  <footer');
+buf.push('>\n    <div');
+buf.push(attrs({ terse: true, "class": ('page-header') }, {}));
+buf.push('>\n      <h1>Organisations</h1>\n    </div>\n    <p><a');
+buf.push(attrs({ terse: true, 'href':("/organisation/new") }, {"href":true}));
+buf.push('>Create a new organisation</a></p>');
+if ( organisations.length)
+{
+buf.push('\n    <ul>');
+// iterate organisations
+;(function(){
+  if ('number' == typeof organisations.length) {
+    for (var $index = 0, $$l = organisations.length; $index < $$l; $index++) {
+      var organisation = organisations[$index];
+
+buf.push('\n      <li><a');
+buf.push(attrs({ terse: true, 'href':("" + ( organisation.slug_url ) + "") }, {"href":true}));
+buf.push('>' + escape((interp =  organisation.name ) == null ? '' : interp) + '  </a>\n      </li>');
+    }
+  } else {
+    for (var $index in organisations) {
+      var organisation = organisations[$index];
+
+buf.push('\n      <li><a');
+buf.push(attrs({ terse: true, 'href':("" + ( organisation.slug_url ) + "") }, {"href":true}));
+buf.push('>' + escape((interp =  organisation.name ) == null ? '' : interp) + '  </a>\n      </li>');
+   }
+  }
+}).call(this);
+
+buf.push('\n    </ul>');
+}
+else
+{
+buf.push('\n    <p');
+buf.push(attrs({ terse: true, "class": ('error') }, {}));
+buf.push('>There are no organisations in the system yet</p>');
+}
+buf.push('\n  </div>\n  <footer');
 buf.push(attrs({ terse: true, 'id':('footer') }, {}));
 buf.push('>\n    <div>\n      <div');
 buf.push(attrs({ terse: true, 'id':('sitemap') }, {}));
 buf.push('><a');
 buf.push(attrs({ terse: true, 'href':('/'), "class": ('logo') }, {"href":true}));
 buf.push('>PopIt</a>\n        <ul>\n          <li><a');
+buf.push(attrs({ terse: true, 'href':('/person') }, {"href":true}));
+buf.push('>People</a>, <a');
+buf.push(attrs({ terse: true, 'href':('/organisation') }, {"href":true}));
+buf.push('>Organisations</a></li>\n          <li><a');
 buf.push(attrs({ terse: true, 'href':('/FIXME') }, {"href":true}));
 buf.push('>About PopIt</a></li>\n          <li><a');
+buf.push(attrs({ terse: true, 'href':('/api') }, {"href":true}));
+buf.push('>API</a> / <a');
 buf.push(attrs({ terse: true, 'href':('/info/data-import') }, {"href":true}));
-buf.push('>API / Data Freedom</a></li>\n          <li><a');
+buf.push('>Data Freedom</a></li>\n          <li><a');
 buf.push(attrs({ terse: true, 'href':('/FIXME') }, {"href":true}));
 buf.push('>Self Hosting</a></li>\n          <li><a');
 buf.push(attrs({ terse: true, 'href':('/info/privacy') }, {"href":true}));

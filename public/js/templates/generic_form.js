@@ -13,7 +13,7 @@ buf.push('>\n  <meta');
 buf.push(attrs({ terse: true, 'http-equiv':('imagetoolbar'), 'content':('false') }, {"http-equiv":true,"content":true}));
 buf.push('>\n  <meta');
 buf.push(attrs({ terse: true, 'name':('description'), 'content':('PopIt, a really easy way to store and share information about politicians or other public figures.') }, {"name":true,"content":true}));
-buf.push('>\n  <title>' + escape((interp =  popit.instance_name() ) == null ? '' : interp) + '</title>\n  <link');
+buf.push('>\n  <title>PopIt </title>\n  <link');
 buf.push(attrs({ terse: true, 'rel':('stylesheet'), 'href':('/css/popit.css'), 'type':('text/css'), 'media':('screen, print'), 'charset':('utf-8') }, {"rel":true,"href":true,"type":true,"media":true,"charset":true}));
 buf.push('>\n  <link');
 buf.push(attrs({ terse: true, 'rel':('stylesheet'), 'href':('/css/print.css'), 'type':('text/css'), 'media':('print'), 'charset':('utf-8') }, {"rel":true,"href":true,"type":true,"media":true,"charset":true}));
@@ -77,11 +77,80 @@ buf.push('\n      <div><a');
 buf.push(attrs({ terse: true, 'href':('/info/data-import') }, {"href":true}));
 buf.push('>Import data automatically</a></div>\n    </div>\n  </header>\n  <div');
 buf.push(attrs({ terse: true, 'id':('content') }, {}));
-buf.push('>\n    <div');
-buf.push(attrs({ terse: true, "class": ('page-header') }, {}));
-buf.push('>\n      <h1>Welcome to PopIt</h1>\n    </div>\n    <p>This is an instance server</p>\n    <p>View a list of <a');
-buf.push(attrs({ terse: true, 'href':("/person") }, {"href":true}));
-buf.push('>all the people </a>in the database</p>\n  </div>\n  <footer');
+buf.push('>');
+var form_field_mixin = function(field_name, content){
+buf.push('\n    ');
+buf.push.apply(buf, __indent);
+buf.push('<p>');
+ var opts        = object.schema.path(field_name).options;
+ var field_id    = 'form-' + object.id + '-' + field_name.replace('.','-')
+ var field_value = object.get(field_name);
+buf.push('\n      ');
+buf.push.apply(buf, __indent);
+buf.push('<label');
+buf.push(attrs({ terse: true, 'for':(field_id) }, {"for":true}));
+buf.push('>' + escape((interp =  opts.form_label || field_name ) == null ? '' : interp) + '</label>');
+switch (opts.form_input_type){
+case 'textarea':
+buf.push('\n      ');
+buf.push.apply(buf, __indent);
+buf.push('<textarea');
+buf.push(attrs({ terse: true, 'id':(field_id), 'name':(field_name) }, {"id":true,"name":true}));
+buf.push('>' + escape((interp =  field_value ) == null ? '' : interp) + '</textarea>');
+  break;
+default:
+buf.push('\n      ');
+buf.push.apply(buf, __indent);
+buf.push('<input');
+buf.push(attrs({ terse: true, 'type':("text"), 'id':(field_id), 'name':(field_name), 'value':(field_value) }, {"type":true,"id":true,"name":true,"value":true}));
+buf.push('>');
+  break;
+}
+if ( opts.form_help_text)
+{
+buf.push('\n      ');
+buf.push.apply(buf, __indent);
+buf.push('<div');
+buf.push(attrs({ terse: true, "class": ('help') }, {}));
+buf.push('>' + escape((interp = opts.form_help_text) == null ? '' : interp) + '</div>');
+}
+if ( errors[field_name])
+{
+buf.push('<span');
+buf.push(attrs({ terse: true, "class": ('error') }, {}));
+buf.push('>' + escape((interp =  errors[field_name].type ) == null ? '' : interp) + '</span>');
+}
+buf.push('\n    ');
+buf.push.apply(buf, __indent);
+buf.push('</p>');
+}
+buf.push('\n    <form');
+buf.push(attrs({ terse: true, 'action':(""), 'method':("post") }, {"action":true,"method":true}));
+buf.push('>');
+// iterate form_fields
+;(function(){
+  if ('number' == typeof form_fields.length) {
+    for (var $index = 0, $$l = form_fields.length; $index < $$l; $index++) {
+      var field_name = form_fields[$index];
+
+__indent.push('      ');
+form_field_mixin(field_name);
+__indent.pop();
+    }
+  } else {
+    for (var $index in form_fields) {
+      var field_name = form_fields[$index];
+
+__indent.push('      ');
+form_field_mixin(field_name);
+__indent.pop();
+   }
+  }
+}).call(this);
+
+buf.push('\n      <p>\n        <input');
+buf.push(attrs({ terse: true, 'type':("submit"), 'value':("Save"), "class": ("btn") }, {"type":true,"class":true,"value":true}));
+buf.push('>\n      </p>\n    </form>\n  </div>\n  <footer');
 buf.push(attrs({ terse: true, 'id':('footer') }, {}));
 buf.push('>\n    <div>\n      <div');
 buf.push(attrs({ terse: true, 'id':('sitemap') }, {}));

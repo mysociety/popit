@@ -13,7 +13,7 @@ buf.push('>\n  <meta');
 buf.push(attrs({ terse: true, 'http-equiv':('imagetoolbar'), 'content':('false') }, {"http-equiv":true,"content":true}));
 buf.push('>\n  <meta');
 buf.push(attrs({ terse: true, 'name':('description'), 'content':('PopIt, a really easy way to store and share information about politicians or other public figures.') }, {"name":true,"content":true}));
-buf.push('>\n  <title>' + escape((interp =  popit.instance_name() ) == null ? '' : interp) + '</title>\n  <link');
+buf.push('>\n  <title>' + escape((interp =  person.name ) == null ? '' : interp) + '</title>\n  <link');
 buf.push(attrs({ terse: true, 'rel':('stylesheet'), 'href':('/css/popit.css'), 'type':('text/css'), 'media':('screen, print'), 'charset':('utf-8') }, {"rel":true,"href":true,"type":true,"media":true,"charset":true}));
 buf.push('>\n  <link');
 buf.push(attrs({ terse: true, 'rel':('stylesheet'), 'href':('/css/print.css'), 'type':('text/css'), 'media':('print'), 'charset':('utf-8') }, {"rel":true,"href":true,"type":true,"media":true,"charset":true}));
@@ -79,9 +79,87 @@ buf.push('>Import data automatically</a></div>\n    </div>\n  </header>\n  <div'
 buf.push(attrs({ terse: true, 'id':('content') }, {}));
 buf.push('>\n    <div');
 buf.push(attrs({ terse: true, "class": ('page-header') }, {}));
-buf.push('>\n      <h1>Welcome to PopIt</h1>\n    </div>\n    <p>This is an instance server</p>\n    <p>View a list of <a');
-buf.push(attrs({ terse: true, 'href':("/person") }, {"href":true}));
-buf.push('>all the people </a>in the database</p>\n  </div>\n  <footer');
+buf.push('>\n      <h1>' + escape((interp =  person.name ) == null ? '' : interp) + '</h1>\n    </div>\n    <p>\n       \n      ' + escape((interp =  person.summary ) == null ? '' : interp) + '<a');
+buf.push(attrs({ terse: true, 'href':("" + (person.slug_url) + "/edit") }, {"href":true}));
+buf.push('>Edit</a>\n    </p>\n    <h2>Images</h2>\n    <ul>');
+// iterate person.images
+;(function(){
+  if ('number' == typeof person.images.length) {
+    for (var $index = 0, $$l = person.images.length; $index < $$l; $index++) {
+      var image_id = person.images[$index];
+
+buf.push('\n      <li><img');
+buf.push(attrs({ terse: true, 'src':("/image/" + (image_id) + "-original"), 'height':("100") }, {"src":true,"height":true}));
+buf.push('>license etc text goes here\n      </li>');
+    }
+  } else {
+    for (var $index in person.images) {
+      var image_id = person.images[$index];
+
+buf.push('\n      <li><img');
+buf.push(attrs({ terse: true, 'src':("/image/" + (image_id) + "-original"), 'height':("100") }, {"src":true,"height":true}));
+buf.push('>license etc text goes here\n      </li>');
+   }
+  }
+}).call(this);
+
+buf.push('\n      <li><a');
+buf.push(attrs({ terse: true, 'href':("" + (person.slug_url) + "/upload_image") }, {"href":true}));
+buf.push('>Upload new image</a></li>\n    </ul>\n    <h2>Contact details</h2>\n    <ul>');
+// iterate person.contact_details
+;(function(){
+  if ('number' == typeof person.contact_details.length) {
+    for (var $index = 0, $$l = person.contact_details.length; $index < $$l; $index++) {
+      var contact = person.contact_details[$index];
+
+buf.push('\n      <li><b>' + escape((interp =  contact.kind ) == null ? '' : interp) + ': </b>' + escape((interp =  contact.value ) == null ? '' : interp) + ' <a');
+buf.push(attrs({ terse: true, 'href':("" + (person.slug_url) + "/contacts/" + (contact.id) + "/edit") }, {"href":true}));
+buf.push('>Edit</a></li>');
+    }
+  } else {
+    for (var $index in person.contact_details) {
+      var contact = person.contact_details[$index];
+
+buf.push('\n      <li><b>' + escape((interp =  contact.kind ) == null ? '' : interp) + ': </b>' + escape((interp =  contact.value ) == null ? '' : interp) + ' <a');
+buf.push(attrs({ terse: true, 'href':("" + (person.slug_url) + "/contacts/" + (contact.id) + "/edit") }, {"href":true}));
+buf.push('>Edit</a></li>');
+   }
+  }
+}).call(this);
+
+buf.push('\n      <li> <a');
+buf.push(attrs({ terse: true, 'href':("" + (person.slug_url) + "/contacts/new/edit") }, {"href":true}));
+buf.push('>create new contact</a></li>\n    </ul>\n    <h2>Links</h2>\n    <ul>');
+// iterate person.links
+;(function(){
+  if ('number' == typeof person.links.length) {
+    for (var $index = 0, $$l = person.links.length; $index < $$l; $index++) {
+      var link = person.links[$index];
+
+buf.push('\n      <li><a');
+buf.push(attrs({ terse: true, 'href':(link.url) }, {"href":true}));
+buf.push('>' + escape((interp =  link.url ) == null ? '' : interp) + ': </a>' + escape((interp =  link.comment ) == null ? '' : interp) + ' <a');
+buf.push(attrs({ terse: true, 'href':("" + (person.slug_url) + "/links/" + (link.id) + "/edit") }, {"href":true}));
+buf.push('>Edit</a></li>');
+    }
+  } else {
+    for (var $index in person.links) {
+      var link = person.links[$index];
+
+buf.push('\n      <li><a');
+buf.push(attrs({ terse: true, 'href':(link.url) }, {"href":true}));
+buf.push('>' + escape((interp =  link.url ) == null ? '' : interp) + ': </a>' + escape((interp =  link.comment ) == null ? '' : interp) + ' <a');
+buf.push(attrs({ terse: true, 'href':("" + (person.slug_url) + "/links/" + (link.id) + "/edit") }, {"href":true}));
+buf.push('>Edit</a></li>');
+   }
+  }
+}).call(this);
+
+buf.push('\n      <li> <a');
+buf.push(attrs({ terse: true, 'href':("" + (person.slug_url) + "/links/new/edit") }, {"href":true}));
+buf.push('>create new link</a></li>\n    </ul>\n    <h2>Raw data</h2>\n    <p>The details for this person are also available in <a');
+buf.push(attrs({ terse: true, 'href':("" + (person.slug_url) + "/json") }, {"href":true}));
+buf.push('>JSON</a>.</p>\n  </div>\n  <footer');
 buf.push(attrs({ terse: true, 'id':('footer') }, {}));
 buf.push('>\n    <div>\n      <div');
 buf.push(attrs({ terse: true, 'id':('sitemap') }, {}));

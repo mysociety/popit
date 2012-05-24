@@ -13,7 +13,7 @@ buf.push('>\n  <meta');
 buf.push(attrs({ terse: true, 'http-equiv':('imagetoolbar'), 'content':('false') }, {"http-equiv":true,"content":true}));
 buf.push('>\n  <meta');
 buf.push(attrs({ terse: true, 'name':('description'), 'content':('PopIt, a really easy way to store and share information about politicians or other public figures.') }, {"name":true,"content":true}));
-buf.push('>\n  <title>' + escape((interp =  popit.instance_name() ) == null ? '' : interp) + '</title>\n  <link');
+buf.push('>\n  <title>Welcome back</title>\n  <link');
 buf.push(attrs({ terse: true, 'rel':('stylesheet'), 'href':('/css/popit.css'), 'type':('text/css'), 'media':('screen, print'), 'charset':('utf-8') }, {"rel":true,"href":true,"type":true,"media":true,"charset":true}));
 buf.push('>\n  <link');
 buf.push(attrs({ terse: true, 'rel':('stylesheet'), 'href':('/css/print.css'), 'type':('text/css'), 'media':('print'), 'charset':('utf-8') }, {"rel":true,"href":true,"type":true,"media":true,"charset":true}));
@@ -78,10 +78,61 @@ buf.push(attrs({ terse: true, 'href':('/info/data-import') }, {"href":true}));
 buf.push('>Import data automatically</a></div>\n    </div>\n  </header>\n  <div');
 buf.push(attrs({ terse: true, 'id':('content') }, {}));
 buf.push('>\n    <div');
-buf.push(attrs({ terse: true, "class": ('page-header') }, {}));
-buf.push('>\n      <h1>Welcome to PopIt</h1>\n    </div>\n    <p>This is an instance server</p>\n    <p>View a list of <a');
-buf.push(attrs({ terse: true, 'href':("/person") }, {"href":true}));
-buf.push('>all the people </a>in the database</p>\n  </div>\n  <footer');
+buf.push(attrs({ terse: true, "class": ('login-form') }, {}));
+buf.push('>\n      <h1>Welcome back</h1>\n      <p');
+buf.push(attrs({ terse: true, "class": ('instructions') }, {}));
+buf.push('>Log back in to manage your PopIt site. <a');
+buf.push(attrs({ terse: true, 'href':('#FIXME') }, {"href":true}));
+buf.push('>Forgotten your details?</a></p>');
+if ( locals.errors && errors.length)
+{
+buf.push('\n      <ul');
+buf.push(attrs({ terse: true, 'id':('errors') }, {}));
+buf.push('>');
+// iterate errors
+;(function(){
+  if ('number' == typeof errors.length) {
+    for (var $index = 0, $$l = errors.length; $index < $$l; $index++) {
+      var error = errors[$index];
+
+buf.push('\n        <li');
+buf.push(attrs({ terse: true, "class": ('error') }, {}));
+buf.push('>');
+var __val__ = error
+buf.push(escape(null == __val__ ? "" : __val__));
+buf.push('</li>');
+    }
+  } else {
+    for (var $index in errors) {
+      var error = errors[$index];
+
+buf.push('\n        <li');
+buf.push(attrs({ terse: true, "class": ('error') }, {}));
+buf.push('>');
+var __val__ = error
+buf.push(escape(null == __val__ ? "" : __val__));
+buf.push('</li>');
+   }
+  }
+}).call(this);
+
+buf.push('\n      </ul>');
+}
+buf.push('\n      <form');
+buf.push(attrs({ terse: true, 'action':('/login'), 'method':('post') }, {"action":true,"method":true}));
+buf.push('>\n        <p>\n          <label');
+buf.push(attrs({ terse: true, 'for':(everyauth.password.loginFormFieldName) }, {"for":true}));
+buf.push('>Email:</label>\n          <input');
+buf.push(attrs({ terse: true, 'id':('email'), 'type':('text'), 'name':(everyauth.password.loginFormFieldName), 'value':(email) }, {"type":true,"name":true,"value":true}));
+buf.push('>\n        </p>\n        <p>\n          <label');
+buf.push(attrs({ terse: true, 'for':(everyauth.password.passwordFormFieldName) }, {"for":true}));
+buf.push('>Password:</label>\n          <input');
+buf.push(attrs({ terse: true, 'id':('password'), 'type':('password'), 'name':(everyauth.password.passwordFormFieldName) }, {"type":true,"name":true}));
+buf.push('>\n        </p>\n        <p');
+buf.push(attrs({ terse: true, "class": ('form-action') }, {}));
+buf.push('>\n          <input');
+buf.push(attrs({ terse: true, 'id':('login'), 'type':('submit'), 'value':('Login'), "class": ('btn') + ' ' + ("btn") }, {"class":true,"type":true,"value":true}));
+buf.push('>\n        </p>\n      </form>\n    </div>\n  </div>\n  <footer');
 buf.push(attrs({ terse: true, 'id':('footer') }, {}));
 buf.push('>\n    <div>\n      <div');
 buf.push(attrs({ terse: true, 'id':('sitemap') }, {}));

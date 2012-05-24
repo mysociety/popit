@@ -13,10 +13,12 @@ buf.push('>\n  <meta');
 buf.push(attrs({ terse: true, 'http-equiv':('imagetoolbar'), 'content':('false') }, {"http-equiv":true,"content":true}));
 buf.push('>\n  <meta');
 buf.push(attrs({ terse: true, 'name':('description'), 'content':('PopIt, a really easy way to store and share information about politicians or other public figures.') }, {"name":true,"content":true}));
-buf.push('>\n  <title>' + escape((interp =  popit.instance_name() ) == null ? '' : interp) + '</title>\n  <link');
+buf.push('>\n  <title>Add position</title>\n  <link');
 buf.push(attrs({ terse: true, 'rel':('stylesheet'), 'href':('/css/popit.css'), 'type':('text/css'), 'media':('screen, print'), 'charset':('utf-8') }, {"rel":true,"href":true,"type":true,"media":true,"charset":true}));
 buf.push('>\n  <link');
 buf.push(attrs({ terse: true, 'rel':('stylesheet'), 'href':('/css/print.css'), 'type':('text/css'), 'media':('print'), 'charset':('utf-8') }, {"rel":true,"href":true,"type":true,"media":true,"charset":true}));
+buf.push('>\n  <link');
+buf.push(attrs({ terse: true, 'rel':('stylesheet'), 'href':('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css'), 'type':('text/css'), 'media':('screen'), 'charset':('utf-8') }, {"rel":true,"href":true,"type":true,"media":true,"charset":true}));
 buf.push('>\n  <meta');
 buf.push(attrs({ terse: true, 'name':('viewport'), 'content':('width=device-width,initial-scale=1') }, {"name":true,"content":true}));
 buf.push('>\n  <!-- script(src=\'/js/libs/modernizr-2.5.3.js\', type=\'text/javascript\', charset=\'utf-8\')-->\n  <script');
@@ -79,9 +81,28 @@ buf.push('>Import data automatically</a></div>\n    </div>\n  </header>\n  <div'
 buf.push(attrs({ terse: true, 'id':('content') }, {}));
 buf.push('>\n    <div');
 buf.push(attrs({ terse: true, "class": ('page-header') }, {}));
-buf.push('>\n      <h1>Welcome to PopIt</h1>\n    </div>\n    <p>This is an instance server</p>\n    <p>View a list of <a');
-buf.push(attrs({ terse: true, 'href':("/person") }, {"href":true}));
-buf.push('>all the people </a>in the database</p>\n  </div>\n  <footer');
+buf.push('>\n      <h1>Create a new position</h1>\n    </div>\n    <p>\n      <strong>Job title</strong> and <strong>Organisation name</strong> will\n      autocomplete to existing entries. If you don\'t use the autocompleted option\n      a new title or organisation will be created.\n    </p>\n    <form');
+buf.push(attrs({ terse: true, 'method':("post"), 'action':("") }, {"method":true,"action":true}));
+buf.push('>\n      <div');
+buf.push(attrs({ terse: true, 'id':('position_new_title') }, {}));
+buf.push('>\n        <label>Job title</label>\n        <input');
+buf.push(attrs({ terse: true, 'name':("title"), 'value':(position.title) }, {"name":true,"value":true}));
+buf.push('>\n      </div>');
+if ( locals.show_organisation)
+{
+buf.push('\n      <div');
+buf.push(attrs({ terse: true, 'id':('position_new_organisation_name') }, {}));
+buf.push('>\n        <label>New Organisation Name</label>\n        <input');
+buf.push(attrs({ terse: true, 'type':('text'), 'name':("organisation_name"), 'value':(organisation.name) }, {"type":true,"name":true,"value":true}));
+buf.push('>\n        <input');
+buf.push(attrs({ terse: true, 'type':('hidden'), 'name':("organisation_slug"), 'value':(organisation.slug) }, {"type":true,"name":true,"value":true}));
+buf.push('>\n        <div');
+buf.push(attrs({ terse: true, 'id':('org_help_text') }, {}));
+buf.push('>Enter name above to search</div>\n      </div>');
+}
+buf.push('\n      <input');
+buf.push(attrs({ terse: true, 'type':("submit"), 'value':("Create new position"), "class": ("btn") }, {"type":true,"class":true,"value":true}));
+buf.push('>\n    </form>\n  </div>\n  <footer');
 buf.push(attrs({ terse: true, 'id':('footer') }, {}));
 buf.push('>\n    <div>\n      <div');
 buf.push(attrs({ terse: true, 'id':('sitemap') }, {}));

@@ -33,7 +33,7 @@ scss:
 js-templates:
 	jade-amd --runtime > public/js/jadeRuntime.js
 	rm -rf public/js/templates
-	jade-amd --pretty --from hosting-app/views --to public/js/templates
+	jade-amd --pretty --from instance-app/views --to public/js/templates
 
 
 minify: scss js-templates
