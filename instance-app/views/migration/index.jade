@@ -8,3 +8,12 @@ block content
     h1 Migration
 
   p Lorem Ipsum
+
+  form(method="post", action="/migration/upload", enctype="multipart/form-data")
+    #migration_source_file
+      label Source file
+      input(type="file", name="source", value="")
+      //if errors.source
+        //span.error #{errors.source.type}
+
+    input(type="submit", class="btn", value="Upload")
