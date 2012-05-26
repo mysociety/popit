@@ -9,6 +9,13 @@ block content
 
   p Lorem Ipsum
 
+  if migration.length
+    ul
+      for single in migration
+        li
+          a(href="/migration/mapping/#{ single.id }") #{ single.source.name } 
+            small (#{ single.created })
+
   form(method="post", action="/migration/upload", enctype="multipart/form-data")
     #migration_source_file
       label Source file
