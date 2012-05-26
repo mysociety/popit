@@ -1,13 +1,19 @@
 extend ../layout
 
 block title
-  | Migration
+  | Migration Tool
 
 block content
   .page-header
-    h1 Migration
+    h1 Migration Tool
 
-  p Lorem Ipsum
+  p 
+    | If you have been collecting information on people in a spreadsheet this 
+    | will let you quickly upload it all into PopIt rather than manually 
+    | entering it in. We expect that this will be in the form of a CSV file with 
+    | the columns given specific names.
+
+  p The migration tool is intended to add data to PopIt, not to edit it.
 
   if migration.length
     ul
