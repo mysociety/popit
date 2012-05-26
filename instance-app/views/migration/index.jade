@@ -19,7 +19,7 @@ block content
     ul
       for single in migration
         li
-          a(href="/migration/mapping/#{ single.id }") #{ single.source.name } 
+          a(href="/migration/#{ single.id }") #{ single.source.name } 
             small (#{ single.created })
 
   form(method="post", action="/migration/upload", enctype="multipart/form-data")
