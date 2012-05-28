@@ -1,7 +1,7 @@
 form(method="post", action="#")
   //- #person_new_name
 
-  div
+  #person_new_name
     label Name
     input(name="name", value=person.name)
     span.error
@@ -9,6 +9,6 @@ form(method="post", action="#")
   #person_new_slug
     label Slug
     input(name="slug", value=person.slug)
-    span.help
+    span.error
 
   input(type="submit", value="Create new person")

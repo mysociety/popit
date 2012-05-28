@@ -5,6 +5,16 @@
 require(   [ 'jquery', 'backbone', 'templates/person/new' ],
   function (  $,        Backbone,  template               ) {
 
+    // handle the API wrapping the responses in result(s): {...}
+    $.ajaxSetup({
+      converters: {
+        "text json": function (json) {
+          var data = $.parseJSON(json);
+          return data.results || data.result || data;
+        }
+      }
+    });
+
     var PersonModel = Backbone.Model.extend({
       urlRoot: '/api/v1/person',
     });
@@ -22,13 +32,28 @@ require(   [ 'jquery', 'backbone', 'templates/person/new' ],
       
       submitForm: function (e) {
         e.preventDefault();
+        var self = this;
 
-        this.model.set({
-          name: this.$('input[name=name]').val(),
-          slug: this.$('input[name=slug]').val(),
-        });
+        this.model.save(
+          {
+            name: this.$('input[name=name]').val(),
+            slug: this.$('input[name=slug]').val(),            
+          },
+          {
+            wait: true,
+            success: function (model, response) {
+              document.location = response.meta.edit_url;
+            },
+            error: function (model, response) {
+              var errors = $.parseJSON( response.responseText ).errors || {};
 
-        this.model.save();
+              self.$('input').siblings('span.error').text('');
+              _.each(errors, function( value, key) {
+                self.$('input[name=' + key + ']').siblings('span.error').text(value);
+              });
+            }
+          }
+        );
 
         console.log('form submit', name);
       },
@@ -40,7 +65,7 @@ require(   [ 'jquery', 'backbone', 'templates/person/new' ],
     	$('#new-person').click(function(event) {
         event.preventDefault();
         
-        var person = new PersonModel({name: 'test name', slug: 'test-slug'});
+        var person = new PersonModel({});
         
         var view = new NewPersonView({model: person});
         view.render();
