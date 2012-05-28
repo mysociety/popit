@@ -2,8 +2,8 @@
 //  Launch a backbone powered entry box when someone clicks the new-person button
 // ------------------------
 
-require(   [ 'jquery', 'backbone', 'templates/person/new' ],
-  function (  $,        Backbone,  template               ) {
+require(   [ 'jquery', 'Backbone', 'backbone-forms', 'templates/person/new' ],
+  function (  $,        Backbone,  BackboneForms,     template               ) {
 
     // handle the API wrapping the responses in result(s): {...}
     $.ajaxSetup({
