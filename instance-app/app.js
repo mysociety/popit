@@ -11,7 +11,9 @@ var express           = require('express'),
     everyauth         = require('everyauth'),
     Db                = require('mongodb').Db,
     Server            = require('mongodb').Server,
-    mongoStore        = require('connect-mongodb');
+    mongoStore        = require('connect-mongodb'),
+    jadeAmdMiddleware =  require('jade-amd').jadeAmdMiddleware;
+    
 
 // everyauth.debug = true;
 
@@ -96,6 +98,13 @@ app.configure(function(){
   
   app.use(express.bodyParser());
   app.use(express.methodOverride());
+});
+
+app.configure('development', function () {
+  app.use( '/js/templates/', jadeAmdMiddleware({}) );
+});
+
+app.configure( function () {
   app.use(express.static(__dirname + '/../' + config.public_dir));
   
   // sessions and auth
