@@ -10,7 +10,7 @@
   
   paths: {
     // external libraries
-    'jquery':           './libs/jquery-1.7.2.min',
+    'jquery':           './libs/jquery-1.7.2',
     'jquery.mailcheck': './libs/jquery.mailcheck.1.0.3.min',
 
     // AMD versions of these libraries:
