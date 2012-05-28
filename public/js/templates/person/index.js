@@ -79,8 +79,10 @@ buf.push('>Import data automatically</a></div>\n    </div>\n  </header>\n  <div'
 buf.push(attrs({ terse: true, 'id':('content') }, {}));
 buf.push('>\n    <div');
 buf.push(attrs({ terse: true, "class": ('page-header') }, {}));
-buf.push('>\n      <h1>People</h1>\n    </div>\n    <p><a');
-buf.push(attrs({ terse: true, 'href':("/person/new") }, {"href":true}));
+buf.push('>\n      <h1>People</h1>\n    </div>\n    <p');
+buf.push(attrs({ terse: true, "class": ('admin-options') }, {}));
+buf.push('><a');
+buf.push(attrs({ terse: true, 'id':('new-person'), 'href':("/person/new") }, {"href":true}));
 buf.push('>Create a new person</a></p>');
 if ( people.length)
 {

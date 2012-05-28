@@ -77,7 +77,7 @@ buf.push('\n      <div><a');
 buf.push(attrs({ terse: true, 'href':('/info/data-import') }, {"href":true}));
 buf.push('>Import data automatically</a></div>\n    </div>\n  </header>\n  <div');
 buf.push(attrs({ terse: true, 'id':('content') }, {}));
-buf.push('>\n    <style>\n      a.hover_edit {\n        float: right;\n        color: #ddd;\n        font-size: 80%;\n      }    \n      \n      a.hover_edit:hover {\n        color: #333;\n      }\n      \n      \n    </style>\n    <article');
+buf.push('>\n    <article');
 buf.push(attrs({ terse: true, 'id':("person-james_gordon_brown"), 'itemscope':(true), 'itemtype':("http://schema.org/Person"), "class": ("person") }, {"class":true,"id":true,"itemscope":true,"itemtype":true}));
 buf.push('>\n      <header');
 buf.push(attrs({ terse: true, 'id':("person-" + (person.slug) + ""), "class": ('person-header-nav') }, {"id":true}));
@@ -230,7 +230,7 @@ buf.push('><strong>+ add </strong>information</a></li>\n        </ul>\n        <
       var contact = person.contact_details[$index];
 
 buf.push('\n          <dt>' + escape((interp =  contact.kind ) == null ? '' : interp) + ':</dt>\n          <dd>' + escape((interp =  contact.value ) == null ? '' : interp) + '<a');
-buf.push(attrs({ terse: true, 'href':("" + (person.slug_url) + "/contacts/" + (contact.id) + "/edit"), "class": ('hover_edit') }, {"href":true}));
+buf.push(attrs({ terse: true, 'href':("" + (person.slug_url) + "/contacts/" + (contact.id) + "/edit"), "class": ('admin-options') }, {"href":true}));
 buf.push('>edit</a></dd>');
     }
   } else {
@@ -238,7 +238,7 @@ buf.push('>edit</a></dd>');
       var contact = person.contact_details[$index];
 
 buf.push('\n          <dt>' + escape((interp =  contact.kind ) == null ? '' : interp) + ':</dt>\n          <dd>' + escape((interp =  contact.value ) == null ? '' : interp) + '<a');
-buf.push(attrs({ terse: true, 'href':("" + (person.slug_url) + "/contacts/" + (contact.id) + "/edit"), "class": ('hover_edit') }, {"href":true}));
+buf.push(attrs({ terse: true, 'href':("" + (person.slug_url) + "/contacts/" + (contact.id) + "/edit"), "class": ('admin-options') }, {"href":true}));
 buf.push('>edit</a></dd>');
    }
   }
@@ -260,7 +260,7 @@ buf.push('><strong>+ add </strong>link</a></li>\n        </ul>\n        <h2>Link
 buf.push('\n          <dt>' + escape((interp =  link.comment ) == null ? '' : interp) + ':</dt>\n          <dd><a');
 buf.push(attrs({ terse: true, 'href':(link.url) }, {"href":true}));
 buf.push('>' + escape((interp =  link.url ) == null ? '' : interp) + '</a><a');
-buf.push(attrs({ terse: true, 'href':("" + (person.slug_url) + "/links/" + (link.id) + "/edit"), "class": ('hover_edit') }, {"href":true}));
+buf.push(attrs({ terse: true, 'href':("" + (person.slug_url) + "/links/" + (link.id) + "/edit"), "class": ('admin-options') }, {"href":true}));
 buf.push('>edit</a></dd>');
     }
   } else {
@@ -270,7 +270,7 @@ buf.push('>edit</a></dd>');
 buf.push('\n          <dt>' + escape((interp =  link.comment ) == null ? '' : interp) + ':</dt>\n          <dd><a');
 buf.push(attrs({ terse: true, 'href':(link.url) }, {"href":true}));
 buf.push('>' + escape((interp =  link.url ) == null ? '' : interp) + '</a><a');
-buf.push(attrs({ terse: true, 'href':("" + (person.slug_url) + "/links/" + (link.id) + "/edit"), "class": ('hover_edit') }, {"href":true}));
+buf.push(attrs({ terse: true, 'href':("" + (person.slug_url) + "/links/" + (link.id) + "/edit"), "class": ('admin-options') }, {"href":true}));
 buf.push('>edit</a></dd>');
    }
   }
