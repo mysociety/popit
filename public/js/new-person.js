@@ -2,8 +2,8 @@
 //  Launch a backbone powered entry box when someone clicks the new-person button
 // ------------------------
 
-require(   [ 'jquery', 'Backbone', 'backbone-forms', 'templates/person/new' ],
-  function (  $,        Backbone,  BackboneForms,     template               ) {
+require(   [ 'jquery', 'backbone-forms', 'Backbone', 'underscore' ],
+  function (  $,        BackboneForms,    Backbone,   _           ) {
 
     // handle the API wrapping the responses in result(s): {...}
     $.ajaxSetup({
@@ -17,12 +17,21 @@ require(   [ 'jquery', 'Backbone', 'backbone-forms', 'templates/person/new' ],
 
     var PersonModel = Backbone.Model.extend({
       urlRoot: '/api/v1/person',
+      schema: {
+        name: { dataType: 'Text', validators: ['required'] },
+        slug: { dataType: 'Text' },
+      }
     });
 
     var NewPersonView = Backbone.View.extend({
+
       render: function () {
-        console.log('render', this.model.toJSON() );
-        this.$el.html( template({ person: this.model.toJSON() }) );
+        // put in init
+        var form = this.form || new BackboneForms({ model: this.model });
+        this.form = form;
+        form.render();
+        $(form.el).append('<input type="submit" value="save" />');
+        this.$el.append(form.el);
         return this;
       },
       
@@ -32,47 +41,51 @@ require(   [ 'jquery', 'Backbone', 'backbone-forms', 'templates/person/new' ],
       
       submitForm: function (e) {
         e.preventDefault();
-        var self = this;
 
-        this.model.save(
-          {
-            name: this.$('input[name=name]').val(),
-            slug: this.$('input[name=slug]').val(),            
-          },
-          {
-            wait: true,
-            success: function (model, response) {
-              document.location = response.meta.edit_url;
-            },
-            error: function (model, response) {
-              var errors = $.parseJSON( response.responseText ).errors || {};
+        var self   = this;
+        var form   = self.form;        
+        var errors = form.commit();
 
-              self.$('input').siblings('span.error').text('');
-              _.each(errors, function( value, key) {
-                self.$('input[name=' + key + ']').siblings('span.error').text(value);
-              });
+        if (_.isEmpty(errors)) {
+          this.model.save(
+            {},
+            {
+              success: function (model, response) {
+                document.location = response.meta.edit_url;
+              },
+              error: function (model, response) {
+                var errors = $.parseJSON( response.responseText ).errors || {};
+                _.each(errors, function(val, key) {
+                  form.fields[key] && form.fields[key].setError(val);
+                });         
+              }
             }
-          }
-        );
+          );
+        }
 
-        console.log('form submit', name);
       },
+
+
     });
 
 
     $(function() {
   
     	$('#new-person').click(function(event) {
+
         event.preventDefault();
         
         var person = new PersonModel({});
-        
-        var view = new NewPersonView({model: person});
+        var view   = new NewPersonView({model: person});
+
         view.render();
+
         var $replacement = view.$el;
         $replacement.hide();
         $(this).hide().replaceWith( $replacement );
         $replacement.slideDown();
+
+        view.$(':input:first').focus();
     	});
   
     });
