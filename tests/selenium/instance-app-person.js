@@ -36,16 +36,22 @@ module.exports = {
         browser
             // go to new person page
             // .clickAndWait('link=all the people')
-            .clickAndWait("link=Create a new person")
+
+            // Check that we can't see the create new link
+            .assertNotVisible("link=Create a new person")
+
+            // login
+            .clickAndWait("link=Sign In")        
             
             // check that we are at the login page
             .assertTitle('Welcome back')
             .and(selenium_helpers.login())
-            .assertTitle('New Person')
+            .assertVisible("link=Create a new person")
 
             // try to enter an empty name
-            .clickAndWait("css=input[type=\"submit\"]")
-            .assertTextPresent("required")
+            .click("link=Create a new person")
+            .click("css=input[type=\"submit\"]")
+            .assertTextPresent("Required")
             
             // enter a proper name, get sent to person page
             .type("name=name", "Joe Bloggs")
@@ -68,7 +74,7 @@ module.exports = {
             // create another person with the same slug
             .open('/')
             // .clickAndWait('link=all the people')
-            .clickAndWait("link=Create a new person")            
+            .click("link=Create a new person")            
             .type("name=name", "Joé Bloggs")
             .clickAndWait("css=input[type=\"submit\"]")
             .assertTitle("Joé Bloggs")
@@ -84,10 +90,10 @@ module.exports = {
             // add a person with an unsluggable name
             .open('/')
             // .clickAndWait('link=all the people')
-            .clickAndWait("link=Create a new person")            
+            .click("link=Create a new person")            
             .type("name=name", "网页")
-            .clickAndWait("css=input[type=\"submit\"]")
-            .assertTextPresent("Can't create one automatically from the name")
+            .click("css=input[type=\"submit\"]")
+            .assertTextPresent("required")
             .type("name=slug", "chinese-name")
             .clickAndWait("css=input[type=\"submit\"]")
             .assertTitle("网页")

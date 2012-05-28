@@ -117,7 +117,7 @@ module.exports = {
             })
             .assertTextPresent( 'PopIt : foobar')
             .assertTextPresent( 'Create a new person')
-            .assertTitle( 'New Person')
+            .assertTitle( 'People')
             
             // check that we are logged in
             .assertTextPresent('Hello bob@example.com')
