@@ -916,12 +916,12 @@ article.person > footer {
 
 /* line 351, ../sass/_default.scss */
 .admin-options {
-  display: none;
+  visibility: hidden;
 }
 
 /* line 352, ../sass/_default.scss */
 body.signed_in .admin-options {
-  display: block;
+  visibility: visible;
 }
 
 /* line 359, ../sass/_default.scss */
