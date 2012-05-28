@@ -27,5 +27,6 @@ require(
   'search-box',
   'slug-validation',
   'sign-in-toggle',
+  'new-person',
   ]
 );
