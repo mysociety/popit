@@ -2,9 +2,9 @@
 // Slug Validation
 // ------------------------
 
-require(['jquery'], function($) {
+require( [ 'jquery', 'slugify' ],
+  function( $,        slugify  ) {
 
-	/* FIXME EVDB check this is the best way to do this and also to match with serverside checks */
 	var check_allowed_letter = function(ltr){
 		if(
 			(ltr >= 97 && ltr <= 122) // a-z
@@ -13,7 +13,7 @@ require(['jquery'], function($) {
 			||
 			(ltr >= 48 && ltr <= 57) // 0-9
 			||
-			(ltr === 45) // _
+			(ltr === 45) // -
 		){
 			return true;
 		} else{
@@ -31,7 +31,7 @@ require(['jquery'], function($) {
 	    change: function(e) {
       	// Check pasted text
       	var changedText = $(this).val();
-      	var cleanedText = changedText.replace(/[^a-z0-9\-]+/gi, '-').toLowerCase();
+      	var cleanedText = slugify( changedText );
       	$(this).val(cleanedText);
       }
     },
