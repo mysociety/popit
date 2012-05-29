@@ -7,7 +7,14 @@ block content
   .page-header
     h1 Migration Tool
 
-  p Define mapping
+  p TODO: Description for define mapping
+
+  div
+    form
+      label(for="schema") Select schema for import
+      select(name="schema")
+        option(value="person") Person
+        option(value="organization") Organization
   
   #{ migration.source }
 
