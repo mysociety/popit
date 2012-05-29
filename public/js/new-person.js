@@ -2,8 +2,8 @@
 //  Launch a backbone powered entry box when someone clicks the new-person button
 // ------------------------
 
-require(   [ 'jquery', 'backbone-forms', 'Backbone', 'underscore' ],
-  function (  $,        BackboneForms,    Backbone,   _           ) {
+require(   [ 'jquery', 'backbone-forms', 'Backbone', 'underscore', 'slugify' ],
+  function (  $,        BackboneForms,    Backbone,   _          ,  slugify  ) {
 
     // handle the API wrapping the responses in result(s): {...}
     $.ajaxSetup({
@@ -19,7 +19,7 @@ require(   [ 'jquery', 'backbone-forms', 'Backbone', 'underscore' ],
       urlRoot: '/api/v1/person',
       schema: {
         name: { dataType: 'Text', validators: ['required'] },
-        slug: { dataType: 'Text' },
+        slug: { dataType: 'Text', validators: ['required'] },
       }
     });
 
@@ -38,7 +38,8 @@ require(   [ 'jquery', 'backbone-forms', 'Backbone', 'underscore' ],
       },
       
       events: {
-        'submit form ': 'submitForm',
+        'submit form ':             'submitForm',
+        'keyup input[name=name]':   'nameEdit',
       },
       
       submitForm: function (e) {
@@ -65,6 +66,20 @@ require(   [ 'jquery', 'backbone-forms', 'Backbone', 'underscore' ],
           );
         }
 
+      },
+      
+      // When the name is being entered we should fill in the slug. This will
+      // let the user edit the slug, or see that it can't be generated from the
+      // name. Also means that we don't need to explain why that field is there.
+      nameEdit: function (e) {
+        var $name = this.$(':input[name=name]');
+        var $slug = this.$(':input[name=slug]');
+
+        // console.log( String.fromCharCode(e.which) );
+        
+        $slug.val( slugify( $name.val() ) );
+                
+        return true;
       },
 
 
