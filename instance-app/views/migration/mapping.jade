@@ -6,7 +6,7 @@ block title
 block content
   .page-header
     h1 
-      a(href='/migration') Migration Tool
+      a(href="/migration") Migration Tool
 
   p TODO: Description for define mapping
 
@@ -16,9 +16,23 @@ block content
       select(name="schema")
         option(value="person") Person
         option(value="organization") Organization
-  
-  #{ migration.source }
 
-  #{ migration.source.parsed }
-
-  
+  div(class="schema")
+    if migration.source.parsed
+      table
+        thead
+          tr
+            th From CSV
+            th In schema
+            th Example entry
+        tbody
+          for entry in _.zip(migration.source.parsed.header, migration.source.parsed.data[1])
+            tr
+              td
+                #{entry[0]}
+              td
+                select
+                  option(value="", selected="selected")
+                  option(value="foo") foo
+              td
+                #{entry[1]}
