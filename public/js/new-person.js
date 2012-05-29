@@ -25,10 +25,12 @@ require(   [ 'jquery', 'backbone-forms', 'Backbone', 'underscore' ],
 
     var NewPersonView = Backbone.View.extend({
 
+      initialize: function () {
+        this.form = new BackboneForms({ model: this.model });        
+      },
+      
       render: function () {
-        // put in init
-        var form = this.form || new BackboneForms({ model: this.model });
-        this.form = form;
+        var form = this.form;
         form.render();
         $(form.el).append('<input type="submit" value="save" />');
         this.$el.append(form.el);
