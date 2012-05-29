@@ -16,17 +16,18 @@ block content
   p The migration tool is intended to add data to PopIt, not to edit it.
 
   if migration.length
+    a(href="/migration/clear") Clear previous migrations
     ul
       for single in migration
         li
-          a(href="/migration/#{ single.id }") #{ single.source.name } 
+          a(href="/migration/mapping/#{ single.id }") #{ single.source.name } 
             small (#{ single.created })
 
   form(method="post", action="/migration/upload", enctype="multipart/form-data")
     #migration_source_file
       label Source file
       input(type="file", name="source", value="")
-      //if errors.source
-        //span.error #{errors.source.type}
+      //if error != ''
+      //  span.error #{error}
 
     input(type="submit", class="btn", value="Upload")
