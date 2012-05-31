@@ -7,8 +7,7 @@ define(
     'utils/slugify',
     'templates/person/new',
     'popit/models/person',
-    'popit/views/suggestions',
-    'popit/collections/suggestions'
+    'popit/views/suggestions'
   ],
   function (
     $,
@@ -18,16 +17,14 @@ define(
     slugify,
     newPersonTemplate,
     PersonModel,
-    SuggestionsView,
-    SuggestionsCollection
+    SuggestionsView
   ) {
 
     var NewPersonView = Backbone.View.extend({
   
       initialize: function () {
         this.form = new BackboneForms({ model: this.model });        
-        this.suggestions     = new SuggestionsCollection();
-        this.suggestionsView = new SuggestionsView({collection: this.suggestions});
+        this.suggestionsView = new SuggestionsView();
       },
       
       render: function () {
@@ -90,19 +87,8 @@ define(
         // Try to load matching people from the server and display them in the
         // 'possible matches' list.
         var self = this;
-        
-        if ($name.val()) {
-          self.suggestions.fetch({
-            data: { name: $name.val() },
-            success: function () {
-              self.suggestionsView.render();
-            }
-          });          
-        } else {
-          self.suggestions.reset();
-        }
-        
-        
+
+        self.suggestionsView.setName($name.val());              
   
         return true;
       },
