@@ -34,14 +34,6 @@ require(
       }
     });
 
-    var PersonModel = Backbone.Model.extend({
-      urlRoot: '/api/v1/person',
-      schema: {
-        name: { dataType: 'Text', validators: ['required'] },
-        slug: { dataType: 'Text', validators: ['required'] },
-      }
-    });
-
     var PossibleMatchesCollection = Backbone.Collection.extend({
       url: '/api/v1/person'
     });
