@@ -24,10 +24,10 @@ require(
     },
   },
   [
-  'mailchecker',
-  'search-box',
-  'slug-validation',
-  'sign-in-toggle',
+  'augmenters/mailchecker',
+  'augmenters/search-box',
+  'augmenters/slug-validation',
+  'augmenters/sign-in-toggle',
   'new-person',
   ]
 );

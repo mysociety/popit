@@ -24,7 +24,7 @@ require(
     },
   },
   [
-    'mailchecker',
-    'slug-validation'
+    'augmenters/mailchecker',
+    'augmenters/slug-validation'
   ]
 );

@@ -2,7 +2,7 @@
 // Slug Validation
 // ------------------------
 
-require( [ 'jquery', 'slugify' ],
+require( [ 'jquery', 'utils/slugify' ],
   function( $,        slugify  ) {
 
 	var check_allowed_letter = function(ltr){

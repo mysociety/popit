@@ -2,8 +2,8 @@
 //  Launch a backbone powered entry box when someone clicks the new-person button
 // ------------------------
 
-require(   [ 'jquery', 'backbone-forms', 'Backbone', 'underscore', 'slugify', 'templates/person/new', 'templates/person/compact_list' ],
-  function (  $,        BackboneForms,    Backbone,   _          ,  slugify,   personTemplate,         compactListTemplate            ) {
+require(   [ 'jquery', 'backbone-forms', 'Backbone', 'underscore', 'utils/slugify', 'templates/person/new', 'templates/person/compact_list' ],
+  function (  $,        BackboneForms,    Backbone,   _          ,  slugify,         personTemplate,         compactListTemplate            ) {
 
     // handle the API wrapping the responses in result(s): {...}
     $.ajaxSetup({
