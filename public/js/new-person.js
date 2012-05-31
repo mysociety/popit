@@ -10,8 +10,9 @@ require(
     'underscore',
     'utils/slugify',
     'templates/person/new',
-    'templates/person/compact_list',
-    'popit/models/person'
+    'popit/models/person',
+    'popit/views/suggestions',
+    'popit/collections/suggestions'
   ],
   function (
     $,
@@ -20,8 +21,9 @@ require(
     _,
     slugify,
     personTemplate,
-    compactListTemplate,
-    PersonModel
+    PersonModel,
+    SuggestionsView,
+    SuggestionsCollection
   ) {
 
     // handle the API wrapping the responses in result(s): {...}
@@ -34,32 +36,12 @@ require(
       }
     });
 
-    var PossibleMatchesCollection = Backbone.Collection.extend({
-      url: '/api/v1/person'
-    });
-
-    var PossibleMatchesView = Backbone.View.extend({
-      tagName:   'ul',
-      className: 'potential-matches',
-
-      initialize: function() {
-        var self = this;
-        this.collection.bind("reset", function() { self.render() } );
-      },
-
-      render: function () {
-        var content = compactListTemplate({ persons: this.collection.toJSON() });
-        this.$el.html( content );
-        return this;
-      }
-    });
-
     var NewPersonView = Backbone.View.extend({
 
       initialize: function () {
         this.form = new BackboneForms({ model: this.model });        
-        this.possibleMatches     = new PossibleMatchesCollection();
-        this.possibleMatchesView = new PossibleMatchesView({collection: this.possibleMatches});
+        this.suggestions     = new SuggestionsCollection();
+        this.suggestionsView = new SuggestionsView({collection: this.suggestions});
       },
       
       render: function () {
@@ -74,8 +56,8 @@ require(
         // update our element
         this.$el.html( $content );
 
-        // give the list to the PossibleMatches view for rendering
-        this.$('ul.potential-matches').html( this.possibleMatchesView.render().el );
+        // give the list to the Suggestions view for rendering
+        this.$('ul.suggestions').html( this.suggestionsView.render().el );
 
         return this;
       },
@@ -124,14 +106,14 @@ require(
         var self = this;
         
         if ($name.val()) {
-          self.possibleMatches.fetch({
+          self.suggestions.fetch({
             data: { name: $name.val() },
             success: function () {
-              self.possibleMatchesView.render();
+              self.suggestionsView.render();
             }
           });          
         } else {
-          self.possibleMatches.reset();
+          self.suggestions.reset();
         }
         
         
