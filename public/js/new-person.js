@@ -111,12 +111,18 @@ require(   [ 'jquery', 'backbone-forms', 'Backbone', 'underscore', 'utils/slugif
         // Try to load matching people from the server and display them in the
         // 'possible matches' list.
         var self = this;
-        self.possibleMatches.fetch({
-          data: { name: $name.val() },
-          success: function () {
-            self.possibleMatchesView.render();
-          }
-        });
+        
+        if ($name.val()) {
+          self.possibleMatches.fetch({
+            data: { name: $name.val() },
+            success: function () {
+              self.possibleMatchesView.render();
+            }
+          });          
+        } else {
+          self.possibleMatches.reset();
+        }
+        
         
 
         return true;
