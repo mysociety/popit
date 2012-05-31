@@ -2,8 +2,8 @@
 //  Launch a backbone powered entry box when someone clicks the new-person button
 // ------------------------
 
-require(   [ 'jquery', 'backbone-forms', 'Backbone', 'underscore', 'slugify' ],
-  function (  $,        BackboneForms,    Backbone,   _          ,  slugify  ) {
+require(   [ 'jquery', 'backbone-forms', 'Backbone', 'underscore', 'slugify', 'templates/person/new', 'templates/person/compact_list' ],
+  function (  $,        BackboneForms,    Backbone,   _          ,  slugify,   personTemplate,         compactListTemplate            ) {
 
     // handle the API wrapping the responses in result(s): {...}
     $.ajaxSetup({
@@ -23,17 +23,49 @@ require(   [ 'jquery', 'backbone-forms', 'Backbone', 'underscore', 'slugify' ],
       }
     });
 
+    var PossibleMatchesCollection = Backbone.Collection.extend({
+      url: '/api/v1/person'
+    });
+
+    var PossibleMatchesView = Backbone.View.extend({
+      tagName:   'ul',
+      className: 'potential-matches',
+
+      initialize: function() {
+        var self = this;
+        this.collection.bind("reset", function() { self.render() } );
+      },
+
+      render: function () {
+        var content = compactListTemplate({ persons: this.collection.toJSON() });
+        this.$el.html( content );
+        return this;
+      }
+    });
+
     var NewPersonView = Backbone.View.extend({
 
       initialize: function () {
         this.form = new BackboneForms({ model: this.model });        
+        this.possibleMatches     = new PossibleMatchesCollection();
+        this.possibleMatchesView = new PossibleMatchesView({collection: this.possibleMatches});
       },
       
       render: function () {
-        var form = this.form;
-        form.render();
-        $(form.el).append('<input type="submit" value="save" />');
-        this.$el.append(form.el);
+
+        // render the template and form
+        var $content = $( personTemplate({}) );
+        var $form    = $( this.form.render().el );
+
+        // add the contents of the form to the template content
+        $content.find('form').prepend( $form.children() );
+        
+        // update our element
+        this.$el.html( $content );
+
+        // give the list to the PossibleMatches view for rendering
+        this.$('ul.potential-matches').html( this.possibleMatchesView.render().el );
+
         return this;
       },
       
@@ -68,17 +100,25 @@ require(   [ 'jquery', 'backbone-forms', 'Backbone', 'underscore', 'slugify' ],
 
       },
       
-      // When the name is being entered we should fill in the slug. This will
-      // let the user edit the slug, or see that it can't be generated from the
-      // name. Also means that we don't need to explain why that field is there.
       nameEdit: function (e) {
+        // When the name is being entered we should fill in the slug. This will
+        // let the user edit the slug, or see that it can't be generated from the
+        // name. Also means that we don't need to explain why that field is there.
         var $name = this.$(':input[name=name]');
         var $slug = this.$(':input[name=slug]');
-
-        // console.log( String.fromCharCode(e.which) );
-        
         $slug.val( slugify( $name.val() ) );
                 
+        // Try to load matching people from the server and display them in the
+        // 'possible matches' list.
+        var self = this;
+        self.possibleMatches.fetch({
+          data: { name: $name.val() },
+          success: function () {
+            self.possibleMatchesView.render();
+          }
+        });
+        
+
         return true;
       },
 
