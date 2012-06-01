@@ -6,6 +6,7 @@
 var connect        = require('connect'),
     config         = require('config'),
     hosting_app    = require('./hosting-app/app'),
+    utils          = require('./lib/utils'),
     instance_app   = require('./instance-app/app');
 
 connect(
@@ -22,3 +23,5 @@ console.log(
   "\033[1m PopIt hosting and instance apps started: \033[36mhttp://%s:%s\033[0m",
   config.hosting_server.host, config.server.port
 );
+
+utils.checkDatabaseConnection();
