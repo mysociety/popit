@@ -31,7 +31,7 @@ scss:
 
 minify:
 	rm -rf public-minified
-	r.js -o public/js/app.build.js
+	node_modules/.bin/r.js -o public/js/app.build.js
 	rm    public-minified/build.txt
 	rm    public-minified/js/app.build.js 
 	rm -r public-minified/sass/
