@@ -31,6 +31,14 @@ require(
   'augmenters/search-box',
   'augmenters/slug-validation',
   'augmenters/sign-in-toggle',
-  'new-person',
+  'popit/app',
   ]
+);
+
+
+require (
+  ['jquery', 'popit/app'],
+  function ($, App) {
+    $( function() { App.start() } );
+  }
 );
