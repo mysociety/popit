@@ -35,7 +35,6 @@ minify:
 	rm    public-minified/build.txt
 	rm    public-minified/js/app.build.js 
 	rm -r public-minified/sass/
-	find public-minified -name '*.png' | xargs optipng -o 5 -clobber -quiet
 
 
 tidy:
