@@ -10,13 +10,18 @@
 
     var jquery = require('jquery');
     var underscore = require('underscore');
-    var backbone = require('backbone');
+
+    // changed locally from 'backbone' to 'Backbone' so that it is more
+    // compatible with other code - eg backbone-forms
+    var backbone = require('Backbone');
 
     module.exports = factory(jquery, underscore, backbone);
 
   } else if (typeof define === 'function' && define.amd) {
 
-    define(['jquery', 'underscore', 'backbone'], factory);
+    // changed locally from 'backbone' to 'Backbone' so that it is more
+    // compatible with other code - eg backbone-forms
+    define(['jquery', 'underscore', 'Backbone'], factory);
 
   } 
 }(this, function ($, _, Backbone) {

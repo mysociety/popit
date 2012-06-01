@@ -21,7 +21,7 @@
     'backbone-forms':   './libs/backbone-forms-0.9.0-amd',
 
     // https://raw.github.com/derickbailey/backbone.marionette/master/lib/amd/backbone.marionette.js
-    'backbone-marionette': './libs/backbone.marionette-0.8.4.js',
+    'Backbone.Marionette': './libs/backbone.marionette-0.8.4',
 
     // Require.js plugins
     'text':  './libs/requirejs/text-1.0.8.min',
