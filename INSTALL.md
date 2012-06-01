@@ -31,6 +31,14 @@ If you use [Homebrew](http://mxcl.github.com/homebrew/) on a Mac then these comm
     # to develop PopIt (in addition to the above)
     brew install optipng selenium-server-standalone
 
+If you use [MacPorts](http://www.macports.org/) then these commands will install some of the needed components:
+
+    # to run PopIt
+    port install git-core npm mongodb
+
+    # to develop PopIt (in addition to the above)
+    port install rb-haml optipng
+
 
 ## Getting the PopIt code
 
