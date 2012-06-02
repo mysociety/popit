@@ -2,9 +2,9 @@
 // switch to testing mode
 process.env.NODE_ENV = 'testing';
 
-var utils    = require('../../lib/utils'),
-    PopIt    = require('../../lib/popit'),
-    MigrationApp    = require('../../lib/apps/migration');
+var utils         = require('../../lib/utils'),
+    PopIt         = require('../../lib/popit'),
+    MigrationApp  = require('../../lib/apps/migration');
     
 module.exports = {
     
@@ -53,11 +53,21 @@ module.exports = {
     },
 
     "migration parse csv": function ( test ) {    
-        test.expect( 0 );
+        test.expect( 5 );
 
-        // FIXME throws an error
-        //var migration = new this.MigrationApp();
-        //test.ok( migration, "got new migation app" );
+        var migration = new MigrationApp();
+        test.ok( migration, "got new migation app" );
+
+        test.ok( migration.parseCsv, "migration tests" );
+
+        var realParsedCsv = { '0': [ 'a', 'b', 'c' ],
+                              '1': [ ' foo\t', ' bar' ],
+                              '2': [ '%*', ' ä', ' ßßß', ' ' ] };
+        migration.parseCsv(__dirname+"/sample_csv.txt", function(parsed, err) {
+          test.ifError(err);
+          test.ok( parsed, "migration tests" );
+          test.deepEqual( parsed, realParsedCsv, "migration tests" );
+        });
 
         // test if method exists
 
