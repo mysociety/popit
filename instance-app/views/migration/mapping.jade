@@ -9,35 +9,81 @@ block content
       a(href="/migration") Migration Tool
 
   p TODO: Description for define mapping
+    | If you leave the 
+    i Database schema group 
+    | or the 
+    i Database Attribute 
+    | empty, it will not be imported.
+
 
   for schema in schemas
     h2 #{schema.name}
-    form(method="post", action="", class="migration-form horizontal-form")
-      input(type="submit", class="btn", value="Start migration")
 
-      for entry in _.zip(migration.source.parsed.header, migration.source.parsed.data[1],  migration.source.parsed.data[2])
-        fieldset
-          div(class="control-group")
-            label(for="csv-attribute", class="control-label") Create a mapping from this header
-            div(class="controls")
-              input(type="text", class="uneditable-input", name="csv-attribute", value=entry[0])
+    form(method="post", action="", class="migration-form")
+      input(type="hidden", name="db-schema", value=schema.id)
+      if migration.source.parsed
+        table(class="migration-table")
+          thead
+            tr
+              th Header from CSV
+              th Database schema group
+              th Database Attribute
+              th hidden
+              th Example entry 1
+              th Example entry 2
+          tbody
+            for entry in _.zip(migration.source.parsed.header, migration.source.parsed.data[1],  migration.source.parsed.data[2])
+              tr(class="")
+                td
+                  input(type="hidden", name="csv-attribute", value=entry[0])
+                  #{entry[0]}
+                td
+                  select(name="db-attribute-class")
+                    option(value="", selected="selected")
+                    for option in schema.options
+                      option(value="#{option.id}") #{option.title}
+                td
+                  input(type="text", name="db-attribute")
+                td(class="hidden")
+                td(class="sample")
+                  #{entry[1]}
+                td(class="sample")
+                  #{entry[2]}
 
-          div(class="control-group")
-            label(for="db-attribute", class="control-label") To this type of data in the PopIt schema
-            div(class="controls")
-              select(name="db-attribute")
-                option(value="", selected="selected")
-                  for option in schema.options
-                    option(value="foo") #{option.title}
-                  option(value="custom") Custom
+        input(type="submit", class="btn", value="Start migration")
 
-          div(class="control-group")
-            label(for="examples", class="control-label") Example Entries
-            div(class="controls")
-              input(type="text", name="examples", disabled="disabled", value=entry[1])
-              input(type="text", name="examples", disabled="disabled", value=entry[2])
+  
 
-      input(type="submit", class="btn", value="Start migration")
+  //
+    for schema in schemas
+      h2 #{schema.name}
+      form(method="post", action="", class="migration-form horizontal-form")
+        input(type="submit", class="btn", value="Start migration")
+
+        for entry in _.zip(migration.source.parsed.header, migration.source.parsed.data[1],  migration.source.parsed.data[2])
+          fieldset
+            div(class="control-group")
+              label(for="csv-attribute", class="control-label") Create a mapping from this header
+              div(class="controls")
+                input(type="text", class="uneditable-input", name="csv-attribute", value=entry[0])
+
+            div(class="control-group")
+              label(for="db-attribute-group", class="control-label") To this type of data in the PopIt schema
+              div(class="controls")
+                select(name="db-attribute-group")
+                  option(value="", selected="selected")
+                    for option in schema.options
+                      option(value="foo") #{option.title}
+                    option(value="custom") Custom
+                input(type="text", name="db-attribute")
+
+            div(class="control-group")
+              label(for="examples", class="control-label") Example Entries
+              div(class="controls")
+                input(type="text", name="examples", disabled="disabled", value=entry[1])
+                input(type="text", name="examples", disabled="disabled", value=entry[2])
+
+        input(type="submit", class="btn", value="Start migration")
 
 
 //-
