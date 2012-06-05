@@ -710,6 +710,21 @@ form .append .add-on {
   width: 5em;
   color: #888;
 }
+table.migration-table {
+  border-spacing: 2;
+}
+table.migration-table tr {
+  border: 1px solid #aaa;
+}
+table.migration-table tr:nth-child(even) {
+  background-color: #eef;
+}
+table.migration-table tr th {
+  padding: 0.2em 2em;
+}
+table.migration-table tr td {
+  padding: 0.1em;
+}
 button, a.btn, input.btn {
   border: none;
   display: inline-block;

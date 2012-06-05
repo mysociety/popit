@@ -1084,6 +1084,28 @@ form .append .add-on {
   color: #888;
 }
 
+/* Table Styles */
+/* line 4, ../sass/_tables.scss */
+table.migration-table {
+  border-spacing: 2;
+}
+/* line 6, ../sass/_tables.scss */
+table.migration-table tr {
+  border: 1px solid #aaa;
+}
+/* line 8, ../sass/_tables.scss */
+table.migration-table tr:nth-child(even) {
+  background-color: #eef;
+}
+/* line 11, ../sass/_tables.scss */
+table.migration-table tr th {
+  padding: 0.2em 2em;
+}
+/* line 14, ../sass/_tables.scss */
+table.migration-table tr td {
+  padding: 0.1em;
+}
+
 /* line 1, ../sass/_buttons.scss */
 button, a.btn, input.btn {
   border: none;
