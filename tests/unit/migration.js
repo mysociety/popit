@@ -110,7 +110,7 @@ module.exports = {
     },
 
     "migration import": function ( test ) {    
-        test.expect( 11 );
+        test.expect( 10 );
 
         var migration = new MigrationApp();
         test.ok( migration, "got new migation app" );
@@ -209,9 +209,7 @@ module.exports = {
         var that = this;
 
         migration.doImport(that.popit, schema, mappings, data, function(err, people) {
-          // error is an array!
-          test.ifError(err[0]);
-          test.ifError(err[1]);
+          test.ifError(err);
           test.equal(people.length, 2, 'two people in people set');
 
           var query = that.popit.model('Person').find().asc('name');
@@ -256,7 +254,7 @@ module.exports = {
       migration.doImport(that.popit, schema, mappings, data, function(err, people){
         console.log(err);
 
-        test.equal(err.length, 2, 'two errors because of duplicate slug');
+        test.ok(err, 'expect an error');
         test.equal(people.length, 3, 'three people in people set');
 
         var query = that.popit.model('Person').find().asc('name');
