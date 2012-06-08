@@ -84,8 +84,8 @@ module.exports = {
         var mappings =  [[ 'firstname', 'name', 'First name' ],
             [ 'middlename', 'name', 'Middle name' ],
             [ 'lastname', 'name', 'Last name' ],
-            [ 'twitter', 'link', 'Twitter' ],
-            [ 'facebook', 'link', 'Facebook' ]];
+            [ 'twitter', 'links', 'Twitter' ],
+            [ 'facebook', 'links', 'Facebook' ]];
         var attributes = [ 'John',
             'Peter',
             'Doe',
@@ -97,7 +97,7 @@ module.exports = {
             'First name': 'John', 
             'Middle name': 'Peter', 
             'Last name': 'Doe'},
-          'link': {
+          'links': {
             'Twitter': '@funkyjohn',
             'Facebook': 'John Doe'
           }};
@@ -110,7 +110,7 @@ module.exports = {
     },
 
     "migration import": function ( test ) {    
-        test.expect( 7 );
+        test.expect( 11 );
 
         var migration = new MigrationApp();
         test.ok( migration, "got new migation app" );
@@ -125,14 +125,14 @@ module.exports = {
               [ 'lastname', 'name', 'Last name' ],
               [ 'name_suffix', 'name', 'Name suffix' ],
               [ 'nickname', '', '' ],
-              [ 'party', 'organization', 'Party' ],
+              [ 'party', 'organisation', 'Party' ],
               [ 'state', '', '' ],
               [ 'district', '', '' ],
               [ 'in_office', '', '' ],
               [ 'gender', '', '' ],
               [ 'phone', 'contact', 'Phone' ],
               [ 'fax', 'contact', 'Fax' ],
-              [ 'website', 'link', 'Website' ],
+              [ 'website', 'links', 'Website' ],
               [ 'webform', '', '' ],
               [ 'congress_office', '', '' ],
               [ 'bioguide_id', '', '' ],
@@ -142,11 +142,11 @@ module.exports = {
               [ 'crp_id', '', '' ],
               [ 'twitter_id', 'id', 'Twitter' ],
               [ 'congresspedia_url', '', '' ],
-              [ 'youtube_url', 'link', 'Youtube' ],
+              [ 'youtube_url', 'links', 'Youtube' ],
               [ 'facebook_id', '', '' ],
               [ 'official_rss', '', '' ],
               [ 'senate_class', '', '' ],
-              [ 'birthdate', 'name', 'Birtdate' ] ];
+              [ 'birthdate', 'name', 'Birthdate' ] ];
         data = {'675': 
           [ 'Sen',
             'John',
@@ -219,8 +219,12 @@ module.exports = {
           query.run(function(err, docs) {
             test.ifError(err);
 
-            console.log(docs);
             test.equal(docs.length, 2, 'two people in database');
+
+            docs.forEach(function(doc) {
+              test.equal(doc.links.length, 2, 'two links per person');
+              test.equal(doc.contact_details.length, 2, 'two contact details per person');
+            })
 
             test.done();
           });
