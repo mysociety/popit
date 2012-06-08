@@ -16,11 +16,11 @@ block content
     | empty, it will not be imported.
 
 
-  for schema in schemas
+  for schema, schemaid in schemas
     h2 #{schema.name}
 
     form(method="post", action="", class="migration-form")
-      input(type="hidden", name="db-schema", value=schema.id)
+      input(type="hidden", name="db-schema", value=schemaid)
       if migration.source.parsed
         table(class="migration-table")
           thead
@@ -32,16 +32,16 @@ block content
               th Example entry 1
               th Example entry 2
           tbody
-            for entry in _.zip(migration.source.parsed.header, migration.source.parsed.data[1],  migration.source.parsed.data[2])
-              tr(class="")
+            for entry, entrykey in _.zip(migration.source.parsed.header, migration.source.parsed.data[1],  migration.source.parsed.data[2])
+              tr()
                 td
                   input(type="hidden", name="csv-attribute", value=entry[0])
                   #{entry[0]}
                 td
                   select(name="db-attribute-class")
                     option(value="", selected="selected")
-                    for option in schema.options
-                      option(value="#{option.id}") #{option.title}
+                    for option, optionkey in schema.options
+                      option(value="#{optionkey}") #{option.title}
                 td
                   input(type="text", name="db-attribute")
                 td(class="hidden")
