@@ -31,24 +31,24 @@ block content
         input#person-search(type="search", name="person-search")
       
     aside
-      //- ul.photos
-      //-   for image_id in organisation.images
-      //-     li
-      //-       //- FIXME - don't use the full size image here, resize it on the server before sending
-      //-       img(src="/image/#{image_id}-original")
-      //-       p.photo-source source:
-      //-         a(href="#photogrpaher-url") Photographer 
-      //-         abbr.license(title="Creative Commons - By Attribution - Share Alike") CC-BY-SA
-      //-         ul.admin-options
-      //-           li
-      //-             a.delete(href="#FIXME-delete-img-url")
-      //-               strong - delete 
-      //-               | this photograph
-      //- ul.admin-options
-      //-   li
-      //-     a.add(href="#{organisation.slug_url}/upload_image")
-      //-         strong + add 
-      //-         | a photograph
+      ul.photos
+        for image_id in organisation.images
+          li
+            //- FIXME - don't use the full size image here, resize it on the server before sending
+            img(src="/image/#{image_id}-original")
+            p.photo-source source:
+              a(href="#photographer-url") Photographer
+              abbr.license(title="Creative Commons - By Attribution - Share Alike") CC-BY-SA
+              ul.admin-options
+                li
+                  a.delete(href="#FIXME-delete-img-url")
+                    strong - delete
+                    |  this photograph
+      ul.admin-options
+        li
+          a.add(href="#{organisation.slug_url}/upload_image")
+              strong + add
+              |  a photograph
     //- if((!organisation.summary) && (!locals.user))
     //- section.description(itemprop="description")
     //-   ul.admin-options
