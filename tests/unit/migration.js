@@ -254,7 +254,7 @@ module.exports = {
       migration.doImport(that.popit, schema, mappings, data, function(err, people){
         console.log(err);
 
-        test.ok(err, 'expect an error');
+        test.ifError(err, 'expect no error');
         test.equal(people.length, 3, 'three people in people set');
 
         var query = that.popit.model('Person').find().asc('name');
