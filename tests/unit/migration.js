@@ -227,7 +227,7 @@ module.exports = {
         });
     },
 
-    "migration import dublicate handling": function ( test ) {    
+    "migration import duplicate handling": function ( test ) {    
       test.expect( 2 );
 
       var migration = new MigrationApp();
@@ -252,7 +252,7 @@ module.exports = {
       migration.doImport(that.popit, schema, mappings, data, function(err, people){
         console.log(err);
 
-        test.equal(err.length, 2, 'two errors because of dublicate slug');
+        test.equal(err.length, 2, 'two errors because of duplicate slug');
         test.equal(people.length, 3, 'three people in people set');
 
         var query = that.popit.model('Person').find().asc('name');
