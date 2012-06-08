@@ -110,7 +110,7 @@ module.exports = {
     },
 
     "migration import": function ( test ) {    
-        test.expect( 6 );
+        test.expect( 7 );
 
         var migration = new MigrationApp();
         test.ok( migration, "got new migation app" );
@@ -208,10 +208,10 @@ module.exports = {
 
         var that = this;
 
-        // TODO test errors
-
-        migration.doImport(that.popit, schema, mappings, data, function(err, people){
-          test.ifError(err);
+        migration.doImport(that.popit, schema, mappings, data, function(err, people) {
+          // error is an array!
+          test.ifError(err[0]);
+          test.ifError(err[1]);
           test.equal(people.length, 2, 'two people in people set');
 
           var query = that.popit.model('Person').find().asc('name');
@@ -225,6 +225,39 @@ module.exports = {
             test.done();
           });
         });
-    }
+    },
 
+    "migration import dublicate handling": function ( test ) {    
+      test.expect( 2 );
+
+      var migration = new MigrationApp();
+
+      schema = 'person';
+      mappings = 
+        [ [ 'firstname', 'name', 'First name' ],
+        [ 'lastname', 'name', 'Last name' ] ];
+      data = {
+        '675': 
+          [ 'John',
+        'Doe' ],
+        '676': 
+          [ 'John',
+        'Doe'],
+        '677': 
+          [ 'John',
+        'Doe']};
+
+      var that = this;
+
+      migration.doImport(that.popit, schema, mappings, data, function(err, people){
+        console.log(err);
+
+        test.equal(err.length, 2, 'two errors because of dublicate slug');
+        test.equal(people.length, 3, 'three people in people set');
+
+        var query = that.popit.model('Person').find().asc('name');
+
+        test.done();
+      });
+    }
 };
