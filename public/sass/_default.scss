@@ -428,6 +428,15 @@ table.migration-table {
 	input[type='text'] {
 		width: 18em;
 		height: 1.9em;
+		padding: 0 0.6em;
+	}
+	small {
+		color: gray;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		width: 20em;
+		display: block;
 	}
 	.hidden {
 		visibility: collapse;

@@ -20,6 +20,7 @@ require(
   },
   [
   'mailchecker',
+  'migration',
   'search-box',
   'slug-validation',
   'sign-in-toggle',

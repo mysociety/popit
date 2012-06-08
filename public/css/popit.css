@@ -993,6 +993,27 @@ body.signed_in .admin-options {
   color: #ccc;
 }
 
+/* line 428, ../sass/_default.scss */
+table.migration-table input[type='text'] {
+  width: 18em;
+  height: 1.9em;
+  padding: 0 0.6em;
+}
+/* line 433, ../sass/_default.scss */
+table.migration-table small {
+  color: gray;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 20em;
+  display: block;
+}
+/* line 441, ../sass/_default.scss */
+table.migration-table .hidden {
+  visibility: collapse;
+  display: none;
+}
+
 /* line 1, ../sass/_forms.scss */
 form {
   margin: 2.8em 0;
@@ -1103,7 +1124,7 @@ table.migration-table tr th {
 }
 /* line 14, ../sass/_tables.scss */
 table.migration-table tr td {
-  padding: 0.1em;
+  padding: 0.1em 0.1em 0.1em 0.5em;
 }
 
 /* line 1, ../sass/_buttons.scss */
