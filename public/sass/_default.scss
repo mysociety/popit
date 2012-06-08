@@ -419,3 +419,19 @@ body.signed_in .admin-options{ display:block; }
 		color: #ccc;
 	}
 }
+
+// -----------------------
+//	migration Page
+// -----------------------
+
+table.migration-table {
+	input[type='text'] {
+		width: 18em;
+		height: 1.9em;
+	}
+	.hidden {
+		visibility: collapse;
+		display: none;
+	}
+}
+

@@ -28,7 +28,7 @@ block content
               th Header from CSV
               th Database schema group
               th Database Attribute
-              th hidden
+              th(class="hidden") hidden
               th Example entry 1
               th Example entry 2
           tbody
@@ -44,6 +44,7 @@ block content
                       option(value="#{optionkey}") #{option.title}
                 td
                   input(type="text", name="db-attribute")
+                  small(class='suggestions')
                 td(class="hidden")
                 td(class="sample")
                   #{entry[1]}
@@ -51,74 +52,3 @@ block content
                   #{entry[2]}
 
         input(type="submit", class="btn", value="Start migration")
-
-  
-
-  //
-    for schema in schemas
-      h2 #{schema.name}
-      form(method="post", action="", class="migration-form horizontal-form")
-        input(type="submit", class="btn", value="Start migration")
-
-        for entry in _.zip(migration.source.parsed.header, migration.source.parsed.data[1],  migration.source.parsed.data[2])
-          fieldset
-            div(class="control-group")
-              label(for="csv-attribute", class="control-label") Create a mapping from this header
-              div(class="controls")
-                input(type="text", class="uneditable-input", name="csv-attribute", value=entry[0])
-
-            div(class="control-group")
-              label(for="db-attribute-group", class="control-label") To this type of data in the PopIt schema
-              div(class="controls")
-                select(name="db-attribute-group")
-                  option(value="", selected="selected")
-                    for option in schema.options
-                      option(value="foo") #{option.title}
-                    option(value="custom") Custom
-                input(type="text", name="db-attribute")
-
-            div(class="control-group")
-              label(for="examples", class="control-label") Example Entries
-              div(class="controls")
-                input(type="text", name="examples", disabled="disabled", value=entry[1])
-                input(type="text", name="examples", disabled="disabled", value=entry[2])
-
-        input(type="submit", class="btn", value="Start migration")
-
-
-//-
-  div
-    label(for="schema-select") Select schema for import
-    select(name="schema-select")
-      for schema in schemas
-        option(value=schema.id) #{schema.name}
-
-  for schema in schemas
-    div(class="mapping")
-      form(method="post", action="")
-        if migration.source.parsed
-          table
-            thead
-              tr
-                th Header from CSV
-                th Type of data in PopIt schema
-                th Example entry 1
-                th Example entry 2
-            tbody
-              for entry in _.zip(migration.source.parsed.header, migration.source.parsed.data[1],  migration.source.parsed.data[2])
-                fieldset
-                  tr
-                    td
-                      #{entry[0]}
-                    td
-                      select(name="mapEntry")
-                        option(value="", selected="selected")
-                        for option in schema.options
-                          option(value="foo") #{option.title}
-                        option(value="custom") Custom
-                    td(class="sample")
-                      #{entry[1]}
-                    td(class="sample")
-                      #{entry[2]}
-
-          input(type="submit", class="btn", value="Start migration")
