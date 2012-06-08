@@ -45,8 +45,6 @@ This is done by running `make minify` and the results committed to the repositor
 
 Note that the paths used in the templates are the same for both - the JS is either a loader script which gets the required parts individually, or the single combined script.
 
-Also note, that you will need to install 'require.js'. This can be done by executing `npm install -g requirejs`.
-
 
 ## Selenium
 
