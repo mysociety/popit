@@ -79,7 +79,7 @@ module.exports = {
         var migration = new MigrationApp();
         test.ok( migration, "got new migation app" );
 
-        test.ok( migration.invert, "migration tests" );
+        test.ok( migration.zipIt, "migration tests" );
 
         var mappings =  [[ 'firstname', 'name', 'First name' ],
             [ 'middlename', 'name', 'Middle name' ],
@@ -102,7 +102,7 @@ module.exports = {
             'Facebook': 'John Doe'
           }};
 
-        var inverted = migration.invert(mappings, attributes);
+        var inverted = migration.zipIt(mappings, attributes);
 
         test.deepEqual(inverted, expect, 'correctly inverted');
 
