@@ -41,7 +41,8 @@ block content
               abbr.license(title="Creative Commons - By Attribution - Share Alike") CC-BY-SA
               ul.admin-options
                 li
-                  a.delete(href="#FIXME-delete-img-url")
+                  // Should be POST
+                  a.delete(href="/image/#{image_id}/delete")
                     strong - delete
                     |  this photograph
       ul.admin-options
