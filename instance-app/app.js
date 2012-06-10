@@ -143,6 +143,9 @@ app.configure(function(){
   var organisation_app_factory = require('../lib/apps/organisation');
   app.use('/organisation', organisation_app_factory() );
 
+  var about_app_factory = require('../lib/apps/about');
+  app.use('/about', about_app_factory() );
+  
   app.use(app.router);
   
   app.use( require('../lib/errors').errorHandler );
