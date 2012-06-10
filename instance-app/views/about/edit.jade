@@ -1,0 +1,34 @@
+extend ../layout
+
+block title
+  | Edit About Info
+
+block content
+  style
+
+  .page-header
+    h1 Edit About Info
+
+  form(method="post", action="")
+    #about_description
+      label Description
+      textarea(name="description") #{settings.description}
+
+    #about_region
+      label Region
+      input(name="region", value=settings.region)
+
+    #about_contact_name
+      label Contact Name
+      input(name="contact_name", value=settings.contact_name)
+
+    #about_contact_email
+      label Contact Email
+      input(name="contact_email", value=settings.email_from)
+
+    #about_contact_phone
+      label Contact Phone
+      input(name="contact_phone", value=settings.contact_phone)
+
+    br
+    input(type="submit", class="btn", value="Update Info")
