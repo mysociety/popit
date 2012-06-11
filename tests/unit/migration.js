@@ -125,7 +125,7 @@ module.exports = {
               [ 'lastname', 'name', 'Last name' ],
               [ 'name_suffix', 'name', 'Name suffix' ],
               [ 'nickname', '', '' ],
-              [ 'party', 'organisation', 'Party' ],
+              [ 'party', 'position', 'Party' ],
               [ 'state', '', '' ],
               [ 'district', '', '' ],
               [ 'in_office', '', '' ],
@@ -133,7 +133,7 @@ module.exports = {
               [ 'phone', 'contact', 'Phone' ],
               [ 'fax', 'contact', 'Fax' ],
               [ 'website', 'links', 'Website' ],
-              [ 'webform', '', '' ],
+              [ 'webform', 'links', 'Webform' ],
               [ 'congress_office', '', '' ],
               [ 'bioguide_id', '', '' ],
               [ 'votesmart_id', '', '' ],
@@ -143,8 +143,8 @@ module.exports = {
               [ 'twitter_id', 'id', 'Twitter' ],
               [ 'congresspedia_url', '', '' ],
               [ 'youtube_url', 'links', 'Youtube' ],
-              [ 'facebook_id', '', '' ],
-              [ 'official_rss', '', '' ],
+              [ 'facebook_id', 'id', 'Facebook' ],
+              [ 'official_rss', 'links', 'RSS' ],
               [ 'senate_class', '', '' ],
               [ 'birthdate', 'name', 'Birthdate' ] ];
         data = {'675': 
@@ -173,7 +173,7 @@ module.exports = {
             'http://www.opencongress.org/wiki/John_Doe',
             'http://www.youtube.com/JohnDoe',
             '63002536261',
-            '',
+            'http://www.test.co.uk/rssfeed',
             'III',
             '02/04/1900' ],
         '676': 
@@ -202,7 +202,7 @@ module.exports = {
             'http://www.opencongress.org/wiki/Peter_Johnsson',
             'http://www.youtube.com/PeterJohnsson',
             '63002536261',
-            '',
+            'http://www.test.co.uk/rssfeed',
             'II',
             '01/10/2010' ]};
 
@@ -220,7 +220,7 @@ module.exports = {
             test.equal(docs.length, 2, 'two people in database');
 
             docs.forEach(function(doc) {
-              test.equal(doc.links.length, 2, 'two links per person');
+              test.equal(doc.links.length, 4, 'four links per person');
               test.equal(doc.contact_details.length, 2, 'two contact details per person');
             })
 
