@@ -141,7 +141,7 @@ module.exports = {
               [ 'govtrack_id', '', '' ],
               [ 'crp_id', '', '' ],
               [ 'twitter_id', 'id', 'Twitter' ],
-              [ 'congresspedia_url', '', '' ],
+              [ 'congresspedia_url', 'links', 'congresspedia' ],
               [ 'youtube_url', 'links', 'Youtube' ],
               [ 'facebook_id', 'id', 'Facebook' ],
               [ 'official_rss', 'links', 'RSS' ],
@@ -159,7 +159,7 @@ module.exports = {
             'Junior Seat',
             '1',
             'M',
-            '734-234-3545',
+            '',
             '734-234-3545',
             'http://www.doe.senate.gov/',
             'http://www.doe.senate.gov/public/index.cfm/contact',
@@ -173,7 +173,7 @@ module.exports = {
             'http://www.opencongress.org/wiki/John_Doe',
             'http://www.youtube.com/JohnDoe',
             '63002536261',
-            'http://www.test.co.uk/rssfeed',
+            '',
             'III',
             '02/04/1900' ],
         '676': 
@@ -189,7 +189,7 @@ module.exports = {
             '1',
             'M',
             '734-234-3547',
-            '734-234-3548',
+            '',
             'http://www.johnson.senate.gov/',
             'http://www.johnson.senate.gov/public/index.cfm/contact',
             'Office Building',
@@ -199,7 +199,7 @@ module.exports = {
             '400546',
             'N2356546',
             '@mrsen',
-            'http://www.opencongress.org/wiki/Peter_Johnsson',
+            '',
             'http://www.youtube.com/PeterJohnsson',
             '63002536261',
             'http://www.test.co.uk/rssfeed',
@@ -221,7 +221,7 @@ module.exports = {
 
             docs.forEach(function(doc) {
               test.equal(doc.links.length, 4, 'four links per person');
-              test.equal(doc.contact_details.length, 2, 'two contact details per person');
+              test.equal(doc.contact_details.length, 1, 'one contact detail per person');
             })
 
             test.done();
