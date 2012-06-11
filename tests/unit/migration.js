@@ -21,7 +21,7 @@ module.exports = {
         this.popit.close_db_connections(cb);
     },
     
-    "migration database model": function ( test ) {    
+    "database model": function ( test ) {
         test.expect( 11 );
         
         var migration = new this.Migration();
@@ -52,7 +52,7 @@ module.exports = {
         test.done();
     },
 
-    "migration parse csv": function ( test ) {    
+    "parse csv": function ( test ) {
         test.expect( 5 );
 
         var migration = new MigrationApp();
@@ -73,7 +73,7 @@ module.exports = {
         });
     },
 
-     "inversion": function ( test ) {    
+     "array to inverted dictionary": function ( test ) {
         test.expect( 3 );
 
         var migration = new MigrationApp();
@@ -109,7 +109,7 @@ module.exports = {
         test.done();
     },
 
-    "migration import": function ( test ) {    
+    "import of two people": function ( test ) {
         test.expect( 10 );
 
         var migration = new MigrationApp();
@@ -252,7 +252,7 @@ module.exports = {
       var that = this;
 
       migration.doImport(that.popit, schema, mappings, data, function(err, people){
-        console.log(err);
+        //console.log(err);
 
         test.ifError(err, 'expect no error');
         test.equal(people.length, 3, 'three people in people set');
