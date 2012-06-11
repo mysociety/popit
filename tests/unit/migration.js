@@ -21,7 +21,7 @@ module.exports = {
         this.popit.close_db_connections(cb);
     },
     
-    "database model": function ( test ) {    
+    "database model": function ( test ) {
         test.expect( 11 );
         
         var migration = new this.Migration();
@@ -52,7 +52,7 @@ module.exports = {
         test.done();
     },
 
-    "parse csv": function ( test ) {    
+    "parse csv": function ( test ) {
         test.expect( 5 );
 
         var migration = new MigrationApp();
@@ -73,7 +73,7 @@ module.exports = {
         });
     },
 
-     "array to inverted dictionary": function ( test ) {    
+     "array to inverted dictionary": function ( test ) {
         test.expect( 3 );
 
         var migration = new MigrationApp();
@@ -109,7 +109,7 @@ module.exports = {
         test.done();
     },
 
-    "import of two people": function ( test ) {    
+    "import of two people": function ( test ) {
         test.expect( 10 );
 
         var migration = new MigrationApp();
