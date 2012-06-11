@@ -9,7 +9,7 @@ block content
 
 
   if (typeof(people) != 'undefined')
-    if error
+    if (typeof(error) != 'undefined') && error
       p
         | Aww, something went wrong.
         | #{error}
