@@ -229,7 +229,39 @@ module.exports = {
         });
     },
 
-    "migration import duplicate handling": function ( test ) {
+    "create organisation when importing a person": function ( test ) {
+      test.expect( 4 );
+      var migration = new MigrationApp();
+
+      schema = 'person';
+      mappings = [
+        [ 'firstname', 'name', 'First name' ],
+        [ 'lastname', 'name', 'Last name' ],
+        [ 'party', 'position', 'Party' ] ];
+      data = {'675':
+        [ 'John',
+          'Doe',
+          'Aliens']};
+
+      var that = this;
+
+      migration.doImport(that.popit, schema, mappings, data, function(err, people, positions, organisations) {
+        test.ifError(err);
+        test.equal(organisations.length, 1, 'one organisation in organisations set');
+
+        var query = that.popit.model('Organisation').find().asc('name');
+
+        query.run(function(err, docs) {
+          test.ifError(err);
+
+          test.equal(docs.length, 1, 'one organisation in database');
+
+          test.done();
+        });
+      });
+    },
+
+    "handling of duplicate slugs": function ( test ) {    
       test.expect( 2 );
 
       var migration = new MigrationApp();
@@ -252,8 +284,6 @@ module.exports = {
       var that = this;
 
       migration.doImport(that.popit, schema, mappings, data, function(err, people){
-        //console.log(err);
-
         test.ifError(err, 'expect no error');
         test.equal(people.length, 3, 'three people in people set');
 
