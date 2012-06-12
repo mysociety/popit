@@ -212,7 +212,7 @@ module.exports = {
           test.ifError(err);
           test.equal(people.length, 2, 'two people in people set');
 
-          var query = that.popit.model('Person').find().asc('name');
+          var query = that.popit.model('Person').find();
 
           query.run(function(err, docs) {
             test.ifError(err);
@@ -229,8 +229,8 @@ module.exports = {
         });
     },
 
-    "create organisation when importing a person": function ( test ) {
-      test.expect( 4 );
+    "create organisation and position when importing a person": function ( test ) {
+      test.expect( 5 );
       var migration = new MigrationApp();
 
       schema = 'person';
@@ -249,15 +249,25 @@ module.exports = {
         test.ifError(err);
         test.equal(organisations.length, 1, 'one organisation in organisations set');
 
-        var query = that.popit.model('Organisation').find().asc('name');
-
-        query.run(function(err, docs) {
-          test.ifError(err);
-
-          test.equal(docs.length, 1, 'one organisation in database');
-
-          test.done();
-        });
+        async.parallel([
+          function(cb) {
+            var query = that.popit.model('Position').find();
+            query.run(function(err, docs) {
+              test.equal(docs.length, 1, 'one position in database');
+              cb(err);
+            });
+          }, 
+          function(cb) {
+            var query = that.popit.model('Organisation').find();
+            query.run(function(err, docs) {
+              test.equal(docs.length, 1, 'one organisation in database');
+              cb(err);
+            });
+          }], 
+          function(err) {
+            test.ifError(err);
+            test.done();
+          })
       });
     },
 
