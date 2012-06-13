@@ -35,7 +35,10 @@ block content
         for image in organisation.images
           li
             //- FIXME - don't use the full size image here, resize it on the server before sending
-            img(src="#{organisation.slug_url}/images/#{image.id}-original")
+            if image.url
+              img(src="#{image.url}")
+            else
+              img(src="#{organisation.slug_url}/images/#{image.id}-original")
             p.photo-source source:
               a(href="#photographer-url") Photographer
               abbr.license(title="Creative Commons - By Attribution - Share Alike") CC-BY-SA
