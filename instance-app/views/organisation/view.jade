@@ -32,22 +32,21 @@ block content
       
     aside
       ul.photos
-        for image_id in organisation.images
+        for image in organisation.images
           li
             //- FIXME - don't use the full size image here, resize it on the server before sending
-            img(src="/image/#{image_id}-original")
+            img(src="#{organisation.slug_url}/images/#{image.id}-original")
             p.photo-source source:
               a(href="#photographer-url") Photographer
               abbr.license(title="Creative Commons - By Attribution - Share Alike") CC-BY-SA
               ul.admin-options
                 li
-                  // Should be POST
-                  a.delete(href="/image/#{image_id}/delete")
-                    strong - delete
+                  form(method="post", action="#{organisation.slug_url}/images/#{image.id}/delete")
+                    input(type="submit", value="delete")
                     |  this photograph
       ul.admin-options
         li
-          a.add(href="#{organisation.slug_url}/upload_image")
+          a.add(href="#{organisation.slug_url}/images/upload")
               strong + add
               |  a photograph
     //- if((!organisation.summary) && (!locals.user))
