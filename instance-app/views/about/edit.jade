@@ -10,25 +10,14 @@ block content
     h1 Edit About Info
 
   form(method="post", action="")
-    #about_description
-      label Description
-      textarea(name="description") #{settings.description}
 
-    #about_region
-      label Region
-      input(name="region", value=settings.region)
-
-    #about_contact_name
-      label Contact Name
-      input(name="contact_name", value=settings.contact_name)
-
-    #about_contact_email
-      label Contact Email
-      input(name="contact_email", value=settings.email_from)
-
-    #about_contact_phone
-      label Contact Phone
-      input(name="contact_phone", value=settings.contact_phone)
-
+    each val, field in fields
+      - var value = settings[field]
+      .about-field
+        label #{val.label}
+        - if (val.type == 'textarea')
+          textarea(name=field) #{value}
+        - else
+          input(name=field, value=value)
     br
     input(type="submit", class="btn", value="Update Info")
