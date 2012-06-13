@@ -109,7 +109,7 @@ module.exports = {
         test.done();
     },
 
-    "import of two people": function ( test ) {
+    "import two people": function ( test ) {
         test.expect( 10 );
 
         var migration = new MigrationApp();
