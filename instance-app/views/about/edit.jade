@@ -12,12 +12,11 @@ block content
   form(method="post", action="")
 
     each val, field in fields
-      - var value = settings[field]
       .about-field
         label #{val.label}
         - if (val.type == 'textarea')
-          textarea(name=field) #{value}
+          textarea(name=field) #{val.value}
         - else
-          input(name=field, value=value)
+          input(name=field, value=val.value)
     br
     input(type="submit", class="btn", value="Update Info")
