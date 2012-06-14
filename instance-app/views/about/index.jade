@@ -8,6 +8,8 @@ block content
 
   .page-header
     h1 About Us
+      if locals.user
+        a(href='/about/edit')  (edit)
 
   each val, field in fields
     .about-field
