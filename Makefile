@@ -55,6 +55,11 @@ test-selenium: scss minify
 		--reporter $(REPORTER) \
 		tests/selenium
 
+test-browser:
+	ruby tests/browser_based/run_tests.rb
+	echo "ALL TESTS PASSED"
+
+
 test-api:
 	@NODE_ENV=testing ./node_modules/.bin/nodeunit \
 		--reporter $(REPORTER) \
