@@ -66,14 +66,15 @@ exports.route = function (app) {
             },
             function( err, output ) {
                 if (err) console.log( err );
-                mailer.send(
+                console.log(output);
+              /*  mailer.send(
                     req,
                     {
                         to: instance.email,
                         subject: "New instance confirmation",
                         text: output,
                     }
-                );
+                ); */
             }
         );        
     }
