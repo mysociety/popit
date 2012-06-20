@@ -8,8 +8,7 @@ require 'watir-webdriver'
 # * how to specify the url to connect to - ENV perhaps?
 # * achieve more DRY
 # * what noob errors have I made :) ?
-  
-end
+
 
 
 class Basics < Test::Unit::TestCase
