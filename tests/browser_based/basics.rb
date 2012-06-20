@@ -10,16 +10,26 @@ require 'watir-webdriver'
 # * what noob errors have I made :) ?
 
 
+class PopItWatirTestCase < Test::Unit::TestCase
 
-class Basics < Test::Unit::TestCase
+  def setup
+    @b = Watir::Browser.new :chrome
+    @b.goto 'http://test.127-0-0-1.org.uk:3000/'
+  end
+
+  def teardown
+    @b.quit
+  end
+
+end
+
+
+class Basics < PopItWatirTestCase
 
   def test_exit_code_correctly_produced
-    b = Watir::Browser.new :chrome
-    b.goto 'http://test.127-0-0-1.org.uk:3000/'
+    b = @b
+    b.goto '/'
     assert_match( /PopIt/, b.text )
-    # flunk('before b.quit') # this will exit(0)
-    b.quit
-    flunk( 'after b.quit' ) # this will exit(1)
   end
 
 end
