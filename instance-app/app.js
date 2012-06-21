@@ -143,6 +143,16 @@ app.configure(function(){
   var organisation_app_factory = require('../lib/apps/organisation');
   app.use('/organisation', organisation_app_factory() );
 
+});
+
+
+app.configure('development', 'testing', function() {
+  var helpers = require('../lib/apps/dev-helpers');
+  app.use( '/_dev', helpers() );
+});
+
+
+app.configure(function(){
   app.use(app.router);
   
   app.use( require('../lib/errors').errorHandler );

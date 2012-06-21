@@ -1,0 +1,24 @@
+extend layout
+
+block content
+  h1 Dev tools
+  
+  p
+    a#home(href="/") Home
+    
+  if popit.is_master()
+    h2 Hosting site
+  
+    form(action="/_dev/add_instance_to_master", method="post")
+      | slug: 
+      input(name="instance_slug")
+      button#add_instance_to_master Add instance to master
+
+  else
+    h2 Instance site '#{popit.instance_name()}'
+    
+    form(action="/_dev/delete_this_instance_database", method="post")
+      button#delete_this_instance_database Delete this instance's database
+
+    form(action="/_dev/load_testing_fixture", method="post")
+      button#load_testing_fixture Load the testing fixture
