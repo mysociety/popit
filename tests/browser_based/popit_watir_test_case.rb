@@ -44,8 +44,9 @@ class PopItWatirTestCase < Test::Unit::TestCase
   def goto_test_instance
     goto_hosting_site
     goto_dev_page
-    @b.input(:name, 'instance_slug').send_keys('test')
-    @b.button(:id, 'add_instance_to_master').click
+    form = @b.form(:name => 'add_instance_to_master')
+    form.input(:name, 'instance_slug').send_keys('test')
+    form.submit
   end
 
   def delete_instance_database
