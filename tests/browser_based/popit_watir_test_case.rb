@@ -44,10 +44,14 @@ class PopItWatirTestCase < Test::Unit::TestCase
     @b.button(:id, 'add_instance_to_master').click
   end
 
-  def load_test_fixtures
+  def delete_instance_database
     goto_dev_page
-    @b.button(:id, 'delete_this_instance_database').click    
-    @b.button(:id, 'load_testing_fixture').click    
+    @b.button(:id, 'delete_instance_database').click    
+  end
+
+  def load_test_fixture
+    goto_dev_page
+    @b.button(:id, 'load_test_fixture').click    
   end
 
 end
