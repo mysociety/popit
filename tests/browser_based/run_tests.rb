@@ -1,2 +1,6 @@
 require 'test/unit'
-require_relative './basics'
+
+# make it possible to load the test cases from the local directory
+$:.unshift File.dirname(__FILE__)
+
+require 'basics'
