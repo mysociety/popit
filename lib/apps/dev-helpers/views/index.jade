@@ -3,6 +3,10 @@ extend layout
 block content
   h1 Dev tools
   
+  if locals.message
+    p
+      strong #{ message }
+  
   p
     a#home(href="/") Home
     
