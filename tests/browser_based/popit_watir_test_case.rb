@@ -41,11 +41,11 @@ class PopItWatirTestCase < Test::Unit::TestCase
     @b.goto @test_hosting_url
   end
 
-  def goto_test_instance
+  def goto_instance slug
     goto_hosting_site
     goto_dev_page
     form = @b.form(:name => 'add_instance_to_master')
-    form.input(:name, 'instance_slug').send_keys('test')
+    form.input(:name, 'instance_slug').send_keys(slug)
     form.submit
   end
 

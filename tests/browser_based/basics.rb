@@ -4,7 +4,7 @@ require 'pry'
 class Basics < PopItWatirTestCase
 
   def test_site_can_be_deleted_and_fixture_loaded
-    goto_test_instance
+    goto_instance 'test'
     delete_instance_database
     load_test_fixture
     goto_home_page
@@ -12,7 +12,6 @@ class Basics < PopItWatirTestCase
 
     @b.link(:text, 'People').click
     assert_equal( "Barack Obama", @b.ul.li.text );
-
   end
 
 end
