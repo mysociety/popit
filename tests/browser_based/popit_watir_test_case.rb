@@ -49,14 +49,25 @@ class PopItWatirTestCase < Test::Unit::TestCase
     form.submit
   end
 
+  def delete_instance slug
+    goto_hosting_site
+    goto_dev_page
+    form = @b.form(:name => 'delete_instance')
+    form.input(:name, 'instance_slug').send_keys(slug)
+    form.submit
+    assert_equal "OK - deleted instance 'test'", @b.p(:id, 'message').text
+  end
+
   def delete_instance_database
     goto_dev_page
     @b.button(:id, 'delete_instance_database').click    
+    assert_equal "OK - database deleted", @b.p(:id, 'message').text
   end
 
   def load_test_fixture
     goto_dev_page
     @b.button(:id, 'load_test_fixture').click    
+    assert_equal "OK - test fixture loaded", @b.p(:id, 'message').text
   end
 
 end
