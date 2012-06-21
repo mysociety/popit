@@ -3,8 +3,8 @@
 # error if tests fail. Otherwise make will not abort.
 REPORTER = default 
 
-LINT = ./node_modules/.bin/jslint --indent 2 --white --nomen
-
+LINT    = ./node_modules/.bin/jslint --indent 2 --white --nomen
+FOREVER = ./node_modules/.bin/forever
 
 
 all: npm-install
@@ -50,13 +50,19 @@ test-unit:
 		--reporter $(REPORTER) \
 		tests/unit
 
+
 test-selenium: scss minify
 	@NODE_ENV=testing ./node_modules/.bin/nodeunit \
 		--reporter $(REPORTER) \
 		tests/selenium
 
-test-browser:
-	ruby tests/browser_based/run_tests.rb
+
+test-browser: scss minify
+	@NODE_ENV=testing $(FOREVER) start server.js
+	# wait for the server to start up - would be better as a command that waited for the port to respond
+	sleep 5
+	@NODE_ENV=testing ruby tests/browser_based/run_tests.rb
+	$(FOREVER) stop server.js
 	echo "ALL TESTS PASSED"
 
 

@@ -1,6 +1,6 @@
 require 'popit_watir_test_case'
 
-class Basics < PopItWatirTestCase
+class Basics < InstanceWatirTestCase
 
   def test_exit_code_correctly_produced
     b = @b
