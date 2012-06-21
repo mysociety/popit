@@ -37,8 +37,12 @@ class PopItWatirTestCase < Test::Unit::TestCase
     goto '/'
   end
 
-  def goto_test_instance
+  def goto_hosting_site
     @b.goto @test_hosting_url
+  end
+
+  def goto_test_instance
+    goto_hosting_site
     goto_dev_page
     @b.input(:name, 'instance_slug').send_keys('test')
     @b.button(:id, 'add_instance_to_master').click

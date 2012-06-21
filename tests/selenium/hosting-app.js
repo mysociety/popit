@@ -25,33 +25,6 @@ module.exports = {
         test_server_helpers.stop_server(tearDown_done);
     },
     
-    check_title: function (test) {
-
-        var browser = selenium_helpers.new_hosting_browser();
-        
-        test.expect(2);
-        
-        browser
-            .waitForTextPresent('Welcome to PopIt')
-            .assertTextPresent('Welcome to PopIt')
-            .testComplete()
-            .end(function (err) {
-                test.ifError(err);
-                test.ok(true, "end of tests");
-                test.done();
-            });        
-    },
-
-    "check instance/notfound 404s correctly": function(test) {
-      test.expect(1);
-      superagent
-      .get( config.hosting_server.base_url + '/instance/notfound' )
-      .end(function(res){
-        test.equal( res.status, 404, "Got a 404");
-        test.done();
-      });
-    },
-    
     create_instance: function (test) {
     
     

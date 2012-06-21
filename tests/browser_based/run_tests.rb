@@ -4,3 +4,4 @@ require 'test/unit'
 $:.unshift File.dirname(__FILE__)
 
 require 'basics'
+require 'hosting'
