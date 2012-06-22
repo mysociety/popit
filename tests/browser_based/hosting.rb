@@ -52,6 +52,9 @@ class HostingTests < PopItWatirTestCase
     assert_match "Error is 'required'", @b.text    
 
     # check that a bad email is rejected
+    #   NOTE - these tests are commented out as recent browsers catch the bad
+    #   email address and show their own little warning. I can't seem to see how
+    #   to test for that warning - it does not appear in the DOM.
     # @b.text_field(:name, 'email').set("bob")
     # @b.input(:value, 'Create your own PopIt').click
     # assert_match "Error is 'not_an_email'", @b.text    
