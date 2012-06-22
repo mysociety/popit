@@ -46,6 +46,7 @@ block content
                   small(class='suggestions')
                 td(class="hidden")
                 td(class="sample")
-                  #{entry[1]}, #{entry[2]}
+                  - var a = [entry[1], entry[2]].filter(function(a){return a}).join(', ')
+                  = a
 
         input(type="submit", class="btn", value="Start migration")
