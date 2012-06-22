@@ -12,15 +12,20 @@ module.exports = {
 
     // *.127-0-0-1.org.uk points to 127.0.0.1
 
+    image_proxy_server: {
+        host:       'images.localhost',
+        base_url:   'http://images.localhost:3000',
+    },
+
     hosting_server: {
-        host:       'www.127-0-0-1.org.uk',
-        base_url:   'http://www.127-0-0-1.org.uk:3000',
+        host:       'localhost',
+        base_url:   'http://localhost:3000',
         email_from: 'PopIt <popit@mysociety.org>', 
     },
     instance_server: {
         // This is used to create the url to the instance site. '%s' is
         // replaced with the instance name.
-        base_url_format: "http://%s.127-0-0-1.org.uk:3000",
+        base_url_format: "http://%s.localhost:3000",
         cookie_secret: 'hurgleflurdle',
         files_dir:     path.normalize(__dirname + '/../../popit_files'),
     },

@@ -36,7 +36,7 @@ block content
           li
             //- FIXME - don't use the full size image here, resize it on the server before sending
             if image.url
-              img(src="#{image.url}")
+              img(src="#{image_proxy(image, 50)}")
             else
               img(src="#{person.slug_url}/images/#{image.id}-original")
             p.photo-source source:
