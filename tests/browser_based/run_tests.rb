@@ -6,3 +6,5 @@ $:.unshift File.dirname(__FILE__)
 require 'basics'
 require 'info_pages'
 require 'hosting'
+require 'instance'
+require 'instance_auth'
