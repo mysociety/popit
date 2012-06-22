@@ -59,7 +59,6 @@ test-browser: scss minify
 	$(START_TEST_SERVER)
 	@NODE_ENV=testing ruby tests/browser_based/run_tests.rb
 	$(STOP_TEST_SERVER)
-	echo "ALL TESTS PASSED"
 
 
 test-api:
