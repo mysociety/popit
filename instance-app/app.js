@@ -11,7 +11,8 @@ var express           = require('express'),
     everyauth         = require('everyauth'),
     Db                = require('mongodb').Db,
     Server            = require('mongodb').Server,
-    mongoStore        = require('connect-mongodb');
+    mongoStore        = require('connect-mongodb'),
+    image_proxy       = require('connect-proxy');
 
 // everyauth.debug = true;
 
@@ -142,6 +143,8 @@ app.configure(function(){
 
   var organisation_app_factory = require('../lib/apps/organisation');
   app.use('/organisation', organisation_app_factory() );
+
+  app.use(config.image_proxy.path , image_proxy() );
 
   app.use(app.router);
   

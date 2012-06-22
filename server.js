@@ -7,12 +7,9 @@ var connect        = require('connect'),
     config         = require('config'),
     hosting_app    = require('./hosting-app/app'),
     utils          = require('./lib/utils'),
-    image_proxy    = require('./image_proxy'),
     instance_app   = require('./instance-app/app');
 
 connect(
-
-  connect.vhost(config.image_proxy_server.host, image_proxy),
   // match the hosting app host...
   connect.vhost(config.hosting_server.host, hosting_app),
 

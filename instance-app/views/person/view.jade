@@ -36,9 +36,9 @@ block content
           li
             //- FIXME - don't use the full size image here, resize it on the server before sending
             if image.url
-              img(src="#{image_proxy(image, 50)}")
+              img(src="#{image_proxy(image.url, "", 240)}")
             else
-              img(src="#{person.slug_url}/images/#{image.id}-original")
+              img(src="#{image_proxy(person.slug_url + "/images/" + image.id + "-original", "", 240)}")
             p.photo-source source:
               a(href="#photographer-url") Photographer
               abbr.license(title="Creative Commons - By Attribution - Share Alike") CC-BY-SA

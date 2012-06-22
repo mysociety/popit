@@ -12,9 +12,8 @@ module.exports = {
 
     // *.127-0-0-1.org.uk points to 127.0.0.1
 
-    image_proxy_server: {
-        host:       'images.localhost',
-        base_url:   'http://images.localhost:3000',
+    image_proxy: {
+        path:       '/image-proxy/',
     },
 
     hosting_server: {
