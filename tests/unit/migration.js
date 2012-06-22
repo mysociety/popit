@@ -146,7 +146,8 @@ module.exports = {
               [ 'facebook_id', 'id', 'Facebook' ],
               [ 'official_rss', 'links', 'RSS' ],
               [ 'senate_class', '', '' ],
-              [ 'birthdate', 'name', 'Birthdate' ] ];
+              [ 'birthdate', 'name', 'Birthdate' ],
+              [ '', '', '' ]];
         data = {'675': 
           [ 'Sen',
             'John',
@@ -175,7 +176,8 @@ module.exports = {
             '63002536261',
             '',
             'III',
-            '02/04/1900' ],
+            '02/04/1900',
+            ''],
         '676': 
           [ 'Sen',
             'Peter',
@@ -204,7 +206,8 @@ module.exports = {
             '63002536261',
             'http://www.test.co.uk/rssfeed',
             'II',
-            '01/10/2010' ]};
+            '01/10/2010',
+            '']};
 
         var that = this;
 
