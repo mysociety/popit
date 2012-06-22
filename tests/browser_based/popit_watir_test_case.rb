@@ -1,5 +1,6 @@
 require 'test/unit'
 require 'watir-webdriver'
+require 'watir-webdriver/wait'
 require 'uri'
 
 class PopItWatirTestCase < Test::Unit::TestCase
@@ -69,11 +70,12 @@ class PopItWatirTestCase < Test::Unit::TestCase
     @b.button(:id, 'load_test_fixture').click    
     assert_equal "OK - test fixture loaded", @b.p(:id, 'message').text
 
-    # it is horrid to have this here, but occasionally it seems that the tests
-    # continue before the fixture loading is complete. When we start loading
-    # larger fixtures with more realistic data we'll need to revisit this issue
-    # (hopefully it'll have been fixed upstream).
-    sleep 1
+    # We can't always rely on the fixture to have loaded before the page comes
+    # back. Check that the right data is on the person's page.
+    goto '/person'
+    @b.li(:text, "George W. Bush").wait_until_present
+
+    goto_dev_page
     
   end
 
