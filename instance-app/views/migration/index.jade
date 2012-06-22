@@ -10,11 +10,11 @@ block content
 
   if (typeof(people) != 'undefined')
     if (typeof(error) != 'undefined') && error
-      p
+      p(class="note error")
         | Aww, something went wrong.
         | #{error}
     else
-      p
+      p(class="note info")
         | Successfully migrated 
         a(href="/person") #{people.length}
         |  items.

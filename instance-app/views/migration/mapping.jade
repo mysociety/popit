@@ -29,11 +29,10 @@ block content
               th Database schema group
               th Database Attribute
               th(class="hidden") hidden
-              th Example entry 1
-              th Example entry 2
+              th Example entries
           tbody
             for entry, entrykey in _.zip(migration.source.parsed.header, migration.source.parsed.data[1],  migration.source.parsed.data[2])
-              tr()
+              tr(id='id_'+entry[0])
                 td
                   input(type="hidden", name="csv-attribute", value=entry[0])
                   #{entry[0]}
@@ -41,14 +40,12 @@ block content
                   select(name="db-attribute-class")
                     option(value="", selected="selected")
                     for option, optionkey in schema.options
-                      option(value="#{optionkey}", data-suggestions=option.suggestions) #{option.title}
+                      option(value="#{optionkey}", data-suggestions=option.suggestions, data-strict=option.strict) #{option.title}
                 td
                   input(type="text", name="db-attribute")
                   small(class='suggestions')
                 td(class="hidden")
                 td(class="sample")
-                  #{entry[1]}
-                td(class="sample")
-                  #{entry[2]}
+                  #{entry[1]}, #{entry[2]}
 
         input(type="submit", class="btn", value="Start migration")

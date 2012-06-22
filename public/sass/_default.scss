@@ -424,11 +424,26 @@ body.signed_in .admin-options{ display:block; }
 //	migration Page
 // -----------------------
 
+.note {
+	background-color: #EEEEEE;
+	padding: 1em;
+	width: 50%;
+
+	&.error {
+		color: red;
+	}
+	&.info {
+	}
+}
+
 table.migration-table {
 	input[type='text'] {
 		width: 18em;
-		height: 1.9em;
+		height: 1.7em;
 		padding: 0 0.6em;
+	}
+	select {
+		min-width: 100%;
 	}
 	small {
 		color: gray;
@@ -437,6 +452,9 @@ table.migration-table {
 		white-space: nowrap;
 		width: 20em;
 		display: block;
+	}
+	td {
+		height: 2.9em;
 	}
 	.hidden {
 		visibility: collapse;
