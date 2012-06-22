@@ -5,7 +5,7 @@
 
 "use strict";
 
-require(['order!jquery'], function ($) {
+require(['jquery', 'underscore'], function ($, _) {
   $(function() {
 
     $('select').change(function() {
@@ -27,7 +27,7 @@ require(['order!jquery'], function ($) {
       td.find('input').show().attr('name', 'db-attribute');
 
       if (!s) {
-        return;  
+        return;
       }
 
       // TODO think about this
@@ -59,7 +59,17 @@ require(['order!jquery'], function ($) {
     });
 
     $('form').submit(function() {
-      // TODO validation
+      // there is at least one entry with a first name
+      var zipped = _.zip($('form.migration-form [name=db-attribute-class]').map(function(k,v){return $(v).val()}),
+                       $('form.migration-form [name=db-attribute]').map(function(k,v){return $(v).val()}))
+      var v = zipped.filter(function(v){return v[0] === 'name' && v[1] === 'First name'})
+      if (v.length == 0) {
+        alert("You have to provide a column for 'First name'!");
+        return false;
+      }
+
+
+      return true;
     });
 
     // initialize

@@ -12,7 +12,7 @@
     // external libraries
     'jquery':           './libs/jquery-1.7.2.min',
     'jquery.mailcheck': './libs/jquery.mailcheck.1.0.3.min',
-    // underscore: 'libs/underscore/underscore-min', // https://github.com/amdjs
+    'underscore':       './libs/underscore-min', // https://github.com/amdjs
     // backbone:   'libs/backbone/backbone-min', // https://github.com/amdjs
   
     // Require.js plugins
