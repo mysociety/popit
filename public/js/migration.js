@@ -58,11 +58,11 @@ require(['jquery', 'underscore'], function ($, _) {
 
     });
 
-    $('form').submit(function() {
+    $('form.migration-form').submit(function() {
       // there is at least one entry with a first name
       var zipped = _.zip($('form.migration-form [name=db-attribute-class]').map(function(k,v){return $(v).val()}),
                        $('form.migration-form [name=db-attribute]').map(function(k,v){return $(v).val()}))
-      var v = zipped.filter(function(v){return v[0] === 'name' && v[1] === 'First name'})
+      var v = zipped.filter(function(v){return v[0] === 'name' && (v[1] === 'First name' || v[1] === 'Full name')})
       if (v.length == 0) {
         alert("You have to provide a column for 'First name'!");
         return false;
