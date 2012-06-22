@@ -70,4 +70,12 @@ class PopItWatirTestCase < Test::Unit::TestCase
     assert_equal "OK - test fixture loaded", @b.p(:id, 'message').text
   end
 
+  def login_to_instance
+    @b.link(:text, "Sign In").click
+    @b.text_field(:name, 'email').set 'test@example.com'
+    @b.text_field(:name, 'password').set 'secret'
+    @b.input(:value, "Login").click
+    assert_match 'Hello test@example.com', @b.div(:id, 'signed_in').text
+  end
+
 end
