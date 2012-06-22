@@ -68,6 +68,13 @@ class PopItWatirTestCase < Test::Unit::TestCase
     goto_dev_page
     @b.button(:id, 'load_test_fixture').click    
     assert_equal "OK - test fixture loaded", @b.p(:id, 'message').text
+
+    # it is horrid to have this here, but occasionally it seems that the tests
+    # continue before the fixture loading is complete. When we start loading
+    # larger fixtures with more realistic data we'll need to revisit this issue
+    # (hopefully it'll have been fixed upstream).
+    sleep 1
+    
   end
 
   def login_to_instance
