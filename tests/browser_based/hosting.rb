@@ -22,4 +22,73 @@ class HostingTests < PopItWatirTestCase
     assert_equal '404', status_code
   end
 
+  def test_create_instance
+    goto_hosting_site
+    delete_instance 'test'
+
+    # check that the instance does not exist
+    goto "/instance/test"
+    assert_equal "Page not found", @b.title    
+
+    # go to the create new site page
+    goto_home_page
+    @b.link(:text, 'Create your PopIt site').click
+
+    # submit the form with no values, check for error
+    @b.input(:value, 'Create your own PopIt').click
+    assert_match "Error is 'regexp'", @b.text
+    assert_match "Error is 'required'", @b.text    
+    
+    # check a slug that is too short
+    @b.text_field(:name, 'slug').set("foo")
+    @b.input(:value, 'Create your own PopIt').click
+    assert_match "Error is 'regexp'", @b.text
+    assert_match "Error is 'required'", @b.text    
+
+    # check that a good slug does not error
+    @b.text_field(:name, 'slug').set("test")
+    @b.input(:value, 'Create your own PopIt').click
+    assert_not_match "Error is 'regexp'", @b.text
+    assert_match "Error is 'required'", @b.text    
+
+    # check that a bad email is rejected
+    # @b.text_field(:name, 'email').set("bob")
+    # @b.input(:value, 'Create your own PopIt').click
+    # assert_match "Error is 'not_an_email'", @b.text    
+
+    # submit good details
+    @b.text_field(:name, 'email').set("bob@example.com")
+    @b.input(:value, 'Create your own PopIt').click
+    assert_match "Nearly Done! Now check your email...", @b.text    
+
+    # check that the site is now reserved
+    goto '/'
+    @b.link(:text, "Create your PopIt site").click
+    @b.text_field(:id, 'slug').set("test")
+    @b.input(:value, 'Create your own PopIt').click
+    assert_match "Error is 'slug_not_unique'", @b.text    
+
+    # check that the instance page works
+    goto "/instance/test"
+    assert_equal "Pending: test", @b.title
+            
+    # go to the last email page
+    goto "/_testing/last_email"
+    @b.link.click
+
+    # on the confirmr app page
+    assert_match 'choose the type of the first politician to add to the site', @b.text
+    @b.form.submit
+
+    # check that we are on the instance url now
+    assert_match /^http:\/\/test\./, @b.url
+    assert_match 'PopIt : test', @b.text
+    assert_equal 'Create a new person', @b.div(:id, 'content').h1.text
+    assert_equal 'New Person', @b.title
+
+    # check that we are logged in
+    assert_match 'Hello bob@example.com', @b.div(:id, 'signed_in').text
+            
+  end
+
 end
