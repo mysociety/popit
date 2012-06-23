@@ -36,11 +36,20 @@ app.configure(function(){
   app.use(masterSelector());
 
   app.use('/info', require('../lib/apps/info')() );
-  app.use(app.router);
-
-  app.use( require('../lib/errors').errorHandler );
-
 });
+
+
+app.configure('development', 'testing', function() {
+  var helpers = require('../lib/apps/dev-helpers');
+  app.use( '/_dev', helpers() );
+});
+
+
+app.configure(function(){
+  app.use(app.router);
+  app.use( require('../lib/errors').errorHandler );
+});
+
 
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));

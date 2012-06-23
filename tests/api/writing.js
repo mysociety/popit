@@ -62,7 +62,7 @@ module.exports = {
         });
         
         // FIXME - also need to test that cookie based auth works. May well be easiest
-        // to test using the selenium tests.
+        // to test using the browser-based tests.
       },
 
     "create a new person (bad values, expect error)": function (test) {
