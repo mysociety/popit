@@ -7,18 +7,6 @@ block content
   .page-header
     h1 Migration Tool
 
-
-  if (typeof(people) != 'undefined')
-    if (typeof(error) != 'undefined') && error
-      p(class="note error")
-        | Aww, something went wrong.
-        | #{error}
-    else
-      p(class="note info")
-        | Successfully migrated 
-        a(href="/person") #{people.length}
-        |  items.
-
   p 
     | If you have been collecting information on people in a spreadsheet this 
     | will let you quickly upload it all into PopIt rather than manually 

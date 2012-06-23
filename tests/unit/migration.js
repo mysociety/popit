@@ -6,6 +6,8 @@ var utils         = require('../../lib/utils'),
     PopIt         = require('../../lib/popit'),
     MigrationApp  = require('../../lib/apps/migration');
     
+var log = console.log;
+
 module.exports = {
     
     setUp: function(cb) {
@@ -211,7 +213,7 @@ module.exports = {
 
         var that = this;
 
-        migration.doImport(that.popit, schema, mappings, data, function(err, people) {
+        migration.doImport(that.popit, schema, mappings, data, function(){}, function(err, people) {
           test.ifError(err);
           test.equal(people.length, 2, 'two people in people set');
 
@@ -232,6 +234,39 @@ module.exports = {
         });
     },
 
+    "test update callback for import": function ( test ) {
+        test.expect( 8 );
+
+        var migration = new MigrationApp();
+        test.ok( migration, "got new migation app" );
+
+        test.ok( migration.doImport, "migration tests" );
+
+        schema = 'person';
+        mappings = 
+            [ [ 'firstname', 'name', 'First name' ],
+              [ 'lastname', 'name', 'Last name' ]];
+        data = {'675': 
+          [ 'John',
+            'Doe'],
+        '676': 
+          [ 'Peter',
+            'Johnson',
+          ]};
+
+        var that = this;
+        var i = 1;
+
+        migration.doImport(that.popit, schema, mappings, data, function(progress, total){
+          test.equal(progress, i++);
+          test.equal(total, 2);
+        }, function(err, people) {
+          test.ifError(err);
+          test.equal(people.length, 2, 'two people in people set');
+          test.done();
+        });
+    },
+
     "create organisation and position when importing a person": function ( test ) {
       test.expect( 5 );
       var migration = new MigrationApp();
@@ -248,7 +283,7 @@ module.exports = {
 
       var that = this;
 
-      migration.doImport(that.popit, schema, mappings, data, function(err, people, positions, organisations) {
+      migration.doImport(that.popit, schema, mappings, data, function() {}, function(err, people, positions, organisations) {
         test.ifError(err);
         test.equal(organisations.length, 1, 'one organisation in organisations set');
 
@@ -296,7 +331,7 @@ module.exports = {
 
       var that = this;
 
-      migration.doImport(that.popit, schema, mappings, data, function(err, people){
+      migration.doImport(that.popit, schema, mappings, data, function(){}, function(err, people){
         test.ifError(err, 'expect no error');
         test.equal(people.length, 3, 'three people in people set');
 

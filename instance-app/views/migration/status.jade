@@ -1,0 +1,28 @@
+extend ../layout
+
+block title
+  | Migration Tool
+
+block content
+  .page-header
+    h1 Status of Migration
+
+  if (typeof(people) != 'undefined')
+    if (typeof(error) != 'undefined') && error
+      p(class="note error")
+        | Aww, something went wrong.
+        | #{error}
+    else
+      p(class="note info")
+        | Successfully migrated 
+        a(href="/person") #{people.length}
+        |  items.
+
+  p 
+    | This page shows the status of the migration process. Go back to the 
+    a(href="/migration") migration page
+    | . In case of an error you can go 
+    a(href="#", class='history-back') back.
+
+  h2 Status
+  p(class="note progress") pass

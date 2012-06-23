@@ -8,7 +8,42 @@
 require(['jquery', 'underscore'], function ($, _) {
   $(function() {
 
-    $('select').change(function() {
+    var myTimer;
+
+    var getUpdate = function() {
+       $.getJSON('/migration/progress/'+id, function(json) {
+        console.log(json);
+        var s = 'Imported ' + json.progress+' of '+json.total+' items.';
+        if (json.total === json.progress) {
+          s = 'Finished importing <a href="/person">'+json.count+'</a> people.';
+          clearInterval(myTimer);
+        }
+        if (json.err && json.err.name) {
+          s = 'An error occured: <br><pre>'+json.err.name+'\n\n'+json.err.err+'</pre>';
+          $('.progress').addClass('error');
+        }
+        console.log(s)
+        $('.progress').html(s);
+      })
+    }
+
+    if($('.progress').html()) {
+
+      var arr = window.location.pathname.split('/');
+      var id = arr[arr.length-1];
+
+      getUpdate();
+      myTimer = window.setInterval(function() {
+        getUpdate();
+      }, 2000);
+    };
+
+    $('.history-back').click(function(e){
+      e.preventDefault();
+      window.history.back();
+    });
+
+    $('form.migration-form select').change(function() {
       var suggestions,
           tr = $(this).parents('tr'),
           td = $(this).parents('td').next(),
