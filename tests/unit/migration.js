@@ -309,8 +309,8 @@ module.exports = {
       });
     },
 
-    "handling of duplicate slugs": function ( test ) {    
-      test.expect( 2 );
+    "handling of duplicate person slugs": function ( test ) {    
+      test.expect( 3 );
 
       var migration = new MigrationApp();
 
@@ -336,8 +336,46 @@ module.exports = {
         test.equal(people.length, 3, 'three people in people set');
 
         var query = that.popit.model('Person').find().asc('name');
+        query.run(function(err, docs) {
+          test.equal(docs.length, 3, 'three people in database');
+        });
 
         test.done();
       });
+    },
+
+    "handling of duplicate organisation slugs": function ( test ) {    
+      test.expect( 3 );
+
+      var migration = new MigrationApp();
+
+      schema = 'person';
+      mappings = 
+        [ [ 'firstname', 'name', 'First name' ],
+        [ 'party', 'position', 'Member' ] ];
+      data = {
+        '0': 
+          [ 'John',
+        'Dem' ],
+        '1': 
+          [ 'Peter',
+        'Dem'],
+        '2': 
+          [ 'Paul',
+        'Dem']};
+
+      var that = this;
+
+      migration.doImport(that.popit, schema, mappings, data, function(){}, function(err, people){
+        test.ifError(err, 'expect no error');
+        test.equal(people.length, 3, 'three people in people set');
+
+        var query = that.popit.model('Organisation').find().asc('name');
+        query.run(function(err, docs) {
+          test.equal(docs.length, 1, 'one organisation in database');
+          test.done();
+        });
+      });
     }
+
 };
