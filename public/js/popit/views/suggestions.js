@@ -1,11 +1,13 @@
 define(
   [
     'Backbone',
+    'underscore',
     'popit/collections/suggestions',
     'templates/person/compact_list'
   ],
   function(
     Backbone,
+    _,
     SuggestionsCollection,
     compactListTemplate
    ) {
@@ -21,23 +23,26 @@ define(
       return this;
     },
     
-    setName: function (name) {
-      var self = this;
-
-      if (name) {
-        self.collection.fetch({
-          data: { name: name },
-          success: function () {
-            self.render();
-          }
-        });          
-      } else {
-        self.collection.reset();
-        self.render();
-      }
+    setName: _.debounce(
+      function (name) {
+        var self = this;
       
-      return self;
-    }
+        if (name) {
+          self.collection.fetch({
+            data: { name: name },
+            success: function () {
+              self.render();
+            }
+          });          
+        } else {
+          self.collection.reset();
+          self.render();
+        }
+        
+        return self;
+      },
+      200 // delay 200 ms before requesting the name from the server
+    ),
 
   });
 

@@ -61,7 +61,7 @@ class PersonEditingTests < PopItWatirTestCase
     @b.refresh
     @b.link(:text, 'Create a new person').click
     @b.text_field(:name, 'name').set "George"
-    @b.wait_until { @b.ul(:class, 'suggestions').li.text['George Bush'] }
+    @b.wait_until { @b.ul(:class, 'suggestions').present? && @b.ul(:class, 'suggestions').li.text['George Bush'] }
     
     # click on a suggestion, check get existing person
     @b.ul(:class, 'suggestions').li.link.click
@@ -96,7 +96,6 @@ class PersonEditingTests < PopItWatirTestCase
     delete_instance_database
     load_test_fixture
     goto '/person/george-bush'    
-
 
     # check that the edit links are shown when hovering
     assert ! @b.link(:text, '^ edit the summary').present?
