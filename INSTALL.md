@@ -15,10 +15,11 @@ The following services are needed by PopIt and you'll need to install them manua
 
 If you want to contribute code or run the test suite you'll need the following additional deps:
 
-  * [Selenium](http://seleniumhq.org/) - to run the browser tests
-  * [FireFox](http://www.mozilla.org/en-US/firefox/new/) - browser used for the automated tests
+  * [Ruby](http://www.ruby-lang.org/) used for the browser based tests
+  * [Watir WebDriver](http://watirwebdriver.com/) - to run the browser tests
+  * [Chrome](https://www.google.com/chrome) - browser used for the automated tests
+  * [Chrome Driver](http://code.google.com/p/chromedriver/) - interface for the webdriver code
   * [Compass](http://compass-style.org/) - to compile the stylesheets
-  * [optipng](http://optipng.sourceforge.net/) - used to compress the image assets.
 
 
 ### MacOS X
@@ -28,8 +29,18 @@ If you use [Homebrew](http://mxcl.github.com/homebrew/) on a Mac then these comm
     # to run PopIt
     brew install git node mongodb
 
+    # to develop PopIt (in addition to the above) - Ruby and the gems are used 
+    # for the browser tests
+    brew install ruby
+    gem install watir-webdriver pry
+
+If you use [MacPorts](http://www.macports.org/) then these commands will install some of the needed components:
+
+    # to run PopIt
+    port install git-core npm mongodb
+
     # to develop PopIt (in addition to the above)
-    brew install optipng selenium-server-standalone
+    port install rb-haml
 
 
 ## Getting the PopIt code
