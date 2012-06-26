@@ -4,3 +4,4 @@ MANIFEST
 npm-debug.log
 node_modules
 .sass-cache
+chromedriver.log

@@ -145,7 +145,16 @@ app.configure(function(){
 
   var about_app_factory = require('../lib/apps/about');
   app.use('/about', about_app_factory() );
-  
+});
+
+
+app.configure('development', 'testing', function() {
+  var helpers = require('../lib/apps/dev-helpers');
+  app.use( '/_dev', helpers() );
+});
+
+
+app.configure(function(){
   app.use(app.router);
   
   app.use( require('../lib/errors').errorHandler );

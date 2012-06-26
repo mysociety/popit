@@ -205,7 +205,7 @@ exports.route = function (app) {
     
     
     // FIXME - extract to seperate app so it can be shared, and conditionally loaded
-    app.get( '/_testing/last_email', function (req, res) {
+    app.get( '/_testing/last_email', function (req, res, next) {
                 
         // only run on testing
         var env = req.app.settings.env;
@@ -213,15 +213,16 @@ exports.route = function (app) {
             throw new Error('testing only, not ' + env );
         }
         
-        req.popit.model('Email').find( function (err, docs) {
-            if (err) throw err;
-            
-            var html = docs[0].message.text;
-            
-            html = html.replace( /(http\S+)/, '<a href="$1">$1</a>' );
-            
+        req.popit
+          .model('Email')
+          .find()
+          .sort('created', -1)
+          .run( function (err, docs) {
+            if (err) return next(err);
+            var html = docs[0].message.text;            
+            html = html.replace( /(http\S+)/, '<a href="$1">$1</a>' );            
             res.send( '<pre>' + html + '</pre>' );
-        })
+          });
         
     });
 
