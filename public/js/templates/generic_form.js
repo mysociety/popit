@@ -20,7 +20,7 @@ buf.push(attrs({ terse: true, 'rel':('stylesheet'), 'href':('/css/print.css'), '
 buf.push('>\n  <meta');
 buf.push(attrs({ terse: true, 'name':('viewport'), 'content':('width=device-width,initial-scale=1') }, {"name":true,"content":true}));
 buf.push('>\n  <!-- script(src=\'/js/libs/modernizr-2.5.3.js\', type=\'text/javascript\', charset=\'utf-8\')-->\n  <script');
-buf.push(attrs({ terse: true, 'src':('/js/require.js'), 'data-main':("/js/main-instance"), 'type':('text/javascript'), 'charset':('utf-8') }, {"src":true,"data-main":true,"type":true,"charset":true}));
+buf.push(attrs({ terse: true, 'src':('/js/libs/require-1.0.8.js'), 'data-main':("/js/main-instance"), 'type':('text/javascript'), 'charset':('utf-8') }, {"src":true,"data-main":true,"type":true,"charset":true}));
 buf.push('></script>\n</head>');
 if ( locals.user)
 {

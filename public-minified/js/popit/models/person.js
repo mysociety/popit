@@ -1,0 +1,1 @@
+define(["Backbone"],function(a){var b=a.Model.extend({urlRoot:"/api/v1/person",schema:{name:{dataType:"Text",validators:["required"]},slug:{dataType:"Text",validators:["required"]}}});return b})
