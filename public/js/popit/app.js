@@ -5,6 +5,7 @@
 define(
   [
     'jquery',
+    'jquery.fancybox',    
     'Backbone',
     'Backbone.Marionette',
     'popit/models/person',
@@ -12,6 +13,7 @@ define(
   ],
   function (
     $,
+    jQueryFancyBox,
     Backbone,
     BackboneMarionette,
     PersonModel,
@@ -43,10 +45,7 @@ define(
 
          view.render();
 
-         var $replacement = view.$el;
-         $replacement.hide();
-         $(this).hide().replaceWith( $replacement );
-         $replacement.slideDown();
+         $.fancybox( view.el );
 
          view.$(':input:first').focus();
       });
