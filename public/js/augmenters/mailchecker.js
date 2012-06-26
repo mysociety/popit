@@ -15,7 +15,7 @@
 
 "use strict";
 
-require(['order!jquery', 'order!jquery.mailcheck'], function ($) {
+require(['jquery', 'jquery.mailcheck'], function ($) {
   var domains = [
     // These are the default domains that ship with the plugin
     'yahoo.com', 'google.com', 'hotmail.com', 'gmail.com', 'me.com', 
