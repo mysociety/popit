@@ -1,0 +1,117 @@
+@font-face {
+  font-family: 'MuseoSlab500';
+  src: url("../fonts/exljbris-museoslab-500.eot");
+  src: local("☺"), url("../fonts/exljbris-museoslab-500.woff") format("woff"), url("../fonts/exljbris-museoslab-500.ttf") format("truetype"), url("../fonts/exljbris-museoslab-500.svg#MuseoSlab500") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {}
+	
+body {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.4;
+  word-spacing: 1.1pt;
+  letter-spacing: 0.2pt;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  color: #333;
+  background: none;
+  font-size: 12pt;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'MuseoSlab500', 'sans-serif';
+  font-weight: normal;
+}
+h1 {
+  font-size: 48pt;
+  width: 100%;
+}
+h2 {
+  font-size: 17pt;
+}
+h3 {
+  font-size: 15pt;
+}
+h4, h5, h6 {
+  font-size: 12pt;
+}
+code {
+  font: 10pt Courier, monospace;
+}
+blockquote {
+  margin: 1.3em;
+  padding: 1em;
+  font-size: 10pt;
+}
+hr {
+  background-color: #ccc;
+}
+img {
+  float: left;
+  margin: 1em 1.5em 1.5em 0;
+}
+a img {
+  border: none;
+}
+a:link, a:visited {
+  background: transparent;
+  font-weight: 700;
+  text-decoration: underline;
+  color: #333;
+}
+a:link[href^="http://"]:after, a[href^="http://"]:visited:after {
+  content: " (" attr(href) ") ";
+  font-size: 90%;
+}
+a[href^="http://"] {
+  color: #000;
+}
+table {
+  margin: 1px;
+  text-align: left;
+}
+th {
+  border-bottom: 1px solid #333;
+  font-weight: bold;
+}
+td {
+  border-bottom: 1px solid #333;
+}
+th, td {
+  padding: 4px 10px 4px 0;
+}
+tfoot {
+  font-style: italic;
+}
+caption {
+  background: #fff;
+  margin-bottom: 2em;
+  text-align: left;
+}
+thead {
+  display: table-header-group;
+}
+tr {
+  page-break-inside: avoid;
+}
+aside {
+  width: 15%;
+  display: block;
+}
+aside img {
+  width: 100%;
+  margin: 0;
+  float: none;
+}
+#user_menu,
+#footer,
+.person > footer,
+.admin-options,
+.find-person,
+.person-header-nav nav,
+nav,
+.previous-person,
+.next-person {
+  display: none !important;
+}
