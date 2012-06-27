@@ -44,7 +44,7 @@ are so similar and it would be a chore to maintain them separately.
 
 ## App folders
 
-Each app has it's own folder with the usual sub folders:
+Each app has its own folder with the usual sub folders:
 
     ./xxxxxxx-app
     ./xxxxxxx-app/routes
