@@ -93,6 +93,15 @@ test-api:
 		--reporter $(REPORTER) \
 		tests/api
 
+
+production:
+	git checkout production
+	git merge master
+	make optipng
+	make public-production
+	git st
+	echo "Ready to commit now"
+
 clean:
 	compass clean
 	rm -rf public/js/templates	
