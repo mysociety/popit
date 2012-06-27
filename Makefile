@@ -97,7 +97,6 @@ test-api:
 production:
 	git checkout production
 	git merge master
-	make optipng
 	make public-production
 	git st
 	echo "Ready to commit now"
