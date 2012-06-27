@@ -35,6 +35,10 @@ scss:
 	compass compile
 
 
+optipng:
+	find public -name '*.png' | xargs optipng --clobber -o4
+
+
 js-templates:
 	jade-amd --runtime > public/js/jadeRuntime.js
 	rm -rf public/js/templates
