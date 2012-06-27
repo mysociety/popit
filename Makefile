@@ -12,7 +12,7 @@ STOP_TEST_SERVER  = $(FOREVER) stop $(TEST_SERVER)
 START_TEST_SERVER = $(STOP_TEST_SERVER); NODE_ENV=testing $(FOREVER) start $(TEST_SERVER) && $(WAIT_FOR_SERVER)
 
 
-all: npm-install minify
+all: npm-install scss
 
 
 npm-install:
@@ -74,7 +74,7 @@ test-api:
 		tests/api
 
 clean:
-	rm -rfv .sass-cache
+	compass clean
 
 
 .PHONY: test test-unit test-browser test-api scss minify clean tidy npm-install npm-update

@@ -57,8 +57,8 @@ To install from git do the following:
     # hoping to contribute please stay on the 'master' branch.
     git checkout -b production origin/production
     
-    # Install the dependencies
-    npm install
+    # Install the dependencies and build the css
+    make
     
     # Optional - run the test suite (requires additional software to be 
     # installed - see above)
