@@ -36,7 +36,6 @@ app.configure(function(){
   app.use(masterSelector());
 
   app.use('/info', require('../lib/apps/info')() );
-  app.use('/instanceinfo', require('../lib/apps/instanceinfo')() );
   app.use(app.router);
 });
 
