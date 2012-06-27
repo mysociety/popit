@@ -12,7 +12,7 @@ STOP_TEST_SERVER  = $(FOREVER) stop $(TEST_SERVER)
 START_TEST_SERVER = $(STOP_TEST_SERVER); NODE_ENV=testing $(FOREVER) start $(TEST_SERVER) && $(WAIT_FOR_SERVER)
 
 
-all: npm-install scss
+all: npm-install css
 
 
 npm-install:
@@ -31,7 +31,7 @@ lint:
 	find public/js    -name '*.js' | xargs -n 1 $(LINT) --browser --
 
 
-scss:
+css:
 	compass compile
 
 
@@ -45,7 +45,7 @@ js-templates:
 	jade-amd --pretty --from instance-app/views --to public/js/templates
 
 
-minify: scss js-templates
+minify: css js-templates
 	rm -rf public-production
 	node_modules/.bin/r.js -o public/js/app.build.js
 	rm    public-production/build.txt
@@ -67,7 +67,7 @@ test-unit:
 		--reporter $(REPORTER) \
 		tests/unit
 
-test-browser: scss minify
+test-browser: css minify
 	$(START_TEST_SERVER)
 	@NODE_ENV=testing ruby tests/browser_based/run_tests.rb
 	$(STOP_TEST_SERVER)
@@ -83,5 +83,5 @@ clean:
 	rm -rf public-production
 
 
-.PHONY: test test-unit test-browser test-api scss minify clean tidy npm-install npm-update
+.PHONY: test test-unit test-browser test-api css minify clean tidy npm-install npm-update
 
