@@ -12,15 +12,18 @@ STOP_TEST_SERVER  = $(FOREVER) stop $(TEST_SERVER)
 START_TEST_SERVER = $(STOP_TEST_SERVER); NODE_ENV=testing $(FOREVER) start $(TEST_SERVER) && $(WAIT_FOR_SERVER)
 
 
-all: npm-install css
+all: node-modules css
 
 
-npm-install:
+node-modules:
 	npm install
+	npm prune
 
 npm-update:
 	rm npm-shrinkwrap.json
+	npm install
 	npm update
+	npm prune
 	npm shrinkwrap
 
 
@@ -45,12 +48,24 @@ js-templates:
 	jade-amd --pretty --from instance-app/views --to public/js/templates
 
 
-minify: css js-templates
-	rm -rf public-production
+public-production: css js-templates
+	rm -rf public-build public-production
 	node_modules/.bin/r.js -o public/js/app.build.js
-	rm    public-production/build.txt
-	rm    public-production/js/app.build.js 
-	rm -r public-production/sass/
+	mkdir public-production
+
+	# copy all the static assets
+	mv public-build/css         public-production/
+	mv public-build/favicon.ico public-production/
+	mv public-build/fonts       public-production/
+	mv public-build/img         public-production/
+
+	# copy across only the javascript that we need
+	mkdir -p public-production/js/libs
+	mv public-build/js/libs/require-*  public-production/js/libs/
+	mv public-build/js/main-*          public-production/js/
+
+	# clean up generated content that we don't need now
+	rm -r public-build
 	rm -r public/js/templates	
 
 
@@ -60,14 +75,14 @@ tidy:
 	# sass-convert --recursive --in-place --from scss --to scss public/sass/
 
 
-test: npm-install test-unit test-api test-browser
+test: node-modules test-unit test-api test-browser
 
 test-unit:
 	@NODE_ENV=testing ./node_modules/.bin/nodeunit \
 		--reporter $(REPORTER) \
 		tests/unit
 
-test-browser: css minify
+test-browser: css public-production
 	$(START_TEST_SERVER)
 	@NODE_ENV=testing ruby tests/browser_based/run_tests.rb
 	$(STOP_TEST_SERVER)
@@ -80,8 +95,10 @@ test-api:
 
 clean:
 	compass clean
+	rm -rf public/js/templates	
+	rm -rf public-build
 	rm -rf public-production
 
 
-.PHONY: test test-unit test-browser test-api css minify clean tidy npm-install npm-update
+.PHONY: test test-unit test-browser test-api css public-production clean tidy node-modules npm-update
 

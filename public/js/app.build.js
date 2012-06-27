@@ -5,7 +5,7 @@
   **/
    
   appDir:  '../',
-  dir:     '../../public-production',
+  dir:     '../../public-build',
   baseUrl: 'js',
   
   paths: {

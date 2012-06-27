@@ -41,7 +41,7 @@ The system send emails at various points. When developing these are also output 
 
 ## Minifying public to public-production
 
-This is done by running `make minify` and the results committed to the repository. When NODE_ENV is 'development' the unminified assets are used to make development easier. Otherwise the minified assets are used (this includes testing - minifying the assets is a part of the `make test` process).
+This is done by running `make public-production` and the results committed to the repository. When NODE_ENV is 'development' the unminified assets are used to make development easier. Otherwise the minified assets are used (this includes testing - public-productioning the assets is a part of the `make test` process).
 
 Note that the paths used in the templates are the same for both - the JS is either a loader script which gets the required parts individually, or the single combined script.
 
