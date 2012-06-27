@@ -1,0 +1,1 @@
+The file `barack_obama.jpg` is sourced from http://en.wikipedia.org/wiki/File:O afficial_portrait_of_Barack_Obama.jpg
