@@ -42,11 +42,11 @@ js-templates:
 
 
 minify: scss js-templates
-	rm -rf public-minified
+	rm -rf public-production
 	node_modules/.bin/r.js -o public/js/app.build.js
-	rm    public-minified/build.txt
-	rm    public-minified/js/app.build.js 
-	rm -r public-minified/sass/
+	rm    public-production/build.txt
+	rm    public-production/js/app.build.js 
+	rm -r public-production/sass/
 
 
 tidy:
@@ -75,6 +75,7 @@ test-api:
 
 clean:
 	compass clean
+	rm -rf public-production
 
 
 .PHONY: test test-unit test-browser test-api scss minify clean tidy npm-install npm-update

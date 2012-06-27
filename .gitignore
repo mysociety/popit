@@ -6,4 +6,4 @@ node_modules
 .sass-cache
 chromedriver.log
 public/css
-public-minified
+public-production

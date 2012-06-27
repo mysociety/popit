@@ -4,7 +4,7 @@ module.exports = {
 
     // by default use the compressed assets - this will apply to the test suite 
     // too
-    public_dir: 'public-minified',
+    public_dir: 'public-production',
 
     server: {
       port: 3000,

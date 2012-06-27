@@ -39,7 +39,7 @@ Generate the CSS from the SCSS by running `make scss`. When developing it is mor
 The system send emails at various points. When developing these are also output to the logs so that it is easy to see them and follow embedded links etc.
 
 
-## Minifying public to public-minified
+## Minifying public to public-production
 
 This is done by running `make minify` and the results committed to the repository. When NODE_ENV is 'development' the unminified assets are used to make development easier. Otherwise the minified assets are used (this includes testing - minifying the assets is a part of the `make test` process).
 

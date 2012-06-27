@@ -5,7 +5,7 @@
   **/
    
   appDir:  '../',
-  dir:     '../../public-minified',
+  dir:     '../../public-production',
   baseUrl: 'js',
   
   paths: {
