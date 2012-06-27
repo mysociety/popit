@@ -67,6 +67,10 @@ To install from git do the following:
     # Start the app locally
     npm start
 
+## Generated assets
+
+If you don't want to develop the code but just want to deploy it you should use the `production` branch. This is updated less frequently that the `master` branch and also has all the generated assets (like the CSS, the minified and combined javascript) in it.
+
 ## Configuration
 
 All the config is in the `config` folder. These are loaded by the [config](http://lorenwest.github.com/node-config/latest/index.html) module. There is a sample production config that you'll want to copy and edit. For dev and testing the provided config should be fine.
