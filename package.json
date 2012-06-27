@@ -13,6 +13,7 @@
     "express-hogan.js":          ">= 0.1.0",
     "forever":                   ">= 0.9.2",
     "jade":                      ">= 0.25.0",
+    "jade-amd":                  ">= 0.0.3",
     "jquery":                    ">= 1.6.3",
     "jslint":                    ">= 0.1.8",
     "mkdirp":                    ">= 0.3.1",

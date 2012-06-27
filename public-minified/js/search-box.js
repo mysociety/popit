@@ -1,1 +1,0 @@
-require(["jquery"],function(a){a(document).ready(function(){a("#person-search").focus(function(b){a(".person-header-nav").addClass("focus-search")}).blur(function(b){a(".person-header-nav").removeClass("focus-search")})})})

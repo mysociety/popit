@@ -5,3 +5,7 @@ npm-debug.log
 node_modules
 .sass-cache
 chromedriver.log
+public/css
+public-build
+public-production
+public/js/templates

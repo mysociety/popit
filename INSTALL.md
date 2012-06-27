@@ -57,8 +57,8 @@ To install from git do the following:
     # hoping to contribute please stay on the 'master' branch.
     git checkout -b production origin/production
     
-    # Install the dependencies
-    npm install
+    # Install the dependencies and build the css
+    make
     
     # Optional - run the test suite (requires additional software to be 
     # installed - see above)
@@ -66,6 +66,10 @@ To install from git do the following:
     
     # Start the app locally
     npm start
+
+## Generated assets
+
+If you don't want to develop the code but just want to deploy it you should use the `production` branch. This is updated less frequently that the `master` branch and also has all the generated assets (like the CSS, the minified and combined javascript) in it.
 
 ## Configuration
 

@@ -1,1 +1,0 @@
-require(["jquery"],function(a){var b=function(a){return a>=97&&a<=122||a>=65&&a<=90||a>=48&&a<=57||a===45?!0:!1};a(document).on({keypress:function(a){return b(a.which)},change:function(b){var c=a(this).val(),d=c.replace(/[^a-z0-9\-]+/gi,"-").toLowerCase();a(this).val(d)}},"input[name=slug]")})
