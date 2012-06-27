@@ -1,1 +1,0 @@
-require(["jquery","utils/slugify"],function(a,b){var c=function(a){return a>=97&&a<=122||a>=65&&a<=90||a>=48&&a<=57||a===45?!0:!1};a(document).on({keypress:function(a){return c(a.which)},change:function(c){var d=a(this).val(),e=b(d);a(this).val(e)}},"input[name=slug]")})

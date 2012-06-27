@@ -1,1 +1,0 @@
-define([],function(){return function(a){return a.replace(/[^a-z0-9\-]+/gi,"-").replace(/-+/g,"-").replace(/-$/,"").replace(/^-/,"").toLowerCase()}})

@@ -1,1 +1,0 @@
-define(["Backbone"],function(a){var b=a.Collection.extend({url:"/api/v1/person"});return b})
