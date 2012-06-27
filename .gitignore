@@ -7,3 +7,4 @@ node_modules
 chromedriver.log
 public/css
 public-production
+public/js/templates

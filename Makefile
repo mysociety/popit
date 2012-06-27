@@ -47,6 +47,7 @@ minify: scss js-templates
 	rm    public-production/build.txt
 	rm    public-production/js/app.build.js 
 	rm -r public-production/sass/
+	rm -r public/js/templates	
 
 
 tidy:
