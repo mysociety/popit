@@ -21,21 +21,24 @@ block content
       
     aside
       ul.photos
-        for image_id in person.images
+        for image in person.images
           li
             //- FIXME - don't use the full size image here, resize it on the server before sending
-            img(src="/image/#{image_id}-original")
+            if image.url
+              img(src="#{image.url}")
+            else
+              img(src="#{person.slug_url}/images/#{image.id}-original")
             p.photo-source source:
-              a(href="#photogrpaher-url") Photographer 
+              a(href="#photographer-url") Photographer
               abbr.license(title="Creative Commons - By Attribution - Share Alike") CC-BY-SA
               ul.admin-options
                 li
-                  a.delete(href="#FIXME-delete-img-url")
-                    strong - delete 
-                    | this photograph
+                  form(method="post", action="#{person.slug_url}/images/#{image.id}/delete")
+                    input(type="submit", value="delete", style="width: 4em; display: inline")
+                    |  this photograph
       ul.admin-options
         li
-          a.add(href="#{person.slug_url}/upload_image")
+          a.add(href="#{person.slug_url}/images/upload")
               strong + add 
               | a photograph
     //- if((!person.summary) && (!locals.user))
