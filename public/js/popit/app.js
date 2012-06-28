@@ -17,7 +17,7 @@ define(
     Backbone,
     BackboneMarionette,
     PersonModel,
-    NewPersonView
+    PersonNewView
   ) {
 
     // FIXME - this is in the wrong place, and we shouldn't be mucking around with the global jQuery behaviour like this.
@@ -41,7 +41,7 @@ define(
          event.preventDefault();
 
          var person = new PersonModel({});
-         var view   = new NewPersonView({model: person});
+         var view   = new PersonNewView({model: person});
 
          view.render();
 

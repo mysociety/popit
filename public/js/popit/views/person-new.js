@@ -7,6 +7,7 @@ define(
     'utils/slugify',
     'templates/person/new',
     'popit/models/person',
+    'popit/views/submit-form-helper',
     'popit/views/suggestions'
   ],
   function (
@@ -15,22 +16,26 @@ define(
     BackboneForms,
     _,
     slugify,
-    newPersonTemplate,
+    personNewTemplate,
     PersonModel,
+    submitFormHelper,
     SuggestionsView
   ) {
 
-    var NewPersonView = Backbone.View.extend({
+    var PersonNewView = Backbone.View.extend({
   
       initialize: function () {
-        this.form = new BackboneForms({ model: this.model });        
+        this.form = new BackboneForms({
+					model: this.model,
+					fields: ['name', 'slug']
+				});
         this.suggestionsView = new SuggestionsView();
       },
       
       render: function () {
   
         // render the template and form
-        var $content = $( newPersonTemplate({}) );
+        var $content = $( personNewTemplate({}) );
         var $form    = $( this.form.render().el );
   
         // add the contents of the form to the template content
@@ -47,34 +52,10 @@ define(
       
       events: {
         'submit form ':             'submitForm',
-        'keyup input[name=name]':   'nameEdit',
+        'keyup input[name=name]':   'nameEdit'
       },
       
-      submitForm: function (e) {
-        e.preventDefault();
-  
-        var self   = this;
-        var form   = self.form;        
-        var errors = form.commit();
-  
-        if (_.isEmpty(errors)) {
-          this.model.save(
-            {},
-            {
-              success: function (model, response) {
-                document.location = response.meta.edit_url;
-              },
-              error: function (model, response) {
-                var errors = $.parseJSON( response.responseText ).errors || {};
-                _.each(errors, function(val, key) {
-                  form.fields[key] && form.fields[key].setError(val);
-                });         
-              }
-            }
-          );
-        }
-  
-      },
+      submitForm: submitFormHelper,
       
       nameEdit: function (e) {
         // When the name is being entered we should fill in the slug. This will
@@ -91,12 +72,11 @@ define(
         self.suggestionsView.setName($name.val());              
   
         return true;
-      },
-  
+      }
   
     });
   
-    return NewPersonView;
+    return PersonNewView;
   
   }
 );

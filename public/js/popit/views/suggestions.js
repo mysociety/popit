@@ -42,7 +42,7 @@ define(
         return self;
       },
       200 // delay 200 ms before requesting the name from the server
-    ),
+    )
 
   });
 
