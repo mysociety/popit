@@ -38,16 +38,14 @@ define(
 
       $('#new-person').click(function(event) {
 
-         event.preventDefault();
+        event.preventDefault();
 
-         var person = new PersonModel({});
-         var view   = new PersonNewView({model: person});
-
-         view.render();
-
-         $.fancybox( view.el );
-
-         view.$(':input:first').focus();
+        var person = new PersonModel({});
+        var view   = new PersonNewView({model: person});
+        
+        // render in lightbox, focus on first input
+        $.fancybox( view.render().el );
+ 				view.$(':input:first').focus();
       });
 
     });
