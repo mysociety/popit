@@ -23,6 +23,7 @@ We use a modified form of this [Git branch strategy](http://nvie.com/posts/a-suc
 
 Once the code is more stable and has more users we will probably add in release branches, and start tagging with released version numbers.
 
+The `production` branch is also special in that the public-production folder is not `.gitignore`d - so it is ready to deploy. On the other branches this folder is ignored so that generated assets don't clog up the diffs.
 
 ## Developer Setup
 
@@ -31,7 +32,7 @@ These notes are in addition to the notes in `INSTALL.md`. If you'd like to work 
 
 ## SCSS to CSS
 
-Generate the CSS from the SCSS by running `make scss`. When developing it is more convenient to run `compass watch` and let it detect changes to the SCSS and recompile as needed.
+Generate the CSS from the SCSS by running `make css`. When developing it is more convenient to run `compass watch` and let it detect changes to the SCSS and recompile as needed. Ideally this would run automatically as a middleware - patches welcome.
 
 
 ## Emails
@@ -41,7 +42,7 @@ The system send emails at various points. When developing these are also output 
 
 ## Minifying public to public-production
 
-This is done by running `make public-production` and the results committed to the repository. When NODE_ENV is 'development' the unminified assets are used to make development easier. Otherwise the minified assets are used (this includes testing - public-productioning the assets is a part of the `make test` process).
+This is done by running `make public-production`. When NODE_ENV is 'development' the unminified assets are used to make development easier. Otherwise the minified assets in public-production are used. When you run the test suite using `make test` the public-production folder is generated and the production assets used for the tests.
 
 Note that the paths used in the templates are the same for both - the JS is either a loader script which gets the required parts individually, or the single combined script.
 
@@ -50,7 +51,9 @@ Note that the paths used in the templates are the same for both - the JS is eith
 
 There are Watir tests that test the website and the interactions with it. You'll need to install Ruby (the programming language) and Chrome as the browser, and possibly chrome driver too.
 
+The tests decide which server to connect to based on the `NODE_ENV`. If it is `testing` they'll connect to port `3100`, otherwise they'll use port `3000`. This is convenient as you can go to the `tests/browser-based` dir and run the tests manually using `ruby -I. name_of_test.rb`. Combining this with [pry](http://pry.github.com/) and dropping in `binding.pry` breakpoints leads to a very nice test developing environment (write tests in the repl shell, see results in the browser, copy to text editor when happy).
+
 
 ## Running the tests
 
-In the `popit` directory just run `npm test`.
+In the `popit` directory just run `make test`. The tests run in several stages and will trigger the building of generated assets etc.
