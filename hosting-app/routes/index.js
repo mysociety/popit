@@ -238,6 +238,10 @@ exports.route = function (app) {
         });
     });
 
+    app.get('/instancesupdate', function(req, res, next){
+      req.popit.model('Instance').sync();
+    });
+    
     // Throw a 404 error
     app.all('/*', function(req, res, next) {
       next(new Error404());
