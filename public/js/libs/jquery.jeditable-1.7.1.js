@@ -57,7 +57,7 @@
   *             
   */
 
-(function($) {
+define(['jquery'], function($) {
 
     $.fn.editable = function(target, options) {
             
@@ -540,4 +540,6 @@
         ajaxoptions: {}
     };
 
-})(jQuery);
+    return true;
+
+});
