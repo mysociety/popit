@@ -132,6 +132,41 @@ class PersonEditingTests < PopItWatirTestCase
     @b.refresh
     assert_equal new_text, @b.element(:css => '[data-api-name=summary]').text
 
+    # grab the name for checking later
+    original_name = @b.h1(:class => 'current-person').text
+    changed_name  = 'Changed Name'
+
+
+    # check that the name can be edited too and that escape cancels
+    assert ! @b.h1(:class => 'current-person').input.present?
+    @b.h1(:class => 'current-person').click
+    assert @b.h1(:class => 'current-person').input.present?
+    @b.h1(:class => 'current-person').text_field.set changed_name
+    @b.send_keys :escape
+    assert ! @b.h1(:class => 'current-person').input.present?    
+    assert_equal original_name, @b.h1(:class => 'current-person').text
+
+    # check that for non-textarea bluring cancels
+    assert ! @b.h1(:class => 'current-person').input.present?
+    @b.h1(:class => 'current-person').click
+    assert @b.h1(:class => 'current-person').input.present?
+    @b.h1(:class => 'current-person').text_field.set changed_name
+    @b.div(:id => 'content').click
+    sleep 2 # there is a delay in the js
+    assert ! @b.h1(:class => 'current-person').input.present?    
+    assert_equal original_name, @b.h1(:class => 'current-person').text
+
+    # check that edits are saved
+    assert ! @b.h1(:class => 'current-person').input.present?
+    @b.h1(:class => 'current-person').click
+    assert @b.h1(:class => 'current-person').input.present?
+    @b.h1(:class => 'current-person').text_field.set changed_name
+    @b.send_keys :return
+    assert ! @b.h1(:class => 'current-person').input.present?    
+    assert_equal changed_name, @b.h1(:class => 'current-person').text
+    @b.refresh
+    assert_equal changed_name, @b.h1(:class => 'current-person').text
+    
   end
 
 end

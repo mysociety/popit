@@ -14,7 +14,7 @@ block content
         a.next-person(href="#FIXME-next-person", title="Next Person: Person Name")
           em Next&nbsp;Person:
           strong Person&nbsp;Name
-      h1.current-person(title="#{ person.name }") #{ person.name }
+      h1.current-person(title="#{ person.name }", class="edit-in-place", data-api-url="/person/#{ person.id }", data-api-name="name") #{ person.name }
       div.find-person
         label(for="person-search") Search for Person
         input#person-search(type="search", name="person-search")
@@ -68,9 +68,6 @@ block content
   
       h2 Name, birthday & similar:
       dl
-        dt Full Name:
-        dd(itemprop="name") #{ person.name }
-        
         dt Birthdate:
         dd
           time(itemprop="birthDate", datetime="1951-02-20") 20 February 1951
