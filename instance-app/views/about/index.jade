@@ -1,0 +1,18 @@
+extend ../layout
+
+block title
+  | About Us
+
+block content
+  style
+
+  .page-header
+    h1 About Us
+      if locals.user
+        a(href='/about/edit')  (edit)
+
+  each val, field in fields
+    .about-field
+      b #{val.label}: 
+      #{val.value}
+    br
