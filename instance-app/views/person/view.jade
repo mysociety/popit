@@ -3,18 +3,7 @@ extend ../layout
 block title
   | #{ person.name }
 
-block content
-  style
-    a.hover_edit {
-      float: right;
-      color: #ddd;
-      font-size: 80%;
-    }    
-
-    a.hover_edit:hover {
-      color: #333;
-    }
-            
+block content            
 
   article(class="person", id="person-james_gordon_brown", itemscope, itemtype="http://schema.org/Person")
     header.person-header-nav(id="person-#{person.slug}")
@@ -32,21 +21,24 @@ block content
       
     aside
       ul.photos
-        for image_id in person.images
+        for image in person.images
           li
             //- FIXME - don't use the full size image here, resize it on the server before sending
-            img(src="/image/#{image_id}-original")
+            if image.url
+              img(src="#{image.url}")
+            else
+              img(src="#{person.slug_url}/images/#{image.id}-original")
             p.photo-source source:
-              a(href="#photogrpaher-url") Photographer 
+              a(href="#photographer-url") Photographer
               abbr.license(title="Creative Commons - By Attribution - Share Alike") CC-BY-SA
               ul.admin-options
                 li
-                  a.delete(href="#FIXME-delete-img-url")
-                    strong - delete 
-                    | this photograph
+                  form(method="post", action="#{person.slug_url}/images/#{image.id}/delete")
+                    input(type="submit", value="delete", style="width: 4em; display: inline")
+                    |  this photograph
       ul.admin-options
         li
-          a.add(href="#{person.slug_url}/upload_image")
+          a.add(href="#{person.slug_url}/images/upload")
               strong + add 
               | a photograph
     //- if((!person.summary) && (!locals.user))
@@ -121,7 +113,7 @@ block content
         for contact in person.contact_details
           dt #{ contact.kind }:
           dd #{ contact.value }
-            a.hover_edit(href="#{person.slug_url}/contacts/#{contact.id}/edit") edit
+            a.admin-options(href="#{person.slug_url}/contacts/#{contact.id}/edit") edit
             
 
     section.contact-information
@@ -140,7 +132,7 @@ block content
           dt #{ link.comment }:
           dd
             a(href=link.url) #{ link.url }
-            a.hover_edit(href="#{person.slug_url}/links/#{link.id}/edit") edit
+            a.admin-options(href="#{person.slug_url}/links/#{link.id}/edit") edit
   
     section.raw-data
       h2 Raw data

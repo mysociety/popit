@@ -1,0 +1,6 @@
+if persons.length
+  for person in persons
+    li
+      a(href=person.meta.edit_url) #{ person.name } (#{ person.slug }) 
+else
+  li No matches

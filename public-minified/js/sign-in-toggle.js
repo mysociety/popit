@@ -1,1 +1,0 @@
-require(["jquery"],function(a){a(function(){var b=a("#sign_in"),c=a("body"),d="signed_in";b.hasClass(d)||b.hover(function(a){c.addClass(d)},function(a){c.removeClass(d)})})})

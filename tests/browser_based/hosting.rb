@@ -86,8 +86,8 @@ class HostingTests < PopItWatirTestCase
     # check that we are on the instance url now
     assert_match /^http:\/\/test\./, @b.url
     assert_match 'PopIt : test', @b.text
-    assert_equal 'Create a new person', @b.div(:id, 'content').h1.text
-    assert_equal 'New Person', @b.title
+    assert_equal 'People', @b.div(:id, 'content').h1.text
+    assert_equal 'People', @b.title
 
     # check that we are logged in
     assert_match 'Hello bob@example.com', @b.div(:id, 'signed_in').text
