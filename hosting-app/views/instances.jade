@@ -12,7 +12,9 @@ block content
     ul
       for instance in instances
         li
-          a(href="#{ instance.url }") #{ instance.name }
-
+          if instance.info[0]
+            a(href="#{ instance.base_url }") #{ instance.info[0].name }
+          else
+            a(href="#{ instance.base_url }") #{ instance.slug }
   else
     p.error No instances have been created yet.

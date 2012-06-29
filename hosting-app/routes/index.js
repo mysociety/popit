@@ -228,7 +228,7 @@ exports.route = function (app) {
 
     app.get('/instances', function(req, res, next){
 
-        var query = req.popit.model('Instance').find().asc('name');
+        var query = req.popit.model('Instance').find();
 
         query.run(function(err, docs) {
           if (err) throw err;
