@@ -33,6 +33,7 @@ require(
   'augmenters/search-box',
   'augmenters/slug-validation',
   'augmenters/sign-in-toggle',
+  'augmenters/edit-in-place',
   'popit/app',
   ]
 );
