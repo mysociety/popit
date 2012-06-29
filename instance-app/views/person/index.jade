@@ -10,13 +10,5 @@ block content
   p.admin-options
     a#new-person(href="#") Create a new person
 
-  if people.length
-    ul
-      for person in people
-        li
-          //- if person.images.length
-          //-   img(src="/image/#{person.images[0]}-original", height="60")
-          a(href="#{ person.slug_url }") #{ person.name }  
+  include list
 
-  else
-    p.error There are no people in the system yet
