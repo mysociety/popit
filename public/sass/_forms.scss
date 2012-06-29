@@ -83,7 +83,15 @@ form{
 	}
 }
 
-
+// apply styling to edit-in-place elements when user logged in
+body.signed_in {
+  .edit-in-place, .edit-in-place-textarea {
+    &:hover{
+      background-color: $edit-in-place-background-color;
+      cursor: pointer;
+    };
+  }
+}
 
 
 
