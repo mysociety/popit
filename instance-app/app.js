@@ -12,7 +12,7 @@ var express           = require('express'),
     Db                = require('mongodb').Db,
     Server            = require('mongodb').Server,
     mongoStore        = require('connect-mongodb'),
-    image_proxy       = require('connect-proxy');
+    image_proxy       = require('connect-image-proxy');
 
 // everyauth.debug = true;
 
