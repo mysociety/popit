@@ -7,7 +7,7 @@
 // 
 // Options are specified using the 'data-' attributes:
 // 
-//   data-api-url:  the API endpoint that the changes should be PUT to.
+//   data-api-url:  the API endpoint that the changes should be PUT to - does not include the leading '/api/v1' bit.
 //   data-api.name: what is this field called.
 // 
 // This is only suitable for single field changes, for more complicated editing
@@ -48,8 +48,13 @@ require(
     }
   
     $( function() {
-      $('.edit-in-place'         ).editable( onSubmit, {} );
-      $('.edit-in-place-textarea').editable( onSubmit, {
+      
+      // We only want the editing to be enabled for users who are signed in
+      var $signed_in = $('body.signed_in');
+
+      $signed_in.find('.edit-in-place'         ).editable( onSubmit, {} );
+
+      $signed_in.find('.edit-in-place-textarea').editable( onSubmit, {
         type: 'textarea',
         submit: 'OK',    // return does not work in a textarea
         onblur: 'ignore' // otherwise tabbing to the submit cancels the edit. Doh!
