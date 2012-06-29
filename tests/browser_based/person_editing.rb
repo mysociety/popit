@@ -105,28 +105,32 @@ class PersonEditingTests < PopItWatirTestCase
     # login and try again
     login_to_instance
     goto '/person/george-bush'    
-
     assert ! @b.textarea(:name => 'value').present?
     @b.element(:css => '[data-api-name=summary]').click
     assert @b.textarea(:name => 'value').present?
 
-    binding.pry
+    # check that the text is as expected
+    original = '41th President of the United States'
+    assert_equal original, @b.textarea(:name => 'value').value
+    
+    # press escape key to cancel edit
+    @b.send_keys 'This is some new text'
+    @b.send_keys :escape
+    assert ! @b.textarea(:name => 'value').present?
+    assert_equal original, @b.element(:css => '[data-api-name=summary]').text
 
-    # # check that the edit links are shown when hovering
-    # assert ! @b.link(:text, '^ edit the summary').present?
-    # @b.link(:text, 'Sign In').hover
-    # assert @b.link(:text, '^ edit the summary').present?
-    # 
-    # # login to reveal the links
-    # login_to_instance
-    # 
-    # # edit the person
-    # goto '/person/george-bush'    # FIXME - shouldn't be needed - should redirect back to correct page
-    # @b.link(:text, '^ edit the summary').click
-    # @b.text_field(:name, 'summary').set "Test Summary blah blah"
-    # @b.input(:value, 'Save').click
-    # assert_equal "George Bush", @b.title
-    # assert_match "Test Summary blah blah", @b.text
+    # Edit the text to something new, tab return to submit
+    new_text = 'This is some new text'
+    @b.element(:css => '[data-api-name=summary]').click
+    @b.textarea(:name => 'value').set new_text
+    @b.send_keys :tab
+    @b.send_keys :return
+    assert ! @b.textarea(:name => 'value').present?
+    assert_equal new_text, @b.element(:css => '[data-api-name=summary]').text
+    
+    # reload the page, check that the new text ist still there
+    @b.refresh
+    assert_equal new_text, @b.element(:css => '[data-api-name=summary]').text
 
   end
 
