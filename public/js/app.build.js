@@ -14,6 +14,7 @@
     'jquery.mailcheck': './libs/jquery.mailcheck.1.0.3.min',
     'jquery.fancybox':  './libs/jquery.fancybox-2.0.6',
     'jquery.jeditable': './libs/jquery.jeditable-1.7.1',
+    'jquery.pulse':     './libs/jquery.pulse',
 
     // AMD versions of these libraries:
     //   https://github.com/amdjs/backbone/blob/master/backbone.js
