@@ -215,6 +215,10 @@ module.exports = {
         var that = this;
 
         migration.doImport(that.popit, schema, mappings, data, function(){}, function(err, people) {
+          
+          if(err) 
+            log(err);
+
           test.ifError(err);
           test.equal(people.length, 2, 'two people in people set');
 
@@ -283,11 +287,12 @@ module.exports = {
         var that = this;
 
         migration.doImport(this.popit, schema, mappings, data, function() {}, function(err, people) {
-          test.ifError(err);
-          test.equal(people.length, 1, 'one person in people set');
-
+          
           if(err) 
             log(err);
+          
+          test.ifError(err);
+          test.equal(people.length, 1, 'one person in people set');
 
           var query = that.popit.model('Person').find();
 
