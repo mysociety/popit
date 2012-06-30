@@ -240,7 +240,7 @@ module.exports = {
     },
 
     "import the right fields": function ( test ) {
-        test.expect( 10 );
+        test.expect( 25 );
 
         var migration = new MigrationApp();
         test.ok( migration, "got new migation app" );
@@ -306,16 +306,40 @@ module.exports = {
 
             var p = docs[0];
             test.equal(p.name, "Sir John A. Doe");
-            test.ok(_.any(p.links, function(e) {
-              return e.comment == "Website" && e.url == "http://www.doe.senate.gov/";
-            }));
-            test.ok(_.any(p.links, function(e) {
-              return e.comment == "Wikipedia" && e.url == "http://www.wikipedia.org/wiki/John_Doe";
-            }));
+
+            test.equal(p.links.length, 2);
+
+            var el;
+            el = _.filter(p.links, function(e) { return e.comment == "Website"});
+            test.equal(el.length, 1);
+            test.equal(el[0].url, 'http://www.doe.senate.gov/');
+
+            el = _.filter(p.links, function(e) { return e.comment == "Wikipedia"});
+            test.equal(el.length, 1);
+            test.equal(el[0].url, 'http://www.wikipedia.org/wiki/John_Doe');
+
+            var ids = p.get('ids');
+            test.equal(ids.length, 2);
+
+            var twitter = _.filter(ids, function(e) { return e.provider == "Twitter"});
+            test.equal(twitter.length, 1);
+            test.equal(twitter[0].id, '@thedoe');
+
+            var popit = _.filter(ids, function(e) { return e.provider == "PopIt"});
+            test.equal(popit.length, 1);
+            test.equal(popit[0].id, 'dsfd87g89dsfg6d5f7g8sfd6g8sdg8dfg');
+
 
             test.equal(p.contact_details.length, 1);
             test.equal(p.contact_details[0].kind, "Phone");
             test.equal(p.contact_details[0].value, "734-234-3545");
+
+            var other = p.get('other');
+            test.equal(other.Gender, 'Between');
+            test.equal(other.University, 'Potatoe College');
+            test.equal(other.School, 'Cucumber School');
+
+            test.equal(p.get('birthDate'), '14.10.1963');
 
             test.done();
           });
