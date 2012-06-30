@@ -42,7 +42,7 @@ module.exports = {
         migration.source.mime_type ="text/csv";
         test.equal( migration.source.mime_type, "text/csv", 'source mime_type changed' );
 
-        var array = [ 'alpha', 'beta' ]
+        var array = [ 'alpha', 'beta' ];
         migration.source.parsed.header = array;
         test.equal( migration.source.parsed.header.length, array.length, 'parsed source header changed' );
 
@@ -98,7 +98,8 @@ module.exports = {
           'name': {
             'First name': 'John', 
             'Middle name': 'Peter', 
-            'Last name': 'Doe'},
+            'Last name': 'Doe'
+          },
           'links': {
             'Twitter': '@funkyjohn',
             'Facebook': 'John Doe'
@@ -227,7 +228,89 @@ module.exports = {
             docs.forEach(function(doc) {
               test.equal(doc.links.length, 4, 'four links per person');
               test.equal(doc.contact_details.length, 1, 'one contact detail per person');
-            })
+            });
+
+            test.done();
+          });
+        });
+    },
+
+    "import the right fields": function ( test ) {
+        test.expect( 10 );
+
+        var migration = new MigrationApp();
+        test.ok( migration, "got new migation app" );
+
+        test.ok( migration.doImport, "migration tests" );
+
+        schema = 'person';
+        mappings = 
+            [ [ 'title', 'name', 'Title' ],
+              [ 'firstname', 'name', 'First name' ],
+              [ 'middlename', 'name', 'Middle name' ],
+              [ 'lastname', 'name', 'Last name' ],
+              [ 'birthdate', 'name', 'Birthdate' ],
+              [ 'party', 'position', 'Party' ],
+              [ 'school', 'other', 'School' ],
+              [ 'university', 'other', 'University' ],
+              [ 'gender', 'other', 'Gender' ],
+              [ 'phone', 'contact', 'Phone' ],
+              [ 'fax', 'contact', 'Fax' ],
+              [ 'website', 'links', 'Website' ],
+              [ 'popit_id', 'id', 'PopIt' ],
+              [ 'twitter_id', 'id', 'Twitter' ],
+              [ 'wikipedia_url', 'links', 'Wikipedia' ],
+              [ '', '', '' ]];
+        data = {'675': 
+          [ 'Sir',
+            'John',
+            'A.',
+            'Doe',
+            '14.10.1963',
+            'Party of the Saussages',
+            'Cucumber School',
+            'Potatoe College',
+            'Between',
+            '734-234-3545',
+            '',
+            'http://www.doe.senate.gov/',
+            'dsfd87g89dsfg6d5f7g8sfd6g8sdg8dfg',
+            '@thedoe',
+            'http://www.wikipedia.org/wiki/John_Doe',
+            '']
+          };
+
+        var that = this;
+
+        migration.doImport(this.popit, schema, mappings, data, function() {}, function(err, people) {
+          test.ifError(err);
+          test.equal(people.length, 1, 'one person in people set');
+
+          if(err) 
+            log(err);
+
+          var query = that.popit.model('Person').find();
+
+          query.run(function(err, docs) {
+            test.ifError(err);
+            test.ok(docs);
+
+            test.equal(docs.length, 1, 'one person in database');
+
+            log(docs);
+
+            var p = docs[0];
+            test.equal(p.name, "Sir John A. Doe");
+            test.ok(_.any(p.links, function(e) {
+              return e.comment == "Website" && e.url == "http://www.doe.senate.gov/";
+            }));
+            test.ok(_.any(p.links, function(e) {
+              return e.comment == "Wikipedia" && e.url == "http://www.wikipedia.org/wiki/John_Doe";
+            }));
+
+            test.equal(p.contact_details.length, 1);
+            test.equal(p.contact_details[0].kind, "Phone");
+            test.equal(p.contact_details[0].value, "734-234-3545");
 
             test.done();
           });
