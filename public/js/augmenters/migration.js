@@ -15,7 +15,7 @@ require(['jquery', 'underscore'], function ($, _) {
         console.log(json);
         var s = 'Imported ' + json.progress+' of '+json.total+' items.';
         if (json.total === json.progress) {
-          s = 'Finished importing <a href="/person">'+json.count+'</a> people.';
+          s = 'Finished importing <a href="/person" id="_finished">'+json.count+'</a> people.';
           clearInterval(myTimer);
         }
         if (json.err && json.err.name) {
