@@ -30,6 +30,14 @@ The `production` branch is also special in that the public-production folder is 
 These notes are in addition to the notes in `INSTALL.md`. If you'd like to work on the code and run the tests you'll need the following:
 
 
+## Node module dependencies
+
+We list the dependencies as normal in `packages.json`. However we also take advantage of [npm shrinkwrap](http://npmjs.org/doc/shrinkwrap.html) to lock down the dependencies so that the development and production versions all match exactly.
+
+After you've added a module to `packages.json` please run `make npm-shrinkwrap` which builds the shrink-wrapped node_modules dir, deletes the shrinkwrap file, runs another build to pick up you changes and then freezes it.
+
+The shrinkwrap is applied before the tests are run (if you use `make test`) to check that no dependencies have been forgotten.
+
 ## SCSS to CSS
 
 Generate the CSS from the SCSS by running `make css`. When developing it is more convenient to run `compass watch` and let it detect changes to the SCSS and recompile as needed. Ideally this would run automatically as a middleware - patches welcome.
