@@ -6,7 +6,7 @@ from pprint import pprint
 
 def random_unicode():
     ascii = [chr(x) for x in range(32,126) if not x in [34, 39, 96]]
-    unic = list("äüöᴀaᴈᴉᴊᴋᴌᴍᴎᴏⓚĦ")
+    unic = list("äüöᴀaᴈᴉᴊᴋᴌᴍᴎᴏⓚĦß")
     a = ascii + unic
     return a[random.randint(0, len(a)-1)]
 
