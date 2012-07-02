@@ -302,8 +302,6 @@ module.exports = {
 
             test.equal(docs.length, 1, 'one person in database');
 
-            log(docs);
-
             var p = docs[0];
             test.equal(p.name, "Sir John A. Doe");
 
