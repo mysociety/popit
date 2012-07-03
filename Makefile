@@ -26,6 +26,13 @@ npm-update:
 	npm prune
 	npm shrinkwrap
 
+npm-shrinkwrap:
+	npm install
+	rm npm-shrinkwrap.json
+	npm install
+	npm prune
+	npm shrinkwrap
+
 
 lint:
 	find lib          -name '*.js' | xargs -n 1 $(LINT) --node --
@@ -94,7 +101,7 @@ test-api:
 		tests/api
 
 
-production:
+production: clean
 	git checkout production
 	git merge master
 	make public-production
@@ -106,7 +113,8 @@ clean:
 	rm -rf public/js/templates	
 	rm -rf public-build
 	rm -rf public-production
+	rm -f chromedriver.log
 
 
-.PHONY: test test-unit test-browser test-api css public-production clean tidy node-modules npm-update
+.PHONY: test test-unit test-browser test-api css public-production clean tidy node-modules npm-update npm-shrinkwrap
 
