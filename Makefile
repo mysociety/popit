@@ -101,7 +101,7 @@ test-api:
 		tests/api
 
 
-production:
+production: clean
 	git checkout production
 	git merge master
 	make public-production
