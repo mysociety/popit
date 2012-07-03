@@ -146,6 +146,9 @@ app.configure( function () {
 
   app.use('/autocomplete',  require('../lib/apps/autocomplete') );
 
+  var person_app_factory = require('../lib/apps/migration');
+  app.use('/migration', person_app_factory() );
+
   var person_app_factory = require('../lib/apps/person');
   app.use('/person', person_app_factory() );
 

@@ -1,0 +1,19 @@
+/* Table Styles */
+
+table {
+	&.migration-table {
+		border-spacing: 2;
+		tr {
+			border: 1px solid #aaa;
+			&:nth-child(even) {
+				background-color: #eef;
+			}
+			th {
+				padding: 0.2em 2em;
+			}
+			td {
+				padding: 0.1em 0.1em 0.1em 0.5em;
+			}
+		}
+	}
+}

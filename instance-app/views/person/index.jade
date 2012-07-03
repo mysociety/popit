@@ -19,4 +19,7 @@ block content
           a(href="#{ person.slug_url }") #{ person.name }  
 
   else
-    p.error There are no people in the system yet
+    p.error 
+      | There are no people in the system yet. Use the 
+      a(href="/migration", id="migration_tool") migration tool
+      |  to add data to PopIt.
