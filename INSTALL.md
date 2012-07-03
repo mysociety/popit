@@ -66,6 +66,10 @@ To install from git do the following:
     
     # Start the app locally
     npm start
+    
+    # If you want to run the app from your /etc/init.d directory there is a 
+    # sample script in './config' that you can use. Don't forget to create the
+    # production config file too.
 
 ## Generated assets
 
