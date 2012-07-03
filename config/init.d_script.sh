@@ -1,6 +1,16 @@
 #! /bin/sh
 # /etc/init.d/popit
-#
+
+
+### BEGIN INIT INFO
+# Provides:          popit
+# Required-Start:    $network mongodb varnish
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Run PopIt service.
+### END INIT INFO
+
 
 # This is a script that can be used to start the popit service at boot, and
 # control it using the default sysadmin techniques. It is really a wrapper
@@ -10,7 +20,7 @@ FOREVER=/usr/local/bin/forever
 POPIT_USER=popit
 POPIT_DIR=/home/popit/popit
 LOGS_DIR=/home/popit/logs
-POPIT_SCRIPT="$POPIT_DIR/production-server.js"
+POPIT_SCRIPT="production-server.js"
 
 # NOTE: as well as copying and editing this script you'll need to create a 
 # production config file - there is a sample in `$POPIT_DIR/config/`
@@ -20,9 +30,10 @@ POPIT_SCRIPT="$POPIT_DIR/production-server.js"
 su -c "mkdir -p $LOGS_DIR" $POPIT_USER
 
 # create the various commands
-START_POPIT="$FOREVER start -l $LOGS_DIR/forever.log -o $LOGS_DIR/out.log -e $LOGS_DIR/err.log $POPIT_SCRIPT"
-STOP_POPIT="$FOREVER stop $POPIT_SCRIPT"
-RESTART_POPIT="$FOREVER restart $POPIT_SCRIPT"
+CD_POPIT="cd $POPIT_DIR"
+START_POPIT="$CD_POPIT; $FOREVER start -a -l $LOGS_DIR/forever.log -o $LOGS_DIR/out.log -e $LOGS_DIR/err.log $POPIT_SCRIPT"
+STOP_POPIT="$CD_POPIT; $FOREVER stop $POPIT_SCRIPT"
+RESTART_POPIT="$CD_POPIT; $FOREVER restart $POPIT_SCRIPT"
 
 # Carry out specific functions when asked to by the system
 case "$1" in
