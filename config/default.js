@@ -6,6 +6,8 @@ module.exports = {
     // too
     public_dir: 'public-production',
 
+    api_root_url: '/api/v1',
+
     server: {
       port: 3000,
     },
