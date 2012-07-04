@@ -21,7 +21,7 @@ define(
 
       $('#content').on('click', 'a.contact-edit', function(event) {
         var $link    = $(this);
-        var $element = $(this).parent('li');
+        var $element = $(this).closest('li');
 
         event.preventDefault();
 
@@ -38,7 +38,7 @@ define(
         // create the view. Hook it up to the enclosing element.
         var view    = new ContactEditView({
           model: contact,
-          el:    $(this).parent('li')
+          el:    $element
         });
 
         // If this is a new contact just render the view. If it is existing then 

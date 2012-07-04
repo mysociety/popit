@@ -94,21 +94,18 @@ block content
             //- a.hover_edit(href="#{person.slug_url}/contacts/#{contact.id}/edit") edit
             
     section.contact-information
-      ul.admin-options
-        li
-          a.add(href="#{person.slug_url}/contacts/new/edit")
-            strong + add 
-            | information
-        //- li
-        //-   a.edit(href="#FIXME-edit")
-        //-     strong edit 
-        //-     | this section
       h2 Contact Information:
       ul
         - var api_url_root = person.api_url + '/contact_details/'
         for contact in person.contact_details
           li
-            include ../contact/view            
+            include ../contact/view
+        li
+          span.admin-options
+            a(data-url-root="#{api_url_root}", class="add contact-edit")
+              strong + add 
+              | a new contact detail
+                
 
     section.contact-information
       ul.admin-options
