@@ -14,6 +14,9 @@ block content
         li
           if instance.info[0]
             a(href="#{ instance.base_url }") #{ instance.info[0].name }
+            if instance.info[0].description
+              | -
+              #{ instance.info[0].description }
           else
             a(href="#{ instance.base_url }") #{ instance.slug }
   else
