@@ -531,6 +531,9 @@
     "validator": {
       "version": "0.4.6-2"
     },
+    "csv": {
+      "version": "0.0.13"
+    },
     "everyauth": {
       "version": "0.2.32",
       "from": "https://github.com/evdb/everyauth/tarball/master",

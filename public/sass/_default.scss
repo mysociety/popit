@@ -419,3 +419,46 @@ body.signed_in .admin-options{ visibility: visible; }
 		color: #ccc;
 	}
 }
+
+// -----------------------
+//	migration Page
+// -----------------------
+
+.note {
+	background-color: #EEEEEE;
+	padding: 1em;
+	width: 50%;
+
+	&.error {
+		color: red;
+	}
+	&.info {
+	}
+}
+
+table.migration-table {
+	input[type='text'] {
+		width: 18em;
+		height: 1.7em;
+		padding: 0 0.6em;
+	}
+	select {
+		min-width: 100%;
+	}
+	small {
+		color: gray;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		width: 20em;
+		display: block;
+	}
+	td {
+		height: 2.9em;
+	}
+	.hidden {
+		visibility: collapse;
+		display: none;
+	}
+}
+

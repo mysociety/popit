@@ -91,7 +91,7 @@ test-unit:
 
 test-browser: css public-production
 	$(START_TEST_SERVER)
-	@NODE_ENV=testing ruby tests/browser_based/run_tests.rb
+	@NODE_ENV=testing ruby tests/browser_based/run_tests.rb -v
 	$(STOP_TEST_SERVER)
 
 test-api:
