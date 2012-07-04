@@ -462,7 +462,7 @@ module.exports = {
             rest
               .put(embedded_url, { data: { url: 'http://update.test/', thisShouldBeIgnored: 1234 } })
               .on('complete', function(data, response) {
-                test.equal(response.statusCode, 204, "got 204");
+                test.equal(response.statusCode, 200, "got 200");
                 cb();
               });
           },
