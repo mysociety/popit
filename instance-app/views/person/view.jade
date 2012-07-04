@@ -4,7 +4,7 @@ block title
   | #{ person.name }
 
 block content            
-
+  
   article(class="person", id="person-james_gordon_brown", itemscope, itemtype="http://schema.org/Person")
     header.person-header-nav(id="person-#{person.slug}")
       nav
@@ -72,7 +72,7 @@ block content
         dd
           time(itemprop="birthDate", datetime="1951-02-20") 20 February 1951
     
-    section.contact-information
+    section.positions
       ul.admin-options
         li
           a.add(href="#{person.slug_url}/position/add")
@@ -104,12 +104,11 @@ block content
         //-     strong edit 
         //-     | this section
       h2 Contact Information:
-      dl
+      ul
+        - var api_url_root = person.api_url + '/contact_details/'
         for contact in person.contact_details
-          dt #{ contact.kind }:
-          dd #{ contact.value }
-            a.admin-options(href="#{person.slug_url}/contacts/#{contact.id}/edit") edit
-            
+          li
+            include ../contact/view            
 
     section.contact-information
       ul.admin-options

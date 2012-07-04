@@ -55,7 +55,7 @@ define(
         'keyup input[name=name]':   'nameEdit'
       },
       
-      submitForm: submitFormHelper,
+      submitForm: submitFormHelper(),
       
       nameEdit: function (e) {
         // When the name is being entered we should fill in the slug. This will
