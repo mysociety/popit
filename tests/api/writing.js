@@ -301,7 +301,7 @@ module.exports = {
       var original_sub_collection_ids = [];
       var sub_document_url = null;
 
-      test.expect(9);
+      test.expect(10);
       
       async.series(
         [
@@ -321,7 +321,7 @@ module.exports = {
             rest
               .post(sub_collection_url, { data: { url: 'http://foobar.com', comment: "sample url"}})
               .on('complete', function (data, response) {
-                test.equal(response.statusCode, 201, "got 201 - embedded document created");              
+                test.equal(response.statusCode, 200, "got 200 - embedded document created");              
 
                 // get the location of the new document
                 sub_document_url = response.headers['location'];
@@ -332,6 +332,8 @@ module.exports = {
 
                 test.equal(data.ok, true, "got 'ok' in JSON" );
                 test.equal(data.api_url, sub_document_url, "got correct sub-document url" );
+                test.equal(data.result.url, 'http://foobar.com', "got object back too");
+
                 cb();
               });
           },
