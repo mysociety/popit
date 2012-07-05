@@ -81,7 +81,7 @@ class PopItWatirTestCase < Test::Unit::TestCase
   
   def fetch_all_active_instance_info
     goto_dev_page
-    @b.link(:id, 'fetch_all_active_instance_info').click
+    @b.button(:id, 'fetch_all_active_instance_info').click
     assert_equal "OK - all instances synced", @b.p(:id, 'message').text
   end
 

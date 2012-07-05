@@ -11,8 +11,9 @@ require 'uri'
 class InstanceInfoTests < PopItWatirTestCase
 
   def test_about_page_instance
+
+    delete_instance 'test'
     goto_instance 'test'
-    delete_instance_database
     load_test_fixture
 
     goto '/about'
@@ -40,6 +41,7 @@ class InstanceInfoTests < PopItWatirTestCase
     @b.form(:name, 'edit-about-info').wait_until_present
 
     # enter field values and submit
+    @b.text_field(:name, 'name').set "Test Name"
     @b.text_field(:name, 'description').set "Test description"
     @b.text_field(:name, 'region').set "Test region"
     @b.text_field(:name, 'purpose').set "Test purpose"
@@ -50,6 +52,7 @@ class InstanceInfoTests < PopItWatirTestCase
 
     # check that the entries are as expected
     assert_match /\/about$/, @b.url
+    assert_equal "Name: Test Name",                   @b.element(:class => 'about-field-name').text
     assert_equal "Description: Test description",     @b.element(:class => 'about-field-description').text
     assert_equal "Region: Test region",               @b.element(:class => 'about-field-region').text
     assert_equal "Purpose: Test purpose",             @b.element(:class => 'about-field-purpose').text
@@ -72,12 +75,17 @@ class InstanceInfoTests < PopItWatirTestCase
 
     # Fetch all the instance data and then check that the details are correctly
     # presented.
-    
+    fetch_all_active_instance_info
+    goto '/'
+    @b.link(:text, 'Browse existing sites').click
+    assert_equal 'Test Name', @b.link(:id, 'instance-test').text
+    @b.link(:id, 'instance-test').click
+    assert_equal 'Test Name', @b.title
+    assert_match /Test description/, @b.text
 
-    binding.pry
-
-    # # This will be enabled after adding sync
-    # # assert_match( "test - Test description", @b.text )
+    # Check that the link to the instance works
+    @b.link(:text, /^http:\/\/test\./).click
+    assert_match /^http:\/\/test\./, @b.url
 
   end
 
