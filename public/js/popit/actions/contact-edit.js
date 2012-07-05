@@ -26,9 +26,10 @@ define(
         event.preventDefault();
 
         // create contact. Might be existing one, or a new one.
-        var contact = new ContactModel({
-          id: $link.attr('data-id') || null
-        });
+        var contact = new ContactModel({});
+        var id = $link.attr('data-id');
+        if (id) contact.id = id;
+        
 
         // Manually set the urlRoot for this contact. It needs to include the 
         // document id that this contact is embedded in. (Don't seem to be able 

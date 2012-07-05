@@ -1,5 +1,5 @@
 span.admin-options
-  a(data-id=contact.id, data-url-root=api_url_root, class="edit contact-edit")
+  a(data-id=(contact.id||contact._id), data-url-root=api_url_root, class="edit contact-edit")
     strong ^ edit
 div.contact-kind  #{ contact.kind }:
 div.contact-value #{ contact.value }
