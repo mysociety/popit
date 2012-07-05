@@ -226,6 +226,18 @@ exports.route = function (app) {
         
     });
 
+    app.get('/instances', function(req, res, next){
+
+        var query = req.popit.model('Instance').find();
+
+        query.run(function(err, docs) {
+          if (err) throw err;
+
+          res.local('instances', docs);
+          res.render('instances');
+        });
+    });
+
     // Throw a 404 error
     app.all('/*', function(req, res, next) {
       next(new Error404());
