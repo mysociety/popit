@@ -25,6 +25,9 @@ block content
       input(name="instance_slug")
       input(type="submit", value="Delete instance (both the instance and the entry in master's database)") 
 
+    form(action="/_dev/fetch_all_active_instance_info", method="post")
+      button#fetch_all_active_instance_info Fetch all the active instance's data
+
   else
     h2 Instance site '#{popit.instance_name()}'
     
