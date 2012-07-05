@@ -24,7 +24,11 @@ class InstanceInfoTests < PopItWatirTestCase
 
     # Check that the edit link is not displayed
     assert ! @b.link(:text, '(edit)').present?
-
+    
+    # check that we can't access edit page if not logged in
+    goto '/about/edit'
+    assert_match /\/login$/, @b.url
+    
     # login and check if edit link is visible
     login_to_instance
     goto '/about'
