@@ -76,7 +76,7 @@ class HostingTests < PopItWatirTestCase
     assert_equal "Pending: test", @b.title
             
     # go to the last email page
-    goto "/_testing/last_email"
+    goto "/_dev/last_email"
     @b.link.click
 
     # on the confirmr app page
