@@ -113,7 +113,7 @@ clean:
 	rm -rf public/js/templates	
 	rm -rf public-build
 	rm -rf public-production
-	rm -f chromedriver.log
+	find . -name chromedriver.log -delete
 
 
 .PHONY: test test-unit test-browser test-api css public-production clean tidy node-modules npm-update npm-shrinkwrap
