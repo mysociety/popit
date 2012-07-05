@@ -12,8 +12,15 @@ class InstanceInfoTests < PopItWatirTestCase
 
   def test_about_page_instance
     goto_instance 'test'
+    delete_instance_database
+    load_test_fixture
+
     goto '/about'
     assert_equal 'About Us', @b.title
+
+    # check that the about us details are empty (ie that settings have been
+    # cleared as part of database deleteing)
+    assert_equal 'Description:', @b.element(:class => 'about-field-description').text
 
     # Check that the edit link is not displayed
     assert ! @b.link(:text, '(edit)').present?
