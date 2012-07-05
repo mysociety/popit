@@ -37,39 +37,23 @@ class InstanceInfoTests < PopItWatirTestCase
 
     # enter field values and submit
     @b.text_field(:name, 'description').set "Test description"
-    assert_equal "Test description", @b.text_field(:name, 'description').value
-
     @b.text_field(:name, 'region').set "Test region"
-    assert_equal "Test region", @b.text_field(:name, 'region').value
-
     @b.text_field(:name, 'purpose').set "Test purpose"
-    assert_equal "Test purpose", @b.text_field(:name, 'purpose').value
-
     @b.text_field(:name, 'contact_name').set "Test contact name"
-    assert_equal "Test contact name", @b.text_field(:name, 'contact_name').value
-
     @b.text_field(:name, 'contact_email').set "Test contact email"
-    assert_equal "Test contact email", @b.text_field(:name, 'contact_email').value
-
     @b.text_field(:name, 'contact_phone').set "Test contact phone"
-    assert_equal "Test contact phone", @b.text_field(:name, 'contact_phone').value
-
     @b.input(:value, "Update Info").click
-    goto '/about'
-    assert_match "Description: Test description", @b.text
-    assert_match "Purpose: Test purpose", @b.text
-    assert_match "Contact Name: Test contact name", @b.text
-    assert_match "Contact Phone: Test contact phone", @b.text
-    assert_match "Contact Email: Test contact email", @b.text
-  end
 
-  def test_instances_page_hosting
-    goto_hosting_site
-    goto '/instances'
-    assert_equal "Instance Directory", @b.title
+    # check that the entries are as expected
+    assert_match /\/about$/, @b.url
+    assert_match "Description: Test description",     @b.element(:class => 'about-field-description').text
+    assert_match "Region: Test region",               @b.element(:class => 'about-field-region').text
+    assert_match "Purpose: Test purpose",             @b.element(:class => 'about-field-purpose').text
+    assert_match "Contact Name: Test contact name",   @b.element(:class => 'about-field-contact_name').text
+    assert_match "Contact Phone: Test contact phone", @b.element(:class => 'about-field-contact_phone').text
+    assert_match "Contact Email: Test contact email", @b.element(:class => 'about-field-contact_email').text
 
-    # This will be enabled after adding sync
-    # assert_match( "test - Test description", @b.text )
+
   end
 
 end
