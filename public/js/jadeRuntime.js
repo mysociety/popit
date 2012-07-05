@@ -1,6 +1,6 @@
 define([], function() {
-var 
-jade = (function(exports){
+
+var jade = (function(exports){
 /*!
  * Jade - runtime
  * Copyright(c) 2010 TJ Holowaychuk <tj@vision-media.ca>
@@ -30,54 +30,7 @@ if (!Object.keys) {
       }
     }
     return arr;
-  }
-}
-
-/**
- * Merge two attribute objects giving precedence
- * to values in object `b`. Classes are special-cased
- * allowing for arrays and merging/joining appropriately
- * resulting in a string.
- *
- * @param {Object} a
- * @param {Object} b
- * @return {Object} a
- * @api private
- */
-
-exports.merge = function merge(a, b) {
-  var ac = a['class'];
-  var bc = b['class'];
-
-  if (ac || bc) {
-    ac = ac || [];
-    bc = bc || [];
-    if (!Array.isArray(ac)) ac = [ac];
-    if (!Array.isArray(bc)) bc = [bc];
-    ac = ac.filter(nulls);
-    bc = bc.filter(nulls);
-    a['class'] = ac.concat(bc).join(' ');
-  }
-
-  for (var key in b) {
-    if (key != 'class') {
-      a[key] = b[key];
-    }
-  }
-
-  return a;
-};
-
-/**
- * Filter null `val`s.
- *
- * @param {Mixed} val
- * @return {Mixed}
- * @api private
- */
-
-function nulls(val) {
-  return val != null;
+  } 
 }
 
 /**
@@ -113,7 +66,7 @@ exports.attrs = function attrs(obj, escaped){
         buf.push(key + "='" + JSON.stringify(val) + "'");
       } else if ('class' == key && Array.isArray(val)) {
         buf.push(key + '="' + exports.escape(val.join(' ')) + '"');
-      } else if (escaped && escaped[key]) {
+      } else if (escaped[key]) {
         buf.push(key + '="' + exports.escape(val) + '"');
       } else {
         buf.push(key + '="' + val + '"');
@@ -134,7 +87,7 @@ exports.attrs = function attrs(obj, escaped){
 
 exports.escape = function escape(html){
   return String(html)
-    .replace(/&(?!(\w+|\#\d+);)/g, '&amp;')
+    .replace(/&(?!\w+;)/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
@@ -157,7 +110,7 @@ exports.rethrow = function rethrow(err, filename, lineno){
     , str = require('fs').readFileSync(filename, 'utf8')
     , lines = str.split('\n')
     , start = Math.max(lineno - context, 0)
-    , end = Math.min(lines.length, lineno + context);
+    , end = Math.min(lines.length, lineno + context); 
 
   // Error context
   var context = lines.slice(start, end).map(function(line, i){
@@ -170,7 +123,7 @@ exports.rethrow = function rethrow(err, filename, lineno){
 
   // Alter exception message
   err.path = filename;
-  err.message = (filename || 'Jade') + ':' + lineno
+  err.message = (filename || 'Jade') + ':' + lineno 
     + '\n' + context + '\n\n' + err.message;
   throw err;
 };
@@ -178,6 +131,5 @@ exports.rethrow = function rethrow(err, filename, lineno){
   return exports;
 
 })({});
-
 return jade;
 });
