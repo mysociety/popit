@@ -46,7 +46,7 @@ exports.route = function (app) {
                     send_new_instance_email( req, res, instance, password );
             
                     // Have a new instance - redirect to 
-                    res.redirect( '/instance/' + instance.slug );
+                    res.redirect( '/instances/' + instance.slug );
                 }            
             });
         });
@@ -105,7 +105,7 @@ exports.route = function (app) {
         );
     });
     
-    app.get( '/instance/:instanceSlug', function (req, res) {
+    app.get( '/instances/:instanceSlug', function (req, res) {
             var template_file = 'instance_' + req.instance.status;
             res.render( template_file, {
                 locals: {
@@ -122,7 +122,7 @@ exports.route = function (app) {
     
         // if the instance is not pending redirect to the instance page
         if ( instance.status != 'pending' ) {
-            return res.redirect( '/instance/' + instance.slug );
+            return res.redirect( '/instances/' + instance.slug );
         }
         
         // if the token is wrong show the bad token page
@@ -148,11 +148,11 @@ exports.route = function (app) {
     // instance as it may not be the user that is clicking on the confirm link - a
     // issue that caused FMT pain:
     //   https://nodpi.org/2011/06/22/vodastalk-vodafone-and-bluecoat-stalking-subscribers/
-    app.get( '/instance/:instanceSlug/confirm/:token', check_pending_and_token, function (req, res) {
+    app.get( '/instances/:instanceSlug/confirm/:token', check_pending_and_token, function (req, res) {
         return res.render( 'instance_confirm', { locals: res.locals() } );
     });
     
-    app.post( '/instance/:instanceSlug/confirm/:token', check_pending_and_token, function (req, res) {
+    app.post( '/instances/:instanceSlug/confirm/:token', check_pending_and_token, function (req, res) {
         var instance = req.instance;
         
         // If we've gotten this far then we should be able to create the new

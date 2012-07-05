@@ -50,13 +50,34 @@ class InstanceInfoTests < PopItWatirTestCase
 
     # check that the entries are as expected
     assert_match /\/about$/, @b.url
-    assert_match "Description: Test description",     @b.element(:class => 'about-field-description').text
-    assert_match "Region: Test region",               @b.element(:class => 'about-field-region').text
-    assert_match "Purpose: Test purpose",             @b.element(:class => 'about-field-purpose').text
-    assert_match "Contact Name: Test contact name",   @b.element(:class => 'about-field-contact_name').text
-    assert_match "Contact Phone: Test contact phone", @b.element(:class => 'about-field-contact_phone').text
-    assert_match "Contact Email: Test contact email", @b.element(:class => 'about-field-contact_email').text
+    assert_equal "Description: Test description",     @b.element(:class => 'about-field-description').text
+    assert_equal "Region: Test region",               @b.element(:class => 'about-field-region').text
+    assert_equal "Purpose: Test purpose",             @b.element(:class => 'about-field-purpose').text
+    assert_equal "Contact Name: Test contact name",   @b.element(:class => 'about-field-contact_name').text
+    assert_equal "Contact Phone: Test contact phone", @b.element(:class => 'about-field-contact_phone').text
+    assert_equal "Contact Email: Test contact email", @b.element(:class => 'about-field-contact_email').text
 
+    # Go to the hosting site and browse the instances available
+    goto_hosting_site
+    @b.link(:text, 'Browse existing sites').click
+    assert_match /\/instances$/, @b.url
+    assert_equal "Instance Directory", @b.title
+
+    # Check that just the slug is shown for the test instance and that minimal
+    # details are on the instance page
+    assert_equal 'test', @b.link(:id, 'instance-test').text
+    @b.link(:id, 'instance-test').click
+    assert_equal 'test', @b.title
+    assert_match /no more details/, @b.text
+
+    # Fetch all the instance data and then check that the details are correctly
+    # presented.
+    
+
+    binding.pry
+
+    # # This will be enabled after adding sync
+    # # assert_match( "test - Test description", @b.text )
 
   end
 
