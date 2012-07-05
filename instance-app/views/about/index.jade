@@ -12,7 +12,7 @@ block content
         a(href='/about/edit')  (edit)
 
   each val, field in fields
-    .about-field
+    .about-field(class="about-field-" + val.key)
       b #{val.label}: 
       #{val.value}
     br
