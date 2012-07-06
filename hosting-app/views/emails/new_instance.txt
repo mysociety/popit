@@ -3,7 +3,7 @@ Hello,
 A new PopIt instance will be created for you after you confirm your email
 address by visiting the link below:
 
-  http://{{ host }}/instance/{{ instance.slug }}/confirm/{{ token }}
+  http://{{ host }}/instances/{{ instance.slug }}/confirm/{{ token }}
 
 Once created you can log in to your new site using:
 

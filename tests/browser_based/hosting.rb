@@ -13,7 +13,7 @@ class HostingTests < PopItWatirTestCase
 
   def test_404_page
     goto_hosting_site
-    goto '/instance/not_found'
+    goto '/instances/not_found'
     assert_equal 'Page not found', @b.title
     
     # Watir won't let us check that we got a 404 code
@@ -27,7 +27,7 @@ class HostingTests < PopItWatirTestCase
     delete_instance 'test'
 
     # check that the instance does not exist
-    goto "/instance/test"
+    goto "/instances/test"
     assert_equal "Page not found", @b.title    
 
     # go to the create new site page
@@ -72,11 +72,11 @@ class HostingTests < PopItWatirTestCase
     assert_match "Error is 'slug_not_unique'", @b.text    
 
     # check that the instance page works
-    goto "/instance/test"
+    goto "/instances/test"
     assert_equal "Pending: test", @b.title
             
     # go to the last email page
-    goto "/_testing/last_email"
+    goto "/_dev/last_email"
     @b.link.click
 
     # on the confirmr app page

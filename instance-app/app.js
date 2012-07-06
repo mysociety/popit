@@ -146,12 +146,17 @@ app.configure( function () {
 
   app.use('/autocomplete',  require('../lib/apps/autocomplete') );
 
+  var person_app_factory = require('../lib/apps/migration');
+  app.use('/migration', person_app_factory() );
+
   var person_app_factory = require('../lib/apps/person');
   app.use('/person', person_app_factory() );
 
   var organisation_app_factory = require('../lib/apps/organisation');
   app.use('/organisation', organisation_app_factory() );
 
+  var about_app_factory = require('../lib/apps/about');
+  app.use('/about', about_app_factory() );
 });
 
 

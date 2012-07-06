@@ -30,6 +30,7 @@ require(
   [
   'augmenters/mailchecker',
   'augmenters/search-box',
+  'augmenters/migration',
   'augmenters/slug-validation',
   'augmenters/sign-in-toggle',
   'popit/app',

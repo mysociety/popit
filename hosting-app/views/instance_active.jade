@@ -1,16 +1,21 @@
 extends layout
 
 block title
-  #{ instance.slug }
+  #{ instance.info.name || instance.slug }
 
 block content
   .page-header
-    h1 #{ instance.slug }
-  p
-    | This site is up and running!
+    h1 #{ instance.info.name || instance.slug }
+
   p
     a(href=instance.base_url) #{ instance.base_url }
+
   p
-    | More details about this site go here so that people browsing for instance to
-    | contribute to can find them. Should have proper name, description, country of
-    | interest etc etc.
+    if instance.info.description
+      | #{ instance.info.description }
+    else
+      | There are no more details about this site.
+
+  p FIXME - present the rest of this information
+
+  pre= instance.info

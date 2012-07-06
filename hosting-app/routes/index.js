@@ -46,7 +46,7 @@ exports.route = function (app) {
                     send_new_instance_email( req, res, instance, password );
             
                     // Have a new instance - redirect to 
-                    res.redirect( '/instance/' + instance.slug );
+                    res.redirect( '/instances/' + instance.slug );
                 }            
             });
         });
@@ -105,7 +105,7 @@ exports.route = function (app) {
         );
     });
     
-    app.get( '/instance/:instanceSlug', function (req, res) {
+    app.get( '/instances/:instanceSlug', function (req, res) {
             var template_file = 'instance_' + req.instance.status;
             res.render( template_file, {
                 locals: {
@@ -122,7 +122,7 @@ exports.route = function (app) {
     
         // if the instance is not pending redirect to the instance page
         if ( instance.status != 'pending' ) {
-            return res.redirect( '/instance/' + instance.slug );
+            return res.redirect( '/instances/' + instance.slug );
         }
         
         // if the token is wrong show the bad token page
@@ -148,11 +148,11 @@ exports.route = function (app) {
     // instance as it may not be the user that is clicking on the confirm link - a
     // issue that caused FMT pain:
     //   https://nodpi.org/2011/06/22/vodastalk-vodafone-and-bluecoat-stalking-subscribers/
-    app.get( '/instance/:instanceSlug/confirm/:token', check_pending_and_token, function (req, res) {
+    app.get( '/instances/:instanceSlug/confirm/:token', check_pending_and_token, function (req, res) {
         return res.render( 'instance_confirm', { locals: res.locals() } );
     });
     
-    app.post( '/instance/:instanceSlug/confirm/:token', check_pending_and_token, function (req, res) {
+    app.post( '/instances/:instanceSlug/confirm/:token', check_pending_and_token, function (req, res) {
         var instance = req.instance;
         
         // If we've gotten this far then we should be able to create the new
@@ -203,27 +203,16 @@ exports.route = function (app) {
         
     });
     
-    
-    // FIXME - extract to seperate app so it can be shared, and conditionally loaded
-    app.get( '/_testing/last_email', function (req, res, next) {
-                
-        // only run on testing
-        var env = req.app.settings.env;
-        if ( ! env == 'testing' ) {
-            throw new Error('testing only, not ' + env );
-        }
-        
-        req.popit
-          .model('Email')
-          .find()
-          .sort('created', -1)
-          .run( function (err, docs) {
-            if (err) return next(err);
-            var html = docs[0].message.text;            
-            html = html.replace( /(http\S+)/, '<a href="$1">$1</a>' );            
-            res.send( '<pre>' + html + '</pre>' );
-          });
-        
+    app.get('/instances', function(req, res, next){
+
+        var query = req.popit.model('Instance').find({status: 'active'});
+
+        query.run(function(err, docs) {
+          if (err) throw err;
+
+          res.local('instances', docs);
+          res.render('instances');
+        });
     });
 
     // Throw a 404 error
