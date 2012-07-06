@@ -934,6 +934,37 @@ body.signed_in .admin-options {
   font-size: 0.625em;
   color: #ccc;
 }
+.note {
+  background-color: #EEEEEE;
+  padding: 1em;
+  width: 50%;
+}
+.note.error {
+  color: red;
+}
+table.migration-table input[type='text'] {
+  width: 18em;
+  height: 1.7em;
+  padding: 0 0.6em;
+}
+table.migration-table select {
+  min-width: 100%;
+}
+table.migration-table small {
+  color: gray;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 20em;
+  display: block;
+}
+table.migration-table td {
+  height: 2.9em;
+}
+table.migration-table .hidden {
+  visibility: collapse;
+  display: none;
+}
 form {
   margin: 2.8em 0;
 }
@@ -1010,6 +1041,21 @@ form .append .add-on {
   max-width: 30%;
   width: 5em;
   color: #888;
+}
+table.migration-table {
+  border-spacing: 2;
+}
+table.migration-table tr {
+  border: 1px solid #aaa;
+}
+table.migration-table tr:nth-child(even) {
+  background-color: #eef;
+}
+table.migration-table tr th {
+  padding: 0.2em 2em;
+}
+table.migration-table tr td {
+  padding: 0.1em 0.1em 0.1em 0.5em;
 }
 button, a.btn, input.btn {
   border: none;
