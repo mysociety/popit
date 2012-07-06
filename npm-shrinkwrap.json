@@ -276,10 +276,10 @@
       }
     },
     "jade": {
-      "version": "0.25.0",
+      "version": "0.26.3",
       "dependencies": {
         "commander": {
-          "version": "0.5.2"
+          "version": "0.6.1"
         },
         "mkdirp": {
           "version": "0.3.0"
