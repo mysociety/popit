@@ -12,8 +12,8 @@ var express           = require('express'),
     Db                = require('mongodb').Db,
     Server            = require('mongodb').Server,
     mongoStore        = require('connect-mongodb'),
-    jadeAmdMiddleware =  require('jade-amd').jadeAmdMiddleware;
-    
+    jadeAmdMiddleware = require('jade-amd').jadeAmdMiddleware,
+    image_proxy       = require('connect-image-proxy');
 
 // everyauth.debug = true;
 
@@ -157,6 +157,9 @@ app.configure( function () {
 
   var about_app_factory = require('../lib/apps/about');
   app.use('/about', about_app_factory() );
+
+  app.use(config.image_proxy.path , image_proxy() );
+
 });
 
 
