@@ -14,6 +14,8 @@ require( [ 'jquery', 'utils/slugify' ],
 			(ltr >= 48 && ltr <= 57) // 0-9
 			||
 			(ltr === 45) // -
+			||
+			($.inArray(ltr, [13, 37, 39, 9, 20, 46, 8]) >= 0) // Special keys, http://mikemurko.com/general/jquery-keycode-cheatsheet/
 		){
 			return true;
 		} else{
