@@ -76,7 +76,31 @@ block content
         //- dt Birthdate:
         //- dd
         //-   time(itemprop="birthDate", datetime="1951-02-20") 20 February 1951
-    
+
+    if person.other_names.length
+      section.personal-details
+
+        //- ul.admin-options
+        //-   li
+        //-     a.add(href="#FIXME")
+        //-       strong + add 
+        //-       | information
+        //-   li
+        //-     a.edit(href="#FIXME-edit")
+        //-       strong ^ edit 
+        //-       | this section
+        
+        h2 Alternative names:
+
+        dl
+          for name in person.other_names
+            dt #{ name.comment || 'Alternative name' }:
+            dd(itemprop="name") #{ name.name }
+        
+        
+
+
+
     section.contact-information
       ul.admin-options
         li
