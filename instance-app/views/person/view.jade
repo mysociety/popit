@@ -23,11 +23,11 @@ block content
       ul.photos
         for image in person.images
           li
-            //- FIXME - don't use the full size image here, resize it on the server before sending
             if image.url
-              img(src="#{image.url}")
+              //- FIXME - proxy will need changes to allow us to proxy remote images
+              img(src=image.url, width=280)
             else
-              img(src="#{person.slug_url}/images/#{image.id}-original")
+              img(src="#{image_proxy(person.slug_url + "/images/" + image.id + "-original", "", 280)}")
             p.photo-source source:
               a(href="#photographer-url") Photographer
               abbr.license(title="Creative Commons - By Attribution - Share Alike") CC-BY-SA
@@ -76,7 +76,31 @@ block content
         //- dt Birthdate:
         //- dd
         //-   time(itemprop="birthDate", datetime="1951-02-20") 20 February 1951
-    
+
+    if person.other_names.length
+      section.personal-details
+
+        //- ul.admin-options
+        //-   li
+        //-     a.add(href="#FIXME")
+        //-       strong + add 
+        //-       | information
+        //-   li
+        //-     a.edit(href="#FIXME-edit")
+        //-       strong ^ edit 
+        //-       | this section
+        
+        h2 Alternative names:
+
+        dl
+          for name in person.other_names
+            dt #{ name.comment || 'Alternative name' }:
+            dd(itemprop="name") #{ name.name }
+        
+        
+
+
+
     section.contact-information
       ul.admin-options
         li

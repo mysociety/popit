@@ -33,7 +33,7 @@ require(['jquery', 'jquery.mailcheck'], function ($) {
     var $input      = $(this),
         $suggestion = $input.next('.suggestion');
 
-    if (!$suggestion) {
+    if ( ! $suggestion.length ) {
       $suggestion = $('<div class="suggestion" />');
       $input.after($suggestion).hide();
     }

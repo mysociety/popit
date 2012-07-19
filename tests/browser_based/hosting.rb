@@ -44,6 +44,12 @@ class HostingTests < PopItWatirTestCase
     @b.input(:value, 'Create your own PopIt').click
     assert_match "Error is 'regexp'", @b.text
     assert_match "Error is 'required'", @b.text    
+    
+    # check that the cursor keys work in the slug field
+    @b.text_field(:name, 'slug').set("test")
+    assert_equal 'test', @b.text_field(:name, 'slug').value
+    @b.text_field(:name, 'slug').send_keys [:arrow_left, :arrow_left, 'xx']  
+    assert_equal 'texxst', @b.text_field(:name, 'slug').value
 
     # check that a good slug does not error
     @b.text_field(:name, 'slug').set("test")
