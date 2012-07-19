@@ -197,6 +197,7 @@ module.exports = {
               name:    'George Bush',
               slug:    'george-bush',
               summary: '41th President of the United States',
+              other_names:     [],
               images:          [],
               links:           [],
               contact_details: [],
