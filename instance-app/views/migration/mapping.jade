@@ -34,7 +34,7 @@ block content
               tr(id='id_' + entry[0].replace(/ /g,'_'))
                 td
                   input(type="hidden", name="csv-attribute", value=entry[0])
-                  #{entry[0]}
+                  | #{entry[0]}
                 td
                   select(name="db-attribute-class")
                     option(value="", selected="selected")
