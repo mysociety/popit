@@ -1,3 +1,6 @@
+/* Example development configuration file
+ */
+
 var path = require('path');
 
 module.exports = {
