@@ -336,14 +336,6 @@
             },
             "cssom": {
               "version": "0.2.5"
-            },
-            "contextify": {
-              "version": "0.1.3",
-              "dependencies": {
-                "bindings": {
-                  "version": "1.0.0"
-                }
-              }
             }
           }
         },
@@ -550,6 +542,9 @@
         }
       }
     },
+    "supervisor": {
+      "version": "0.4.1"
+    },
     "underscore": {
       "version": "1.3.3"
     },
@@ -578,7 +573,7 @@
       "from": "https://github.com/evdb/everyauth/tarball/master",
       "dependencies": {
         "oauth": {
-          "version": "0.9.7",
+          "version": "0.9.8",
           "from": "https://github.com/ciaranj/node-oauth/tarball/master"
         },
         "request": {
