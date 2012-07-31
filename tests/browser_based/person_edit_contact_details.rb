@@ -28,7 +28,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
     @b.link(:text => '+ add a new contact detail').click
     @b.text_field(:name => 'kind').send_keys( 'Address' )
     @b.text_field(:name => 'value').send_keys( '1600 Pennsylvania Avenue' )
-    @b.input(:type => 'submit').click
+    @b.input(:name => 'save').click
 
     # Check that the new details are on the page (even after refresh)
     assert @b.element(:text => '01234 567 890').present?
