@@ -4,19 +4,17 @@ define(
     'Backbone',
     'backbone-forms',
     'underscore',
-    'popit/views/submit-form-helper',
-    'templates/contact/view'
+    'popit/views/submit-form-helper'
   ],
   function (
     $,
     Backbone,
     BackboneForms,
     _,
-    submitFormHelper,
-    contactViewTemplate
+    submitFormHelper
   ) {
 
-    var ContactEditView = Backbone.View.extend({
+    var ListItemEditView = Backbone.View.extend({
   
       initialize: function () {
       
@@ -60,11 +58,11 @@ define(
         var success_cb = function ( model, response ) {
 
           var template_args = {
-            contact: model.toJSON(),
+            item: model.toJSON(),
             api_url_root: model.urlRoot,
           };
           
-          view.$el.html( contactViewTemplate( template_args ) );
+          view.$el.html( view.template( template_args ) );
         };
 
         var submitter = submitFormHelper({
@@ -77,7 +75,7 @@ define(
       
     });
   
-    return ContactEditView;
+    return ListItemEditView;
   
   }
 );
