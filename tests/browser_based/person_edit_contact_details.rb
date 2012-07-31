@@ -45,6 +45,13 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
     @b.refresh
     assert @b.element(:text => '11111 222 333').present?
 
+    # Delete the phone number
+    assert_equal 3, @b.section(:class => 'contact-information').ul.lis.count
+    @b.link(:text => '^ edit').click
+    @b.button(:name => 'delete').click
+    @b.wait_until { 2 == @b.section(:class => 'contact-information').ul.lis.count }
+    assert ! @b.element(:text => '11111 222 333').present?
+
 
   end
 
