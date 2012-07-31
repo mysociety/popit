@@ -95,7 +95,7 @@ block content
             
     section.contact-information
       h2 Contact Information:
-      ul
+      ul.detail-list
         - var api_url_root = person.api_url + '/contact_details/'
         for contact in person.contact_details
           li
