@@ -12,7 +12,8 @@ require([
 require ([
   'popit/app',
   'popit/actions/person-new',
-  'popit/actions/contact-edit'
+  'popit/actions/contact-edit',
+  'popit/actions/links-edit'
 ]);
 
 require (

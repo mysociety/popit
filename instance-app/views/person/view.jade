@@ -107,23 +107,18 @@ block content
               | a new contact detail
                 
 
-    section.contact-information
-      ul.admin-options
-        li
-          a.add(href="#{person.slug_url}/links/new/edit")
-            strong + add 
-            | link
-        //- li
-        //-   a.edit(href="#FIXME-edit")
-        //-     strong ^ edit 
-        //-     | this section
+    section.links
       h2 Links:
-      dl
-        for link in person.links
-          dt #{ link.comment }:
-          dd
-            a(href=link.url) #{ link.url }
-            a.admin-options(href="#{person.slug_url}/links/#{link.id}/edit") edit
+      ul.detail-list
+        - var api_url_root = person.api_url + '/links/'
+        for item in person.links
+          li
+            include ../link/view
+        li
+          span.admin-options
+            a(data-url-root="#{api_url_root}", class="add link-edit")
+              strong + add 
+              | a new link
   
     section.raw-data
       h2 Raw data
