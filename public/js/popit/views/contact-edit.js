@@ -16,7 +16,7 @@ define(
     contactViewTemplate
   ) {
 
-    var PersonNewView = Backbone.View.extend({
+    var ContactEditView = Backbone.View.extend({
   
       initialize: function () {
       
@@ -67,7 +67,7 @@ define(
       
     });
   
-    return PersonNewView;
+    return ContactEditView;
   
   }
 );

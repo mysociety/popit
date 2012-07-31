@@ -42,10 +42,16 @@ define(
           el:    $element
         });
 
-        // If this is a new contact just render the view. If it is existing then 
-        // fetch latest details from the API (they'll get rendered by the 
-        // 'change' event).
-        contact.isNew() ? view.render() : contact.fetch();
+        if (contact.isNew()) {
+          // clone the li item so that the 'create new' link is still present.
+          $element.after( $element.clone() );
+          // render the form - no need to fetch content.
+          view.render();
+        } else {
+          // If it is existing then fetch latest details from the API (they'll
+          // get rendered by the 'change' event).
+          contact.fetch();
+        }
         
       });
       
