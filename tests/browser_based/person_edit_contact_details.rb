@@ -37,6 +37,14 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
     assert @b.element(:text => '01234 567 890').present?
     assert @b.element(:text => '1600 Pennsylvania Avenue').present?
 
+    # Edit the phone number
+    @b.link(:text => '^ edit').click
+    @b.text_field(:name => 'value').set( '11111 222 333')
+    @b.input(:name => 'save').click
+    @b.wait_until { @b.element(:text => '11111 222 333').present? }
+    @b.refresh
+    assert @b.element(:text => '11111 222 333').present?
+
 
   end
 
