@@ -6,6 +6,9 @@ require.config({
     'jquery.jeditable': './libs/jquery.jeditable-1.7.1',
     'jquery.pulse':     './libs/jquery.pulse',
 
+    // AMD version of jquery-ui - generated using https://github.com/jrburke/jqueryui-amd
+    'jqueryui': './libs/jqueryui-1.8.22/',
+
     // AMD versions of these libraries:
     //   https://github.com/amdjs/backbone/blob/master/backbone.js
     //   https://github.com/amdjs/underscore/blob/master/underscore.js
