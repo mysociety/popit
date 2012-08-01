@@ -31,7 +31,7 @@ define(
 
         // Manually set the urlRoot for this contact. It needs to include the 
         // document id that this contact is embedded in. (Don't seem to be able 
-        // to set in in contructor above)
+        // to set it in contructor above)
         object.urlRoot = $link.attr('data-url-root');
 
         // create the view. Hook it up to the enclosing element.
