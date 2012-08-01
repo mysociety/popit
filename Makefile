@@ -36,6 +36,7 @@ lint:
 
 css:
 	compass compile
+	cp -r public/sass/jqueryui/images public/css/jqueryui/
 
 
 optipng:
@@ -104,6 +105,7 @@ production:
 
 clean:
 	compass clean
+	rm -rf public/css
 	rm -rf public/js/templates	
 	rm -rf public-build
 	rm -rf public-production
