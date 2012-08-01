@@ -11,6 +11,6 @@ if [ ! -e ../node/bin/npm ]; then
 fi
 
 export PATH=$NODE_DIR/bin:$PATH
-npm install
-npm prune
-compass compile
+# Fetch NPM modules, compile CSS
+make
+make public-production
