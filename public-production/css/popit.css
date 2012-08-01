@@ -360,6 +360,7 @@ table {
 .bbf-checkboxes label {
   float: none;
 }
+/* fancyBox v2.0.6 fancyapps.com | fancyapps.com/fancybox/#license */
 .fancybox-tmp iframe, .fancybox-tmp object {
   vertical-align: top;
   padding: 0;
