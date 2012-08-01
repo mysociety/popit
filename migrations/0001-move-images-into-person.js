@@ -11,7 +11,7 @@ function for_each_instance( instance_iterator ) {
   master
     .model('Instance')
     .find()
-    .run(function( err, instances ) {
+    .exec(function( err, instances ) {
       if (err) throw err;
       async.forEachSeries(
         instances,

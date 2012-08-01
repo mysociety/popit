@@ -29,6 +29,7 @@
     "slug":                      ">= 0.2.2",
     "soda":                      ">= 0.2.5",
     "superagent":                ">= 0.4.1",
+    "supervisor":                ">= 0.4.1",
     "underscore":                ">= 1.3.1",
     "validator":                 ">= 0.4.5",
     "csv":                       ">= 0.0.13",

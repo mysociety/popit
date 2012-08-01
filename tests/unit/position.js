@@ -52,7 +52,7 @@ module.exports = {
 
           var positions = obama.find_positions();
         
-          positions.run(function(err, positions) {
+          positions.exec(function(err, positions) {
 
             test.ifError(err);
 

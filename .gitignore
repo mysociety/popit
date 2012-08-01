@@ -1,3 +1,10 @@
+/config/development.js
+/config/development.js.deployed
+/config/production.js
+/config/production.js.deployed
+/config/httpd.conf
+/config/httpd.conf.deployed
+
 *~
 .DS_Store
 MANIFEST

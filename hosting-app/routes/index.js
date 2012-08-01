@@ -207,7 +207,7 @@ exports.route = function (app) {
 
         var query = req.popit.model('Instance').find({status: 'active'});
 
-        query.run(function(err, docs) {
+        query.exec(function(err, docs) {
           if (err) throw err;
 
           res.local('instances', docs);
