@@ -19,7 +19,9 @@ PIDFILE=$DIR/popit.pid
 DUSER=!!(*= $user *)!!
 
 !!(*
-if ($vhost eq 'matthew.popit.dev.mysociety.org') {
+if ($vhost eq 'popit.mysociety.org') {
+    $node_env = 'production';
+} elsif ($vhost eq 'matthew.popit.dev.mysociety.org') {
     $node_env = 'development';
 }
 *)!!
