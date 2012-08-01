@@ -1,13 +1,16 @@
 define(
   [
     'jquery',
+    'underscore',
     'Backbone',
     'backbone-forms',
     'underscore',
-    'popit/views/submit-form-helper'
+    'popit/views/submit-form-helper',
+    'jqueryui/autocomplete'
   ],
   function (
     $,
+    _,
     Backbone,
     BackboneForms,
     _,
@@ -23,10 +26,11 @@ define(
         this.form = new BackboneForms({
           model: this.model,
         });
-      
+        
       },
       
       render: function () {
+        var model_schema = this.model.schema;
       
         // render the form and add save button
         var $form    = $( this.form.render().el );
@@ -34,6 +38,26 @@ define(
           .find('ul')
             .append('<input type="submit" name="save" value="Save" />')
             .append('<button name="delete">Delete</button>');
+      
+        // add an autocomplete to those fields that want one
+        var ac_field_names = _.filter(
+          _.keys(model_schema),
+          function(field_name) {
+            return model_schema[field_name].autocomplete_source;
+          }
+        );
+
+        _.each( ac_field_names, function ( field_name ) {
+          
+          var ac_source = model_schema[field_name].autocomplete_source;
+          
+          $form
+            .find('input[name="' + field_name + '"]')
+            .autocomplete({
+              source: ac_source
+            });
+          
+        });
       
         // update our element
         this.$el.html( $form );

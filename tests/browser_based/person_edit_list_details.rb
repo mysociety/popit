@@ -45,9 +45,20 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
     @b.refresh
     assert @b.element(:text => '11111 222 333').present?
 
+    # check that the autocomplete pops up
+    @b.link(:text => '^ edit').click
+    @b.text_field(:name => 'kind').set( 'a')
+    @b.wait_until { @b.li(:class => 'ui-menu-item').present? }
+    assert_equal @b.li(:class => 'ui-menu-item').text, 'Address'
+    @b.li(:class => 'ui-menu-item').click
+    assert_equal @b.text_field(:name => 'kind').value, 'Address'
+    @b.input(:name => 'save').click
+    
     # Delete the phone number
+    @b.refresh
     assert_equal 3, @b.section(:class => 'contact-information').ul.lis.count
     @b.link(:text => '^ edit').click
+    @b.wait_until { @b.button(:name => 'delete').present? }
     @b.button(:name => 'delete').click
     @b.wait_until { 2 == @b.section(:class => 'contact-information').ul.lis.count }
     assert ! @b.element(:text => '11111 222 333').present?
