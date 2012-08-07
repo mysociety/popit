@@ -411,7 +411,7 @@ module.exports = {
             // FIXME: should test updating using the dot notation too
 
             rest
-              .put(document_url, { data: { name: 'Fred Jones', thisShouldBeIgnored: 1234 } })
+              .put(document_url, { data: { name: 'Fred Jones', notInSchemaAttribute: 1234 } })
               .on('complete', function(data, response) {
                 test.equal(response.statusCode, 204, "got 204");
                 cb();
@@ -429,6 +429,7 @@ module.exports = {
                     name:            "Fred Jones",
                     slug:            "joe-bloggs",
                     summary:         "Just another Joe",
+                    notInSchemaAttribute: 1234,
                     other_names:     [],
                     images:          [],
                     links:           [],
@@ -462,7 +463,7 @@ module.exports = {
             // FIXME: should test updating using the dot notation too
 
             rest
-              .put(embedded_url, { data: { url: 'http://update.test/', thisShouldBeIgnored: 1234 } })
+              .put(embedded_url, { data: { url: 'http://update.test/' } })
               .on('complete', function(data, response) {
                 test.equal(response.statusCode, 204, "got 204");
                 cb();
