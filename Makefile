@@ -110,6 +110,7 @@ production: clean
 
 clean:
 	compass clean
+	rm -rf public/css	
 	rm -rf public/js/templates	
 	rm -rf public-build
 	rm -rf public-production
