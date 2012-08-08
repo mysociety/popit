@@ -21,7 +21,7 @@ DUSER=!!(*= $user *)!!
 !!(*
 if ($vhost eq 'popit.mysociety.org') {
     $node_env = 'production';
-} elsif ($vhost eq 'matthew.popit.dev.mysociety.org') {
+} elsif ( $vhost =~ m{\w+\.popit\.dev\.mysociety\.org} ) {
     $node_env = 'development';
 }
 *)!!
