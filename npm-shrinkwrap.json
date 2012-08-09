@@ -91,35 +91,8 @@
       }
     },
     "forever": {
-      "version": "0.9.2",
+      "version": "0.10.0",
       "dependencies": {
-        "broadway": {
-          "version": "0.1.15",
-          "dependencies": {
-            "colors": {
-              "version": "0.6.0-1"
-            },
-            "cliff": {
-              "version": "0.1.7",
-              "dependencies": {
-                "eyes": {
-                  "version": "0.1.7"
-                }
-              }
-            },
-            "eventemitter2": {
-              "version": "0.4.9"
-            },
-            "optimist": {
-              "version": "0.3.1",
-              "dependencies": {
-                "wordwrap": {
-                  "version": "0.0.2"
-                }
-              }
-            }
-          }
-        },
         "cliff": {
           "version": "0.1.8",
           "dependencies": {
@@ -128,55 +101,119 @@
             },
             "eyes": {
               "version": "0.1.7"
-            },
-            "winston": {
-              "version": "0.6.2",
-              "dependencies": {
-                "cycle": {
-                  "version": "1.0.0"
-                },
-                "request": {
-                  "version": "2.9.203"
-                },
-                "stack-trace": {
-                  "version": "0.0.6"
-                }
-              }
             }
           }
         },
-        "daemon": {
-          "version": "0.5.1"
-        },
         "flatiron": {
-          "version": "0.1.17",
+          "version": "0.2.3",
           "dependencies": {
-            "prompt": {
-              "version": "0.1.12",
+            "broadway": {
+              "version": "0.2.3",
               "dependencies": {
-                "colors": {
-                  "version": "0.6.0-1"
+                "eventemitter2": {
+                  "version": "0.4.9"
+                }
+              }
+            },
+            "prompt": {
+              "version": "0.2.2",
+              "dependencies": {
+                "read": {
+                  "version": "0.1.0",
+                  "from": "https://github.com/indexzero/read/tarball/refactor-optional-streams"
+                },
+                "revalidator": {
+                  "version": "0.1.2"
                 }
               }
             },
             "director": {
-              "version": "1.0.10"
-            }
-          }
-        },
-        "microtime": {
-          "version": "0.2.0"
-        },
-        "minimatch": {
-          "version": "0.2.5",
-          "dependencies": {
-            "lru-cache": {
               "version": "1.1.0"
             }
           }
         },
+        "forever-monitor": {
+          "version": "1.0.1",
+          "dependencies": {
+            "broadway": {
+              "version": "0.2.5",
+              "dependencies": {
+                "eventemitter2": {
+                  "version": "0.4.9"
+                },
+                "nconf": {
+                  "version": "0.6.4",
+                  "dependencies": {
+                    "ini": {
+                      "version": "1.0.2"
+                    }
+                  }
+                },
+                "utile": {
+                  "version": "0.1.2",
+                  "dependencies": {
+                    "deep-equal": {
+                      "version": "0.0.0"
+                    },
+                    "i": {
+                      "version": "0.3.0"
+                    },
+                    "ncp": {
+                      "version": "0.2.6"
+                    },
+                    "rimraf": {
+                      "version": "1.0.9"
+                    }
+                  }
+                }
+              }
+            },
+            "minimatch": {
+              "version": "0.0.5",
+              "dependencies": {
+                "lru-cache": {
+                  "version": "1.0.6"
+                }
+              }
+            },
+            "ps-tree": {
+              "version": "0.0.2",
+              "dependencies": {
+                "parse-table": {
+                  "version": "0.0.0",
+                  "dependencies": {
+                    "event-stream": {
+                      "version": "0.5.3",
+                      "dependencies": {
+                        "optimist": {
+                          "version": "0.2.8",
+                          "dependencies": {
+                            "wordwrap": {
+                              "version": "0.0.2"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "utile": {
+              "version": "0.0.10",
+              "dependencies": {
+                "ncp": {
+                  "version": "0.2.6"
+                },
+                "rimraf": {
+                  "version": "1.0.9"
+                }
+              }
+            }
+          }
+        },
         "nconf": {
-          "version": "0.5.1",
+          "version": "0.6.1",
           "dependencies": {
             "ini": {
               "version": "1.0.2"
@@ -194,9 +231,6 @@
             }
           }
         },
-        "node-fork": {
-          "version": "0.4.2"
-        },
         "optimist": {
           "version": "0.3.4",
           "dependencies": {
@@ -208,37 +242,6 @@
         "pkginfo": {
           "version": "0.2.3"
         },
-        "portfinder": {
-          "version": "0.2.1",
-          "dependencies": {
-            "mkdirp": {
-              "version": "0.0.7"
-            }
-          }
-        },
-        "ps-tree": {
-          "version": "0.0.2",
-          "dependencies": {
-            "parse-table": {
-              "version": "0.0.0",
-              "dependencies": {
-                "event-stream": {
-                  "version": "0.5.3",
-                  "dependencies": {
-                    "optimist": {
-                      "version": "0.2.8",
-                      "dependencies": {
-                        "wordwrap": {
-                          "version": "0.0.2"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
         "timespan": {
           "version": "2.0.1"
         },
@@ -246,8 +249,14 @@
           "version": "0.5.1"
         },
         "utile": {
-          "version": "0.0.10",
+          "version": "0.1.2",
           "dependencies": {
+            "deep-equal": {
+              "version": "0.0.0"
+            },
+            "i": {
+              "version": "0.3.0"
+            },
             "ncp": {
               "version": "0.2.6"
             },
@@ -257,21 +266,19 @@
           }
         },
         "winston": {
-          "version": "0.5.11",
+          "version": "0.6.2",
           "dependencies": {
             "colors": {
               "version": "0.6.0-1"
             },
+            "cycle": {
+              "version": "1.0.0"
+            },
             "eyes": {
               "version": "0.1.7"
             },
-            "loggly": {
-              "version": "0.3.11",
-              "dependencies": {
-                "request": {
-                  "version": "2.9.203"
-                }
-              }
+            "request": {
+              "version": "2.9.203"
             },
             "stack-trace": {
               "version": "0.0.6"
