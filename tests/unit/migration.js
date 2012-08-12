@@ -23,7 +23,7 @@ module.exports = {
         this.popit.close_db_connections(cb);
     },
     
-    "database model": function ( test ) {
+    "database model for migration object": function ( test ) {
         test.expect( 11 );
         
         var migration = new this.Migration();
@@ -54,7 +54,7 @@ module.exports = {
         test.done();
     },
 
-    "parse csv": function ( test ) {
+    "parse csv file": function ( test ) {
         test.expect( 5 );
 
         var migration = new MigrationApp();
@@ -486,6 +486,69 @@ module.exports = {
           test.done();
         });
       });
-    }
+    },
 
+    "parse multiline csv": function ( test ) {
+        test.expect( 5 );
+
+        var migration = new MigrationApp();
+
+        var realParsedCsv = { '0': [ 'name', ' email', ' links' ],
+                              '1': [ 'foo', ' foo@mail.com', ' fo.co.uk' ],
+                              '2': [ '', '', ' foo.de' ],
+                              '3': [ 'bar', ' bar@mail.com', ' bar.co.uk' ] };
+        migration.parseCsv(__dirname+"/sample_complex_csv.txt", function(parsed, err) {
+          test.ifError(err);
+          test.ok( parsed, "migration tests" );
+          test.deepEqual( parsed, realParsedCsv, "migration tests" );
+
+          test.done();
+
+        });
+    },
+
+    "import multiline": function ( test ) {
+        test.expect( 8 );
+
+        var migration = new MigrationApp();
+
+        test.ok( migration.doImport, "migration tests" );
+
+        schema = 'person';
+        mappings = 
+            [ [ 'name', 'name', 'Full name' ],
+              [ ' email', 'contact', 'Email' ],
+              [ ' links', 'links', 'Website' ],
+              [ ' random', 'other', 'Random' ] ];
+        data = { '1': [ 'foo', ' foo@mail.com', ' fo.co.uk', 'orange' ],
+                 '2': [ '', '', ' foo.de', 'blue' ],
+                 '3': [ '', '', ' bar.de', '' ], };
+
+        var that = this;
+
+        migration.doImport(that.popit, schema, mappings, data, function(){}, function(err, people) {
+          
+          if(err) 
+            log(err);
+
+          test.ifError(err);
+          test.equal(people.length, 1, 'one person in people set');
+
+          var query = that.popit.model('Person').find();
+
+          query.exec(function(err, docs) {
+            test.ifError(err);
+
+            test.equal(docs.length, 1, 'one person in database');
+
+            docs.forEach(function(doc) {
+              test.equal(doc.links.length, 3, 'three links');
+              test.equal(doc.get('other').Random.length, 2, 'two random in others');
+              test.equal(doc.contact_details.length, 1, 'one contact detail');
+            });
+
+            test.done();
+          });
+        });
+    },
 };
