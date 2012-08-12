@@ -526,7 +526,8 @@ module.exports = {
               [ ' random', 'data', 'Random' ] ];
         data = { '1': [ 'foo', ' foo@mail.com', ' fo.co.uk', 'orange' ],
                  '2': [ '', '', ' foo.de', 'blue' ],
-                 '3': [ '', '', ' bar.de', '' ], };
+                 '3': [ '', '', ' bar.de', '' ], 
+                 '4': [ '', '', , 'purple' ]};
 
         var that = this;
 
@@ -546,8 +547,9 @@ module.exports = {
             test.equal(docs.length, 1, 'one person in database');
 
             docs.forEach(function(doc) {
+              log(docs)
               test.equal(doc.links.length, 3, 'three links');
-              test.equal(doc.get('data').Random.length, 2, 'two random in data');
+              test.equal(doc.get('data').Random.length, 3, 'two random in data');
               test.equal(doc.contact_details.length, 1, 'one contact detail');
             });
 
