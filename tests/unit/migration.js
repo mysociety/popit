@@ -240,7 +240,7 @@ module.exports = {
     },
 
     "import the right fields": function ( test ) {
-        test.expect( 25 );
+        test.expect( 26 );
 
         var migration = new MigrationApp();
         test.ok( migration, "got new migation app" );
@@ -250,14 +250,15 @@ module.exports = {
         schema = 'person';
         mappings = 
             [ [ 'title', 'name', 'Title' ],
+              [ 'summary', 'summary', 'Summary' ],
               [ 'firstname', 'name', 'First name' ],
               [ 'middlename', 'name', 'Middle name' ],
               [ 'lastname', 'name', 'Last name' ],
               [ 'birthdate', 'name', 'Birthdate' ],
               [ 'party', 'position', 'Party' ],
-              [ 'school', 'other', 'School' ],
-              [ 'university', 'other', 'University' ],
-              [ 'gender', 'other', 'Gender' ],
+              [ 'school', 'data', 'School' ],
+              [ 'university', 'data', 'University' ],
+              [ 'gender', 'data', 'Gender' ],
               [ 'phone', 'contact', 'Phone' ],
               [ 'fax', 'contact', 'Fax' ],
               [ 'website', 'links', 'Website' ],
@@ -267,6 +268,7 @@ module.exports = {
               [ '', '', '' ]];
         data = {'675': 
           [ 'Sir',
+            'The wonderful Sir John A. Doe',
             'John',
             'A.',
             'Doe',
@@ -305,6 +307,8 @@ module.exports = {
             var p = docs[0];
             test.equal(p.name, "Sir John A. Doe");
 
+            test.equal(p.summary, "The wonderful Sir John A. Doe");
+
             test.equal(p.links.length, 2);
 
             var el;
@@ -332,10 +336,10 @@ module.exports = {
             test.equal(p.contact_details[0].kind, "Phone");
             test.equal(p.contact_details[0].value, "734-234-3545");
 
-            var other = p.get('other');
-            test.equal(other.Gender, 'Between');
-            test.equal(other.University, 'Potatoe College');
-            test.equal(other.School, 'Cucumber School');
+            var data = p.get('data');
+            test.equal(data.Gender, 'Between');
+            test.equal(data.University, 'Potatoe College');
+            test.equal(data.School, 'Cucumber School');
 
             test.equal(p.get('birthDate'), '14.10.1963');
 
@@ -489,7 +493,7 @@ module.exports = {
     },
 
     "parse multiline csv": function ( test ) {
-        test.expect( 5 );
+        test.expect( 3 );
 
         var migration = new MigrationApp();
 
@@ -519,7 +523,7 @@ module.exports = {
             [ [ 'name', 'name', 'Full name' ],
               [ ' email', 'contact', 'Email' ],
               [ ' links', 'links', 'Website' ],
-              [ ' random', 'other', 'Random' ] ];
+              [ ' random', 'data', 'Random' ] ];
         data = { '1': [ 'foo', ' foo@mail.com', ' fo.co.uk', 'orange' ],
                  '2': [ '', '', ' foo.de', 'blue' ],
                  '3': [ '', '', ' bar.de', '' ], };
@@ -543,7 +547,7 @@ module.exports = {
 
             docs.forEach(function(doc) {
               test.equal(doc.links.length, 3, 'three links');
-              test.equal(doc.get('other').Random.length, 2, 'two random in others');
+              test.equal(doc.get('data').Random.length, 2, 'two random in data');
               test.equal(doc.contact_details.length, 1, 'one contact detail');
             });
 
