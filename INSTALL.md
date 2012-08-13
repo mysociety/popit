@@ -27,7 +27,7 @@ If you want to contribute code or run the test suite you'll need the following a
 If you use [Homebrew](http://mxcl.github.com/homebrew/) on a Mac then these commands will install some of the needed components:
 
     # to run PopIt
-    brew install git node mongodb
+    brew install git node mongodb graphicsmagick
 
     # to develop PopIt (in addition to the above) - Ruby and the gems are used 
     # for the browser tests
@@ -37,7 +37,7 @@ If you use [Homebrew](http://mxcl.github.com/homebrew/) on a Mac then these comm
 If you use [MacPorts](http://www.macports.org/) then these commands will install some of the needed components:
 
     # to run PopIt
-    port install git-core npm mongodb
+    port install git-core npm mongodb graphicsmagick
 
     # to develop PopIt (in addition to the above)
     port install rb-haml
