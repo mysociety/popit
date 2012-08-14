@@ -382,7 +382,7 @@ module.exports = {
     },
 
     "create organisation and position when importing a person": function ( test ) {
-      test.expect( 5 );
+      test.expect( 7 );
       var migration = new MigrationApp();
 
       schema = 'person';
@@ -406,6 +406,7 @@ module.exports = {
             var query = that.popit.model('Position').find();
             query.exec(function(err, docs) {
               test.equal(docs.length, 1, 'one position in database');
+              test.equal(docs[0].title, 'Party', 'right name for position');
               cb(err);
             });
           }, 
@@ -413,6 +414,7 @@ module.exports = {
             var query = that.popit.model('Organisation').find();
             query.exec(function(err, docs) {
               test.equal(docs.length, 1, 'one organisation in database');
+              test.equal(docs[0].name, 'Aliens', 'right name for position');
               cb(err);
             });
           }], 
@@ -547,7 +549,6 @@ module.exports = {
             test.equal(docs.length, 1, 'one person in database');
 
             docs.forEach(function(doc) {
-              log(docs)
               test.equal(doc.links.length, 3, 'three links');
               test.equal(doc.get('data').Random.length, 3, 'two random in data');
               test.equal(doc.contact_details.length, 1, 'one contact detail');
