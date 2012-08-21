@@ -398,6 +398,8 @@ module.exports = {
                     images:          [],
                     links:           [],
                     contact_details: [],
+                    name_words:      [ 'joe', 'bloggs' ],
+                    name_dm:         [ 'J', 'A', 'PLKS', 'PLKS', 'joe', 'bloggs' ],                    
                     meta: { edit_url: 'http://foobar.127-0-0-1.org.uk:3100/person/joe-bloggs' },
                   },
                   "Person created as expected"
@@ -434,6 +436,8 @@ module.exports = {
                     images:          [],
                     links:           [],
                     contact_details: [],
+                    name_words:      [ 'joe', 'bloggs' ],
+                    name_dm:         [ 'J', 'A', 'PLKS', 'PLKS', 'joe', 'bloggs' ],                    
                     meta: { edit_url: 'http://foobar.127-0-0-1.org.uk:3100/person/joe-bloggs' },
                   },
                   "Person updated as expected"
