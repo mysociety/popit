@@ -503,7 +503,7 @@ module.exports = {
                               '1': [ 'foo', ' foo@mail.com', ' fo.co.uk' ],
                               '2': [ '', '', ' foo.de' ],
                               '3': [ 'bar', ' bar@mail.com', ' bar.co.uk' ] };
-        migration.parseCsv(__dirname+"/sample_complex_csv.txt", function(parsed, err) {
+        migration.parseCsv(__dirname+"/sample_multiline.csv", function(parsed, err) {
           test.ifError(err);
           test.ok( parsed, "migration tests" );
           test.deepEqual( parsed, realParsedCsv, "migration tests" );
