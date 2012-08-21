@@ -60,7 +60,7 @@ class MigrationTests < PopItWatirTestCase
     @b.select_list(:xpath, "//tr[@id='id_PopitID']//select").select("ID")
     @b.text_field(:xpath, "//tr[@id='id_PopitID']//input[@name='db-attribute']").set("PopIt")
 
-    @b.select_list(:xpath, "//tr[@id='id_University']//select").select("Other")
+    @b.select_list(:xpath, "//tr[@id='id_University']//select").select("Other data")
     @b.text_field(:xpath, "//tr[@id='id_University']//input[@name='db-attribute']").set("University")
 
     @b.select_list(:xpath, "//tr[@id='id_URL']//select").select("Link")
