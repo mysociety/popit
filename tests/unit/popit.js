@@ -58,7 +58,7 @@ module.exports = {
     },
 
     "check that we can get a model": function (test) {
-        test.expect(8);
+        test.expect(9);
         
         var popit = this.popit;
         popit.set_instance('foobar');
@@ -86,6 +86,7 @@ module.exports = {
 
             // check that the user was saved
             test.ifError(err, "no error saving");
+            test.ok(object)
             test.equal(object.id, user.id, "IDs are the same");
             
             userModel.findOne({email: user.email}, function(err, retrieved_user) {
