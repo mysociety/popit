@@ -23,7 +23,7 @@ module.exports = {
         this.popit.close_db_connections(cb);
     },
     
-    "database model": function ( test ) {
+    "database model for migration object": function ( test ) {
         test.expect( 11 );
         
         var migration = new this.Migration();
@@ -54,7 +54,7 @@ module.exports = {
         test.done();
     },
 
-    "parse csv": function ( test ) {
+    "parse csv file": function ( test ) {
         test.expect( 5 );
 
         var migration = new MigrationApp();
@@ -240,7 +240,7 @@ module.exports = {
     },
 
     "import the right fields": function ( test ) {
-        test.expect( 25 );
+        test.expect( 26 );
 
         var migration = new MigrationApp();
         test.ok( migration, "got new migation app" );
@@ -250,14 +250,15 @@ module.exports = {
         schema = 'person';
         mappings = 
             [ [ 'title', 'name', 'Title' ],
+              [ 'summary', 'summary', 'Summary' ],
               [ 'firstname', 'name', 'First name' ],
               [ 'middlename', 'name', 'Middle name' ],
               [ 'lastname', 'name', 'Last name' ],
               [ 'birthdate', 'name', 'Birthdate' ],
               [ 'party', 'position', 'Party' ],
-              [ 'school', 'other', 'School' ],
-              [ 'university', 'other', 'University' ],
-              [ 'gender', 'other', 'Gender' ],
+              [ 'school', 'data', 'School' ],
+              [ 'university', 'data', 'University' ],
+              [ 'gender', 'data', 'Gender' ],
               [ 'phone', 'contact', 'Phone' ],
               [ 'fax', 'contact', 'Fax' ],
               [ 'website', 'links', 'Website' ],
@@ -267,6 +268,7 @@ module.exports = {
               [ '', '', '' ]];
         data = {'675': 
           [ 'Sir',
+            'The wonderful Sir John A. Doe',
             'John',
             'A.',
             'Doe',
@@ -305,6 +307,8 @@ module.exports = {
             var p = docs[0];
             test.equal(p.name, "Sir John A. Doe");
 
+            test.equal(p.summary, "The wonderful Sir John A. Doe");
+
             test.equal(p.links.length, 2);
 
             var el;
@@ -332,10 +336,10 @@ module.exports = {
             test.equal(p.contact_details[0].kind, "Phone");
             test.equal(p.contact_details[0].value, "734-234-3545");
 
-            var other = p.get('other');
-            test.equal(other.Gender, 'Between');
-            test.equal(other.University, 'Potatoe College');
-            test.equal(other.School, 'Cucumber School');
+            var data = p.get('data');
+            test.equal(data.Gender, 'Between');
+            test.equal(data.University, 'Potatoe College');
+            test.equal(data.School, 'Cucumber School');
 
             test.equal(p.get('birthDate'), '14.10.1963');
 
@@ -378,7 +382,7 @@ module.exports = {
     },
 
     "create organisation and position when importing a person": function ( test ) {
-      test.expect( 5 );
+      test.expect( 7 );
       var migration = new MigrationApp();
 
       schema = 'person';
@@ -402,6 +406,7 @@ module.exports = {
             var query = that.popit.model('Position').find();
             query.exec(function(err, docs) {
               test.equal(docs.length, 1, 'one position in database');
+              test.equal(docs[0].title, 'Party', 'right name for position');
               cb(err);
             });
           }, 
@@ -409,6 +414,7 @@ module.exports = {
             var query = that.popit.model('Organisation').find();
             query.exec(function(err, docs) {
               test.equal(docs.length, 1, 'one organisation in database');
+              test.equal(docs[0].name, 'Aliens', 'right name for position');
               cb(err);
             });
           }], 
@@ -486,6 +492,70 @@ module.exports = {
           test.done();
         });
       });
-    }
+    },
 
+    "parse multiline csv": function ( test ) {
+        test.expect( 3 );
+
+        var migration = new MigrationApp();
+
+        var realParsedCsv = { '0': [ 'name', ' email', ' links' ],
+                              '1': [ 'foo', ' foo@mail.com', ' fo.co.uk' ],
+                              '2': [ '', '', ' foo.de' ],
+                              '3': [ 'bar', ' bar@mail.com', ' bar.co.uk' ] };
+        migration.parseCsv(__dirname+"/sample_multiline.csv", function(parsed, err) {
+          test.ifError(err);
+          test.ok( parsed, "migration tests" );
+          test.deepEqual( parsed, realParsedCsv, "migration tests" );
+
+          test.done();
+
+        });
+    },
+
+    "import multiline": function ( test ) {
+        test.expect( 8 );
+
+        var migration = new MigrationApp();
+
+        test.ok( migration.doImport, "migration tests" );
+
+        schema = 'person';
+        mappings = 
+            [ [ 'name', 'name', 'Full name' ],
+              [ ' email', 'contact', 'Email' ],
+              [ ' links', 'links', 'Website' ],
+              [ ' random', 'data', 'Random' ] ];
+        data = { '1': [ 'foo', ' foo@mail.com', ' fo.co.uk', 'orange' ],
+                 '2': [ '', '', ' foo.de', 'blue' ],
+                 '3': [ '', '', ' bar.de', '' ], 
+                 '4': [ '', '', , 'purple' ]};
+
+        var that = this;
+
+        migration.doImport(that.popit, schema, mappings, data, function(){}, function(err, people) {
+          
+          if(err) 
+            log(err);
+
+          test.ifError(err);
+          test.equal(people.length, 1, 'one person in people set');
+
+          var query = that.popit.model('Person').find();
+
+          query.exec(function(err, docs) {
+            test.ifError(err);
+
+            test.equal(docs.length, 1, 'one person in database');
+
+            docs.forEach(function(doc) {
+              test.equal(doc.links.length, 3, 'three links');
+              test.equal(doc.get('data').Random.length, 3, 'two random in data');
+              test.equal(doc.contact_details.length, 1, 'one contact detail');
+            });
+
+            test.done();
+          });
+        });
+    },
 };

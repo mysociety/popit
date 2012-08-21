@@ -12,9 +12,8 @@ require(['jquery', 'underscore'], function ($, _) {
 
     var getUpdate = function() {
        $.getJSON('/migration/progress/'+id, function(json) {
-        console.log(json);
         var s = 'Imported ' + json.progress+' of '+json.total+' items.';
-        if (json.total === json.progress) {
+        if (json.total === json.progress && json.count >= 0) {
           s = 'Finished importing <a href="/person" id="_finished">'+json.count+'</a> people.';
           clearInterval(myTimer);
         }
@@ -22,7 +21,6 @@ require(['jquery', 'underscore'], function ($, _) {
           s = 'An error occured: <br><pre>'+json.err.name+'\n\n'+json.err.err+'</pre>';
           $('.progress').addClass('error');
         }
-        console.log(s)
         $('.progress').html(s);
       })
     }
@@ -80,7 +78,7 @@ require(['jquery', 'underscore'], function ($, _) {
         td.find('input').attr('name', '').hide();
 
       } else {
-        // create a data list for html5 browsers (ie ff but currently (2012) not webkit
+        // create a data list for html5 browsers (i.e. for ff but currently (2012) not webkit)
         var dl = '<datalist id="' + id + '"><select>' + cb + '</select></datalist>';
         
         tr.append(dl);
@@ -94,6 +92,8 @@ require(['jquery', 'underscore'], function ($, _) {
     });
 
     $('form.migration-form').submit(function() {
+      // do validation
+
       // there is at least one entry with a first name
       var zipped = _.zip($('form.migration-form [name=db-attribute-class]').map(function(k,v){return $(v).val()}),
                        $('form.migration-form [name=db-attribute]').map(function(k,v){return $(v).val()}))
