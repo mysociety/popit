@@ -396,9 +396,12 @@ module.exports = {
                     name:            "Joe Bloggs",
                     slug:            "joe-bloggs",
                     summary:         "Just another Joe",
+                    other_names:     [],
                     images:          [],
                     links:           [],
                     contact_details: [],
+                    name_words:      [ 'joe', 'bloggs' ],
+                    name_dm:         [ 'J', 'A', 'PLKS', 'PLKS', 'joe', 'bloggs' ],                    
                     meta: { edit_url: 'http://foobar.127-0-0-1.org.uk:3100/person/joe-bloggs' },
                   },
                   "Person created as expected"
@@ -412,7 +415,7 @@ module.exports = {
             // FIXME: should test updating using the dot notation too
 
             rest
-              .put(document_url, { data: { name: 'Fred Jones', thisShouldBeIgnored: 1234 } })
+              .put(document_url, { data: { name: 'Fred Jones', notInSchemaAttribute: 1234 } })
               .on('complete', function(data, response) {
                 test.equal(response.statusCode, 204, "got 204");
                 cb();
@@ -430,9 +433,13 @@ module.exports = {
                     name:            "Fred Jones",
                     slug:            "joe-bloggs",
                     summary:         "Just another Joe",
+                    notInSchemaAttribute: 1234,
+                    other_names:     [],
                     images:          [],
                     links:           [],
                     contact_details: [],
+                    name_words:      [ 'joe', 'bloggs' ],
+                    name_dm:         [ 'J', 'A', 'PLKS', 'PLKS', 'joe', 'bloggs' ],                    
                     meta: { edit_url: 'http://foobar.127-0-0-1.org.uk:3100/person/joe-bloggs' },
                   },
                   "Person updated as expected"
@@ -462,7 +469,7 @@ module.exports = {
             // FIXME: should test updating using the dot notation too
 
             rest
-              .put(embedded_url, { data: { url: 'http://update.test/', thisShouldBeIgnored: 1234 } })
+              .put(embedded_url, { data: { url: 'http://update.test/' } })
               .on('complete', function(data, response) {
                 test.equal(response.statusCode, 200, "got 200");
                 cb();

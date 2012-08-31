@@ -1,7 +1,4 @@
-/*  Configuration file
- *
- *
- *
+/* Example production configuration file
  */
 
 module.exports = {

@@ -2,6 +2,8 @@ var Error404 = require('../../lib/errors').Error404;
 
 exports.route = function (app) {
 
+  app.get('/search',  require('../../lib/apps/search').search );
+
   app.get('/', function(req, res){
     res.redirect( '/person' ); // until we have a more interesting homepage to show
     // res.render( 'index' );

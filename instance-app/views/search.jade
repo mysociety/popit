@@ -1,0 +1,14 @@
+extend layout
+
+block title
+  | Search
+
+block content
+  if results.length
+    p The following results have been found:
+    ul
+      for result in results
+        li
+          a(href="/person/#{result.slug}") #{result.name}
+  else
+    p Sorry, no results.

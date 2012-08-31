@@ -197,9 +197,12 @@ module.exports = {
               name:    'George Bush',
               slug:    'george-bush',
               summary: '41th President of the United States',
+              other_names:     [],
               images:          [],
               links:           [],
               contact_details: [],
+              name_words:      [], // TODO - should put the correct DM strings into fixtures
+              name_dm:         [],              
               meta: {
                 edit_url: 'http://foobar.127-0-0-1.org.uk:3100/person/george-bush',
               },

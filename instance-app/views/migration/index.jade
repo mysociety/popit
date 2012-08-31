@@ -1,0 +1,40 @@
+extend ../layout
+
+block title
+  | Migration Tool
+
+block content
+  .page-header
+    h1 Migration Tool
+
+  p 
+    | If you have been collecting information on people in a spreadsheet this 
+    | will let you quickly upload it all into PopIt rather than manually 
+    | entering it in. We expect that this will be in the form of a 
+    a(href="http://en.wikipedia.org/wiki/Comma-separated_values", title="Wikipedia article on the file format") CSV
+    |  file.
+
+  p The migration tool is intended to add data to PopIt, not to import data after the first import.
+
+  p The migration process consists of 3 steps. 
+  ol
+    li Upload a CSV file
+    li Define the mapping
+    li Wait for the import to happen
+
+  if migration.length
+    a(href="/migration/clear") Clear previous migrations
+    ul
+      for single in migration
+        li
+          a(href="/migration/mapping/#{ single.id }") #{ single.source.name } 
+            small (#{ single.created })
+
+  form(method="post", action="/migration/upload", enctype="multipart/form-data")
+    #migration_source_file
+      label Source file
+      input(type="file", name="source", value="")
+      //if error != ''
+      //  span.error #{error}
+
+    input(type="submit", class="btn", value="Upload your CSV")

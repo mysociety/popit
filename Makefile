@@ -26,6 +26,13 @@ npm-update:
 	npm prune
 	npm shrinkwrap
 
+npm-shrinkwrap:
+	npm install
+	rm npm-shrinkwrap.json
+	npm install
+	npm prune
+	npm shrinkwrap
+
 
 lint:
 	find lib          -name '*.js' | xargs -n 1 $(LINT) --node --
@@ -44,9 +51,9 @@ optipng:
 
 
 js-templates:
-	jade-amd --runtime > public/js/jadeRuntime.js
+	node_modules/.bin/jade-amd --runtime > public/js/jadeRuntime.js
 	rm -rf public/js/templates
-	jade-amd --pretty --from instance-app/views --to public/js/templates
+	node_modules/.bin/jade-amd --pretty --from instance-app/views --to public/js/templates
 
 
 public-production: css js-templates
@@ -86,7 +93,7 @@ test-unit:
 
 test-browser: css public-production
 	$(START_TEST_SERVER)
-	@NODE_ENV=testing ruby tests/browser_based/run_tests.rb
+	@NODE_ENV=testing ruby tests/browser_based/run_tests.rb -v
 	$(STOP_TEST_SERVER)
 
 test-api:
@@ -96,7 +103,7 @@ test-api:
 	  tests/api
 
 
-production:
+production: clean
 	git checkout production
 	git merge master
 	make public-production
@@ -109,7 +116,8 @@ clean:
 	rm -rf public/js/templates	
 	rm -rf public-build
 	rm -rf public-production
+	find . -name chromedriver.log -delete
 
 
-.PHONY: test test-unit test-browser test-api css public-production clean tidy node-modules npm-update
+.PHONY: test test-unit test-browser test-api css public-production clean tidy node-modules npm-update npm-shrinkwrap
 
