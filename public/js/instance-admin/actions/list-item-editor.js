@@ -5,7 +5,7 @@
 define(
   [
     'jquery',
-    'popit/views/list-item-edit'
+    'instance-admin/views/list-item-edit'
   ],
   function (
     $,

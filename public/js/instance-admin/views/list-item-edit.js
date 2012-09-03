@@ -5,7 +5,7 @@ define(
     'Backbone',
     'backbone-forms',
     'underscore',
-    'popit/views/submit-form-helper',
+    'instance-admin/views/submit-form-helper',
     'jqueryui/autocomplete'
   ],
   function (

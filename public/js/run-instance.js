@@ -11,14 +11,14 @@ require([
 
 // PopIt editing app - load it and add bits needed
 require ([
-  'popit/app',
-  'popit/actions/person-new',
-  'popit/actions/contact-edit',
-  'popit/actions/links-edit'
+  'instance-admin/app',
+  'instance-admin/actions/person-new',
+  'instance-admin/actions/contact-edit',
+  'instance-admin/actions/links-edit'
 ]);
 
 require (
-  [ 'order!jquery', 'popit/app' ],
+  [ 'order!jquery', 'instance-admin/app' ],
   function ($, App) {
 
     // FIXME - we shouldn't be mucking around with the global jQuery behaviour like this.

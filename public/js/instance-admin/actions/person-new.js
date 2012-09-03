@@ -5,9 +5,9 @@
 define(
   [
     'jquery',
-    'popit/app',
-    'popit/models/person',
-    'popit/views/person-new',
+    'instance-admin/app',
+    'instance-admin/models/person',
+    'instance-admin/views/person-new',
     'jquery.fancybox',    
   ],
   function (

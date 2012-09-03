@@ -2,7 +2,7 @@ define(
   [
     'Backbone',
     'underscore',
-    'popit/collections/suggestions',
+    'instance-admin/collections/suggestions',
     'templates/person/compact_list'
   ],
   function(

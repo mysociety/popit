@@ -6,9 +6,9 @@ define(
     'underscore',
     'utils/slugify',
     'templates/person/new',
-    'popit/models/person',
-    'popit/views/submit-form-helper',
-    'popit/views/suggestions'
+    'instance-admin/models/person',
+    'instance-admin/views/submit-form-helper',
+    'instance-admin/views/suggestions'
   ],
   function (
     $,

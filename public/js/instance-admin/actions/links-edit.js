@@ -5,9 +5,9 @@
 define(
   [
     'jquery',
-    'popit/app',
-    'popit/actions/list-item-editor',
-    'popit/models/link',
+    'instance-admin/app',
+    'instance-admin/actions/list-item-editor',
+    'instance-admin/models/link',
     'templates/link/view'
   ],
   function (
