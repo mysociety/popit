@@ -12,6 +12,14 @@ Please see  [INSTALL.md](https://github.com/mysociety/popit/blob/master/INSTALL.
 
 You can use our [free hosting service](http://popit.mysociety.org/) instead of installing and let us run the site for you.
 
+## API bindings
+
+The following bindings are available to make working with PopIt easier in your chose language:
+
+  * **PHP**: https://github.com/mysociety/popit-php
+  * **Python**: https://github.com/mysociety/popit-python
+  * **Others**: the API is REST based and simple to use, contributions welcome :)
+
 ## About
 
 [Detailed description of PopIt](https://github.com/mysociety/popit/wiki/PopIt-Overview).
