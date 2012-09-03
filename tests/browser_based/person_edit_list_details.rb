@@ -55,7 +55,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
     @b.input(:name => 'save').click
     
     # Delete the phone number
-    @b.refresh
+    @b.refresh    
     assert_equal 3, @b.section(:class => 'contact-information').ul.lis.count
     @b.link(:text => '^ edit').click
     @b.wait_until { @b.button(:name => 'delete').present? }
@@ -73,13 +73,13 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
     login_to_instance
     goto '/person/george-bush'    
 
-    # Enter a phone number
+    # Enter a wikipedia link
     @b.link(:text => '+ add a new link').click
     @b.text_field(:name => 'comment').send_keys( 'Wikipedia' )
     @b.text_field(:name => 'url').send_keys( 'http://en.wikipedia.org/wiki/George_W._Bush' )
     @b.input(:type => 'submit').click
 
-    # Enter an address
+    # Enter a WH link
     @b.link(:text => '+ add a new link').click
     @b.text_field(:name => 'comment').send_keys( 'White House' )
     @b.text_field(:name => 'url').send_keys( 'http://www.whitehouse.gov/about/presidents/georgehwbush' )
@@ -92,7 +92,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
     assert @b.element(:text => 'Wikipedia:').present?
     assert @b.element(:text => 'http://en.wikipedia.org/wiki/George_W._Bush').present?
 
-    # Edit the phone number
+    # Edit a link
     @b.link(:text => '^ edit').click
     @b.text_field(:name => 'url').set( 'http://foo.com/')
     @b.input(:name => 'save').click
@@ -100,6 +100,15 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
     @b.refresh
     assert @b.element(:text => 'http://foo.com/').present?
 
+    # check that the autocomplete pops up
+    @b.link(:text => '^ edit').click
+    @b.text_field(:name => 'comment').set( 'wik')
+    @b.wait_until { @b.li(:class => 'ui-menu-item').present? }
+    assert_equal @b.li(:class => 'ui-menu-item').text, 'Wikipedia'
+    @b.li(:class => 'ui-menu-item').click
+    assert_equal @b.text_field(:name => 'comment').value, 'Wikipedia'
+    @b.input(:name => 'save').click
+    
     # Delete the phone number
     assert_equal 3, @b.section(:class => 'links').ul.lis.count
     @b.link(:text => '^ edit').click
