@@ -7,7 +7,7 @@ require.config({
     'jquery.pulse':     './libs/jquery.pulse',
 
     // AMD version of jquery-ui - generated using https://github.com/jrburke/jqueryui-amd
-    'jqueryui': './libs/jqueryui-1.8.22/',
+    'jqueryui': './libs/jqueryui-1.8.22',
 
     // AMD versions of these libraries:
     //   https://github.com/amdjs/backbone/blob/master/backbone.js

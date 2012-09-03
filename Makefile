@@ -43,7 +43,7 @@ lint:
 
 css:
 	compass compile
-	cp -r public/sass/jqueryui/images public/css/jqueryui/
+	cp -r public/sass/jqueryui/images public/css/
 
 
 optipng:
