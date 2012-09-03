@@ -84,7 +84,9 @@ All the config is in the `config` folder. These are loaded by the [config](http:
 You'll need to setup a wildcard DNS if you want to let instances be created. If
 your main site is `your-hosting-site-domain.com` you'll need to wildcard
 `*.your-hosting-site-domain.com`, or create DNS entries for
-`your-instance.your-hosting-site-domain.com`. By default the `127-0-0-1.org.uk` domain is used which wildcards to localhost.
+`your-instance.your-hosting-site-domain.com`. For development and in the tests
+we use `127.0.0.1.xip.io` which points at `127.0.0.1` - see http://xip.io for
+details.
 
 ## Developers
 

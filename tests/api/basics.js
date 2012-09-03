@@ -59,9 +59,9 @@ module.exports = {
           {
             comment: 'This is the API entry point - use a link in \'meta\' to search a collection.',
             meta: {
-              person_api_url:       'http://foobar.127-0-0-1.org.uk:3100/api/v1/person',
-              organisation_api_url: 'http://foobar.127-0-0-1.org.uk:3100/api/v1/organisation',
-              position_api_url:     'http://foobar.127-0-0-1.org.uk:3100/api/v1/position',
+              person_api_url:       'http://foobar.127.0.0.1.xip.io:3100/api/v1/person',
+              organisation_api_url: 'http://foobar.127.0.0.1.xip.io:3100/api/v1/organisation',
+              position_api_url:     'http://foobar.127.0.0.1.xip.io:3100/api/v1/position',
             },
           },
           "response in links to parts of the API"
@@ -138,8 +138,8 @@ module.exports = {
               name:    'George Bush',
               summary: '41th President of the United States',
               meta: {
-                api_url:  'http://foobar.127-0-0-1.org.uk:3100/api/v1/person/4f9ea1306e8770d854c45a1d',
-                edit_url: 'http://foobar.127-0-0-1.org.uk:3100/person/george-bush',
+                api_url:  'http://foobar.127.0.0.1.xip.io:3100/api/v1/person/4f9ea1306e8770d854c45a1d',
+                edit_url: 'http://foobar.127.0.0.1.xip.io:3100/person/george-bush',
               },
             },
             "george-bush details correct"
@@ -170,7 +170,7 @@ module.exports = {
           // test that the api_url is correct
           test.equal(
             _.sortBy( results, 'slug')[0].meta.api_url,
-            'http://foobar.127-0-0-1.org.uk:3100/api/v1/person/4f9ea1306e8770d854c45a1d',
+            'http://foobar.127.0.0.1.xip.io:3100/api/v1/person/4f9ea1306e8770d854c45a1d',
             "got api_url as expected"
           );
                     
@@ -204,7 +204,7 @@ module.exports = {
               name_words:      [], // TODO - should put the correct DM strings into fixtures
               name_dm:         [],              
               meta: {
-                edit_url: 'http://foobar.127-0-0-1.org.uk:3100/person/george-bush',
+                edit_url: 'http://foobar.127.0.0.1.xip.io:3100/person/george-bush',
               },
             },
             "george-bush details correct"
@@ -295,7 +295,7 @@ module.exports = {
               person:       '4f9ea1326e8770d854c45a1e',
               organisation: '4f9ea1326e8770d854c45a21',
               meta: {
-                api_url: 'http://foobar.127-0-0-1.org.uk:3100/api/v1/position/4f9ea1326e8770d854c45a23',
+                api_url: 'http://foobar.127.0.0.1.xip.io:3100/api/v1/position/4f9ea1326e8770d854c45a23',
               },
             }],
             "got Clinton's Presidency"

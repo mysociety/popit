@@ -13,7 +13,7 @@ class PopItWatirTestCase < Test::Unit::TestCase
     # (which will also build the assets and start the testing server on that
     # port). 
     @test_port = ENV['NODE_ENV'] == 'testing' ? 3100 : 3000
-    @test_hosting_url  = "http://www.127-0-0-1.org.uk:#{@test_port}/"
+    @test_hosting_url  = "http://www.127.0.0.1.xip.io:#{@test_port}/"
 
     # create the browser and go to the homepage
     @b = Watir::Browser.new :chrome
