@@ -9,12 +9,14 @@ block content
   p
     a(href=instance.base_url) #{ instance.base_url }
 
-  p
-    if instance.info.description
-      | #{ instance.info.description }
-    else
-      | There are no more details about this site.
+  if instance.info.description
+    p #{ instance.info.description }
 
-  p FIXME - present the rest of this information
-
-  pre= instance.info
+  if instance.info.name
+    h2 Details
+    p Number of people: #{ instance.info.person_count || 0 }
+    p Number of organisations: #{ instance.info.organisation_count || 0 }
+    p Last updated (approx): #{ moment( instance.info.last_updated ).fromNow() }
+    
+    // FIXME - display more details here
+    // pre= instance.info

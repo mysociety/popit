@@ -71,7 +71,6 @@ class InstanceInfoTests < PopItWatirTestCase
     assert_equal 'test', @b.link(:id, 'instance-test').text
     @b.link(:id, 'instance-test').click
     assert_equal 'test', @b.title
-    assert_match /no more details/, @b.text
 
     # Fetch all the instance data and then check that the details are correctly
     # presented.

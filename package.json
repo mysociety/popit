@@ -36,6 +36,7 @@
     "validator":                 ">= 0.4.5",
     "csv":                       ">= 0.0.13",
     "connect-image-proxy":       ">= 0.0.5",
+    "moment":                    ">= 1.7.0",
 
     "everyauth":                 "https://github.com/evdb/everyauth/tarball/master"
 
