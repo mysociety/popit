@@ -13,7 +13,8 @@ var express           = require('express'),
     Server            = require('mongodb').Server,
     mongoStore        = require('connect-mongodb'),
     jadeAmdMiddleware = require('jade-amd').jadeAmdMiddleware,
-    image_proxy       = require('connect-image-proxy');
+    image_proxy       = require('connect-image-proxy'),
+    connect_flash     = require('connect-flash');
 
 // everyauth.debug = true;
 
@@ -62,6 +63,7 @@ everyauth
       if (user) {
         var post_login_redirect_to = data.session.post_login_redirect_to;
         delete data.session.post_login_redirect_to;
+        res.req.flash('info', 'You are now logged in.');
         this.redirect(res, post_login_redirect_to || '/' );
       }   
     })
@@ -123,6 +125,13 @@ app.configure( function () {
       store: session_store,
   }) );
   
+  // set up the flash and make it available to the templates - https://gist.github.com/3070950
+  app.use( connect_flash() );
+  app.use( function (req, res, next) {
+    res.locals({ flash: req.flash.bind(req) });
+    next();
+  });
+
   // Select the instance now so that it is available to everyauth to refer to
   // the correct db with.
   app.use( require('../lib/middleware/config')() );

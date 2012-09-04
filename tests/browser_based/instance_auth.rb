@@ -42,9 +42,16 @@ class InstanceAuthTests < PopItWatirTestCase
     @b.input(:value, "Login").click
     assert_match 'Hello test@example.com', @b.div(:id, 'signed_in').text
 
+    # check that the flash message is shown
+    assert_equal @b.div(:id, 'flash-info').li.text, "You are now logged in."
+    @b.div(:id, 'flash-info').link(:class, 'close').click    
+    @b.wait_until { ! @b.div(:id, 'flash-info').present? }
+    @b.refresh
+    assert ! @b.div(:id, 'flash-info').present?
+
     # check that we can log out too
     @b.link(:text, 'Sign Out').click
-    assert_match 'already have an account? Sign In', @b.div(:id, 'sign_in').text
+    assert_equal 'already have an account? Sign In', @b.div(:id, 'sign_in').text
 
   end
 

@@ -58,8 +58,17 @@ head
 if locals.user
   bodyClasses = ['signed_in']
   
-// FIXME set the body ID to be the slug version of the instance name instead of united-kingdom
+//- FIXME set the body ID to be the slug version of the instance name instead of united-kingdom
 body#popit-united_kingdom(class=bodyClasses)
+
+  //- output any flash messages that we have
+  - var flash_info = flash('info')
+  if flash_info.length
+    div#flash-info
+      a.close(href="#") [x]
+      ul
+        for message in flash_info
+          li= message
 
   if locals.user
     noscript

@@ -471,3 +471,24 @@ table.migration-table {
 
 
 
+#flash-info {
+  text-align: center;
+  background: $info_colour_background;
+  padding: 0.25em;
+  margin: 0 auto;
+
+  a.close {
+    float: right;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    
+    li {
+      list-style: none;
+    }
+  }
+
+
+}

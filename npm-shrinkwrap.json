@@ -590,6 +590,9 @@
     "moment": {
       "version": "1.7.0"
     },
+    "connect-flash": {
+      "version": "0.1.0"
+    },
     "everyauth": {
       "version": "0.2.32",
       "from": "https://github.com/evdb/everyauth/tarball/master",
