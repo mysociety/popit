@@ -4,8 +4,7 @@ block title
   | #{ instance.info.name || instance.slug }
 
 block content
-  .page-header
-    h1 #{ instance.info.name || instance.slug }
+  h1 #{ instance.info.name || instance.slug }
 
   p
     a(href=instance.base_url) #{ instance.base_url }
