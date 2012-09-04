@@ -14,7 +14,7 @@ class PersonEditingTests < PopItWatirTestCase
     goto_instance 'test'
     delete_instance_database
     load_test_fixture
-    goto '/'
+    goto '/person'
 
     # check that the create new person link is not shown. But that it is if the
     # user hovers over the sign in link
@@ -24,6 +24,7 @@ class PersonEditingTests < PopItWatirTestCase
 
     # login and check link is visible
     login_to_instance
+    goto '/person'
     assert @b.link(:text, 'Create a new person').present?
 
     # click on the create new person link and check that the form has popped up    

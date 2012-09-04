@@ -26,7 +26,9 @@ exports.route = function (app) {
 
   });
 
-
+  app.get('/welcome', function (req, res) {
+    res.render('welcome');
+  });
 
   // Throw a 404 error
   app.all('/*', function(req, res, next) {

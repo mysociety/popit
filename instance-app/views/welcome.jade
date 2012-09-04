@@ -1,0 +1,19 @@
+extend layout
+
+block title
+  | Welcome to #{ popit.instance_name() }
+
+block content
+
+  h1 Welcome to your new site!
+  
+  p A new PopIt site has been created for you, and this it.
+  
+  // DESIGN: I forsee the links below being replaced with a couple of big icons
+  // - one of a single person and one of a crowd.
+  
+  p
+    a#new-person(href="#") Add your first person
+    |  or, if you have lots of it, 
+    a(href='/info/data-import') upload your data
+    | .

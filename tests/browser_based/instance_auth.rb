@@ -13,7 +13,7 @@ class InstanceAuthTests < PopItWatirTestCase
 
     # goto homepage
     goto '/'
-    assert_equal 'People', @b.title
+    assert_equal 'test', @b.title
 
     # try signing in with no credentials
     @b.link(:text, "Sign In").click

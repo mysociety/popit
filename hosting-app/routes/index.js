@@ -188,9 +188,9 @@ exports.route = function (app) {
                           action: 'login',
                           args: {
                             user_id: user.id,
-                            redirect_to: instance.base_url + '/person/'
+                            redirect_to: instance.base_url + '/welcome'
                           },
-                        })
+                        });
 
                         token.save(function(err) {
                           if (err) throw err;
