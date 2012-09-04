@@ -4,10 +4,22 @@ block title
   | #{ popit.instance_name() }
 
 block content
-  h1 Welcome to PopIt
-  p This is an instance server
 
-  p
-    | View a list of 
-    a(href="/person") all the people 
-    | in the database
+  h1 Welcome to #{ popit.instance_name() }
+  
+
+  if persons.length
+    h2 People
+    
+    for person in persons
+      li 
+        a(href="/person/#{person.slug}") #{person.name}
+    
+    p
+      | View a list of 
+      a(href="/person") all the people 
+      | in the database
+  else
+    p There are no people in the database yet.
+    p.admin-options
+      a#new-person(href="#") Create a new person
