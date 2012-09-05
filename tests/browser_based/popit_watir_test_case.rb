@@ -88,7 +88,7 @@ class PopItWatirTestCase < Test::Unit::TestCase
   def login_as_instance_owner
     goto_dev_page
     @b.button(:id, 'login_as_instance_owner').click
-    assert_match 'Hello owner@example.com', @b.div(:id, 'signed_in').text
+    assert_match 'Signed in as owner@example.com', @b.li(:id, 'signed_in').text
   end
 
 end

@@ -83,20 +83,27 @@ body#popit-united_kingdom(class=bodyClasses)
           span.popit-instance  : 
             span#popit_instance_name #{ popit.instance_name() }
     #user_menu
-      if locals.user
-        #signed_in
-          | Hello 
-          span.username #{user.email}
-          | , 
-          //- a(href='#user-preferences') View Settings
-          a(href='/logout') Sign Out
-      else
-        #sign_in
-          | already have an account? 
-          a(href='/login') Sign In
-          
-      div
-        a(href='/info/data-import') Import data automatically
+      ul
+        if locals.user
+          li#signed_in
+            | Signed in as 
+            span.username #{user.email}
+                        //- a(href='#user-preferences') View Settings
+
+          li
+            a(href='/logout') Sign Out
+        else
+          li#sign_in
+            | already have an account? 
+            a(href='/login') Sign In
+            
+      ul
+        li
+          a(href='/') Home
+        li
+          a(href='/person') People
+        li
+          a(href='/about') About Us
 
   
   #content

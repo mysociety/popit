@@ -95,7 +95,7 @@ class HostingTests < PopItWatirTestCase
     assert_equal 'Welcome to your new site!', @b.div(:id, 'content').h1.text
 
     # check that we are logged in
-    assert_match 'Hello bob@example.com', @b.div(:id, 'signed_in').text
+    assert_match 'Signed in as bob@example.com', @b.li(:id, 'signed_in').text
             
   end
 

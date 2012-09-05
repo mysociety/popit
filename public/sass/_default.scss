@@ -14,11 +14,14 @@ header#header{
 	
 	padding: 0.625em;
 	margin: auto;
+  height : 5em;
 	
 	h1.logo{
 		color: #4D4D4D;
 		max-width:100%;
 		margin:0;
+  	float:left;
+//    width: 9.667em;
 		
 		a{
 			display:block;
@@ -26,10 +29,6 @@ header#header{
 			text-decoration:none;
 		}
 		
-		@media screen and (min-width: 60em){
-			float:left;
-			width: 9.667em;
-		}
 		
 		abbr{
 			border:none;
@@ -58,22 +57,24 @@ body.brand_page header#header h1.logo{
 #user_menu
 {
 	font-size: 0.875em;
-	max-width:100%;
-	
-	@media screen and (min-width: 60em){
-		width: 21.25em;
-		text-align: right;
-		padding-top: 1.6em;
-		float:right;
-	}
-	
+  text-align: right;
+  float:right;
+
+  ul {
+    margin: 0.5em 0 0 0;
+    li {
+      display: inline;
+      list-style: none;
+      padding: 0 0 0 0.5em;
+    }
+  }
+		
 	.username{
 		font-weight: bold;
 	}
-//	a{
-//		color: #333;
-//	}
+
 }
+
 body.brand_page #user_menu{
 	@media screen and (min-width: 60em){
 		padding-top: 4.4286em;
