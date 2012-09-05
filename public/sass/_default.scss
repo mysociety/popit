@@ -490,6 +490,10 @@ table.migration-table {
       list-style: none;
     }
   }
+}
 
-
+div.info {
+  padding: 1em;
+  border: 1px solid darken($info_colour_background, 20%);
+  background-color: $info_colour_background;
 }

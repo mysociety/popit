@@ -18,18 +18,18 @@ class PersonEditingTests < PopItWatirTestCase
 
     # check that the create new person link is not shown. But that it is if the
     # user hovers over the sign in link
-    assert ! @b.link(:text, 'Create a new person').present?
+    assert ! @b.link(:text, 'Add a new person').present?
     @b.link(:text, 'Sign In').hover
-    assert @b.link(:text, 'Create a new person').present?
+    assert @b.link(:text, 'Add a new person').present?
 
     # login and check link is visible
     login_as_instance_owner
     goto '/person'
-    assert @b.link(:text, 'Create a new person').present?
+    assert @b.link(:text, 'Add a new person').present?
 
     # click on the create new person link and check that the form has popped up    
     assert ! @b.form(:name, 'create-new-person').present?
-    @b.link(:text, 'Create a new person').click
+    @b.link(:text, 'Add a new person').click
     @b.form(:name, 'create-new-person').wait_until_present
 
     # try to enter an empty name
@@ -54,13 +54,13 @@ class PersonEditingTests < PopItWatirTestCase
     # enter person check for no suggestions
     @b.back
     @b.refresh
-    @b.link(:text, 'Create a new person').click
+    @b.link(:text, 'Add a new person').click
     @b.text_field(:name, 'name').set "I'm a unique name"
     assert_equal 'No matches', @b.ul(:class, 'suggestions').li.text
 
     # enter dup name and check for suggestions
     @b.refresh
-    @b.link(:text, 'Create a new person').click
+    @b.link(:text, 'Add a new person').click
     @b.text_field(:name, 'name').set "George"
     @b.wait_until { @b.ul(:class, 'suggestions').present? && @b.ul(:class, 'suggestions').li.text['George Bush'] }
     
@@ -70,7 +70,7 @@ class PersonEditingTests < PopItWatirTestCase
     
     # enter dup, create anyway, check for new person
     @b.back
-    @b.link(:text, 'Create a new person').click
+    @b.link(:text, 'Add a new person').click
     @b.text_field(:name, 'name').set "George Bush"
     @b.input(:value, "Create new person").click
     @b.wait_until { @b.title != 'People' }
@@ -78,7 +78,7 @@ class PersonEditingTests < PopItWatirTestCase
     
     # enter name that can't be slugged
     @b.back
-    @b.link(:text, 'Create a new person').click
+    @b.link(:text, 'Add a new person').click
     @b.text_field(:name, 'name').set "网页"
     assert_equal "", @b.text_field(:name, 'slug').value
     @b.input(:value, "Create new person").click
