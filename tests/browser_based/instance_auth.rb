@@ -37,10 +37,10 @@ class InstanceAuthTests < PopItWatirTestCase
     assert_equal 'Missing login', @b.li(:class => 'error').text
 
     # correct login details
-    @b.text_field(:name, 'email').set 'test@example.com'
+    @b.text_field(:name, 'email').set 'owner@example.com'
     @b.text_field(:name, 'password').set 'secret'
     @b.input(:value, "Login").click
-    assert_match 'Hello test@example.com', @b.div(:id, 'signed_in').text
+    assert_match 'Hello owner@example.com', @b.div(:id, 'signed_in').text
 
     # check that the flash message is shown
     assert_equal @b.div(:id, 'flash-info').li.text, "You are now logged in."
