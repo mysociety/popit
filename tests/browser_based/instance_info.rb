@@ -31,7 +31,7 @@ class InstanceInfoTests < PopItWatirTestCase
     assert_match /\/login$/, @b.url
     
     # login and check if edit link is visible
-    login_to_instance
+    login_as_instance_owner
     goto '/about'
     assert @b.link(:text, '(edit)').present?
 

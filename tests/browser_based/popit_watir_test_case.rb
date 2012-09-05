@@ -85,11 +85,9 @@ class PopItWatirTestCase < Test::Unit::TestCase
     assert_equal "OK - all instances synced", @b.p(:id, 'message').text
   end
 
-  def login_to_instance
-    @b.link(:text, "Sign In").click
-    @b.text_field(:name, 'email').set 'owner@example.com'
-    @b.text_field(:name, 'password').set 'secret'
-    @b.input(:value, "Login").click
+  def login_as_instance_owner
+    goto_dev_page
+    @b.button(:id, 'login_as_instance_owner').click
     assert_match 'Hello owner@example.com', @b.div(:id, 'signed_in').text
   end
 

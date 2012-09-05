@@ -23,7 +23,7 @@ class PersonEditingTests < PopItWatirTestCase
     assert @b.link(:text, 'Create a new person').present?
 
     # login and check link is visible
-    login_to_instance
+    login_as_instance_owner
     goto '/person'
     assert @b.link(:text, 'Create a new person').present?
 
@@ -97,7 +97,7 @@ class PersonEditingTests < PopItWatirTestCase
     delete_instance_database
     load_test_fixture
     goto '/'
-    login_to_instance    
+    login_as_instance_owner    
 
     # goto bush and check he is there
     goto '/person/george-bush'    
@@ -130,7 +130,7 @@ class PersonEditingTests < PopItWatirTestCase
     assert ! @b.textarea(:name => 'value').present?
     
     # login and try again
-    login_to_instance
+    login_as_instance_owner
     goto '/person/george-bush'    
     assert ! @b.textarea(:name => 'value').present?
     @b.element(:css => '[data-api-name=summary]').click

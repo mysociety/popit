@@ -15,7 +15,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
     delete_instance_database
     load_test_fixture
     goto '/'
-    login_to_instance
+    login_as_instance_owner
     goto '/person/george-bush'    
 
     # Enter a phone number
@@ -70,7 +70,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
     delete_instance_database
     load_test_fixture
     goto '/'
-    login_to_instance
+    login_as_instance_owner
     goto '/person/george-bush'    
 
     # Enter a wikipedia link

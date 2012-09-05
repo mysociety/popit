@@ -24,7 +24,7 @@ class MigrationTests < PopItWatirTestCase
     # try to open migration tool, get sent to login page
     assert_match /\login$/, @b.url 
 
-    login_to_instance
+    login_as_instance_owner
     assert_equal 'Migration Tool', @b.title
   end
 
@@ -33,7 +33,7 @@ class MigrationTests < PopItWatirTestCase
     delete_instance_database
     load_test_fixture
     goto '/migration/'
-    login_to_instance
+    login_as_instance_owner
 
     assert_equal 'Migration Tool', @b.title
 
