@@ -41,17 +41,9 @@ block content
           a.add(href="#{person.slug_url}/images/upload")
               strong + add 
               | a photograph
-    //- if((!person.summary) && (!locals.user))
+
+
     section.description(itemprop="description")
-      //- ul.admin-options
-      //-   li
-      //-     a.add(href="#", class="edit-in-place")
-      //-       if person.summary
-      //-         strong ^ edit 
-      //-         | the summary
-      //-       else
-      //-         strong + add 
-      //-         | a summary of this person
                   
       p(class="edit-in-place-textarea", data-api-url="/person/#{ person.id }", data-api-name="summary") #{person.summary}
     
