@@ -42,6 +42,12 @@ block content
               strong + add 
               | a photograph
 
+      
+    ul.admin-options
+      li
+        a(class="delete delete-person", data-id=person.id)
+          strong - delete 
+          | this person
 
     section.description(itemprop="description")
                   
@@ -88,8 +94,6 @@ block content
             dd(itemprop="name") #{ name.name }
         
         
-
-
 
     section.positions
       ul.admin-options

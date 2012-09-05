@@ -92,6 +92,32 @@ class PersonEditingTests < PopItWatirTestCase
   end
 
 
+  def test_person_deleting
+    goto_instance 'test'
+    delete_instance_database
+    load_test_fixture
+    goto '/'
+    login_to_instance    
+
+    # goto bush and check he is there
+    goto '/person/george-bush'    
+    assert_equal @b.title, 'George Bush'
+
+    # click on delete link, wait for form
+    @b.link(:text, '- delete this person').click
+    @b.wait_until { @b.form(:name, 'remove-person').present? }
+
+    assert @b.input(:value, "Really delete 'George Bush'?").present?
+    @b.input(:value, "Really delete 'George Bush'?").click
+    
+    @b.wait_until { @b.title == 'People' }
+    assert_equal @b.element(:id, "flash-info").li.text, "Entry 'George Bush' deleted."
+
+    goto '/person/george-bush'    
+    assert_equal @b.title, 'Page not found'
+
+  end
+
   def test_person_editing
     goto_instance 'test'
     delete_instance_database
