@@ -7,13 +7,16 @@ block content
 
   h1 Welcome to your new site!
   
-  p A new PopIt site has been created for you, and this it.
+  div.info
   
-  // DESIGN: I forsee the links below being replaced with a couple of big icons
-  // - one of a single person and one of a crowd.
-  
-  p
-    a#new-person(href="#") Add your first person
-    |  or, if you have lots of it, 
-    a(href='/info/data-import') upload your data
-    | .
+    p A new PopIt site has been created for you, and this it.
+    
+    // DESIGN: I forsee the links below being replaced with a couple of big icons
+    // - one of a single person and one of a crowd.
+    
+    p
+      | You should now 
+      a#new-person(href="#") add your first person
+      |  or if you already have some data in a spreadsheet you can use the 
+      a(href='/migration') migration tool
+      | .
