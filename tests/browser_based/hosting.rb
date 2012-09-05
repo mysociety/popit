@@ -6,7 +6,7 @@ require 'uri'
 
 class HostingTests < PopItWatirTestCase
 
-  def test_site_can_be_deleted_and_fixture_loaded
+  def test_hosting_site_homepage
     goto_hosting_site
     assert_match( /Welcome to PopIt/, @b.text )
   end
