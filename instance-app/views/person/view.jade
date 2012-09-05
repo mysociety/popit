@@ -4,7 +4,7 @@ block title
   | #{ person.name }
 
 block content            
-
+  
   article(class="person", id="person-james_gordon_brown", itemscope, itemtype="http://schema.org/Person")
     header.person-header-nav(id="person-#{person.slug}")
       nav
@@ -14,7 +14,7 @@ block content
         a.next-person(href="#FIXME-next-person", title="Next Person: Person Name")
           em Next&nbsp;Person:
           strong Person&nbsp;Name
-      h1.current-person(title="#{ person.name }") #{ person.name }
+      h1.current-person(title="#{ person.name }", class="edit-in-place", data-api-url="/person/#{ person.id }", data-api-name="name") #{ person.name }
       div.find-person
         label(for="person-search") Search for Person
         input#person-search(type="search", name="person-search")
@@ -41,21 +41,17 @@ block content
           a.add(href="#{person.slug_url}/images/upload")
               strong + add 
               | a photograph
-    //- if((!person.summary) && (!locals.user))
+
+      
+    ul.admin-options
+      li
+        a(class="delete delete-person", data-id=person.id)
+          strong - delete 
+          | this person
+
     section.description(itemprop="description")
-      ul.admin-options
-        - if(!person.summary)
-          li
-            a.add(href="#{person.slug_url}/edit")
-              strong + add 
-              | a summary of this person
-        else
-          li
-            a.edit(href="#{person.slug_url}/edit")
-              strong ^ edit 
-              | the summary
                   
-      p #{person.summary}
+      p(class="edit-in-place-textarea", data-api-url="/person/#{ person.id }", data-api-name="summary") #{person.summary}
     
     section.personal-details
       ul.admin-options
@@ -99,9 +95,7 @@ block content
         
         
 
-
-
-    section.contact-information
+    section.positions
       ul.admin-options
         li
           a.add(href="#{person.slug_url}/position/add")
@@ -123,40 +117,31 @@ block content
             //- a.hover_edit(href="#{person.slug_url}/contacts/#{contact.id}/edit") edit
             
     section.contact-information
-      ul.admin-options
-        li
-          a.add(href="#{person.slug_url}/contacts/new/edit")
-            strong + add 
-            | information
-        //- li
-        //-   a.edit(href="#FIXME-edit")
-        //-     strong edit 
-        //-     | this section
       h2 Contact Information:
-      dl
-        for contact in person.contact_details
-          dt #{ contact.kind }:
-          dd #{ contact.value }
-            a.admin-options(href="#{person.slug_url}/contacts/#{contact.id}/edit") edit
-            
-
-    section.contact-information
-      ul.admin-options
+      ul.detail-list
+        - var api_url_root = person.api_url + '/contact_details/'
+        for item in person.contact_details
+          li
+            include ../contact/view
         li
-          a.add(href="#{person.slug_url}/links/new/edit")
-            strong + add 
-            | link
-        //- li
-        //-   a.edit(href="#FIXME-edit")
-        //-     strong ^ edit 
-        //-     | this section
+          span.admin-options
+            a(data-url-root="#{api_url_root}", class="add contact-edit")
+              strong + add 
+              | a new contact detail
+                
+
+    section.links
       h2 Links:
-      dl
-        for link in person.links
-          dt #{ link.comment }:
-          dd
-            a(href=link.url) #{ link.url }
-            a.admin-options(href="#{person.slug_url}/links/#{link.id}/edit") edit
+      ul.detail-list
+        - var api_url_root = person.api_url + '/links/'
+        for item in person.links
+          li
+            include ../link/view
+        li
+          span.admin-options
+            a(data-url-root="#{api_url_root}", class="add link-edit")
+              strong + add 
+              | a new link
   
     section.raw-data
       h2 Raw data

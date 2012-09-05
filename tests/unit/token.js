@@ -27,7 +27,7 @@ module.exports = {
         var token = new Token({
           action: 'log_in_user',
           args: {
-            email: 'test@example.com',
+            email: 'owner@example.com',
             redirect_to: '/foobar',
           },
         });

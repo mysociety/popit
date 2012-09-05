@@ -51,10 +51,24 @@ head
   //- Javascript 
   script(src='/js/libs/require-1.0.8.js', data-main="/js/main-instance", type='text/javascript', charset='utf-8')
 
+  if locals.user
+    script
+      require(['/js/main-instance-admin.js']);
+    
 if locals.user
   bodyClasses = ['signed_in']
-// FIXME set the body ID to be the slug version of the instance name instead of united-kingdom
+  
+//- FIXME set the body ID to be the slug version of the instance name instead of united-kingdom
 body#popit-united_kingdom(class=bodyClasses)
+
+  //- output any flash messages that we have
+  - var flash_info = flash('info')
+  if flash_info.length
+    div#flash-info
+      a.close(href="#") [x]
+      ul
+        for message in flash_info
+          li= message
 
   if locals.user
     noscript
@@ -69,20 +83,27 @@ body#popit-united_kingdom(class=bodyClasses)
           span.popit-instance  : 
             span#popit_instance_name #{ popit.instance_name() }
     #user_menu
-      if locals.user
-        #signed_in
-          | Hello 
-          span.username #{user.email}
-          | , 
-          //- a(href='#user-preferences') View Settings
-          a(href='/logout') Sign Out
-      else
-        #sign_in
-          | already have an account? 
-          a(href='/login') Sign In
-          
-      div
-        a(href='/info/data-import') Import data automatically
+      ul
+        if locals.user
+          li#signed_in
+            | Signed in as 
+            span.username #{user.email}
+                        //- a(href='#user-preferences') View Settings
+
+          li
+            a(href='/logout') Sign Out
+        else
+          li#sign_in
+            | already have an account? 
+            a(href='/login') Sign In
+            
+      ul
+        li
+          a(href='/') Home
+        li
+          a(href='/person') People
+        li
+          a(href='/about') About Us
 
   
   #content

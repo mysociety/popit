@@ -22,7 +22,7 @@ class InstanceBasicTests < PopItWatirTestCase
     goto_instance 'foobar'
     goto '/'
 
-    assert_equal 'People', @b.title
+    assert_equal 'foobar', @b.title
     assert_equal 'foobar', @b.element(:id, 'popit_instance_name').text
   end
  

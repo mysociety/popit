@@ -13,7 +13,7 @@ class PopItWatirTestCase < Test::Unit::TestCase
     # (which will also build the assets and start the testing server on that
     # port). 
     @test_port = ENV['NODE_ENV'] == 'testing' ? 3100 : 3000
-    @test_hosting_url  = "http://www.127-0-0-1.org.uk:#{@test_port}/"
+    @test_hosting_url  = "http://www.127.0.0.1.xip.io:#{@test_port}/"
 
     # create the browser and go to the homepage
     @b = Watir::Browser.new :chrome
@@ -85,12 +85,10 @@ class PopItWatirTestCase < Test::Unit::TestCase
     assert_equal "OK - all instances synced", @b.p(:id, 'message').text
   end
 
-  def login_to_instance
-    @b.link(:text, "Sign In").click
-    @b.text_field(:name, 'email').set 'test@example.com'
-    @b.text_field(:name, 'password').set 'secret'
-    @b.input(:value, "Login").click
-    assert_match 'Hello test@example.com', @b.div(:id, 'signed_in').text
+  def login_as_instance_owner
+    goto_dev_page
+    @b.button(:id, 'login_as_instance_owner').click
+    assert_match 'Signed in as owner@example.com', @b.li(:id, 'signed_in').text
   end
 
 end

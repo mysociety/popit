@@ -43,6 +43,7 @@ lint:
 
 css:
 	compass compile
+	cp -r public/sass/jqueryui/images public/css/
 
 
 optipng:
@@ -83,11 +84,12 @@ tidy:
 
 
 test: node-modules test-unit test-api test-browser
+	echo "ALL TESTS PASS"
 
 test-unit:
 	@NODE_ENV=testing ./node_modules/.bin/nodeunit \
-		--reporter $(REPORTER) \
-		tests/unit
+	  --reporter $(REPORTER) \
+	  tests/unit
 
 test-browser: css public-production
 	$(START_TEST_SERVER)
@@ -97,8 +99,8 @@ test-browser: css public-production
 test-api:
 	$(STOP_TEST_SERVER)
 	@NODE_ENV=testing ./node_modules/.bin/nodeunit \
-		--reporter $(REPORTER) \
-		tests/api
+	  --reporter $(REPORTER) \
+	  tests/api
 
 
 production: clean
@@ -110,7 +112,7 @@ production: clean
 
 clean:
 	compass clean
-	rm -rf public/css	
+	rm -rf public/css
 	rm -rf public/js/templates	
 	rm -rf public-build
 	rm -rf public-production

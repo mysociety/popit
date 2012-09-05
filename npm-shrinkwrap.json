@@ -103,7 +103,7 @@
               "version": "0.6.0-1"
             },
             "eyes": {
-              "version": "0.1.7"
+              "version": "0.1.8"
             }
           }
         },
@@ -148,7 +148,7 @@
                   "version": "0.6.4",
                   "dependencies": {
                     "ini": {
-                      "version": "1.0.2"
+                      "version": "1.0.4"
                     }
                   }
                 },
@@ -219,7 +219,7 @@
           "version": "0.6.1",
           "dependencies": {
             "ini": {
-              "version": "1.0.2"
+              "version": "1.0.4"
             }
           }
         },
@@ -278,7 +278,7 @@
               "version": "1.0.0"
             },
             "eyes": {
-              "version": "0.1.7"
+              "version": "0.1.8"
             },
             "request": {
               "version": "2.9.203"
@@ -305,7 +305,10 @@
       "version": "0.0.3",
       "dependencies": {
         "commander": {
-          "version": "1.0.0"
+          "version": "1.0.1"
+        },
+        "mkdirp": {
+          "version": "0.3.4"
         },
         "findit": {
           "version": "0.1.2",
@@ -420,7 +423,7 @@
       "version": "0.7.4",
       "dependencies": {
         "tap": {
-          "version": "0.2.5",
+          "version": "0.3.0",
           "dependencies": {
             "inherits": {
               "version": "1.0.0"
@@ -453,12 +456,15 @@
               }
             },
             "nopt": {
-              "version": "1.0.10",
+              "version": "2.0.0",
               "dependencies": {
                 "abbrev": {
                   "version": "1.0.3"
                 }
               }
+            },
+            "mkdirp": {
+              "version": "0.3.4"
             },
             "difflet": {
               "version": "0.2.1",
@@ -581,6 +587,12 @@
         }
       }
     },
+    "moment": {
+      "version": "1.7.0"
+    },
+    "connect-flash": {
+      "version": "0.1.0"
+    },
     "everyauth": {
       "version": "0.2.32",
       "from": "https://github.com/evdb/everyauth/tarball/master",
@@ -590,7 +602,7 @@
           "from": "https://github.com/ciaranj/node-oauth/tarball/master"
         },
         "request": {
-          "version": "2.9.203"
+          "version": "2.10.0"
         },
         "openid": {
           "version": "0.4.2"
@@ -599,7 +611,7 @@
           "version": "0.1.14",
           "dependencies": {
             "sax": {
-              "version": "0.4.1"
+              "version": "0.4.2"
             }
           }
         },

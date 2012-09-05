@@ -4,11 +4,10 @@ block title
   | People
 
 block content
-  .page-header
-    h1 People
+  h1 People
   
   p.admin-options
-    a#new-person(href="#") Create a new person
+    a#new-person(href="#") Add a new person
 
   if people.length
     ul
@@ -19,7 +18,15 @@ block content
           a(href="#{ person.slug_url }") #{ person.name }  
 
   else
-    p.error 
-      | There are no people in the system yet. Use the 
-      a(href="/migration", id="migration_tool") migration tool
-      |  to add data to PopIt.
+    div.info
+      h3 
+        | There are no people in the system yet, you should probably add some!
+    
+      p
+        | Use the link above. It'll just ask you for their name, once you've 
+        | created their page you can add more details.
+    
+      p
+        | If you already have data in a spreadsheet or similar you can use the 
+        a(href="/migration", id="migration_tool") migration tool
+        |  to import it.

@@ -5,12 +5,12 @@ module.exports = {
     },
 
     hosting_server: {
-        host:       'www.127-0-0-1.org.uk',
-        base_url:   'http://www.127-0-0-1.org.uk:3100',
+        host:       'www.127.0.0.1.xip.io',
+        base_url:   'http://www.127.0.0.1.xip.io:3100',
     },
 
     instance_server: {
-        base_url_format: "http://%s.127-0-0-1.org.uk:3100",
+        base_url_format: "http://%s.127.0.0.1.xip.io:3100",
         files_dir:     '/tmp/popit_files',
     },
     

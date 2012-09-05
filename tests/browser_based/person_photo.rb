@@ -15,7 +15,7 @@ class PersonPhotoTests < PopItWatirTestCase
     delete_instance_database
     load_test_fixture
     goto '/'
-    login_to_instance
+    login_as_instance_owner
 
     # check that there is no photo to start with
     goto '/person/barack-obama'    

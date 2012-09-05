@@ -26,6 +26,29 @@ dl{
 	}
 }
 
+
+
+ul.detail-list {
+
+  padding-left: 0;
+
+	li{
+
+    list-style: none;
+
+    .list-item-title {
+	    font-size: 0.875em;
+	    color:#aaa;
+	  }
+
+	  .list-item-value {
+	    font-size: 1.125em;
+	    margin:0 0 1.4em 0;
+	  }
+
+  }
+}
+
 a{
 	color: #006480;
 	text-decoration: none;

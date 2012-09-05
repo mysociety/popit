@@ -39,3 +39,9 @@ block content
 
     form(action="/_dev/load_test_fixture", method="post")
       button#load_test_fixture Load the testing fixture
+
+    form(action="/login", method="post")
+      input(type="hidden", name="email", value="owner@example.com")
+      input(type="hidden", name="password", value="secret")
+      button#login_as_instance_owner Login as instance owner
+      

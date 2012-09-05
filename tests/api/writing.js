@@ -209,8 +209,8 @@ module.exports = {
           // delete the document
           function(cb) {
             rest.del(url).on('complete', function(data, response) {
-              test.equal(response.statusCode, 204, "got 204 - document deleted");
-              test.equal( data.length, 0, "no content returned" );      
+              test.equal(response.statusCode, 200, "got 200 - document deleted");
+              test.deepEqual( data, {}, "empty JSON hash returned" );      
               cb();
             });
           },
@@ -301,7 +301,7 @@ module.exports = {
       var original_sub_collection_ids = [];
       var sub_document_url = null;
 
-      test.expect(9);
+      test.expect(10);
       
       async.series(
         [
@@ -321,7 +321,7 @@ module.exports = {
             rest
               .post(sub_collection_url, { data: { url: 'http://foobar.com', comment: "sample url"}})
               .on('complete', function (data, response) {
-                test.equal(response.statusCode, 201, "got 201 - embedded document created");              
+                test.equal(response.statusCode, 200, "got 200 - embedded document created");              
 
                 // get the location of the new document
                 sub_document_url = response.headers['location'];
@@ -332,6 +332,8 @@ module.exports = {
 
                 test.equal(data.ok, true, "got 'ok' in JSON" );
                 test.equal(data.api_url, sub_document_url, "got correct sub-document url" );
+                test.equal(data.result.url, 'http://foobar.com', "got object back too");
+
                 cb();
               });
           },
@@ -398,7 +400,9 @@ module.exports = {
                     images:          [],
                     links:           [],
                     contact_details: [],
-                    meta: { edit_url: 'http://foobar.127-0-0-1.org.uk:3100/person/joe-bloggs' },
+                    name_words:      [ 'joe', 'bloggs' ],
+                    name_dm:         [ 'J', 'A', 'PLKS', 'PLKS', 'joe', 'bloggs' ],                    
+                    meta: { edit_url: 'http://foobar.127.0.0.1.xip.io:3100/person/joe-bloggs' },
                   },
                   "Person created as expected"
                 );
@@ -434,7 +438,9 @@ module.exports = {
                     images:          [],
                     links:           [],
                     contact_details: [],
-                    meta: { edit_url: 'http://foobar.127-0-0-1.org.uk:3100/person/joe-bloggs' },
+                    name_words:      [ 'joe', 'bloggs' ],
+                    name_dm:         [ 'J', 'A', 'PLKS', 'PLKS', 'joe', 'bloggs' ],                    
+                    meta: { edit_url: 'http://foobar.127.0.0.1.xip.io:3100/person/joe-bloggs' },
                   },
                   "Person updated as expected"
                 );
@@ -465,7 +471,7 @@ module.exports = {
             rest
               .put(embedded_url, { data: { url: 'http://update.test/' } })
               .on('complete', function(data, response) {
-                test.equal(response.statusCode, 204, "got 204");
+                test.equal(response.statusCode, 200, "got 200");
                 cb();
               });
           },

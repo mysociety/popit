@@ -6,7 +6,7 @@ require 'uri'
 
 class HostingTests < PopItWatirTestCase
 
-  def test_site_can_be_deleted_and_fixture_loaded
+  def test_hosting_site_homepage
     goto_hosting_site
     assert_match( /Welcome to PopIt/, @b.text )
   end
@@ -86,17 +86,16 @@ class HostingTests < PopItWatirTestCase
     @b.link.click
 
     # on the confirmr app page
-    assert_match 'choose the type of the first politician to add to the site', @b.text
+    assert_match 'Fantastic!', @b.div(:id, 'content').h1.text
     @b.form.submit
 
     # check that we are on the instance url now
     assert_match /^http:\/\/test\./, @b.url
     assert_match 'PopIt : test', @b.text
-    assert_equal 'People', @b.div(:id, 'content').h1.text
-    assert_equal 'People', @b.title
+    assert_equal 'Welcome to your new site!', @b.div(:id, 'content').h1.text
 
     # check that we are logged in
-    assert_match 'Hello bob@example.com', @b.div(:id, 'signed_in').text
+    assert_match 'Signed in as bob@example.com', @b.li(:id, 'signed_in').text
             
   end
 

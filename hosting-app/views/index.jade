@@ -4,20 +4,21 @@ block title
   | Welcome to PopIt
 
 block content
-  .page-header
+
+  div#promo-box
     h1 Welcome to PopIt
-
-  p
-    | PopIt makes it as simple to start and maintain a public database of 
-    | people, organisations and positions as it is to start a blog.
+    
+    p
+      | PopIt makes it simple to start and maintain a public database of 
+      | people, organisations and positions.
+    
+    p
+      | Create your own site and you can start to enter details 
+      | and share them with others as web pages or over an API. You can store 
+      | contact details and links to other sites, and photos.
   
-  p
-    | Once you've created your own site you can start to enter person details 
-    | and share them with others as web pages or using an API. You can store 
-    | contact details and links to other sites, and photos.
+    p
+      a(href='/instances/new', class='btn') Create your PopIt site
   
-  p
-    a(href='/instances/new', class='btn') Create your PopIt site
-
-  p
-    a(href='/instances', class='btn') Browse existing sites
+    p
+      a(href='/instances', class='btn') Browse existing sites

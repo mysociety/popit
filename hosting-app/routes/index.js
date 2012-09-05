@@ -5,6 +5,7 @@ var Validator     = require('validator').Validator,
     utils         = require('../../lib/utils'),
     mailer        = require('../../lib/mailer'),
     config        = require('config'),
+    moment        = require('moment'),
     Error404      = require('../../lib/errors').Error404;
 
 exports.route = function (app) {
@@ -110,6 +111,7 @@ exports.route = function (app) {
             res.render( template_file, {
                 locals: {
                     instance: req.instance,
+                    moment: moment,
                 },
             } );
     });
@@ -188,9 +190,9 @@ exports.route = function (app) {
                           action: 'login',
                           args: {
                             user_id: user.id,
-                            redirect_to: instance.base_url + '/person/'
+                            redirect_to: instance.base_url + '/welcome'
                           },
-                        })
+                        });
 
                         token.save(function(err) {
                           if (err) throw err;

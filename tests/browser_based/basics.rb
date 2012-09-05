@@ -11,7 +11,7 @@ class Basics < PopItWatirTestCase
     assert_match( /PopIt/, @b.text )
 
     @b.link(:text, 'People').click
-    assert_equal( "Barack Obama", @b.ul.li.text );
+    assert_equal( "Barack Obama", @b.div(:id, 'content').ul.li.text );
   end
 
 end
