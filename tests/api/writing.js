@@ -209,8 +209,8 @@ module.exports = {
           // delete the document
           function(cb) {
             rest.del(url).on('complete', function(data, response) {
-              test.equal(response.statusCode, 204, "got 204 - document deleted");
-              test.equal( data.length, 0, "no content returned" );      
+              test.equal(response.statusCode, 200, "got 200 - document deleted");
+              test.deepEqual( data, {}, "empty JSON hash returned" );      
               cb();
             });
           },
