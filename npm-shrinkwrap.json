@@ -593,6 +593,14 @@
     "connect-flash": {
       "version": "0.1.0"
     },
+    "version": {
+      "version": "0.1.0",
+      "dependencies": {
+        "request": {
+          "version": "2.9.202"
+        }
+      }
+    },
     "everyauth": {
       "version": "0.2.32",
       "from": "https://github.com/evdb/everyauth/tarball/master",
