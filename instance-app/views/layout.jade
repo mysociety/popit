@@ -60,7 +60,7 @@ head
 if locals.user
   - var bodyClasses = ['signed_in']
   
-body(id="popit-#{ popit.instance_name() }", class=bodyClasses)
+body(id="popit-#{ locals.popit ? popit.instance_name() : 'no-site-found' }", class=bodyClasses)
 
   //- output any flash messages that we have
   - var flash_info = flash('info')
