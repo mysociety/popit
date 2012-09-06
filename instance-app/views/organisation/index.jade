@@ -17,7 +17,7 @@ block content
       for organisation in organisations
         li
           //- if organisation.images.length
-          //-   img(src="/image/#{organisation.images[0]}-original", height="60")
+          //-   img(src="/image/#{organisation.images[0]}", height="60")
           a(href="#{ organisation.slug_url }") #{ organisation.name }  
 
   else

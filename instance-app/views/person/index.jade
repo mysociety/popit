@@ -17,7 +17,7 @@ block content
       for person in people
         li
           //- if person.images.length
-          //-   img(src="/image/#{person.images[0]}-original", height="60")
+          //-   img(src="/image/#{person.images[0]}", height="60")
           a(href="#{ person.slug_url }") #{ person.name }  
 
   else

@@ -30,7 +30,7 @@ block content
               //- TODO - proxy will need changes to allow us to proxy remote images
               img(src=image.url, width=280)
             else
-              img(src="#{image_proxy(person.slug_url + "/images/" + image.id + "-original", "", 280)}")
+              img(src="#{image_proxy(person.slug_url + "/images/" + image.id, "", 280)}")
             p.photo-source source:
               a(href="#photographer-url") Photographer
               abbr.license(title="Creative Commons - By Attribution - Share Alike") CC-BY-SA

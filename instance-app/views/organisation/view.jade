@@ -40,7 +40,7 @@ block content
             if image.url
               img(src="#{image_proxy(image.url, "", 240)}")
             else
-              img(src="#{image_proxy(organisation.slug_url + "/images/" + image.id + "-original", "", 240)}")
+              img(src="#{image_proxy(organisation.slug_url + "/images/" + image.id, "", 240)}")
             p.photo-source source:
               a(href="#photographer-url") Photographer
               abbr.license(title="Creative Commons - By Attribution - Share Alike") CC-BY-SA
