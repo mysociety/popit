@@ -3,6 +3,9 @@ extend ../layout
 block title
   | #{ organisation.name }
 
+block meta_headers
+  meta(name="description", content="#{ organisation.name }. #{ organisation.summary || '' }")
+
 block content
   style
     a.hover_edit {

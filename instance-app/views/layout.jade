@@ -27,10 +27,10 @@ head
   //- Stop IE messing up layout with silly buttons on every image 
   meta(http-equiv='imagetoolbar', content='false')
   
-  //- Make sure this is different on each page, populate this with the generated summary when viewing people pages 
-  //- FIXME imprement in a block
-  meta(name='description', content='PopIt, a really easy way to store and share information about politicians or other public figures.')
-  
+  block meta_headers
+    //- Blank by default. Make sure the meta desrciption is different on each
+    //- page, eg. populate this with the generated summary when viewing people
+    //- pages  
   
   title
     block title

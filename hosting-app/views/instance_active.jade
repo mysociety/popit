@@ -3,6 +3,9 @@ extends layout
 block title
   | #{ instance.info.name || instance.slug }
 
+block meta_headers
+  meta(name='description', content='#{ instance.info.name || instance.slug }. #{ instance.info.description || '' }')
+
 block content
   h1 #{ instance.info.name || instance.slug }
 

@@ -3,6 +3,10 @@ extend ../layout
 block title
   | About Us
 
+block meta_headers
+  if fields.summary
+    meta(name='description', content=fields.summary)
+
 block content
   style
 

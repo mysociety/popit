@@ -3,6 +3,9 @@ extend ../layout
 block title
   | #{ person.name }
 
+block meta_headers
+  meta(name="description", content="#{ person.name }. #{ person.summary || '' }")
+
 block content            
   
   article(class="person", id="person-james_gordon_brown", itemscope, itemtype="http://schema.org/Person")
