@@ -11,10 +11,10 @@ block content
   article(class="person", id="person-james_gordon_brown", itemscope, itemtype="http://schema.org/Person")
     header.person-header-nav(id="person-#{person.slug}")
       nav
-        a.previous-person(href="#FIXME-previous-person", title="Previous Person: Person Name")
+        a.previous-person(href="https://github.com/mysociety/popit/issues/61", title="Previous Person: Person Name")
           em Previous&nbsp;Person:
           strong Person&nbsp;Name
-        a.next-person(href="#FIXME-next-person", title="Next Person: Person Name")
+        a.next-person(href="https://github.com/mysociety/popit/issues/61", title="Next Person: Person Name")
           em Next&nbsp;Person:
           strong Person&nbsp;Name
       h1.current-person(title="#{ person.name }", class="edit-in-place", data-api-url="/person/#{ person.id }", data-api-name="name") #{ person.name }
@@ -27,7 +27,7 @@ block content
         for image in person.images
           li
             if image.url
-              //- FIXME - proxy will need changes to allow us to proxy remote images
+              //- TODO - proxy will need changes to allow us to proxy remote images
               img(src=image.url, width=280)
             else
               img(src="#{image_proxy(person.slug_url + "/images/" + image.id + "-original", "", 280)}")
@@ -59,11 +59,11 @@ block content
     section.personal-details
       ul.admin-options
         li
-          a.add(href="#FIXME")
+          a.add(href="https://github.com/mysociety/popit/issues/59")
             strong + add 
             | information
         li
-          a.edit(href="#FIXME-edit")
+          a.edit(href="https://github.com/mysociety/popit/issues/59")
             strong ^ edit 
             | this section
   
@@ -79,15 +79,6 @@ block content
     if person.other_names.length
       section.personal-details
 
-        //- ul.admin-options
-        //-   li
-        //-     a.add(href="#FIXME")
-        //-       strong + add 
-        //-       | information
-        //-   li
-        //-     a.edit(href="#FIXME-edit")
-        //-       strong ^ edit 
-        //-       | this section
         
         h2 Alternative names:
 
@@ -104,10 +95,7 @@ block content
           a.add(href="#{person.slug_url}/position/add")
             strong + add 
             | position
-        //- li
-        //-   a.edit(href="#FIXME-edit")
-        //-     strong edit 
-        //-     | this section
+
       h2 Positions:
       dl
         for position in positions
