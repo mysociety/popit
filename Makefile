@@ -6,7 +6,7 @@ REPORTER = default
 LINT    = ./node_modules/.bin/jslint --indent 2 --white --nomen
 FOREVER = ./node_modules/.bin/forever
 
-WAIT_FOR_SERVER   = sleep 5 # FIXME - use something more elegant
+WAIT_FOR_SERVER   = sleep 5
 TEST_SERVER = tests/test-server.js
 STOP_TEST_SERVER  = $(FOREVER) stop $(TEST_SERVER)
 START_TEST_SERVER = $(STOP_TEST_SERVER); NODE_ENV=testing $(FOREVER) start $(TEST_SERVER) && $(WAIT_FOR_SERVER)
