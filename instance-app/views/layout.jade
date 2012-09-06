@@ -58,10 +58,9 @@ head
       require(['/js/main-instance-admin.js']);
     
 if locals.user
-  bodyClasses = ['signed_in']
+  - var bodyClasses = ['signed_in']
   
-//- FIXME set the body ID to be the slug version of the instance name instead of united-kingdom
-body#popit-united_kingdom(class=bodyClasses)
+body(id="popit-#{ popit.instance_name() }", class=bodyClasses)
 
   //- output any flash messages that we have
   - var flash_info = flash('info')
