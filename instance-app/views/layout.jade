@@ -96,7 +96,7 @@ body(id="popit-#{ locals.popit ? popit.instance_name() : 'no-site-found' }", cla
         else
           li#sign_in
             | already have an account? 
-            a(href='/login') Sign In
+            a(href='/login?redirect_to=#{current_absolute_pathname}') Sign In
             
       ul
         li
