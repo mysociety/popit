@@ -38,7 +38,10 @@ everyauth
     .authenticate( function (login, password, req, res) {
           if (!login)    return ['Missing login'];
           if (!password) return ['Missing password'];      
-    
+
+          // trim off whitespace from login
+          login = login.trim();
+
           var promise = this.Promise()
     
           var User = req.popit.model('User');
