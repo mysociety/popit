@@ -391,6 +391,7 @@ module.exports = {
                   data.result,
                   {
                     _id:             document_id,
+                    __v:             0,
                     name:            "Joe Bloggs",
                     slug:            "joe-bloggs",
                     summary:         "Just another Joe",
@@ -428,6 +429,7 @@ module.exports = {
                   data.result,
                   {
                     _id:             document_id,
+                    __v:             0,
                     name:            "Fred Jones",
                     slug:            "joe-bloggs",
                     summary:         "Just another Joe",
