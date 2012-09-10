@@ -5,8 +5,6 @@ process.env.NODE_ENV = 'testing';
 var utils         = require('../../lib/utils'),
     PopIt         = require('../../lib/popit'),
     MigrationApp  = require('../../lib/apps/migration');
-    
-var log = console.log;
 
 module.exports = {
     
@@ -217,7 +215,7 @@ module.exports = {
         migration.doImport(that.popit, schema, mappings, data, function(){}, function(err, people) {
           
           if(err) 
-            log(err);
+            console.log(err);
 
           test.ifError(err);
           test.equal(people.length, 2, 'two people in people set');
@@ -291,7 +289,7 @@ module.exports = {
         migration.doImport(this.popit, schema, mappings, data, function() {}, function(err, people) {
           
           if(err) 
-            log(err);
+            console.log(err);
           
           test.ifError(err);
           test.equal(people.length, 1, 'one person in people set');
@@ -536,7 +534,7 @@ module.exports = {
         migration.doImport(that.popit, schema, mappings, data, function(){}, function(err, people) {
           
           if(err) 
-            log(err);
+            console.log(err);
 
           test.ifError(err);
           test.equal(people.length, 1, 'one person in people set');
