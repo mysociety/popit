@@ -92,9 +92,11 @@ block content
     section.positions
       ul.admin-options
         li
-          a.add(href="#{person.slug_url}/position/add")
-            strong + add 
-            | position
+          span.admin-options
+            a(data-url-root="#{api_url_root}", class="add position-edit")
+              strong + add 
+              | a new position
+
 
       h2 Positions:
       dl
