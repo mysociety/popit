@@ -3,6 +3,9 @@ extend ../layout
 block title
   | #{ organisation.name }
 
+block meta_headers
+  meta(name="description", content="#{ organisation.name }. #{ organisation.summary || '' }")
+
 block content
   style
     a.hover_edit {
@@ -19,10 +22,10 @@ block content
   article(class="person", id="person-james_gordon_brown", itemscope, itemtype="http://schema.org/Organisation")
     header.person-header-nav(id="person-#{organisation.slug}")
       nav
-        a.previous-person(href="#FIXME-previous-person", title="Previous Organisation: Organisation Name")
+        a.previous-person(href="https://github.com/mysociety/popit/issues/61", title="Previous Organisation: Organisation Name")
           em Previous&nbsp;Organisation:
           strong Organisation&nbsp;Name
-        a.next-person(href="#FIXME-next-person", title="Next Organisation: Organisation Name")
+        a.next-person(href="https://github.com/mysociety/popit/issues/61", title="Next Organisation: Organisation Name")
           em Next&nbsp;Organisation:
           strong Organisation&nbsp;Name
       h1.current-person(title="#{ organisation.name }") #{ organisation.name }
@@ -34,11 +37,10 @@ block content
       ul.photos
         for image in organisation.images
           li
-            //- FIXME - don't use the full size image here, resize it on the server before sending
             if image.url
               img(src="#{image_proxy(image.url, "", 240)}")
             else
-              img(src="#{image_proxy(organisation.slug_url + "/images/" + image.id + "-original", "", 240)}")
+              img(src="#{image_proxy(organisation.slug_url + "/images/" + image.id, "", 240)}")
             p.photo-source source:
               a(href="#photographer-url") Photographer
               abbr.license(title="Creative Commons - By Attribution - Share Alike") CC-BY-SA
@@ -52,78 +54,19 @@ block content
           a.add(href="#{organisation.slug_url}/images/upload")
               strong + add
               |  a photograph
-    //- if((!organisation.summary) && (!locals.user))
-    //- section.description(itemprop="description")
-    //-   ul.admin-options
-    //-     - if(!organisation.summary)
-    //-       li
-    //-         a.add(href="#{organisation.slug_url}/edit")
-    //-           strong + add 
-    //-           | a summary of this organisation
-    //-     else
-    //-       li
-    //-         a.edit(href="#{organisation.slug_url}/edit")
-    //-           strong ^ edit 
-    //-           | the summary
                   
+    section.summary
       p #{organisation.summary}
     
-    //- section.organisational-details
-    //-   ul.admin-options
-    //-     li
-    //-       a.add(href="#FIXME")
-    //-         strong + add 
-    //-         | information
-    //-     li
-    //-       a.edit(href="#FIXME-edit")
-    //-         strong ^ edit 
-    //-         | this section
-    //-   
-    //-   h2 Name, birthday & similar:
-    //-   dl
-    //-     dt Full Name:
-    //-     dd(itemprop="name") #{ organisation.name }
-    //-     
-    //-     dt Birthdate:
-    //-     dd
-    //-       time(itemprop="birthDate", datetime="1951-02-20") 20 February 1951
-    
-    //- section.contact-information
-    //-   ul.admin-options
-    //-     li
-    //-       a.add(href="#{organisation.slug_url}/contacts/new/edit")
-    //-         strong + add 
-    //-         | information
-    //-     //- li
-    //-     //-   a.edit(href="#FIXME-edit")
-    //-     //-     strong edit 
-    //-     //-     | this section
-    //-   h2 Contact Information:
-    //-   dl
-    //-     for contact in organisation.contact_details
-    //-       dt #{ contact.kind }:
-    //-       dd #{ contact.value }
-    //-         a.hover_edit(href="#{organisation.slug_url}/contacts/#{contact.id}/edit") edit
-            
+    section.to_be_added
+      p 
+        | There is a 
+        a(href="https://github.com/mysociety/popit/issues/183") github ticket
+        |  to put more details on this page.
 
-    //- section.contact-information
-    //-   ul.admin-options
-    //-     li
-    //-       a.add(href="#{organisation.slug_url}/links/new/edit")
-    //-         strong + add 
-    //-         | link
-    //-     //- li
-    //-     //-   a.edit(href="#FIXME-edit")
-    //-     //-     strong ^ edit 
-    //-     //-     | this section
-    //-   h2 Links:
-    //-   dl
-    //-     for link in organisation.links
-    //-       dt #{ link.comment }:
-    //-       dd
-    //-         a(href=link.url) #{ link.url }
-    //-         a.hover_edit(href="#{organisation.slug_url}/links/#{link.id}/edit") edit
-  
+    
+        
+
     section.raw-data
       h2 Raw data
       p The details for this organisation are also available in 

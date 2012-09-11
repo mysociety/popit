@@ -36,7 +36,7 @@ class HostingTests < PopItWatirTestCase
 
     # submit the form with no values, check for error
     @b.input(:value, 'Create your own PopIt').click
-    assert_match "Error is 'regexp'", @b.text
+    assert_match "Error is 'required'", @b.text
     assert_match "Error is 'required'", @b.text    
     
     # check a slug that is too short

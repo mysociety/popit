@@ -27,18 +27,18 @@ head
   //- Stop IE messing up layout with silly buttons on every image 
   meta(http-equiv='imagetoolbar', content='false')
   
-  //- Make sure this is different on each page, populate this with the generated summary when viewing people pages 
-  //- FIXME imprement in a block
-  meta(name='description', content='PopIt, a really easy way to store and share information about politicians or other public figures.')
-  
+  block meta_headers
+    //- Blank by default. Make sure the meta desrciption is different on each
+    //- page, eg. populate this with the generated summary when viewing people
+    //- pages  
   
   title
     block title
       | PopIt 
   
   block css_loading
-    link(rel='stylesheet', href='/css/popit.css', type='text/css', media='screen, print', charset='utf-8')
-    link(rel='stylesheet', href='/css/print.css', type='text/css', media='print', charset='utf-8')
+    link(rel='stylesheet', href='/css/popit.css?v#{config.popit_version}', type='text/css', media='screen, print', charset='utf-8')
+    link(rel='stylesheet', href='/css/print.css?v#{config.popit_version}', type='text/css', media='print', charset='utf-8')
   
   //- Mobile viewport optimised: h5bp.com/viewport 
   meta(name='viewport', content='width=device-width,initial-scale=1')
@@ -49,6 +49,8 @@ head
   // script(src='/js/libs/modernizr-2.5.3.js', type='text/javascript', charset='utf-8')
 
   //- Javascript 
+  script
+    var require = { urlArgs: 'v#{config.popit_version}' };
   script(src='/js/libs/require-1.0.8.js', data-main="/js/main-instance", type='text/javascript', charset='utf-8')
 
   if locals.user
@@ -56,10 +58,9 @@ head
       require(['/js/main-instance-admin.js']);
     
 if locals.user
-  bodyClasses = ['signed_in']
+  - var bodyClasses = ['signed_in']
   
-//- FIXME set the body ID to be the slug version of the instance name instead of united-kingdom
-body#popit-united_kingdom(class=bodyClasses)
+body(id="popit-#{ locals.popit ? popit.instance_name() : 'no-site-found' }", class=bodyClasses)
 
   //- output any flash messages that we have
   - var flash_info = flash('info')
@@ -95,7 +96,7 @@ body#popit-united_kingdom(class=bodyClasses)
         else
           li#sign_in
             | already have an account? 
-            a(href='/login') Sign In
+            a(href='/login?redirect_to=#{current_absolute_pathname}') Sign In
             
       ul
         li
@@ -121,13 +122,13 @@ body#popit-united_kingdom(class=bodyClasses)
             | , 
             a(href='/organisation') Organisations
           li
-            a(href='/info/about') About PopIt
+            a(href='#{config.hosting_site_base_url}/info/about') About PopIt
           li
             a(href='/api') API
             |  / 
             a(href='/info/data-import') Data Freedom
           li
-            a(href='/FIXME') Self Hosting
+            a(href="#{config.hosting_site_base_url}/info/self-hosting") Self Hosting
           li
             a(href='/info/privacy') Terms & Privacy Policy
       #about-mysociety
@@ -150,7 +151,7 @@ body#popit-united_kingdom(class=bodyClasses)
           | Learn more at 
           a(href='http://www.mysociety.org', title='mySociety') www.mysociety.org
     .copyright
-
+      | &copy; 2012 mySociety.org - v#{config.popit_version}
 
 //- manually close the html tag as we opened it in a funny way using the conditional comments above
 </html>

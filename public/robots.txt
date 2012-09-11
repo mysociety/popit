@@ -1,0 +1,14 @@
+
+User-agent: *
+
+# non-html parts of the site:
+Disallow: /api/v1
+
+# logged in users only
+Disallow: /migration
+
+# one off or non-content pages
+Disallow: /welcome
+Disallow: /login
+Disallow: /logout
+Disallow: /search

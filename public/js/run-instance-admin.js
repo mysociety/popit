@@ -19,7 +19,7 @@ require (
   [ 'order!jquery', 'instance-admin/app' ],
   function ($, App) {
 
-    // FIXME - we shouldn't be mucking around with the global jQuery behaviour like this.
+    // TODO - we shouldn't be mucking around with the global jQuery behaviour like this.
     // handle the API wrapping the responses in result(s): {...}
     $.ajaxSetup({
       converters: {

@@ -36,10 +36,10 @@ require(
         type: 'PUT', // TODO - perhaps we should be less proper and use the method_override?
         data: submitData,
         success: function () {
-          // FIXME - report success to the user.
+          // TODO - report success to the user.
         },
         error: function () {
-          // FIXME - handle this using some way to alert the user other than a modal dialog 
+          // TODO - handle this using some way to alert the user other than a modal dialog 
           alert("There was an error sending your changes to the server - please refresh the page and try again.");
         }
       });

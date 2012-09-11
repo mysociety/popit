@@ -25,8 +25,8 @@ module.exports = {
     var image = new (this.Image)();
     
     test.ok(
-      image.local_path_original.match( /^.{2}\/.{2}\/.{24}\-original$/ ),
-      "local_path_original looks right"
+      image.local_path.match( /^.{2}\/.{2}\/.{24}$/ ),
+      "local_path looks right"
     );
 
     test.done();

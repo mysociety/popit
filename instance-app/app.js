@@ -14,7 +14,8 @@ var express           = require('express'),
     mongoStore        = require('connect-mongodb'),
     jadeAmdMiddleware = require('jade-amd').jadeAmdMiddleware,
     image_proxy       = require('connect-image-proxy'),
-    connect_flash     = require('connect-flash');
+    connect_flash     = require('connect-flash'),
+    current_absolute_pathname = require('../lib/middleware/route').current_absolute_pathname;
 
 // everyauth.debug = true;
 
@@ -35,10 +36,25 @@ everyauth
     .getLoginPath('/login') // Uri path to the login page
     .postLoginPath('/login') // Uri path that your login form POSTs to
     .loginView('login.jade')
+    .loginLocals( function (req, res) {
+      // If there is a redirect_to param use it to store the destination for
+      // post auth
+      var  redirect_to = req.param('redirect_to');
+      if (redirect_to) {
+        req.session.post_login_redirect_to = redirect_to;
+      }
+
+      // return an empty hash - we're sort of abusing loginLocals to achieve
+      // the effect we want
+      return {};
+    })
     .authenticate( function (login, password, req, res) {
           if (!login)    return ['Missing login'];
           if (!password) return ['Missing password'];      
-    
+
+          // trim off whitespace from login
+          login = login.trim();
+
           var promise = this.Promise()
     
           var User = req.popit.model('User');
@@ -136,6 +152,11 @@ app.configure( function () {
   // the correct db with.
   app.use( require('../lib/middleware/config')() );
   app.use(instanceSelector());
+
+  app.use( function (req,res,next) {
+    res.local( 'current_absolute_pathname', current_absolute_pathname(req) );
+    next();    
+  });
   
   app.use( everyauth.middleware() );
   

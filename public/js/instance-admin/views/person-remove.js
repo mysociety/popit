@@ -23,7 +23,7 @@ define(
   
       render: function () {
 
-        console.log( this.model.toJSON() );
+        // console.log( this.model.toJSON() );
 
         this.$el.html( personRemoveTemplate({
           person: this.model.toJSON()

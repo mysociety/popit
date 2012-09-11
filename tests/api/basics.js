@@ -57,12 +57,13 @@ module.exports = {
         test.deepEqual(
           data,
           {
-            comment: 'This is the API entry point - use a link in \'meta\' to search a collection.',
-            meta: {
-              person_api_url:       'http://foobar.127.0.0.1.xip.io:3100/api/v1/person',
-              organisation_api_url: 'http://foobar.127.0.0.1.xip.io:3100/api/v1/organisation',
-              position_api_url:     'http://foobar.127.0.0.1.xip.io:3100/api/v1/position',
-            },
+            "comment": "This is the API entry point - use a '*_api_url' link in 'meta' to search a collection.",
+            "meta": {
+              "person_api_url":       "http://foobar.127.0.0.1.xip.io:3100/api/v1/person",
+              "organisation_api_url": "http://foobar.127.0.0.1.xip.io:3100/api/v1/organisation",
+              "position_api_url":     "http://foobar.127.0.0.1.xip.io:3100/api/v1/position",
+              "image_proxy_url":      "http://foobar.127.0.0.1.xip.io:3100/image-proxy/"
+            }
           },
           "response in links to parts of the API"
         );

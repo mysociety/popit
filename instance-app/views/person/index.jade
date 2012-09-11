@@ -3,6 +3,9 @@ extend ../layout
 block title
   | People
 
+block meta_headers
+  meta(name='description', content='A list of all the people.')
+
 block content
   h1 People
   
@@ -14,19 +17,23 @@ block content
       for person in people
         li
           //- if person.images.length
-          //-   img(src="/image/#{person.images[0]}-original", height="60")
+          //-   img(src="/image/#{person.images[0]}", height="60")
           a(href="#{ person.slug_url }") #{ person.name }  
 
   else
-    div.info
-      h3 
-        | There are no people in the system yet, you should probably add some!
-    
-      p
-        | Use the link above. It'll just ask you for their name, once you've 
-        | created their page you can add more details.
-    
-      p
-        | If you already have data in a spreadsheet or similar you can use the 
-        a(href="/migration", id="migration_tool") migration tool
-        |  to import it.
+    if locals.user
+      div.info
+        h3 
+          | There are no people in the system yet, you should probably add some!
+      
+        p
+          | Use the link above. It'll just ask you for their name, once you've 
+          | created their page you can add more details.
+      
+        p
+          | If you already have data in a spreadsheet or similar you can use the 
+          a(href="/migration", id="migration_tool") migration tool
+          |  to import it.
+    else
+      div.info
+        | No people have been entered yet.

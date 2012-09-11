@@ -42,6 +42,14 @@ class InstanceAuthTests < PopItWatirTestCase
     @b.input(:value, "Login").click
     assert_match 'Signed in as owner@example.com', @b.li(:id, 'signed_in').text
 
+    # correct login details (check spaces are stripped)
+    @b.link(:text, 'Sign Out').click
+    @b.link(:text, "Sign In").click
+    @b.text_field(:name, 'email').set '  owner@example.com  '
+    @b.text_field(:name, 'password').set 'secret'
+    @b.input(:value, "Login").click
+    assert_match 'Signed in as owner@example.com', @b.li(:id, 'signed_in').text
+
     # check that the flash message is shown
     assert_equal @b.div(:id, 'flash-info').li.text, "You are now logged in."
     @b.div(:id, 'flash-info').link(:class, 'close').click    
@@ -52,6 +60,26 @@ class InstanceAuthTests < PopItWatirTestCase
     # check that we can log out too
     @b.link(:text, 'Sign Out').click
     assert_equal 'already have an account? Sign In', @b.li(:id, 'sign_in').text
+
+    # check that trying to go to a page that requires auth leads to you being
+    # redirected back to that page after logging in
+    goto '/about/edit' # need to be an owner to edit this
+    @b.text_field(:name, 'email').set 'owner@example.com'
+    @b.text_field(:name, 'password').set 'secret'
+    @b.input(:value, "Login").click
+    assert_match 'Signed in as owner@example.com', @b.li(:id, 'signed_in').text
+    assert_match /\/about\/edit$/, @b.url
+
+    # check that we redirect back to the page you clicked login on too
+    @b.link(:text, 'Sign Out').click
+    goto '/person/george-bush'
+    @b.link(:text, "Sign In").click
+    @b.text_field(:name, 'email').set 'owner@example.com'
+    @b.text_field(:name, 'password').set 'secret'
+    @b.input(:value, "Login").click
+    assert_match 'Signed in as owner@example.com', @b.li(:id, 'signed_in').text
+    assert_match /\/person\/george-bush$/, @b.url
+    
 
   end
 

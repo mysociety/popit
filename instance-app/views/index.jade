@@ -3,6 +3,10 @@ extend layout
 block title
   | #{ popit.instance_name() }
 
+block meta_headers
+  meta(name='description', content="Welcome to #{ popit.instance_name() }")
+
+
 block content
 
   h1 Welcome to #{ popit.instance_name() }

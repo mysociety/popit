@@ -61,8 +61,6 @@ module.exports = {
           test.done();
         });
         
-        // FIXME - also need to test that cookie based auth works. May well be easiest
-        // to test using the browser-based tests.
       },
 
     "create a new person (bad values, expect error)": function (test) {
@@ -393,6 +391,7 @@ module.exports = {
                   data.result,
                   {
                     _id:             document_id,
+                    __v:             0,
                     name:            "Joe Bloggs",
                     slug:            "joe-bloggs",
                     summary:         "Just another Joe",
@@ -412,7 +411,7 @@ module.exports = {
           // update one field
           function (cb) {
 
-            // FIXME: should test updating using the dot notation too
+            // TODO: should test updating using the dot notation too
 
             rest
               .put(document_url, { data: { name: 'Fred Jones', notInSchemaAttribute: 1234 } })
@@ -430,6 +429,7 @@ module.exports = {
                   data.result,
                   {
                     _id:             document_id,
+                    __v:             0,
                     name:            "Fred Jones",
                     slug:            "joe-bloggs",
                     summary:         "Just another Joe",
@@ -466,7 +466,7 @@ module.exports = {
           // update one field
           function (cb) {
 
-            // FIXME: should test updating using the dot notation too
+            // TODO: should test updating using the dot notation too
 
             rest
               .put(embedded_url, { data: { url: 'http://update.test/' } })
