@@ -44,6 +44,8 @@ lint:
 css:
 	compass compile
 	cp -r public/sass/jqueryui/images public/css/
+	cp -r public/sass/select2/select2.png public/css/
+	cp -r public/sass/select2/spinner.gif public/css/
 
 
 optipng:
