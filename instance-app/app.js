@@ -178,6 +178,7 @@ app.configure( function () {
 
   app.use('/migration',      require('../lib/apps/migration')() );
   app.use('/person',         require('../lib/apps/person')() );
+  app.use('/position',       require('../lib/apps/position')() );
   app.use('/organisation',   require('../lib/apps/organisation')() );
   app.use('/about',          require('../lib/apps/about')() );
 
