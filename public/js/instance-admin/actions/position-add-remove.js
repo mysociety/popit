@@ -22,12 +22,15 @@ define(
     App.addInitializer(function(options){
 
       $('a.new-position').click(function(event) {
+        var $element_clicked = $(this);
 
         event.preventDefault();
 
-        // Add in grabbing the person or organisation from details in the link.
-
-        var position = new PositionModel({});
+        var position = new PositionModel({
+          person:       $element_clicked.attr('data-person-id'),
+          organisation: $element_clicked.attr('data-organisation-id'),
+          title:        $element_clicked.attr('data-title')
+        });
         var view     = new PositionNewView({model: position});
         
         // render in lightbox, focus on first input

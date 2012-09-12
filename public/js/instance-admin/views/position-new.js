@@ -90,20 +90,40 @@ define(
                 id: 0,
                 text: term,
               };
-            }
-          };
-        }
+            },
+            initSelection: function (element, callback) {
+              var val = element.val();
+              if ( !val )
+                return callback(null);
 
+              var obj = new args.model({id: val});
+              obj.fetch({
+                success: function (model, response) {
+                  callback({ id: response._id, text: response.name });
+                },
+                error: function (model, response) {
+                  alert('Could not fetch model from server');
+                  callback(null);
+                }
+              });
+             }
+          };
+        };
+        
         this.$person_input = $content.find('[name=person]');
+        this.$person_input.val( this.model.get('person') );
         this.$person_input.select2( select2_args({
           placeholder: "Person's Name",
-          ajax_url: "/api/v1/person",
+          ajax_url:    "/api/v1/person",
+          model:       PersonModel
         }) );
           
         this.$organisation_input = $content.find('[name=organisation]');
+        this.$organisation_input.val( this.model.get('organisation') );
         this.$organisation_input.select2( select2_args({
           placeholder: "Organisation's Name",
-          ajax_url: "/api/v1/organisation",
+          ajax_url:    "/api/v1/organisation",
+          model:       OrganisationModel
         }) );          
   
         // update our element
