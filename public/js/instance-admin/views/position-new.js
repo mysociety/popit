@@ -76,6 +76,11 @@ define(
               callback(null);
             }
           });
+         },
+         formatSelection: function (object, container) {
+           var text = object.text;
+           if (!object.id) text += " <em>(new entry)</em>"; 
+           return text;
          }
       };
     }
