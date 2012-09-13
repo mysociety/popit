@@ -81,6 +81,15 @@ define(
            var text = object.text;
            if (!object.id) text += " <em>(new entry)</em>"; 
            return text;
+         },
+         formatResult: function (object, container) {
+           var $element = $('<span>').text(object.text);
+           $element.append(
+              object.id
+                 ? "<em> &larr; select to use existing entry</em>"
+                 : "<em> &larr; select to create new entry</em>"
+            );
+           return $element;           
          }
       };
     }
