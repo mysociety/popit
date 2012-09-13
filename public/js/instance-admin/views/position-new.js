@@ -33,7 +33,6 @@ define(
 
       return {
         placeholder: args.placeholder,
-        minimumInputLength: 1,
         allowClear: true,
         ajax: {
           url: ajax_url,
@@ -90,9 +89,6 @@ define(
                  : "<em> &larr; select to create new entry</em>"
             );
            return $element;           
-         },
-         formatInputTooShort: function (term, minLength) {
-           return "Start typing to search existing entries, or to create a new one.";
          }
       };
     }
@@ -100,7 +96,6 @@ define(
     function select2_create_arguments_for_autocompleter (args) {
       return {
         placeholder: args.placeholder,
-        minimumInputLength: 1,
         ajax: {
           url: args.autocomplete_url,
           data: function (term, page) {
