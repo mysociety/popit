@@ -157,19 +157,19 @@ define(
         // set up the title as an autocompletor
         this.$title_input.select2(
           select2_create_arguments_for_autocompleter({
-            placeholder:      "Job Title",
+            placeholder:      "e.g President, CEO, Professor, Coach",
             autocomplete_url: "/autocomplete/position_title"
           })
         );
 
         // set up the model lookups
         this.$person_input.select2( select2_create_arguments_for_model({
-          placeholder: "Person's Name",
+          placeholder: "e.g Joe Bloggs, Jane Smith",
           model:       PersonModel,
           errors_list: this.$errors_list
         }) );
         this.$organisation_input.select2( select2_create_arguments_for_model({
-          placeholder: "Organisation's Name",
+          placeholder: "e.g Apple Inc, UK Parliament, Kenyatta University",
           model:       OrganisationModel,
           errors_list: this.$errors_list
         }) );          
