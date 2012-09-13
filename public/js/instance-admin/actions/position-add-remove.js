@@ -31,11 +31,21 @@ define(
           organisation: $element_clicked.attr('data-organisation-id'),
           title:        $element_clicked.attr('data-title')
         });
-        var view     = new PositionNewView({model: position});
         
-        // render in lightbox, focus on first input
+        var fields_to_hide = {
+          person:       $element_clicked.attr('data-person-hide-field')       ? true : false,
+          organisation: $element_clicked.attr('data-organisation-hide-field') ? true : false,
+          title:        $element_clicked.attr('data-title-hide-field')        ? true : false
+        };
+        
+        var view     = new PositionNewView({
+          model: position,
+          fields_to_hide: fields_to_hide
+        });
+        
+        // render in lightbox
         $.fancybox( view.render().el );
-        view.$(':input:first').focus();
+
       });
       
       // $('a.delete-position').click(function(event) {

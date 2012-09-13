@@ -174,6 +174,11 @@ define(
           errors_list: this.$errors_list
         }) );          
   
+        // hide inputs if requested (not happy with this - not very elegant :( )
+        if (this.options.fields_to_hide.title        ) $content.find('p.title').hide();
+        if (this.options.fields_to_hide.person       ) $content.find('p.person').hide();
+        if (this.options.fields_to_hide.organisation ) $content.find('p.organisation').hide();
+        
         // add our content to the page
         this.$el.html( $content );
   
