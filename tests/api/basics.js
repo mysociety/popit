@@ -297,6 +297,7 @@ module.exports = {
               organisation: '4f9ea1326e8770d854c45a21',
               meta: {
                 api_url: 'http://foobar.127.0.0.1.xip.io:3100/api/v1/position/4f9ea1326e8770d854c45a23',
+                edit_url: 'http://foobar.127.0.0.1.xip.io:3100/position/4f9ea1326e8770d854c45a23'
               },
             }],
             "got Clinton's Presidency"
