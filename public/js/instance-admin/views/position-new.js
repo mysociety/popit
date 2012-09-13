@@ -90,6 +90,9 @@ define(
                  : "<em> &larr; select to create new entry</em>"
             );
            return $element;           
+         },
+         formatInputTooShort: function (term, minLength) {
+           return "Start typing to search existing entries, or to create a new one.";
          }
       };
     }
