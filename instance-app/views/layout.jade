@@ -78,11 +78,11 @@ body(id="popit-#{ locals.popit ? popit.instance_name() : 'no-site-found' }", cla
   header#header
     h1.logo
       a(href='/')
-        abbr(title='People Organisations Positions') Pop
-        | It
         if locals.popit
-          span.popit-instance  : 
-            span#popit_instance_name #{ popit.instance_name() }
+          span#popit_instance_name #{ popit.instance_name() }
+        else
+          | PopIt
+            
     #user_menu
       ul
         if locals.user
@@ -106,6 +106,10 @@ body(id="popit-#{ locals.popit ? popit.instance_name() : 'no-site-found' }", cla
         li
           a(href='/about') About Us
 
+    div.tagline
+      | A public database of people and organisations, hosted on PopIt. 
+      br
+      | Available for easy browsing and re-use as structured data over a REST API.
   
   #content
     block content
@@ -113,7 +117,6 @@ body(id="popit-#{ locals.popit ? popit.instance_name() : 'no-site-found' }", cla
   footer#footer
     div
       #sitemap
-        a.logo(href='/') PopIt
         ul
           li
             a(href='/about/') About Us
@@ -131,27 +134,35 @@ body(id="popit-#{ locals.popit ? popit.instance_name() : 'no-site-found' }", cla
             a(href="#{config.hosting_site_base_url}/info/self-hosting") Self Hosting
           li
             a(href='/info/privacy') Terms & Privacy Policy
-      #about-mysociety
-        a(href='http://www.mysociety.org', title='mySociety')
-            img.mysociety-logo(src="/img/mysociety-logo.png")
-        p
-          | This is the 
-          a(href="http://en.wikipedia.org/wiki/Software_release_life_cycle#Alpha") α
-          | lpha of 
-          a(href=config.hosting_site_base_url) PopIt
-          | , a new service for lowering the barrier
-          | to getting started with transparency projects. Please feel free to
-          | make a 
-          a(href="#{config.hosting_site_base_url}/instances/new") new instance
-          | , and join 
-          a(href="https://secure.mysociety.org/admin/lists/mailman/listinfo/components") our mailing list
-          |  to let us know that you're interested in giving it a go
 
+      #about-mysociety
+        
+        p
+          | This is a database hosted on 
+          a(href=config.hosting_site_base_url) PopIt
+          |  - a new service from 
+          a(href='http://www.mysociety.org', title='mySociety') mySociety 
+          | that lowers the barrier to getting started with transparency projects. Development is ongoing and this is 
+          a(href="http://en.wikipedia.org/wiki/Software_release_life_cycle#Alpha") α
+          | lpha code. Please feel free to 
+          a(href="#{config.hosting_site_base_url}/instances/new") make your own instance
+          | , and join our 
+          a(href="https://secure.mysociety.org/admin/lists/mailman/listinfo/components") mailing list
+          |  to let us know that you're interested in giving it a go.
+        
         p
           | Learn more at 
           a(href='http://www.mysociety.org', title='mySociety') www.mysociety.org
+
+        p
+          a(href='http://www.mysociety.org', title='mySociety')
+            img.mysociety-logo(src="/img/mysociety-logo.png")
+
+
     .copyright
       | &copy; 2012 mySociety.org - v#{config.popit_version}
+
+      
 
 //- manually close the html tag as we opened it in a funny way using the conditional comments above
 </html>

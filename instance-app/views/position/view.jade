@@ -1,0 +1,39 @@
+extend ../layout
+
+block title
+  | #{ position.name }
+
+//- block meta_headers
+//-   meta(name="description", content="#{ organisation.name }. #{ organisation.summary || '' }")
+
+block content
+  article(class="position")
+      
+    h1 #{position.title}                  
+
+    if position.person
+      section.person
+        p 
+          | Person: 
+          a(href=position.person.slug_url) #{position.person.name}
+    
+    if position.organisation
+      section.organisation
+        p 
+          | Organisation: 
+          a(href=position.organisation.slug_url) #{position.organisation.name}
+    
+    section.to_be_added
+      p 
+        | There is a 
+        a(href="https://github.com/mysociety/popit/issues/183") github ticket
+        |  to put more details on this page.
+
+    
+        
+
+    section.raw-data
+      h2 Raw data
+      p The details for this organisation are also available in 
+        a(href="/api/v1/position/#{position.id}") JSON
+        | .

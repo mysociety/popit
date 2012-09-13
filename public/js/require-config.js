@@ -5,6 +5,7 @@ require.config({
     'jquery.fancybox':  './libs/jquery.fancybox-2.0.6',
     'jquery.jeditable': './libs/jquery.jeditable-1.7.1',
     'jquery.pulse':     './libs/jquery.pulse',
+    'jquery.select2':   './libs/jquery.select2-3.2',
 
     // AMD version of jquery-ui - generated using https://github.com/jrburke/jqueryui-amd
     'jqueryui': './libs/jqueryui-1.8.22',

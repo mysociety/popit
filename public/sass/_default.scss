@@ -35,13 +35,14 @@ header#header{
 			text-decoration:none;
 			color: #333333;
 		}
-		
-		.popit-instance{
-			font-size: 0.5em;
-			opacity: 0.5;
-		}
-		
 	}
+
+  .tagline {
+    float: left;
+    clear: left;
+    opacity: 0.5;
+    font-size: 0.75em;
+  }
 }
 body.brand_page header#header h1.logo{
 	
@@ -363,9 +364,10 @@ body.signed_in .admin-options{ visibility: visible; }
 	width:100%;
 	background-color:#eeeeee;
 	padding: 2.5em 0;
-	line-height:1.875em;
+//  line-height:1.875em;
 	color:#666666;
 	margin-top: 3em;
+//  text-align: center;
 	
 	.mysociety-logo{
 		display:block;
@@ -378,43 +380,48 @@ body.signed_in .admin-options{ visibility: visible; }
 	}
 	
 	#sitemap{
-		width: 22.5em;
-		float:left;
-		padding:0.625em;
+//    width: 22.5em;
+//    float:left;
+//    padding:0.625em;
 		
 		ul{
+		  float: left;
 			list-style:none;
 			margin:0;
-			padding:0.625em;
 			text-indent:0;
-			margin-left:4.375em;
-			margin-bottom: 2em;
+//      margin-left:4.375em;
+      margin-bottom: 2em;
+      padding:0 40px 0 0;
 			li{
-				font-size: 0.875em;
+        font-size: 0.875em;
 				display:block;
 				margin:0;
-				padding:0;
+				padding: 0.25em 0;
 			}
 		}
-		a.logo{
-			font-family: 'MuseoSlab500', 'sans-serif';
-			font-weight: normal;
-			font-size: 2.5em;
-			line-height: 1.5em;
-			text-decoration:none;
-			color: #999;
-		}
+//    a.logo{
+//      font-family: 'MuseoSlab500', 'sans-serif';
+//      font-weight: normal;
+//      font-size: 2.5em;
+//      line-height: 1.5em;
+//      text-decoration:none;
+//      color: #999;
+//    }
 	}
 	
 	#about-mysociety{
-		width: 37.5em;
-		float:right;
-		padding: 0.625em;
+//    width: 37.5em;
+//    float:right;
+//    width: 60%;
+    clear: both;
+//    margin: 0 auto;
+//    padding: 0.625em 0;
 		p{
 			font-size: 0.875em;
-			margin-bottom: 2.143em;
+//      margin-bottom: 2.143em;
 		}
 	}
+	
 	.copyright{
 		text-align:center;
 		font-size:0.625em;
