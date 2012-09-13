@@ -29,19 +29,14 @@ header#header{
 			text-decoration:none;
 		}
 		
-		
-		abbr{
-			border:none;
-			text-decoration:none;
-			color: #333333;
-		}
-		
-		.popit-instance{
-			font-size: 0.5em;
-			opacity: 0.5;
-		}
-		
 	}
+
+  .tagline {
+    float: left;
+    clear: left;
+    opacity: 0.5;
+    font-size: 0.75em;
+  }
 }
 body.brand_page header#header h1.logo{
 	
