@@ -7,19 +7,41 @@ exports.route = function (app) {
 
   app.get('/', function(req, res, next){
 
+    var summary_listing_count = 5;
+
     async.parallel(
       {
         persons: function (callback) {
           req.popit
             .model('Person')
             .find()
-            .limit(10)
+            .limit(summary_listing_count)
             .exec(callback);
         },
+        person_count: function (callback) {
+          req.popit
+            .model('Person')
+            .count()
+            .exec(callback);            
+        },
+        organisations: function (callback) {
+          req.popit
+            .model('Organisation')
+            .find()
+            .limit(summary_listing_count)
+            .exec(callback);
+        },
+        organisation_count: function (callback) {
+          req.popit
+            .model('Organisation')
+            .count()
+            .exec(callback);            
+        }
       },
       function(err, results) {
         if (err) return next(err);
         res.locals(results);
+        res.locals({ summary_listing_count: summary_listing_count });
         res.render('index');
       }
     );

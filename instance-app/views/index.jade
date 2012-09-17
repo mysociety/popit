@@ -10,20 +10,50 @@ block meta_headers
 block content
 
   h1 Welcome to #{ popit.instance_name() }
-  
 
-  if persons.length
+  
+      
+
+  #person-summary(class="homepage-summary-box")
     h2 People
+    ul
+      if persons.length    
+        for person in persons
+          li 
+            a(href="/person/#{person.slug}") #{person.name}
+        if person_count > summary_listing_count
+          li
+            | and 
+            a(href="/person") #{ person_count - summary_listing_count } more
     
-    for person in persons
-      li 
-        a(href="/person/#{person.slug}") #{person.name}
+      else
+        li There are no people in the database yet. 
+            br
+            span.admin-options
+              a#new-person(href="#") Add a new person
     
     p
-      | View a list of 
-      a(href="/person") all the people 
-      | in the database
-  else
-    p There are no people in the database yet.
-    p.admin-options
-      a#new-person(href="#") Add a new person
+      a(href="/person") Complete list (#{person_count})
+
+  
+    
+  #organisation-summary(class="homepage-summary-box")
+    h2 Organisations
+    ul
+      if organisations.length    
+        for organisation in organisations
+          li 
+            a(href="/organisation/#{organisation.slug}") #{organisation.name}
+        if organisation_count > summary_listing_count
+          li
+            | and 
+            a(href="/organisation") #{ organisation_count - summary_listing_count } more
+    
+      else
+        li There are no people in the database yet. 
+          br
+          span.admin-options
+            a#new-organisation(href="#") Add a new organisation
+    
+    p
+      a(href="/organisation") Complete list (#{organisation_count})
