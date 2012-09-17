@@ -24,21 +24,25 @@ block content
       
     aside
       ul.photos
-        for image in person.images
+        if person.images.length
+          for image in person.images
+            li
+              if image.url
+                //- TODO - proxy will need changes to allow us to proxy remote images
+                img(src=image.url, width=280)
+              else
+                img(src="#{image_proxy(person.slug_url + "/images/" + image.id, "", 280)}")
+              p.photo-source source:
+                a(href="#photographer-url") Photographer
+                abbr.license(title="Creative Commons - By Attribution - Share Alike") CC-BY-SA
+                ul.admin-options
+                  li
+                    form(method="post", action="#{person.slug_url}/images/#{image.id}/delete")
+                      input(type="submit", value="delete", style="width: 4em; display: inline")
+                      |  this photograph
+        else
           li
-            if image.url
-              //- TODO - proxy will need changes to allow us to proxy remote images
-              img(src=image.url, width=280)
-            else
-              img(src="#{image_proxy(person.slug_url + "/images/" + image.id, "", 280)}")
-            p.photo-source source:
-              a(href="#photographer-url") Photographer
-              abbr.license(title="Creative Commons - By Attribution - Share Alike") CC-BY-SA
-              ul.admin-options
-                li
-                  form(method="post", action="#{person.slug_url}/images/#{image.id}/delete")
-                    input(type="submit", value="delete", style="width: 4em; display: inline")
-                    |  this photograph
+            img(src='/img/person_placeholder.svg', width=280)            
       ul.admin-options
         li
           a.add(href="#{person.slug_url}/images/upload")
