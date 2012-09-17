@@ -50,10 +50,22 @@ block content
             a(href="/organisation") #{ organisation_count - summary_listing_count } more
     
       else
-        li There are no people in the database yet. 
+        li There are no organisations in the database yet. 
           br
           span.admin-options
             a#new-organisation(href="#") Add a new organisation
     
     p
       a(href="/organisation") Complete list (#{organisation_count})
+
+
+
+  #actions(class="homepage-summary-box")
+
+    div(class="info")
+      p
+        a(href='#{config.hosting_site_base_url}/info/about') Learn more about PopIt
+        |  - the pre-alpha platform that hosts this database.
+
+    div(class="info admin-options")
+        a(href="#") Add a new person to the database.
