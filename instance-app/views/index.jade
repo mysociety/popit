@@ -30,7 +30,7 @@ block content
         li There are no people in the database yet. 
             br
             span.admin-options
-              a#new-person(href="#") Add a new person
+              a(class="new-person", href="#") Add a new person
     
     p
       a(href="/person") Complete list (#{person_count})
@@ -68,4 +68,4 @@ block content
         |  - the pre-alpha platform that hosts this database.
 
     div(class="info admin-options")
-        a(href="#") Add a new person to the database.
+        a(class="new-person", href="#") Add a new person to the database.
