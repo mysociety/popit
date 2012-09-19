@@ -63,7 +63,13 @@ block content
 
     section.description(itemprop="description")
                   
-      p(class="edit-in-place-textarea", data-api-url="/person/#{ person.id }", data-api-name="summary") #{person.summary}
+      ul.admin-options
+        li
+          a(class="edit activate-edit-in-place", data-edit-in-place-id="person-summary-text", href="#")
+            strong ^ edit
+            |  this summary
+
+      p#person-summary-text(class="edit-in-place-textarea", data-api-url="/person/#{ person.id }", data-api-name="summary") #{person.summary}
     
     section.personal-details
       ul.admin-options
