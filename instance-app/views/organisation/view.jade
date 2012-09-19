@@ -22,16 +22,16 @@ block content
   article(class="person", id="person-james_gordon_brown", itemscope, itemtype="http://schema.org/Organisation")
     header.person-header-nav(id="person-#{organisation.slug}")
       nav
-        a.previous-person(href="https://github.com/mysociety/popit/issues/61", title="Previous Organisation: Organisation Name")
-          em Previous&nbsp;Organisation:
-          strong Organisation&nbsp;Name
-        a.next-person(href="https://github.com/mysociety/popit/issues/61", title="Next Organisation: Organisation Name")
-          em Next&nbsp;Organisation:
-          strong Organisation&nbsp;Name
+        //- a.previous-person(href="https://github.com/mysociety/popit/issues/61", title="Previous Organisation: Organisation Name")
+        //-   em Previous&nbsp;Organisation:
+        //-   strong Organisation&nbsp;Name
+        //- a.next-person(href="https://github.com/mysociety/popit/issues/61", title="Next Organisation: Organisation Name")
+        //-   em Next&nbsp;Organisation:
+        //-   strong Organisation&nbsp;Name
       h1.current-person(title="#{ organisation.name }") #{ organisation.name }
-      div.find-person
-        label(for="person-search") Search for Organisation
-        input#person-search(type="search", name="person-search")
+      //- div.find-person
+      //-   label(for="person-search") Search for Organisation
+      //-   input#person-search(type="search", name="person-search")
       
     aside
       ul.photos
