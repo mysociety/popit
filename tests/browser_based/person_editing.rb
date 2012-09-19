@@ -194,6 +194,13 @@ class PersonEditingTests < PopItWatirTestCase
     @b.refresh
     assert_equal changed_name, @b.h1(:class => 'current-person').text
     
+    # check that the name can be edited via the link
+    assert ! @b.h1(:class => 'current-person').input.present?
+    @b.link(:text => "^ edit this person's name").click
+    assert @b.h1(:class => 'current-person').input.present?
+    @b.send_keys :escape
+    assert ! @b.h1(:class => 'current-person').input.present?    
+
   end
 
 end

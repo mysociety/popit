@@ -11,14 +11,14 @@ block content
   article(class="person", id="person-james_gordon_brown", itemscope, itemtype="http://schema.org/Person")
 
     header.person-header-nav(id="person-#{person.slug}")
-      nav
+      //- nav
         //- a.previous-person(href="https://github.com/mysociety/popit/issues/61", title="Previous Person: Person Name")
         //-   em Previous&nbsp;Person:
         //-   strong Person&nbsp;Name
         //- a.next-person(href="https://github.com/mysociety/popit/issues/61", title="Next Person: Person Name")
         //-   em Next&nbsp;Person:
         //-   strong Person&nbsp;Name
-      h1.current-person(title="#{ person.name }", class="edit-in-place", data-api-url="/person/#{ person.id }", data-api-name="name") #{ person.name }
+      h1.current-person( id="person-name-in-header", title="#{ person.name }", class="edit-in-place", data-api-url="/person/#{ person.id }", data-api-name="name") #{ person.name }
       //- div.find-person
       //-   label(for="person-search") Search for Person
       //-   input#person-search(type="search", name="person-search")
@@ -56,6 +56,10 @@ block content
         a(class="delete delete-person", data-id=person.id)
           strong - delete 
           | this person
+      li
+        a(class="edit activate-edit-in-place", data-edit-in-place-id="person-name-in-header", href="#")
+          strong ^ edit
+          |  this person's name
 
     section.description(itemprop="description")
                   
