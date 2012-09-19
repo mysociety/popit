@@ -72,15 +72,15 @@ block content
       p#person-summary-text(class="edit-in-place-textarea", data-api-url="/person/#{ person.id }", data-api-name="summary") #{person.summary}
     
     section.personal-details
-      ul.admin-options
-        li
-          a.add(href="https://github.com/mysociety/popit/issues/59")
-            strong + add 
-            | information
-        li
-          a.edit(href="https://github.com/mysociety/popit/issues/59")
-            strong ^ edit 
-            | this section
+      //- ul.admin-options
+      //-   li
+      //-     a.add(href="https://github.com/mysociety/popit/issues/59")
+      //-       strong + add 
+      //-       | information
+      //-   li
+      //-     a.edit(href="https://github.com/mysociety/popit/issues/59")
+      //-       strong ^ edit 
+      //-       | this section
   
       h2 Name, birthday & similar:
       dl
@@ -105,6 +105,9 @@ block content
         
 
     section.positions
+
+      h2 Jobs and positions held now or in the past:
+
       ul.admin-options
         li
           span.admin-options
@@ -112,14 +115,13 @@ block content
               strong + add 
               | a new position
 
-
-      h2 Positions:
       dl
         for position in positions
           dt #{ position.title }:
           dd
             if position.organisation
-              a(href=position.organisation.slug_url) #{ position.organisation.name }
+              |  #{ position.organisation.name }
+              //- a(href=position.organisation.slug_url) #{ position.organisation.name }
             else
               | unknown
             //- a.hover_edit(href="#{person.slug_url}/contacts/#{contact.id}/edit") edit
