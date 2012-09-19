@@ -242,7 +242,6 @@ header.person-header-nav{
 
 
 .admin-options{
-	float:right;
 	padding:0;
 	margin:0;
 	text-indent:0;
@@ -269,7 +268,12 @@ header.person-header-nav{
 }
 
 
+
 article.person{
+
+  .admin-options {
+    float:right;    
+  }
 	
 	section:hover .admin-options a
 	{

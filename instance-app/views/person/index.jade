@@ -10,7 +10,9 @@ block content
   h1 People
   
   p.admin-options
-    a(class="new-person", href="#") Add a new person
+    a(class="new-person add", href="#") 
+      strong + Add
+      |  a new person
 
   if people.length
     ul
@@ -24,10 +26,13 @@ block content
     if locals.user
       div.info
         h3 
-          | There are no people in the system yet, you should probably add some!
+          | There are no people in the system yet, you should probably 
+          a(class="new-person add", href="#")
+            strong add one now
+          | !
       
         p
-          | Use the link above. It'll just ask you for their name, once you've 
+          | You just need to provide their name, once you've 
           | created their page you can add more details.
       
         p
