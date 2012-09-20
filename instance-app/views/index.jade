@@ -1,15 +1,15 @@
 extend layout
 
 block title
-  | #{ popit.instance_name() }
+  | #{ popit.pretty_name() }
 
 block meta_headers
-  meta(name='description', content="Welcome to #{ popit.instance_name() }")
+  meta(name='description', content="Welcome to #{ popit.pretty_name() }")
 
 
 block content
 
-  h1 Welcome to #{ popit.instance_name() }
+  h1 Welcome to #{ popit.pretty_name() }
 
   p
     | This database currently contains #{ person_count || 'no' } #{ person_count == 1 ? 'person' : 'people' } and #{ organisation_count || 'no' } #{ organisation_count == 1 ? 'organisation' : 'organisations' }.

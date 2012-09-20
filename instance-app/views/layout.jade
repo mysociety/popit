@@ -79,7 +79,7 @@ body(id="popit-#{ locals.popit ? popit.instance_name() : 'no-site-found' }", cla
     h1.logo
       a(href='/')
         if locals.popit
-          span#popit_instance_name #{ popit.instance_name() }
+          span#popit_instance_name #{ popit.pretty_name() }
         else
           | PopIt
             
