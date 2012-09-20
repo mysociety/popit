@@ -17,9 +17,10 @@ class PersonPhotoTests < PopItWatirTestCase
     goto '/'
     login_as_instance_owner
 
-    # check that there is no photo to start with
+    # check that only the placeholder photo is shown to start with
     goto '/person/barack-obama'    
-    assert ! @b.ul(:class => 'photos').li.img.present?    
+    assert @b.ul(:class => 'photos').li.img.present?
+    assert_match @b.ul(:class => 'photos').li.img.attribute_value('src'), /person_placeholder\.svg/
 
     # upload a file
     @b.link(:text => '+ add a photograph').click
@@ -35,7 +36,8 @@ class PersonPhotoTests < PopItWatirTestCase
 
     # check that the photo is now gone
     assert_match /\/person\/barack-obama$/, @b.url
-    assert ! @b.ul(:class => 'photos').li.img.present?
+    assert @b.ul(:class => 'photos').li.img.present?
+    assert_match @b.ul(:class => 'photos').li.img.attribute_value('src'), /person_placeholder\.svg/
 
   end 
 
