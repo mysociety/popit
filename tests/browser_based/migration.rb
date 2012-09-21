@@ -38,7 +38,7 @@ class MigrationTests < PopItWatirTestCase
     assert_equal 'Migration Tool', @b.title
 
     # upload test file
-    @b.file_field(:name => 'source').set( File.join( File.dirname(__FILE__), 'generated.csv') )
+    @b.file_field(:name => 'source').set( File.join( File.dirname(__FILE__), 'migration_sample.csv') )
     @b.input(:type => 'submit').click
 
     # define the mapping
