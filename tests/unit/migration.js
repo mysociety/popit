@@ -65,7 +65,7 @@ module.exports = {
         var realParsedCsv = { '0': [ 'a', 'b', 'c' ],
                               '1': [ ' foo\t', ' bar' ],
                               '2': [ '%*', ' ä', ' ßßß', ' ' ] };
-        migration.parseCsv(__dirname+"/sample_csv.txt", function(parsed, err) {
+        migration.parseCsv(__dirname+"/sample_csv.txt", function(err, parsed) {
           test.ifError(err);
           test.ok( parsed, "migration tests" );
           test.deepEqual( parsed, realParsedCsv, "migration tests" );
@@ -506,7 +506,7 @@ module.exports = {
           '3': [ 'bar', ' bar@mail.com', ' bar.co.uk' ],
           '4': [ 'D’Angelo “Oddball” Fritz', ' oddball@example.com', ' example.com' ]
         };
-        migration.parseCsv(__dirname+"/sample_multiline.csv", function(parsed, err) {
+        migration.parseCsv(__dirname+"/sample_multiline.csv", function(err, parsed) {
           test.ifError(err);
           test.ok( parsed, "migration tests" );
           test.deepEqual( parsed, realParsedCsv, "migration tests" );

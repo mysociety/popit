@@ -13,6 +13,7 @@
     "express": ">=2 <3",
     "express-hogan.js": ">= 0.1.0",
     "forever": ">= 0.10.0 ",
+    "iconv": ">= 1.2.3",
     "jade": ">= 0.25.0",
     "jade-amd": ">= 0.0.4",
     "jquery": ">= 1.6.3",

@@ -28,7 +28,7 @@ class MigrationTests < PopItWatirTestCase
     assert_equal 'Migration Tool', @b.title
   end
 
-  def test_migration
+  def test_migration_utf8_csv
     goto_instance 'test'
     delete_instance_database
     load_test_fixture
@@ -80,6 +80,42 @@ class MigrationTests < PopItWatirTestCase
     assert @b.url['/person']
     assert @b.text['Joe Bloggs']
     assert @b.text['D’Angelo “Oddball” Fritz']
+
+  end
+  
+  def test_migration_win1252_csv
+    goto_instance 'test'
+    delete_instance_database
+    load_test_fixture
+    goto '/migration/'
+    login_as_instance_owner
+
+    assert_equal 'Migration Tool', @b.title
+
+    # upload test file
+    @b.file_field(:name => 'source').set( File.join( File.dirname(__FILE__), 'migration_sample_win1252.csv') )
+    @b.input(:type => 'submit').click
+
+    # define the mapping
+    assert_equal 'Define Mapping', @b.h1(:id => "mapping").text
+    
+    # set all the selects
+    @b.select_list(:xpath, "//tr[@id='id_name']//select").select("Name, birthday & similar")
+    @b.select_list(:xpath, "//tr[@id='id_name']//select[@name='db-attribute']").select("Full name")
+
+    # start migration
+    @b.input(:type => 'submit').click
+
+    # wait for successful completion
+    assert_equal 'Status of Migration', @b.h1(:id => "status").text
+    @b.link(:id => "_finished").wait_until_present
+    assert_equal '2', @b.link(:id => "_finished").text
+    
+    # check that the names are there correctly
+    @b.link(:id => "_finished").click
+    assert @b.url['/person']
+    assert @b.text['Bath commuters’ “More Train Less Strain” campaign']
+    assert @b.text['Ivybridge Rail Users’ Group']
 
   end
 
