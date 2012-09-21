@@ -194,6 +194,7 @@ module.exports = {
           test.deepEqual(
             result,
             {
+              __v: 1,
               _id:     '4f9ea1306e8770d854c45a1d',
               name:    'George Bush',
               slug:    'george-bush',
@@ -202,8 +203,8 @@ module.exports = {
               images:          [],
               links:           [],
               contact_details: [],
-              name_words:      [], // TODO - should put the correct DM strings into fixtures
-              name_dm:         [],              
+              name_words: [ 'george', 'bush' ],
+              name_dm: [ 'JRJ', 'KRK', 'PX', 'PX', 'george', 'bush' ],
               meta: {
                 edit_url: 'http://foobar.127.0.0.1.xip.io:3100/person/george-bush',
               },
