@@ -73,7 +73,13 @@ class MigrationTests < PopItWatirTestCase
 
     # wait for successful completion
     @b.link(:id => "_finished").wait_until_present
-    assert_equal '100', @b.link(:id => "_finished").text
+    assert_equal '2', @b.link(:id => "_finished").text
+
+    # check that the names are there correctly
+    @b.link(:id => "_finished").click
+    assert @b.url['/person']
+    assert @b.text['Joe Bloggs']
+    assert @b.text['D’Angelo “Oddball” Fritz']
 
   end
 
