@@ -518,3 +518,22 @@ div.homepage-summary-box {
   width: 30%;
 }
 
+#header_search_form {
+  margin: 0;
+  padding: 0;
+  display: inline;
+  input {
+		-webkit-transition: width 0.5s ease-out;
+		   -moz-transition: width 0.5s ease-out;
+		     -o-transition: width 0.5s ease-out;
+		        transition: width 0.5s ease-out;
+    display: inline;
+    margin: 0;
+    padding: 0 1em;
+    width: 4.5em;
+  }
+  
+  input:focus {
+    width: 12em;
+  }
+}
