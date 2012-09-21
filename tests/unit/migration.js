@@ -2,7 +2,9 @@
 // switch to testing mode
 process.env.NODE_ENV = 'testing';
 
-var utils         = require('../../lib/utils'),
+var _             = require('underscore'),
+    async         = require('async'),
+    utils         = require('../../lib/utils'),
     PopIt         = require('../../lib/popit'),
     MigrationApp  = require('../../lib/apps/migration');
 
