@@ -8,69 +8,49 @@ require 'pry'
 
 class InstanceSearchingTests < PopItWatirTestCase
 
-  def search_input
-    @b.input(:id, 'header_search_box')
+  def prep_for_test
+    delete_instance 'test'
+    goto_instance 'test'
+    load_test_fixture
+    goto '/'
   end
 
-  def search_form
-    @b.form(:id, 'header_search_form')
+  def run_search (term)
+    @b.text_field(:id, 'header_search_box').set term
+    @b.send_keys :enter
   end
+
+  ######################
 
   def test_empty_search
-      delete_instance 'test'
-      goto_instance 'test'
-      load_test_fixture
-      goto '/'
-
-      search_input.click
-      @b.send_keys ''
-      search_form.submit
-      
-      assert_match @b.text, /Sorry, no results/
+    prep_for_test
+    run_search ''
+    assert_match @b.text, /Sorry, no results/
   end    
 
   def test_single_result_search
-      delete_instance 'test'
-      goto_instance 'test'
-      load_test_fixture
-      goto '/'
-
-      search_input.click
-      @b.send_keys 'Clinton'
-      search_form.submit
-      
-      # only one result should redirect straight to the result
-      assert_match @b.url, /\/person\/bill-clinton/
+    prep_for_test
+    run_search 'Clinton'      
+    # only one result should redirect straight to the result
+    assert_match @b.url, /\/person\/bill-clinton/
   end    
 
   def test_multi_result_search
-      delete_instance 'test'
-      goto_instance 'test'
-      load_test_fixture
-      goto '/'
-
-      search_input.click
-      @b.send_keys 'George'
-      search_form.submit
-      
-      assert_match @b.url, /\/search/
-      assert @b.link(:text, "George Bush").present?
-      assert @b.link(:text, "George W. Bush").present?
+    prep_for_test
+    run_search 'George'
+    
+    assert_match @b.url, /\/search/
+    assert @b.link(:text, "George Bush").present?
+    assert @b.link(:text, "George W. Bush").present?
   end
   
   def test_near_match_search
-      delete_instance 'test'
-      goto_instance 'test'
-      load_test_fixture
-      goto '/'
-
-      search_input.click
-      @b.send_keys 'Bash'  # note the 'a' instead of 'u'
-      search_form.submit
-      
-      assert_match @b.url, /\/search/
-      assert @b.link(:text, "George Bush").present?
-      assert @b.link(:text, "George W. Bush").present?
+    prep_for_test
+    run_search 'Bash'  # note the 'a' instead of 'u'
+    
+    assert_match @b.url, /\/search/
+    assert @b.link(:text, "George Bush").present?
+    assert @b.link(:text, "George W. Bush").present?
   end
   
 end
