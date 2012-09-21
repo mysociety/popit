@@ -499,10 +499,13 @@ module.exports = {
 
         var migration = new MigrationApp();
 
-        var realParsedCsv = { '0': [ 'name', ' email', ' links' ],
-                              '1': [ 'foo', ' foo@mail.com', ' fo.co.uk' ],
-                              '2': [ '', '', ' foo.de' ],
-                              '3': [ 'bar', ' bar@mail.com', ' bar.co.uk' ] };
+        var realParsedCsv = {
+          '0': [ 'name', ' email', ' links' ],
+          '1': [ 'foo', ' foo@mail.com', ' fo.co.uk' ],
+          '2': [ '', '', ' foo.de' ],
+          '3': [ 'bar', ' bar@mail.com', ' bar.co.uk' ],
+          '4': [ 'D’Angelo “Oddball” Fritz', ' oddball@example.com', ' example.com' ]
+        };
         migration.parseCsv(__dirname+"/sample_multiline.csv", function(parsed, err) {
           test.ifError(err);
           test.ok( parsed, "migration tests" );
