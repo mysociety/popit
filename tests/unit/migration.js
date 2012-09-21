@@ -561,4 +561,45 @@ module.exports = {
           });
         });
     },
+
+    "import curly punctuation name": function ( test ) {
+        test.expect( 7 );
+
+        var migration = new MigrationApp();
+
+        test.ok( migration.doImport, "migration tests" );
+
+        schema = 'person';
+        mappings = 
+            [ [ 'name', 'name', 'Full name' ] ];
+        data = {
+          '1': [ 'D’Angelo “Oddball” Fritz' ]
+        };
+
+        var that = this;
+
+        migration.doImport(that.popit, schema, mappings, data, function(){}, function(err, people) {
+          
+          if(err) 
+            console.log(err);
+
+          test.ifError(err);
+          test.equal(people.length, 1, 'one person in people set');
+
+          var query = that.popit.model('Person').find();
+
+          query.exec(function(err, docs) {
+            test.ifError(err);
+
+            test.equal(docs.length, 1, 'one person in database');
+
+            docs.forEach(function(doc) {
+              test.equal(doc.name, 'D’Angelo “Oddball” Fritz', 'D’Angelo “Oddball” Fritz');
+              test.equal(doc.slug, 'd\'angelo-"oddball"-fritz', 'slug is correct');
+            });
+
+            test.done();
+          });
+        });
+    },
 };
