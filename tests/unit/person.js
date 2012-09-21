@@ -21,7 +21,7 @@ module.exports = {
     },
     
     "person name and slug": function ( test ) {    
-        test.expect( 11 );
+        test.expect( 13 );
         
         var person = new this.Person();
         test.ok( person, "got new person" );
@@ -45,6 +45,12 @@ module.exports = {
         test.equal( person.name, "New Name", 'name not changed' );
         test.equal( person.slug, "new-slug", 'slug changed (and slugified)' );
         
+        // check that punctuation correctly converted
+        person.slug = ''
+        person.name = "D’Angelo “Oddball” Fritz";
+        test.equal( person.name, "D’Angelo “Oddball” Fritz", 'name set' );
+        test.equal( person.slug, 'd\'angelo-"oddball"-fritz', 'slug set' );
+
         // clear slug and set Unicode name
         person.slug = '';
         person.name = "网页";
