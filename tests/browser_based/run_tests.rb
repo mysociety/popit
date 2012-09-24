@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'test/unit'
 
 # Change to the directory this file is in, and add it to the load path
