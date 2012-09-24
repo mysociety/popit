@@ -79,8 +79,7 @@ define(
       submitForm: function (event) {
         var view = this;
         
-        var success_cb = function ( model, response ) {
-
+        var render_listing = function (model, response) {
           var template_args = {
             item: model.toJSON(),
             api_url_root: model.urlRoot,
@@ -90,7 +89,14 @@ define(
         };
 
         var submitter = submitFormHelper({
-          success_cb: success_cb,
+
+          // Assume that the save will be a success - update the form at once
+          pre_save_cb: function () {
+            render_listing( view.model, null );
+          },
+
+          // Also render upon response - in case details have changed on server.
+          success_cb: render_listing,
           view: view
         });
         

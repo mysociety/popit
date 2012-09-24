@@ -91,4 +91,8 @@ class PopItWatirTestCase < Test::Unit::TestCase
     assert_match 'Signed in as owner@example.com', @b.li(:id, 'signed_in').text
   end
 
+  def wait_for_ajax_requests_to_end
+    @b.wait_until { ! @b.element(:id, 'ajax-loader').present? }
+  end
+
 end

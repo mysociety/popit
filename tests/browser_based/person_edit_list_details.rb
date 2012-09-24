@@ -39,7 +39,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
 
     # Edit the phone number
     @b.link(:text => '^ edit').click
-    @b.text_field(:name => 'value').set( '11111 222 333')
+    @b.text_field(:name => 'value').when_present.set( '11111 222 333')
     @b.input(:name => 'save').click
     @b.wait_until { @b.element(:text => '11111 222 333').present? }
     @b.refresh
@@ -47,7 +47,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
 
     # check that the autocomplete pops up
     @b.link(:text => '^ edit').click
-    @b.text_field(:name => 'kind').set( 'a')
+    @b.text_field(:name => 'kind').when_present.set( 'a')
     @b.wait_until { @b.li(:class => 'ui-menu-item').present? }
     assert_equal @b.li(:class => 'ui-menu-item').text, 'Address'
     @b.li(:class => 'ui-menu-item').click
@@ -94,7 +94,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
 
     # Edit a link
     @b.link(:text => '^ edit').click
-    @b.text_field(:name => 'url').set( 'http://foo.com/')
+    @b.text_field(:name => 'url').when_present.set( 'http://foo.com/')
     @b.input(:name => 'save').click
     @b.wait_until { @b.element(:text => 'http://foo.com/').present? }
     @b.refresh
@@ -102,7 +102,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
 
     # check that the autocomplete pops up
     @b.link(:text => '^ edit').click
-    @b.text_field(:name => 'comment').set( 'wik')
+    @b.text_field(:name => 'comment').when_present.set( 'wik')
     @b.wait_until { @b.li(:class => 'ui-menu-item').present? }
     assert_equal @b.li(:class => 'ui-menu-item').text, 'Wikipedia'
     @b.li(:class => 'ui-menu-item').click
@@ -112,7 +112,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
     # Delete the phone number
     assert_equal 3, @b.section(:class => 'links').ul.lis.count
     @b.link(:text => '^ edit').click
-    @b.button(:name => 'delete').click
+    @b.button(:name => 'delete').when_present.click
     @b.wait_until { 2 == @b.section(:class => 'links').ul.lis.count }
     assert ! @b.element(:text => 'http://foo.com/').present?
 

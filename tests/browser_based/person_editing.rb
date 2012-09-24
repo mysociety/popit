@@ -159,15 +159,15 @@ class PersonEditingTests < PopItWatirTestCase
     @b.send_keys :return
     assert ! @b.textarea(:name => 'value').present?
     assert_equal new_text, @b.element(:css => '[data-api-name=summary]').text
-    
+
     # reload the page, check that the new text ist still there
+    wait_for_ajax_requests_to_end
     @b.refresh
     assert_equal new_text, @b.element(:css => '[data-api-name=summary]').text
 
     # grab the name for checking later
     original_name = @b.h1(:class => 'current-person').text
     changed_name  = 'Changed Name'
-
 
     # check that the name can be edited too and that escape cancels
     assert ! @b.h1(:class => 'current-person').input.present?
@@ -196,6 +196,7 @@ class PersonEditingTests < PopItWatirTestCase
     @b.send_keys :return
     assert ! @b.h1(:class => 'current-person').input.present?    
     assert_equal changed_name, @b.h1(:class => 'current-person').text
+    wait_for_ajax_requests_to_end
     @b.refresh
     assert_equal changed_name, @b.h1(:class => 'current-person').text
     
