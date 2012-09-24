@@ -24,4 +24,21 @@ block content
     a(href="#", class='history-back') back.
 
   h2 Status
-  p(class="note progress") pass
+
+  //- updated by the javascript
+  p(class="note progress") ...migration starting...
+  
+  //- Summary box shown when the migration is complete - should be hidden
+  //- initially and then revealed by the javascript
+  div#migration_completed_message.info(style="display: none")
+    h3 Migration completed!
+    
+    p
+      a(href="/person") View results
+    
+    p
+      | Your import has now completed.
+
+    p 
+      | You can now go and edit individuals to any add extra details that may not
+      | have been in the data you uploaded.

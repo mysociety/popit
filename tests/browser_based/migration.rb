@@ -69,11 +69,16 @@ class MigrationTests < PopItWatirTestCase
     # start migration
     @b.input(:type => 'submit').click
 
+    # check migration has started and the completed message not shown
     assert_equal 'Status of Migration', @b.h1(:id => "status").text
+    assert ! @b.div(:id => 'migration_completed_message').present?
 
     # wait for successful completion
     @b.link(:id => "_finished").wait_until_present
     assert_equal '2', @b.link(:id => "_finished").text
+
+    # Check that the completed message is shown
+    assert @b.div(:id => 'migration_completed_message').present?
 
     # check that the names are there correctly
     @b.link(:id => "_finished").click
