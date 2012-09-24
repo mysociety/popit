@@ -22,7 +22,7 @@ class PositionEditingTests < PopItWatirTestCase
     end
     
     def select2_container ( input_name )
-      @b.input(:name, input_name).parent.div(:class, "select2-container")
+      @b.input(:name, input_name).parent.div(:class, "select2-container").when_present
     end
     
     def select2_current_value ( input_name )
