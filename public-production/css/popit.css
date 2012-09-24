@@ -735,7 +735,7 @@ header.person-header-nav.focus-search .find-person {
   width: 29.5em;
 }
 header.person-header-nav .current-person {
-  width: 16em;
+  width: 100%;
   height: 2em;
   float: left;
   background-color: #dbdbdb;
@@ -790,14 +790,13 @@ header.person-header-nav a.next-person {
   background: #b3b3b3 url(../img/arrow-right.png) no-repeat scroll right center;
   float: right;
 }
-article.person .admin-options {
-  float: right;
+.admin-options {
   padding: 0;
   margin: 0;
   text-indent: 0;
   list-style: none;
 }
-article.person .admin-options a {
+.admin-options a {
   font-size: 0.875em;
   color: rgba(76, 76, 76, 0.3);
   text-shadow: rgba(0, 0, 0, 0) 0 0 0;
@@ -806,14 +805,17 @@ article.person .admin-options a {
   -o-transition: opacity, color 0.3s linear;
   transition: opacity, color 0.3s linear;
 }
-article.person .admin-options a.add strong {
+.admin-options a.add strong {
   color: #7aa701;
 }
-article.person .admin-options a.edit strong {
+.admin-options a.edit strong {
   color: #c26400;
 }
-article.person .admin-options a.delete strong {
+.admin-options a.delete strong {
   color: #c20000;
+}
+article.person .admin-options {
+  float: right;
 }
 article.person section:hover .admin-options a {
   color: #4c4c4c;
@@ -985,6 +987,28 @@ div.info {
   padding: 1em;
   border: 1px solid #7777ff;
   background-color: #ddddff;
+}
+div.homepage-summary-box {
+  float: left;
+  width: 30%;
+}
+#header_search_form {
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+#header_search_form input {
+  -webkit-transition: width 0.5s ease-out;
+  -moz-transition: width 0.5s ease-out;
+  -o-transition: width 0.5s ease-out;
+  transition: width 0.5s ease-out;
+  display: inline;
+  margin: 0;
+  padding: 0 1em;
+  width: 4.5em;
+}
+#header_search_form input:focus {
+  width: 12em;
 }
 form {
   margin: 2.8em 0;
