@@ -108,19 +108,19 @@ exports.positions = [
   {
     "_id":        ObjectId("4f9ea1326e8770d854c45a22"),
     title:        "President",
-    person:       ObjectId("4f9ea1326e8770d854c45a1d"), // george-bush
+    person:       ObjectId("4f9ea1306e8770d854c45a1d"), // george-bush
     organisation: ObjectId("4f9ea1326e8770d854c45a21"),
   },
   {
     "_id":        ObjectId("4f9ea1326e8770d854c45a23"),
     title:        "President",
-    person:       ObjectId("4f9ea1326e8770d854c45a1e"), // bill-clinton
+    person:       ObjectId("4f9ea1316e8770d854c45a1e"), // bill-clinton
     organisation: ObjectId("4f9ea1326e8770d854c45a21"),
   },
   {
     "_id":        ObjectId("4f9ea1326e8770d854c45a24"),
     title:        "President",
-    person:       ObjectId("4f9ea1326e8770d854c45a1f"), // george-w-bush
+    person:       ObjectId("4f9ea1316e8770d854c45a1f"), // george-w-bush
     organisation: ObjectId("4f9ea1326e8770d854c45a21"),
   },
   {

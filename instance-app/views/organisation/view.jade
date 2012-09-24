@@ -6,69 +6,119 @@ block title
 block meta_headers
   meta(name="description", content="#{ organisation.name }. #{ organisation.summary || '' }")
 
-block content
-  style
-    a.hover_edit {
-      float: right;
-      color: #ddd;
-      font-size: 80%;
-    }    
+block content            
+  
+  article(class="entity organisation")
 
-    a.hover_edit:hover {
-      color: #333;
-    }
-            
-
-  article(class="person", id="person-james_gordon_brown", itemscope, itemtype="http://schema.org/Organisation")
-    header.person-header-nav(id="person-#{organisation.slug}")
-      nav
-        //- a.previous-person(href="https://github.com/mysociety/popit/issues/61", title="Previous Organisation: Organisation Name")
-        //-   em Previous&nbsp;Organisation:
-        //-   strong Organisation&nbsp;Name
-        //- a.next-person(href="https://github.com/mysociety/popit/issues/61", title="Next Organisation: Organisation Name")
-        //-   em Next&nbsp;Organisation:
-        //-   strong Organisation&nbsp;Name
-      h1.current-person(title="#{ organisation.name }") #{ organisation.name }
-      //- div.find-person
-      //-   label(for="person-search") Search for Organisation
-      //-   input#person-search(type="search", name="person-search")
+    header.entity-header-nav(id="organisation-#{organisation.slug}")
+      h1.current-entity( id="entity-name-in-header", title="#{ organisation.name }", class="edit-in-place", data-api-url="/organisation/#{ organisation.id }", data-api-name="name") #{ organisation.name }
       
     aside
       ul.photos
-        for image in organisation.images
+        if organisation.images.length
+          for image in organisation.images
+            li
+              if image.url
+                //- TODO - proxy will need changes to allow us to proxy remote images
+                img(src=image.url, width=280)
+              else
+                img(src="#{image_proxy(organisation.slug_url + "/images/" + image.id, "", 280)}")
+              p.photo-source source:
+                a(href="#photographer-url") Photographer
+                abbr.license(title="Creative Commons - By Attribution - Share Alike") CC-BY-SA
+                ul.admin-options
+                  li
+                    form(method="post", action="#{organisation.slug_url}/images/#{image.id}/delete")
+                      input(type="submit", value="delete", style="width: 4em; display: inline")
+                      |  this photograph
+        else
           li
-            if image.url
-              img(src="#{image_proxy(image.url, "", 240)}")
-            else
-              img(src="#{image_proxy(organisation.slug_url + "/images/" + image.id, "", 240)}")
-            p.photo-source source:
-              a(href="#photographer-url") Photographer
-              abbr.license(title="Creative Commons - By Attribution - Share Alike") CC-BY-SA
-              ul.admin-options
-                li
-                  form(method="post", action="#{organisation.slug_url}/images/#{image.id}/delete")
-                    input(type="submit", value="delete")
-                    |  this photograph
+            img(src='/img/organisation_placeholder.svg', width=280)            
       ul.admin-options
         li
           a.add(href="#{organisation.slug_url}/images/upload")
-              strong + add
-              |  a photograph
+              strong + add 
+              | a photograph
+
+      
+    ul.admin-options
+      li
+        a(class="delete delete-organisation", data-id=organisation.id)
+          strong - delete 
+          | this organisation
+      li
+        a(class="edit activate-edit-in-place", data-edit-in-place-id="entity-name-in-header", href="#")
+          strong ^ edit
+          |  this organisation's name
+
+    section.description(itemprop="description")
                   
-    section.summary
-      p #{organisation.summary}
+      ul.admin-options
+        li
+          a(class="edit activate-edit-in-place", data-edit-in-place-id="entity-summary-text", href="#")
+            strong ^ edit
+            |  this summary
     
-    section.to_be_added
-      p 
-        | There is a 
-        a(href="https://github.com/mysociety/popit/issues/183") github ticket
-        |  to put more details on this page.
-
+      p#entity-summary-text(class="edit-in-place-textarea", data-api-url="/organisation/#{ organisation.id }", data-api-name="summary") #{organisation.summary}
     
-        
+    section.organisational-details
+      
+      h2 Name & similar:
+      dl
+        dt Full Name:
+        dd(itemprop="name") #{ organisation.name }
+                
 
+    section.positions
+    
+      h2 Jobs and positions held now or in the past:
+    
+      ul.admin-options
+        li
+          span.admin-options
+            a(data-organisation-id=organisation.id, data-organisation-hide-field="1", class="add new-position")
+              strong + add 
+              | a new position
+    
+      dl
+        for position in positions
+          dt #{ position.title }:
+          dd
+            if position.person
+              |  #{ position.person.name }
+              //- a(href=position.perosn.slug_url) #{ position.person.name }
+            else
+              | unknown
+            
+    //- section.contact-information
+    //-   h2 Contact Information:
+    //-   ul.detail-list
+    //-     - var api_url_root = organisation.api_url + '/contact_details/'
+    //-     for item in organisation.contact_details
+    //-       li
+    //-         include ../contact/view
+    //-     li
+    //-       span.admin-options
+    //-         a(data-url-root="#{api_url_root}", class="add contact-edit")
+    //-           strong + add 
+    //-           | a new contact detail
+                
+
+    //- section.links
+    //-   h2 Links:
+    //-   ul.detail-list
+    //-     - var api_url_root = organisation.api_url + '/links/'
+    //-     for item in organisation.links
+    //-       li
+    //-         include ../link/view
+    //-     li
+    //-       span.admin-options
+    //-         a(data-url-root="#{api_url_root}", class="add link-edit")
+    //-           strong + add 
+    //-           | a new link
+  
     section.raw-data
       h2 Raw data
       p The details for this organisation are also available in 
-        a(href="/api/v1/organisation/#{organisation.id}") JSON
+        a(href="/api/v1/organisation/#{ organisation.id }") JSON
         | .

@@ -8,20 +8,20 @@ block meta_headers
 
 block content            
   
-  article(class="person", id="person-james_gordon_brown", itemscope, itemtype="http://schema.org/Person")
+  article(class="entity person", itemscope, itemtype="http://schema.org/Person")
 
-    header.person-header-nav(id="person-#{person.slug}")
+    header.entity-header-nav(id="person-#{person.slug}")
       //- nav
-        //- a.previous-person(href="https://github.com/mysociety/popit/issues/61", title="Previous Person: Person Name")
+        //- a.previous-entity(href="https://github.com/mysociety/popit/issues/61", title="Previous Person: Person Name")
         //-   em Previous&nbsp;Person:
         //-   strong Person&nbsp;Name
-        //- a.next-person(href="https://github.com/mysociety/popit/issues/61", title="Next Person: Person Name")
+        //- a.next-entity(href="https://github.com/mysociety/popit/issues/61", title="Next Person: Person Name")
         //-   em Next&nbsp;Person:
         //-   strong Person&nbsp;Name
-      h1.current-person( id="person-name-in-header", title="#{ person.name }", class="edit-in-place", data-api-url="/person/#{ person.id }", data-api-name="name") #{ person.name }
-      //- div.find-person
-      //-   label(for="person-search") Search for Person
-      //-   input#person-search(type="search", name="person-search")
+      h1.current-entity( id="entity-name-in-header", title="#{ person.name }", class="edit-in-place", data-api-url="/person/#{ person.id }", data-api-name="name") #{ person.name }
+      //- div.find-entity
+      //-   label(for="entity-search") Search for Person
+      //-   input#entity-search(type="search", name="entity-search")
       
     aside
       ul.photos
@@ -57,7 +57,7 @@ block content
           strong - delete 
           | this person
       li
-        a(class="edit activate-edit-in-place", data-edit-in-place-id="person-name-in-header", href="#")
+        a(class="edit activate-edit-in-place", data-edit-in-place-id="entity-name-in-header", href="#")
           strong ^ edit
           |  this person's name
 
@@ -65,11 +65,11 @@ block content
                   
       ul.admin-options
         li
-          a(class="edit activate-edit-in-place", data-edit-in-place-id="person-summary-text", href="#")
+          a(class="edit activate-edit-in-place", data-edit-in-place-id="entity-summary-text", href="#")
             strong ^ edit
             |  this summary
 
-      p#person-summary-text(class="edit-in-place-textarea", data-api-url="/person/#{ person.id }", data-api-name="summary") #{person.summary}
+      p#entity-summary-text(class="edit-in-place-textarea", data-api-url="/person/#{ person.id }", data-api-name="summary") #{person.summary}
     
     section.personal-details
       //- ul.admin-options
@@ -111,7 +111,7 @@ block content
       ul.admin-options
         li
           span.admin-options
-            a(data-url-root="#{api_url_root}", data-person-id=person.id, data-person-hide-field="1", class="add new-position")
+            a(data-person-id=person.id, data-person-hide-field="1", class="add new-position")
               strong + add 
               | a new position
 
