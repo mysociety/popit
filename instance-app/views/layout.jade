@@ -85,6 +85,10 @@ body(id="popit-#{ locals.popit ? popit.instance_name() : 'no-site-found' }", cla
             
     #user_menu
       ul
+
+        li
+          img#ajax-loader(style="display: none;", src="/img/ajax-loader.gif")
+
         if locals.user
           li#signed_in
             | Signed in as 
