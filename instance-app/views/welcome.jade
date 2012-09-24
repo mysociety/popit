@@ -1,7 +1,7 @@
 extend layout
 
 block title
-  | Welcome to #{ popit.instance_name() }
+  | Welcome to #{ popit.pretty_name() }
 
 block content
 
@@ -17,7 +17,7 @@ block content
     p
       | You should now 
       strong
-        a#new-person(href="#") add your first person
+        a(class="new-person", href="#") add your first person
       |  or if you already have a list of people in a spreadsheet you can use the 
       strong
         a(href='/migration') migration tool

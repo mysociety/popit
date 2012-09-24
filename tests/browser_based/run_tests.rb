@@ -1,13 +1,20 @@
 require 'test/unit'
 
-# make it possible to load the test cases from the local directory
-$:.unshift File.dirname(__FILE__)
+# Change to the directory this file is in, and add it to the load path
+Dir.chdir( File.dirname(__FILE__) )
+$LOAD_PATH.unshift '.'
 
-require 'basics'
-require 'info_pages'
-require 'hosting'
-require 'instance'
-require 'instance_auth'
-require 'person_editing'
-require 'migration'
-require 'instance_info'
+# List all the files that we should ignore because they do not contain tests
+ignore_files = [
+  File.basename(__FILE__),   # this file
+  'popit_watir_test_case.rb' # library file
+]
+
+# get all the ruby files in this directory
+test_files = Dir.glob('*.rb')
+
+# remove those that we have chosen to ignore
+test_files.reject! { |item| ignore_files.include?( item ) }
+
+# require the remaining so that the unit tests in them are run
+test_files.each { |file| require file }

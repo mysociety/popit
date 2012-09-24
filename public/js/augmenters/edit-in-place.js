@@ -59,6 +59,19 @@ require(
         submit: 'OK',    // return does not work in a textarea
         onblur: 'ignore' // otherwise tabbing to the submit cancels the edit. Doh!
       });
+
+
+      // we also have links to the inplace edits - so that touch srceen users have
+      // some form of discovery. These links should just trigger the above clicks. The
+      // element that is clicked to trigger this event should give pass the id of the
+      // editable elemente to trigger using the attribute 'data-edit-in-place-id'.
+      $signed_in.find('.activate-edit-in-place').click(function(e) {
+        e.preventDefault();
+        var id = $(this).attr('data-edit-in-place-id');
+        $('#' + id).click();
+      });
+
+
     });
   
   }

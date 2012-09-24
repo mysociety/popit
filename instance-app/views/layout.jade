@@ -79,7 +79,7 @@ body(id="popit-#{ locals.popit ? popit.instance_name() : 'no-site-found' }", cla
     h1.logo
       a(href='/')
         if locals.popit
-          span#popit_instance_name #{ popit.instance_name() }
+          span#popit_instance_name #{ popit.pretty_name() }
         else
           | PopIt
             
@@ -105,6 +105,9 @@ body(id="popit-#{ locals.popit ? popit.instance_name() : 'no-site-found' }", cla
           a(href='/person') People
         li
           a(href='/about') About Us
+        li
+          form#header_search_form(action="/search", method="get")
+            input#header_search_box(type="search", placeholder="search...", name="q")
 
     div.tagline
       | A public database of people and organisations, hosted on PopIt. 

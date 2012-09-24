@@ -21,7 +21,7 @@ define(
 
     App.addInitializer(function(options){
 
-      $('#new-person').click(function(event) {
+      $('a.new-person').click(function(event) {
 
         event.preventDefault();
 

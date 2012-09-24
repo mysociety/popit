@@ -32,7 +32,7 @@ block content
       button#fetch_all_active_instance_info Fetch all the active instance's data
 
   else
-    h2 Instance site '#{popit.instance_name()}'
+    h2 Instance site '#{popit.pretty_name()}'
     
     form(action="/_dev/delete_instance_database", method="post")
       button#delete_instance_database Delete this instance's database

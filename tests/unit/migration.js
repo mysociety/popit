@@ -2,7 +2,9 @@
 // switch to testing mode
 process.env.NODE_ENV = 'testing';
 
-var utils         = require('../../lib/utils'),
+var _             = require('underscore'),
+    async         = require('async'),
+    utils         = require('../../lib/utils'),
     PopIt         = require('../../lib/popit'),
     MigrationApp  = require('../../lib/apps/migration');
 
@@ -63,7 +65,7 @@ module.exports = {
         var realParsedCsv = { '0': [ 'a', 'b', 'c' ],
                               '1': [ ' foo\t', ' bar' ],
                               '2': [ '%*', ' ä', ' ßßß', ' ' ] };
-        migration.parseCsv(__dirname+"/sample_csv.txt", function(parsed, err) {
+        migration.parseCsv(__dirname+"/sample_csv.txt", function(err, parsed) {
           test.ifError(err);
           test.ok( parsed, "migration tests" );
           test.deepEqual( parsed, realParsedCsv, "migration tests" );
@@ -497,11 +499,14 @@ module.exports = {
 
         var migration = new MigrationApp();
 
-        var realParsedCsv = { '0': [ 'name', ' email', ' links' ],
-                              '1': [ 'foo', ' foo@mail.com', ' fo.co.uk' ],
-                              '2': [ '', '', ' foo.de' ],
-                              '3': [ 'bar', ' bar@mail.com', ' bar.co.uk' ] };
-        migration.parseCsv(__dirname+"/sample_multiline.csv", function(parsed, err) {
+        var realParsedCsv = {
+          '0': [ 'name', ' email', ' links' ],
+          '1': [ 'foo', ' foo@mail.com', ' fo.co.uk' ],
+          '2': [ '', '', ' foo.de' ],
+          '3': [ 'bar', ' bar@mail.com', ' bar.co.uk' ],
+          '4': [ 'D’Angelo “Oddball” Fritz', ' oddball@example.com', ' example.com' ]
+        };
+        migration.parseCsv(__dirname+"/sample_multiline.csv", function(err, parsed) {
           test.ifError(err);
           test.ok( parsed, "migration tests" );
           test.deepEqual( parsed, realParsedCsv, "migration tests" );
@@ -550,6 +555,47 @@ module.exports = {
               test.equal(doc.links.length, 3, 'three links');
               test.equal(doc.get('data').Random.length, 3, 'two random in data');
               test.equal(doc.contact_details.length, 1, 'one contact detail');
+            });
+
+            test.done();
+          });
+        });
+    },
+
+    "import curly punctuation name": function ( test ) {
+        test.expect( 7 );
+
+        var migration = new MigrationApp();
+
+        test.ok( migration.doImport, "migration tests" );
+
+        schema = 'person';
+        mappings = 
+            [ [ 'name', 'name', 'Full name' ] ];
+        data = {
+          '1': [ 'D’Angelo “Oddball” Fritz' ]
+        };
+
+        var that = this;
+
+        migration.doImport(that.popit, schema, mappings, data, function(){}, function(err, people) {
+          
+          if(err) 
+            console.log(err);
+
+          test.ifError(err);
+          test.equal(people.length, 1, 'one person in people set');
+
+          var query = that.popit.model('Person').find();
+
+          query.exec(function(err, docs) {
+            test.ifError(err);
+
+            test.equal(docs.length, 1, 'one person in database');
+
+            docs.forEach(function(doc) {
+              test.equal(doc.name, 'D’Angelo “Oddball” Fritz', 'D’Angelo “Oddball” Fritz');
+              test.equal(doc.slug, 'd\'angelo-"oddball"-fritz', 'slug is correct');
             });
 
             test.done();

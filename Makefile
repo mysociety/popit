@@ -107,11 +107,13 @@ test-api:
 
 
 production: clean
+	git checkout master
+	npm version patch -m 'deploy to production - version bump to %s'
 	git checkout production
 	git merge master
 	make public-production
-	git st
-	echo "Ready to commit now"
+	git add .
+	git ci -m 'Update static assets'
 
 clean:
 	compass clean

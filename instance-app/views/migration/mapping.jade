@@ -35,7 +35,7 @@ block content
               th(class="hidden") hidden
               th Example entries
           tbody
-            for entry, entrykey in _.zip(migration.source.parsed.header, migration.source.parsed.data[1],  migration.source.parsed.data[2])
+            for entry, entrykey in _.zip(migration.source.parsed.header, migration.source.parsed.data[1] || [],  migration.source.parsed.data[2] || [])
               tr(id='id_' + entry[0].replace(/ /g,'_'))
                 td
                   input(type="hidden", name="csv-attribute", value=entry[0])

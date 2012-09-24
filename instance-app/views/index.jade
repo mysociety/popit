@@ -1,29 +1,78 @@
 extend layout
 
 block title
-  | #{ popit.instance_name() }
+  | #{ popit.pretty_name() }
 
 block meta_headers
-  meta(name='description', content="Welcome to #{ popit.instance_name() }")
+  meta(name='description', content="Welcome to #{ popit.pretty_name() }")
 
 
 block content
 
-  h1 Welcome to #{ popit.instance_name() }
-  
+  h1 Welcome to #{ popit.pretty_name() }
 
-  if persons.length
+  p
+    | This database currently contains #{ person_count || 'no' } #{ person_count == 1 ? 'person' : 'people' } and #{ organisation_count || 'no' } #{ organisation_count == 1 ? 'organisation' : 'organisations' }.
+      
+
+  #person-summary(class="homepage-summary-box")
     h2 People
+    ul
+      if persons.length    
+        for person in persons
+          li 
+            a(href="/person/#{person.slug}") #{person.name}
+        if person_count > summary_listing_count
+          li
+            | and 
+            a(href="/person") #{ person_count - summary_listing_count } more
     
-    for person in persons
-      li 
-        a(href="/person/#{person.slug}") #{person.name}
+      else
+        li There are no people in the database yet. 
+            br
+            span.admin-options
+              a(class="new-person add", href="#") 
+                strong + Add
+                |  a new person
     
     p
-      | View a list of 
-      a(href="/person") all the people 
-      | in the database
-  else
-    p There are no people in the database yet.
-    p.admin-options
-      a#new-person(href="#") Add a new person
+      a(href="/person") Complete list (#{person_count})
+
+  
+    
+  #organisation-summary(class="homepage-summary-box")
+    h2 Organisations
+    ul
+      if organisations.length    
+        for organisation in organisations
+          li 
+            a(href="/organisation/#{organisation.slug}") #{organisation.name}
+        if organisation_count > summary_listing_count
+          li
+            | and 
+            a(href="/organisation") #{ organisation_count - summary_listing_count } more
+    
+      else
+        li There are no organisations in the database yet. 
+          br
+          span.admin-options
+            a(class="add new-organisation", href="#")
+              strong + Add
+              |  a new organisation
+    
+    p
+      a(href="/organisation") Complete list (#{organisation_count})
+
+
+
+  #actions(class="homepage-summary-box")
+
+    div(class="info")
+      p
+        a(href='#{config.hosting_site_base_url}/info/about') Learn more about PopIt
+        |  - the pre-alpha platform that hosts this database.
+
+    div(class="info admin-options")
+        a(class="new-person add", href="#") 
+          strong + Add
+          |  a new person to the database.

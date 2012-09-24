@@ -174,7 +174,8 @@ header.person-header-nav{
 	}
 	
 	.current-person{
-		width: 16em;
+    width: 100%;
+//    width: 16em;
 		height: 2em;
 		float:left;
 		background-color: #dbdbdb;
@@ -240,33 +241,39 @@ header.person-header-nav{
 
 
 
-article.person{
-	.admin-options{
-		float:right;
-		padding:0;
-		margin:0;
-		text-indent:0;
-		list-style:none;
-		
-		a{
-			font-size: 0.875em;
-			color: rgba(76, 76, 76, 0.3);
-			text-shadow: rgba(0,0,0,0) 0 0 0;
-			-webkit-transition: opacity, color 0.3s linear;
-			   -moz-transition: opacity, color 0.3s linear;
-			     -o-transition: opacity, color 0.3s linear;
-			        transition: opacity, color 0.3s linear;
-			&.add strong{
-				color: #7aa701;
-			}
-			&.edit strong{
-				color: #c26400;
-			}
-			&.delete strong{
-				color: #c20000;
-			}
+.admin-options{
+	padding:0;
+	margin:0;
+	text-indent:0;
+	list-style:none;
+	
+	a{
+		font-size: 0.875em;
+		color: rgba(76, 76, 76, 0.3);
+		text-shadow: rgba(0,0,0,0) 0 0 0;
+		-webkit-transition: opacity, color 0.3s linear;
+		   -moz-transition: opacity, color 0.3s linear;
+		     -o-transition: opacity, color 0.3s linear;
+		        transition: opacity, color 0.3s linear;
+		&.add strong{
+			color: #7aa701;
+		}
+		&.edit strong{
+			color: #c26400;
+		}
+		&.delete strong{
+			color: #c20000;
 		}
 	}
+}
+
+
+
+article.person{
+
+  .admin-options {
+    float:right;    
+  }
 	
 	section:hover .admin-options a
 	{
@@ -503,4 +510,30 @@ div.info {
   padding: 1em;
   border: 1px solid darken($info_colour_background, 20%);
   background-color: $info_colour_background;
+}
+
+
+div.homepage-summary-box {
+  float: left;
+  width: 30%;
+}
+
+#header_search_form {
+  margin: 0;
+  padding: 0;
+  display: inline;
+  input {
+		-webkit-transition: width 0.5s ease-out;
+		   -moz-transition: width 0.5s ease-out;
+		     -o-transition: width 0.5s ease-out;
+		        transition: width 0.5s ease-out;
+    display: inline;
+    margin: 0;
+    padding: 0 1em;
+    width: 4.5em;
+  }
+  
+  input:focus {
+    width: 12em;
+  }
 }

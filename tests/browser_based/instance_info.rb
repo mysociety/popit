@@ -15,12 +15,16 @@ class InstanceInfoTests < PopItWatirTestCase
     delete_instance 'test'
     goto_instance 'test'
     load_test_fixture
-
-    goto '/about'
-    assert_equal 'About Us', @b.title
+    
+    # check that the site title is the slug
+    goto '/'
+    assert_equal @b.header.h1.text, 'test'
+    assert_equal @b.title, 'test'
 
     # check that the about us details are empty (ie that settings have been
     # cleared as part of database deleteing)
+    goto '/about'
+    assert_equal 'About Us', @b.title
     assert_equal 'Description:', @b.element(:class => 'about-field-description').text
 
     # Check that the edit link is not displayed
@@ -35,7 +39,7 @@ class InstanceInfoTests < PopItWatirTestCase
     goto '/about'
     assert @b.link(:text, '(edit)').present?
 
-    # click on the create new person link and check that the form has popped up
+    # click on the edit link and check that the form has popped up
     assert ! @b.form(:name, 'edit-about-info').present?
     @b.link(:text, '(edit)').click
     @b.form(:name, 'edit-about-info').wait_until_present
@@ -59,6 +63,12 @@ class InstanceInfoTests < PopItWatirTestCase
     assert_equal "Contact Name: Test contact name",   @b.element(:class => 'about-field-contact_name').text
     assert_equal "Contact Phone: Test contact phone", @b.element(:class => 'about-field-contact_phone').text
     assert_equal "Contact Email: Test contact email", @b.element(:class => 'about-field-contact_email').text
+
+    # check that the site title is now the site name
+    goto '/'
+    assert_equal @b.header.h1.text, 'Test Name'
+    assert_equal @b.title, 'Test Name'
+    
 
     # Go to the hosting site and browse the instances available
     goto_hosting_site
