@@ -284,7 +284,7 @@ module.exports = {
       test.expect(2);
       
       this.rest
-        .get('position?person=4f9ea1326e8770d854c45a1e') // Clinton
+        .get('position?person=4f9ea1316e8770d854c45a1e') // Clinton
         .on('complete', function(data, response) {
           test.equal(response.statusCode, 200, "got 200 response");
 
@@ -294,7 +294,7 @@ module.exports = {
             [{
               _id:          '4f9ea1326e8770d854c45a23',
               title:        'President',
-              person:       '4f9ea1326e8770d854c45a1e',
+              person:       '4f9ea1316e8770d854c45a1e',
               organisation: '4f9ea1326e8770d854c45a21',
               meta: {
                 api_url: 'http://foobar.127.0.0.1.xip.io:3100/api/v1/position/4f9ea1326e8770d854c45a23',
