@@ -4,6 +4,8 @@
 
 require 'lib/popit_watir_test_case'
 require 'lib/in_place_editing_checks'
+require 'lib/entity_create_and_delete'
+
 require 'pry'
 require 'net/http'
 require 'uri'
@@ -12,6 +14,7 @@ require 'uri'
 class PersonEditingTests < PopItWatirTestCase
 
   include InPlaceEditingChecks
+  include EntityCreateAndDelete
 
   def test_person_creation
     goto_instance 'test'
@@ -108,21 +111,12 @@ class PersonEditingTests < PopItWatirTestCase
     login_as_instance_owner    
 
     # goto bush and check he is there
-    goto '/person/george-bush'    
-    assert_equal @b.title, 'George Bush'
-
-    # click on delete link, wait for form
-    @b.link(:text, '- delete this person').click
-    @b.wait_until { @b.form(:name, 'remove-person').present? }
-
-    assert @b.input(:value, "Really delete 'George Bush'?").present?
-    @b.input(:value, "Really delete 'George Bush'?").click
+    goto '/person/george-bush'
     
-    @b.wait_until { @b.title == 'People' }
-    assert_equal @b.element(:id, "flash-info").li.text, "Entry 'George Bush' deleted."
-
-    goto '/person/george-bush'    
-    assert_equal @b.title, 'Page not found'
+    check_delete_entity(
+      :delete_link_text => '- delete this person',
+      :form_name        => 'remove-person',
+    )
 
   end
 
