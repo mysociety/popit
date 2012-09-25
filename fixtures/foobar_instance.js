@@ -101,6 +101,7 @@ exports.organisations = [
     "_id": ObjectId("4f9ea1326e8770d854c45a21"),
     name: "United States Government",
     slug: "united-states-government",
+    summary: "The government of the United States of America is the federal government of the constitutional republic of fifty states that constitute the United States of America"
   },
 ];
 
