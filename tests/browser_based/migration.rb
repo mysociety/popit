@@ -22,7 +22,7 @@ class MigrationTests < PopItWatirTestCase
     goto '/migration/'
 
     # try to open migration tool, get sent to login page
-    assert_match /\login$/, @b.url 
+    assert_path '/login' 
 
     login_as_instance_owner
     assert_equal 'Migration Tool', @b.title

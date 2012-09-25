@@ -32,14 +32,14 @@ class InstanceSearchingTests < PopItWatirTestCase
     prep_for_test
     run_search 'Clinton'      
     # only one result should redirect straight to the result
-    assert_match @b.url, /\/person\/bill-clinton/
+    assert_path '/person/bill-clinton'
   end    
 
   def test_multi_result_search
     prep_for_test
     run_search 'George'
     
-    assert_match @b.url, /\/search/
+    assert_path '/search'
     assert @b.link(:text, "George Bush").present?
     assert @b.link(:text, "George W. Bush").present?
   end
@@ -48,7 +48,7 @@ class InstanceSearchingTests < PopItWatirTestCase
     prep_for_test
     run_search 'Bash'  # note the 'a' instead of 'u'
     
-    assert_match @b.url, /\/search/
+    assert_path '/search'
     assert @b.link(:text, "George Bush").present?
     assert @b.link(:text, "George W. Bush").present?
   end

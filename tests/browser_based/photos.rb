@@ -47,14 +47,14 @@ class PhotoTests < PopItWatirTestCase
     @b.input(:type => 'submit').click
 
     # check that the file is now shown on the page
-    assert @b.url[ opts[:url] ]
+    assert_path opts[:url]
     assert @b.ul(:class => 'photos').li.img.present?
 
     # delete the photo
     @b.ul(:class => 'photos').input(:value => 'delete').click
 
     # check that the photo is now gone
-    assert @b.url[ opts[:url] ]
+    assert_path opts[:url]
     assert @b.ul(:class => 'photos').li.img.present?
     assert_match @b.ul(:class => 'photos').li.img.attribute_value('src'), opts[:placeholder_filename_regex]
 

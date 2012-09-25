@@ -95,4 +95,8 @@ class PopItWatirTestCase < Test::Unit::TestCase
     @b.wait_until { ! @b.element(:id, 'ajax-loader').present? }
   end
 
+  def assert_path(expected)
+    assert_equal URI.parse(@b.url).path, expected
+  end
+  
 end

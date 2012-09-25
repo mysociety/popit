@@ -10,10 +10,6 @@ require 'uri'
 
 class NavigationTests < PopItWatirTestCase
 
-  def assert_path(expected)
-    assert_equal URI.parse(@b.url).path, expected
-  end
-  
   def test_navigation_around_site
     goto_instance 'test'
     delete_instance_database

@@ -54,8 +54,8 @@ class PersonEditingTests < PopItWatirTestCase
     @b.input(:value, "Create new person").click
     @b.wait_until { @b.title != 'People' }
     assert_equal "Joe Bloggs", @b.title
-    assert_match /\/joe-bloggs$/, @b.url
-    
+    assert_path '/person/joe-bloggs'
+        
     # check that this person is in the list of people too
     @b.back
     @b.refresh
@@ -77,7 +77,7 @@ class PersonEditingTests < PopItWatirTestCase
     
     # click on a suggestion, check get existing person
     @b.ul(:class, 'suggestions').li.link.click
-    assert_match /\/george-bush$/, @b.url
+    assert_path '/person/george-bush'
     
     # enter dup, create anyway, check for new person
     @b.back
@@ -85,7 +85,7 @@ class PersonEditingTests < PopItWatirTestCase
     @b.text_field(:name, 'name').set "George Bush"
     @b.input(:value, "Create new person").click
     @b.wait_until { @b.title != 'People' }
-    assert_match /\/george-bush-1$/, @b.url
+    assert_path '/person/george-bush-1'
     
     # enter name that can't be slugged
     @b.back
@@ -98,7 +98,7 @@ class PersonEditingTests < PopItWatirTestCase
     @b.input(:value, "Create new person").click
     @b.wait_until { @b.title != 'People' }
     assert_equal "网页", @b.title
-    assert_match /\/chinese-name$/, @b.url
+    assert_path '/person/chinese-name'
     
   end
 

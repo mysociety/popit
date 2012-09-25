@@ -68,7 +68,7 @@ class InstanceAuthTests < PopItWatirTestCase
     @b.text_field(:name, 'password').set 'secret'
     @b.input(:value, "Login").click
     assert_match 'Signed in as owner@example.com', @b.li(:id, 'signed_in').text
-    assert_match /\/about\/edit$/, @b.url
+    assert_path '/about/edit'
 
     # check that we redirect back to the page you clicked login on too
     @b.link(:text, 'Sign Out').click
@@ -78,7 +78,7 @@ class InstanceAuthTests < PopItWatirTestCase
     @b.text_field(:name, 'password').set 'secret'
     @b.input(:value, "Login").click
     assert_match 'Signed in as owner@example.com', @b.li(:id, 'signed_in').text
-    assert_match /\/person\/george-bush$/, @b.url
+    assert_path '/person/george-bush'
     
 
   end

@@ -81,7 +81,7 @@ class OrganisationEditingTests < PopItWatirTestCase
     @b.input(:value, "Create new organisation").click
     @b.wait_until { @b.title != 'Organisations' }
     assert_equal "Acme Inc", @b.title
-    assert_match /\/acme-inc$/, @b.url
+    assert_path '/organisation/acme-inc'
     
     # check that this organisation is in the list of organisations too
     @b.back
@@ -105,7 +105,7 @@ class OrganisationEditingTests < PopItWatirTestCase
     
     # click on a suggestion, check get existing organisation
     @b.ul(:class, 'suggestions').li.link.click
-    assert_match /\/united-states-government$/, @b.url
+    assert_path '/organisation/united-states-government'
     
     # enter dup, create anyway, check for new organisation
     @b.back
@@ -113,7 +113,7 @@ class OrganisationEditingTests < PopItWatirTestCase
     @b.text_field(:name, 'name').set "United States Government"
     @b.input(:value, "Create new organisation").click
     @b.wait_until { @b.title != 'Organisations' }
-    assert_match /\/united-states-government-1$/, @b.url
+    assert_path '/organisation/united-states-government-1'
     
     # enter name that can't be slugged
     @b.back
@@ -126,7 +126,7 @@ class OrganisationEditingTests < PopItWatirTestCase
     @b.input(:value, "Create new organisation").click
     @b.wait_until { @b.title != 'Organisations' }
     assert_equal "网页", @b.title
-    assert_match /\/chinese-name$/, @b.url
+    assert_path '/organisation/chinese-name'
 
   end
 
