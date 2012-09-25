@@ -18,7 +18,7 @@ define(
     collection: new SuggestionsCollection(),
 
     render: function () {
-      var content = compactListTemplate({ persons: this.collection.toJSON() });
+      var content = compactListTemplate({ items: this.collection.toJSON() });
       this.$el.html( content );
       return this;
     },

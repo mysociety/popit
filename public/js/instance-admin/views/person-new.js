@@ -30,6 +30,7 @@ define(
 					fields: ['name', 'slug']
 				});
         this.suggestionsView = new SuggestionsView();
+        this.suggestionsView.collection.url = '/api/v1/person';
       },
       
       render: function () {
