@@ -120,11 +120,9 @@ block content
           dt #{ position.title }:
           dd
             if position.organisation
-              |  #{ position.organisation.name }
-              //- a(href=position.organisation.slug_url) #{ position.organisation.name }
+              a(href=position.organisation.slug_url) #{ position.organisation.name }
             else
               | unknown
-            //- a.hover_edit(href="#{person.slug_url}/contacts/#{contact.id}/edit") edit
             
     section.contact-information
       h2 Contact Information:

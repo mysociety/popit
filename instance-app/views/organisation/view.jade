@@ -85,8 +85,7 @@ block content
           dt #{ position.title }:
           dd
             if position.person
-              |  #{ position.person.name }
-              //- a(href=position.perosn.slug_url) #{ position.person.name }
+              a(href=position.person.slug_url) #{ position.person.name }
             else
               | unknown
             
