@@ -9,7 +9,6 @@ $LOAD_PATH.unshift '.'
 # List all the files that we should ignore because they do not contain tests
 ignore_files = [
   File.basename(__FILE__),   # this file
-  'popit_watir_test_case.rb' # library file
 ]
 
 # get all the ruby files in this directory

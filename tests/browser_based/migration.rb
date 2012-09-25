@@ -7,7 +7,7 @@ require 'test/unit'
 # make it possible to load the test cases from the local directory
 $:.unshift File.dirname(__FILE__)
 
-require 'popit_watir_test_case'
+require 'lib/popit_watir_test_case'
 require 'pry'
 require 'net/http'
 require 'uri'
@@ -38,7 +38,7 @@ class MigrationTests < PopItWatirTestCase
     assert_equal 'Migration Tool', @b.title
 
     # upload test file
-    @b.file_field(:name => 'source').set( File.join( File.dirname(__FILE__), 'migration_sample.csv') )
+    @b.file_field(:name => 'source').set( File.join( File.dirname(__FILE__), 'static/migration_sample.csv') )
     @b.input(:type => 'submit').click
 
     # define the mapping
@@ -98,7 +98,7 @@ class MigrationTests < PopItWatirTestCase
     assert_equal 'Migration Tool', @b.title
 
     # upload test file
-    @b.file_field(:name => 'source').set( File.join( File.dirname(__FILE__), 'migration_sample_win1252.csv') )
+    @b.file_field(:name => 'source').set( File.join( File.dirname(__FILE__), 'static/migration_sample_win1252.csv') )
     @b.input(:type => 'submit').click
 
     # define the mapping

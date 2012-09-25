@@ -2,7 +2,7 @@
 # coding: UTF-8
 # -*- coding: UTF-8 -*-
 
-require 'popit_watir_test_case'
+require 'lib/popit_watir_test_case'
 require 'pry'
 require 'net/http'
 require 'uri'

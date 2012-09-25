@@ -2,7 +2,7 @@
 # coding: UTF-8
 # -*- coding: UTF-8 -*-
 
-require 'popit_watir_test_case'
+require 'lib/popit_watir_test_case'
 require 'pry'
 require 'net/http'
 require 'uri'
@@ -24,7 +24,7 @@ class PersonPhotoTests < PopItWatirTestCase
 
     # upload a file
     @b.link(:text => '+ add a photograph').click
-    @b.file_field(:name => 'image').set( File.join( File.dirname(__FILE__), 'barack_obama.jpg') )
+    @b.file_field(:name => 'image').set( File.join( File.dirname(__FILE__), 'static/barack_obama.jpg') )
     @b.input(:type => 'submit').click
 
     # check that the file is now shown on the page

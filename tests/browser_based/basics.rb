@@ -1,4 +1,4 @@
-require 'popit_watir_test_case'
+require 'lib/popit_watir_test_case'
 require 'pry'
 
 class Basics < PopItWatirTestCase
