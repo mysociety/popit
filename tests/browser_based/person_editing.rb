@@ -166,46 +166,46 @@ class PersonEditingTests < PopItWatirTestCase
     assert_equal new_text, @b.element(:css => '[data-api-name=summary]').text
 
     # grab the name for checking later
-    original_name = @b.h1(:class => 'current-person').text
+    original_name = @b.h1(:class => 'current-entity').text
     changed_name  = 'Changed Name'
 
     # check that the name can be edited too and that escape cancels
-    assert ! @b.h1(:class => 'current-person').input.present?
-    @b.h1(:class => 'current-person').click
-    assert @b.h1(:class => 'current-person').input.present?
-    @b.h1(:class => 'current-person').text_field.set changed_name
+    assert ! @b.h1(:class => 'current-entity').input.present?
+    @b.h1(:class => 'current-entity').click
+    assert @b.h1(:class => 'current-entity').input.present?
+    @b.h1(:class => 'current-entity').text_field.set changed_name
     @b.send_keys :escape
-    assert ! @b.h1(:class => 'current-person').input.present?    
-    assert_equal original_name, @b.h1(:class => 'current-person').text
+    assert ! @b.h1(:class => 'current-entity').input.present?    
+    assert_equal original_name, @b.h1(:class => 'current-entity').text
 
     # check that for non-textarea bluring cancels
-    assert ! @b.h1(:class => 'current-person').input.present?
-    @b.h1(:class => 'current-person').click
-    assert @b.h1(:class => 'current-person').input.present?
-    @b.h1(:class => 'current-person').text_field.set changed_name
+    assert ! @b.h1(:class => 'current-entity').input.present?
+    @b.h1(:class => 'current-entity').click
+    assert @b.h1(:class => 'current-entity').input.present?
+    @b.h1(:class => 'current-entity').text_field.set changed_name
     @b.div(:id => 'content').click
     sleep 2 # there is a delay in the js
-    assert ! @b.h1(:class => 'current-person').input.present?    
-    assert_equal original_name, @b.h1(:class => 'current-person').text
+    assert ! @b.h1(:class => 'current-entity').input.present?    
+    assert_equal original_name, @b.h1(:class => 'current-entity').text
 
     # check that edits are saved
-    assert ! @b.h1(:class => 'current-person').input.present?
-    @b.h1(:class => 'current-person').click
-    assert @b.h1(:class => 'current-person').input.present?
-    @b.h1(:class => 'current-person').text_field.set changed_name
+    assert ! @b.h1(:class => 'current-entity').input.present?
+    @b.h1(:class => 'current-entity').click
+    assert @b.h1(:class => 'current-entity').input.present?
+    @b.h1(:class => 'current-entity').text_field.set changed_name
     @b.send_keys :return
-    assert ! @b.h1(:class => 'current-person').input.present?    
-    assert_equal changed_name, @b.h1(:class => 'current-person').text
+    assert ! @b.h1(:class => 'current-entity').input.present?    
+    assert_equal changed_name, @b.h1(:class => 'current-entity').text
     wait_for_ajax_requests_to_end
     @b.refresh
-    assert_equal changed_name, @b.h1(:class => 'current-person').text
+    assert_equal changed_name, @b.h1(:class => 'current-entity').text
     
     # check that the name can be edited via the link
-    assert ! @b.h1(:class => 'current-person').input.present?
+    assert ! @b.h1(:class => 'current-entity').input.present?
     @b.link(:text => "^ edit this person's name").click
-    assert @b.h1(:class => 'current-person').input.present?
+    assert @b.h1(:class => 'current-entity').input.present?
     @b.send_keys :escape
-    assert ! @b.h1(:class => 'current-person').input.present?    
+    assert ! @b.h1(:class => 'current-entity').input.present?    
 
   end
 
