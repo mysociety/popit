@@ -48,13 +48,13 @@ class PositionEditingTests < PopItWatirTestCase
     assert_equal @b.ul(:class, 'error').text, "Title is required"
     
     # click on the title and select President
-    select2_container('title').click
+    select2_container('title').link.click
     assert_equal select2_highlighted_option.text, 'President'
     select2_highlighted_option.click
     assert_equal select2_current_value('title'), 'President'
 
     # click on the org and select us gov
-    select2_container('organisation').click
+    select2_container('organisation').link.click
     assert_equal select2_highlighted_option.text, "United States Government ← select to use existing entry"
     select2_highlighted_option.click
     assert_equal select2_current_value('organisation'), "United States Government"
@@ -78,13 +78,13 @@ class PositionEditingTests < PopItWatirTestCase
     @b.link(:text, '+ add a new position').click
     position_form.wait_until_present
 
-    select2_container('title').click
+    select2_container('title').link.click
     @b.send_keys 'Bottle Washer'
     assert_equal select2_highlighted_option.text, 'Bottle Washer'
     select2_highlighted_option.click
     assert_equal select2_current_value('title'), 'Bottle Washer'
 
-    select2_container('organisation').click
+    select2_container('organisation').link.click
     @b.send_keys '1600 Penn Hotel'
     assert_equal select2_highlighted_option.text, "1600 Penn Hotel ← select to create new entry"
     select2_highlighted_option.click
@@ -104,12 +104,12 @@ class PositionEditingTests < PopItWatirTestCase
     @b.link(:text, '+ add a new position').click
     position_form.wait_until_present
 
-    select2_container('title').click
+    select2_container('title').link.click
     assert_equal select2_options(0).text, 'President'
     assert_equal select2_options(1).text, 'Bottle Washer'
     @b.send_keys :escape
 
-    select2_container('organisation').click
+    select2_container('organisation').link.click
     assert_equal select2_options(0).text, "United States Government ← select to use existing entry"
     assert_equal select2_options(1).text, "1600 Penn Hotel ← select to use existing entry"
     @b.send_keys :escape
