@@ -50,7 +50,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
     @b.text_field(:name => 'kind').when_present.set( 'a')
     @b.wait_until { @b.li(:class => 'ui-menu-item').present? }
     assert_equal @b.li(:class => 'ui-menu-item').text, 'Address'
-    @b.li(:class => 'ui-menu-item').click
+    @b.li(:class => 'ui-menu-item').link.click
     assert_equal @b.text_field(:name => 'kind').value, 'Address'
     @b.input(:name => 'save').click
     
@@ -105,7 +105,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
     @b.text_field(:name => 'comment').when_present.set( 'wik')
     @b.wait_until { @b.li(:class => 'ui-menu-item').present? }
     assert_equal @b.li(:class => 'ui-menu-item').text, 'Wikipedia'
-    @b.li(:class => 'ui-menu-item').click
+    @b.li(:class => 'ui-menu-item').link.click
     assert_equal @b.text_field(:name => 'comment').value, 'Wikipedia'
     @b.input(:name => 'save').click
     
