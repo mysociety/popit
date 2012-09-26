@@ -65,3 +65,5 @@ The tests decide which server to connect to based on the `NODE_ENV`. If it is `t
 ## Running the tests
 
 In the `popit` directory just run `make test`. The tests run in several stages and will trigger the building of generated assets etc.
+
+The test suite is also run on the [Travis continuous integration service](http://travis-ci.org/mysociety/popit). If you create a merge-able pull request it will be tested for you automatically.

@@ -6,6 +6,8 @@ The software that powers http://popit.mysociety.org/
 
 Here be dragons! This is **alpha** software - it is currently undergoing active development so should be used with caution.
 
+[![Build Status](https://secure.travis-ci.org/mysociety/popit.png)](http://travis-ci.org/mysociety/popit)
+
 ## Installing
 
 Please see  [INSTALL.md](https://github.com/mysociety/popit/blob/master/INSTALL.md) for full instructions.
