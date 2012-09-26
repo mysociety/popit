@@ -18,6 +18,10 @@ class InstanceSearchingTests < PopItWatirTestCase
   def run_search (term)
     @b.text_field(:id, 'header_search_box').set term
     @b.send_keys :enter
+
+    # wait for the search to run - checking to see that the search box is
+    # empty is one waf to do this.
+    @b.wait_until { @b.text_field(:id, 'header_search_box').text == '' }
   end
 
   ######################
