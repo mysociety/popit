@@ -57,9 +57,17 @@ Note that the paths used in the templates are the same for both - the JS is eith
 
 ## Watir
 
-There are Watir tests that test the website and the interactions with it. You'll need to install Ruby (the programming language) and Chrome as the browser, and possibly chrome driver too.
+There are Watir tests that test the website and the interactions with it. You'll need to install Ruby (the programming language) and (by default) Chrome as the browser, and possibly chrome driver too.
 
-The tests decide which server to connect to based on the `NODE_ENV`. If it is `testing` they'll connect to port `3100`, otherwise they'll use port `3000`. This is convenient as you can go to the `tests/browser-based` dir and run the tests manually using `ruby -I. name_of_test.rb`. Combining this with [pry](http://pry.github.com/) and dropping in `binding.pry` breakpoints leads to a very nice test developing environment (write tests in the repl shell, see results in the browser, copy to text editor when happy).
+You can change the browser used, and the url to the test server, with environment variables:
+
+    $ export WATIR_BROWSER=firefox
+    $ export WATIR_HOSTING_URL="http://www.127.0.0.1.xip.io:3000/"
+    $ make test-browser
+
+Watir supports [many different browsers](http://watirwebdriver.com/) (click the 'Browsers' tab). With the url note that the test suite uses sub-domains - so either use a service like [xip.io](http://xip.io) to map to your IP address, or add entries to your `/etc/hosts` or equivalent. You'll also need to change the PopIt config files.
+
+If you've not set `WATIR_HOSTING_URL` the tests decide which server to connect to based on the `NODE_ENV`. If it is `testing` they'll connect to port `3100`, otherwise they'll use port `3000`. This is convenient as you can go to the `tests/browser-based` dir and run the tests manually using `ruby -I. name_of_test.rb`. Combining this with [pry](http://pry.github.com/) and dropping in `binding.pry` breakpoints leads to a very nice test developing environment (write tests in the repl shell, see results in the browser, copy to text editor when happy).
 
 
 ## Running the tests
