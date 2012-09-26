@@ -23,9 +23,14 @@ require( [ 'jquery', 'utils/slugify' ],
 	$(document).on(
 	  {
 	    keypress: function(e) {
+
+        // .which  seems to return 0 for some keys in firefox - like the arrow keys. If
+        // we don't get a response from which fall back to .keyCode
+        var key = e.which || e.keyCode;
+        
 	      // Return True/False to prevent or allow the key being pressed or add an 
 	      // error class to display the hint when a disallowed key is pressed
-	      return check_allowed_letter(e.which);
+	      return check_allowed_letter( key );
 	    },
 	    change: function(e) {
       	// Check pasted text
