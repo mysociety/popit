@@ -81,6 +81,14 @@ form{
 			color: #888;
 		}
 	}
+	
+}
+
+// in FF without this the input is unreadable as the padding squashes it down to
+// nothing. Result now is ugly, but workable.
+// TODO - tidy this up so that input is nice in FF
+.edit-in-place input {
+  padding: 0 1em;
 }
 
 // apply styling to edit-in-place elements when user logged in
