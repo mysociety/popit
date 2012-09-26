@@ -81,6 +81,7 @@ class PersonEditingTests < PopItWatirTestCase
     
     # enter dup, create anyway, check for new person
     @b.back
+    @b.refresh
     add_person_link.click
     @b.text_field(:name, 'name').set "George Bush"
     @b.input(:value, "Create new person").click
@@ -89,6 +90,7 @@ class PersonEditingTests < PopItWatirTestCase
     
     # enter name that can't be slugged
     @b.back
+    @b.refresh
     add_person_link.click
     @b.text_field(:name, 'name').set "网页"
     assert_equal "", @b.text_field(:name, 'slug').value

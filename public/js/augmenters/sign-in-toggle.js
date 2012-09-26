@@ -8,7 +8,7 @@ require(['jquery'], function($) {
 
     var $sign_in = $('#sign_in');
     var $body    = $('body');
-    var signed_in_class = 'signed_in';
+    var signed_in_class = 'instance-admin-app-active';
 
     // Only do the hover effect if we are not signed in
     if ( ! $sign_in.hasClass(signed_in_class) ) {

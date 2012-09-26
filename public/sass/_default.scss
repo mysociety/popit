@@ -360,7 +360,7 @@ article.entity{
 }
 // Just to demo design states admin options shouldn't be in the html if not signed in.
 .admin-options{ visibility:hidden; }
-body.signed_in .admin-options{ visibility: visible; }
+body.instance-admin-app-active .admin-options{ visibility: visible; }
 
 
 

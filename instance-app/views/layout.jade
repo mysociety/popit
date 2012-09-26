@@ -167,8 +167,13 @@ body(id="popit-#{ locals.popit ? popit.instance_name() : 'no-site-found' }", cla
 
 
     .copyright
-      | &copy; 2012 mySociety.org - v#{config.popit_version}
+      | &copy; 2012 mySociety.org
+      |  - v#{config.popit_version}
 
+      //- This is used to indicate to the test suite that the admin app is loaded.
+      br
+      span#instance-app-activated.admin-options
+        | admin on
       
 
 //- manually close the html tag as we opened it in a funny way using the conditional comments above

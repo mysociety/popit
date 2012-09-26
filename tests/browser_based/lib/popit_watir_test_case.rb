@@ -17,6 +17,19 @@ class PopItWatirTestCase < Test::Unit::TestCase
 
     # create the browser and go to the homepage
     @b = Watir::Browser.new ENV['WATIR_BROWSER'] || :chrome
+    
+    # add checker that will wait for admin app to run if needed - this is mostly
+    # for tests that run against remote servers where activating the javascript
+    # might take a while.
+    @b.add_checker(
+      Proc.new do
+        if @b.li(:id => 'signed_in').present?
+          @b.wait_until { @b.element(:id => 'instance-app-activated').present? }
+        end
+      end
+    )
+    
+    
     @b.goto @test_hosting_url
   end
 

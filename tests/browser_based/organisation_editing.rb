@@ -109,6 +109,7 @@ class OrganisationEditingTests < PopItWatirTestCase
     
     # enter dup, create anyway, check for new organisation
     @b.back
+    @b.refresh
     add_organisation_link.click
     @b.text_field(:name, 'name').set "United States Government"
     @b.input(:value, "Create new organisation").click
@@ -117,6 +118,7 @@ class OrganisationEditingTests < PopItWatirTestCase
     
     # enter name that can't be slugged
     @b.back
+    @b.refresh
     add_organisation_link.click
     @b.text_field(:name, 'name').set "网页"
     assert_equal "", @b.text_field(:name, 'slug').value
