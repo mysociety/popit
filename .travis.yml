@@ -13,8 +13,8 @@ services:
 before_install:
   - sudo apt-get -y update
   - export DEBIAN_FRONTEND=noninteractive
-  - sudo apt-get -y install `cut -d " " -f 1 config/packages | egrep -v "(^#|mongodb)"`
-  - sudo gem install watir-webdriver pry
+  - sudo apt-get -y install `cut -d " " -f 1 config/packages | egrep -v "(^#|mongodb|compass)"`
+  - sudo gem install watir-webdriver pry compass
 
 
 before_script:
