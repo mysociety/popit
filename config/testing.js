@@ -4,6 +4,12 @@ module.exports = {
         port: 3100,
     },
 
+    // log to the console, and log more
+    logging: {
+      log_to_console: true,
+      log_level:      'info',
+    },
+
     hosting_server: {
         host:       'www.127.0.0.1.xip.io',
         base_url:   'http://www.127.0.0.1.xip.io:3100',
