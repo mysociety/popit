@@ -6,6 +6,7 @@
 var express           = require('express'),
     mongoose          = require('mongoose'),
     config            = require('config'),
+    winston           = require('winston'),
     utils             = require('../lib/utils'),
     instanceSelector  = require('../lib/middleware/instance-selector')
     everyauth         = require('everyauth'),

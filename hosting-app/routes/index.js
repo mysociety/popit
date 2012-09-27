@@ -1,6 +1,7 @@
 var Validator     = require('validator').Validator,
     sanitize      = require('validator').sanitize,
     mongoose      = require('mongoose'),
+    winston       = require('winston'),
     PopIt         = require('../../lib/popit'),
     utils         = require('../../lib/utils'),
     mailer        = require('../../lib/mailer'),
@@ -66,7 +67,7 @@ exports.route = function (app) {
                 },
             },
             function( err, output ) {
-                if (err) console.log( err );
+                if (err) winston.error( err );
                 mailer.send(
                     req,
                     {
