@@ -8,7 +8,8 @@ FOREVER = ./node_modules/.bin/forever
 
 WAIT_FOR_SERVER   = sleep 5
 TEST_SERVER = tests/test-server.js
-STOP_TEST_SERVER  = $(FOREVER) stop $(TEST_SERVER)
+# mute output so that this does not look like a failing test
+STOP_TEST_SERVER  = $(FOREVER) stop $(TEST_SERVER) &> /dev/null 
 START_TEST_SERVER = $(STOP_TEST_SERVER); NODE_ENV=testing $(FOREVER) start $(TEST_SERVER) && $(WAIT_FOR_SERVER)
 
 
