@@ -40,6 +40,7 @@
     "moment": ">= 1.7.0",
     "connect-flash": ">= 0.1.0",
     "version": ">= 0.1.0",
+    "winston": ">= 0.6.2",
     "everyauth": "https://github.com/evdb/everyauth/tarball/master"
   },
   "scripts": {
