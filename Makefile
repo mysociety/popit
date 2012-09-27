@@ -106,14 +106,18 @@ test-api:
 	  tests/api
 
 
-production: clean
+production: clean node-modules
 	git checkout master
 	npm version patch -m 'deploy to production - version bump to %s'
+	npm shrinkwrap
+	git commit --amend --reuse-message HEAD npm-shrinkwrap.json
+	git tag -f `git tag | tail -1`
 	git checkout production
 	git merge master
 	make public-production
 	git add .
 	git ci -m 'Update static assets'
+	git tag -f `git tag | tail -1`
 
 clean:
 	compass clean
