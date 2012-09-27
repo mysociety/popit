@@ -12,7 +12,7 @@ module.exports = {
         var self = this;
         
         var popit = this.popit  = new PopIt();
-        popit.set_instance('foobar');
+        popit.set_instance('test');
         
         utils.delete_all_testing_databases( function() {
           utils.load_test_fixtures( function () {

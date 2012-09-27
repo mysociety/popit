@@ -49,10 +49,10 @@ module.exports = {
             'throw exception if instance not configured'
         );
 
-        test.ok( popit.set_instance( 'foobar' ), 'set the instance' );
+        test.ok( popit.set_instance( 'test' ), 'set the instance' );
         test.ok( ! popit.is_master(), "not master" );
 
-        test.ok( popit.instance_db(), "got a connection to the foobar instance" );
+        test.ok( popit.instance_db(), "got a connection to the test instance" );
 
         test.done();
     },
@@ -61,7 +61,7 @@ module.exports = {
         test.expect(9);
         
         var popit = this.popit;
-        popit.set_instance('foobar');
+        popit.set_instance('test');
 
         // try to get a model that does not exist
         test.throws(

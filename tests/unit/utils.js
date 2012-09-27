@@ -137,8 +137,8 @@ module.exports = {
       ); 
       
       test.equal(
-          utils.mongodb_connection_string('foobar'),
-          'mongodb://localhost/popittest_foobar',
+          utils.mongodb_connection_string('test'),
+          'mongodb://localhost/popittest_test',
           "instance slug provided"
       ); 
       
