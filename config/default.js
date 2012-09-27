@@ -12,13 +12,19 @@ module.exports = {
       port: 3000,
     },
 
-    // *.127.0.0.1.xip.io points to 127.0.0.1
+    logging: {
+      log_to_file:    true,
+      log_to_console: false,
+      log_level:      'info',
+      log_directory:  path.normalize(__dirname + '/../../popit_logs'),
+    },
 
     image_proxy: {
         path:       '/image-proxy/',
     },
 
     hosting_server: {
+      // *.127.0.0.1.xip.io points to 127.0.0.1
         host:       'www.127.0.0.1.xip.io',
         base_url:   'http://www.127.0.0.1.xip.io:3000',
         email_from: 'PopIt <popit@mysociety.org>', 

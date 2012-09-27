@@ -5,7 +5,7 @@
 
 var connect        = require('connect'),
     config         = require('config'),
-    winston        = require('winston'),
+    winston        = require('./lib/popit_winston'),
     hosting_app    = require('./hosting-app/app'),
     utils          = require('./lib/utils'),
     format         = require('util').format,
