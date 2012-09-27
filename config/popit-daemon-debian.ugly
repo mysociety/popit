@@ -18,7 +18,7 @@ DAEMON_ARGS="node_modules/.bin/supervisor --ignore . --exec ../node/bin/node ./s
 PIDFILE=$DIR/popit.pid
 DUSER=!!(*= $user *)!!
 
-LOGGER="| /usr/local/bin/rotatelogs -f .%Y-%m-%d -l -o $DUSER:$DUSER $DIR/logs/daemon_log 1d"
+LOGGER="/usr/local/bin/rotatelogs -f .%Y-%m-%d -l -o $DUSER:$DUSER $DIR/logs/daemon_log 1d"
 
 !!(*
 if ($vhost eq 'popit.mysociety.org') {
