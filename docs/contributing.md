@@ -69,6 +69,11 @@ Watir supports [many different browsers](http://watirwebdriver.com/) (click the 
 
 If you've not set `WATIR_HOSTING_URL` the tests decide which server to connect to based on the `NODE_ENV`. If it is `testing` they'll connect to port `3100`, otherwise they'll use port `3000`. This is convenient as you can go to the `tests/browser-based` dir and run the tests manually using `ruby -I. name_of_test.rb`. Combining this with [pry](http://pry.github.com/) and dropping in `binding.pry` breakpoints leads to a very nice test developing environment (write tests in the repl shell, see results in the browser, copy to text editor when happy).
 
+When running the Watir tests you can select which test to run using the `-n` switch:
+
+    $ cd tests/browser_based/
+    $ ./run_tests.rb -v -n test_hosting_site_homepage
+
 
 ## Running the tests
 
