@@ -37,7 +37,8 @@ define(
         $form
           .find('ul')
             .append('<input type="submit" name="save" value="Save" />')
-            .append('<button name="delete">Delete</button>');
+            .append('<button name="delete">Delete</button>')
+            .append('<button name="cancel">Cancel</button>');
       
         // add an autocomplete to those fields that want one
         var ac_field_names = _.filter(
@@ -67,7 +68,8 @@ define(
 
       events: {
         'submit form ':                'submitForm',
-        'click button[name:"delete"]': 'deleteEntry',
+        'click button[name="cancel"]': 'cancelEntry',
+        'click button[name="delete"]': 'deleteEntry',
       },
       
       deleteEntry: function (event) {
@@ -76,27 +78,42 @@ define(
         this.remove();
       },
       
+      cancelEntry: function (event) {
+        event.preventDefault();
+        if ( this.model.id ) {
+          // model soved on server - re-render it.
+          this.render_listing( this.model );
+        } else {
+          // model a new one - remove the whole input form.
+          this.remove();
+        }
+      },
+      
+      render_listing: function (model) {
+        var view = this;
+
+        var template_args = {
+          item: model.toJSON(),
+          api_url_root: model.urlRoot,
+        };
+        
+        view.$el.html( view.template( template_args ) );
+      },
+
       submitForm: function (event) {
         var view = this;
         
-        var render_listing = function (model, response) {
-          var template_args = {
-            item: model.toJSON(),
-            api_url_root: model.urlRoot,
-          };
-          
-          view.$el.html( view.template( template_args ) );
-        };
-
         var submitter = submitFormHelper({
 
           // Assume that the save will be a success - update the form at once
           pre_save_cb: function () {
-            render_listing( view.model, null );
+            view.render_listing( view.model );
           },
 
           // Also render upon response - in case details have changed on server.
-          success_cb: render_listing,
+          success_cb: function (model, response) {
+            view.render_listing(model);
+          },
           view: view
         });
         

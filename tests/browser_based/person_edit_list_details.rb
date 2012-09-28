@@ -18,6 +18,16 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
     login_as_instance_owner
     goto '/person/george-bush'    
 
+    # Start to enter a detail and then cancel - check '^edit link' removed.
+    @b.link(:text => '+ add a new contact detail').click
+    @b.text_field(:name => 'kind').send_keys( 'Ignore' )
+    @b.text_field(:name => 'value').send_keys( 'ignore' )
+    @b.button(:name => 'cancel').click
+    @b.wait_until { ! @b.form(:class => 'bbf-form').present? }
+    assert ! @b.link(:text => '^ edit').present?
+    @b.refresh
+    assert ! @b.link(:text => '^ edit').present?
+
     # Enter a phone number
     @b.link(:text => '+ add a new contact detail').click
     @b.text_field(:name => 'kind').send_keys( 'Phone')
@@ -41,6 +51,14 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
     @b.link(:text => '^ edit').click
     @b.text_field(:name => 'value').when_present.set( '11111 222 333')
     @b.input(:name => 'save').click
+    @b.wait_until { @b.element(:text => '11111 222 333').present? }
+    @b.refresh
+    assert @b.element(:text => '11111 222 333').present?
+
+    # Edit and then cancel the phone number
+    @b.link(:text => '^ edit').click
+    @b.text_field(:name => 'value').when_present.set( 'should be ignored')
+    @b.button(:name => 'cancel').click
     @b.wait_until { @b.element(:text => '11111 222 333').present? }
     @b.refresh
     assert @b.element(:text => '11111 222 333').present?
@@ -73,6 +91,16 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
     login_as_instance_owner
     goto '/person/george-bush'    
 
+    # Start to enter a detail and then cancel - check '^edit link' removed.
+    @b.link(:text => '+ add a new link').click
+    @b.text_field(:name => 'comment').send_keys( 'Ignore' )
+    @b.text_field(:name => 'url').send_keys( 'ignore' )
+    @b.button(:name => 'cancel').click
+    @b.wait_until { ! @b.form(:class => 'bbf-form').present? }
+    assert ! @b.link(:text => '^ edit').present?
+    @b.refresh
+    assert ! @b.link(:text => '^ edit').present?
+    
     # Enter a wikipedia link
     @b.link(:text => '+ add a new link').click
     @b.text_field(:name => 'comment').send_keys( 'Wikipedia' )
@@ -100,6 +128,14 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
     @b.refresh
     assert @b.element(:text => 'http://foo.com/').present?
 
+    # Cancel editing a link
+    @b.link(:text => '^ edit').click
+    @b.text_field(:name => 'url').when_present.set( 'should be ignored')
+    @b.button(:name => 'cancel').click
+    @b.wait_until { @b.element(:text => 'http://foo.com/').present? }
+    @b.refresh
+    assert @b.element(:text => 'http://foo.com/').present?
+
     # check that the autocomplete pops up
     @b.link(:text => '^ edit').click
     @b.text_field(:name => 'comment').when_present.set( 'wik')
@@ -115,7 +151,6 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
     @b.button(:name => 'delete').when_present.click
     @b.wait_until { 2 == @b.section(:class => 'links').ul.lis.count }
     assert ! @b.element(:text => 'http://foo.com/').present?
-
 
   end
 
