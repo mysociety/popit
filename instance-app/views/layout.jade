@@ -62,6 +62,13 @@ if locals.user
   
 body(id="popit-#{ locals.popit ? popit.instance_name() : 'no-site-found' }", class=bodyClasses)
 
+  if config.show_dev_site_warning
+    #dev-site-warning
+      strong WARNING!
+      |  This is a development site and data may be deleted at any time 
+      a(href="/_dev") (dev tools)
+      | .
+
   //- output any flash messages that we have
   - var flash_info = flash('info')
   if flash_info.length

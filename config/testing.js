@@ -1,5 +1,8 @@
 module.exports = {
 
+    // show the worning on the web pages
+    show_dev_site_warning: true,
+
     server: {
         port: 3100,
     },

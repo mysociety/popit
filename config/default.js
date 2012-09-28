@@ -8,6 +8,8 @@ module.exports = {
 
     api_root_url: '/api/v1',
 
+    show_dev_site_warning: false,
+
     server: {
       port: 3000,
     },

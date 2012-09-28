@@ -538,3 +538,17 @@ div.homepage-summary-box {
     width: 12em;
   }
 }
+
+@import "compass/css3/transform";
+
+#dev-site-warning {
+  position: absolute;
+  background-color: #faa;
+  background-color: rgba(255, 128, 128, 0.4);
+  padding: 0.25em;
+  height: 1.5em;
+  width: 39.5em;
+  text-align: center;
+  @include apply-origin(0.75em, 1em);
+  @include rotate(90deg);	
+}
