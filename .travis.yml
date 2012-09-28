@@ -36,4 +36,5 @@ notifications:
 env:
   global:
     - LOGGLY_SUBDOMAIN=mysociety
+    # the encrypted LOGGLY_INPUT_TOKEN entry
     - secure: "eR3a6RbnYMdNZcSeASapaYZSUO0gaUb8RVmOikHRQJUujsS0aGKIHPFwk22U\nmvhZlBeXwIX/jngK9A4kk8eRBDXybWG+JwZ1fWVH2GVe4pCEGQhONvsodXzF\njWOXXQyE7HFL/xyd+eE1r52hrDf+KvJCjRPmNJyMUATSZM9zSMA="
