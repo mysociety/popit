@@ -681,7 +681,7 @@ header#header .tagline {
 #content h1 .long-title {
   display: none;
 }
-.person p {
+.entity p {
   font-size: 1.125em;
   line-height: 1.667em;
 }
@@ -696,7 +696,7 @@ p.intro {
 #slug {
   text-transform: lowercase;
 }
-header.person-header-nav {
+header.entity-header-nav {
   margin-left: -1.6875em;
   margin-right: -1.6875em;
   margin-bottom: 1em;
@@ -704,37 +704,37 @@ header.person-header-nav {
   clear: both;
   width: 63.375em;
 }
-header.person-header-nav nav {
+header.entity-header-nav nav {
   display: inline;
 }
-header.person-header-nav > *, header.person-header-nav nav > a {
+header.entity-header-nav > *, header.entity-header-nav nav > a {
   display: inline-block;
   vertical-align: top;
   height: 3.75em;
   overflow: hidden;
 }
-header.person-header-nav .find-person {
+header.entity-header-nav .find-entity {
   margin: 0;
   float: right;
   width: 10.875em;
   padding: 1.25em 1.25em 1.25em 2.5em;
   background: #cbcbcb url(../img/search.png) no-repeat scroll 0.625em center;
 }
-header.person-header-nav .find-person label {
+header.entity-header-nav .find-entity label {
   display: none;
 }
-header.person-header-nav .find-person input {
+header.entity-header-nav .find-entity input {
   vertical-align: middle;
   width: 100%;
   opacity: 0.5;
 }
-header.person-header-nav .find-person input:focus {
+header.entity-header-nav .find-entity input:focus {
   opacity: 1;
 }
-header.person-header-nav.focus-search .find-person {
+header.entity-header-nav.focus-search .find-entity {
   width: 29.5em;
 }
-header.person-header-nav .current-person {
+header.entity-header-nav .current-entity {
   width: 100%;
   height: 2em;
   float: left;
@@ -749,16 +749,16 @@ header.person-header-nav .current-person {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-header.person-header-nav.focus-search .current-person {
+header.entity-header-nav.focus-search .current-entity {
   width: 6em;
 }
-header.person-header-nav .find-person, header.person-header-nav .current-person {
+header.entity-header-nav .find-entity, header.entity-header-nav .current-entity {
   -webkit-transition: width 0.5s ease-out;
   -moz-transition: width 0.5s ease-out;
   -o-transition: width 0.5s ease-out;
   transition: width 0.5s ease-out;
 }
-header.person-header-nav a.previous-person, header.person-header-nav a.next-person {
+header.entity-header-nav a.previous-entity, header.entity-header-nav a.next-entity {
   width: 11.25em;
   float: left;
   text-decoration: none;
@@ -768,23 +768,23 @@ header.person-header-nav a.previous-person, header.person-header-nav a.next-pers
   margin: 0;
   background: #b3b3b3 url(../img/arrow-left.png) no-repeat scroll left center;
 }
-header.person-header-nav a.previous-person em, header.person-header-nav a.next-person em {
+header.entity-header-nav a.previous-entity em, header.entity-header-nav a.next-entity em {
   text-transform: uppercase;
   font-style: normal;
   font-size: 0.625em;
   color: #e5e5e5;
 }
-header.person-header-nav a.previous-person strong, header.person-header-nav a.next-person strong {
+header.entity-header-nav a.previous-entity strong, header.entity-header-nav a.next-entity strong {
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
   color: #eeeeee;
 }
-header.person-header-nav a.previous-person:hover strong, header.person-header-nav a.next-person:hover strong {
+header.entity-header-nav a.previous-entity:hover strong, header.entity-header-nav a.next-entity:hover strong {
   color: #fff;
 }
-header.person-header-nav a.next-person {
+header.entity-header-nav a.next-entity {
   text-align: right;
   padding: 0.75em 2.8125em 0.75em 0.625em;
   background: #b3b3b3 url(../img/arrow-right.png) no-repeat scroll right center;
@@ -814,34 +814,34 @@ header.person-header-nav a.next-person {
 .admin-options a.delete strong {
   color: #c20000;
 }
-article.person .admin-options {
+article.entity .admin-options {
   float: right;
 }
-article.person section:hover .admin-options a {
+article.entity section:hover .admin-options a {
   color: #4c4c4c;
 }
-article.person .photos li:hover a,
-article.person aside a.add {
+article.entity .photos li:hover a,
+article.entity aside a.add {
   color: #4c4c4c;
   opacity: 1;
 }
-article.person > aside {
+article.entity > aside {
   width: 18.75em;
   float: left;
   padding: 0.625em;
 }
-article.person > aside .admin-options {
+article.entity > aside .admin-options {
   float: left;
   margin-bottom: 2em;
 }
-article.person > aside ul.photos,
-article.person > aside ul.photos li {
+article.entity > aside ul.photos,
+article.entity > aside ul.photos li {
   display: block;
   padding: 0;
   margin: 0;
   list-style: none;
 }
-article.person > aside ul.photos > li .photo-source {
+article.entity > aside ul.photos > li .photo-source {
   display: block;
   text-align: right;
   font-size: 0.625em;
@@ -859,36 +859,37 @@ article.person > aside ul.photos > li .photo-source {
   -o-transition: opacity 0.3s linear;
   transition: opacity 0.3s linear;
 }
-article.person > aside ul.photos > li .photo-source a {
+article.entity > aside ul.photos > li .photo-source a {
   color: #999;
 }
-article.person > aside ul.photos > li:hover .photo-source {
+article.entity > aside ul.photos > li:hover .photo-source {
   opacity: 1;
 }
-article.person > aside img {
+article.entity > aside img {
   max-width: 100%;
+  border: 1px solid #ddd;
 }
-article.person > section {
+article.entity > section {
   border-top: 1px solid #ddd;
   float: right;
   padding: 0.625em;
   margin-top: 0.625em;
   width: 37.5em;
 }
-article.person > section h2 {
+article.entity > section h2 {
   margin-top: 0;
 }
-article.person .description p {
+article.entity .description p {
   font-size: 1.125em;
   line-height: 1.667em;
 }
-article.person > footer {
+article.entity > footer {
   clear: both;
 }
 .admin-options {
   visibility: hidden;
 }
-body.signed_in .admin-options {
+body.instance-admin-app-active .admin-options {
   visibility: visible;
 }
 #footer {
@@ -1010,6 +1011,25 @@ div.homepage-summary-box {
 #header_search_form input:focus {
   width: 12em;
 }
+#dev-site-warning {
+  position: absolute;
+  background-color: #faa;
+  background-color: rgba(255, 128, 128, 0.4);
+  padding: 0.25em;
+  height: 1.5em;
+  width: 39.5em;
+  text-align: center;
+  -webkit-transform-origin: 0.75em;
+  -moz-transform-origin: 0.75em;
+  -ms-transform-origin: 0.75em;
+  -o-transform-origin: 0.75em;
+  transform-origin: 0.75em;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
 form {
   margin: 2.8em 0;
 }
@@ -1084,6 +1104,9 @@ form .append input {
 }
 form .append .add-on {
   color: #888;
+}
+.edit-in-place input {
+  padding: 0 1em;
 }
 body.signed_in .edit-in-place:hover, body.signed_in .edit-in-place-textarea:hover {
   background-color: #e5eecc;
