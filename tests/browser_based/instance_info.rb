@@ -2,7 +2,7 @@
 # coding: UTF-8
 # -*- coding: UTF-8 -*-
 
-require 'popit_watir_test_case'
+require 'lib/popit_watir_test_case'
 require 'pry'
 require 'net/http'
 require 'uri'
@@ -32,7 +32,7 @@ class InstanceInfoTests < PopItWatirTestCase
     
     # check that we can't access edit page if not logged in
     goto '/about/edit'
-    assert_match /\/login$/, @b.url
+    assert_path '/login'
     
     # login and check if edit link is visible
     login_as_instance_owner
@@ -55,7 +55,7 @@ class InstanceInfoTests < PopItWatirTestCase
     @b.input(:value, "Update Info").click
 
     # check that the entries are as expected
-    assert_match /\/about$/, @b.url
+    assert_path '/about'
     assert_equal "Name: Test Name",                   @b.element(:class => 'about-field-name').text
     assert_equal "Description: Test description",     @b.element(:class => 'about-field-description').text
     assert_equal "Region: Test region",               @b.element(:class => 'about-field-region').text
@@ -73,7 +73,7 @@ class InstanceInfoTests < PopItWatirTestCase
     # Go to the hosting site and browse the instances available
     goto_hosting_site
     @b.link(:text, 'Browse existing sites').click
-    assert_match /\/instances$/, @b.url
+    assert_path '/instances'
     assert_equal "Instance Directory", @b.title
 
     # Check that just the slug is shown for the test instance and that minimal

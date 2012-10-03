@@ -8,7 +8,8 @@ FOREVER = ./node_modules/.bin/forever
 
 WAIT_FOR_SERVER   = sleep 5
 TEST_SERVER = tests/test-server.js
-STOP_TEST_SERVER  = $(FOREVER) stop $(TEST_SERVER)
+# mute output so that this does not look like a failing test
+STOP_TEST_SERVER  = $(FOREVER) stop $(TEST_SERVER) &> /dev/null 
 START_TEST_SERVER = $(STOP_TEST_SERVER); NODE_ENV=testing $(FOREVER) start $(TEST_SERVER) && $(WAIT_FOR_SERVER)
 
 
@@ -106,14 +107,18 @@ test-api:
 	  tests/api
 
 
-production: clean
+production: clean node-modules
 	git checkout master
 	npm version patch -m 'deploy to production - version bump to %s'
+	npm shrinkwrap
+	git commit --amend --reuse-message HEAD npm-shrinkwrap.json
+	git tag -f `git tag | tail -1`
 	git checkout production
 	git merge master
 	make public-production
 	git add .
 	git ci -m 'Update static assets'
+	git tag -f `git tag | tail -1`
 
 clean:
 	compass clean

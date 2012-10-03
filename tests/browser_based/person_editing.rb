@@ -2,13 +2,19 @@
 # coding: UTF-8
 # -*- coding: UTF-8 -*-
 
-require 'popit_watir_test_case'
+require 'lib/popit_watir_test_case'
+require 'lib/in_place_editing_checks'
+require 'lib/entity_create_and_delete'
+
 require 'pry'
 require 'net/http'
 require 'uri'
 
 
 class PersonEditingTests < PopItWatirTestCase
+
+  include InPlaceEditingChecks
+  include EntityCreateAndDelete
 
   def test_person_creation
     goto_instance 'test'
@@ -48,8 +54,8 @@ class PersonEditingTests < PopItWatirTestCase
     @b.input(:value, "Create new person").click
     @b.wait_until { @b.title != 'People' }
     assert_equal "Joe Bloggs", @b.title
-    assert_match /\/joe-bloggs$/, @b.url
-    
+    assert_path '/person/joe-bloggs'
+        
     # check that this person is in the list of people too
     @b.back
     @b.refresh
@@ -71,18 +77,20 @@ class PersonEditingTests < PopItWatirTestCase
     
     # click on a suggestion, check get existing person
     @b.ul(:class, 'suggestions').li.link.click
-    assert_match /\/george-bush$/, @b.url
+    assert_path '/person/george-bush'
     
     # enter dup, create anyway, check for new person
     @b.back
+    @b.refresh
     add_person_link.click
     @b.text_field(:name, 'name').set "George Bush"
     @b.input(:value, "Create new person").click
     @b.wait_until { @b.title != 'People' }
-    assert_match /\/george-bush-1$/, @b.url
+    assert_path '/person/george-bush-1'
     
     # enter name that can't be slugged
     @b.back
+    @b.refresh
     add_person_link.click
     @b.text_field(:name, 'name').set "网页"
     assert_equal "", @b.text_field(:name, 'slug').value
@@ -92,7 +100,7 @@ class PersonEditingTests < PopItWatirTestCase
     @b.input(:value, "Create new person").click
     @b.wait_until { @b.title != 'People' }
     assert_equal "网页", @b.title
-    assert_match /\/chinese-name$/, @b.url
+    assert_path '/person/chinese-name'
     
   end
 
@@ -105,21 +113,12 @@ class PersonEditingTests < PopItWatirTestCase
     login_as_instance_owner    
 
     # goto bush and check he is there
-    goto '/person/george-bush'    
-    assert_equal @b.title, 'George Bush'
-
-    # click on delete link, wait for form
-    @b.link(:text, '- delete this person').click
-    @b.wait_until { @b.form(:name, 'remove-person').present? }
-
-    assert @b.input(:value, "Really delete 'George Bush'?").present?
-    @b.input(:value, "Really delete 'George Bush'?").click
+    goto '/person/george-bush'
     
-    @b.wait_until { @b.title == 'People' }
-    assert_equal @b.element(:id, "flash-info").li.text, "Entry 'George Bush' deleted."
-
-    goto '/person/george-bush'    
-    assert_equal @b.title, 'Page not found'
+    check_delete_entity(
+      :delete_link_text => '- delete this person',
+      :form_name        => 'remove-person',
+    )
 
   end
 
@@ -129,83 +128,9 @@ class PersonEditingTests < PopItWatirTestCase
     load_test_fixture
     goto '/person/george-bush'    
 
-    # check that without being logged in clicking on the summary has no effect
-    assert ! @b.textarea(:name => 'value').present?
-    @b.element(:css => '[data-api-name=summary]').click
-    assert ! @b.textarea(:name => 'value').present?
-    
-    # login and try again
-    login_as_instance_owner
-    goto '/person/george-bush'    
-    assert ! @b.textarea(:name => 'value').present?
-    @b.element(:css => '[data-api-name=summary]').click
-    assert @b.textarea(:name => 'value').present?
+    check_editing_summary
 
-    # check that the text is as expected
-    original = '41th President of the United States'
-    assert_equal original, @b.textarea(:name => 'value').value
-    
-    # press escape key to cancel edit
-    @b.send_keys 'This is some new text'
-    @b.send_keys :escape
-    assert ! @b.textarea(:name => 'value').present?
-    assert_equal original, @b.element(:css => '[data-api-name=summary]').text
-
-    # Edit the text to something new, tab return to submit
-    new_text = 'This is some new text'
-    @b.element(:css => '[data-api-name=summary]').click
-    @b.textarea(:name => 'value').set new_text
-    @b.send_keys :tab
-    @b.send_keys :return
-    assert ! @b.textarea(:name => 'value').present?
-    assert_equal new_text, @b.element(:css => '[data-api-name=summary]').text
-    
-    # reload the page, check that the new text ist still there
-    @b.refresh
-    assert_equal new_text, @b.element(:css => '[data-api-name=summary]').text
-
-    # grab the name for checking later
-    original_name = @b.h1(:class => 'current-person').text
-    changed_name  = 'Changed Name'
-
-
-    # check that the name can be edited too and that escape cancels
-    assert ! @b.h1(:class => 'current-person').input.present?
-    @b.h1(:class => 'current-person').click
-    assert @b.h1(:class => 'current-person').input.present?
-    @b.h1(:class => 'current-person').text_field.set changed_name
-    @b.send_keys :escape
-    assert ! @b.h1(:class => 'current-person').input.present?    
-    assert_equal original_name, @b.h1(:class => 'current-person').text
-
-    # check that for non-textarea bluring cancels
-    assert ! @b.h1(:class => 'current-person').input.present?
-    @b.h1(:class => 'current-person').click
-    assert @b.h1(:class => 'current-person').input.present?
-    @b.h1(:class => 'current-person').text_field.set changed_name
-    @b.div(:id => 'content').click
-    sleep 2 # there is a delay in the js
-    assert ! @b.h1(:class => 'current-person').input.present?    
-    assert_equal original_name, @b.h1(:class => 'current-person').text
-
-    # check that edits are saved
-    assert ! @b.h1(:class => 'current-person').input.present?
-    @b.h1(:class => 'current-person').click
-    assert @b.h1(:class => 'current-person').input.present?
-    @b.h1(:class => 'current-person').text_field.set changed_name
-    @b.send_keys :return
-    assert ! @b.h1(:class => 'current-person').input.present?    
-    assert_equal changed_name, @b.h1(:class => 'current-person').text
-    @b.refresh
-    assert_equal changed_name, @b.h1(:class => 'current-person').text
-    
-    # check that the name can be edited via the link
-    assert ! @b.h1(:class => 'current-person').input.present?
-    @b.link(:text => "^ edit this person's name").click
-    assert @b.h1(:class => 'current-person').input.present?
-    @b.send_keys :escape
-    assert ! @b.h1(:class => 'current-person').input.present?    
-
+    check_editing_name
   end
 
 end

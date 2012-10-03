@@ -101,6 +101,7 @@ exports.organisations = [
     "_id": ObjectId("4f9ea1326e8770d854c45a21"),
     name: "United States Government",
     slug: "united-states-government",
+    summary: "The government of the United States of America is the federal government of the constitutional republic of fifty states that constitute the United States of America"
   },
 ];
 
@@ -108,19 +109,19 @@ exports.positions = [
   {
     "_id":        ObjectId("4f9ea1326e8770d854c45a22"),
     title:        "President",
-    person:       ObjectId("4f9ea1326e8770d854c45a1d"), // george-bush
+    person:       ObjectId("4f9ea1306e8770d854c45a1d"), // george-bush
     organisation: ObjectId("4f9ea1326e8770d854c45a21"),
   },
   {
     "_id":        ObjectId("4f9ea1326e8770d854c45a23"),
     title:        "President",
-    person:       ObjectId("4f9ea1326e8770d854c45a1e"), // bill-clinton
+    person:       ObjectId("4f9ea1316e8770d854c45a1e"), // bill-clinton
     organisation: ObjectId("4f9ea1326e8770d854c45a21"),
   },
   {
     "_id":        ObjectId("4f9ea1326e8770d854c45a24"),
     title:        "President",
-    person:       ObjectId("4f9ea1326e8770d854c45a1f"), // george-w-bush
+    person:       ObjectId("4f9ea1316e8770d854c45a1f"), // george-w-bush
     organisation: ObjectId("4f9ea1326e8770d854c45a21"),
   },
   {

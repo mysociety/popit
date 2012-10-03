@@ -62,6 +62,13 @@ if locals.user
   
 body(id="popit-#{ locals.popit ? popit.instance_name() : 'no-site-found' }", class=bodyClasses)
 
+  if config.show_dev_site_warning
+    #dev-site-warning
+      strong WARNING!
+      |  This is a development site and data may be deleted at any time 
+      a(href="/_dev") (dev tools)
+      | .
+
   //- output any flash messages that we have
   - var flash_info = flash('info')
   if flash_info.length
@@ -85,6 +92,10 @@ body(id="popit-#{ locals.popit ? popit.instance_name() : 'no-site-found' }", cla
             
     #user_menu
       ul
+
+        li
+          img#ajax-loader(style="display: none;", src="/img/ajax-loader.gif")
+
         if locals.user
           li#signed_in
             | Signed in as 
@@ -103,6 +114,8 @@ body(id="popit-#{ locals.popit ? popit.instance_name() : 'no-site-found' }", cla
           a(href='/') Home
         li
           a(href='/person') People
+        li
+          a(href='/organisation') Organisations
         li
           a(href='/about') About Us
         li
@@ -163,8 +176,13 @@ body(id="popit-#{ locals.popit ? popit.instance_name() : 'no-site-found' }", cla
 
 
     .copyright
-      | &copy; 2012 mySociety.org - v#{config.popit_version}
+      | &copy; 2012 mySociety.org
+      |  - v#{config.popit_version}
 
+      //- This is used to indicate to the test suite that the admin app is loaded.
+      br
+      span#instance-app-activated.admin-options
+        | admin on
       
 
 //- manually close the html tag as we opened it in a funny way using the conditional comments above

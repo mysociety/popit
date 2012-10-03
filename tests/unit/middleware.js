@@ -21,7 +21,7 @@ exports.exports = {
     
         // slug.popitdomain.org tests
         tests['foo.'    + suffix] = 'foo';
-        tests['foobar.' + suffix] = 'foobar';
+        tests['test.' + suffix] = 'test';
         tests['f12345.' + suffix] = 'f12345';
             
         test.expect(tests.length);

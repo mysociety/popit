@@ -99,7 +99,7 @@ body.brand_page #user_menu{
 		}
 	}
 }
-.person{
+.entity{
 	p{
 		font-size: 1.125em;
 		line-height: 1.667em;
@@ -129,7 +129,7 @@ p.intro{
 // -----------------------
 //	Person Header and nav
 // -----------------------
-header.person-header-nav{
+header.entity-header-nav{
 	
 	margin-left:-1.6875em;
 	margin-right: -1.6875em;
@@ -148,7 +148,7 @@ header.person-header-nav{
 		overflow:hidden;
 	}
 	
-	.find-person{
+	.find-entity{
 		margin:0;
 		float:right;
 //		width: 7.5em;
@@ -169,11 +169,11 @@ header.person-header-nav{
 			}
 		}
 	}
-	&.focus-search .find-person{
+	&.focus-search .find-entity{
 		width: 29.5em;
 	}
 	
-	.current-person{
+	.current-entity{
     width: 100%;
 //    width: 16em;
 		height: 2em;
@@ -189,18 +189,18 @@ header.person-header-nav{
 		text-overflow: ellipsis; 
 		white-space: nowrap;
 	}
-	&.focus-search .current-person{
+	&.focus-search .current-entity{
 		width: 6em;
 	}
 	
-	.find-person, .current-person{
+	.find-entity, .current-entity{
 		-webkit-transition: width 0.5s ease-out;
 		   -moz-transition: width 0.5s ease-out;
 		     -o-transition: width 0.5s ease-out;
 		        transition: width 0.5s ease-out;
 	}
 	
-	a.previous-person, a.next-person{
+	a.previous-entity, a.next-entity{
 		width:11.25em;
 		float:left;
 		text-decoration: none;
@@ -231,7 +231,7 @@ header.person-header-nav{
 //			margin-top:-3px;
 //		}
 	}
-	a.next-person{
+	a.next-entity{
 		text-align: right;
 		padding:0.75em 2.8125em 0.75em 0.625em;
 		background: #b3b3b3 url(../img/arrow-right.png) no-repeat scroll right center;
@@ -269,7 +269,7 @@ header.person-header-nav{
 
 
 
-article.person{
+article.entity{
 
   .admin-options {
     float:right;    
@@ -331,6 +331,7 @@ article.person{
 		}
 		img{
 			max-width:100%;
+			border: 1px solid #ddd;
 		}
 		
 	}
@@ -359,7 +360,7 @@ article.person{
 }
 // Just to demo design states admin options shouldn't be in the html if not signed in.
 .admin-options{ visibility:hidden; }
-body.signed_in .admin-options{ visibility: visible; }
+body.instance-admin-app-active .admin-options{ visibility: visible; }
 
 
 
@@ -536,4 +537,18 @@ div.homepage-summary-box {
   input:focus {
     width: 12em;
   }
+}
+
+@import "compass/css3/transform";
+
+#dev-site-warning {
+  position: absolute;
+  background-color: #faa;
+  background-color: rgba(255, 128, 128, 0.4);
+  padding: 0.25em;
+  height: 1.5em;
+  width: 39.5em;
+  text-align: center;
+  @include apply-origin(0.75em, 1em);
+  @include rotate(90deg);	
 }

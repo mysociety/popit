@@ -1,7 +1,7 @@
 
 
 exports.instances = [
-    {   slug:   'foobar',
+    {   slug:   'test',
         status: 'active',
      },
 ];

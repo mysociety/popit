@@ -1,4 +1,4 @@
-require 'popit_watir_test_case'
+require 'lib/popit_watir_test_case'
 require 'pry'
 require 'net/http'
 require 'uri'
@@ -26,8 +26,10 @@ class HostingTests < PopItWatirTestCase
     goto_hosting_site
     delete_instance 'test'
 
-    # check that the instance does not exist
-    goto "/instances/test"
+    # check that the instance does not exist - use testing=1 so that the proper
+    # url is not cached by varnish as a 404. This allows these tests to be run
+    # against the development machine.
+    goto "/instances/test?testing=1"
     assert_equal "Page not found", @b.title    
 
     # go to the create new site page

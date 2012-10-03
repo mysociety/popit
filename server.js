@@ -5,8 +5,10 @@
 
 var connect        = require('connect'),
     config         = require('config'),
+    winston        = require('./lib/popit_winston'),
     hosting_app    = require('./hosting-app/app'),
     utils          = require('./lib/utils'),
+    format         = require('util').format,
     instance_app   = require('./instance-app/app');
 
 connect(
@@ -18,10 +20,13 @@ connect(
 )
 .listen(config.server.port);
 
-console.log( '\033[1m started at: \033[32m' + new Date() + '\033[0m' );
-console.log(
-  "\033[1m PopIt hosting and instance apps started: \033[36mhttp://%s:%s\033[0m",
-  config.hosting_server.host, config.server.port
+winston.info( '\033[1m started at: \033[32m' + new Date() + '\033[0m' );
+winston.info(
+  format(
+    "\033[1m PopIt hosting and instance apps started: \033[36mhttp://%s:%s\033[0m",
+    config.hosting_server.host,
+    config.server.port
+  )
 );
 
 utils.checkDatabaseConnection();

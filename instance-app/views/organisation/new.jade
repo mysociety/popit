@@ -1,24 +1,11 @@
-extend ../layout
+#new-organisation
+  h1 Add a organisation
+  
+  form(name="create-new-organisation")
+    // more content inserted in the bb view
 
-block title
-  | New Organisation
-
-block content
-  h1 Create a new organisation
-
-  form(method="post", action="")
-    #organisation_new_name
-      label Name
-      input(name="name", value=organisation.name)
-      if errors.name
-        span.error #{errors.name.type}
-
-    if locals.require_slug
-      p#organisation_new_slug
-        label Slug
-        input(name="slug", value=organisation.slug)
-        span.help  Can't create one automatically from the name
-        if errors.slug
-          span.error #{errors.slug.type}
-
-    input(type="submit", class="btn", value="Create new organisation")
+    h2 Suggestions
+    ul.suggestions
+    
+    input(type='submit', value="Create new organisation")
+    

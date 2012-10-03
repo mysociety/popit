@@ -1,0 +1,40 @@
+language: node_js
+
+node_js:
+  - 0.8
+
+# don't test production - the only real difference is that production has static
+# assets committed. As these are generated as part of the test suite testing
+# production would not tell us anything new.
+branches:
+  only:
+    - master
+
+services:
+  - mongodb
+
+before_install:
+  - export DEBIAN_FRONTEND=noninteractive
+  - sudo apt-get -y update
+  # don't try to install mongo as it conflicts with the mongo provided by travis
+  # don't install compass using apt as the paths then get confused with the rnm. Use gem instead.
+  - sudo apt-get -y install `cut -d " " -f 1 config/packages | egrep -v "(^#|mongodb|compass)"`
+  - sudo gem install watir-webdriver pry compass
+
+
+# The Watir tests will be set up to use FireFox which will then run headless using xvfb
+before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - export WATIR_BROWSER=firefox
+
+notifications:
+  irc: "irc.mysociety.org#popit"
+  use_notice: true
+  skip_join: true
+
+env:
+  global:
+    - LOGGLY_SUBDOMAIN=mysociety
+    # the encrypted LOGGLY_INPUT_TOKEN entry
+    - secure: "eR3a6RbnYMdNZcSeASapaYZSUO0gaUb8RVmOikHRQJUujsS0aGKIHPFwk22U\nmvhZlBeXwIX/jngK9A4kk8eRBDXybWG+JwZ1fWVH2GVe4pCEGQhONvsodXzF\njWOXXQyE7HFL/xyd+eE1r52hrDf+KvJCjRPmNJyMUATSZM9zSMA="

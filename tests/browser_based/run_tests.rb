@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'test/unit'
 
 # Change to the directory this file is in, and add it to the load path
@@ -7,7 +9,6 @@ $LOAD_PATH.unshift '.'
 # List all the files that we should ignore because they do not contain tests
 ignore_files = [
   File.basename(__FILE__),   # this file
-  'popit_watir_test_case.rb' # library file
 ]
 
 # get all the ruby files in this directory

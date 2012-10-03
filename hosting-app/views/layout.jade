@@ -52,6 +52,14 @@ head
 
     
 body#popit-united_kingdom.brand_page
+
+  if config.show_dev_site_warning
+    #dev-site-warning
+      strong WARNING!
+      |  This is a development site and data may be deleted at any time 
+      a(href="/_dev") (dev tools)
+      | .
+
   header#header
     h1.logo
       abbr(title='People Organisations Positions') Pop

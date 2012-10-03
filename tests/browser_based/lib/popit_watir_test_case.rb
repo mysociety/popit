@@ -13,10 +13,23 @@ class PopItWatirTestCase < Test::Unit::TestCase
     # (which will also build the assets and start the testing server on that
     # port). 
     @test_port = ENV['NODE_ENV'] == 'testing' ? 3100 : 3000
-    @test_hosting_url  = "http://www.127.0.0.1.xip.io:#{@test_port}/"
+    @test_hosting_url  = ENV['WATIR_HOSTING_URL'] || "http://www.127.0.0.1.xip.io:#{@test_port}/"
 
     # create the browser and go to the homepage
-    @b = Watir::Browser.new :chrome
+    @b = Watir::Browser.new ENV['WATIR_BROWSER'] || :chrome
+    
+    # add checker that will wait for admin app to run if needed - this is mostly
+    # for tests that run against remote servers where activating the javascript
+    # might take a while.
+    @b.add_checker(
+      Proc.new do
+        if @b.li(:id => 'signed_in').present?
+          @b.wait_until { @b.element(:id => 'instance-app-activated').present? }
+        end
+      end
+    )
+    
+    
     @b.goto @test_hosting_url
   end
 
@@ -91,4 +104,12 @@ class PopItWatirTestCase < Test::Unit::TestCase
     assert_match 'Signed in as owner@example.com', @b.li(:id, 'signed_in').text
   end
 
+  def wait_for_ajax_requests_to_end
+    @b.wait_until { ! @b.element(:id, 'ajax-loader').present? }
+  end
+
+  def assert_path(expected)
+    assert_equal URI.parse(@b.url).path, expected
+  end
+  
 end

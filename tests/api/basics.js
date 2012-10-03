@@ -14,7 +14,7 @@ module.exports = {
 
     setUp: function (setUp_done) {
         
-      this.rest = new rest('foobar','v1');
+      this.rest = new rest('test','v1');
 
       utils.delete_all_testing_databases( function () {
         utils.load_test_fixtures( function () {
@@ -59,10 +59,10 @@ module.exports = {
           {
             "comment": "This is the API entry point - use a '*_api_url' link in 'meta' to search a collection.",
             "meta": {
-              "person_api_url":       "http://foobar.127.0.0.1.xip.io:3100/api/v1/person",
-              "organisation_api_url": "http://foobar.127.0.0.1.xip.io:3100/api/v1/organisation",
-              "position_api_url":     "http://foobar.127.0.0.1.xip.io:3100/api/v1/position",
-              "image_proxy_url":      "http://foobar.127.0.0.1.xip.io:3100/image-proxy/"
+              "person_api_url":       "http://test.127.0.0.1.xip.io:3100/api/v1/person",
+              "organisation_api_url": "http://test.127.0.0.1.xip.io:3100/api/v1/organisation",
+              "position_api_url":     "http://test.127.0.0.1.xip.io:3100/api/v1/position",
+              "image_proxy_url":      "http://test.127.0.0.1.xip.io:3100/image-proxy/"
             }
           },
           "response in links to parts of the API"
@@ -139,8 +139,8 @@ module.exports = {
               name:    'George Bush',
               summary: '41th President of the United States',
               meta: {
-                api_url:  'http://foobar.127.0.0.1.xip.io:3100/api/v1/person/4f9ea1306e8770d854c45a1d',
-                edit_url: 'http://foobar.127.0.0.1.xip.io:3100/person/george-bush',
+                api_url:  'http://test.127.0.0.1.xip.io:3100/api/v1/person/4f9ea1306e8770d854c45a1d',
+                edit_url: 'http://test.127.0.0.1.xip.io:3100/person/george-bush',
               },
             },
             "george-bush details correct"
@@ -171,7 +171,7 @@ module.exports = {
           // test that the api_url is correct
           test.equal(
             _.sortBy( results, 'slug')[0].meta.api_url,
-            'http://foobar.127.0.0.1.xip.io:3100/api/v1/person/4f9ea1306e8770d854c45a1d',
+            'http://test.127.0.0.1.xip.io:3100/api/v1/person/4f9ea1306e8770d854c45a1d',
             "got api_url as expected"
           );
                     
@@ -206,7 +206,7 @@ module.exports = {
               name_words: [ 'george', 'bush' ],
               name_dm: [ 'JRJ', 'KRK', 'PX', 'PX', 'george', 'bush' ],
               meta: {
-                edit_url: 'http://foobar.127.0.0.1.xip.io:3100/person/george-bush',
+                edit_url: 'http://test.127.0.0.1.xip.io:3100/person/george-bush',
               },
             },
             "george-bush details correct"
@@ -284,7 +284,7 @@ module.exports = {
       test.expect(2);
       
       this.rest
-        .get('position?person=4f9ea1326e8770d854c45a1e') // Clinton
+        .get('position?person=4f9ea1316e8770d854c45a1e') // Clinton
         .on('complete', function(data, response) {
           test.equal(response.statusCode, 200, "got 200 response");
 
@@ -294,11 +294,11 @@ module.exports = {
             [{
               _id:          '4f9ea1326e8770d854c45a23',
               title:        'President',
-              person:       '4f9ea1326e8770d854c45a1e',
+              person:       '4f9ea1316e8770d854c45a1e',
               organisation: '4f9ea1326e8770d854c45a21',
               meta: {
-                api_url: 'http://foobar.127.0.0.1.xip.io:3100/api/v1/position/4f9ea1326e8770d854c45a23',
-                edit_url: 'http://foobar.127.0.0.1.xip.io:3100/position/4f9ea1326e8770d854c45a23'
+                api_url: 'http://test.127.0.0.1.xip.io:3100/api/v1/position/4f9ea1326e8770d854c45a23',
+                edit_url: 'http://test.127.0.0.1.xip.io:3100/position/4f9ea1326e8770d854c45a23'
               },
             }],
             "got Clinton's Presidency"

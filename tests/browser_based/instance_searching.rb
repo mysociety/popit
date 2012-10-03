@@ -2,7 +2,7 @@
 # coding: UTF-8
 # -*- coding: UTF-8 -*-
 
-require 'popit_watir_test_case'
+require 'lib/popit_watir_test_case'
 require 'pry'
 
 
@@ -18,6 +18,10 @@ class InstanceSearchingTests < PopItWatirTestCase
   def run_search (term)
     @b.text_field(:id, 'header_search_box').set term
     @b.send_keys :enter
+
+    # wait for the search to run - checking to see that the search box is
+    # empty is one waf to do this.
+    @b.wait_until { @b.text_field(:id, 'header_search_box').text == '' }
   end
 
   ######################
@@ -32,14 +36,14 @@ class InstanceSearchingTests < PopItWatirTestCase
     prep_for_test
     run_search 'Clinton'      
     # only one result should redirect straight to the result
-    assert_match @b.url, /\/person\/bill-clinton/
+    assert_path '/person/bill-clinton'
   end    
 
   def test_multi_result_search
     prep_for_test
     run_search 'George'
     
-    assert_match @b.url, /\/search/
+    assert_path '/search'
     assert @b.link(:text, "George Bush").present?
     assert @b.link(:text, "George W. Bush").present?
   end
@@ -48,7 +52,7 @@ class InstanceSearchingTests < PopItWatirTestCase
     prep_for_test
     run_search 'Bash'  # note the 'a' instead of 'u'
     
-    assert_match @b.url, /\/search/
+    assert_path '/search'
     assert @b.link(:text, "George Bush").present?
     assert @b.link(:text, "George W. Bush").present?
   end

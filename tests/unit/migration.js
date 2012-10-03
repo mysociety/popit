@@ -36,8 +36,8 @@ module.exports = {
         test.equal( migration.source.parsed.header.length, 0, 'empty parsed source header' );
         test.equal( migration.source.parsed.data, null, 'empty parsed source data' );
 
-        migration.source.name ="FooBar";
-        test.equal( migration.source.name, "FooBar", 'source name changed' );
+        migration.source.name ="TestSource";
+        test.equal( migration.source.name, "TestSource", 'source name changed' );
 
         migration.source.mime_type ="text/csv";
         test.equal( migration.source.mime_type, "text/csv", 'source mime_type changed' );

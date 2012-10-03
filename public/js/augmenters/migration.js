@@ -8,20 +8,21 @@
 require(['jquery', 'underscore'], function ($, _) {
   $(function() {
 
-    var myTimer;
+    var migration_progress_poll_id;
 
     var getUpdate = function() {
        $.getJSON('/migration/progress/'+id, function(json) {
-        var s = 'Imported ' + json.progress+' of '+json.total+' items.';
+        var status_html = 'Imported ' + json.progress+' of '+json.total+' items.';
         if (json.total === json.progress && json.count >= 0) {
-          s = 'Finished importing <a href="/person" id="_finished">'+json.count+'</a> people.';
-          clearInterval(myTimer);
+          status_html = 'Finished importing <a href="/person" id="_finished">'+json.count+'</a> people.';
+          $('#migration_completed_message').show();
+          clearInterval(migration_progress_poll_id);
         }
         if (json.err && json.err.name) {
-          s = 'An error occured: <br><pre>'+json.err.name+'\n\n'+json.err.err+'</pre>';
+          status_html = 'An error occured: <br><pre>'+json.err.name+'\n\n'+json.err.err+'</pre>';
           $('.progress').addClass('error');
         }
-        $('.progress').html(s);
+        $('.progress').html(status_html);
       })
     }
 
@@ -30,10 +31,8 @@ require(['jquery', 'underscore'], function ($, _) {
       var arr = window.location.pathname.split('/');
       var id = arr[arr.length-1];
 
-      getUpdate();
-      myTimer = window.setInterval(function() {
-        getUpdate();
-      }, 2000);
+      // Poll for updates every second. Wait one second before polling
+      migration_progress_poll_id = window.setInterval( getUpdate, 1000 );
     };
 
     $('.history-back').click(function(e){

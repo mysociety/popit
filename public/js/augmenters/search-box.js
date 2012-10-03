@@ -5,10 +5,10 @@
 require(['jquery'], function($) {
   $(document).ready(function() {
 
-  	$('#person-search').focus(function(event) {
-  		$('.person-header-nav').addClass('focus-search');
+  	$('#entity-search').focus(function(event) {
+  		$('.entity-header-nav').addClass('focus-search');
   	}).blur(function(event) {
-  		$('.person-header-nav').removeClass('focus-search');
+  		$('.entity-header-nav').removeClass('focus-search');
   	});
 
   });

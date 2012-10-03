@@ -8,6 +8,15 @@ module.exports = {
     // Don't use minified assets - makes dev easier as no js rebuild required
     public_dir: 'public',
 
+    // show the worning on the web pages
+    show_dev_site_warning: true,
+
+    // log to the console, and log more
+    logging: {
+      log_to_console: true,
+      log_level:      'verbose',
+    },
+
     MongoDB: {
         popit_prefix: 'popitdev_',
     },

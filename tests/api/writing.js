@@ -14,7 +14,7 @@ module.exports = {
 
     setUp: function (setUp_done) {
         
-      this.rest = new rest('foobar','v1');
+      this.rest = new rest('test','v1');
 
       utils.delete_all_testing_databases( function () {
         utils.load_test_fixtures( function () {
@@ -317,7 +317,7 @@ module.exports = {
           // add a document to the collection
           function (cb) {
             rest
-              .post(sub_collection_url, { data: { url: 'http://foobar.com', comment: "sample url"}})
+              .post(sub_collection_url, { data: { url: 'http://test.com', comment: "sample url"}})
               .on('complete', function (data, response) {
                 test.equal(response.statusCode, 200, "got 200 - embedded document created");              
 
@@ -330,7 +330,7 @@ module.exports = {
 
                 test.equal(data.ok, true, "got 'ok' in JSON" );
                 test.equal(data.api_url, sub_document_url, "got correct sub-document url" );
-                test.equal(data.result.url, 'http://foobar.com', "got object back too");
+                test.equal(data.result.url, 'http://test.com', "got object back too");
 
                 cb();
               });
@@ -338,7 +338,7 @@ module.exports = {
           // check that the sub_document_url works
           function (cb) {
             rest.get(sub_document_url).on('complete', function(data, response) {
-              test.equal(data.result.url, 'http://foobar.com', "new link url correct");
+              test.equal(data.result.url, 'http://test.com', "new link url correct");
               cb();
             })
           },
@@ -401,7 +401,7 @@ module.exports = {
                     contact_details: [],
                     name_words:      [ 'joe', 'bloggs' ],
                     name_dm:         [ 'J', 'A', 'PLKS', 'PLKS', 'joe', 'bloggs' ],                    
-                    meta: { edit_url: 'http://foobar.127.0.0.1.xip.io:3100/person/joe-bloggs' },
+                    meta: { edit_url: 'http://test.127.0.0.1.xip.io:3100/person/joe-bloggs' },
                   },
                   "Person created as expected"
                 );
@@ -440,7 +440,7 @@ module.exports = {
                     contact_details: [],
                     name_words:      [ 'joe', 'bloggs' ],
                     name_dm:         [ 'J', 'A', 'PLKS', 'PLKS', 'joe', 'bloggs' ],                    
-                    meta: { edit_url: 'http://foobar.127.0.0.1.xip.io:3100/person/joe-bloggs' },
+                    meta: { edit_url: 'http://test.127.0.0.1.xip.io:3100/person/joe-bloggs' },
                   },
                   "Person updated as expected"
                 );

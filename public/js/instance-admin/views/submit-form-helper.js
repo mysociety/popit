@@ -43,6 +43,11 @@ define(
     
     
         if (_.isEmpty(errors)) {
+
+          if (options.pre_save_cb) {
+            options.pre_save_cb();
+          }
+
           self.model.save(
             {},
             {

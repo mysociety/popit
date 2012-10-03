@@ -7,7 +7,7 @@ require 'test/unit'
 # make it possible to load the test cases from the local directory
 $:.unshift File.dirname(__FILE__)
 
-require 'popit_watir_test_case'
+require 'lib/popit_watir_test_case'
 require 'pry'
 require 'net/http'
 require 'uri'
@@ -22,7 +22,7 @@ class MigrationTests < PopItWatirTestCase
     goto '/migration/'
 
     # try to open migration tool, get sent to login page
-    assert_match /\login$/, @b.url 
+    assert_path '/login' 
 
     login_as_instance_owner
     assert_equal 'Migration Tool', @b.title
@@ -38,7 +38,7 @@ class MigrationTests < PopItWatirTestCase
     assert_equal 'Migration Tool', @b.title
 
     # upload test file
-    @b.file_field(:name => 'source').set( File.join( File.dirname(__FILE__), 'migration_sample.csv') )
+    @b.file_field(:name => 'source').set( File.join( File.dirname(__FILE__), 'static/migration_sample.csv') )
     @b.input(:type => 'submit').click
 
     # define the mapping
@@ -69,11 +69,16 @@ class MigrationTests < PopItWatirTestCase
     # start migration
     @b.input(:type => 'submit').click
 
+    # check migration has started and the completed message not shown
     assert_equal 'Status of Migration', @b.h1(:id => "status").text
+    assert ! @b.div(:id => 'migration_completed_message').present?
 
     # wait for successful completion
     @b.link(:id => "_finished").wait_until_present
     assert_equal '2', @b.link(:id => "_finished").text
+
+    # Check that the completed message is shown
+    assert @b.div(:id => 'migration_completed_message').present?
 
     # check that the names are there correctly
     @b.link(:id => "_finished").click
@@ -93,7 +98,7 @@ class MigrationTests < PopItWatirTestCase
     assert_equal 'Migration Tool', @b.title
 
     # upload test file
-    @b.file_field(:name => 'source').set( File.join( File.dirname(__FILE__), 'migration_sample_win1252.csv') )
+    @b.file_field(:name => 'source').set( File.join( File.dirname(__FILE__), 'static/migration_sample_win1252.csv') )
     @b.input(:type => 'submit').click
 
     # define the mapping

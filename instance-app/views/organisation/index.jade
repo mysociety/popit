@@ -9,8 +9,10 @@ block meta_headers
 block content
   h1 Organisations
   
-  p
-    a(href="/organisation/new") Create a new organisation
+  p.admin-options
+    a(class="new-organisation add", href="#") 
+      strong + Add
+      |  a new organisation
 
   if organisations.length
     ul
@@ -21,4 +23,22 @@ block content
           a(href="#{ organisation.slug_url }") #{ organisation.name }  
 
   else
-    p.error There are no organisations in the system yet
+    if locals.user
+      div.info
+        h3 
+          | There are no organisations in the system yet, you should probably 
+          a(class="new-organisation add", href="#")
+            strong add one now
+          | !
+      
+        p
+          | You just need to provide their name, once you've 
+          | created their page you can add more details.
+      
+        p
+          | If you already have data in a spreadsheet or similar you can use the 
+          a(href="/migration", id="migration_tool") migration tool
+          |  to import it.
+    else
+      div.info
+        | No organisations have been entered yet.
