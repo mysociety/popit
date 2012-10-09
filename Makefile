@@ -3,7 +3,6 @@
 # error if tests fail. Otherwise make will not abort.
 REPORTER = default 
 
-LINT    = ./node_modules/.bin/jslint --indent 2 --white --nomen
 FOREVER = ./node_modules/.bin/forever
 
 WAIT_FOR_SERVER   = sleep 5
@@ -35,12 +34,9 @@ npm-shrinkwrap:
 	npm shrinkwrap
 
 
-lint:
-	find lib          -name '*.js' | xargs -n 1 $(LINT) --node --
-	find instance-app -name '*.js' | xargs -n 1 $(LINT) --node --
-	find hosting-app  -name '*.js' | xargs -n 1 $(LINT) --node --
-	find public/js    -name '*.js' | xargs -n 1 $(LINT) --browser --
-
+jshint:
+	jshint lib/ hosting-app/ instance-app/ tests/
+	cd public/js; jshint
 
 css:
 	compass compile
@@ -87,7 +83,7 @@ tidy:
 	# sass-convert --recursive --in-place --from scss --to scss public/sass/
 
 
-test: node-modules test-unit test-api test-browser
+test: node-modules test-unit test-api test-browser jshint
 	echo "ALL TESTS PASS"
 
 test-unit:
