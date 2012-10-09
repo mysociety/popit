@@ -29,7 +29,11 @@ var test_dates = [
 
 
 var mongoose          = require('mongoose'),
-    Schema            = mongoose.Schema;
+    Schema            = mongoose.Schema,
+    Twix              = require('twix/bin/twix');
+
+    // for when https://github.com/icambron/twix.js/pull/2 applied
+    // Twix              = require('twix');
 
 function dateRangePlugin (schema, options) {
 
@@ -42,6 +46,17 @@ function dateRangePlugin (schema, options) {
   };
 
   schema.add(args);
+  
+  schema
+    .virtual(fieldName + '.format')
+    .get(function() {
+      var twix = new Twix(
+        this[fieldName].start,
+        this[fieldName].end,
+        true                      // all day events - don't show the times
+      );
+      return twix.format();
+    });
 
 }
 
@@ -122,7 +137,7 @@ module.exports = {
     });
   },
 
-  "test sorting desc": function ( test ) {    
+  "test sorting desc": function ( test ) {
     test.expect( 2 );    
 
     this.test_model
@@ -146,6 +161,39 @@ module.exports = {
             '3 Jan 2012',
             '2 Jan 2012',
             '1 Jan 2012',
+          ],
+          "desc sorting as expected"
+        );
+      test.done();
+    });
+  },
+
+
+  "test stringification": function ( test ) {
+    test.expect( 2 );    
+
+    this.test_model
+      .find()
+      .sort('name')
+      .exec(function(err, docs) {
+        test.ifError(err);
+        test.deepEqual(
+          _.map(docs, function (doc) {
+            return [ doc.name, doc.theDate.format ];
+          }),
+          [
+            [ '1 Jan 2012', 'Jan 1' ],
+            [ '2 Jan 2012', 'Jan 2' ],
+            [ '2012',       'Jan 1 - Dec 31' ],
+            [ '2013',       'Jan 1 - Dec 31, 2013' ],
+            [ '3 Jan 2012', 'Jan 3' ],
+            [ 'Apr 2012',   'Apr 1 - 30' ],
+            [ 'Feb 2012',   'Feb 1 - 28' ],
+            [ 'Jan 2012',   'Jan 1 - 31' ],
+            [ 'Mar 2012',   'Mar 1 - 31' ],
+            [ 'May 2012',   'May 1 - 31' ],
+            [ 'Q1 2012',    'Jan 1 - Mar 31' ],
+            [ 'Q2 2012',    'Apr 1 - Jun 30' ],
           ],
           "desc sorting as expected"
         );
