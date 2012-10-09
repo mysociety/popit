@@ -1,3 +1,4 @@
+"use strict";
 
 /**
  * Module dependencies.
@@ -20,10 +21,10 @@ connect(
 )
 .listen(config.server.port);
 
-winston.info( '\033[1m started at: \033[32m' + new Date() + '\033[0m' );
+winston.info( 'started at: ' + new Date() );
 winston.info(
   format(
-    "\033[1m PopIt hosting and instance apps started: \033[36mhttp://%s:%s\033[0m",
+    "PopIt hosting and instance apps started: http://%s:%s",
     config.hosting_server.host,
     config.server.port
   )

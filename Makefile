@@ -35,7 +35,7 @@ npm-shrinkwrap:
 
 
 jshint:
-	$(JSHINT) lib/ hosting-app/ instance-app/ tests/
+	$(JSHINT) *.js lib/ hosting-app/ instance-app/ tests/
 	cd public/js; ../../$(JSHINT) .
 
 css:
