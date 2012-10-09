@@ -612,29 +612,6 @@
         }
       }
     },
-    "superagent": {
-      "version": "0.9.4",
-      "dependencies": {
-        "qs": {
-          "version": "0.4.2"
-        },
-        "formidable": {
-          "version": "1.0.9"
-        },
-        "mime": {
-          "version": "1.2.5"
-        },
-        "emitter-component": {
-          "version": "0.0.5"
-        },
-        "methods": {
-          "version": "0.0.1"
-        },
-        "cookiejar": {
-          "version": "1.3.0"
-        }
-      }
-    },
     "supervisor": {
       "version": "0.4.1"
     },
