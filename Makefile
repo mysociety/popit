@@ -83,7 +83,7 @@ tidy:
 	# sass-convert --recursive --in-place --from scss --to scss public/sass/
 
 
-test: node-modules test-unit test-api test-browser jshint 
+test: jshint node-modules test-unit test-api test-browser 
 	echo "ALL TESTS PASS"
 
 test-unit:

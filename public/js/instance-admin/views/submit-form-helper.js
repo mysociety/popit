@@ -6,7 +6,7 @@ how to display errors back to the user by adding them to the form.
 */
 
 define(
-  ['jQuery', 'underscore'],
+  ['jquery', 'underscore'],
   function($,_) {
     "use strict"; 
 
