@@ -1,3 +1,5 @@
+"use strict"; 
+
 var Validator     = require('validator').Validator,
     sanitize      = require('validator').sanitize,
     mongoose      = require('mongoose'),
@@ -173,7 +175,7 @@ exports.route = function (app) {
                 if (err) throw err;
             
                 // create the entry needed in the users table
-                user = new User({
+                var user = new User({
                     email: instance.email,
                     hashed_password: instance.setup_info.password_hash,
                 });

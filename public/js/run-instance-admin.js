@@ -20,6 +20,7 @@ require ([
 require (
   [ 'order!jquery', 'instance-admin/app' ],
   function ($, App) {
+    "use strict"; 
 
     // TODO - we shouldn't be mucking around with the global jQuery behaviour like this.
     // handle the API wrapping the responses in result(s): {...}

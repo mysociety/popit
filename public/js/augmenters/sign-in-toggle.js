@@ -4,6 +4,8 @@
 // ------------------------
 
 require(['jquery'], function($) {
+  "use strict";
+
   $(function() {
 
     var $sign_in = $('#sign_in');

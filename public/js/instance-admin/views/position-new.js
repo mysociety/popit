@@ -26,7 +26,7 @@ define(
     SuggestionsView,
     select2Helpers
   ) {
-        
+    "use strict"; 
   
     var PositionNewView = Backbone.View.extend({
   

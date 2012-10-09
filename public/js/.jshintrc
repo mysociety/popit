@@ -1,3 +1,4 @@
 {
-    "browser": true
+    "browser": true,
+    "strict": true
 }

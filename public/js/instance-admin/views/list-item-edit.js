@@ -14,6 +14,7 @@ define(
     BackboneForms,
     submitFormHelper
   ) {
+    "use strict"; 
 
     var ListItemEditView = Backbone.View.extend({
   

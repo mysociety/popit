@@ -1,3 +1,4 @@
+"use strict"; 
 
 /**
  *  Hosting server
@@ -57,7 +58,7 @@ app.configure('development', function(){
 
 app.configure('production', function(){
   app.use(express.errorHandler());
-});
+ });
 
 // Routes
 require('./routes').route(app);

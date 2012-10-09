@@ -1,4 +1,3 @@
-
 // ------------------------
 // Migration page
 // ------------------------
@@ -6,9 +5,9 @@
 
 
 require(['jquery', 'underscore'], function ($, _) {
-  $(function() {
-    "use strict";
+  "use strict";
 
+  $(function() {
     var migration_progress_poll_id;
 
     var getUpdate = function() {

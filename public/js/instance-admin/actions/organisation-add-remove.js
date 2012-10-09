@@ -18,6 +18,7 @@ define(
     OrganisationNewView,
     OrganisationRemoveView
   ) {
+    "use strict"; 
 
     App.addInitializer(function(options){
 

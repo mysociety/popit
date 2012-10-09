@@ -11,41 +11,43 @@ define(
     SuggestionsCollection,
     compactListTemplate
    ) {
+     "use strict"; 
 
-  var SuggestionsView = Backbone.View.extend({
-    tagName:   'ul',
-    className: 'suggestions',
-    collection: new SuggestionsCollection(),
-
-    render: function () {
-      var content = compactListTemplate({ items: this.collection.toJSON() });
-      this.$el.html( content );
-      return this;
-    },
+    var SuggestionsView = Backbone.View.extend({
+      tagName:   'ul',
+      className: 'suggestions',
+      collection: new SuggestionsCollection(),
     
-    setName: _.debounce(
-      function (name) {
-        var self = this;
-      
-        if (name) {
-          self.collection.fetch({
-            data: { name: name },
-            success: function () {
-              self.render();
-            }
-          });          
-        } else {
-          self.collection.reset();
-          self.render();
-        }
-        
-        return self;
+      render: function () {
+        var content = compactListTemplate({ items: this.collection.toJSON() });
+        this.$el.html( content );
+        return this;
       },
-      200 // delay 200 ms before requesting the name from the server
-    )
+      
+      setName: _.debounce(
+        function (name) {
+          var self = this;
+        
+          if (name) {
+            self.collection.fetch({
+              data: { name: name },
+              success: function () {
+                self.render();
+              }
+            });          
+          } else {
+            self.collection.reset();
+            self.render();
+          }
+          
+          return self;
+        },
+        200 // delay 200 ms before requesting the name from the server
+      )
+    
+    });
+    
+    return SuggestionsView;
 
-  });
-
-  return SuggestionsView;
-
-});
+  }
+);

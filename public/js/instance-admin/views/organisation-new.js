@@ -21,6 +21,7 @@ define(
     submitFormHelper,
     SuggestionsView
   ) {
+    "use strict"; 
 
     var OrganisationNewView = Backbone.View.extend({
   

@@ -3,6 +3,8 @@
 // ------------------------
 
 require(['jquery'], function($) {
+  "use strict"; 
+
   $(document).ready(function() {
 
     $('#entity-search').focus(function(event) {

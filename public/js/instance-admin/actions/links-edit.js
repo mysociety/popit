@@ -17,14 +17,14 @@ define(
     LinkModel,
     linkViewTemplate  
   ) {
-    
+    "use strict";     
 
     App.addInitializer(function(options){
 
       $('#content').on(
         'click',
         'a.link-edit',
-        ListItemEditor({
+        new ListItemEditor({
           model:    LinkModel,
           template: linkViewTemplate
         })

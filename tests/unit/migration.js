@@ -1,3 +1,5 @@
+"use strict"; 
+
 
 // switch to testing mode
 process.env.NODE_ENV = 'testing';
@@ -120,8 +122,8 @@ module.exports = {
 
         test.ok( migration.doImport, "migration tests" );
 
-        schema = 'person';
-        mappings = 
+        var schema = 'person';
+        var mappings = 
             [ [ 'title', 'name', 'Title' ],
               [ 'firstname', 'name', 'First name' ],
               [ 'middlename', 'name', 'Middle name' ],
@@ -151,7 +153,7 @@ module.exports = {
               [ 'senate_class', '', '' ],
               [ 'birthdate', 'name', 'Birthdate' ],
               [ '', '', '' ]];
-        data = {'675': 
+        var data = {'675': 
           [ 'Sen',
             'John',
             'A.',
@@ -247,8 +249,8 @@ module.exports = {
 
         test.ok( migration.doImport, "migration tests" );
 
-        schema = 'person';
-        mappings = 
+        var schema = 'person';
+        var mappings = 
             [ [ 'title', 'name', 'Title' ],
               [ 'summary', 'summary', 'Summary' ],
               [ 'firstname', 'name', 'First name' ],
@@ -266,7 +268,7 @@ module.exports = {
               [ 'twitter_id', 'id', 'Twitter' ],
               [ 'wikipedia_url', 'links', 'Wikipedia' ],
               [ '', '', '' ]];
-        data = {'675': 
+        var data = {'675': 
           [ 'Sir',
             'The wonderful Sir John A. Doe',
             'John',
@@ -356,11 +358,11 @@ module.exports = {
 
         test.ok( migration.doImport, "migration tests" );
 
-        schema = 'person';
-        mappings = 
+        var schema = 'person';
+        var mappings = 
             [ [ 'firstname', 'name', 'First name' ],
               [ 'lastname', 'name', 'Last name' ]];
-        data = {'675': 
+        var data = {'675': 
           [ 'John',
             'Doe'],
         '676': 
@@ -385,12 +387,12 @@ module.exports = {
       test.expect( 7 );
       var migration = new MigrationApp();
 
-      schema = 'person';
-      mappings = [
+      var schema = 'person';
+      var mappings = [
         [ 'firstname', 'name', 'First name' ],
         [ 'lastname', 'name', 'Last name' ],
         [ 'party', 'position', 'Party' ] ];
-      data = {'675':
+      var data = {'675':
         [ 'John',
           'Doe',
           'Aliens']};
@@ -430,11 +432,11 @@ module.exports = {
 
       var migration = new MigrationApp();
 
-      schema = 'person';
-      mappings = 
+      var schema = 'person';
+      var mappings = 
         [ [ 'firstname', 'name', 'First name' ],
         [ 'lastname', 'name', 'Last name' ] ];
-      data = {
+      var data = {
         '675': 
           [ 'John',
         'Doe' ],
@@ -465,11 +467,11 @@ module.exports = {
 
       var migration = new MigrationApp();
 
-      schema = 'person';
-      mappings = 
+      var schema = 'person';
+      var mappings = 
         [ [ 'firstname', 'name', 'First name' ],
         [ 'party', 'position', 'Member' ] ];
-      data = {
+      var data = {
         '0': 
           [ 'John',
         'Dem' ],
@@ -523,13 +525,13 @@ module.exports = {
 
         test.ok( migration.doImport, "migration tests" );
 
-        schema = 'person';
-        mappings = 
+        var schema = 'person';
+        var mappings = 
             [ [ 'name', 'name', 'Full name' ],
               [ ' email', 'contact', 'Email' ],
               [ ' links', 'links', 'Website' ],
               [ ' random', 'data', 'Random' ] ];
-        data = { '1': [ 'foo', ' foo@mail.com', ' fo.co.uk', 'orange' ],
+        var data = { '1': [ 'foo', ' foo@mail.com', ' fo.co.uk', 'orange' ],
                  '2': [ '', '', ' foo.de', 'blue' ],
                  '3': [ '', '', ' bar.de', '' ], 
                  '4': [ '', '', , 'purple' ]};
@@ -569,10 +571,10 @@ module.exports = {
 
         test.ok( migration.doImport, "migration tests" );
 
-        schema = 'person';
-        mappings = 
+        var schema = 'person';
+        var mappings = 
             [ [ 'name', 'name', 'Full name' ] ];
-        data = {
+        var data = {
           '1': [ 'D’Angelo “Oddball” Fritz' ]
         };
 

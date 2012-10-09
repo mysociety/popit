@@ -21,6 +21,7 @@ define(
     submitFormHelper,
     SuggestionsView
   ) {
+    "use strict"; 
 
     var PersonNewView = Backbone.View.extend({
   

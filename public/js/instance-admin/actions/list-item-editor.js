@@ -11,6 +11,8 @@ define(
     $,
     ListItemEditView
   ) {
+    "use strict"; 
+
     
     return function (args) {
 

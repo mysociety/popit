@@ -4,6 +4,8 @@
 // ------------------------
 
 require(['jquery'], function($) {
+  "use strict"; 
+
   $(document).ready(function() {
 
     $('a.close').click( function(event) {

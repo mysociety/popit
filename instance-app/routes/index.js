@@ -1,3 +1,5 @@
+"use strict"; 
+
 var Error404 = require('../../lib/errors').Error404,
     async    = require('async');
 

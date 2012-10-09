@@ -1,3 +1,5 @@
+"use strict"; 
+
 
 // switch to testing mode
 process.env.NODE_ENV = 'testing';
@@ -70,12 +72,12 @@ module.exports = {
             "throw error for non-existent schema"
         );
 
-        var userModel = popit.model('User');
-        test.ok( userModel, "got a model for User" );
+        var UserModel = popit.model('User');
+        test.ok( UserModel, "got a model for User" );
         
-        test.strictEqual( popit.model('User'), userModel, "get a cached model" );
+        test.strictEqual( popit.model('User'), UserModel, "get a cached model" );
         
-        var user      = new userModel({
+        var user = new UserModel({
             email:           "bob@example.com",
             hashed_password: "secret_hash",
         });
@@ -89,7 +91,7 @@ module.exports = {
             test.ok(object);
             test.equal(object.id, user.id, "IDs are the same");
             
-            userModel.findOne({email: user.email}, function(err, retrieved_user) {
+            UserModel.findOne({email: user.email}, function(err, retrieved_user) {
                 test.ifError(err, "no error retrieving");
                 test.ok(retrieved_user, "Found user in database");
                 test.done();

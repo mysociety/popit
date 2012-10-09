@@ -1,3 +1,5 @@
+"use strict"; 
+
 // Test that settings are correctly stored and retrieved, and that settings do not
 // leak from one instance to another.
 
@@ -81,6 +83,8 @@ module.exports = {
         // test values that are saved in setUp
         test.equal( foo.setting('test_key'), 'test_value_foo', "got correct saved value for foo");
         test.equal( bar.setting('test_key'), 'test_value_bar', "got correct saved value for bar");
+
+        var new_foo = null;
 
         async.series([
             function (cb) {

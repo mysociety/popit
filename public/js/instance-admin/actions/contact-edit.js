@@ -17,14 +17,14 @@ define(
     ContactModel,
     contactViewTemplate    
   ) {
-    
+    "use strict"; 
 
     App.addInitializer(function(options){
 
       $('#content').on(
         'click',
         'a.contact-edit',
-        ListItemEditor({
+        new ListItemEditor({
           model:    ContactModel,
           template: contactViewTemplate
         })

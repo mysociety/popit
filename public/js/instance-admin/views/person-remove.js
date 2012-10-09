@@ -18,6 +18,7 @@ define(
     submitFormHelper,
     SuggestionsView
   ) {
+    "use strict"; 
 
     var PersonRemoveView = Backbone.View.extend({
   
@@ -45,7 +46,7 @@ define(
               document.location = '/person';
             },
             error: function (model, response) {
-              alert("Something went wrong with the delete - please try again");
+              window.alert("Something went wrong with the delete - please try again");
             }
           }
         );

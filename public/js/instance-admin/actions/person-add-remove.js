@@ -18,6 +18,7 @@ define(
     PersonNewView,
     PersonRemoveView
   ) {
+    "use strict"; 
 
     App.addInitializer(function(options){
 

@@ -13,6 +13,7 @@ define(
     organisationRemoveTemplate,
     OrganisationModel
   ) {
+    "use strict"; 
 
     var OrganisationRemoveView = Backbone.View.extend({
   
@@ -40,7 +41,7 @@ define(
               document.location = '/organisation';
             },
             error: function (model, response) {
-              alert("Something went wrong with the delete - please try again");
+              window.alert("Something went wrong with the delete - please try again");
             }
           }
         );

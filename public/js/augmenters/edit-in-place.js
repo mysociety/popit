@@ -16,7 +16,6 @@
 require(
   ['jquery', 'jquery.jeditable'],
   function ($) {
-
     "use strict";
 
     var apiPrefix = '/api/v1';

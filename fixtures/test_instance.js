@@ -1,3 +1,5 @@
+"use strict"; 
+
 var ObjectId = require('pow-mongodb-fixtures').createObjectId;
 
 exports.users = [
