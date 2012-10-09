@@ -612,9 +612,6 @@
         }
       }
     },
-    "soda": {
-      "version": "0.2.5"
-    },
     "superagent": {
       "version": "0.9.4",
       "dependencies": {
