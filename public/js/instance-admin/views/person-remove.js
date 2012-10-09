@@ -32,7 +32,7 @@ define(
       },
       
       events: {
-        'submit form':             'submitForm',
+        'submit form': 'submitForm'
       },
       
       submitForm: function (e) {
@@ -49,7 +49,7 @@ define(
             }
           }
         );
-      },
+      }
         
     });
   

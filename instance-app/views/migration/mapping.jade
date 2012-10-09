@@ -44,7 +44,7 @@ block content
                   select(name="db-attribute-class")
                     option(value="", selected="selected")
                     for option, optionkey in schema.options
-                      option(value="#{optionkey}", data-suggestions=option.suggestions, data-strict=option.strict) #{option.title}
+                      option(value="#{optionkey}", data-suggestions=option.suggestions.join(','), data-strict=option.strict) #{option.title}
                 td
                   input(type="text", name="db-attribute")
                   small(class='suggestions')

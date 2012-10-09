@@ -149,16 +149,16 @@ app.configure( function () {
     next();
   });
 
-  // Select the instance now so that it is available to everyauth to refer to
-  // the correct db with.
-  app.use( require('../lib/middleware/config')() );
-  app.use(instanceSelector());
-
   app.use( function (req,res,next) {
     res.local( 'current_absolute_pathname', current_absolute_pathname(req) );
     next();    
   });
   
+  // Select the instance now so that it is available to everyauth to refer to
+  // the correct db with.
+  app.use( require('../lib/middleware/config')() );
+  app.use(instanceSelector());
+
   app.use( everyauth.middleware() );
   
   // This is a bodge to deal with everyauth not seeming to attach info to the

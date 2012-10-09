@@ -11,7 +11,7 @@ define( [], function() {
       .replace( /-$/,             ''  )   // drop trailing '-'
       .replace( /^-/,             ''  )   // drop leading '-'
       .toLowerCase();
-  }
+  };
 
 });
 

@@ -16,11 +16,11 @@ define(
 
         e.preventDefault();
         
-        var self   = options['view'] || this;
+        var self   = options.view || this;
         var form   = self.form;        
         
         
-        var success_cb = options['success_cb'] || function (model, response) {
+        var success_cb = options.success_cb || function (model, response) {
           document.location = response.meta.edit_url;
         };
     
@@ -58,6 +58,6 @@ define(
         }
     
       };
-    }
+    };
   }
 );

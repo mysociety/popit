@@ -6,10 +6,10 @@
 require(['jquery'], function($) {
   $(document).ready(function() {
 
-  	$('a.close').click( function(event) {
+    $('a.close').click( function(event) {
       event.preventDefault();
       $(this).closest('div').slideUp();
-  	});
+    });
 
   });
 });

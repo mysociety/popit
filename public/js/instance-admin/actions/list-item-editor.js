@@ -37,7 +37,7 @@ define(
         // create the view. Hook it up to the enclosing element.
         var view = new ListItemEditView({
           model:    object,
-          el:       $element,
+          el:       $element
         });
 
         // set the template on the view

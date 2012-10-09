@@ -11,7 +11,7 @@ define( [ 'Backbone' ], function ( Backbone  ) {
       value: {
         dataType:   'Text',
         validators: ['required']
-      },
+      }
     }
   });
 

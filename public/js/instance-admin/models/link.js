@@ -11,7 +11,7 @@ define( [ 'Backbone' ], function ( Backbone  ) {
         dataType:            'Text',
         validators:          ['required'],
         autocomplete_source: '/autocomplete/link_comment'
-      },
+      }
     }
   });
 

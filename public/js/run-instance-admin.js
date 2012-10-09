@@ -4,7 +4,7 @@ require([
   'augmenters/mailchecker',
   'augmenters/migration',
   'augmenters/slug-validation',
-  'augmenters/edit-in-place',
+  'augmenters/edit-in-place'
 ]);
 
 // PopIt editing app - load it and add bits needed
@@ -32,6 +32,6 @@ require (
       }
     });
     
-    $( function() { App.start() } );
+    $( function() { App.start(); } );
   }
 );

@@ -21,7 +21,7 @@ require(
 
     var apiPrefix = '/api/v1';
   
-    function onSubmit (value, settings) { 
+    var onSubmit = function (value, settings) { 
   
       var element = $(this);
       
@@ -40,12 +40,12 @@ require(
         },
         error: function () {
           // TODO - handle this using some way to alert the user other than a modal dialog 
-          alert("There was an error sending your changes to the server - please refresh the page and try again.");
+          window.alert("There was an error sending your changes to the server - please refresh the page and try again.");
         }
       });
   
       return(value);
-    }
+    };
   
     $( function() {
       

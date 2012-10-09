@@ -48,7 +48,7 @@ define(
             function (doc) {
               return {
                 id: doc._id,
-                text: doc.name,
+                text: doc.name
               };
             }
           );
@@ -58,7 +58,7 @@ define(
       createSearchChoice: function (term) {
         return {
           id: 0,
-          text: term,
+          text: term
         };
       },
       initSelection: function (element, callback) {
@@ -85,9 +85,9 @@ define(
        formatResult: function (object, container) {
          var $element = $('<span>').text(object.text);
          $element.append(
-            object.id
-               ? "<em> &larr; select to use existing entry</em>"
-               : "<em> &larr; select to create new entry</em>"
+            object.id ?
+               "<em> &larr; select to use existing entry</em>" :
+               "<em> &larr; select to create new entry</em>"
           );
          return $element;           
        }
@@ -118,7 +118,7 @@ define(
         url: args.autocomplete_url,
         data: function (term, page) {
           return {
-            term: term,
+            term: term
           };
         },
         results: function (data, page) {
@@ -158,7 +158,7 @@ define(
         deferred.resolve( data.id );
       } else { // New doc needs to be created
         new model({
-          name: data.text,
+          name: data.text
         }).save({}, {
           success: function (model, response) {
             deferred.resolve( response._id );                

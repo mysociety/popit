@@ -4,7 +4,7 @@ define( [ 'Backbone' ], function ( Backbone  ) {
     urlRoot: '/api/v1/organisation',
     schema: {
       name: { dataType: 'Text', validators: ['required'] },
-      slug: { dataType: 'Text', validators: ['required'] },
+      slug: { dataType: 'Text', validators: ['required'] }
     }
   });
 

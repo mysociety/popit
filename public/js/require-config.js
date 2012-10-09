@@ -22,6 +22,6 @@ require.config({
 
     // Require.js plugins
     'text':  './libs/requirejs/text-1.0.8.min',
-    'order': './libs/requirejs/order-1.0.5.min',
+    'order': './libs/requirejs/order-1.0.5.min'
   }
 });

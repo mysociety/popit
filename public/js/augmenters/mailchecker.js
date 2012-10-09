@@ -13,9 +13,11 @@
 // TODO: make the suggested email clickable to put the email into the form
 // field.
 
-"use strict";
 
 require(['jquery', 'jquery.mailcheck'], function ($) {
+
+  "use strict";
+
   var domains = [
     // These are the default domains that ship with the plugin
     'yahoo.com', 'google.com', 'hotmail.com', 'gmail.com', 'me.com', 

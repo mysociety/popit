@@ -9,7 +9,7 @@ define(
     'instance-admin/models/organisation',
     'instance-admin/views/organisation-new',
     'instance-admin/views/organisation-remove',
-    'jquery.fancybox',    
+    'jquery.fancybox'
   ],
   function (
     $,
