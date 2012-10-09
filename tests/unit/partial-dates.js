@@ -2,10 +2,14 @@
 // switch to testing mode
 process.env.NODE_ENV = 'testing';
 
-var utils    = require('../../lib/utils'),
-    PopIt    = require('../../lib/popit'),
-    async    = require('async'),
-    _        = require('underscore');
+var utils              = require('../../lib/utils'),
+    PopIt              = require('../../lib/popit'),
+    partialDatePlugin    = require('../../lib/schemas/plugins/partial-date'),
+    async              = require('async'),
+    _                  = require('underscore'),
+    mongoose          = require('mongoose'),
+    Schema            = mongoose.Schema;
+    
     
     
     
@@ -28,42 +32,11 @@ var test_dates = [
 ];
 
 
-var mongoose          = require('mongoose'),
-    Schema            = mongoose.Schema,
-    Twix              = require('twix/bin/twix');
-
-    // for when https://github.com/icambron/twix.js/pull/2 applied
-    // Twix              = require('twix');
-
-function dateRangePlugin (schema, options) {
-
-  var fieldName = options.fieldName;
-
-  var args = {};
-  args[fieldName] = {
-    start: Date,
-    end:   Date,
-  };
-
-  schema.add(args);
-  
-  schema
-    .virtual(fieldName + '.format')
-    .get(function() {
-      var twix = new Twix(
-        this[fieldName].start,
-        this[fieldName].end,
-        true                      // all day events - don't show the times
-      );
-      return twix.format();
-    });
-
-}
 
 var TestSchema = new Schema({
     name: String,  
 });
-TestSchema.plugin( dateRangePlugin, {fieldName: 'theDate'} );
+TestSchema.plugin( partialDatePlugin, {fieldName: 'theDate'} );
 
 
 module.exports = {
