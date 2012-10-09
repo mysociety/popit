@@ -312,22 +312,22 @@ module.exports = {
             test.equal(p.links.length, 2);
 
             var el;
-            el = _.filter(p.links, function(e) { return e.comment == "Website"});
+            el = _.filter(p.links, function(e) { return e.comment == "Website"; });
             test.equal(el.length, 1);
             test.equal(el[0].url, 'http://www.doe.senate.gov/');
 
-            el = _.filter(p.links, function(e) { return e.comment == "Wikipedia"});
+            el = _.filter(p.links, function(e) { return e.comment == "Wikipedia"; });
             test.equal(el.length, 1);
             test.equal(el[0].url, 'http://www.wikipedia.org/wiki/John_Doe');
 
             var ids = p.get('ids');
             test.equal(ids.length, 2);
 
-            var twitter = _.filter(ids, function(e) { return e.provider == "Twitter"});
+            var twitter = _.filter(ids, function(e) { return e.provider == "Twitter"; });
             test.equal(twitter.length, 1);
             test.equal(twitter[0].id, '@thedoe');
 
-            var popit = _.filter(ids, function(e) { return e.provider == "PopIt"});
+            var popit = _.filter(ids, function(e) { return e.provider == "PopIt"; });
             test.equal(popit.length, 1);
             test.equal(popit[0].id, 'dsfd87g89dsfg6d5f7g8sfd6g8sdg8dfg');
 
@@ -421,7 +421,7 @@ module.exports = {
           function(err) {
             test.ifError(err);
             test.done();
-          })
+          });
       });
     },
 

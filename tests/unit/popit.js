@@ -44,7 +44,7 @@ module.exports = {
         // check that if we have not set the instance we get an error
 
         test.throws(
-            function() { popit.instance_db() },
+            function() { popit.instance_db(); },
             'foo',
             'throw exception if instance not configured'
         );
@@ -65,7 +65,7 @@ module.exports = {
 
         // try to get a model that does not exist
         test.throws(
-            function () { popit.model('does_not_exist') },
+            function () { popit.model('does_not_exist'); },
             /Could not find a schema for does_not_exist/,
             "throw error for non-existent schema"
         );
@@ -86,7 +86,7 @@ module.exports = {
 
             // check that the user was saved
             test.ifError(err, "no error saving");
-            test.ok(object)
+            test.ok(object);
             test.equal(object.id, user.id, "IDs are the same");
             
             userModel.findOne({email: user.email}, function(err, retrieved_user) {

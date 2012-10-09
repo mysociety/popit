@@ -40,7 +40,7 @@ exports.route = function (app) {
             instance.save(function (err) {
                 if ( err ) {
                     // store error and pass control to get method
-                    res.local( 'errors', err['errors'] );
+                    res.local( 'errors', err.errors );
                     return new_get(req, res);
                 } else {
             

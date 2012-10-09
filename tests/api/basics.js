@@ -86,8 +86,10 @@ module.exports = {
           "got JavaScript"
         );
 
+        var callback_regex = /^name_of_callback\(\{.+\}\);$/;
+
         test.ok(
-          /^name_of_callback\({.+}\);$/.test(data),
+          callback_regex.test(data),
           "response JSON is wrapped in a callback"
         );
     

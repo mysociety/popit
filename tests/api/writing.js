@@ -127,7 +127,7 @@ module.exports = {
 
             // get the new location and check that it is correct
             rest
-              .get(response.headers['location'])
+              .get(response.headers.location)
               .on('complete', function (data, response) {
 
                 test.equal(response.statusCode, 200, "got 200");
@@ -322,7 +322,7 @@ module.exports = {
                 test.equal(response.statusCode, 200, "got 200 - embedded document created");              
 
                 // get the location of the new document
-                sub_document_url = response.headers['location'];
+                sub_document_url = response.headers.location;
                 test.ok(
                   (new RegExp(sub_collection_url + '/[0-9a-f]{24}')).test(sub_document_url),
                   "New entity in subcollection"
@@ -340,7 +340,7 @@ module.exports = {
             rest.get(sub_document_url).on('complete', function(data, response) {
               test.equal(data.result.url, 'http://test.com', "new link url correct");
               cb();
-            })
+            });
           },
           // check that subcollection has more items in now
           function(cb) {
@@ -377,7 +377,7 @@ module.exports = {
               .post( 'person', { data: { name: "Joe Bloggs", summary: "Just another Joe" } })
               .on('complete', function (data, response) {
                 test.equal(response.statusCode, 201, "got 201");
-                document_url = response.headers['location'];
+                document_url = response.headers.location;
                 document_id = _.last(document_url.split('/'));
                 cb();
               });

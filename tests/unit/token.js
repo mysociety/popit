@@ -39,8 +39,10 @@ module.exports = {
         // check that expires is as we expect
         var three_days = 3 * 86400 * 1000;
         test.ok(
-             token.expires >= Date.now() + three_days - 1000
-          && token.expires <= Date.now() + three_days + 1000,
+          (
+            token.expires >= Date.now() + three_days - 1000 &&
+            token.expires <= Date.now() + three_days + 1000
+          ),
           "expires is in expected range"
         );
         

@@ -59,7 +59,7 @@ module.exports = {
       );
     });
 
-    test.done()
+    test.done();
   },
   
   
@@ -105,7 +105,7 @@ module.exports = {
           },
       ], function (err) {
           if (err) throw err;
-          test.done()
+          test.done();
       });
       
   },
@@ -131,7 +131,7 @@ module.exports = {
       test.equal( process.env.NODE_ENV, 'testing', 'running in test mode' );
       
       test.throws(
-          function() {utils.mongodb_connection_string()},
+          function() { utils.mongodb_connection_string(); },
           /must provide a db name to mongodb_connection_string/,
           "no name leads to exception being thrown"
       ); 

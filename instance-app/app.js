@@ -8,7 +8,7 @@ var express           = require('express'),
     config            = require('config'),
     winston           = require('winston'),
     utils             = require('../lib/utils'),
-    instanceSelector  = require('../lib/middleware/instance-selector')
+    instanceSelector  = require('../lib/middleware/instance-selector'),
     everyauth         = require('everyauth'),
     Db                = require('mongodb').Db,
     Server            = require('mongodb').Server,
@@ -56,7 +56,7 @@ everyauth
           // trim off whitespace from login
           login = login.trim();
 
-          var promise = this.Promise()
+          var promise = this.Promise();
     
           var User = req.popit.model('User');
     

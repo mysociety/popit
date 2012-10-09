@@ -4,13 +4,13 @@
 REPORTER = default 
 
 FOREVER = ./node_modules/.bin/forever
+JSHINT  = ./node_modules/.bin/jshint
 
 WAIT_FOR_SERVER   = sleep 5
 TEST_SERVER = tests/test-server.js
 # mute output so that this does not look like a failing test
 STOP_TEST_SERVER  = $(FOREVER) stop $(TEST_SERVER) &> /dev/null 
 START_TEST_SERVER = $(STOP_TEST_SERVER); NODE_ENV=testing $(FOREVER) start $(TEST_SERVER) && $(WAIT_FOR_SERVER)
-
 
 all: node-modules css
 
@@ -35,8 +35,8 @@ npm-shrinkwrap:
 
 
 jshint:
-	jshint lib/ hosting-app/ instance-app/ tests/
-	cd public/js; jshint
+	$(JSHINT) lib/ hosting-app/ instance-app/ tests/
+	cd public/js; ../../$(JSHINT) .
 
 css:
 	compass compile
@@ -83,7 +83,7 @@ tidy:
 	# sass-convert --recursive --in-place --from scss --to scss public/sass/
 
 
-test: node-modules test-unit test-api test-browser jshint
+test: node-modules jshint test-unit test-api test-browsercd 
 	echo "ALL TESTS PASS"
 
 test-unit:

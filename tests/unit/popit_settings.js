@@ -9,7 +9,7 @@ var
     utils    = require('../../lib/utils'),
     // config   = require('config'),
     // _        = require('underscore'),
-    async    = require('async')
+    async    = require('async'),
     PopIt    = require('../../lib/popit');
 
 module.exports = {
@@ -31,10 +31,10 @@ module.exports = {
                     pop.clear_cached_settings();
                     cb();
                 },
-                function (cb) { foo.load_settings(cb) },
-                function (cb) { bar.load_settings(cb) },
-                function (cb) { foo.set_setting('test_key', 'test_value_foo', cb) },
-                function (cb) { bar.set_setting('test_key', 'test_value_bar', cb) },
+                function (cb) { foo.load_settings(cb); },
+                function (cb) { bar.load_settings(cb); },
+                function (cb) { foo.set_setting('test_key', 'test_value_foo', cb); },
+                function (cb) { bar.set_setting('test_key', 'test_value_bar', cb); },
             ],
 
             // optional callback
@@ -55,13 +55,13 @@ module.exports = {
         pop.set_instance('pop');
 
         test.throws(
-            function () { pop.setting('foo') },
+            function () { pop.setting('foo'); },
             /Settings not loaded - have you called load_settings?/,
             "can't call 'setting' before 'load_settings'"
         );
 
         test.throws(
-            function () { pop.set_setting('foo', 'val', function () {} ) },
+            function () { pop.set_setting('foo', 'val', function () {} ); },
             /Settings not loaded - have you called load_settings?/,
             "can't call 'set_setting' before 'load_settings'"
         );
@@ -117,7 +117,7 @@ module.exports = {
             }        
         ],
         function() {
-            test.done()
+            test.done();
         });
     },
     
