@@ -134,9 +134,12 @@ app.configure( function () {
   var session_server  = new Server(
       config.MongoDB.host,
       config.MongoDB.port,
-      {auto_reconnect: true, native_parser: true}
+      {
+        auto_reconnect: true,
+        native_parser: true,
+      }
   );
-  var session_db = new Db( session_db_name, session_server, {} );
+  var session_db = new Db( session_db_name, session_server, {safe: true} );
   var session_store = new mongoStore({ db: session_db });
   
   app.use( express.session({
