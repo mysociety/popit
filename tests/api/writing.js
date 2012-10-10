@@ -431,7 +431,7 @@ module.exports = {
                   data.result,
                   {
                     _id:             document_id,
-                    __v:             0,
+                    __v:             1,
                     name:            "Fred Jones",
                     slug:            "joe-bloggs",
                     summary:         "Just another Joe",
@@ -440,8 +440,8 @@ module.exports = {
                     images:          [],
                     links:           [],
                     contact_details: [],
-                    name_words:      [ 'joe', 'bloggs' ],
-                    name_dm:         [ 'J', 'A', 'PLKS', 'PLKS', 'joe', 'bloggs' ],                    
+                    name_words:      [ 'fred', 'jones' ],
+                    name_dm:         [ 'FRT', 'FRT', 'JNS', 'ANS', 'fred', 'jones' ],
                     meta: { edit_url: 'http://test.127.0.0.1.xip.io:3100/person/joe-bloggs' },
                   },
                   "Person updated as expected"
