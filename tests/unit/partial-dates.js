@@ -182,6 +182,18 @@ module.exports = {
 
 
 
+  "test stringification with no dates": function ( test ) {
+    test.expect( 1 );    
+
+    var entry = new this.test_model({name: 'foo'});
+
+    test.equal( entry.theDate.format, '', "No dates leads to empty string" );
+
+    test.done();
+  },
+
+
+
   "test validation": function ( test ) {
 
     var TestModel = this.test_model;
