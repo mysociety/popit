@@ -1,3 +1,4 @@
+"use strict";
 
 // switch to testing mode
 process.env.NODE_ENV = 'testing';
@@ -48,7 +49,7 @@ module.exports = {
 
     var db = this.popit.instance_db();
 
-    var test_model = this.test_model = db.model( 'TestModel', TestSchema );
+    var TestModel = this.test_model = db.model( 'TestModel', TestSchema );
 
     utils.delete_all_testing_databases(function(err) {
 
@@ -58,11 +59,11 @@ module.exports = {
         test_dates,
         function(item, done) {
 
-          var entry = new test_model({
-            name: item['name'],
+          var entry = new TestModel({
+            name: item.name,
             theDate: {
-              start: item['start'],
-              end:   item['end'],
+              start: item.start,
+              end:   item.end,
             },
           });
 
