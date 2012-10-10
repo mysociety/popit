@@ -34,7 +34,7 @@
     "regexp-quote": ">= 0.0.0",
     "slug": ">= 0.2.2",
     "supervisor": ">= 0.4.1",
-    "twix": ">= 0.1.6",
+    "twix": "https://github.com/evdb/twix.js/tarball/master",
     "underscore": ">= 1.3.1",
     "unorm": "*",
     "validator": ">= 0.4.5",

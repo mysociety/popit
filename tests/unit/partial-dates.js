@@ -30,6 +30,8 @@ var test_dates = [
   { name: '1 Jan 2012', start: '2012-01-01', end: '2012-01-01', },
   { name: '2 Jan 2012', start: '2012-01-02', end: '2012-01-02', },
   { name: '3 Jan 2012', start: '2012-01-03', end: '2012-01-03', },
+
+  { name: '1 Jan 2013', start: '2013-01-01', end: '2013-01-01', },
 ];
 
 
@@ -103,6 +105,7 @@ module.exports = {
             'Apr 2012',
             'Q2 2012',
             'May 2012',
+            '1 Jan 2013',
             '2013',
           ],
           "asc sorting as expected"
@@ -124,6 +127,7 @@ module.exports = {
           _.pluck(docs, 'name'),
           [
             '2013',
+            '1 Jan 2013',
             '2012',
             'Q2 2012',
             'May 2012',
@@ -156,18 +160,19 @@ module.exports = {
             return [ doc.name, doc.theDate.format ];
           }),
           [
-            [ '1 Jan 2012', 'Jan 1' ],
-            [ '2 Jan 2012', 'Jan 2' ],
-            [ '2012',       'Jan 1 - Dec 31' ],
+            [ '1 Jan 2012', 'Jan 1, 2012' ],
+            [ '1 Jan 2013', 'Jan 1, 2013' ],
+            [ '2 Jan 2012', 'Jan 2, 2012' ],
+            [ '2012',       'Jan 1 - Dec 31, 2012' ],
             [ '2013',       'Jan 1 - Dec 31, 2013' ],
-            [ '3 Jan 2012', 'Jan 3' ],
-            [ 'Apr 2012',   'Apr 1 - 30' ],
-            [ 'Feb 2012',   'Feb 1 - 28' ],
-            [ 'Jan 2012',   'Jan 1 - 31' ],
-            [ 'Mar 2012',   'Mar 1 - 31' ],
-            [ 'May 2012',   'May 1 - 31' ],
-            [ 'Q1 2012',    'Jan 1 - Mar 31' ],
-            [ 'Q2 2012',    'Apr 1 - Jun 30' ],
+            [ '3 Jan 2012', 'Jan 3, 2012' ],
+            [ 'Apr 2012',   'Apr 1 - 30, 2012' ],
+            [ 'Feb 2012',   'Feb 1 - 28, 2012' ],
+            [ 'Jan 2012',   'Jan 1 - 31, 2012' ],
+            [ 'Mar 2012',   'Mar 1 - 31, 2012' ],
+            [ 'May 2012',   'May 1 - 31, 2012' ],
+            [ 'Q1 2012',    'Jan 1 - Mar 31, 2012' ],
+            [ 'Q2 2012',    'Apr 1 - Jun 30, 2012' ],
           ],
           "desc sorting as expected"
         );
@@ -228,7 +233,7 @@ module.exports = {
         entry.save( function(err) {
 
           // console.log(entry);
-          console.log(err);
+          // console.log(err);
 
           test.ok( err, "Got an error" );
           test.equal(
