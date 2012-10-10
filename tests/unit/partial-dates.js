@@ -176,4 +176,76 @@ module.exports = {
   },
 
 
+
+  "test validation": function ( test ) {
+
+    var TestModel = this.test_model;
+
+    var validation_tests = [
+      {
+        constructor_args: {
+          name: 'test of start > end',
+          theDate: {
+            start: Date.parse( '2012-01-20'),
+            end:   Date.parse( '2012-01-19'),
+          }
+        },
+        error_path: 'theDate.start',
+        error_type: 'start date is after end date',
+      },
+      {
+        constructor_args: {
+          name: 'start missing',
+          theDate: {
+            end:   Date.parse( '2012-01-19'),
+          }
+        },
+        error_path: 'theDate.end',
+        error_type: 'start date is missing',
+      },      
+      {
+        constructor_args: {
+          name: 'end missing',
+          theDate: {
+            start:   Date.parse( '2012-01-19'),
+          }
+        },
+        error_path: 'theDate.start',
+        error_type: 'end date is missing',
+      },      
+    ];
+
+
+
+    test.expect( validation_tests.length * 2 );    
+
+    async.forEachSeries(
+      validation_tests,
+      function(item, item_done) {
+
+        var entry = new TestModel( item.constructor_args );
+
+        entry.save( function(err) {
+
+          // console.log(entry);
+          console.log(err);
+
+          test.ok( err, "Got an error" );
+          test.equal(
+            err.errors[item.error_path].type,
+            item.error_type,
+            "got correct error: " + item.error_type
+          );
+          item_done(null);
+        });        
+      },
+      function (err) {
+        test.done();
+      }
+    
+    );
+    
+  },
+
+
 };
