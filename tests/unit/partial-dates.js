@@ -5,11 +5,12 @@ process.env.NODE_ENV = 'testing';
 
 var utils              = require('../../lib/utils'),
     PopIt              = require('../../lib/popit'),
-    partialDatePlugin    = require('../../lib/schemas/plugins/partial-date'),
+    partialDatePlugin  = require('../../lib/schemas/plugins/partial-date').plugin,
+    partialDateParser  = require('../../lib/schemas/plugins/partial-date').parser,
     async              = require('async'),
     _                  = require('underscore'),
-    mongoose          = require('mongoose'),
-    Schema            = mongoose.Schema;
+    mongoose           = require('mongoose'),
+    Schema             = mongoose.Schema;
     
     
     
@@ -39,7 +40,7 @@ var test_dates = [
 var TestSchema = new Schema({
     name: String,  
 });
-TestSchema.plugin( partialDatePlugin, {fieldName: 'theDate'} );
+TestSchema.plugin( partialDatePlugin, {fieldName: 'theDate.nested'} );
 
 
 module.exports = {
@@ -63,7 +64,7 @@ module.exports = {
 
           var entry = new TestModel({
             name: item.name,
-            theDate: {
+            'theDate.nested': {
               start: item.start,
               end:   item.end,
             },
@@ -87,8 +88,8 @@ module.exports = {
 
     this.test_model
       .find()
-      .sort('theDate.start theDate.end')
-      // .sort('theDate')
+      .sort('theDate.nested.start theDate.nested.end')
+      // .sort('theDate.nested')
       .exec(function(err, docs) {
         test.ifError(err);
         test.deepEqual(
@@ -119,8 +120,8 @@ module.exports = {
 
     this.test_model
       .find()
-      .sort('-theDate.end -theDate.start')
-      // .sort('-theDate')
+      .sort('-theDate.nested.end -theDate.nested.start')
+      // .sort('-theDate.nested')
       .exec(function(err, docs) {
         test.ifError(err);
         test.deepEqual(
@@ -157,7 +158,7 @@ module.exports = {
         test.ifError(err);
         test.deepEqual(
           _.map(docs, function (doc) {
-            return [ doc.name, doc.theDate.format ];
+            return [ doc.name, doc.theDate.nested.format ];
           }),
           [
             [ '1 Jan 2012', 'Jan 1, 2012' ],
@@ -187,9 +188,22 @@ module.exports = {
 
     var entry = new this.test_model({name: 'foo'});
 
-    test.equal( entry.theDate.format, '', "No dates leads to empty string" );
+    test.equal( entry.theDate.nested.format, '', "No dates leads to empty string" );
 
     test.done();
+  },
+
+
+
+  "test saving with no dates": function ( test ) {
+    test.expect( 1 );    
+
+    var entry = new this.test_model({name: 'foo'});
+
+    entry.save(function(err) {
+      test.ifError(err);
+      test.done();      
+    });
   },
 
 
@@ -202,32 +216,32 @@ module.exports = {
       {
         constructor_args: {
           name: 'test of start > end',
-          theDate: {
+          'theDate.nested': {
             start: Date.parse( '2012-01-20'),
             end:   Date.parse( '2012-01-19'),
           }
         },
-        error_path: 'theDate.start',
+        error_path: 'theDate.nested.start',
         error_type: 'start date is after end date',
       },
       {
         constructor_args: {
           name: 'start missing',
-          theDate: {
+          'theDate.nested': {
             end:   Date.parse( '2012-01-19'),
           }
         },
-        error_path: 'theDate.end',
+        error_path: 'theDate.nested.end',
         error_type: 'start date is missing',
       },      
       {
         constructor_args: {
           name: 'end missing',
-          theDate: {
+          'theDate.nested': {
             start:   Date.parse( '2012-01-19'),
           }
         },
-        error_path: 'theDate.start',
+        error_path: 'theDate.nested.start',
         error_type: 'end date is missing',
       },      
     ];
@@ -261,6 +275,40 @@ module.exports = {
       }
     
     );
+    
+  },
+  
+  
+  "test parsing": function (test) {
+    
+    var tests = {
+      // bad or empty inputs
+      '':                         { start: '', end: '' },
+      'This is not a date!':      { start: '', end: '' },
+      '1234-56-78':               { start: '', end: '' },
+
+      // valid inputs
+      '2012-01-02':               { start: '2012-01-02', end: '2012-01-02' },
+      '2012-01-02 to 2012-01-02': { start: '2012-01-02', end: '2012-01-02' },
+      '2012-01-02 to 2013-04-05': { start: '2012-01-02', end: '2013-04-05' },
+
+      // More human dates
+      '26 May 1977':                 { start: '1977-05-26', end: '1977-05-26' },
+      '26 May 1977 to 28 June 1978': { start: '1977-05-26', end: '1978-06-28' },
+    };
+    
+    
+    test.expect( _.size(tests) );
+    
+    _.each(
+      tests,
+      function(expected, date_string) {
+        var output = partialDateParser( date_string );
+        test.deepEqual( output, expected, date_string );
+      }
+    );
+    
+    test.done();
     
   },
 
