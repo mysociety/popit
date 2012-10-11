@@ -72,24 +72,22 @@ block content
       p#entity-summary-text(class="edit-in-place-textarea", data-api-url="/person/#{ person.id }", data-api-name="summary") #{person.summary}
     
     section.personal-details
-      //- ul.admin-options
-      //-   li
-      //-     a.add(href="https://github.com/mysociety/popit/issues/59")
-      //-       strong + add 
-      //-       | information
-      //-   li
-      //-     a.edit(href="https://github.com/mysociety/popit/issues/59")
-      //-       strong ^ edit 
-      //-       | this section
   
       h2 Name, birthday & similar:
-      dl
-        dt Full Name:
-        dd(itemprop="name") #{ person.name }
-        
-        //- dt Birthdate:
-        //- dd
-        //-   time(itemprop="birthDate", datetime="1951-02-20") 20 February 1951
+
+      ul.detail-list
+
+        li
+          div.list-item-title  Full Name:
+          div.list-item-value(itemprop="name") #{ person.name }
+
+        li
+          span.admin-options
+            a(class="edit partial-date-edit")
+              strong ^ edit
+              |  this date
+          div.list-item-title Birthdate:
+          div.list-item-value #{ person.personal_details.date_of_birth.format || '??' }
 
     if person.other_names.length
       section.personal-details
