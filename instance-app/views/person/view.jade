@@ -82,12 +82,7 @@ block content
           div.list-item-value(itemprop="name") #{ person.name }
 
         li
-          span.admin-options
-            a(class="edit partial-date-edit")
-              strong ^ edit
-              |  this date
-          div.list-item-title Birthdate:
-          div.list-item-value #{ person.personal_details.date_of_birth.format || '??' }
+          include ../partial-date/person-birth-date
 
     if person.other_names.length
       section.personal-details

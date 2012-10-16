@@ -1,0 +1,6 @@
+span.admin-options
+  a(class="edit partial-date-edit", data-start=person.personal_details.date_of_birth.start, data-end=person.personal_details.date_of_birth.end, data-path-prefix="personal_details.date_of_birth", data-url-root=person.api_base_url, data-id=person.id)
+    strong ^ edit
+    |  this date
+div.list-item-title Birthdate:
+div.list-item-value #{ person.personal_details.date_of_birth.format || '??' }
