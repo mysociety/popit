@@ -6,7 +6,7 @@ define( [ 'Backbone' ], function ( Backbone  ) {
     schema: {
       name: { dataType: 'Text', validators: ['required'] },
       slug: { dataType: 'Text', validators: ['required'] }
-    },
+    }
   });
 
   return PersonModel;

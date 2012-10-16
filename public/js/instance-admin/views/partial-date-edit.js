@@ -23,7 +23,6 @@ define(
         // this is the input that we will add the smarts to
         var $date_input = $('<input type="text" />');
         $date_input.val( this.model.get('start'));
-        this.date_input = $date_input;
         
         // construct the whole form
         var $form = $('<form />')
@@ -40,7 +39,7 @@ define(
               return { term: term };
             },
             results: function (data) {
-              console.log( 'data', data );
+              // console.log( 'data', data );
 
               var results = _.map(data, function(item) {
                 return {
@@ -50,7 +49,7 @@ define(
                 };
               });
 
-              console.log( 'results', results );
+              // console.log( 'results', results );
 
               return { results: results };
             }
@@ -65,17 +64,19 @@ define(
       },
     
       events: {
-        'submit form ':                'submitForm',
+        'submit form ': 'submitForm'
       },
                 
       submitForm: function (event) {
 
         event.preventDefault();
 
-        var data = this.date_input.select2('data');        
+        var data = this.$el.find('input[type="text"]').select2('data');        
 
         var view = this;
         var partialDate = this.model;
+
+        console.log( data );
         
         partialDate.save(
           {
@@ -106,8 +107,10 @@ define(
                   };
                   
                   var html = partialDateTemplate( template_args );
+                  var replacement =  $('<li />').html( html );
 
-                  view.$el.html( html );                
+                  view.$el.parent().append( replacement );                
+                  view.remove();
                 },
                 error: function(model, response) {
                   // TODO improve error handling
