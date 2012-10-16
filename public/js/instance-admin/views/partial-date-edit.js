@@ -16,13 +16,30 @@ define(
   ) {
     "use strict"; 
 
+    // from http://stackoverflow.com/a/3067896/5349
+    var format_date = function (date) {
+      var yyyy = date.getFullYear().toString();
+      var mm = (date.getMonth()+1).toString(); // getMonth() is zero-based
+      var dd  = date.getDate().toString();
+      return yyyy + '-' + (mm[1]?mm:"0"+mm[0]) + '-' + (dd[1]?dd:"0"+dd[0]); // padding
+    }
+
     return Backbone.View.extend({
       
       render: function () {
+        var model = this.model;
+
+        var start =  format_date( new Date(model.get('start')) );
+        var end   =  format_date( new Date(model.get('end'  )) );
+
+        var initial_value = start;
+        if (start != end) {
+          initial_value += ' to ' + end;
+        } 
 
         // this is the input that we will add the smarts to
         var $date_input = $('<input type="text" />');
-        $date_input.val( this.model.get('start'));
+        $date_input.val( initial_value );
         
         // construct the whole form
         var $form = $('<form />')
@@ -33,9 +50,18 @@ define(
             
         $date_input.select2({
           placeholder: "Please enter a date, either exact or partial",
+          initSelection: function (element, callback) {
+            callback({
+              id: element.val(),
+              text: element.val()
+            });
+          },
           ajax: {
             url: '/autocomplete/partial_date',
             data: function (term, page) {
+              if ( !term ) {
+                term = $date_input.val();
+              }
               return { term: term };
             },
             results: function (data) {
