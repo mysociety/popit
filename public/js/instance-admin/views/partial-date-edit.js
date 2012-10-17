@@ -52,6 +52,7 @@ define(
           placeholder: "Please enter a date, either exact or partial",
           allowClear: true,
           initSelection: function (element, callback) {
+            // Would also like to pre-fill input field - see https://github.com/ivaynberg/select2/issues/505
             callback({
               id: element.val(),
               text: element.val()
