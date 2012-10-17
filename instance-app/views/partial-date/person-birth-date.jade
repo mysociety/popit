@@ -3,4 +3,4 @@ span.admin-options
     strong ^ edit
     |  this date
 div.list-item-title Birthdate:
-div.list-item-value #{ person.personal_details.date_of_birth.format || '??' }
+div.list-item-value #{ person.personal_details.date_of_birth.formatted || '??' }

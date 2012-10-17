@@ -158,7 +158,7 @@ module.exports = {
         test.ifError(err);
         test.deepEqual(
           _.map(docs, function (doc) {
-            return [ doc.name, doc.theDate.nested.format ];
+            return [ doc.name, doc.theDate.nested.formatted ];
           }),
           [
             [ '1 Jan 2012', 'Jan 1, 2012' ],
@@ -188,7 +188,7 @@ module.exports = {
 
     var entry = new this.test_model({name: 'foo'});
 
-    test.equal( entry.theDate.nested.format, '', "No dates leads to empty string" );
+    test.equal( entry.theDate.nested.formatted, '', "No dates leads to empty string" );
 
     test.done();
   },

@@ -398,8 +398,8 @@ module.exports = {
                     slug:            "joe-bloggs",
                     summary:         "Just another Joe",
                     personal_details: {
-                      date_of_birth: { format: '', end: null, start: null },
-                      date_of_death: { format: '', end: null, start: null },
+                      date_of_birth: { formatted: '', end: null, start: null },
+                      date_of_death: { formatted: '', end: null, start: null },
                     },
                     other_names:     [],
                     images:          [],
@@ -440,8 +440,8 @@ module.exports = {
                     slug:            "joe-bloggs",
                     summary:         "Just another Joe",
                     personal_details: {
-                      date_of_birth: { format: '', end: null, start: null },
-                      date_of_death: { format: '', end: null, start: null },
+                      date_of_birth: { formatted: '', end: null, start: null },
+                      date_of_death: { formatted: '', end: null, start: null },
                     },
                     notInSchemaAttribute: 1234,
                     other_names:     [],

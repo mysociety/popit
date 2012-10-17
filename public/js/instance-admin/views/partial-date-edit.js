@@ -70,8 +70,8 @@ define(
 
               var results = _.map(data, function(item) {
                 return {
-                  id:   item.format,
-                  text: item.format,
+                  id:   item.formatted,
+                  text: item.formatted,
                   raw:  item
                 };
               });

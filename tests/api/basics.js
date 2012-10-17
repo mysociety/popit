@@ -204,8 +204,8 @@ module.exports = {
               slug:    'george-bush',
               summary: '41th President of the United States',
               personal_details: {
-                date_of_birth: { format: '', end: null, start: null },
-                date_of_death: { format: '', end: null, start: null },
+                date_of_birth: { formatted: '', end: null, start: null },
+                date_of_death: { formatted: '', end: null, start: null },
               },
               other_names:     [],
               images:          [],
