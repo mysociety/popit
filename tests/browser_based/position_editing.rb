@@ -3,12 +3,15 @@
 # -*- coding: UTF-8 -*-
 
 require 'lib/popit_watir_test_case'
+require 'lib/select2_helpers'
 require 'pry'
 require 'net/http'
 require 'uri'
 
 
 class PositionEditingTests < PopItWatirTestCase
+
+  include Select2Helpers
 
   def test_position_creation
     goto_instance 'test'
@@ -20,23 +23,7 @@ class PositionEditingTests < PopItWatirTestCase
     def position_form
       return @b.form(:name, "create-new-position")
     end
-    
-    def select2_container ( input_name )
-      @b.input(:name, input_name).parent.div(:class, "select2-container").when_present
-    end
-    
-    def select2_current_value ( input_name )
-      select2_container(input_name).link(:class, 'select2-choice').span.text
-    end
-    
-    def select2_options ( index )
-      @b.li(:class => 'select2-result', :index => index ).when_present
-    end
-    
-    def select2_highlighted_option
-      return @b.li(:class, "select2-highlighted").when_present
-    end
-    
+
   
     # click on the create new person link and check that the form has popped up    
     assert ! position_form.present?
