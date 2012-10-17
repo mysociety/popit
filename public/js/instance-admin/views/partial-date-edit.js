@@ -29,16 +29,20 @@ define(
       render: function () {
         var model = this.model;
 
-        var start =  format_date( new Date(model.get('start')) );
-        var end   =  format_date( new Date(model.get('end'  )) );
+        var start, end, initial_value;
+        
+        if (model.get('start')) {
+          start =  format_date( new Date(model.get('start')) );
+          end   =  format_date( new Date(model.get('end'  )) );
 
-        var initial_value = start;
-        if (start != end) {
-          initial_value += ' to ' + end;
-        } 
+          initial_value = start;
+          if (start != end) {
+            initial_value += ' to ' + end;
+          }           
+        }
 
         // this is the input that we will add the smarts to
-        var $date_input = $('<input type="text" />');
+        var $date_input = $('<input type="text" name="' + model.path_to_date + '"/>');
         $date_input.val( initial_value );
         
         // construct the whole form
@@ -49,14 +53,16 @@ define(
           // .append('<button name="cancel">Cancel</button>');
             
         $date_input.select2({
-          placeholder: "Please enter a date, either exact or partial",
+          placeholder: "no date",
           allowClear: true,
           initSelection: function (element, callback) {
             // Would also like to pre-fill input field - see https://github.com/ivaynberg/select2/issues/505
-            callback({
-              id: element.val(),
-              text: element.val()
-            });
+            var current_value = element.val()
+            callback(
+              current_value ?
+              { id: current_value, text: current_value } :
+              null
+            );
           },
           ajax: {
             url: '/autocomplete/partial_date',
@@ -140,9 +146,9 @@ define(
                   };
                   
                   var html = partialDateTemplate( template_args );
-                  var replacement =  $('<li />').html( html );
+                  var replacement =  view.$el.clone().empty().html( html );
 
-                  view.$el.parent().append( replacement );                
+                  view.$el.after( replacement );                
                   view.remove();
                 },
                 error: function(model, response) {
