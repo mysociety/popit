@@ -15,7 +15,7 @@ require ([
   'instance-admin/actions/position-add-remove',
   'instance-admin/actions/contact-edit',
   'instance-admin/actions/links-edit',
-  'instance-admin/actions/dates-edit'
+  'instance-admin/actions/partial-date-edit'
   
 ]);
 
