@@ -58,6 +58,16 @@ class DateEditingTests < PopItWatirTestCase
     @b.input(:value => 'Save').click
     assert_equal '??', birth_date_value
 
+    # check that we can enter a date range
+    @b.link(:text => '^ edit this date').click
+    select2_container(path_to_date).link.click
+    @b.send_keys '1 Jan 1961 to 1961-12-31'
+    assert_equal 'Jan 1 - Dec 31, 1961', select2_highlighted_option.text
+    select2_highlighted_option.click
+    assert_equal 'Jan 1 - Dec 31, 1961', select2_current_value(path_to_date)
+    @b.input(:value => 'Save').click
+    assert_equal 'Jan 1 - Dec 31, 1961', birth_date_value
+
   end
 
 end
