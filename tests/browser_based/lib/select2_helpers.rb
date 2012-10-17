@@ -16,5 +16,9 @@ module Select2Helpers
   def select2_highlighted_option
     return @b.li(:class, "select2-highlighted").when_present
   end
+  
+  def select2_click_clear_icon
+    @b.abbr(:class => 'select2-search-choice-close').click
+  end
 
 end

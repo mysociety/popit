@@ -52,10 +52,11 @@ class DateEditingTests < PopItWatirTestCase
     @b.input(:value => 'Save').click
     assert_equal 'Aug 4, 1961', birth_date_value
 
-    # binding.pry
-
-
-
+    # test that the user can clear the date
+    @b.link(:text => '^ edit this date').click
+    select2_click_clear_icon
+    @b.input(:value => 'Save').click
+    assert_equal '??', birth_date_value
 
   end
 
