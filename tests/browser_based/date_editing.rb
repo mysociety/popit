@@ -45,11 +45,14 @@ class DateEditingTests < PopItWatirTestCase
     select2_highlighted_option.click
     assert_equal 'Aug 4, 1961', select2_current_value(path_to_date)
     @b.input(:value => 'Save').click
-    wait_for_ajax_requests_to_end
     assert_equal 'Aug 4, 1961', birth_date_value
     
+    # test that selecting a date and then just clicking save works too
+    @b.link(:text => '^ edit this date').click
+    @b.input(:value => 'Save').click
+    assert_equal 'Aug 4, 1961', birth_date_value
 
-    binding.pry
+    # binding.pry
 
 
 

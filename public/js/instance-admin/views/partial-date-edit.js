@@ -57,10 +57,10 @@ define(
           allowClear: true,
           initSelection: function (element, callback) {
             // Would also like to pre-fill input field - see https://github.com/ivaynberg/select2/issues/505
-            var current_value = element.val()
+            var current_value = element.val();
             callback(
               current_value ?
-              { id: current_value, text: current_value } :
+              { id: current_value, text: current_value, raw: _.clone(model.attributes) } :
               null
             );
           },
