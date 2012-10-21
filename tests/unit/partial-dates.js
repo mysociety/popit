@@ -65,8 +65,8 @@ module.exports = {
           var entry = new TestModel({
             name: item.name,
             'theDate.nested': {
-              start: item.start,
-              end:   item.end,
+              start: item.start + ' UTC',
+              end:   item.end   + ' UTC',
             },
           });
 
@@ -288,13 +288,13 @@ module.exports = {
       '1234-56-78':               { start: '', end: '' },
 
       // valid inputs
-      '2012-01-02':               { start: '2012-01-02', end: '2012-01-02' },
-      '2012-01-02 to 2012-01-02': { start: '2012-01-02', end: '2012-01-02' },
-      '2012-01-02 to 2013-04-05': { start: '2012-01-02', end: '2013-04-05' },
+      '2012-01-02':               { start: '2012-01-02 UTC', end: '2012-01-02 UTC' },
+      '2012-01-02 to 2012-01-02': { start: '2012-01-02 UTC', end: '2012-01-02 UTC' },
+      '2012-01-02 to 2013-04-05': { start: '2012-01-02 UTC', end: '2013-04-05 UTC' },
 
       // More human dates
-      '26 May 1977':                 { start: '1977-05-26', end: '1977-05-26' },
-      '26 May 1977 to 28 June 1978': { start: '1977-05-26', end: '1978-06-28' },
+      '26 May 1977':                 { start: '1977-05-26 UTC', end: '1977-05-26 UTC' },
+      '26 May 1977 to 28 June 1978': { start: '1977-05-26 UTC', end: '1978-06-28 UTC' },
     };
     
     
