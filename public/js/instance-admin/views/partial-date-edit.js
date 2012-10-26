@@ -3,7 +3,7 @@ define(
     'jquery',
     'underscore',
     'Backbone',
-    'templates/partial-date/person-birth-date',
+    '../models/partial-date-templates',
     '../models/person',
     'jquery.select2'
   ],
@@ -11,7 +11,7 @@ define(
     $,
     _,
     Backbone,
-    partialDateTemplate,
+    partialDateTemplates,
     Person    
   ) {
     "use strict"; 
@@ -142,11 +142,13 @@ define(
                   person_json.api_base_url = model.urlRoot;
                   person_json.id           = model.id;
 
+                  var template = partialDateTemplates['person-birth-date'];
+
                   var template_args = {
                     person: person_json
                   };
                   
-                  var html = partialDateTemplate( template_args );
+                  var html = template( template_args );
                   var replacement =  view.$el.clone().empty().html( html );
 
                   view.$el.after( replacement );                
