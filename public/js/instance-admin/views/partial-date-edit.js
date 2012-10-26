@@ -17,7 +17,8 @@ define(
     "use strict"; 
 
     // from http://stackoverflow.com/a/3067896/5349
-    var format_date = function (date) {
+    var format_date = function (dateOrString) {
+      var date = new Date(dateOrString);
       var yyyy = date.getFullYear().toString();
       var mm = (date.getMonth()+1).toString(); // getMonth() is zero-based
       var dd  = date.getDate().toString();
@@ -32,8 +33,8 @@ define(
         var start, end, initial_value;
         
         if (model.get('start')) {
-          start =  format_date( new Date(model.get('start')) );
-          end   =  format_date( new Date(model.get('end'  )) );
+          start =  format_date( model.get('start') );
+          end   =  format_date( model.get('end'  ) );
 
           initial_value = start;
           if (start != end) {
