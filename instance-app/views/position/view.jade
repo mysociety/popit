@@ -23,6 +23,10 @@ block content
           | Organisation: 
           a(href=position.organisation.slug_url) #{position.organisation.name}
     
+    p Start Date: #{position.start_date.formatted || '???' }
+    p End Date:  #{position.end_date.formatted || '???' }
+    
+    
     section.to_be_added
       p 
         | There is a 
