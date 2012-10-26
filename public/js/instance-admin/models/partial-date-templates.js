@@ -11,15 +11,18 @@
 
 define(
   [
-    'templates/partial-date/person-birth-date'
+    'templates/partial-date/person-birth-date',
+    'templates/partial-date/person-death-date'
   ],
   function (
-    personBirthDateTemplate
+    personBirthDateTemplate,
+    personDeathDateTemplate
   ) {
     "use strict";
     
     return {
-      'person-birth-date': personBirthDateTemplate
+      'person-birth-date': personBirthDateTemplate,
+      'person-death-date': personDeathDateTemplate
     };
     
   }
