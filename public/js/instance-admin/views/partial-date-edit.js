@@ -5,14 +5,15 @@ define(
     'Backbone',
     '../models/partial-date-templates',
     '../models/person',
-    'jquery.select2'
+    'instance-admin/utils/select2-helpers'
   ],
   function (
     $,
     _,
     Backbone,
     partialDateTemplates,
-    Person    
+    Person,
+    select2Helpers
   ) {
     "use strict"; 
 
@@ -44,7 +45,10 @@ define(
 
         // this is the input that we will add the smarts to
         var $date_input = $('<input type="text" name="' + model.path_to_date + '"/>');
+
+        // Set the initial value - needed so that select2 will run the initSelection block
         $date_input.val( initial_value );
+        // $date_input.data({ raw: _.clone(model.attributes) });
         
         // construct the whole form
         var $form = $('<form />')
@@ -53,44 +57,16 @@ define(
           // .append('<button name="delete">Delete</button>')
           // .append('<button name="cancel">Cancel</button>');
             
-        $date_input.select2({
-          placeholder: "no date",
-          allowClear: true,
-          initSelection: function (element, callback) {
-            // Would also like to pre-fill input field - see https://github.com/ivaynberg/select2/issues/505
-            var current_value = element.val();
-            callback(
-              current_value ?
-              { id: current_value, text: current_value, raw: _.clone(model.attributes) } :
-              null
-            );
-          },
-          ajax: {
-            url: '/autocomplete/partial_date',
-            data: function (term, page) {
-              if ( !term ) {
-                term = $date_input.val();
-              }
-              return { term: term };
-            },
-            results: function (data) {
-              // console.log( 'data', data );
-
-              var results = _.map(data, function(item) {
-                return {
-                  id:   item.formatted,
-                  text: item.formatted,
-                  raw:  item
-                };
-              });
-
-              // console.log( 'results', results );
-
-              return { results: results };
+            
+        $date_input.select2(
+          select2Helpers.create_arguments_for_partial_date({
+            initial_date: {
+              start:     start,
+              end:       end,
+              formatted: initial_value
             }
-          },
-          width: '100%'
-        });
+          })
+        );
 
         // update our element
         this.$el.html( $form );

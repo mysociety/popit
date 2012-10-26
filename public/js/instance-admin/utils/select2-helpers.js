@@ -141,6 +141,70 @@ define(
     
     /*
     
+      Create the arguments for a partial date select box.
+
+      If the date already has a value then the formatted string needs to be set
+      as the inputs .val() so that select2 will show run the initSelection code.
+
+      Usage:
+
+        $(date_input).select2(a
+          select2Helpers.create_arguments_for_partial_date({
+            initial_date: { start: ..., end: ..., formatted: ... }
+          })
+        );
+
+    */
+    
+    helpers.create_arguments_for_partial_date = function (args) {
+
+      var initial_date = args.initial_date || {};
+
+      return {
+        placeholder: "no date",
+        allowClear: true,
+        initSelection: function (element, callback) {
+          // Would also like to pre-fill input field - see https://github.com/ivaynberg/select2/issues/505
+
+          callback({
+            id:   initial_date.formatted,
+            text: initial_date.formatted,
+            raw:  initial_date
+          });            
+        },
+        ajax: {
+          url: '/autocomplete/partial_date',
+          data: function (term, page) {
+            if ( !term ) {
+              term = initial_date.formatted;
+            }
+            return { term: term };
+          },
+          results: function (data) {
+            // console.log( 'data', data );
+
+            var results = _.map(data, function(item) {
+              return {
+                id:   item.formatted,
+                text: item.formatted,
+                raw:  item
+              };
+            });
+
+            // console.log( 'results', results );
+
+            return { results: results };
+          }
+        },
+        width: '100%'
+      };
+    };
+    
+    
+    
+    
+    /*
+    
       Helper that creates a document using the API if needed and then passes the
       id on to the next step.
       
