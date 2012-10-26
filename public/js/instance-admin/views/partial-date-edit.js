@@ -142,7 +142,7 @@ define(
                   person_json.api_base_url = model.urlRoot;
                   person_json.id           = model.id;
 
-                  var template = partialDateTemplates['person-birth-date'];
+                  var template = partialDateTemplates[partialDate.template_name];
 
                   var template_args = {
                     person: person_json
