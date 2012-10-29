@@ -129,13 +129,16 @@ define(
         )
         .then(function(person_id, organisation_id) {
 
+          var start_date_data = view.$start_date_input.select2('data') || {};
+          var end_date_data   = view.$end_date_input.select2('data')   || {};
+
           // create a new position
           var position = new PositionModel({
             person:       person_id,
             organisation: organisation_id,
             title:        job_title,
-            start_date:   view.$start_date_input.select2('data').raw || {},
-            end_date:     view.$end_date_input.select2('data').raw || {}
+            start_date:   start_date_data.raw || {},
+            end_date:     end_date_data.raw   || {}
           });
           
           // Save it
