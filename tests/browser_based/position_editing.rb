@@ -46,6 +46,12 @@ class PositionEditingTests < PopItWatirTestCase
     select2_highlighted_option.click
     assert_equal select2_current_value('organisation'), "United States Government"
     
+    # set the start date, but leave the end date empty
+    select2_container('start-date').link.click
+    @b.send_keys '20 jan 2001'
+    assert_equal select2_highlighted_option.text, 'Jan 20, 2001'
+    select2_highlighted_option.click
+    assert_equal select2_current_value('start-date'), 'Jan 20, 2001'
 
     # submit the form and check that the new position is created
     position_form.submit
@@ -56,6 +62,8 @@ class PositionEditingTests < PopItWatirTestCase
     assert_equal @b.article.h1.text, "President"
     assert_match @b.text, /Person:\ George\ Bush/
     assert_match @b.text, /Organisation:\ United\ States\ Government/
+    assert_match @b.text, /Start\ Date:\ Jan\ 20,\ 2001/
+    assert_match @b.text, /End\ Date:\ \?\?\?/
         
     # go back to person page and check that the positien is now listed there
     goto '/person/george-bush'
