@@ -1,7 +1,0 @@
-var _ = require('underscore');
-
-module.exports = {};
-
-<% _.each( templates, function( template, key ) { %>
-module.exports['<%= key %>'] = <%= template.source %>;
-<% }); %>

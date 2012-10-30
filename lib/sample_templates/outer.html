@@ -1,5 +1,5 @@
 OUTER_START
-
-<%= render('inner.html') %>
-
+<%= outerPre %>
+<%= render( 'inner.html', { inner: inner } ) %>
+<%= outerPost %>
 OUTER_END

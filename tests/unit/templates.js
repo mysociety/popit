@@ -26,8 +26,8 @@ module.exports = {
   "test rendering a simple template" : function (test) {
     test.expect(1);
     test.equal(
-      this.templates.render('inner.html'),
-      "INNER_START\n\nINNER_END\n"
+      this.templates.render('inner.html', {inner: 'simple'}),
+      "INNER_START\nsimple\nINNER_END\n"
     );
     test.done();
   },
@@ -35,8 +35,15 @@ module.exports = {
   "test rendering a template with an include" : function (test) {
     test.expect(1);
     test.equal(
-      this.templates.render('outer.html'),
-      "OUTER_START\n\nINNER_START\n\nINNER_END\n\n\nOUTER_END\n"
+      this.templates.render(
+        'outer.html',
+        {
+          outerPre:  'outer-pre',
+          outerPost: 'outer-post',
+          inner:     'nested',
+        }
+      ),
+      "OUTER_START\nouter-pre\nINNER_START\nnested\nINNER_END\n\nouter-post\nOUTER_END\n"
     );
     test.done();
   },
