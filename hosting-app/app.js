@@ -12,7 +12,7 @@ var express           = require('express'),
     masterSelector    = require('../lib/middleware/master-selector');
 
 
-var app = module.exports = express.createServer();
+var app = module.exports = express();
 
 
 // Configuration
@@ -58,7 +58,7 @@ app.configure('development', function(){
 
 app.configure('production', function(){
   app.use(express.errorHandler());
- });
+});
 
 // Routes
 require('./routes').route(app);

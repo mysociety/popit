@@ -93,7 +93,7 @@ everyauth
     .registerSuccessRedirect('/');
 
 
-var app = module.exports = express.createServer();
+var app = module.exports = express();
 
 
 
