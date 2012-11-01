@@ -9,7 +9,8 @@ var express           = require('express'),
     mongoose          = require('mongoose'),
     config            = require('config'),
     utils             = require('../lib/utils'),
-    masterSelector    = require('../lib/middleware/master-selector');
+    masterSelector    = require('../lib/middleware/master-selector'),
+    engines = require('consolidate');
 
 
 var app = module.exports = express();
@@ -28,7 +29,7 @@ app.configure(function(){
   app.set('view engine', 'jade');
   app.set('views', __dirname + '/views');
   app.set('view options', { layout: false, pretty: true, });
-  app.register('.txt',  expressHogan);
+  app.engine('txt',  engines.hogan);
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.static(__dirname + '/../' + config.public_dir));
