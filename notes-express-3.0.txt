@@ -1,0 +1,11 @@
+The migration is going quite well, but is hung up on the fact that mounted apps no longer inherit the settings from their parents, which for us means that the templates cannot be found.
+
+I've submitted a pull request to either fix this, or confirm that the new behaviour is intentional:
+
+  https://github.com/visionmedia/express/pull/1394
+
+Once accepted/rejected we can continue work on this branch.
+
+If accepted then the mounted apps should not require any changes. If rejected it might be worth creating a `mountable-express` that has the .on('mount', ...) that is in that commit...
+
+Edmund.
