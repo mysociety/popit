@@ -150,12 +150,12 @@ app.configure( function () {
   // set up the flash and make it available to the templates - https://gist.github.com/3070950
   app.use( connect_flash() );
   app.use( function (req, res, next) {
-    res.locals({ flash: req.flash.bind(req) });
+    res.locals.flash = req.flash.bind(req);
     next();
   });
 
   app.use( function (req,res,next) {
-    res.local( 'current_absolute_pathname', current_absolute_pathname(req) );
+    res.locals.current_absolute_pathname = current_absolute_pathname(req);
     next();    
   });
   
@@ -171,7 +171,7 @@ app.configure( function () {
   // the user (or null) onto locals we can sidestep this issue. Perhaps we
   // should look at different auth approaches.
   app.use(function (req,res,next) {
-    res.local('user', req.user );
+    res.locals.user = req.user;
     next();
   });
 
