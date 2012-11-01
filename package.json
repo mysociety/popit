@@ -43,6 +43,7 @@
     "moment": ">= 1.7.0",
     "connect-flash": ">= 0.1.0",
     "version": ">= 0.1.0",
+    "walk": ">= 2.2.1",
     "winston": ">= 0.6.2",
     "winston-loggly": ">= 0.6.0",
     "everyauth": "https://github.com/evdb/everyauth/tarball/master"
