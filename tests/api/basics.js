@@ -88,7 +88,7 @@ module.exports = {
           "got JavaScript"
         );
 
-        var callback_regex = /^name_of_callback\(\{.+\}\);$/;
+        var callback_regex = /^name_of_callback && name_of_callback\(\{.+\}\);$/;
 
         test.ok(
           callback_regex.test(data),
