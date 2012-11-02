@@ -5,7 +5,6 @@
  */
 
 var express           = require('express'),
-    expressHogan      = require('express-hogan.js'),
     mongoose          = require('mongoose'),
     config            = require('config'),
     utils             = require('../lib/utils'),
