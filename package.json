@@ -14,7 +14,6 @@
     "consolidate": ">= 0.5.0",
     "csv": ">= 0.0.13",
     "doublemetaphone": "*",
-    "everyauth": "https://github.com/evdb/everyauth/tarball/master",
     "express": ">=3.0.0",
     "forever": ">= 0.10.0",
     "form-data": ">= 0.0.4",
