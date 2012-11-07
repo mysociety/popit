@@ -23,10 +23,8 @@ exports.route = function (app) {
         var email    = req.param('email', '').trim();
     
         // save all the values in case validation fails.
-        res.locals({
-            slug: slug,
-            email: email,
-        });
+        res.locals.slug  = slug;
+        res.locals.email = email;
     
         utils.password_and_hash_generate( function (password, hash) {
     
@@ -42,7 +40,7 @@ exports.route = function (app) {
             instance.save(function (err) {
                 if ( err ) {
                     // store error and pass control to get method
-                    res.local( 'errors', err.errors );
+                    res.locals.errors = err.errors;
                     return new_get(req, res);
                 } else {
             
@@ -57,17 +55,17 @@ exports.route = function (app) {
     };
     
     function send_new_instance_email ( req, res, instance, password ) {
+
+        var template_args = {
+          instance: instance,
+          token:    instance.setup_info.confirmation_token,
+          host:     req.header('Host'),
+          password: password,
+        };
+        
         res.render(
             'emails/new_instance.txt',
-            {
-                layout: false,
-                locals: {
-                    instance: instance,
-                    token: instance.setup_info.confirmation_token,
-                    host: req.header('Host'),
-                    password: password,
-                },
-            },
+            template_args,
             function( err, output ) {
                 if (err) winston.error( err );
                 mailer.send(
@@ -83,7 +81,7 @@ exports.route = function (app) {
     }
     
     var new_get = function (req, res) {
-        res.local('title','New Instance');    
+        res.locals.title = 'New Instance';    
         res.render(
             'instance_new'
         );
@@ -112,10 +110,8 @@ exports.route = function (app) {
     app.get( '/instances/:instanceSlug', function (req, res) {
             var template_file = 'instance_' + req.instance.status;
             res.render( template_file, {
-                locals: {
-                    instance: req.instance,
-                    moment: moment,
-                },
+              instance: req.instance,
+              moment: moment,
             } );
     });
     
@@ -134,17 +130,13 @@ exports.route = function (app) {
         if (  token != req.instance.setup_info.confirmation_token ) {
             return res.render(
                 'instance_confirm_wrong_token',
-                {
-                    locals: { instance: instance },
-                }
+                { instance: instance }
             );
         }
         
         // nothing wrong here :)
-        res.locals({
-            instance: instance,
-            token: token,
-        });
+        res.locals.instance = instance;
+        res.locals.token    = token;
         next();
     }
     
@@ -154,7 +146,7 @@ exports.route = function (app) {
     // issue that caused FMT pain:
     //   https://nodpi.org/2011/06/22/vodastalk-vodafone-and-bluecoat-stalking-subscribers/
     app.get( '/instances/:instanceSlug/confirm/:token', check_pending_and_token, function (req, res) {
-        return res.render( 'instance_confirm', { locals: res.locals() } );
+        return res.render( 'instance_confirm' );
     });
     
     app.post( '/instances/:instanceSlug/confirm/:token', check_pending_and_token, function (req, res) {
@@ -215,7 +207,7 @@ exports.route = function (app) {
         query.exec(function(err, docs) {
           if (err) throw err;
 
-          res.local('instances', docs);
+          res.locals.instances = docs;
           res.render('instances');
         });
     });

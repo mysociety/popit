@@ -9,7 +9,6 @@ These are the more major tools used to create the PopIt app:
 
  * [Express](http://expressjs.com/guide.html) framework
  * [Node.js](http://nodejs.org/api/) server and runtime
- * [everyauth](http://everyauth.com/) authentication
 
 ## Layout and Design
 

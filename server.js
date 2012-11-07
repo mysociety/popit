@@ -4,7 +4,8 @@
  * Module dependencies.
  */
 
-var connect        = require('connect'),
+var express        = require('express'),
+    // connect        = require('connect'),
     config         = require('config'),
     winston        = require('./lib/popit_winston'),
     hosting_app    = require('./hosting-app/app'),
@@ -12,14 +13,20 @@ var connect        = require('connect'),
     format         = require('util').format,
     instance_app   = require('./instance-app/app');
 
-connect(
-  // match the hosting app host...
-  connect.vhost(config.hosting_server.host, hosting_app),
+var app = express();
 
-  // ...or fall through to the instance app
-  instance_app
-)
-.listen(config.server.port);
+// match the hosting app host...
+app.use(
+  express.vhost(
+    config.hosting_server.host,
+    hosting_app
+  )
+);
+
+// ...or fall through to the instance app
+app.use(instance_app);
+
+app.listen(config.server.port);
 
 winston.info( 'started at: ' + new Date() );
 winston.info(

@@ -1,7 +1,8 @@
 "use strict"; 
 
 var Error404 = require('../../lib/errors').Error404,
-    async    = require('async');
+    async    = require('async'),
+    _        = require('underscore');
 
 exports.route = function (app) {
 
@@ -42,8 +43,8 @@ exports.route = function (app) {
       },
       function(err, results) {
         if (err) return next(err);
-        res.locals(results);
-        res.locals({ summary_listing_count: summary_listing_count });
+        res.locals = _.extend(res.locals, results);
+        res.locals.summary_listing_count = summary_listing_count;
         res.render('index');
       }
     );
