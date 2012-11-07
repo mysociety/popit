@@ -17,11 +17,13 @@ var express           = require('express'),
     jadeAmdMiddleware = require('jade-amd').jadeAmdMiddleware,
     image_proxy       = require('connect-image-proxy'),
     connect_flash     = require('connect-flash'),
+    Template          = require('../lib/templates'),
     current_absolute_pathname = require('../lib/middleware/route').current_absolute_pathname;
 
 
 
 var app = module.exports = express();
+var template = new Template();
 
 
 // Configuration
@@ -44,6 +46,8 @@ app.configure(function(){
       // debug: true,
   });
   
+  app.engine('html', template.forExpress() );
+    
   app.use(express.bodyParser());
   app.use(express.methodOverride());
 });
