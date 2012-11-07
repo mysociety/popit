@@ -31,8 +31,6 @@ app.configure('production', function(){
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
-  app.locals.pretty = true;
-  app.set('view engine', 'jade' );
   app.engine('html', template.forExpress() );
   app.engine('txt',  engines.hogan);
   app.use(express.bodyParser());
