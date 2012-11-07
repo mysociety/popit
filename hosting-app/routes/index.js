@@ -121,22 +121,20 @@ exports.route = function (app) {
         var instance = req.instance,
             token    = req.params.token;
     
+        res.locals.instance = instance;
+        res.locals.token    = token;
+
         // if the instance is not pending redirect to the instance page
         if ( instance.status != 'pending' ) {
             return res.redirect( '/instances/' + instance.slug );
         }
         
         // if the token is wrong show the bad token page
-        if (  token != req.instance.setup_info.confirmation_token ) {
-            return res.render(
-                'instance_confirm_wrong_token',
-                { instance: instance }
-            );
+        if ( token != req.instance.setup_info.confirmation_token ) {
+            return res.render('instance_confirm_wrong_token.html');
         }
         
         // nothing wrong here :)
-        res.locals.instance = instance;
-        res.locals.token    = token;
         next();
     }
     
@@ -146,7 +144,7 @@ exports.route = function (app) {
     // issue that caused FMT pain:
     //   https://nodpi.org/2011/06/22/vodastalk-vodafone-and-bluecoat-stalking-subscribers/
     app.get( '/instances/:instanceSlug/confirm/:token', check_pending_and_token, function (req, res) {
-        return res.render( 'instance_confirm' );
+        return res.render( 'instance_confirm.html' );
     });
     
     app.post( '/instances/:instanceSlug/confirm/:token', check_pending_and_token, function (req, res) {
@@ -208,7 +206,7 @@ exports.route = function (app) {
           if (err) throw err;
 
           res.locals.instances = docs;
-          res.render('instances');
+          res.render('instances.html');
         });
     });
 
