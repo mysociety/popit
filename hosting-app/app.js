@@ -9,10 +9,12 @@ var express           = require('express'),
     config            = require('config'),
     utils             = require('../lib/utils'),
     masterSelector    = require('../lib/middleware/master-selector'),
-    engines = require('consolidate');
+    engines           = require('consolidate'),
+    Template          = require('../lib/templates');
 
 
 var app = module.exports = express();
+var template = new Template();
 
 
 // Configuration
@@ -22,12 +24,14 @@ app.configure('development', function(){
 
 app.configure('production', function(){
   app.use(express.logger());
+
+  // don't reload the templates each time from disk
+  template.cacheTemplates = true;
 });
 
 app.configure(function(){
-  app.set('view engine', 'jade');
   app.set('views', __dirname + '/views');
-  app.set('view options', { layout: false, pretty: true, });
+  app.engine( 'html', template.forExpress() );
   app.engine('txt',  engines.hogan);
   app.use(express.bodyParser());
   app.use(express.methodOverride());
