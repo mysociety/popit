@@ -108,7 +108,7 @@ exports.route = function (app) {
     });
     
     app.get( '/instances/:instanceSlug', function (req, res) {
-            var template_file = 'instance_' + req.instance.status;
+            var template_file = 'instance_' + req.instance.status + '.html';
             res.render( template_file, {
               instance: req.instance,
               moment: moment,

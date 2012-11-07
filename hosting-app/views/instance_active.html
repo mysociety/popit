@@ -1,0 +1,32 @@
+<%= render(
+  'html_head.html',
+  {
+    title:       instance.info.name || instance.slug,
+    description: (instance.info.name || instance.slug) + (instance.info.description || ''),
+  }
+) %>
+
+<h1><%= instance.info.name || instance.slug %></h1>
+
+<p><a href="<%- instance.base_url %>"><%- instance.base_url %></a></p>
+
+<% if ( instance.info.description ) { %>
+  <p><%- instance.info.description %></p>  
+<% } %>
+
+<% if ( instance.info.name ) { %>
+  <h2>Details</h2>
+  <p>Number of people: <%- instance.info.person_count || 0 %></p>
+  <p>Number of organisations: <%- instance.info.organisation_count || 0 %></p>
+  <p>Last updated (approx): <%- moment( instance.info.last_updated ).fromNow() %></p>
+  
+  <%
+    // TODO - display more details here
+    // https://github.com/mysociety/popit/issues/157
+    // <pre>instance.info</pre>
+  %>
+
+<% } %>
+
+<%= render('html_footer.html' )%>
+
