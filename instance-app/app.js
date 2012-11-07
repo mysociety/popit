@@ -25,6 +25,13 @@ var express           = require('express'),
 var app = module.exports = express();
 var template = new Template();
 
+// put in null values here so that the templates can all be consistent, even in
+// the edge cases where an instance has not been loaded, or a user is not logged in.
+app.locals({
+  user: null,
+  popit: null,
+});
+
 
 // Configuration
 
