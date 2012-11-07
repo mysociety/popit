@@ -9,6 +9,7 @@ var Validator     = require('validator').Validator,
     mailer        = require('../../lib/mailer'),
     config        = require('config'),
     moment        = require('moment'),
+    _             = require('underscore'),     
     Error404      = require('../../lib/errors').Error404;
 
 exports.route = function (app) {
@@ -81,10 +82,16 @@ exports.route = function (app) {
     }
     
     var new_get = function (req, res) {
-        res.locals.title = 'New Instance';    
-        res.render(
-            'instance_new'
-        );
+      _.defaults(
+        res.locals,
+        {
+          title:  'New Instance',
+          errors: {},
+          email: '',
+          slug: '',
+        }
+      );
+      res.render('instance_new.html');
     };
     
     app.post( '/instances/new', new_post );
