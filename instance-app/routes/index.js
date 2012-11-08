@@ -52,7 +52,7 @@ exports.route = function (app) {
   });
 
   app.get('/welcome', function (req, res) {
-    res.render('welcome');
+    res.render('welcome.html');
   });
 
   // Throw a 404 error
