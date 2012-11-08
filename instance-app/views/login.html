@@ -1,0 +1,43 @@
+<%= render(
+  'html_head.html',
+  {
+    title:       'Welcome back',
+    description: '',
+  }
+) %>
+
+<div class="login-form">
+  <h1>Welcome back</h1>
+  <p class="instructions">
+    Log back in to manage your PopIt site. 
+    <a href='https://github.com/mysociety/popit/issues/17'>Forgotten your details?</a>
+  </p>
+  
+  <% if (errors.length) { %>
+    <ul id="errors">
+      <% _.each(errors, function(error) { %>
+        <li class="error"><%- error %></li>        
+      <%}); %>
+    </ul>
+  <% } %>
+
+  <form action='/login' method='post'>
+    <p>
+      <label for='email'> Email:</label>
+      <input id="email" type='text' name='email', value="<%- email %>">
+    </p>
+    
+    <p>
+      <label for='password'>Password:</label>
+      <input id="password" type='password' name='password'>
+    </p>
+    
+    <p>
+      <input id="login" class="btn" type="submit" value="Login">
+    </p>
+  </form>
+
+</div>
+
+
+<%= render('html_footer.html' )%>
