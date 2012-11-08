@@ -45,7 +45,7 @@ exports.route = function (app) {
         if (err) return next(err);
         res.locals = _.extend(res.locals, results);
         res.locals.summary_listing_count = summary_listing_count;
-        res.render('index');
+        res.render('index.html');
       }
     );
 
