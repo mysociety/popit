@@ -50,7 +50,7 @@ require(['jquery', 'underscore'], function ($, _) {
       
       // strict means that the user should only be able to use the provided suggestions
       var attr = option.attr('data-strict');
-      var isStrict = typeof attr !== 'undefined' && attr !== false;
+      var isStrict = typeof attr !== 'undefined' && attr;
 
       // clear old list/ suggestions
       tr.find('datalist').remove();
