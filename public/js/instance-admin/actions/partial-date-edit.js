@@ -40,7 +40,8 @@ define(
           dateObject.id            = link_data.id;
           dateObject.urlRoot       = link_data.urlRoot;
           dateObject.path_to_date  = link_data.pathPrefix;
-          dateObject.template_name = link_data.templateName;
+          dateObject.link_data     = link_data;
+          
           
           // create the view. Hook it up to the enclosing element.
           var view = new PartialDateEditView({

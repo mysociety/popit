@@ -1,6 +1,0 @@
-span.admin-options
-  a(class="edit partial-date-edit", data-start="#{person.personal_details.date_of_death.start}", data-end="#{person.personal_details.date_of_death.end}", data-path-prefix="personal_details.date_of_death", data-url-root=person.api_base_url, data-id=person.id, data-template-name='person-death-date')
-    strong ^ edit
-    |  this date
-div.list-item-title Death date:
-div.list-item-value #{ person.personal_details.date_of_death.formatted || '??' }
