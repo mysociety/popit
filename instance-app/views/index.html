@@ -21,13 +21,13 @@
         <li> 
           <a href="/person/<%- person.slug %>"><%- person.name %></a>
         </li>
-        <% if (person_count > summary_listing_count) { %>
-          <li>
-            and 
-            <a href="/person"><%- person_count - summary_listing_count %> more</a>
-          </li>
-        <% } %>
       <% }); %>
+      <% if (person_count > summary_listing_count) { %>
+        <li>
+          and 
+          <a href="/person"><%- person_count - summary_listing_count %> more</a>
+        </li>
+      <% } %>
     <% } else { %>
       <li>
         There are no people in the database yet. 
