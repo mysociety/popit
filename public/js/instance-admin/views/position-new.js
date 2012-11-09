@@ -4,7 +4,7 @@ define(
     'Backbone',
     'backbone-forms',
     'underscore',
-    'templates/position/new',
+    'templates',
     'instance-admin/models/person',
     'instance-admin/models/organisation',
     'instance-admin/models/position',
@@ -18,7 +18,7 @@ define(
     Backbone,
     BackboneForms,
     _,
-    positionNewTemplate,
+    templates,
     PersonModel,
     OrganisationModel,
     PositionModel,
@@ -35,7 +35,7 @@ define(
       render: function () {
   
         // Render the template
-        var $content = $( positionNewTemplate({}) );
+        var $content = $( templates.render('position/new.html',{}) );
   
         // find the bits that are interesting and store them for easy access
         this.$title_input        = $content.find('[name=title]');
