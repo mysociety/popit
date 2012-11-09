@@ -3,13 +3,13 @@ define(
     'Backbone',
     'underscore',
     'instance-admin/collections/suggestions',
-    'templates/person/compact_list'
+    'templates'
   ],
   function(
     Backbone,
     _,
     SuggestionsCollection,
-    compactListTemplate
+    templates
    ) {
      "use strict"; 
 
@@ -19,7 +19,7 @@ define(
       collection: new SuggestionsCollection(),
     
       render: function () {
-        var content = compactListTemplate({ items: this.collection.toJSON() });
+        var content = templates.render( 'person/compact_list.html',{ items: this.collection.toJSON() });
         this.$el.html( content );
         return this;
       },
