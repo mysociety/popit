@@ -14,7 +14,6 @@ var express           = require('express'),
 
 
 var app = module.exports = express();
-var template = new Template();
 
 
 // Configuration
@@ -24,15 +23,16 @@ app.configure('development', function(){
 
 app.configure('production', function(){
   app.use(express.logger());
-
-  // don't reload the templates each time from disk
-  template.cacheTemplates = true;
 });
+
+var template = new Template();
+template.cacheTemplates = app.get('env') == 'development' ? false : true;
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.engine('html', template.forExpress() );
   app.engine('txt',  engines.hogan);
+
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.static(__dirname + '/../' + config.public_dir));
