@@ -103,9 +103,8 @@ define(
             success: function (model, response) {
 
               // We are fetching the whole model here so that we can process the template in
-              // the same way as it is done on the server. This is fairly wasteful, but the
-              // template seems to limit our options as it is not possible to easily pass
-              // arguments to a partial using Jade
+              // the same way as it is done on the server. This is fairly wasteful, and we
+              // should look at changing it.
               
               var person = new Person();
               person.id = partialDate.id;

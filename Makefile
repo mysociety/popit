@@ -51,9 +51,9 @@ optipng:
 
 
 js-templates:
-	node_modules/.bin/jade-amd --runtime > public/js/jadeRuntime.js
+	# node_modules/.bin/jade-amd --runtime > public/js/jadeRuntime.js
 	rm -rf public/js/templates
-	node_modules/.bin/jade-amd --pretty --from instance-app/views --to public/js/templates
+	# node_modules/.bin/jade-amd --pretty --from instance-app/views --to public/js/templates
 
 
 public-production: css js-templates

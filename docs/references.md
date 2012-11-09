@@ -12,7 +12,6 @@ These are the more major tools used to create the PopIt app:
 
 ## Layout and Design
 
- * [Jade](https://github.com/visionmedia/jade#readme) for html pages
  * [Mustache](http://mustache.github.com/mustache.5.html) used for emails and text content
  * [Compass](http://compass-style.org/) to compile SCSS to CSS
  * [RequireJS](http://requirejs.org/) to merge and minify the JS and CSS

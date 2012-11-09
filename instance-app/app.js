@@ -14,7 +14,6 @@ var express           = require('express'),
     Db                = require('mongodb').Db,
     Server            = require('mongodb').Server,
     mongoStore        = require('connect-mongodb'),
-    jadeAmdMiddleware = require('jade-amd').jadeAmdMiddleware,
     image_proxy       = require('connect-image-proxy'),
     connect_flash     = require('connect-flash'),
     Template          = require('../lib/templates'),
@@ -47,14 +46,7 @@ template.cacheTemplates = app.get('env') == 'development' ? false : true;
 
 app.configure(function(){
     
-  app.set('view engine', 'jade');
   app.set('views', __dirname + '/views');
-  app.set('view options', {
-      layout: false,
-      pretty: true,
-      // debug: true,
-  });
-  
   app.engine('html', template.forExpress() );
     
   app.use(express.bodyParser());
@@ -63,7 +55,6 @@ app.configure(function(){
 
 app.configure('development', function () {
   app.use( '/js/templates.js', template.middlewareAMD() );
-  app.use( '/js/templates/', jadeAmdMiddleware({}) );
 });
 
 app.configure( function () {
