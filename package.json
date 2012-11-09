@@ -19,8 +19,6 @@
     "form-data": ">= 0.0.4",
     "hogan.js": ">= 2.0.0",
     "iconv": ">= 1.2.3",
-    "jade": ">= 0.25.0",
-    "jade-amd": ">= 0.0.4",
     "jquery": ">= 1.6.3",
     "jshint": ">= 0.9.1",
     "mime": ">= 1.2.7",
@@ -44,6 +42,7 @@
     "unorm": "*",
     "validator": ">= 0.4.5",
     "version": ">= 0.1.0",
+    "walk": ">= 2.2.1",
     "winston": ">= 0.6.2",
     "winston-loggly": ">= 0.6.0"
   },

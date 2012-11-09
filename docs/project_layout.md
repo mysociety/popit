@@ -58,4 +58,4 @@ the app folder, so there may be more `../` than normal :)
 In each app folder there is a `views` folder that contains the templates. There
 is also a folders in `views` called `info`. Any template put in there will be
 served when requested at a url like `/info/foobar` - which would serve the
-`info/foobar.jade` template. This is useful for privacy policies etc.
+`info/foobar.html` template. This is useful for privacy policies etc.

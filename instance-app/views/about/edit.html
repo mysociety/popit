@@ -1,0 +1,29 @@
+<%= render(
+  'html_head.html',
+  {
+    title:       'Edit About Info',
+    description: '',
+  }
+) %>
+
+<h1>Edit About Info</h1>
+
+<form method="post" action="" name="edit-about-info">
+
+  <% _.each( fields, function ( val, field ) { %>
+    <div class="about-field">
+      <label><%- val.label %></label>
+      <% if (val.type == 'textarea') { %>
+        <textarea name="<%- field %>")><%- val.value %></textarea>
+      <% } else { %>
+        <input name="<%- field %>" value="<%- val.value %>">
+      <% } %>
+    </div>
+    <br />
+  <% }); %>
+
+  <input type="submit" class="btn" value="Update Info")>
+
+</form>
+
+<%= render('html_footer.html' )%>

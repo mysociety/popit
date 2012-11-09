@@ -4,7 +4,7 @@ define(
     'Backbone',
     'backbone-forms',
     'underscore',
-    'templates/person/remove',
+    'templates',
     'instance-admin/models/person',
     'instance-admin/views/suggestions'
   ],
@@ -13,7 +13,7 @@ define(
     Backbone,
     BackboneForms,
     _,
-    personRemoveTemplate,
+    templates,
     PersonModel,
     submitFormHelper,
     SuggestionsView
@@ -26,9 +26,12 @@ define(
 
         // winston.verbose( this.model.toJSON() );
 
-        this.$el.html( personRemoveTemplate({
-          person: this.model.toJSON()
-        }) );
+        this.$el.html( templates.render(
+          'person/remove.html',
+          {
+            person: this.model.toJSON()
+          }
+        ));
         return this;
       },
       

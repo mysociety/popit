@@ -9,7 +9,8 @@ var express           = require('express'),
     config            = require('config'),
     utils             = require('../lib/utils'),
     masterSelector    = require('../lib/middleware/master-selector'),
-    engines = require('consolidate');
+    engines           = require('consolidate'),
+    Template          = require('../lib/templates');
 
 
 var app = module.exports = express();
@@ -24,11 +25,14 @@ app.configure('production', function(){
   app.use(express.logger());
 });
 
+var template = new Template();
+template.cacheTemplates = app.get('env') == 'development' ? false : true;
+
 app.configure(function(){
-  app.set('view engine', 'jade');
   app.set('views', __dirname + '/views');
-  app.set('view options', { layout: false, pretty: true, });
+  app.engine('html', template.forExpress() );
   app.engine('txt',  engines.hogan);
+
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.static(__dirname + '/../' + config.public_dir));

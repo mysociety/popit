@@ -14,14 +14,21 @@ var express           = require('express'),
     Db                = require('mongodb').Db,
     Server            = require('mongodb').Server,
     mongoStore        = require('connect-mongodb'),
-    jadeAmdMiddleware = require('jade-amd').jadeAmdMiddleware,
     image_proxy       = require('connect-image-proxy'),
     connect_flash     = require('connect-flash'),
+    Template          = require('../lib/templates'),
     current_absolute_pathname = require('../lib/middleware/route').current_absolute_pathname;
 
 
 
 var app = module.exports = express();
+
+// put in null values here so that the templates can all be consistent, even in
+// the edge cases where an instance has not been loaded, or a user is not logged in.
+app.locals({
+  user: null,
+  popit: null,
+});
 
 
 // Configuration
@@ -34,22 +41,20 @@ app.configure('production', function(){
   app.use(express.logger());
 });
 
+var template = new Template();
+template.cacheTemplates = app.get('env') == 'development' ? false : true;
+
 app.configure(function(){
     
-  app.set('view engine', 'jade');
   app.set('views', __dirname + '/views');
-  app.set('view options', {
-      layout: false,
-      pretty: true,
-      // debug: true,
-  });
-  
+  app.engine('html', template.forExpress() );
+    
   app.use(express.bodyParser());
   app.use(express.methodOverride());
 });
 
 app.configure('development', function () {
-  app.use( '/js/templates/', jadeAmdMiddleware({}) );
+  app.use( '/js/templates.js', template.middlewareAMD() );
 });
 
 app.configure( function () {

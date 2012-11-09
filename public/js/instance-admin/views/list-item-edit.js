@@ -2,6 +2,7 @@ define(
   [
     'jquery',
     'underscore',
+    'templates',
     'Backbone',
     'backbone-forms',
     'instance-admin/views/submit-form-helper',
@@ -10,6 +11,7 @@ define(
   function (
     $,
     _,
+    templates,
     Backbone,
     BackboneForms,
     submitFormHelper
@@ -96,7 +98,7 @@ define(
           api_url_root: model.urlRoot
         };
         
-        view.$el.html( view.template( template_args ) );
+        view.$el.html( templates.render(view.template, template_args ) );
       },
 
       submitForm: function (event) {

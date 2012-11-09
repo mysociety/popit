@@ -1,0 +1,53 @@
+<%= render(
+  'html_head.html',
+  {
+    title:       'People',
+    description: 'A list of all the people.',
+  }
+) %>
+
+<h1>People</h1>
+
+<p class="admin-options">
+  <a class="new-person add" href="#"> 
+    <strong>+ Add</strong>
+    a new person
+  </a>
+</p>
+
+<% if (people.length) { %>
+  <ul>
+    <% _.each( people, function(person) { %>
+      <li>
+        <a href="<%- person.slug_url %>"><%- person.name %></a>
+      </li>
+    <% }); %>
+  </ul>
+
+<% } else { %>
+  <div class="info">
+    <% if (user) { %>
+      <h3> 
+        There are no people in the system yet, you should probably 
+        <a class="new-person add" href="#">
+          <strong>add one now</strong>!
+        </a>
+      </h3>
+      
+      <p>
+        You just need to provide their name, once you've 
+        created their page you can add more details.
+      </p>
+      
+      <p>
+        If you already have data in a spreadsheet or similar you can use the 
+        <a href="/migration" id="migration_tool">migration tool</a>
+        to import it.
+      </p>
+    <% } else { %>
+      No people have been entered yet.
+    <% } %>
+  </div>
+<% } %>
+
+<%= render('html_footer.html' )%>

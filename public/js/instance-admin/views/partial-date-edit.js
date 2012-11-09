@@ -3,7 +3,7 @@ define(
     'jquery',
     'underscore',
     'Backbone',
-    '../models/partial-date-templates',
+    'templates',
     '../models/person',
     'instance-admin/utils/select2-helpers'
   ],
@@ -11,7 +11,7 @@ define(
     $,
     _,
     Backbone,
-    partialDateTemplates,
+    templates,
     Person,
     select2Helpers
   ) {
@@ -103,9 +103,8 @@ define(
             success: function (model, response) {
 
               // We are fetching the whole model here so that we can process the template in
-              // the same way as it is done on the server. This is fairly wasteful, but the
-              // template seems to limit our options as it is not possible to easily pass
-              // arguments to a partial using Jade
+              // the same way as it is done on the server. This is fairly wasteful, and we
+              // should look at changing it.
               
               var person = new Person();
               person.id = partialDate.id;
@@ -118,14 +117,29 @@ define(
                   person_json.api_base_url = model.urlRoot;
                   person_json.id           = model.id;
 
-                  var template = partialDateTemplates[partialDate.template_name];
+                  // hacky little function to recurse down the object and extract the part we are
+                  // interested in.
+                  var drill_down = function ( dotted_path, object ) {
+                    if (!dotted_path) return object;
+
+                    var paths = dotted_path.split('.');
+                    var first = paths.shift();
+                    var remaining = paths.join('.');
+
+                    return drill_down( remaining, object[first] );                    
+                  };
 
                   var template_args = {
-                    person: person_json
+                    person:           person_json,
+                    date:             drill_down( partialDate.link_data.pathPrefix, person_json ),
+                    data_path_prefix: partialDate.link_data.pathPrefix,
+                    data_url_root:    partialDate.link_data.urlRoot,
+                    data_id:          partialDate.link_data.id,
+                    title:            partialDate.link_data.title
                   };
                   
-                  var html = template( template_args );
-                  var replacement =  view.$el.clone().empty().html( html );
+                  var html = templates.render( 'partial-date/view.html', template_args );
+                  var replacement = view.$el.clone().empty().html( html );
 
                   view.$el.after( replacement );                
                   view.remove();

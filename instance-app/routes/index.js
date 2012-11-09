@@ -45,14 +45,14 @@ exports.route = function (app) {
         if (err) return next(err);
         res.locals = _.extend(res.locals, results);
         res.locals.summary_listing_count = summary_listing_count;
-        res.render('index');
+        res.render('index.html');
       }
     );
 
   });
 
   app.get('/welcome', function (req, res) {
-    res.render('welcome');
+    res.render('welcome.html');
   });
 
   // Throw a 404 error

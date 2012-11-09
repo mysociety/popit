@@ -1,0 +1,16 @@
+<span class="admin-options">
+  <a class="edit partial-date-edit"
+     data-start="<%- date.start %>"
+     data-end="<%- date.end %>"
+     data-path-prefix="<%= data_path_prefix %>"
+     data-url-root="<%= data_url_root %>"
+     data-id="<%= data_id %>"
+     data-title="<%- title %>"
+  >
+    <strong>^ edit</strong>
+    this date
+  </a>
+</span>
+
+<div class="list-item-title"><%- title %>:</div>
+<div class="list-item-value"><%- date.formatted || '??' %></div>

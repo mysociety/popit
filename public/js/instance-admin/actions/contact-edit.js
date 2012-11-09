@@ -7,15 +7,13 @@ define(
     'jquery',
     'instance-admin/app',
     'instance-admin/actions/list-item-editor',
-    'instance-admin/models/contact',
-    'templates/contact/view'
+    'instance-admin/models/contact'
   ],
   function (
     $,
     App,
     ListItemEditor,
-    ContactModel,
-    contactViewTemplate    
+    ContactModel
   ) {
     "use strict"; 
 
@@ -26,7 +24,7 @@ define(
         'a.contact-edit',
         new ListItemEditor({
           model:    ContactModel,
-          template: contactViewTemplate
+          template: 'contact/view.html'
         })
       );
 

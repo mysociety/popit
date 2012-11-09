@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+
+<!--[if lt IE 7]>
+    <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en-gb">
+<![endif]-->
+<!--[if IE 7]>
+    <html class="no-js lt-ie9 lt-ie8" lang="en-gb">
+<![endif]-->
+<!--[if IE 8]>
+    <html class="no-js lt-ie9" lang="en-gb">
+<![endif]-->
+<!--[if gt IE 8]>
+    <!-- -->
+    <html lang="en-gb" class="no-js">
+<![endif]-->
+
+<head>
+  <meta charset="UTF-8">
+  <!--
+    PopIt
+
+    A really easy way to store and share information about politicians or other
+    public figures brought to you by mySociety, a charitable project which
+    builds websites that give people simple, tangible benefits in the civic and
+    community, and teaches through demonstration, how to use the internet most
+    efficiently to improve lives. (http://www.mysociety.org/)
+  -->
+
+  <meta name="creator" content="http://www.mysociety.org/">
+  <meta http-equiv="imagetoolbar" content="false">
+  <meta name="description" content="<%- description %>">
+
+  <title><%- title %></title>
+
+  <link rel="stylesheet" href="/css/popit.css?v<%- config.popit_version %>" type="text/css" media="screen, print" charset="utf-8">
+  <link rel="stylesheet" href="/css/print.css?v<%- config.popit_version %>" type="text/css" media="print" charset="utf-8">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <script>var require = { urlArgs: 'v<%- config.popit_version %>' };</script>
+  <script src="/js/libs/require-1.0.8.js" data-main="/js/main-instance" type="text/javascript" charset="utf-8"></script>
+
+  <% if (user) { %>
+    <script type="text/javascript" charset="utf-8">
+      require(['/js/main-instance-admin.js']);      
+    </script>
+  <% } %>
+
+</head>
+
+<body id="popit-<%- popit ? popit.instance_name() : 'no-site-found' %>" class="<%- user ? 'signed_in' : '' %>">
+
+  <% if ( config.show_dev_site_warning ) { %>
+  <div id="dev-site-warning">
+    <strong>WARNING!</strong>
+    This is a development site and data may be deleted at any time!
+    <a href="/_dev">(dev tools)</a>
+  </div>
+  <% } %>
+
+  <% var flash_info = flash('info'); %>
+  <% if (flash_info.length) { %>
+    <div id="flash-info">
+      <a class="close" href="#">[x]</a>
+      <ul>
+          <% _.each(flash_info, function (message) { %>
+            <li><%- message %></li>
+          <% }); %>
+        </ul>
+    </div>
+  <% } %>
+
+  <% if (user) { %>
+    <noscript>
+      <div id="no-js-warning">
+        Please <a href="http://www.enable-javascript.com/" target="_blank">enable JavaScript</a>
+        - without it much of the admin on this website will not work.
+      </div>
+    </noscript>
+  <% } %>
+
+  <header id="header">
+    <h1 class="logo">
+      <a href='/'>
+        <% if (popit) { %>
+          <span id="popit_instance_name"><%- popit.pretty_name() %></span>
+        <% } else { %>
+          PopIt
+        <% } %>
+      </a>
+    </h1>
+
+    <div id="user_menu">
+      <ul>
+
+        <li>
+          <img id="ajax-loader" style="display: none;" src="/img/ajax-loader.gif">
+        </li>
+
+        <% if (user) { %>
+          <li id="signed_in">
+            Signed in as 
+            <span class="username"><%- user.email %></span>
+          </li>
+
+          <li>
+            <a href="/logout">Sign Out</a>
+          </li>
+        <% } else { %>
+          <li id="sign_in">
+            already have an account? 
+            <a href="/login?redirect_to=<%- current_absolute_pathname %>">Sign In</a>
+          </li>
+        <% } %>
+      </ul>
+      
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/person">People</a></li>
+        <li><a href="/organisation">Organisations</a></li>
+        <li><a href="/about">About Us</a></li>
+
+        <li>
+          <form id="header_search_form" action="/search" method="get">
+            <input id="header_search_box" type="search" placeholder="search..." name="q">
+          </form>
+        </li>
+      </ul>
+
+    </div>
+    
+    <div class="tagline">
+      A public database of people and organisations, hosted on PopIt. 
+      <br>
+      Available for easy browsing and re-use as structured data over a REST API.
+    </div>
+
+  </header>
+  
+  <div id="content">
+    

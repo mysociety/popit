@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <title>Dev helpers</title>
+  </head>
+
+  <body>
+
+    <div id="content">
+      <h1>Dev tools</h1> 
+      <p id="message">
+        <% if (message) { %>
+          <strong><%- message %></strong>
+        <% } else { %>
+          No action was taken.
+        <% } %>
+      </p> 
+
+      <p>
+        <a id="home" href="/">Home</a>
+      </p>
+
+      <p>
+        <a id="last_email" href="/_dev/last_email">Last email sent</a>
+      </p>
+
+      <p>
+        <a id="throw_exception" href="/_dev/throw_exception">Throw an exception</a>
+      </p>
+
+      <p>
+        <a id="log_messages" href="/_dev/log_messages">Log a message in every level</a>
+      </p>
+
+
+      <% if (popit.is_master()) { %>
+
+        <h2>Hosting site</h2>
+
+        <form action="/_dev/add_instance_to_master" method="post" name="add_instance_to_master">
+          slug: 
+          <input name="instance_slug">
+          <input type="submit" value="Add instance to master"> 
+        </form>
+
+        <form action="/_dev/delete_instance" method="post" name="delete_instance">
+          slug: 
+          <input name="instance_slug">
+          <input type="submit" value="Delete instance (both the instance and the entry in master's database>">
+        </form>
+
+        <form action="/_dev/fetch_all_active_instance_info" method="post">
+          <button id="fetch_all_active_instance_info">Fetch all the active instance's data</button>
+        </form>
+
+      <% } else { %>
+
+        <h2>Instance site '<%- popit.pretty_name() %>'</h2>
+
+        <form action="/_dev/delete_instance_database" method="post">
+          <button id="delete_instance_database">Delete this instance's database</button>
+        </form>
+
+        <form action="/_dev/load_test_fixture" method="post">
+          <button id="load_test_fixture">Load the testing fixture</button>
+        </form>
+        
+        <form action="/login" method="post">
+          <input type="hidden" name="email" value="owner@example.com">
+          <input type="hidden" name="password" value="secret">
+          <button id="login_as_instance_owner">Login as instance owner</button>
+        </form>
+
+      <% } %>
+
+    </div>
+  </body>
+</html> 
+      </div>
