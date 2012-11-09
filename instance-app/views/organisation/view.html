@@ -28,7 +28,7 @@
             <% if (image.url) { %>
               <% //- TODO - proxy will need changes to allow us to proxy remote images %>
               <img src="<%- image.url %>"  width="280" />
-            <% } else { %>}
+            <% } else { %>
               <img src="<%- image_proxy(organisation.slug_url + "/images/" + image.id, "", 280) %>" />
             <% } %>
 
