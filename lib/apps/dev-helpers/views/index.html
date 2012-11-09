@@ -37,7 +37,7 @@
 
       <% if (popit.is_master()) { %>
 
-        h2 Hosting site 
+        <h2>Hosting site</h2>
 
         <form action="/_dev/add_instance_to_master" method="post" name="add_instance_to_master">
           slug: 
@@ -48,7 +48,7 @@
         <form action="/_dev/delete_instance" method="post" name="delete_instance">
           slug: 
           <input name="instance_slug">
-          <input type="submit" value="Delete instance (both the instance and the entry in master's database>") 
+          <input type="submit" value="Delete instance (both the instance and the entry in master's database>">
         </form>
 
         <form action="/_dev/fetch_all_active_instance_info" method="post">
