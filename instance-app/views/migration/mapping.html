@@ -54,14 +54,9 @@
               migration.source.parsed.data[1] || [],
               migration.source.parsed.data[2] || []
             );
-            
-            console.log( entriesArray );
           %>
           <% _.each( entriesArray, function (entry, entrykey) { %>
                       
-            <% console.log( entry ); %>
-
-
             <tr id="id_<%- entry[0].replace(/ /g,'_') %>">
 
               <td>
@@ -72,7 +67,6 @@
               <td>
                 <select name="db-attribute-class">
                   <option value="" selected="selected">
-                    <% console.log(schema.options ) %>
                   <% _.each( schema.options, function (option, optionkey) { %>
                     <option value="<%- optionkey %>" data-suggestions="<%- option.suggestions.join(',') %>" data-strict="<%- option.strict ? 1 : '' %>"><%- option.title %></option>
                   <% }); %>

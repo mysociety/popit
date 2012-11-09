@@ -15,6 +15,6 @@ templates.loadFromDir(
   views_dir,
   function (err) {
     if (err) throw err;
-    console.log( templates.asAMD() );
+    process.stdout.write( templates.asAMD() );
   }
 );
