@@ -60,6 +60,7 @@ app.configure(function(){
 });
 
 app.configure('development', function () {
+  app.use( '/js/templates.js', template.middlewareAMD() );
   app.use( '/js/templates/', jadeAmdMiddleware({}) );
 });
 
