@@ -15,4 +15,4 @@ chromedriver.log
 public/css
 public-build
 public-production
-public/js/templates
+public/js/templates.js

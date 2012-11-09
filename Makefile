@@ -51,9 +51,8 @@ optipng:
 
 
 js-templates:
-	# node_modules/.bin/jade-amd --runtime > public/js/jadeRuntime.js
-	rm -rf public/js/templates
-	# node_modules/.bin/jade-amd --pretty --from instance-app/views --to public/js/templates
+	rm -rf public/js/templates.js
+	./bin/compile_templates_to_amd.js > public/js/templates.js
 
 
 public-production: css js-templates
@@ -74,7 +73,7 @@ public-production: css js-templates
 
 	# clean up generated content that we don't need now
 	rm -r public-build
-	rm -r public/js/templates	
+	rm -r public/js/templates.js	
 
 
 tidy:
@@ -119,7 +118,7 @@ production: clean node-modules
 clean:
 	compass clean
 	rm -rf public/css
-	rm -rf public/js/templates	
+	rm -rf public/js/templates.js	
 	rm -rf public-build
 	rm -rf public-production
 	find . -name chromedriver.log -delete
