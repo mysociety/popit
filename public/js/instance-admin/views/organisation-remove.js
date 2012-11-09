@@ -3,14 +3,14 @@ define(
     'jquery',
     'Backbone',
     'underscore',
-    'templates/organisation/remove',
+    'templates',
     'instance-admin/models/organisation'
   ],
   function (
     $,
     Backbone,
     _,
-    organisationRemoveTemplate,
+    templates,
     OrganisationModel
   ) {
     "use strict"; 
@@ -21,9 +21,12 @@ define(
 
         // winston.verbose( this.model.toJSON() );
 
-        this.$el.html( organisationRemoveTemplate({
-          organisation: this.model.toJSON()
-        }) );
+        this.$el.html( templates.render(
+          'organisation/remove.html',
+          {
+            organisation: this.model.toJSON()
+          }
+        ) );
         return this;
       },
       
