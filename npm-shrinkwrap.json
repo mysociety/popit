@@ -718,6 +718,9 @@
     "underscore": {
       "version": "1.4.2"
     },
+    "underscore-template-additions": {
+      "version": "0.0.1"
+    },
     "unorm": {
       "version": "1.0.2"
     },
@@ -729,19 +732,6 @@
       "dependencies": {
         "request": {
           "version": "2.9.202"
-        }
-      }
-    },
-    "walk": {
-      "version": "2.2.1",
-      "dependencies": {
-        "forEachAsync": {
-          "version": "2.2.0",
-          "dependencies": {
-            "sequence": {
-              "version": "2.2.1"
-            }
-          }
         }
       }
     },
@@ -779,6 +769,19 @@
             },
             "timespan": {
               "version": "2.2.0"
+            }
+          }
+        }
+      }
+    },
+    "walk": {
+      "version": "2.2.1",
+      "dependencies": {
+        "forEachAsync": {
+          "version": "2.2.0",
+          "dependencies": {
+            "sequence": {
+              "version": "2.2.1"
             }
           }
         }

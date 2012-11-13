@@ -16,7 +16,7 @@ var express           = require('express'),
     mongoStore        = require('connect-mongodb'),
     image_proxy       = require('connect-image-proxy'),
     connect_flash     = require('connect-flash'),
-    Template          = require('../lib/templates'),
+    UTA               = require('underscore-template-additions'),
     current_absolute_pathname = require('../lib/middleware/route').current_absolute_pathname;
 
 
@@ -41,20 +41,20 @@ app.configure('production', function(){
   app.use(express.logger());
 });
 
-var template = new Template();
-template.cacheTemplates = app.get('env') == 'development' ? false : true;
+var templates = new UTA();
+templates.cacheTemplates = app.get('env') == 'development' ? false : true;
 
 app.configure(function(){
     
   app.set('views', __dirname + '/views');
-  app.engine('html', template.forExpress() );
+  app.engine('html', templates.forExpress() );
     
   app.use(express.bodyParser());
   app.use(express.methodOverride());
 });
 
 app.configure('development', function () {
-  app.use( '/js/templates.js', template.middlewareAMD() );
+  app.use( '/js/templates.js', templates.middlewareAMD() );
 });
 
 app.configure( function () {

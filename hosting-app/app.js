@@ -10,7 +10,7 @@ var express           = require('express'),
     utils             = require('../lib/utils'),
     masterSelector    = require('../lib/middleware/master-selector'),
     engines           = require('consolidate'),
-    Template          = require('../lib/templates');
+    UTA               = require('underscore-template-additions');
 
 
 var app = module.exports = express();
@@ -25,12 +25,12 @@ app.configure('production', function(){
   app.use(express.logger());
 });
 
-var template = new Template();
-template.cacheTemplates = app.get('env') == 'development' ? false : true;
+var templates = new UTA();
+templates.cacheTemplates = app.get('env') == 'development' ? false : true;
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
-  app.engine('html', template.forExpress() );
+  app.engine('html', templates.forExpress() );
   app.engine('txt',  engines.hogan);
 
   app.use(express.bodyParser());
