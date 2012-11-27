@@ -17,6 +17,15 @@ We welcome pull requests for several things:
 Please note that no contribution is too small :) If you do **not** want to be added to the thanks page please let us know.
 
 
+## Suitable issues to work on
+
+If you want to help out but don't have much time then there are several issues in the bug tracker that have been marked as "[Suitable for Volunteers](https://github.com/mysociety/popit/issues?labels=Suitable+for+Volunteers&state=open)". They'll also be marked as "code" or "design".
+
+These are issues that are smaller in scope and usually don't require knowledge of how the whole code base holds together. The comments in the issues are also more in depth. They are not trivial issues, or things we've decided not to do ourselves. If volunteers don't do them we will, it's just that they are more approachable.
+
+If you do decide to tackle one of these issues please leave a comment on it so that others know it has been claimed :)
+
+
 ## Branches
 
 We use a modified form of this [Git branch strategy](http://nvie.com/posts/a-successful-git-branching-model/). The `master` branch is used for development and the `production` branch is deployed to our servers. So before a deploy we merge `master` into `production`.
