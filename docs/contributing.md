@@ -26,6 +26,15 @@ These are issues that are smaller in scope and usually don't require knowledge o
 If you do decide to tackle one of these issues please leave a comment on it so that others know it has been claimed :)
 
 
+## Loading sample test data for development
+
+When you run the code locally and are in `development` or `testing` mode the dev tools will be available. The link to them is at the end of the pink warning strip on the left of the page.
+
+On the master site this will let you delete, create and goto instances. On the instance sites it will let you delete the database and load the test fixture which contains a few sample people (recent US Presidents).
+
+Loading this data make dev easier as there is some data to work with, and you can share links to it with others that they can run on their own machines. For example [Bill Clinton](http://test.127.0.0.1.xip.io:3000/person/bill-clinton).
+
+
 ## Branches
 
 We use a modified form of this [Git branch strategy](http://nvie.com/posts/a-successful-git-branching-model/). The `master` branch is used for development and the `production` branch is deployed to our servers. So before a deploy we merge `master` into `production`.
