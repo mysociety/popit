@@ -127,6 +127,22 @@
           </form>
         </li>
       </ul>
+      
+      <ul>
+        <li>
+          <span id="instance_guest_status">
+            <% if ( popit.allow_guest_access() ) { %>
+              Guest edits allowed
+            <% } else { %>
+              Authorised edits only
+            <% }%>
+          </span>
+          
+          <% if (user) { %>
+            <a href="/about/edit">(change)</a>
+          <% } %>
+        </li>
+      </ul>
 
     </div>
     
