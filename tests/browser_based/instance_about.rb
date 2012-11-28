@@ -8,7 +8,7 @@ require 'net/http'
 require 'uri'
 
 
-class InstanceInfoTests < PopItWatirTestCase
+class InstanceAboutTests < PopItWatirTestCase
 
   def test_about_page_instance
 
@@ -39,12 +39,16 @@ class InstanceInfoTests < PopItWatirTestCase
     goto '/about'
     assert @b.link(:text, '(edit)').present?
 
+    # check that defaults are as we expect
+    assert_equal "Allow guests to edit this site?: No", @b.element(:class => 'about-field-allow_guest_access').text    
+
     # click on the edit link and check that the form has popped up
     assert ! @b.form(:name, 'edit-about-info').present?
     @b.link(:text, '(edit)').click
     @b.form(:name, 'edit-about-info').wait_until_present
 
     # enter field values and submit
+    @b.checkbox(:name, 'allow_guest_access').set
     @b.text_field(:name, 'name').set "Test Name"
     @b.text_field(:name, 'description').set "Test description"
     @b.text_field(:name, 'region').set "Test region"
@@ -56,6 +60,7 @@ class InstanceInfoTests < PopItWatirTestCase
 
     # check that the entries are as expected
     assert_path '/about'
+    assert_equal "Allow guests to edit this site?: Yes", @b.element(:class => 'about-field-allow_guest_access').text
     assert_equal "Name: Test Name",                   @b.element(:class => 'about-field-name').text
     assert_equal "Description: Test description",     @b.element(:class => 'about-field-description').text
     assert_equal "Region: Test region",               @b.element(:class => 'about-field-region').text
@@ -63,6 +68,15 @@ class InstanceInfoTests < PopItWatirTestCase
     assert_equal "Contact Name: Test contact name",   @b.element(:class => 'about-field-contact_name').text
     assert_equal "Contact Phone: Test contact phone", @b.element(:class => 'about-field-contact_phone').text
     assert_equal "Contact Email: Test contact email", @b.element(:class => 'about-field-contact_email').text
+
+
+    # check that unchecking the button works as expected
+    @b.link(:text, '(edit)').click
+    @b.checkbox(:name, 'allow_guest_access').clear
+    @b.text_field(:name, 'purpose').clear
+    @b.input(:value, "Update Info").click
+    assert_equal "Purpose:",                            @b.element(:class => 'about-field-purpose').text
+    assert_equal "Allow guests to edit this site?: No", @b.element(:class => 'about-field-allow_guest_access').text
 
     # check that the site title is now the site name
     goto '/'

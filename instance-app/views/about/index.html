@@ -15,7 +15,12 @@
 
 <% _.each( fields, function ( val, field ) { %>
   <div class="about-field about-field-<%- val.key %>">
-    <b><%- val.label %>:</b> <%- val.value %>
+    <b><%- val.label %>:</b>
+    <% if ( val.type == 'checkbox' ) { %>
+      <%- val.value ? 'Yes' : 'No' %>
+    <% } else { %>
+      <%- val.value %>
+    <% } %>
   </div>
   <br />
 <% }); %>

@@ -12,9 +12,16 @@
 
   <% _.each( fields, function ( val, field ) { %>
     <div class="about-field">
-      <label><%- val.label %></label>
+      <label><%- val.label %></label>        
       <% if (val.type == 'textarea') { %>
         <textarea name="<%- field %>"><%- val.value %></textarea>
+      <% } else if (val.type == 'checkbox') { %>
+        <input
+          type="checkbox"
+          value="1"
+          name="<%- field %>"
+          <% if (val.value) { %>checked="checked"<% } %>
+        />
       <% } else { %>
         <input name="<%- field %>" value="<%- val.value %>">
       <% } %>
