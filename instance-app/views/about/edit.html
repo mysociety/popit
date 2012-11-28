@@ -14,7 +14,7 @@
     <div class="about-field">
       <label><%- val.label %></label>
       <% if (val.type == 'textarea') { %>
-        <textarea name="<%- field %>")><%- val.value %></textarea>
+        <textarea name="<%- field %>"><%- val.value %></textarea>
       <% } else { %>
         <input name="<%- field %>" value="<%- val.value %>">
       <% } %>
@@ -22,7 +22,7 @@
     <br />
   <% }); %>
 
-  <input type="submit" class="btn" value="Update Info")>
+  <input type="submit" class="btn" value="Update Info">
 
 </form>
 
