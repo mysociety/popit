@@ -21,9 +21,10 @@ node-modules:
 
 npm-update:
 	rm npm-shrinkwrap.json
+	rm -rf node_modules
 	npm install
-	npm update
 	npm prune
+	make test
 	npm shrinkwrap
 
 npm-shrinkwrap:
