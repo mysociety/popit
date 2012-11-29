@@ -4,6 +4,8 @@
 // ------------------------
 
 require(['jquery'], function($) {
+  "use strict";
+
   $(function() {
 
     var $sign_in = $('#sign_in');
@@ -14,11 +16,11 @@ require(['jquery'], function($) {
     if ( ! $sign_in.hasClass(signed_in_class) ) {
       $sign_in.hover(
         function(event) {
-    		  $body.addClass(signed_in_class);
-    	  },
-    	  function(event) {
-    		  $body.removeClass(signed_in_class);
-    	  }
+          $body.addClass(signed_in_class);
+        },
+        function(event) {
+          $body.removeClass(signed_in_class);
+        }
       );
     }
 

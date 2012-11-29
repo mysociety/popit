@@ -1,0 +1,28 @@
+<%= render(
+  'html_head.html',
+  {
+    title:       'About Us',
+    description: fields.summary,
+  }
+) %>
+
+<h1>
+  About Us
+  <% if (user) { %>
+    <a href="/about/edit">(edit)</a>
+  <% } %>
+</h1>
+
+<% _.each( fields, function ( val, field ) { %>
+  <div class="about-field about-field-<%- val.key %>">
+    <b><%- val.label %>:</b>
+    <% if ( val.type == 'checkbox' ) { %>
+      <%- val.value ? 'Yes' : 'No' %>
+    <% } else { %>
+      <%- val.value %>
+    <% } %>
+  </div>
+  <br />
+<% }); %>
+    
+<%= render('html_footer.html' )%>

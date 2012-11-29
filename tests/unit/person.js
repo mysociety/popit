@@ -1,3 +1,5 @@
+"use strict"; 
+
 
 // switch to testing mode
 process.env.NODE_ENV = 'testing';
@@ -46,7 +48,7 @@ module.exports = {
         test.equal( person.slug, "new-slug", 'slug changed (and slugified)' );
         
         // check that punctuation correctly converted
-        person.slug = ''
+        person.slug = '';
         person.name = "D’Angelo “Oddball” Fritz";
         test.equal( person.name, "D’Angelo “Oddball” Fritz", 'name set' );
         test.equal( person.slug, 'd\'angelo-"oddball"-fritz', 'slug set' );

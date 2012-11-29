@@ -11,11 +11,12 @@ define(
     $,
     ListItemEditView
   ) {
+    "use strict"; 
+
     
     return function (args) {
 
       var Model    = args.model;
-      var Template = args.template;
 
       return function(event) {
         var $link    = $(this);
@@ -37,11 +38,11 @@ define(
         // create the view. Hook it up to the enclosing element.
         var view = new ListItemEditView({
           model:    object,
-          el:       $element,
+          el:       $element
         });
 
         // set the template on the view
-        view.template = Template;
+        view.template = args.template;
         
         if (object.isNew()) {
           // clone the li item so that the 'create new' link is still present.

@@ -85,9 +85,17 @@ class HostingTests < PopItWatirTestCase
             
     # go to the last email page
     goto "/_dev/last_email"
-    @b.link.click
 
-    # on the confirmr app page
+    # capture the urls
+    correct_confirmation_url = @b.link.href
+    wrong_confirmation_url   = correct_confirmation_url + 'WRONG'
+    
+    # try using an incorrect confirmation token
+    @b.goto wrong_confirmation_url
+    assert @b.div(:id => 'content').text['Wrong confirmation token']
+    
+    # on the confirm app page
+    @b.goto correct_confirmation_url
     assert_match 'Fantastic!', @b.div(:id, 'content').h1.text
     @b.form.submit
 

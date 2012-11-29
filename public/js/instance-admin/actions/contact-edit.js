@@ -7,26 +7,24 @@ define(
     'jquery',
     'instance-admin/app',
     'instance-admin/actions/list-item-editor',
-    'instance-admin/models/contact',
-    'templates/contact/view'
+    'instance-admin/models/contact'
   ],
   function (
     $,
     App,
     ListItemEditor,
-    ContactModel,
-    contactViewTemplate    
+    ContactModel
   ) {
-    
+    "use strict"; 
 
     App.addInitializer(function(options){
 
       $('#content').on(
         'click',
         'a.contact-edit',
-        ListItemEditor({
+        new ListItemEditor({
           model:    ContactModel,
-          template: contactViewTemplate
+          template: 'contact/view.html'
         })
       );
 

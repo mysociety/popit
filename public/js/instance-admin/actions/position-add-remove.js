@@ -18,6 +18,7 @@ define(
     PositionNewView,
     PositionRemoveView
   ) {
+    "use strict"; 
 
     App.addInitializer(function(options){
 

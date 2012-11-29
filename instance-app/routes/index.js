@@ -1,5 +1,8 @@
+"use strict"; 
+
 var Error404 = require('../../lib/errors').Error404,
-    async    = require('async');
+    async    = require('async'),
+    _        = require('underscore');
 
 exports.route = function (app) {
 
@@ -40,16 +43,16 @@ exports.route = function (app) {
       },
       function(err, results) {
         if (err) return next(err);
-        res.locals(results);
-        res.locals({ summary_listing_count: summary_listing_count });
-        res.render('index');
+        res.locals = _.extend(res.locals, results);
+        res.locals.summary_listing_count = summary_listing_count;
+        res.render('index.html');
       }
     );
 
   });
 
   app.get('/welcome', function (req, res) {
-    res.render('welcome');
+    res.render('welcome.html');
   });
 
   // Throw a 404 error

@@ -1,17 +1,19 @@
+"use strict"; 
 
 /**
  *  Hosting server
  */
 
 var express           = require('express'),
-    expressHogan      = require('express-hogan.js'),
     mongoose          = require('mongoose'),
     config            = require('config'),
     utils             = require('../lib/utils'),
-    masterSelector    = require('../lib/middleware/master-selector');
+    masterSelector    = require('../lib/middleware/master-selector'),
+    engines           = require('consolidate'),
+    UTA               = require('underscore-template-additions');
 
 
-var app = module.exports = express.createServer();
+var app = module.exports = express();
 
 
 // Configuration
@@ -23,11 +25,14 @@ app.configure('production', function(){
   app.use(express.logger());
 });
 
+var templates = new UTA();
+templates.cacheTemplates = app.get('env') == 'development' ? false : true;
+
 app.configure(function(){
-  app.set('view engine', 'jade');
   app.set('views', __dirname + '/views');
-  app.set('view options', { layout: false, pretty: true, });
-  app.register('.txt',  expressHogan);
+  app.engine('html', templates.forExpress() );
+  app.engine('txt',  engines.hogan);
+
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.static(__dirname + '/../' + config.public_dir));

@@ -3,6 +3,7 @@
 // ------------------------
 
 define( [], function() {
+  "use strict"; 
 
   return function (input) {
     return input
@@ -11,7 +12,7 @@ define( [], function() {
       .replace( /-$/,             ''  )   // drop trailing '-'
       .replace( /^-/,             ''  )   // drop leading '-'
       .toLowerCase();
-  }
+  };
 
 });
 

@@ -4,12 +4,14 @@
 // ------------------------
 
 require(['jquery'], function($) {
+  "use strict"; 
+
   $(document).ready(function() {
 
-  	$('a.close').click( function(event) {
+    $('a.close').click( function(event) {
       event.preventDefault();
       $(this).closest('div').slideUp();
-  	});
+    });
 
   });
 });

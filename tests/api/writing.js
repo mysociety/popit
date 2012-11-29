@@ -1,3 +1,5 @@
+"use strict"; 
+
 // switch to testing mode
 process.env.NODE_ENV = 'testing';
 
@@ -127,7 +129,7 @@ module.exports = {
 
             // get the new location and check that it is correct
             rest
-              .get(response.headers['location'])
+              .get(response.headers.location)
               .on('complete', function (data, response) {
 
                 test.equal(response.statusCode, 200, "got 200");
@@ -322,7 +324,7 @@ module.exports = {
                 test.equal(response.statusCode, 200, "got 200 - embedded document created");              
 
                 // get the location of the new document
-                sub_document_url = response.headers['location'];
+                sub_document_url = response.headers.location;
                 test.ok(
                   (new RegExp(sub_collection_url + '/[0-9a-f]{24}')).test(sub_document_url),
                   "New entity in subcollection"
@@ -340,7 +342,7 @@ module.exports = {
             rest.get(sub_document_url).on('complete', function(data, response) {
               test.equal(data.result.url, 'http://test.com', "new link url correct");
               cb();
-            })
+            });
           },
           // check that subcollection has more items in now
           function(cb) {
@@ -377,7 +379,7 @@ module.exports = {
               .post( 'person', { data: { name: "Joe Bloggs", summary: "Just another Joe" } })
               .on('complete', function (data, response) {
                 test.equal(response.statusCode, 201, "got 201");
-                document_url = response.headers['location'];
+                document_url = response.headers.location;
                 document_id = _.last(document_url.split('/'));
                 cb();
               });
@@ -395,6 +397,10 @@ module.exports = {
                     name:            "Joe Bloggs",
                     slug:            "joe-bloggs",
                     summary:         "Just another Joe",
+                    personal_details: {
+                      date_of_birth: { formatted: '', end: null, start: null },
+                      date_of_death: { formatted: '', end: null, start: null },
+                    },
                     other_names:     [],
                     images:          [],
                     links:           [],
@@ -429,17 +435,21 @@ module.exports = {
                   data.result,
                   {
                     _id:             document_id,
-                    __v:             0,
+                    __v:             1,
                     name:            "Fred Jones",
                     slug:            "joe-bloggs",
                     summary:         "Just another Joe",
+                    personal_details: {
+                      date_of_birth: { formatted: '', end: null, start: null },
+                      date_of_death: { formatted: '', end: null, start: null },
+                    },
                     notInSchemaAttribute: 1234,
                     other_names:     [],
                     images:          [],
                     links:           [],
                     contact_details: [],
-                    name_words:      [ 'joe', 'bloggs' ],
-                    name_dm:         [ 'J', 'A', 'PLKS', 'PLKS', 'joe', 'bloggs' ],                    
+                    name_words:      [ 'fred', 'jones' ],
+                    name_dm:         [ 'FRT', 'FRT', 'JNS', 'ANS', 'fred', 'jones' ],
                     meta: { edit_url: 'http://test.127.0.0.1.xip.io:3100/person/joe-bloggs' },
                   },
                   "Person updated as expected"

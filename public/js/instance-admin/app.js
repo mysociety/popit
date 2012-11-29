@@ -13,6 +13,7 @@ define(
     Backbone,
     BackboneMarionette
   ) {
+    "use strict"; 
 
     var App = new Backbone.Marionette.Application();
 

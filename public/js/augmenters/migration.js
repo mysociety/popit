@@ -3,11 +3,11 @@
 // ------------------------
 //
 
-"use strict";
 
 require(['jquery', 'underscore'], function ($, _) {
-  $(function() {
+  "use strict";
 
+  $(function() {
     var migration_progress_poll_id;
 
     var getUpdate = function() {
@@ -23,8 +23,8 @@ require(['jquery', 'underscore'], function ($, _) {
           $('.progress').addClass('error');
         }
         $('.progress').html(status_html);
-      })
-    }
+      });
+    };
 
     if($('.progress').html()) {
 
@@ -33,7 +33,7 @@ require(['jquery', 'underscore'], function ($, _) {
 
       // Poll for updates every second. Wait one second before polling
       migration_progress_poll_id = window.setInterval( getUpdate, 1000 );
-    };
+    }
 
     $('.history-back').click(function(e){
       e.preventDefault();
@@ -50,7 +50,7 @@ require(['jquery', 'underscore'], function ($, _) {
       
       // strict means that the user should only be able to use the provided suggestions
       var attr = option.attr('data-strict');
-      var isStrict = typeof attr !== 'undefined' && attr !== false;
+      var isStrict = typeof attr !== 'undefined' && attr;
 
       // clear old list/ suggestions
       tr.find('datalist').remove();
@@ -63,12 +63,12 @@ require(['jquery', 'underscore'], function ($, _) {
       }
 
       // TODO think about this
-      var arr = eval(s);
+      var arr = s.split(',');
 
       // build combobox
       var cb = '<select>';
       $.each(arr, function(key, value) {
-        cb += '<option>' + value, '<option>';
+        cb += '<option>' + value + '</option>';
       });
       cb += '</select>';
 
@@ -84,7 +84,7 @@ require(['jquery', 'underscore'], function ($, _) {
         tr.find('input[name=db-attribute]').attr('list', id);
 
         // show suggestions
-        suggestions = arr.join(", ")  
+        suggestions = arr.join(", ");
         tr.find('.suggestions').html(suggestions || '').append(',...');
       }
 
@@ -94,11 +94,11 @@ require(['jquery', 'underscore'], function ($, _) {
       // do validation
 
       // there is at least one entry with a first name
-      var zipped = _.zip($('form.migration-form [name=db-attribute-class]').map(function(k,v){return $(v).val()}),
-                       $('form.migration-form [name=db-attribute]').map(function(k,v){return $(v).val()}))
-      var v = zipped.filter(function(v){return v[0] === 'name' && (v[1] === 'First name' || v[1] === 'Full name')})
-      if (v.length == 0) {
-        alert("You have to provide a column for 'First name'!");
+      var zipped = _.zip($('form.migration-form [name=db-attribute-class]').map(function(k,v){return $(v).val();}),
+                       $('form.migration-form [name=db-attribute]').map(function(k,v){return $(v).val();}));
+      var v = zipped.filter(function(v){return v[0] === 'name' && (v[1] === 'First name' || v[1] === 'Full name');});
+      if (v.length === 0) {
+        window.alert("You have to provide a column for 'First name'!");
         return false;
       }
 

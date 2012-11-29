@@ -6,8 +6,10 @@ how to display errors back to the user by adding them to the form.
 */
 
 define(
-  [],
-  function() {
+  ['jquery', 'underscore'],
+  function($,_) {
+    "use strict"; 
+
     return function ( options ) {
     
       options = options || {};
@@ -16,11 +18,11 @@ define(
 
         e.preventDefault();
         
-        var self   = options['view'] || this;
+        var self   = options.view || this;
         var form   = self.form;        
         
         
-        var success_cb = options['success_cb'] || function (model, response) {
+        var success_cb = options.success_cb || function (model, response) {
           document.location = response.meta.edit_url;
         };
     
@@ -58,6 +60,6 @@ define(
         }
     
       };
-    }
+    };
   }
 );

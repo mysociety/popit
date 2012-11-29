@@ -1,3 +1,5 @@
+"use strict"; 
+
 
 // switch to testing mode
 process.env.NODE_ENV = 'testing';
@@ -44,7 +46,7 @@ module.exports = {
         // check that if we have not set the instance we get an error
 
         test.throws(
-            function() { popit.instance_db() },
+            function() { popit.instance_db(); },
             'foo',
             'throw exception if instance not configured'
         );
@@ -65,17 +67,17 @@ module.exports = {
 
         // try to get a model that does not exist
         test.throws(
-            function () { popit.model('does_not_exist') },
+            function () { popit.model('does_not_exist'); },
             /Could not find a schema for does_not_exist/,
             "throw error for non-existent schema"
         );
 
-        var userModel = popit.model('User');
-        test.ok( userModel, "got a model for User" );
+        var UserModel = popit.model('User');
+        test.ok( UserModel, "got a model for User" );
         
-        test.strictEqual( popit.model('User'), userModel, "get a cached model" );
+        test.strictEqual( popit.model('User'), UserModel, "get a cached model" );
         
-        var user      = new userModel({
+        var user = new UserModel({
             email:           "bob@example.com",
             hashed_password: "secret_hash",
         });
@@ -86,10 +88,10 @@ module.exports = {
 
             // check that the user was saved
             test.ifError(err, "no error saving");
-            test.ok(object)
+            test.ok(object);
             test.equal(object.id, user.id, "IDs are the same");
             
-            userModel.findOne({email: user.email}, function(err, retrieved_user) {
+            UserModel.findOne({email: user.email}, function(err, retrieved_user) {
                 test.ifError(err, "no error retrieving");
                 test.ok(retrieved_user, "Found user in database");
                 test.done();

@@ -1,0 +1,75 @@
+<%= render(
+  'html_head.html',
+  {
+    title:       'Login',
+    description: '',
+  }
+) %>
+
+<div class="login-form">
+
+  <% if ( as_guest ) { %>
+    <h1>Guest login</h1>
+    <p class="instructions">
+      <p>You are about to log in to this web site as a guest user, letting you anonymously add and edit content.</p>
+
+      <p>Please be nice - for this to work we're relying on the wisdom of the crowd and the kindness of strangers.</p>
+    </p>
+  <% } else { %>
+    <h1>Login</h1>
+    <p class="instructions">
+      Log back in to manage your PopIt site.       
+
+      <% if ( popit.allow_guest_access() ) { %>
+        <p>You can also <a href="?as_guest=1">log in anonymously as a guest</a>.</p>
+      <% } %>
+
+    </p>
+    
+  <% } %>
+
+
+  <% if (errors.length) { %>
+    <ul id="errors">
+      <% _.each(errors, function(error) { %>
+        <li class="error"><%- error %></li>        
+      <%}); %>
+    </ul>
+  <% } %>
+
+  <form action='/login' method='post'>
+
+    <% if ( as_guest ) { %>
+          
+      <input type='hidden' name='as_guest', value="1">
+
+      <p>
+        <input id="login" class="btn" type="submit" value="Login as Guest">
+      </p>
+
+    <% } else { %>
+      <p>
+        <label for='email'> Email:</label>
+        <input id="email" type='text' name='email', value="<%- email %>">
+      </p>
+      
+      <p>
+        <label for='password'>Password:</label>
+        <input id="password" type='password' name='password'>
+      </p>
+      
+      <p>
+        <input id="login" class="btn" type="submit" value="Login">
+      </p>
+
+      <p>
+        (<a href='https://github.com/mysociety/popit/issues/17'>Forgotten your details?</a>)
+      </p>
+    <% } %>
+    
+  </form>
+
+</div>
+
+
+<%= render('html_footer.html' )%>

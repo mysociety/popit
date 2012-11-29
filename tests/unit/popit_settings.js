@@ -1,3 +1,5 @@
+"use strict"; 
+
 // Test that settings are correctly stored and retrieved, and that settings do not
 // leak from one instance to another.
 
@@ -9,7 +11,7 @@ var
     utils    = require('../../lib/utils'),
     // config   = require('config'),
     // _        = require('underscore'),
-    async    = require('async')
+    async    = require('async'),
     PopIt    = require('../../lib/popit');
 
 module.exports = {
@@ -31,10 +33,10 @@ module.exports = {
                     pop.clear_cached_settings();
                     cb();
                 },
-                function (cb) { foo.load_settings(cb) },
-                function (cb) { bar.load_settings(cb) },
-                function (cb) { foo.set_setting('test_key', 'test_value_foo', cb) },
-                function (cb) { bar.set_setting('test_key', 'test_value_bar', cb) },
+                function (cb) { foo.load_settings(cb); },
+                function (cb) { bar.load_settings(cb); },
+                function (cb) { foo.set_setting('test_key', 'test_value_foo', cb); },
+                function (cb) { bar.set_setting('test_key', 'test_value_bar', cb); },
             ],
 
             // optional callback
@@ -55,13 +57,13 @@ module.exports = {
         pop.set_instance('pop');
 
         test.throws(
-            function () { pop.setting('foo') },
+            function () { pop.setting('foo'); },
             /Settings not loaded - have you called load_settings?/,
             "can't call 'setting' before 'load_settings'"
         );
 
         test.throws(
-            function () { pop.set_setting('foo', 'val', function () {} ) },
+            function () { pop.set_setting('foo', 'val', function () {} ); },
             /Settings not loaded - have you called load_settings?/,
             "can't call 'set_setting' before 'load_settings'"
         );
@@ -81,6 +83,8 @@ module.exports = {
         // test values that are saved in setUp
         test.equal( foo.setting('test_key'), 'test_value_foo', "got correct saved value for foo");
         test.equal( bar.setting('test_key'), 'test_value_bar', "got correct saved value for bar");
+
+        var new_foo = null;
 
         async.series([
             function (cb) {
@@ -117,7 +121,7 @@ module.exports = {
             }        
         ],
         function() {
-            test.done()
+            test.done();
         });
     },
     
@@ -139,6 +143,22 @@ module.exports = {
 
             test.done();
         });
+    },
+    
+
+    "test that guest access is correctly presented": function (test) {
+      test.expect(3);
+      
+      var foo = this.foo;
+      
+      test.equal( foo.allow_guest_access(), false, "guest access false by default" );
+
+      foo.set_setting('allow_guest_access', true, function (err) {
+        test.ifError(err);
+        test.equal( foo.allow_guest_access(), true,  "guest access now enabled" );
+        test.done();        
+      });
+      
     },
 
 };

@@ -4,7 +4,7 @@ define(
     'Backbone',
     'backbone-forms',
     'underscore',
-    'templates/position/new',
+    'templates',
     'instance-admin/models/person',
     'instance-admin/models/organisation',
     'instance-admin/models/position',
@@ -18,7 +18,7 @@ define(
     Backbone,
     BackboneForms,
     _,
-    positionNewTemplate,
+    templates,
     PersonModel,
     OrganisationModel,
     PositionModel,
@@ -26,7 +26,7 @@ define(
     SuggestionsView,
     select2Helpers
   ) {
-        
+    "use strict"; 
   
     var PositionNewView = Backbone.View.extend({
   
@@ -35,12 +35,14 @@ define(
       render: function () {
   
         // Render the template
-        var $content = $( positionNewTemplate({}) );
+        var $content = $( templates.render('position/new.html',{}) );
   
         // find the bits that are interesting and store them for easy access
         this.$title_input        = $content.find('[name=title]');
         this.$person_input       = $content.find('[name=person]');
         this.$organisation_input = $content.find('[name=organisation]');
+        this.$start_date_input   = $content.find('[name=start-date]');
+        this.$end_date_input     = $content.find('[name=end-date]');
         this.$errors_list        = $content.find('ul.error');
         
         // If we have some details aready set store them
@@ -66,8 +68,17 @@ define(
           placeholder: "e.g Apple Inc, UK Parliament, Kenyatta University",
           model:       OrganisationModel,
           errors_list: this.$errors_list
-        }) );          
-  
+        }) );
+        
+        // set up the date inputs
+        this.$start_date_input.select2(
+          select2Helpers.create_arguments_for_partial_date({})
+        );
+        this.$end_date_input.select2(
+          select2Helpers.create_arguments_for_partial_date({})
+        );
+        
+
         // hide inputs if requested (not happy with this - not very elegant :( )
         if (this.options.fields_to_hide.title        ) $content.find('p.title').hide();
         if (this.options.fields_to_hide.person       ) $content.find('p.person').hide();
@@ -80,7 +91,7 @@ define(
       },
       
       events: {
-        'submit form ':             'submitForm',
+        'submit form': 'submitForm'
       },
       
       submitForm: function (e) {
@@ -118,13 +129,18 @@ define(
         )
         .then(function(person_id, organisation_id) {
 
+          var start_date_data = view.$start_date_input.select2('data') || {};
+          var end_date_data   = view.$end_date_input.select2('data')   || {};
+
           // create a new position
           var position = new PositionModel({
-            person: person_id,
+            person:       person_id,
             organisation: organisation_id,
-            title: job_title
+            title:        job_title,
+            start_date:   start_date_data.raw || {},
+            end_date:     end_date_data.raw   || {}
           });
-
+          
           // Save it
           position.save({},{
             success: function (model, response ) {
@@ -135,7 +151,7 @@ define(
             }
           });
         });
-      },
+      }
         
     });
   

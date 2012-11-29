@@ -1,0 +1,26 @@
+<%= render(
+  'html_head.html',
+  {
+    title:       'Search',
+    description: '',
+  }
+) %>
+
+<h1>Search</h1>
+  
+<% if (results.length) { %>
+  <p>The following results have been found:</p>
+
+  <ul>
+    <% _.each( results, function (result) { %>
+      <li>
+        <a href="/person/<%- result.slug %>"><%- result.name %></a>
+      </li>
+    <% }); %>
+  </ul>
+  
+<% } else { %>
+  <p>Sorry, no results.</p>
+<% } %>
+
+<%= render('html_footer.html' )%>

@@ -16,20 +16,20 @@ class PersonEditingTests < PopItWatirTestCase
   include InPlaceEditingChecks
   include EntityCreateAndDelete
 
+  def add_person_link
+    @b.link(:text, '+ Add a new person')
+  end
+
   def test_person_creation
     goto_instance 'test'
     delete_instance_database
     load_test_fixture
     goto '/person'
 
-    def add_person_link
-      @b.link(:text, '+ Add a new person')
-    end
-
     # check that the create new person link is not shown. But that it is if the
     # user hovers over the sign in link
     assert ! add_person_link.present?
-    @b.link(:text, 'Sign In').hover
+    @b.link(:id, "sign_in_as_existing_user").hover
 
     assert add_person_link.present?
 
@@ -102,6 +102,33 @@ class PersonEditingTests < PopItWatirTestCase
     assert_equal "网页", @b.title
     assert_path '/person/chinese-name'
     
+  end
+
+  # In the absence of more thorough tests this is the test that checks if the
+  # guest users have the correct permissions.
+  def test_person_creation_as_guest
+    goto_instance 'test'
+    delete_instance_database
+    load_test_fixture
+    enable_guest_access
+    goto '/person'
+
+    # login and check link is visible
+    login_as_instance_guest
+    goto '/person'
+    assert @b.link(:text, '+ Add a new person').present?
+
+    # click on the create new person link and check that the form has popped up    
+    assert ! @b.form(:name, 'create-new-person').present?
+    add_person_link.click
+    @b.form(:name, 'create-new-person').wait_until_present
+
+    # enter a proper name, get sent to person page
+    @b.text_field(:name, 'name').set "Joe Bloggs"
+    @b.input(:value, "Create new person").click
+    @b.wait_until { @b.title != 'People' }
+    assert_equal "Joe Bloggs", @b.title
+    assert_path '/person/joe-bloggs'
   end
 
 

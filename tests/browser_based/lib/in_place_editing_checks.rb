@@ -67,7 +67,7 @@ module InPlaceEditingChecks
     @b.send_keys 'This is some new text'
     @b.send_keys :escape
     assert ! @b.textarea(:name => 'value').present?
-    assert_equal original, @b.element(:css => '[data-api-name=summary]').text
+    assert_equal @b.element(:css => '[data-api-name=summary]').text, original
 
     # Edit the text to something new, tab return to submit
     new_text = 'This is some new text'

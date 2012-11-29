@@ -3,12 +3,15 @@
 # -*- coding: UTF-8 -*-
 
 require 'lib/popit_watir_test_case'
+require 'lib/select2_helpers'
 require 'pry'
 require 'net/http'
 require 'uri'
 
 
 class PositionEditingTests < PopItWatirTestCase
+
+  include Select2Helpers
 
   def test_position_creation
     goto_instance 'test'
@@ -20,23 +23,7 @@ class PositionEditingTests < PopItWatirTestCase
     def position_form
       return @b.form(:name, "create-new-position")
     end
-    
-    def select2_container ( input_name )
-      @b.input(:name, input_name).parent.div(:class, "select2-container").when_present
-    end
-    
-    def select2_current_value ( input_name )
-      select2_container(input_name).link(:class, 'select2-choice').span.text
-    end
-    
-    def select2_options ( index )
-      @b.li(:class => 'select2-result', :index => index ).when_present
-    end
-    
-    def select2_highlighted_option
-      return @b.li(:class, "select2-highlighted").when_present
-    end
-    
+
   
     # click on the create new person link and check that the form has popped up    
     assert ! position_form.present?
@@ -59,6 +46,12 @@ class PositionEditingTests < PopItWatirTestCase
     select2_highlighted_option.click
     assert_equal select2_current_value('organisation'), "United States Government"
     
+    # set the start date, but leave the end date empty
+    select2_container('start-date').link.click
+    @b.send_keys '20 jan 2001'
+    assert_equal select2_highlighted_option.text, 'Jan 20, 2001'
+    select2_highlighted_option.click
+    assert_equal select2_current_value('start-date'), 'Jan 20, 2001'
 
     # submit the form and check that the new position is created
     position_form.submit
@@ -69,6 +62,8 @@ class PositionEditingTests < PopItWatirTestCase
     assert_equal @b.article.h1.text, "President"
     assert_match @b.text, /Person:\ George\ Bush/
     assert_match @b.text, /Organisation:\ United\ States\ Government/
+    assert_match @b.text, /Start\ Date:\ Jan\ 20,\ 2001/
+    assert_match @b.text, /End\ Date:\ \?\?\?/
         
     # go back to person page and check that the positien is now listed there
     goto '/person/george-bush'

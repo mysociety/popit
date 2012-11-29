@@ -1,0 +1,105 @@
+<%= render(
+  'html_head.html',
+  {
+    title:       popit.pretty_name(),
+    description: "Welcome to " + popit.pretty_name(),
+  }
+) %>
+
+<h1>Welcome to <%- popit.pretty_name() %></h1>
+
+<p>
+  This database currently contains <%- person_count || 'no' %> <%- person_count == 1 ? 'person' : 'people' %> and <%- organisation_count || 'no' %> <%- organisation_count == 1 ? 'organisation' : 'organisations' %>.
+</p> 
+
+<div id="person-summary" class="homepage-summary-box">
+  <h2>People</h2>
+
+  <ul>
+    <% if (persons.length) { %>    
+      <% _.each( persons, function(person) { %>
+        <li> 
+          <a href="/person/<%- person.slug %>"><%- person.name %></a>
+        </li>
+      <% }); %>
+      <% if (person_count > summary_listing_count) { %>
+        <li>
+          and 
+          <a href="/person"><%- person_count - summary_listing_count %> more</a>
+        </li>
+      <% } %>
+    <% } else { %>
+      <li>
+        There are no people in the database yet. 
+        <br>
+        <span.admin-options>
+          <a class="new-person add" href="#"> 
+            <strong>+ Add</strong> a new person
+          </a>
+        </span>
+      </li>
+    <% } %>
+  </ul>
+
+  <p>
+    <a href="/person">Complete list (<%- person_count %>)</a>
+  </p>
+
+</div>
+
+  
+<div id="organisation-summary" class="homepage-summary-box">
+
+  <h2>Organisations</h2>
+
+  <ul>
+    <% if (organisations.length) { %>    
+      <% _.each( organisations, function(organisation) { %>
+        <li> 
+          <a href="/organisation/<%- organisation.slug %>"><%- organisation.name %></a>
+        </li>
+      <% }); %>
+      <% if (organisation_count > summary_listing_count) { %>
+        <li>
+          and 
+          <a href="/organisation"><%- organisation_count - summary_listing_count %> more</a>
+        </li>  
+      <% } %>
+    <% } else { %>
+      <li>
+        There are no organisations in the database yet. 
+        <br>
+        <span class="admin-options">
+          <a class="add new-organisation" href="#">
+            <strong>+ Add</strong> a new organisation
+          </a>
+        </span>
+      </li>
+    <% } %>
+  </ul>
+  
+  <p>
+    <a href="/organisation">Complete list (<%- organisation_count %>)</a>
+  </p>
+
+</div>
+
+
+<div id="actions" class="homepage-summary-box">
+
+  <div class="info">
+    <p>
+      <a href='<%-config.hosting_site_base_url%>/info/about'>Learn more about PopIt</a>
+      - the pre-alpha platform that hosts this database.
+    </p>
+  </div>
+  
+  <div class="info admin-options">
+    <a class="new-person add" href="#"> 
+      <strong>+ Add</strong> a new person to the database.
+    </a>
+  </div>
+
+</div>
+
+<%= render('html_footer.html' )%>

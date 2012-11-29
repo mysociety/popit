@@ -3,15 +3,14 @@
 # error if tests fail. Otherwise make will not abort.
 REPORTER = default 
 
-LINT    = ./node_modules/.bin/jslint --indent 2 --white --nomen
 FOREVER = ./node_modules/.bin/forever
+JSHINT  = ./node_modules/.bin/jshint
 
 WAIT_FOR_SERVER   = sleep 5
 TEST_SERVER = tests/test-server.js
 # mute output so that this does not look like a failing test
 STOP_TEST_SERVER  = $(FOREVER) stop $(TEST_SERVER) &> /dev/null 
 START_TEST_SERVER = $(STOP_TEST_SERVER); NODE_ENV=testing $(FOREVER) start $(TEST_SERVER) && $(WAIT_FOR_SERVER)
-
 
 all: node-modules css
 
@@ -22,9 +21,10 @@ node-modules:
 
 npm-update:
 	rm npm-shrinkwrap.json
+	rm -rf node_modules
 	npm install
-	npm update
 	npm prune
+	make test
 	npm shrinkwrap
 
 npm-shrinkwrap:
@@ -35,12 +35,9 @@ npm-shrinkwrap:
 	npm shrinkwrap
 
 
-lint:
-	find lib          -name '*.js' | xargs -n 1 $(LINT) --node --
-	find instance-app -name '*.js' | xargs -n 1 $(LINT) --node --
-	find hosting-app  -name '*.js' | xargs -n 1 $(LINT) --node --
-	find public/js    -name '*.js' | xargs -n 1 $(LINT) --browser --
-
+jshint:
+	$(JSHINT) *.js lib/ hosting-app/ instance-app/ tests/
+	cd public/js; ../../$(JSHINT) .
 
 css:
 	compass compile
@@ -55,10 +52,8 @@ optipng:
 
 
 js-templates:
-	node_modules/.bin/jade-amd --runtime > public/js/jadeRuntime.js
-	rm -rf public/js/templates
-	node_modules/.bin/jade-amd --pretty --from instance-app/views --to public/js/templates
-
+	rm -rf public/js/templates.js
+	uta-compile-templates-to-amd instance-app/views > public/js/templates.js
 
 public-production: css js-templates
 	rm -rf public-build public-production
@@ -78,7 +73,7 @@ public-production: css js-templates
 
 	# clean up generated content that we don't need now
 	rm -r public-build
-	rm -r public/js/templates	
+	rm -r public/js/templates.js	
 
 
 tidy:
@@ -87,7 +82,7 @@ tidy:
 	# sass-convert --recursive --in-place --from scss --to scss public/sass/
 
 
-test: node-modules test-unit test-api test-browser
+test: jshint node-modules test-unit test-api test-browser 
 	echo "ALL TESTS PASS"
 
 test-unit:
@@ -123,7 +118,7 @@ production: clean node-modules
 clean:
 	compass clean
 	rm -rf public/css
-	rm -rf public/js/templates	
+	rm -rf public/js/templates.js	
 	rm -rf public-build
 	rm -rf public-production
 	find . -name chromedriver.log -delete

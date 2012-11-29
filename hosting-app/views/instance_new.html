@@ -1,0 +1,49 @@
+<%= render(
+  'html_head.html',
+  {
+    title:       'Create your PopIt site',
+    description: '',
+  }
+) %>
+
+<h1>Make your own PopIt <span class='long-title'>politician monitoring web site</span></h1>
+
+<p class="intro">
+  To start using PopIt you need to create a new instance. This is quick, easy, free and you do it by filling in the form below. A temporary password will be emailed to you that you can change once you login.
+</p>
+
+<form class="well form-horizontal" method='post' action=''>
+
+    <p class="control-group <%- errors.slug ? 'error' : '' %>">
+      <label class="control-label" for='slug'>Pick a website name</label>
+      <span class="controls append">
+        <input id="slug" class="input-xlarge" type='text' name='slug' data-validation='required url_safe' value='<%- slug %>' />
+        <span.add-on><%- config.instance_site_base_url_suffix %></span>
+      </span>
+      
+      <% if (errors.slug) { %>
+        <span class="help-block">Your website name can only contain letters and numbers. It should be at least four letters long but no longer than 20.</span>
+        <span class="help-block">Error is '<%- errors.slug.type %>'.</span>
+      <% } %>
+    </p>
+
+    <p class="control-group <%- errors.email ? 'error' : '' %>">
+      <label class="control-label" for='email'>Your Email address</label>
+      <span class="controls">
+        <input id="email" class="input-xlarge" type='email' name='email' data-validation='required email' value='<%- email %>' />
+        <span class="suggestion" />
+      </span>
+
+      <% if (errors.email) { %>
+        <span class="help-block">Error is '<%- errors.email.type %>'.</span>
+      <% } %>
+    </p>
+
+    <div class="form-actions">
+      <input class="btn btn-primary" type='submit'  value='Create your own PopIt' />
+    </div>
+
+</form>
+
+<%= render('html_footer.html' )%>
+

@@ -2,20 +2,21 @@ define(
   [
     'jquery',
     'underscore',
+    'templates',
     'Backbone',
     'backbone-forms',
-    'underscore',
     'instance-admin/views/submit-form-helper',
     'jqueryui/autocomplete'
   ],
   function (
     $,
     _,
+    templates,
     Backbone,
     BackboneForms,
-    _,
     submitFormHelper
   ) {
+    "use strict"; 
 
     var ListItemEditView = Backbone.View.extend({
   
@@ -24,7 +25,7 @@ define(
         this.model.on( 'change', this.render, this );
       
         this.form = new BackboneForms({
-          model: this.model,
+          model: this.model
         });
         
       },
@@ -69,7 +70,7 @@ define(
       events: {
         'submit form ':                'submitForm',
         'click button[name="cancel"]': 'cancelEntry',
-        'click button[name="delete"]': 'deleteEntry',
+        'click button[name="delete"]': 'deleteEntry'
       },
       
       deleteEntry: function (event) {
@@ -94,10 +95,10 @@ define(
 
         var template_args = {
           item: model.toJSON(),
-          api_url_root: model.urlRoot,
+          api_url_root: model.urlRoot
         };
         
-        view.$el.html( view.template( template_args ) );
+        view.$el.html( templates.render(view.template, template_args ) );
       },
 
       submitForm: function (event) {
@@ -118,7 +119,7 @@ define(
         });
         
         submitter(event);
-      },
+      }
       
     });
   

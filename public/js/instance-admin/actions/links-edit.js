@@ -7,26 +7,24 @@ define(
     'jquery',
     'instance-admin/app',
     'instance-admin/actions/list-item-editor',
-    'instance-admin/models/link',
-    'templates/link/view'
+    'instance-admin/models/link'
   ],
   function (
     $,
     App,
     ListItemEditor,
-    LinkModel,
-    linkViewTemplate  
+    LinkModel
   ) {
-    
+    "use strict";     
 
     App.addInitializer(function(options){
 
       $('#content').on(
         'click',
         'a.link-edit',
-        ListItemEditor({
+        new ListItemEditor({
           model:    LinkModel,
-          template: linkViewTemplate
+          template: 'link/view.html'
         })
       );
 

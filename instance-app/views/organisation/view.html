@@ -1,0 +1,156 @@
+<%= render(
+  'html_head.html',
+  {
+    title:       organisation.name,
+    description: organisation.name + ' ' + ( organisation.summary || '' ),
+  }
+) %>
+
+
+
+<article class="entity organisation">
+
+  <header class="entity-header-nav" id="organisation-<%- organisation.slug %>">
+    <h1 class="edit-in-place current-entity"
+        id="entity-name-in-header"
+        title="<%- organisation.name %>"
+        data-api-url="/organisation/<%- organisation.id %>"
+        data-api-name="name"
+    ><%- organisation.name %></h1>
+  </header>
+  
+  <aside>
+
+    <ul class="photos">
+      <% if (organisation.images.length) { %>
+        <% _.each( organisation.images, function ( image ) { %>
+          <li>
+            <% if (image.url) { %>
+              <% //- TODO - proxy will need changes to allow us to proxy remote images %>
+              <img src="<%- image.url %>"  width="280" />
+            <% } else { %>
+              <img src="<%- image_proxy(organisation.slug_url + "/images/" + image.id, "", 280) %>" />
+            <% } %>
+
+            <p class="photo-source">
+               source:
+              <a href="#photographer-url">Photographer</a>
+              <abbr class="license" title="Creative Commons - By Attribution - Share Alike">CC-BY-SA</abbr>
+              <ul class="admin-options">
+                <li>
+                  <form method="post" action="<%- organisation.slug_url %>/images/<%- image.id %>/delete">
+                    <input type="submit" value="delete" style="width: 4em; display: inline" />
+                    this photograph
+                  </form>
+                </li>
+              </ul>
+            </p>
+          </li>
+        <% }); %>
+      <% } else { %>
+        <li>
+          <img src='/img/organisation_placeholder.svg' width="280" />            
+        </li>
+      <% } %>
+    </ul>
+
+    <ul class="admin-options">
+      <li>
+        <a class="add" href="<%- organisation.slug_url %>/images/upload">
+          <strong>+ add</strong>
+          a photograph
+        </a>
+      </li>
+    </ul>
+  </aside>
+    
+  <ul class="admin-options">
+    <li>
+      <a class="delete delete-organisation" data-id="<%- organisation.id %>">
+        <strong>- delete</strong>
+        this organisation
+      </a>
+    </li>
+    
+    <li>
+      <a class="edit activate-edit-in-place" data-edit-in-place-id="entity-name-in-header" href="#">
+        <strong>^ edit</strong>
+        this organisation's name
+      </a>
+    </li>
+  </ul>
+
+  <section class="description" itemprop="description">
+                
+    <ul class="admin-options">
+      <li>
+        <a class="edit activate-edit-in-place" data-edit-in-place-id="entity-summary-text" href="#">
+          <strong>^ edit</strong>
+          this summary
+        </a>
+      </li>
+    </ul>
+
+    <p  id="entity-summary-text"
+        class="edit-in-place-textarea"
+        data-api-url="/organisation/<%- organisation.id %>"
+        data-api-name="summary"
+    ><%- organisation.summary %></p>
+  
+  </section>
+  
+  
+  <section class="organisational-details">
+    
+    <h2>Name &amp; other details:</h2>
+
+    <dl>
+      <dt>Full Name:</dt>
+      <dd itemprop="name"><%- organisation.name %></dd>
+    </dl>    
+
+  </section>
+
+
+  <section class="positions">
+  
+    <h2>Associated people, now or in the past:</h2>
+  
+    <ul class="admin-options">
+      <li>
+        <a  data-organisation-id="<%- organisation.id %>"
+          data-organisation-hide-field="1"
+          class="add new-position">
+          <strong>+ add</strong>
+          a new position
+        </a>
+      </li>
+    </ul>
+
+    <dl>
+      <% _.each( positions, function ( position ) { %>
+        <dt><%- position.title %>:</dt>
+        <dd>
+          <% if (position.person) { %>
+            <a href="<%- position.person.slug_url%>" ><%- position.person.name %></a>
+          <% } else { %>
+            unknown
+          <% } %>
+        </dd>
+      <% }); %>
+    </dl>    
+  </section>
+
+  
+  <section class="raw-data">
+    <h2>Raw data</h2>
+    <p>
+      The details for this organisation are also available in 
+      <a href="/api/v1/organisation/<%- organisation.id %>">JSON</a>.
+    </p>
+  </section>
+
+</article>
+
+<%= render('html_footer.html' )%>
+

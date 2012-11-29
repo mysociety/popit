@@ -1,4 +1,5 @@
 define( [ 'Backbone' ], function ( Backbone  ) {
+  "use strict"; 
 
   var ContactModel = Backbone.Model.extend({
     idAttribute: "_id",
@@ -11,7 +12,7 @@ define( [ 'Backbone' ], function ( Backbone  ) {
       value: {
         dataType:   'Text',
         validators: ['required']
-      },
+      }
     }
   });
 

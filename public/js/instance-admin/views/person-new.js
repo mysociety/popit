@@ -5,7 +5,7 @@ define(
     'backbone-forms',
     'underscore',
     'utils/slugify',
-    'templates/person/new',
+    'templates',
     'instance-admin/models/person',
     'instance-admin/views/submit-form-helper',
     'instance-admin/views/suggestions'
@@ -16,11 +16,12 @@ define(
     BackboneForms,
     _,
     slugify,
-    personNewTemplate,
+    templates,
     PersonModel,
     submitFormHelper,
     SuggestionsView
   ) {
+    "use strict"; 
 
     var PersonNewView = Backbone.View.extend({
   
@@ -36,7 +37,7 @@ define(
       render: function () {
   
         // render the template and form
-        var $content = $( personNewTemplate({}) );
+        var $content = $( templates.render('person/new.html', {}) );
         var $form    = $( this.form.render().el );
   
         // add the contents of the form to the template content

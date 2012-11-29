@@ -1,0 +1,98 @@
+<%= render(
+  'html_head.html',
+  {
+    title:       'Migration Tool',
+    description: '',
+  }
+) %>
+
+<h1 id="mapping">Define Mapping</h1>
+
+<p>
+  On this page you have to define the mapping for the import. Please read the instruction since this is the crucial step of the whole migration process. 
+</p>
+
+<p>
+  A mapping is a way to tell the migration what the different column names mean. You should try to select a 
+  <i>Database schema group</i>
+  and a 
+  <i>Database Attribute</i>
+  for every column. 
+</p>
+
+<p>
+  If you leave the 
+  <i>Database schema group</i>
+  or the 
+  <i>Database Attribute</i>
+  empty, it will not be imported.
+</p>
+
+<% _.each(schemas, function (schema, schemaid ) { %>
+
+  <h2><%- schema.name %></h2>
+
+  <form method="post" action="" class="migration-form">
+    <input type="hidden" name="db-schema" value="<%- schemaid %>">
+
+    <% if (migration.source.parsed) { %>
+      <table class="migration-table">
+        <thead>
+          <tr>
+            <th>Header from CSV</th>
+            <th>Database schema group</th>
+            <th>Database Attribute</th>
+            <th class="hidden">hidden</th>
+            <th>Example entries</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <%
+            var entriesArray = _.zip(
+              migration.source.parsed.header,
+              migration.source.parsed.data[1] || [],
+              migration.source.parsed.data[2] || []
+            );
+          %>
+          <% _.each( entriesArray, function (entry, entrykey) { %>
+                      
+            <tr id="id_<%- entry[0].replace(/ /g,'_') %>">
+
+              <td>
+                <input type="hidden" name="csv-attribute" value="<%- entry[0] %>">
+                <%- entry[0] %>
+              </td>
+
+              <td>
+                <select name="db-attribute-class">
+                  <option value="" selected="selected">
+                  <% _.each( schema.options, function (option, optionkey) { %>
+                    <option value="<%- optionkey %>" data-suggestions="<%- option.suggestions.join(',') %>" data-strict="<%- option.strict ? 1 : '' %>"><%- option.title %></option>
+                  <% }); %>
+              </td>
+              
+              <td>
+                <input type="text" name="db-attribute">
+                <small class='suggestions' />
+              </td>
+              
+              <td class="hidden">                
+              </td>
+              
+              <td class="sample">
+                <%- [entry[1], entry[2]].filter(function(a){return a}).join(', ') %>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+
+      <input type="submit" class="btn" value="Start migration">
+
+    <% } %>
+
+  </form>
+<% }); %>
+
+<%= render('html_footer.html' )%>

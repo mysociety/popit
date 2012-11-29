@@ -14,6 +14,5 @@ node_modules
 chromedriver.log
 public/css
 public-build
-public/js/templates
+public-production
 public/js/templates.js
-.jshintrc

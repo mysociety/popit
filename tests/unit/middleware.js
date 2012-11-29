@@ -1,9 +1,11 @@
+"use strict"; 
+
 
 // switch to testing mode
 process.env.NODE_ENV = 'testing';
 
 var utils             = require('../../lib/utils'),
-    instanceSelector  = require('../../lib/middleware/instance-selector');
+    instanceSelector  = require('../../lib/middleware/instance-selector'),
     _                 = require('underscore'),
     async             = require('async'),
     config            = require('config');

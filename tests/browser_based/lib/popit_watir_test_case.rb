@@ -104,6 +104,22 @@ class PopItWatirTestCase < Test::Unit::TestCase
     assert_match 'Signed in as owner@example.com', @b.li(:id, 'signed_in').text
   end
 
+  def login_as_instance_guest
+    goto_dev_page
+    @b.button(:id, 'login_as_instance_guest').click
+    assert_match 'Signed in as a Guest', @b.li(:id, 'signed_in').text
+  end
+
+  def enable_guest_access
+    goto_dev_page
+    @b.button(:id, 'enable_guest_access').click
+  end
+
+  def disable_guest_access
+    goto_dev_page
+    @b.button(:id, 'disable_guest_access').click
+  end
+
   def wait_for_ajax_requests_to_end
     @b.wait_until { ! @b.element(:id, 'ajax-loader').present? }
   end

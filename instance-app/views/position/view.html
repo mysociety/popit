@@ -1,0 +1,54 @@
+<%= render(
+  'html_head.html',
+  {
+    title:       position.name,
+    description: '',
+  }
+) %>
+
+<h1></h1>
+
+<article class="position">
+
+  <h1><%- position.title %></h1>
+
+  <% if (position.person) { %>
+    <section class="person">
+      <p>
+        Person:
+        <a href="<%- position.person.slug_url %>"><%- position.person.name %></a>
+      </p>
+    </section>
+  <% } %>
+
+  <% if (position.organisation) { %>
+    <section class="organisation">
+      <p>
+        Organisation:
+        <a href="<%- position.organisation.slug_url %>"><%- position.organisation.name %></a>
+      </p>
+    </section>
+  <% } %>
+
+  <p>Start Date: <%- position.start_date.formatted || '???' %></p>
+  <p>End Date:   <%- position.end_date.formatted   || '???' %></p>
+
+  <section class="to_be_added">
+    <p>
+      There is a
+      <a href="https://github.com/mysociety/popit/issues/183">github ticket</a>
+      to put more details on this page.
+    </p>
+  </section>
+  
+  <section class="raw-data">
+    <h2>Raw data</h2>
+    <p>
+      The details for this organisation are also available in
+      <a href="/api/v1/position/#{position.id}">JSON</a>.
+    </p>
+  </section>
+
+</article>
+
+<%= render('html_footer.html' )%>

@@ -9,7 +9,7 @@ define(
     'instance-admin/models/person',
     'instance-admin/views/person-new',
     'instance-admin/views/person-remove',
-    'jquery.fancybox',    
+    'jquery.fancybox'
   ],
   function (
     $,
@@ -18,6 +18,7 @@ define(
     PersonNewView,
     PersonRemoveView
   ) {
+    "use strict"; 
 
     App.addInitializer(function(options){
 

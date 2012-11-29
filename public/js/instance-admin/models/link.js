@@ -1,4 +1,5 @@
 define( [ 'Backbone' ], function ( Backbone  ) {
+  "use strict"; 
 
   return Backbone.Model.extend({
     idAttribute: "_id",
@@ -11,7 +12,7 @@ define( [ 'Backbone' ], function ( Backbone  ) {
         dataType:            'Text',
         validators:          ['required'],
         autocomplete_source: '/autocomplete/link_comment'
-      },
+      }
     }
   });
 

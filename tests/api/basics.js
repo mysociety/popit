@@ -1,3 +1,5 @@
+"use strict"; 
+
 // switch to testing mode
 process.env.NODE_ENV = 'testing';
 
@@ -86,8 +88,10 @@ module.exports = {
           "got JavaScript"
         );
 
+        var callback_regex = /^name_of_callback && name_of_callback\(\{.+\}\);$/;
+
         test.ok(
-          /^name_of_callback\({.+}\);$/.test(data),
+          callback_regex.test(data),
           "response JSON is wrapped in a callback"
         );
     
@@ -199,6 +203,10 @@ module.exports = {
               name:    'George Bush',
               slug:    'george-bush',
               summary: '41th President of the United States',
+              personal_details: {
+                date_of_birth: { formatted: '', end: null, start: null },
+                date_of_death: { formatted: '', end: null, start: null },
+              },
               other_names:     [],
               images:          [],
               links:           [],

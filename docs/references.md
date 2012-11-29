@@ -9,11 +9,9 @@ These are the more major tools used to create the PopIt app:
 
  * [Express](http://expressjs.com/guide.html) framework
  * [Node.js](http://nodejs.org/api/) server and runtime
- * [everyauth](http://everyauth.com/) authentication
 
 ## Layout and Design
 
- * [Jade](https://github.com/visionmedia/jade#readme) for html pages
  * [Mustache](http://mustache.github.com/mustache.5.html) used for emails and text content
  * [Compass](http://compass-style.org/) to compile SCSS to CSS
  * [RequireJS](http://requirejs.org/) to merge and minify the JS and CSS
@@ -29,5 +27,5 @@ These are the more major tools used to create the PopIt app:
 ## Testing
 
  * [NodeUnit](https://github.com/caolan/nodeunit/blob/master/README.md) unit tests
- * [Soda](https://github.com/LearnBoost/soda/blob/master/Readme.md) Selenium connector
+ * [Watir](http://watirwebdriver.com/) Ruby library for driving browsers to test websites
 
