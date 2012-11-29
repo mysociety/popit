@@ -112,4 +112,24 @@ class InstanceAboutTests < PopItWatirTestCase
 
   end
 
+  def test_guests_cannot_edit_about_page
+
+    delete_instance 'test'
+    goto_instance 'test'
+    load_test_fixture
+    enable_guest_access
+    login_as_instance_guest
+    
+    goto '/about'
+    assert_equal 'About Us', @b.title
+
+    # Check that the edit link is not displayed
+    assert ! @b.link(:text, '(edit)').present?
+    
+    # check that we can't access edit page if not logged in
+    goto '/about/edit'
+    assert_path '/login'
+    
+  end
+
 end
