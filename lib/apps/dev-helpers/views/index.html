@@ -73,6 +73,11 @@
           <button id="login_as_instance_owner">Login as instance owner</button>
         </form>
 
+        <form action="/login" method="post">
+          <input type="hidden" name="as_guest" value="1">
+          <button id="login_as_instance_guest">Login as instance guest</button>
+        </form>
+
         <form action="/_dev/change_guest_access" method="post">
           <input type="hidden" name="do_what" value="enable" />
           <button id="enable_guest_access">Enable Guest Access</button>
