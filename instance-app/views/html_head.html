@@ -41,7 +41,7 @@
   <script>var require = { urlArgs: 'v<%- config.popit_version %>' };</script>
   <script src="/js/libs/require-1.0.8.js" data-main="/js/main-instance" type="text/javascript" charset="utf-8"></script>
 
-  <% if (user) { %>
+  <% if ( user || guest ) { %>
     <script type="text/javascript" charset="utf-8">
       require(['/js/main-instance-admin.js']);      
     </script>
@@ -71,7 +71,7 @@
     </div>
   <% } %>
 
-  <% if (user) { %>
+  <% if ( user || guest ) { %>
     <noscript>
       <div id="no-js-warning">
         Please <a href="http://www.enable-javascript.com/" target="_blank">enable JavaScript</a>
@@ -92,57 +92,63 @@
     </h1>
 
     <div id="user_menu">
-      <ul>
-
-        <li>
-          <img id="ajax-loader" style="display: none;" src="/img/ajax-loader.gif">
-        </li>
-
-        <% if (user) { %>
-          <li id="signed_in">
-            Signed in as 
-            <span class="username"><%- user.email %></span>
-          </li>
-
+      <% if ( popit) { %>
+        <ul>
+        
           <li>
-            <a href="/logout">Sign Out</a>
+            <img id="ajax-loader" style="display: none;" src="/img/ajax-loader.gif">
           </li>
-        <% } else { %>
-          <li id="sign_in">
-            already have an account? 
-            <a href="/login?redirect_to=<%- current_absolute_pathname %>">Sign In</a>
-          </li>
-        <% } %>
-      </ul>
-      
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/person">People</a></li>
-        <li><a href="/organisation">Organisations</a></li>
-        <li><a href="/about">About Us</a></li>
-
-        <li>
-          <form id="header_search_form" action="/search" method="get">
-            <input id="header_search_box" type="search" placeholder="search..." name="q">
-          </form>
-        </li>
-      </ul>
-      
-      <ul>
-        <li>
-          <span id="instance_guest_status">
-            <% if ( popit.allow_guest_access() ) { %>
-              Guest edits allowed
-            <% } else { %>
-              Authorised edits only
-            <% }%>
-          </span>
-          
-          <% if (user) { %>
-            <a href="/about/edit">(change)</a>
+        
+          <% if ( user || guest ) { %>
+            <li id="signed_in">
+              Signed in as 
+              <span class="username"><%- guest ? 'a Guest' : user.email %></span>
+            </li>
+        
+            <li>
+              <a href="/logout">Sign Out</a>
+            </li>
+          <% } else { %>
+            <li id="sign_in">
+              Sign in using an
+              <a href="/login?redirect_to=<%- current_absolute_pathname %>" id="sign_in_as_existing_user">existing account</a>
+              <% if ( popit.allow_guest_access() ) { %>
+                or as a
+                <a href="/login?as_guest=1&amp;redirect_to=<%- current_absolute_pathname %>" id="sign_in_as_guest">guest</a>
+              <% } %>
+             </li>
           <% } %>
-        </li>
-      </ul>
+        </ul>
+      
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/person">People</a></li>
+          <li><a href="/organisation">Organisations</a></li>
+          <li><a href="/about">About Us</a></li>
+        
+          <li>
+            <form id="header_search_form" action="/search" method="get">
+              <input id="header_search_box" type="search" placeholder="search..." name="q">
+            </form>
+          </li>
+        </ul>
+      
+        <ul>
+          <li>
+            <span id="instance_guest_status">
+              <% if ( popit && popit.allow_guest_access() ) { %>
+                Guest edits allowed
+              <% } else { %>
+                Authorised edits only
+              <% }%>
+            </span>
+            
+            <% if (user) { %>
+              <a href="/about/edit">(change)</a>
+            <% } %>
+          </li>
+        </ul>
+      <% } %>
 
     </div>
     

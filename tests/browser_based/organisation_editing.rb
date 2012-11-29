@@ -56,7 +56,7 @@ class OrganisationEditingTests < PopItWatirTestCase
     # check that the create new organisation link is not shown. But that it is if the
     # user hovers over the sign in link
     assert ! add_organisation_link.present?
-    @b.link(:text, 'Sign In').hover
+    @b.link(:id, "sign_in_as_existing_user").hover
 
     assert add_organisation_link.present?
 
