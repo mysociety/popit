@@ -1,6 +1,6 @@
 {
   "name": "popit",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "dependencies": {
     "async": {
       "version": "0.1.22"
@@ -306,7 +306,7 @@
       "version": "0.3.34",
       "dependencies": {
         "mailcomposer": {
-          "version": "0.1.25",
+          "version": "0.1.26",
           "dependencies": {
             "mimelib": {
               "version": "0.2.7",
@@ -377,7 +377,7 @@
       "version": "0.7.4",
       "dependencies": {
         "tap": {
-          "version": "0.3.2",
+          "version": "0.3.3",
           "dependencies": {
             "inherits": {
               "version": "1.0.0"
