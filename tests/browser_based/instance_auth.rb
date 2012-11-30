@@ -153,4 +153,19 @@ class InstanceAuthTests < PopItWatirTestCase
     assert_equal 'Sign in using an existing account', @b.li(:id, 'sign_in').text
   end
 
+  def test_guest_sessions_ended_when_not_enabled
+    delete_instance 'test'
+    goto_instance 'test'
+    load_test_fixture
+
+    # get a user logged is as guest and then switch off guest access to the site
+    enable_guest_access
+    login_as_instance_guest
+    disable_guest_access
+
+    # check that the guest session has now ended
+    goto '/'
+    assert_equal 'Sign in using an existing account', @b.li(:id, 'sign_in').text
+  end
+
 end
