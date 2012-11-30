@@ -28,7 +28,7 @@ class PopItWatirTestCase < Test::Unit::TestCase
         end
       end
     )
-    
+        
     
     @b.goto @test_hosting_url
   end
@@ -102,6 +102,28 @@ class PopItWatirTestCase < Test::Unit::TestCase
     goto_dev_page
     @b.button(:id, 'login_as_instance_owner').click
     assert_match 'Signed in as owner@example.com', @b.li(:id, 'signed_in').text
+  end
+  
+  def run_as_guest_and_owner
+    for user_type in [:guest, :owner]
+      @user_type = user_type
+      yield
+    end
+  end
+
+  def login_as_required
+    login_as @user_type
+  end
+  
+  def login_as type
+    case type
+    when :guest
+      login_as_instance_guest
+    when :owner
+      login_as_instance_owner
+    else 
+      raise "Can't login as #{type}"
+    end
   end
 
   def login_as_instance_guest
