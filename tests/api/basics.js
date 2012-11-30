@@ -31,6 +31,21 @@ module.exports = {
       test_server_helpers.stop_server(tearDown_done);
     },
     
+    "GET with content-type of json and no body": function (test) {
+      // this is a workaround for https://github.com/senchalabs/connect/issues/680 which hopefully will be fixed upstream
+      test.expect(1);
+      this.rest
+      .get('',{
+        headers: {'Content-Type': 'application/json'}, // set json...
+        data:    '',                                   // ... but include no data
+      })
+      .on('complete', function(data, response) {
+            test.equal(response.statusCode, 200, "got 200 response");
+        test.done();
+      });
+
+    },
+    
     "access API docs": function (test) {
 
       test.expect(2);

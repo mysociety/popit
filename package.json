@@ -1,6 +1,6 @@
 {
   "name": "popit",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "private": true,
   "dependencies": {
     "async": ">= 0.1.18",
@@ -15,7 +15,6 @@
     "csv": ">= 0.0.13",
     "doublemetaphone": "*",
     "express": ">=3.0.0",
-    "forever": ">= 0.10.0",
     "form-data": ">= 0.0.4",
     "hogan.js": ">= 2.0.0",
     "iconv": ">= 1.2.3",
