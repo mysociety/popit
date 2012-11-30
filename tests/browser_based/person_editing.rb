@@ -110,7 +110,6 @@ class PersonEditingTests < PopItWatirTestCase
     goto_instance 'test'
     delete_instance_database
     load_test_fixture
-    enable_guest_access
     goto '/person'
 
     # login and check link is visible

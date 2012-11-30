@@ -159,7 +159,6 @@ class InstanceAuthTests < PopItWatirTestCase
     load_test_fixture
 
     # get a user logged is as guest and then switch off guest access to the site
-    enable_guest_access
     login_as_instance_guest
     disable_guest_access
 

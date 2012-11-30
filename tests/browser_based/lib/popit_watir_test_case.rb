@@ -105,7 +105,7 @@ class PopItWatirTestCase < Test::Unit::TestCase
   end
 
   def login_as_instance_guest
-    goto_dev_page
+    enable_guest_access
     @b.button(:id, 'login_as_instance_guest').click
     assert_match 'Signed in as a Guest', @b.li(:id, 'signed_in').text
   end
