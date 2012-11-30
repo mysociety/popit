@@ -108,7 +108,7 @@ production: clean node-modules
 	git merge master
 	make public-production
 	git add .
-	git ci -m 'Update static assets'
+	git ci -m 'Update static assets' || true
 	git tag -f `git tag | tail -1`
 
 clean:
