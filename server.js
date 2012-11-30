@@ -15,6 +15,15 @@ var express        = require('express'),
 
 var app = express();
 
+// Intercept JSON content type GET requests and change the header.
+// this is a workaround for https://github.com/senchalabs/connect/issues/680 which hopefully will be fixed upstream
+app.use( function (req, res, next) {
+  if ( req.method == "GET" && req.headers['content-type'] == 'application/json' ) {
+    delete req.headers['content-type'];
+  }
+  next();
+});
+
 // match the hosting app host...
 app.use(
   express.vhost(
