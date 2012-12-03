@@ -99,16 +99,10 @@ class PopItWatirTestCase < Test::Unit::TestCase
   end
 
   def run_as_guest_and_owner
-    for user_type in [:guest, :owner]
-      @user_type = user_type
-      yield
-    end
+    yield :guest
+    yield :owner
   end
 
-  def login_as_required
-    login_as @user_type
-  end
-  
   def login_as type
     case type
     when :guest

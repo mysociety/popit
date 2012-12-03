@@ -22,6 +22,7 @@ class PersonEditingTests < PopItWatirTestCase
 
   def test_person_creation
     run_as_guest_and_owner {
+      |user_type|
       goto_instance 'test'
       delete_instance_database
       load_test_fixture
@@ -35,7 +36,7 @@ class PersonEditingTests < PopItWatirTestCase
       assert add_person_link.present?
 
       # login and check link is visible
-      login_as_required
+      login_as user_type
       goto '/person'
       assert @b.link(:text, '+ Add a new person').present?
 
