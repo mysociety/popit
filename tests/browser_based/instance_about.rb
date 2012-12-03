@@ -117,7 +117,6 @@ class InstanceAboutTests < PopItWatirTestCase
     delete_instance 'test'
     goto_instance 'test'
     load_test_fixture
-    enable_guest_access
     login_as_instance_guest
     
     goto '/about'
