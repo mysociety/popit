@@ -107,31 +107,36 @@ class PersonEditingTests < PopItWatirTestCase
   end
 
   def test_person_deleting
-    goto_instance 'test'
-    delete_instance_database
-    load_test_fixture
-    goto '/'
-    login_as_instance_owner    
-
-    # goto bush and check he is there
-    goto '/person/george-bush'
-    
-    check_delete_entity(
-      :delete_link_text => '- delete this person',
-      :form_name        => 'remove-person',
-    )
-
+    run_as_guest_and_owner {
+      |user_type|
+      goto_instance 'test'
+      delete_instance_database
+      load_test_fixture
+      goto '/'
+      login_as user_type
+      
+      # goto bush and check he is there
+      goto '/person/george-bush'
+      
+      check_delete_entity(
+        :delete_link_text => '- delete this person',
+        :form_name        => 'remove-person',
+      )
+    }
   end
 
   def test_person_editing
-    goto_instance 'test'
-    delete_instance_database
-    load_test_fixture
-    goto '/person/george-bush'    
-
-    check_editing_summary
-
-    check_editing_name
+    run_as_guest_and_owner {
+      |user_type|
+      goto_instance 'test'
+      delete_instance_database
+      load_test_fixture
+      goto '/person/george-bush'    
+      
+      check_editing_summary user_type
+      
+      check_editing_name
+    }
   end
 
 end
