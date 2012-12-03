@@ -99,15 +99,10 @@
   
   <section class="personal-details">
 
-    <h2>Name, birthday &amp; similar:</h2>
+    <h2>Dates etc</h2>
 
     <ul class="detail-list">
 
-      <li>
-        <div class="list-item-title">Full Name:</div>
-        <div class="list-item-value" itemprop="name"><%- person.name %></div>
-      </li>
-      
       <li class="personal_details-date_of_birth">
         <%= render( 'partial-date/view.html', {
           date:             person.personal_details.date_of_birth,
