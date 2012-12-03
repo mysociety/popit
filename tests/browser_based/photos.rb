@@ -29,35 +29,38 @@ class PhotoTests < PopItWatirTestCase
   #################
 
   def check_upload_photo(opts)
-    goto_instance 'test'
-    delete_instance_database
-    load_test_fixture
-    goto '/'
-    login_as_instance_owner    
+    run_as_all_user_types {
+      |user_type|
 
-    goto opts[:url]
-
-    # check that only the placeholder photo is shown to start with
-    assert @b.ul(:class => 'photos').li.img.present?
-    assert_match @b.ul(:class => 'photos').li.img.attribute_value('src'), opts[:placeholder_filename_regex]
-
-    # upload a file
-    @b.link(:text => '+ add a photograph').click
-    @b.file_field(:name => 'image').set( File.join( File.dirname(__FILE__), opts[:test_image]) )
-    @b.input(:type => 'submit').click
-
-    # check that the file is now shown on the page
-    assert_path opts[:url]
-    assert @b.ul(:class => 'photos').li.img.present?
-
-    # delete the photo
-    @b.ul(:class => 'photos').input(:value => 'delete').click
-
-    # check that the photo is now gone
-    assert_path opts[:url]
-    assert @b.ul(:class => 'photos').li.img.present?
-    assert_match @b.ul(:class => 'photos').li.img.attribute_value('src'), opts[:placeholder_filename_regex]
-
+      goto_instance 'test'
+      delete_instance_database
+      load_test_fixture
+      goto '/'
+      login_as user_type
+      
+      goto opts[:url]
+      
+      # check that only the placeholder photo is shown to start with
+      assert @b.ul(:class => 'photos').li.img.present?
+      assert_match @b.ul(:class => 'photos').li.img.attribute_value('src'), opts[:placeholder_filename_regex]
+      
+      # upload a file
+      @b.link(:text => '+ add a photograph').click
+      @b.file_field(:name => 'image').set( File.join( File.dirname(__FILE__), opts[:test_image]) )
+      @b.input(:type => 'submit').click
+      
+      # check that the file is now shown on the page
+      assert_path opts[:url]
+      assert @b.ul(:class => 'photos').li.img.present?
+      
+      # delete the photo
+      @b.ul(:class => 'photos').input(:value => 'delete').click
+      
+      # check that the photo is now gone
+      assert_path opts[:url]
+      assert @b.ul(:class => 'photos').li.img.present?
+      assert_match @b.ul(:class => 'photos').li.img.attribute_value('src'), opts[:placeholder_filename_regex]
+    }
   end 
 
 end
