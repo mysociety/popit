@@ -21,7 +21,7 @@ class PersonEditingTests < PopItWatirTestCase
   end
 
   def test_person_creation
-    run_as_guest_and_owner {
+    run_as_all_user_types {
       |user_type|
       goto_instance 'test'
       delete_instance_database
@@ -107,7 +107,7 @@ class PersonEditingTests < PopItWatirTestCase
   end
 
   def test_person_deleting
-    run_as_guest_and_owner {
+    run_as_all_user_types {
       |user_type|
       goto_instance 'test'
       delete_instance_database
@@ -126,7 +126,7 @@ class PersonEditingTests < PopItWatirTestCase
   end
 
   def test_person_editing
-    run_as_guest_and_owner {
+    run_as_all_user_types {
       |user_type|
       goto_instance 'test'
       delete_instance_database

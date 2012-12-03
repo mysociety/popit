@@ -98,7 +98,7 @@ class PopItWatirTestCase < Test::Unit::TestCase
     assert_equal "OK - all instances synced", @b.p(:id, 'message').text
   end
 
-  def run_as_guest_and_owner
+  def run_as_all_user_types
     yield :guest
     yield :owner
   end
