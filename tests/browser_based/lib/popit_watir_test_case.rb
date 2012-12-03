@@ -98,12 +98,6 @@ class PopItWatirTestCase < Test::Unit::TestCase
     assert_equal "OK - all instances synced", @b.p(:id, 'message').text
   end
 
-  def login_as_instance_owner
-    goto_dev_page
-    @b.button(:id, 'login_as_instance_owner').click
-    assert_match 'Signed in as owner@example.com', @b.li(:id, 'signed_in').text
-  end
-  
   def run_as_guest_and_owner
     for user_type in [:guest, :owner]
       @user_type = user_type
@@ -126,6 +120,12 @@ class PopItWatirTestCase < Test::Unit::TestCase
     end
   end
 
+  def login_as_instance_owner
+    goto_dev_page
+    @b.button(:id, 'login_as_instance_owner').click
+    assert_match 'Signed in as owner@example.com', @b.li(:id, 'signed_in').text
+  end
+  
   def login_as_instance_guest
     enable_guest_access
     @b.button(:id, 'login_as_instance_guest').click
