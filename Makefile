@@ -8,7 +8,7 @@ JSHINT = ./node_modules/.bin/jshint
 STOP_TEST_SERVER  = tests/test-server-stop.bash
 START_TEST_SERVER = $(STOP_TEST_SERVER); tests/test-server-start.bash
 
-all: node-modules css
+all: node-modules css docs
 
 
 node-modules:
@@ -30,13 +30,11 @@ npm-shrinkwrap:
 	npm prune
 	npm shrinkwrap
 
-JEKYLL = cd docs && jekyll
-
 docs:
-	$(JEKYLL)
+	cd docs && jekyll
 
-docs-server:
-	$(JEKYLL) --server --auto
+docs-watch:
+	cd docs && jekyll --auto
 
 
 jshint:
@@ -119,7 +117,7 @@ production: clean node-modules
 	git merge master
 	make public-production
 	git add .
-	git ci -m 'Update static assets' || true
+	git ci -m 'Update static assets and docs' || true
 	git tag -f `git tag | tail -1`
 
 clean:
