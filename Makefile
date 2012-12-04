@@ -59,7 +59,7 @@ js-templates:
 	rm -rf public/js/templates.js
 	uta-compile-templates-to-amd instance-app/views > public/js/templates.js
 
-public-production: css js-templates
+public-production: css js-templates docs
 	rm -rf public-build public-production
 	node_modules/.bin/r.js -o public/js/app.build.js
 	mkdir public-production
@@ -74,6 +74,9 @@ public-production: css js-templates
 	mkdir -p public-production/js/libs
 	mv public-build/js/libs/require-*  public-production/js/libs/
 	mv public-build/js/main-*          public-production/js/
+
+	# copy over the generated docs
+	cp -r docs/_site public-production/docs
 
 	# clean up generated content that we don't need now
 	rm -r public-build
