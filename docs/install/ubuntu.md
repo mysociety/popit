@@ -37,7 +37,7 @@ Almost all the packages required are available from apt-get repositories in the 
     # 5. Chromium browser and the chromedriver (including X11 if you've 
     # started with a server edition of Ubuntu, which will add ~150MB of X11
     # related dependencies
-    sudo apt-get install chromium-browser unzip
+    sudo apt-get install chromium-browser unzip jekyll
 
     # chromedriver is only available as a binary download:
     wget http://chromedriver.googlecode.com/files/chromedriver_linux64_23.0.1240.0.zip
