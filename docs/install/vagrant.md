@@ -17,6 +17,6 @@ The basic process is to create a "base" vm, and then "provision" it with the sof
 
 4. Wait... (probably 10 minutes or so depending on your internet connection speed). Vagrant will run `provision.sh`, which follows roughly the same install procedure as that given for a [manual install onto Ubuntu](/docs/install/ubuntu/).
 
-5. When the install process has finished, you should be able to `vagrant ssh` into your new development environment. You'll find the code for PopIt in `/vagrant/popit`, where you can run `make` and follow the [getting PopIt instructions](/docs/install/#getting-the-popit-code).
+5. When the install process has finished, you should be able to `vagrant ssh` into your new development environment. You'll find the code for PopIt in `/vagrant/popit`, where you can run `make` and follow the [getting the code instructions](/docs/install/get-the-code).
 
 6. Enjoy! You can now edit your code from your editor of choice on your host computer, and view the changes live at `http://localhost:3000`, with all the server config and versioning nicely contained in a virtual environment.
