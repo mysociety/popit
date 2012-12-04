@@ -85,17 +85,14 @@
 </ul>
   
 <p>
-  | The API is REST based and simple to use. 
-  | For other languages 
-  a(href="https://github.com/mysociety/popit/blob/master/docs/contributing.md") contributions
-  |  are very welcome.
+  The API is REST based and simple to use. For other languages <a href="<%- config.hosting_site_base_url %>/docs/contributing">contributions</a> are very welcome.
 </p>
 
 
 <h3>API Versions</h3>
 
 <p>
-  There is a version string in the API url. This will be updated if the API undergoes siginificant changes that breaks backwards compatability. Old APIs will be supported for a bit, but will eventually be deprecated. Hopefully version changes will be very rare.
+  There is a version string in the API url. This will be updated if the API undergoes significant changes that breaks backwards compatibility. Old APIs will be supported for a bit, but will eventually be deprecated. Hopefully version changes will be very rare.
 </p>
 
 <p>
@@ -135,7 +132,7 @@
 </p>
 
 <p>
-  As a conveniance you can also look up objects using their slug. If found the request will be redirected to the correct ObjectId based query. This is so that you can use the slugs in URLs on your site and easily retrieve data without having to store the corresponding ObjectIds locally.
+  As a convenience you can also look up objects using their slug. If found the request will be redirected to the correct ObjectId based query. This is so that you can use the slugs in URLs on your site and easily retrieve data without having to store the corresponding ObjectIds locally.
 </p>
 
 <pre>
@@ -181,7 +178,7 @@
   For write operations on the API you need to be authenticated. This can 
   either be done using 
   <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">Basic Authentication</a>
-  or by cookie auth. Basic is probably best for scripts and pragramatic 
+  or by cookie auth. Basic is probably best for scripts and programatic 
   access, cookie based for Ajax calls etc.
 </p>
 

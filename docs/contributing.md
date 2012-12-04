@@ -1,4 +1,7 @@
-# Contributing
+---
+title: Contributing
+layout: default
+---
 
 Contributions to the PopIt project are very welcome. Really very welcome indeed. If you submit a pull request we'll be sure to look at it as soon as we can and hopefully merge it in or comment on it.
 
