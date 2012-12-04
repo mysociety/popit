@@ -10,7 +10,7 @@ Here be dragons! This is **alpha** software - it is currently undergoing active 
 
 ## Installing
 
-Please see  [INSTALL.md](https://github.com/mysociety/popit/blob/master/INSTALL.md) for full instructions.
+Please see [the installation documentation](http://popit.mysociety.org/docs/install) for full instructions.
 
 You can use our [free hosting service](http://popit.mysociety.org/) instead of installing and let us run the site for you.
 
