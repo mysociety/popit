@@ -3,8 +3,6 @@ title: Getting the PopIt code
 layout: default
 ---
 
-# {{ page.title }} 
-
 Currently PopIt is not available over npm - perhaps it will be in future if there is sufficient demand.
 
 To install from git do the following:

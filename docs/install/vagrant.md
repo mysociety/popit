@@ -3,8 +3,6 @@ layout: default
 title: Installing using Vagrant
 ---
 
-# {{ page.title }}
-
 Vagrant provides any easy method to setup virtual development environments, for further information see [their website](http://www.vagrantup.com).
 
 The basic process is to create a "base" vm, and then "provision" it with the software packages and setup needed. There are several ways to do this, including Chef and Puppet, but these instructions simply provide a shell script to keep things simple and avoid the need to understand further complicated systems. The supplied scripts will create you a Vagrant vm based on the server edition of Ubuntu 12.04 LTS that contains everything you need to work on PopIt.

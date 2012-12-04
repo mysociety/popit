@@ -3,8 +3,6 @@ layout: default
 title: Installing on MacOS X
 ---
 
-# {{ page.title }}
-
 If you use [Homebrew](http://mxcl.github.com/homebrew/) on a Mac then these commands will install some of the needed components:
 
     # to run PopIt

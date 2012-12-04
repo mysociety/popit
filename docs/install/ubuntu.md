@@ -3,8 +3,6 @@ layout: default
 title: Installing on Ubuntu
 ---
 
-# {{ page.title }}
-
 The following instructions have been used successfully on a default installation of the Server edition of Ubuntu 12.04 (Precise Pangolin), if you're using a different version your mileage may vary, but they should give you a good idea of where to start.
 
 Almost all the packages required are available from apt-get repositories in the standard install, however there are a few extra steps needed. The following is a quick rundown of the commands you might need:
