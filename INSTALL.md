@@ -21,6 +21,10 @@ If you want to contribute code or run the test suite you'll need the following a
   * [Chrome Driver](http://code.google.com/p/chromedriver/) - interface for the webdriver code
   * [Compass](http://compass-style.org/) - to compile the stylesheets
 
+The documentation part of the site is constructed using:
+  * [Jekyll](http://jekyllrb.com/) which turns compiles the documentation source into the doc site
+  * [kramdown](http://kramdown.rubyforge.org/) for converting to HTML, and the pretty syntax highlighting
+
 
 ### MacOS X
 
@@ -30,9 +34,9 @@ If you use [Homebrew](http://mxcl.github.com/homebrew/) on a Mac then these comm
     brew install git node mongodb graphicsmagick
 
     # to develop PopIt (in addition to the above) - Ruby and the gems are used 
-    # for the browser tests
+    # for the browser tests and for rendering the docs
     brew install ruby
-    gem install watir-webdriver pry
+    gem install watir-webdriver pry jekyll
 
 If you use [MacPorts](http://www.macports.org/) then these commands will install some of the needed components:
 

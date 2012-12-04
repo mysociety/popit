@@ -30,6 +30,14 @@ npm-shrinkwrap:
 	npm prune
 	npm shrinkwrap
 
+JEKYLL = cd docs && jekyll
+
+docs:
+	$(JEKYLL)
+
+docs-server:
+	$(JEKYLL) --server --auto
+
 
 jshint:
 	$(JSHINT) *.js lib/ hosting-app/ instance-app/ tests/
@@ -113,6 +121,7 @@ production: clean node-modules
 
 clean:
 	compass clean
+	rm -rf docs/_site
 	rm -rf public/css
 	rm -rf public/js/templates.js	
 	rm -rf public-build
@@ -120,5 +129,5 @@ clean:
 	find . -name chromedriver.log -delete
 
 
-.PHONY: test test-unit test-browser test-api css public-production clean tidy node-modules npm-update npm-shrinkwrap
+.PHONY: test test-unit test-browser test-api css public-production clean tidy node-modules npm-update npm-shrinkwrap docs docs-server
 
