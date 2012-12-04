@@ -5,7 +5,7 @@ layout: default
 
 Currently PopIt is not available over npm - perhaps it will be in future if there is sufficient demand.
 
-To install from git do the following:
+## Installing from GitHub
 
     # Get the code from GitHub
     git clone git://github.com/mysociety/popit.git
@@ -28,3 +28,9 @@ To install from git do the following:
     # If you want to run the app from your /etc/init.d directory there is a 
     # sample script in './config' that you can use. Don't forget to create the
     # production config file too.
+
+
+## Production branch
+
+If you don't want to develop the code but just want to deploy it you should use the `production` branch. This is updated less frequently than the `master` branch and also has all the generated assets - like the CSS, the minified and combined javascript, the generated documentation.
+

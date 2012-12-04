@@ -19,14 +19,16 @@
             <li><a href="{{ site.baseurl }}">Home</a></li>
             
             <li>
-              <a href="{{ site.baseurl }}install">Installing</a>
+              <a href="{{ site.baseurl }}install">Installing&hellip;</a>
               
               {% if page.url contains '/install/' %}
               <ul>
-                <li><a href="{{ site.baseurl }}/install/get-the-code">Get the code</a></li>
-                <li><a href="{{ site.baseurl }}/install/macos">Mac OS X</a></li>
-                <li><a href="{{ site.baseurl }}/install/ubuntu">Ubuntu</a></li>
-                <li><a href="{{ site.baseurl }}/install/vagrant">Vagrant</a></li>
+                <li><a href="{{ site.baseurl }}install/get-the-code">Get the code</a></li>
+                <li><a href="{{ site.baseurl }}install/prerequisites">Prerequisites</a></li>                
+                <li><a href="{{ site.baseurl }}install/macos">Mac OS X</a></li>
+                <li><a href="{{ site.baseurl }}install/ubuntu">Ubuntu</a></li>
+                <li><a href="{{ site.baseurl }}install/vagrant">Vagrant</a></li>
+                <li><a href="{{ site.baseurl }}install/configuration">Configuration</a></li>
               </ul>
               {% endif %}
             </li>
