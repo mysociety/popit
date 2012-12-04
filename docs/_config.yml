@@ -1,3 +1,7 @@
+safe: true
+baseurl: /docs/
+permalink: pretty
+
 markdown: kramdown
 
 kramdown:
