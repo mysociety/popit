@@ -40,6 +40,18 @@
             </li>
 
             <li>
+              <a href="{{ site.baseurl }}api/">API&hellip;</a>
+              
+              {% if page.url contains '/api/' %}
+                <ul>
+                  <li><a href="{{ site.baseurl }}api/bindings">Bindings</a></li>
+                  <li><a href="{{ site.baseurl }}api/auth">Auth</a></li>
+                  <li><a href="{{ site.baseurl }}api/images">Images</a></li>
+                </ul>
+              {% endif %}
+            </li>
+
+            <li>
               <a href="{{ site.baseurl }}codebase/">The PopIt Codebase&hellip;</a>
               
               {% if page.url contains '/codebase/' %}
