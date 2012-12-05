@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Configuration | PopIt | mySociety</title>
+    <link rel="stylesheet" href="/docs/stylesheets/styles.css">
+    <meta name="viewport" content="initial-scale=1">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="side">
+        <header>
+          <h1><a href="/docs/">PopIt documentation</a></h1>
+          <p>PopIt is a way to create, store and share key facts about people, especially their job titles, photo, contact details and career histories</p>
+
+          <ul>
+            <li><a href="/docs/">Home</a></li>
+            
+            <li>
+              <a href="/docs/install">Installing&hellip;</a>
+              
+              
+              <ul>
+                <li><a href="/docs/install/get-the-code">Get the code</a></li>
+                <li><a href="/docs/install/prerequisites">Prerequisites</a></li>                
+                <li><a href="/docs/install/macos">Mac OS X</a></li>
+                <li><a href="/docs/install/ubuntu">Ubuntu</a></li>
+                <li><a href="/docs/install/vagrant">Vagrant</a></li>
+                <li><a href="/docs/install/configuration">Configuration</a></li>
+              </ul>
+              
+            </li>
+
+            <li>
+              <a href="/docs/contributing">Contributing&hellip;</a>
+              
+              
+            </li>
+
+          </ul>
+
+          <ul class="buttons">
+            <li><a href="https://github.com/mysociety/popit/zipball/master">Download <strong>ZIP File</strong></a></li>
+            <li><a href="https://github.com/mysociety/popit/tarball/master">Download <strong>TAR Ball</strong></a></li>
+            <li><a href="https://github.com/mysociety/popit">View on <strong>GitHub</strong></a></li>
+          </ul>
+
+        </header>
+        <footer>
+          <p><small>Theme modified from <a href="https://github.com/orderedlist/minimal">orderedlist/minimal</a></small></p>
+        </footer>
+      </div>
+      <section>
+
+        <h1>Configuration</h1>
+
+        <h2 id="popit-config">PopIt config</h2>
+
+<p>All the config is in the <code>config</code> folder. These are loaded by the <a href="http://lorenwest.github.com/node-config/latest/index.html">config</a> module. There are sample production and development configs that you’ll want to copy and edit.</p>
+
+<h2 id="dns-config">DNS config</h2>
+
+<p>You’ll need to setup a wildcard DNS if you want to let instances be created. If your main site is <code>your-hosting-site-domain.com</code> you’ll need to wildcard <code>*.your-hosting-site-domain.com</code>, or create DNS entries for <code>your-instance.your-hosting-site-domain.com</code>.</p>
+
+<p>For development and in the tests we use <code>127.0.0.1.xip.io</code> which points to <code>127.0.0.1</code>, including any subdomains. See <a href="http://xip.io/">xip.io</a> for details.</p>
+
+<h2 id="mongodb-suggestion">MongoDB suggestion</h2>
+
+<p>PopIt uses a MongoDB database per instance, one for the master instance and a sessions database. To make this less disk intensive set the following in the MongoDB config file:</p>
+
+<pre><code>noprealloc = true
+smallfiles = true
+</code></pre>
+
+<p>Probably not a good idea on a production system though.</p>
+
+
+
+      </section>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Getting the PopIt code | PopIt | mySociety</title>
+    <link rel="stylesheet" href="/docs/stylesheets/styles.css">
+    <meta name="viewport" content="initial-scale=1">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="side">
+        <header>
+          <h1><a href="/docs/">PopIt documentation</a></h1>
+          <p>PopIt is a way to create, store and share key facts about people, especially their job titles, photo, contact details and career histories</p>
+
+          <ul>
+            <li><a href="/docs/">Home</a></li>
+            
+            <li>
+              <a href="/docs/install">Installing&hellip;</a>
+              
+              
+              <ul>
+                <li><a href="/docs/install/get-the-code">Get the code</a></li>
+                <li><a href="/docs/install/prerequisites">Prerequisites</a></li>                
+                <li><a href="/docs/install/macos">Mac OS X</a></li>
+                <li><a href="/docs/install/ubuntu">Ubuntu</a></li>
+                <li><a href="/docs/install/vagrant">Vagrant</a></li>
+                <li><a href="/docs/install/configuration">Configuration</a></li>
+              </ul>
+              
+            </li>
+
+            <li>
+              <a href="/docs/contributing">Contributing&hellip;</a>
+              
+              
+            </li>
+
+          </ul>
+
+          <ul class="buttons">
+            <li><a href="https://github.com/mysociety/popit/zipball/master">Download <strong>ZIP File</strong></a></li>
+            <li><a href="https://github.com/mysociety/popit/tarball/master">Download <strong>TAR Ball</strong></a></li>
+            <li><a href="https://github.com/mysociety/popit">View on <strong>GitHub</strong></a></li>
+          </ul>
+
+        </header>
+        <footer>
+          <p><small>Theme modified from <a href="https://github.com/orderedlist/minimal">orderedlist/minimal</a></small></p>
+        </footer>
+      </div>
+      <section>
+
+        <h1>Getting the PopIt code</h1>
+
+        <p>Currently PopIt is not available over npm - perhaps it will be in future if there is sufficient demand.</p>
+
+<h2 id="installing-from-github">Installing from GitHub</h2>
+
+<pre><code># Get the code from GitHub
+git clone git://github.com/mysociety/popit.git
+cd popit
+
+# Optional - change to the 'production' branch (more stable). If you're 
+# hoping to contribute please stay on the 'master' branch.
+git checkout -b production origin/production
+
+# Install the dependencies and build the css
+make
+
+# Optional - run the test suite (requires additional software to be 
+# installed - see above)
+npm test
+
+# Start the app locally
+npm start
+
+# If you want to run the app from your /etc/init.d directory there is a 
+# sample script in './config' that you can use. Don't forget to create the
+# production config file too.
+</code></pre>
+
+<h2 id="production-branch">Production branch</h2>
+
+<p>If you don’t want to develop the code but just want to deploy it you should use the <code>production</code> branch. This is updated less frequently than the <code>master</code> branch and also has all the generated assets - like the CSS, the minified and combined javascript, the generated documentation.</p>
+
+
+
+      </section>
+    </div>
+  </body>
+</html>
