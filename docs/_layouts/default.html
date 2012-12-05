@@ -3,6 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>{{ page.title }} | PopIt | mySociety</title>
+
+    {% if page.description %}
+    <meta name="description" content="{{ page.description }}">
+    {% endif %}
+
     <link rel="stylesheet" href="{{ site.baseurl }}stylesheets/styles.css">
     <meta name="viewport" content="initial-scale=1">
     <!--[if lt IE 9]>
