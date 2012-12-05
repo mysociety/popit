@@ -15,6 +15,11 @@ class PopItWatirTestCase < Test::Unit::TestCase
     @test_port = ENV['NODE_ENV'] == 'testing' ? 3100 : 3000
     @test_hosting_url  = ENV['WATIR_HOSTING_URL'] || "http://www.127.0.0.1.xip.io:#{@test_port}/"
 
+    # Never use cached elements - needed to avoid occasional
+    # "Selenium::WebDriver::Error::StaleElementReferenceError: Element is no longer attached to the DOM"
+    # failures
+    Watir::always_locate = true
+
     # create the browser and go to the homepage
     @b = Watir::Browser.new ENV['WATIR_BROWSER'] || :chrome
     

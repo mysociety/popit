@@ -21,9 +21,10 @@ module InPlaceEditingChecks
     @b.h1(:class => 'current-entity').click
     assert @b.h1(:class => 'current-entity').input.present?
     @b.h1(:class => 'current-entity').text_field.set changed_name
-    @b.div(:id => 'content').click
-    sleep 2 # there is a delay in the js
-    assert ! @b.h1(:class => 'current-entity').input.present?    
+    @b.wait_until{
+      @b.li(:id => 'signed_in').click
+      ! @b.h1(:class => 'current-entity').input.present?
+    }
     assert_equal original_name, @b.h1(:class => 'current-entity').text
 
     # check that edits are saved

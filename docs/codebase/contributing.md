@@ -96,6 +96,7 @@ When running the Watir tests you can select which test to run using the `-n` swi
     $ cd tests/browser_based/
     $ ./run_tests.rb -v -n test_hosting_site_homepage
 
+When the Watir tests run on [Travis](https://travis-ci.org/mysociety/popit) they use a headless FireFox. This runs very fast and so things break there that pass when running with a GUI on a local machine. Ways to emulate the Travis environment are to run them on a virtual machine (see the [vagrant notes](/docs/install/vagrant/)) or to run them in FireFox on you machine, and constantly minimize the windows that pop up (`cmd-M` on Mac).
 
 ## Running the tests
 
