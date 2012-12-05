@@ -49,7 +49,7 @@
 
 </head>
 
-<body id="popit-<%- popit ? popit.instance_name() : 'no-site-found' %>" class="<%- user ? 'signed_in' : '' %>">
+<body id="popit-<%- popit ? popit.instance_name() : 'no-site-found' %>" class="<%- user || guest  ? 'signed_in' : '' %>">
 
   <% if ( config.show_dev_site_warning ) { %>
   <div id="dev-site-warning">

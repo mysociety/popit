@@ -2,6 +2,7 @@
 module InPlaceEditingChecks
 
   def check_editing_name
+        
     # grab the name for checking later
     original_name = @b.h1(:class => 'current-entity').text
     changed_name  = 'Changed Name'
@@ -45,7 +46,7 @@ module InPlaceEditingChecks
     assert ! @b.h1(:class => 'current-entity').input.present?        
   end
 
-  def check_editing_summary
+  def check_editing_summary user_type
     test_page_url = @b.url
 
     # check that without being logged in clicking on the summary has no effect
@@ -54,7 +55,7 @@ module InPlaceEditingChecks
     assert ! @b.textarea(:name => 'value').present?
     
     # login and try again
-    login_as_instance_owner
+    login_as user_type
     goto test_page_url    
     assert ! @b.textarea(:name => 'value').present?
     @b.element(:css => '[data-api-name=summary]').click

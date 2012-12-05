@@ -170,7 +170,16 @@
             unknown
           <% } %>
           
-          (<%- position.start_date.formatted || '???' %> to <%- position.end_date.formatted || '???' %>)
+          <% if (position.start_date.formatted || position.end_date.formatted) { %>
+            (
+            <% if (position.start_date.formatted) { %>
+              from <%- position.start_date.formatted %>              
+            <% } %>
+            <% if (position.end_date.formatted) { %>
+              to <%- position.end_date.formatted %>              
+            <% } %>
+            )
+          <% } %>
         </dd>
       <% }); %>
     </dl>  
