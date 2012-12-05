@@ -23,5 +23,5 @@ See the [configuration notes](/docs/install/configuration).
 
 ## Developers
 
-In addition to these notes please see the [contributing notes](/docs/contributing/) if you want to work on the code.
+In addition to these notes please see the [contributing notes](/docs/codebase/contributing/) if you want to work on the code.
 
