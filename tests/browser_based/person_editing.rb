@@ -78,7 +78,8 @@ class PersonEditingTests < PopItWatirTestCase
       add_person_link.click
       @b.text_field(:name, 'name').set "George"
       @b.wait_until {
-        @b.ul(:class, 'suggestions').li.present? &&
+        # sleep to allow the autocomplete to load and become stable
+        sleep 0.4
         @b.ul(:class, 'suggestions').li.text =~ /George Bush/
       }
 
