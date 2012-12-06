@@ -55,7 +55,7 @@ optipng:
 
 js-templates:
 	rm -rf public/js/templates.js
-	uta-compile-templates-to-amd instance-app/views > public/js/templates.js
+	node_modules/.bin/uta-compile-templates-to-amd instance-app/views > public/js/templates.js
 
 public-production: css js-templates docs
 	rm -rf public-build public-production
