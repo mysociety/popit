@@ -102,6 +102,7 @@ class OrganisationEditingTests < PopItWatirTestCase
       add_organisation_link.click
       @b.text_field(:name, 'name').set "I'm a unique name"
       @b.wait_until {
+        sleep 0.4
         @b.ul(:class, 'suggestions').li.text == 'No matches'
       }
       
