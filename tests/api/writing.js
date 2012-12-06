@@ -389,6 +389,7 @@ module.exports = {
             rest
               .get(document_url)
               .on('complete', function(data, response) {
+
                 test.deepEqual(
                   data.result,
                   {
@@ -407,7 +408,10 @@ module.exports = {
                     contact_details: [],
                     name_words:      [ 'joe', 'bloggs' ],
                     name_dm:         [ 'J', 'A', 'PLKS', 'PLKS', 'joe', 'bloggs' ],                    
-                    meta: { edit_url: 'http://test.127.0.0.1.xip.io:3100/person/joe-bloggs' },
+                    meta: {
+                      edit_url: 'http://test.127.0.0.1.xip.io:3100/person/joe-bloggs',
+                      positions_api_url: 'http://test.127.0.0.1.xip.io:3100/api/v1/position?person=' + document_id,
+                    },
                   },
                   "Person created as expected"
                 );
@@ -450,7 +454,10 @@ module.exports = {
                     contact_details: [],
                     name_words:      [ 'fred', 'jones' ],
                     name_dm:         [ 'FRT', 'FRT', 'JNS', 'ANS', 'fred', 'jones' ],
-                    meta: { edit_url: 'http://test.127.0.0.1.xip.io:3100/person/joe-bloggs' },
+                    meta: {
+                      edit_url: 'http://test.127.0.0.1.xip.io:3100/person/joe-bloggs',
+                      positions_api_url: 'http://test.127.0.0.1.xip.io:3100/api/v1/position?person=' + document_id,
+                    },
                   },
                   "Person updated as expected"
                 );
