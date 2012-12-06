@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>API | PopIt | mySociety</title>
+
+    
+    <meta name="description" content="The API allows you to easily access all the data stored in PopIt from your code or other websites.">
+    
+
+    <link rel="stylesheet" href="/docs/stylesheets/styles.css">
+    <meta name="viewport" content="initial-scale=1">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="side">
+        <header>
+          <h1><a href="/docs/">PopIt documentation</a></h1>
+          <p>PopIt is a way to create, store and share key facts about people, especially their job titles, photos, contact details and career histories.</p>
+
+          <ul>
+            <li><a href="/docs/">Home</a></li>
+            
+            <li>
+              <a href="/docs/install">Installing&hellip;</a>
+              
+              
+            </li>
+
+            <li>
+              <a href="/docs/api/">API&hellip;</a>
+              
+              
+                <ul>
+                  <li><a href="/docs/api/bindings">Bindings</a></li>
+                  <li><a href="/docs/api/auth">Auth</a></li>
+                  <li><a href="/docs/api/images">Images</a></li>
+                </ul>
+              
+            </li>
+
+            <li>
+              <a href="/docs/codebase/">The PopIt Codebase&hellip;</a>
+              
+              
+            </li>
+
+          </ul>
+
+          <ul class="buttons">
+            <li><a href="https://github.com/mysociety/popit/zipball/master">Download <strong>ZIP File</strong></a></li>
+            <li><a href="https://github.com/mysociety/popit/tarball/master">Download <strong>TAR Ball</strong></a></li>
+            <li><a href="https://github.com/mysociety/popit">View on <strong>GitHub</strong></a></li>
+          </ul>
+
+        </header>
+        <footer>
+          <p>Found an error? Please <a href="https://github.com/mysociety/popit/tree/master/docs">edit the code</a> or create a <a href="https://github.com/mysociety/popit/issues">bug report</a>.</p>
+          <p><small>Theme modified from <a href="https://github.com/orderedlist/minimal">orderedlist/minimal</a></small></p>
+        </footer>
+      </div>
+      <section>
+
+        <h1>API</h1>
+
+        <p>The API allows you to easily access and edit all the data stored in PopIt from your code or other websites.</p>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<p>The API returns <a href="http://en.wikipedia.org/wiki/JSON">JSON</a> - a data format that is easily usable in all programming languages. It is possible to view JSON in your browser (and easily follow embedded links) if you have one of the following extensions installed:</p>
+
+<ul>
+  <li><a href="https://chrome.google.com/webstore/detail/chklaanhfefbnpoihckbnefhakgolnmc">JSONView</a> for Chrome</li>
+  <li><a href="https://addons.mozilla.org/en-US/firefox/addon/jsonview/">JSONView</a> for FireFox</li>
+  <li><a href="http://stackoverflow.com/questions/2483771">Not sure it can be done easily</a> for Internet Explorer :(</li>
+  <li>Try a search for “JSON Viewer <your browser="" name="">" for other browsers.</your></li>
+</ul>
+
+<p>You can now <a href="/api/v1"> enter the API</a> and click around to navigate.</p>
+
+<h2 id="basics">Basics</h2>
+
+<p>The API is based on <a href="http://en.wikipedia.org/wiki/Representational_state_transfer">REST</a>.</p>
+
+<h3 id="api-versions">API Versions</h3>
+
+<p>There is a version string in the API url. This will be updated if the API undergoes significant changes that breaks backwards compatibility. Old APIs will be supported for a bit, but will eventually be deprecated. Hopefully version changes will be very rare.</p>
+
+<p><strong>NOTE</strong>: until PopIt is considered stable the API will change and the ‘v1’ version will break. Please contact us if you need to know which parts of the API are stable.</p>
+
+<h3 id="result--results">result / results</h3>
+
+<p>When you make a query the returned data will always be a hash. There will be a result or results key that contains the data you’ve requested.</p>
+
+<h3 id="meta">meta</h3>
+
+<p>When you make requests to the API you’ll often get little ‘meta’ blocks in the results. These blocks are added to the data by the API to provide additional information that may be helpful. For example it might contain links to the API endpoint for a result in a search, or a link to the web page where you can edit the data.</p>
+
+<p>The meta blocks are also used to provide next and previous links in list results (not implemented yet).</p>
+
+<h3 id="errors">errors</h3>
+
+<p>If something goes wrong there will be an ‘error’ or ‘errors’ key that will explain the error. Often an HTTP error code will also be used (eg ‘404’ if a result cannot be found).</p>
+
+<h3 id="objectids-and-slugs">ObjectIds and slugs</h3>
+
+<p>Objects in PopIt are always identified in the API by their ObjectId - which is generated by the database and is a 24 character hex string.</p>
+
+<p>As a convenience you can also look up objects using their slug. If found the request will be redirected to the correct ObjectId based query. This is so that you can use the slugs in URLs on your site and easily retrieve data without having to store the corresponding ObjectIds locally.</p>
+
+<pre><code>by ObjectId:  /api/v1/person/4f99219333fa2efc68000006
+by slug:      /api/v1/person/joe-bloggs
+</code></pre>
+
+<p>Note that slugs may change so your links may break. ObjectIds will never change.</p>
+
+<h3 id="searching">Searching</h3>
+
+<p>Currently only simple searching implemented - you can search by ObjectIds and by case-insensitive string matching. Examples:</p>
+
+<pre><code>/api/v1/person?name=joe
+/api/v1/position?person=4f99219333fa2efc68000006
+</code></pre>
+
+<p>Better searching (exact matches, gte, etc) is on the TODO list.</p>
+
+<h3 id="jsonp">JSONP</h3>
+
+<p>Read (GET) requests to the API can have an optional <code>callback</code> parameter which will cause <a href="http://en.wikipedia.org/wiki/JSONP">JSONP</a> to be returned. This might be useful if querying the API from a browser  on another website.</p>
+
+
+      </section>
+    </div>
+  </body>
+</html>
