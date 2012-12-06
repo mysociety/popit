@@ -110,7 +110,8 @@ class OrganisationEditingTests < PopItWatirTestCase
       add_organisation_link.click
       @b.text_field(:name, 'name').set "United"
       @b.wait_until {
-        @b.ul(:class, 'suggestions').li.present? &&
+        # DOM changes alot, wait for it to settle before inspecting
+        sleep 0.4
         @b.ul(:class, 'suggestions').li.text =~ /United States Government/
       }
       
