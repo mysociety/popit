@@ -261,6 +261,28 @@ module.exports = {
         });
     },
         
+    "load one person (by slug, with trailing slash)" : function (test) {
+
+      // addresses https://github.com/mysociety/popit/issues/211
+      
+      test.expect(2);
+      
+      this.rest
+        .get('person/george-bush/')
+        .on('complete', function(data, response) {
+      
+          test.equal(response.statusCode, 200, "got 200 response");
+      
+          test.equal(
+            response.client._httpMessage.path, // note - can't see how to get this through proper calls
+            '/api/v1/person/4f9ea1306e8770d854c45a1d',
+            "redirected to ObjectId url"
+          );
+          
+          test.done();
+        });
+    },
+        
     "load a not found objectid" : function (test) {
       test.expect(1);
       
