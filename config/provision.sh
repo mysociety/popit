@@ -4,7 +4,7 @@ set -e # Exit script immediately on first error.
 set -x # Print commands and their arguments as they are executed.
 
 # Abort provisioning if toolchain is already installed.npm tet
-command -v make chromium-browser npm mongo Xvfb chromedriver >/dev/null 2>&1 &&
+command -v make chromium-browser npm mongo Xvfb chromedriver git >/dev/null 2>&1 &&
 { echo "Everything already installed."; exit 0; }
 
 # If we get here, we've never provisioned before
@@ -31,7 +31,7 @@ apt-get update -yqq
 echo "##############################"
 echo "Installing Packages"
 echo "##############################"
-apt-get install -yqq nodejs npm mongodb-10gen build-essential ruby1.9.1 ruby1.9.1-dev chromium-browser xvfb unzip
+apt-get install -yqq nodejs npm mongodb-10gen build-essential ruby1.9.1 ruby1.9.1-dev chromium-browser xvfb unzip git
 
 # Download and install chromedriver
 echo "##############################"
@@ -46,7 +46,7 @@ mv chromedriver /usr/local/bin
 echo "##############################"
 echo "Installing compass, watir-webdriver and pry"
 echo "##############################"
-gem install compass watir-webdriver pry
+gem install compass watir-webdriver pry jekyll
 
 # Set up Xvfb to run all the time on display :99
 echo "##############################"

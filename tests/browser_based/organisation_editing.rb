@@ -101,14 +101,20 @@ class OrganisationEditingTests < PopItWatirTestCase
       @b.refresh
       add_organisation_link.click
       @b.text_field(:name, 'name').set "I'm a unique name"
-      assert_equal 'No matches', @b.ul(:class, 'suggestions').li.text
+      @b.wait_until {
+        sleep 0.4
+        @b.ul(:class, 'suggestions').li.text == 'No matches'
+      }
       
       # enter dup name and check for suggestions
       @b.refresh
       add_organisation_link.click
       @b.text_field(:name, 'name').set "United"
-      
-      @b.wait_until { @b.ul(:class, 'suggestions').present? && @b.ul(:class, 'suggestions').li.text['United States Government'] }
+      @b.wait_until {
+        # DOM changes alot, wait for it to settle before inspecting
+        sleep 0.4
+        @b.ul(:class, 'suggestions').li.text =~ /United States Government/
+      }
       
       # click on a suggestion, check get existing organisation
       @b.ul(:class, 'suggestions').li.link.click
@@ -130,6 +136,7 @@ class OrganisationEditingTests < PopItWatirTestCase
       @b.text_field(:name, 'name').set "网页"
       assert_equal "", @b.text_field(:name, 'slug').value
       @b.input(:value, "Create new organisation").click
+      @b.wait_until{ @b.div(:class =>'bbf-help', :index => 1 ).present? }
       assert_equal 'Required', @b.div(:class =>'bbf-help', :index => 1 ).text
       @b.text_field(:name, 'slug').set 'chinese-name'
       @b.input(:value, "Create new organisation").click

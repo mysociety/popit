@@ -69,13 +69,20 @@ class PersonEditingTests < PopItWatirTestCase
       @b.refresh
       add_person_link.click
       @b.text_field(:name, 'name').set "I'm a unique name"
-      assert_equal 'No matches', @b.ul(:class, 'suggestions').li.text
+      @b.wait_until {
+        sleep 0.4
+        @b.ul(:class, 'suggestions').li.text['No matches']
+      }
 
       # enter dup name and check for suggestions
       @b.refresh
       add_person_link.click
       @b.text_field(:name, 'name').set "George"
-      @b.wait_until { @b.ul(:class, 'suggestions').present? && @b.ul(:class, 'suggestions').li.text['George Bush'] }
+      @b.wait_until {
+        # sleep to allow the autocomplete to load and become stable
+        sleep 0.4
+        @b.ul(:class, 'suggestions').li.text =~ /George Bush/
+      }
 
       # click on a suggestion, check get existing person
       @b.ul(:class, 'suggestions').li.link.click
@@ -97,7 +104,9 @@ class PersonEditingTests < PopItWatirTestCase
       @b.text_field(:name, 'name').set "网页"
       assert_equal "", @b.text_field(:name, 'slug').value
       @b.input(:value, "Create new person").click
-      assert_equal 'Required', @b.div(:class =>'bbf-help', :index => 1 ).text
+      @b.wait_until {
+       @b.div(:class =>'bbf-help', :index => 1 ).text['Required'] 
+      }
       @b.text_field(:name, 'slug').set 'chinese-name'
       @b.input(:value, "Create new person").click
       @b.wait_until { @b.title != 'People' }

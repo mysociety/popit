@@ -36,6 +36,7 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.static(__dirname + '/../' + config.public_dir));
+  app.use('/docs', express.static(__dirname + '/../' + config.docs_dir));
 
   app.use( require('../lib/middleware/config')() );
   app.use(masterSelector());

@@ -43,7 +43,20 @@ module.exports = {
             test.equal(response.statusCode, 200, "got 200 response");
         test.done();
       });
-
+    },
+    
+    "DELETE with content-type of json and no body": function (test) {
+      // this is a workaround for https://github.com/mysociety/popit-python/issues/2 which hopefully will be fixed upstream
+      test.expect(1);
+      this.rest
+      .del('person/4f9ea1306e8770d854c45a1d',{
+        headers: {'Content-Type': 'application/json'}, // set json...
+        data:    '',                                   // ... but include no data
+      })
+      .on('complete', function(data, response) {
+            test.equal(response.statusCode, 200, "got 200 response");
+        test.done();
+      });
     },
     
     "access API docs": function (test) {
@@ -247,6 +260,28 @@ module.exports = {
       
       this.rest
         .get('person/george-bush')
+        .on('complete', function(data, response) {
+      
+          test.equal(response.statusCode, 200, "got 200 response");
+      
+          test.equal(
+            response.client._httpMessage.path, // note - can't see how to get this through proper calls
+            '/api/v1/person/4f9ea1306e8770d854c45a1d',
+            "redirected to ObjectId url"
+          );
+          
+          test.done();
+        });
+    },
+        
+    "load one person (by slug, with trailing slash)" : function (test) {
+
+      // addresses https://github.com/mysociety/popit/issues/211
+      
+      test.expect(2);
+      
+      this.rest
+        .get('person/george-bush/')
         .on('complete', function(data, response) {
       
           test.equal(response.statusCode, 200, "got 200 response");

@@ -14,7 +14,11 @@ module Select2Helpers
   end
   
   def select2_highlighted_option
-    return @b.li(:class, "select2-highlighted").when_present
+    # We need the sleep as it would appear that there is a certain amount of
+    # flicker as the results are entered in. This lets the code wait for it to
+    # pass before looking for an element which won't then get removed from the DOM.
+    sleep 0.1
+    @b.li(:class, "select2-highlighted").when_present
   end
   
   def select2_click_clear_icon
