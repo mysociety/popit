@@ -509,6 +509,29 @@ module.exports = {
         }
       );
     },
+
+    "try to save a bad date to a position": function (test) {
+
+      // addresses https://github.com/mysociety/popit/issues/216
+
+      var dataJson = JSON.stringify({
+        "end_date": null,
+        "title": "Director"
+      });
+      
+      this.rest
+        .post(
+          'position/',
+          {
+            data: dataJson,
+            headers: {'Content-Type': 'application/json'},
+          }
+        )
+        .on('complete', function(data, response) {
+          test.equal(response.statusCode, 400, "got 400");
+          test.done();
+        });
+    },
     
 };
 
