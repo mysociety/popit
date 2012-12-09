@@ -1,5 +1,5 @@
 ---
-title: API Image Handling
+title: Image Schema
 layout: default
 ---
 

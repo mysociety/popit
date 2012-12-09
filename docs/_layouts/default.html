@@ -44,9 +44,26 @@
               
               {% if page.url contains '/api/' %}
                 <ul>
-                  <li><a href="{{ site.baseurl }}api/bindings">Bindings</a></li>
+                  <li><a href="{{ site.baseurl }}api/quick-start">Quick Start Examples</a></li>
+                  <li><a href="{{ site.baseurl }}api/bindings">Language Bindings</a></li>
+                  <li><a href="{{ site.baseurl }}api/reading">Reading from the API</a></li>
+                  <li><a href="{{ site.baseurl }}api/writing">Writing to the API</a></li>
+
+                  <li>
+                    <a href="{{ site.baseurl }}api/schemas">Schemas</a>
+                    <ul>
+                      <li><a href="{{ site.baseurl }}api/schemas/person">People</a></li>                      
+                      <li><a href="{{ site.baseurl }}api/schemas/organisation">Organisations</a></li>                      
+                      <li><a href="{{ site.baseurl }}api/schemas/position">Positions (jobs etc)</a></li>                      
+                      <li><a href="{{ site.baseurl }}api/schemas/image">Images</a></li>
+                      <li><a href="{{ site.baseurl }}api/schemas/partial-date">Partial Dates</a></li>                      
+                      <li><a href="{{ site.baseurl }}api/schemas/contact-detail">Contact Details</a></li>                      
+                      <li><a href="{{ site.baseurl }}api/schemas/link">Links</a></li>                      
+                      <li><a href="{{ site.baseurl }}api/schemas/meta">Meta (additional info)</a></li>                      
+                    </ul>
+                  </li>
+
                   <li><a href="{{ site.baseurl }}api/auth">Auth</a></li>
-                  <li><a href="{{ site.baseurl }}api/images">Images</a></li>
                 </ul>
               {% endif %}
             </li>
