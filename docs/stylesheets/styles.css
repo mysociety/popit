@@ -106,7 +106,7 @@ img {
 }
 
 .side {
-  width: 20em;
+  width: 25%;
   float: left;
   position: fixed;
 }
@@ -193,7 +193,8 @@ ul.buttons a strong {
 }
 
 section {
-  padding-left: 23em;
+  padding-left: 35%;
+  max-width: 65%;
   float: right;
   padding-bottom: 3em;
 }
@@ -209,7 +210,7 @@ hr {
   margin:0 0 20px;
 }
 
-@media print, screen and (max-width: 960px) {
+@media print, screen and (max-width: 720px) {
   
   div.wrapper {
     width:auto;
@@ -220,6 +221,7 @@ hr {
     float:none;
     position:static;
     width:auto;
+    max-width: none;
   }
   
   section {
