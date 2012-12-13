@@ -7,7 +7,6 @@ module.exports = {
 
     // Don't use minified assets - makes dev easier as no js rebuild required
     public_dir: 'public',
-    docs_dir:   'docs/_site',
 
     // show the worning on the web pages
     show_dev_site_warning: true,
