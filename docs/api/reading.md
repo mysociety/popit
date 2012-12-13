@@ -14,23 +14,23 @@ No authentication is required for read access.
 
 All `GET` requests are returned `JSON` responses. These will have the form:
 
-~~~ javascript
+``` javascript
 // For a collection read, eg '.../person'
 {
   "results": [
     // list of {} results here
   ]
 }
-~~~
+```
 
-~~~ javascript
+``` javascript
 // For a document read, eg '.../person/1234'
 {
   "result": {
     // The data stored for the person
   }
 }
-~~~
+```
 
 The exact format of the response depends on the schema of the collection you are looking at. Please see [Schemas](../schemas) for more details.
 

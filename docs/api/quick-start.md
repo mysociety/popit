@@ -24,7 +24,7 @@ For other requests, such as `POST` or `PUT` you may need to use a command line t
 
 The index page for the API is a directory of what is available:
 
-~~~ javascript
+``` javascript
 
 // GET http://kenyan-politicians.popit.mysociety.org/api/v1
 
@@ -37,11 +37,11 @@ The index page for the API is a directory of what is available:
     "image_proxy_url":      "http://kenyan-politicians.popit.mysociety.org/image-proxy/"
   }
 }
-~~~
+```
 
 You could then view a list of all the people in the database:
 
-~~~ javascript
+``` javascript
 // GET http://kenyan-politicians.popit.mysociety.org/api/v1/person
 
 {
@@ -67,11 +67,11 @@ You could then view a list of all the people in the database:
     // ... more data ...
   ]
 }
-~~~
+```
 
 And finally view the record for an individual person in the database:
 
-~~~ javascript
+``` javascript
 // GET http://kenyan-politicians.popit.mysociety.org/api/v1/person/50c0b05c6d00a0027600187c
 // (note - this url may 404 if the data in this instance has been reloaded.)
 
@@ -113,7 +113,7 @@ And finally view the record for an individual person in the database:
     }
   }
 }
-~~~
+```
 
 Note that in all the above there are `meta` blocks that provide further details such as URLs. These are not part of the actual record, but are added by the API to make working with the results easier.
 

@@ -8,7 +8,7 @@ JSHINT = ./node_modules/.bin/jshint
 STOP_TEST_SERVER  = tests/test-server-stop.bash
 START_TEST_SERVER = $(STOP_TEST_SERVER); tests/test-server-start.bash
 
-all: node-modules css docs
+all: node-modules css
 
 
 node-modules:
@@ -30,13 +30,6 @@ npm-shrinkwrap:
 	npm prune
 	npm shrinkwrap
 
-docs:
-	cd docs && jekyll
-
-docs-watch:
-	cd docs && jekyll --auto
-
-
 jshint:
 	$(JSHINT) *.js lib/ hosting-app/ instance-app/ tests/
 	cd public/js; ../../$(JSHINT) .
@@ -57,7 +50,7 @@ js-templates:
 	rm -rf public/js/templates.js
 	node_modules/.bin/uta-compile-templates-to-amd instance-app/views > public/js/templates.js
 
-public-production: css js-templates docs
+public-production: css js-templates
 	rm -rf public-build public-production
 	node_modules/.bin/r.js -o public/js/app.build.js
 	mkdir public-production
@@ -72,9 +65,6 @@ public-production: css js-templates docs
 	mkdir -p public-production/js/libs
 	mv public-build/js/libs/require-*  public-production/js/libs/
 	mv public-build/js/main-*          public-production/js/
-
-	# copy over the generated docs
-	cp -r docs/_site public-production/docs
 
 	# clean up generated content that we don't need now
 	rm -r public-build
@@ -117,12 +107,11 @@ production: clean node-modules
 	git merge master
 	make public-production
 	git add .
-	git ci -m 'Update static assets and docs' || true
+	git ci -m 'Update static assets' || true
 	git tag -f `git tag | tail -1`
 
 clean:
 	compass clean
-	rm -rf docs/_site
 	rm -rf public/css
 	rm -rf public/js/templates.js	
 	rm -rf public-build
@@ -130,5 +119,5 @@ clean:
 	find . -name chromedriver.log -delete
 
 
-.PHONY: test test-unit test-browser test-api css public-production clean tidy node-modules npm-update npm-shrinkwrap docs docs-server
+.PHONY: test test-unit test-browser test-api css public-production clean tidy node-modules npm-update npm-shrinkwrap
 

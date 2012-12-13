@@ -8,7 +8,7 @@ People and organisations have very similar schemas and so are both covered by th
 
 Typical Schema
 
-~~~ javascript
+``` javascript
 {
   "_id":     "4f9ea1316e8770d854c45a1e",
   "slug":    "bill-clinton",
@@ -32,7 +32,7 @@ Typical Schema
   }
 
 }
-~~~
+```
 
 Please see the other pages for details about the [partial dates](../partial-date), the [contact details](../contact-detail), the [images](../image) and the [links](../link).
 

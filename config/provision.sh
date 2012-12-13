@@ -46,7 +46,7 @@ mv chromedriver /usr/local/bin
 echo "##############################"
 echo "Installing compass, watir-webdriver and pry"
 echo "##############################"
-gem install compass watir-webdriver pry jekyll
+gem install compass watir-webdriver pry
 
 # Set up Xvfb to run all the time on display :99
 echo "##############################"
