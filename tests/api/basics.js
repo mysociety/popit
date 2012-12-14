@@ -211,7 +211,7 @@ module.exports = {
         });
     },
     
-    "load one person (by ObjectId)" : function (test) {
+    "load one person" : function (test) {
       test.expect(2);
       
       this.rest
@@ -255,50 +255,6 @@ module.exports = {
         });
     },
     
-    "load one person (by slug)" : function (test) {
-
-      // find the entry, and then redirect to the ObjectId based api url
-
-      test.expect(2);
-      
-      this.rest
-        .get('person/george-bush')
-        .on('complete', function(data, response) {
-      
-          test.equal(response.statusCode, 200, "got 200 response");
-      
-          test.equal(
-            response.client._httpMessage.path, // note - can't see how to get this through proper calls
-            '/api/v1/person/4f9ea1306e8770d854c45a1d',
-            "redirected to ObjectId url"
-          );
-          
-          test.done();
-        });
-    },
-        
-    "load one person (by slug, with trailing slash)" : function (test) {
-
-      // addresses https://github.com/mysociety/popit/issues/211
-      
-      test.expect(2);
-      
-      this.rest
-        .get('person/george-bush/')
-        .on('complete', function(data, response) {
-      
-          test.equal(response.statusCode, 200, "got 200 response");
-      
-          test.equal(
-            response.client._httpMessage.path, // note - can't see how to get this through proper calls
-            '/api/v1/person/4f9ea1306e8770d854c45a1d',
-            "redirected to ObjectId url"
-          );
-          
-          test.done();
-        });
-    },
-        
     "load a not found objectid" : function (test) {
       test.expect(1);
       
@@ -310,17 +266,17 @@ module.exports = {
         });
     },
 
-    "load a not found slug" : function (test) {
+    "load a not found string" : function (test) {
       test.expect(1);
       
       this.rest
-        .get('person/i-dont-exist')
+        .get('person/this-is-not-an-id')
         .on('complete', function(data, response) {
           test.equal(response.statusCode, 404, "got 404 response");
           test.done();
         });
     },
-    
+
     "list all positions": function (test) {
       test.expect(2);
       
@@ -341,7 +297,7 @@ module.exports = {
       
     },
     
-    "list one persons positions": function (test) {
+    "list one person's positions": function (test) {
       test.expect(2);
       
       this.rest
