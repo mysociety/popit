@@ -35,3 +35,11 @@ All `GET` requests are returned `JSON` responses. These will have the form:
 The exact format of the response depends on the schema of the collection you are looking at. Please see [Schemas](../schemas) for more details.
 
 Each response will also contain embedded `meta` blocks - please see the [Meta](../schemas/meta) notes.
+
+## Filtering
+
+It is possible to filter by passing parameters. For example to find all positions with the `title` "President" you would request
+
+``` bash
+curl http://instance.example.org/api/v1/position?title=President
+```
