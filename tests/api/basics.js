@@ -170,6 +170,14 @@ module.exports = {
                slug:   'george-bush',
               name:    'George Bush',
               summary: '41th President of the United States',
+              personal_details: {
+                date_of_birth: { formatted: '', end: null, start: null },
+                date_of_death: { formatted: '', end: null, start: null },
+              },
+              other_names:     [],
+              images:          [],
+              links:           [],
+              contact_details: [],
               meta: {
                 api_url:  'http://test.127.0.0.1.xip.io:3100/api/v1/person/4f9ea1306e8770d854c45a1d',
                 edit_url: 'http://test.127.0.0.1.xip.io:3100/person/george-bush',
@@ -308,6 +316,8 @@ module.exports = {
               title:        'President',
               person:       '4f9ea1316e8770d854c45a1e',
               organisation: '4f9ea1326e8770d854c45a21',
+              end_date:     { formatted: '', end: null, start: null },
+              start_date:   { formatted: '', end: null, start: null },
               meta: {
                 api_url: 'http://test.127.0.0.1.xip.io:3100/api/v1/position/4f9ea1326e8770d854c45a23',
                 edit_url: 'http://test.127.0.0.1.xip.io:3100/position/4f9ea1326e8770d854c45a23'
