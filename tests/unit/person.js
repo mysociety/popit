@@ -123,7 +123,7 @@ module.exports = {
           // search for person called joe (no matches)
           function (cb) {
             Person.name_search('joe', function (err,docs) {
-              test.equal( docs.length, 0 );
+              test.equal( docs.length, 0, "no matches when no rows" );
               cb(err);
             });
           },
@@ -138,7 +138,7 @@ module.exports = {
           // search for person called joe (find one)
           function (cb) {
             Person.name_search('joe', function (err, docs) {
-              test.equal( docs.length, 1 );
+              test.equal( docs.length, 1, "find joe we just inserted" );
               test.equal( docs[0].id, joe.id );
               cb(err);
             });
@@ -153,7 +153,7 @@ module.exports = {
           // search for person called joe (no matches)
           function (cb) {
             Person.name_search('joe', function (err,docs) {
-              test.equal( docs.length, 0 );
+              test.equal( docs.length, 0, "Now not found" );
               cb(err);
             });
           },
