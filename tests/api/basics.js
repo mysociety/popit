@@ -226,7 +226,6 @@ module.exports = {
           test.deepEqual(
             result,
             {
-              __v: 1,
               _id:     '4f9ea1306e8770d854c45a1d',
               name:    'George Bush',
               slug:    'george-bush',

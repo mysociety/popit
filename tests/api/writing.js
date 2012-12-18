@@ -234,15 +234,24 @@ module.exports = {
       var rest         = this.rest;
       var document_url = null;
       var document_id  = null;
+      
+      // use this to pass the document data from one stage to the next.
+      var document_data = null;
 
-      test.expect(5);
+      test.expect(7);
       
       async.series(
         [
           // create a new person
           function(cb) {
             rest
-              .post( 'person', { data: { name: "Joe Bloggs", summary: "Just another Joe" } })
+              .post(
+                'person',
+                {
+                  headers: {'Content-Type': 'application/json'},
+                  data:    JSON.stringify({ name: "Joe Bloggs", summary: "Just another Joe" }),
+                }
+              )
               .on('complete', function (data, response) {
                 test.equal(response.statusCode, 201, "got 201");
                 document_url = response.headers.location;
@@ -260,7 +269,6 @@ module.exports = {
                   data.result,
                   {
                     _id:             document_id,
-                    __v:             0,
                     name:            "Joe Bloggs",
                     slug:            "joe-bloggs",
                     summary:         "Just another Joe",
@@ -279,16 +287,29 @@ module.exports = {
                   },
                   "Person created as expected"
                 );
+
+                document_data = data.result;
+
                 cb();
               });
           },
           // update one field
           function (cb) {
 
-            // TODO: should test updating using the dot notation too
-
+            var put_data = _.extend(
+              {}, 
+              document_data,
+              { name: 'Fred Jones', notInSchemaAttribute: 1234 }
+            );
+                  
             rest
-              .put(document_url, { data: { name: 'Fred Jones', notInSchemaAttribute: 1234 } })
+              .put(
+                document_url,
+                {
+                  headers: {'Content-Type': 'application/json'},
+                  data:    JSON.stringify(put_data),
+                }
+              )
               .on('complete', function(data, response) {
                 test.equal(response.statusCode, 204, "got 204");
                 cb();
@@ -303,7 +324,6 @@ module.exports = {
                   data.result,
                   {
                     _id:             document_id,
-                    __v:             1,
                     name:            "Fred Jones",
                     slug:            "joe-bloggs",
                     summary:         "Just another Joe",
@@ -311,7 +331,7 @@ module.exports = {
                       date_of_birth: { formatted: '', end: null, start: null },
                       date_of_death: { formatted: '', end: null, start: null },
                     },
-                    notInSchemaAttribute: 1234,
+                    notInSchemaAttribute: '1234',
                     other_names:     [],
                     images:          [],
                     links:           [],
@@ -323,6 +343,61 @@ module.exports = {
                   },
                   "Person updated as expected"
                 );
+
+                document_data = data.result;
+
+                cb();
+              });
+          },
+          // remove custom field
+          function (cb) {
+          
+            var put_data = document_data;
+            delete put_data.notInSchemaAttribute;
+          
+            rest
+              .put(
+                document_url,
+                {
+                  headers: {'Content-Type': 'application/json'},
+                  data:    JSON.stringify(put_data),
+                }
+              )
+              .on('complete', function(data, response) {
+                test.equal(response.statusCode, 204, "got 204");
+                cb();
+              });
+          },
+          // check it is changed (and other not)
+          function (cb) {
+            rest
+              .get(document_url)
+              .on('complete', function(data, response) {
+                test.deepEqual(
+                  data.result,
+                  {
+                    _id:             document_id,
+                    name:            "Fred Jones",
+                    slug:            "joe-bloggs",
+                    summary:         "Just another Joe",
+                    personal_details: {
+                      date_of_birth: { formatted: '', end: null, start: null },
+                      date_of_death: { formatted: '', end: null, start: null },
+                    },
+                    other_names:     [],
+                    images:          [],
+                    links:           [],
+                    contact_details: [],
+                    meta: {
+                      edit_url: 'http://test.127.0.0.1.xip.io:3100/person/joe-bloggs',
+                      positions_api_url: 'http://test.127.0.0.1.xip.io:3100/api/v1/position?person=' + document_id,
+                    },
+                  },
+                  "notInSchemaAttribute removed as expected"
+                );
+          
+                document_data = data.result;
+          
                 cb();
               });
           },
