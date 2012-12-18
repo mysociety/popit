@@ -268,7 +268,7 @@ module.exports = {
                 test.deepEqual(
                   data.result,
                   {
-                    _id:             document_id,
+                    id:             document_id,
                     name:            "Joe Bloggs",
                     slug:            "joe-bloggs",
                     summary:         "Just another Joe",
@@ -323,7 +323,7 @@ module.exports = {
                 test.deepEqual(
                   data.result,
                   {
-                    _id:             document_id,
+                    id:             document_id,
                     name:            "Fred Jones",
                     slug:            "joe-bloggs",
                     summary:         "Just another Joe",
@@ -376,7 +376,7 @@ module.exports = {
                 test.deepEqual(
                   data.result,
                   {
-                    _id:             document_id,
+                    id:             document_id,
                     name:            "Fred Jones",
                     slug:            "joe-bloggs",
                     summary:         "Just another Joe",

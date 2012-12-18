@@ -2,7 +2,7 @@ define( [ 'Backbone' ], function ( Backbone  ) {
   "use strict"; 
 
   return Backbone.Model.extend({
-    idAttribute: "_id",
+    idAttribute: "id",
     schema: {
       url: {
         dataType:   'Text',

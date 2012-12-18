@@ -10,7 +10,7 @@ Positions join people to organisations.
 
 ``` javascript
 {
-  "_id":          "4f9ea1326e8770d854c45a23",
+  "id":          "4f9ea1326e8770d854c45a23",
   "title":        "President",
   "person":       "4f9ea1316e8770d854c45a1e",
   "organisation": "4f9ea1326e8770d854c45a21",

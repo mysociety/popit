@@ -10,7 +10,7 @@ People and organisations have very similar schemas and so are both covered by th
 
 ``` javascript
 {
-  "_id":     "4f9ea1316e8770d854c45a1e",
+  "id":     "4f9ea1316e8770d854c45a1e",
   "slug":    "bill-clinton",
   "summary": "42nd President of the United States",
 

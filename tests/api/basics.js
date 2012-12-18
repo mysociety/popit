@@ -166,7 +166,7 @@ module.exports = {
           test.deepEqual(
             results.sort()[0],
             { 
-              _id:     '4f9ea1306e8770d854c45a1d',
+              id:     '4f9ea1306e8770d854c45a1d',
                slug:   'george-bush',
               name:    'George Bush',
               summary: '41th President of the United States',
@@ -226,7 +226,7 @@ module.exports = {
           test.deepEqual(
             result,
             {
-              _id:     '4f9ea1306e8770d854c45a1d',
+              id:     '4f9ea1306e8770d854c45a1d',
               name:    'George Bush',
               slug:    'george-bush',
               summary: '41th President of the United States',
@@ -304,7 +304,7 @@ module.exports = {
           test.deepEqual(
             data.results,
             [{
-              _id:          '4f9ea1326e8770d854c45a23',
+              id:          '4f9ea1326e8770d854c45a23',
               title:        'President',
               person:       '4f9ea1316e8770d854c45a1e',
               organisation: '4f9ea1326e8770d854c45a21',

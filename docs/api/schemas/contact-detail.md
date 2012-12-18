@@ -12,7 +12,7 @@ An example entry for the person "Barack Obama":
 
 ``` javascript
 {
-  "_id":   "50ca142132b4846962000008",
+  "id":   "50ca142132b4846962000008",
   "kind":  "Address",
   "value": "The White House, 1600 Pennsylvania Avenue NW, Washington DC, 20500",
   "meta": {

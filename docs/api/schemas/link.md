@@ -10,7 +10,7 @@ Links are related web pages
 
 ``` javascript
 {
-  "_id":     "50ca15b832b4846962000009",
+  "id":     "50ca15b832b4846962000009",
   "url":     "http://en.wikipedia.org/wiki/Barack_Obama",
   "comment": "Wikipedia entry",
   "meta": {
