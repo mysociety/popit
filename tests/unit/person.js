@@ -122,9 +122,9 @@ module.exports = {
         [
           // search for person called joe (no matches)
           function (cb) {
-            Person.name_search('joe', function (docs) {
+            Person.name_search('joe', function (err,docs) {
               test.equal( docs.length, 0 );
-              cb();
+              cb(err);
             });
           },
 
@@ -137,10 +137,10 @@ module.exports = {
 
           // search for person called joe (find one)
           function (cb) {
-            Person.name_search('joe', function (docs) {
+            Person.name_search('joe', function (err, docs) {
               test.equal( docs.length, 1 );
               test.equal( docs[0].id, joe.id );
-              cb();
+              cb(err);
             });
           },
 
@@ -152,9 +152,9 @@ module.exports = {
 
           // search for person called joe (no matches)
           function (cb) {
-            Person.name_search('joe', function (docs) {
+            Person.name_search('joe', function (err,docs) {
               test.equal( docs.length, 0 );
-              cb();
+              cb(err);
             });
           },
           
