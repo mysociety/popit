@@ -311,15 +311,7 @@ module.exports = {
                 }
               )
               .on('complete', function(data, response) {
-                test.equal(response.statusCode, 204, "got 204");
-                cb();
-              });
-          },
-          // check it is changed (and other not)
-          function (cb) {
-            rest
-              .get(document_url)
-              .on('complete', function(data, response) {
+                test.equal(response.statusCode, 200, "got 200");
                 test.deepEqual(
                   data.result,
                   {
@@ -364,15 +356,7 @@ module.exports = {
                 }
               )
               .on('complete', function(data, response) {
-                test.equal(response.statusCode, 204, "got 204");
-                cb();
-              });
-          },
-          // check it is changed (and other not)
-          function (cb) {
-            rest
-              .get(document_url)
-              .on('complete', function(data, response) {
+                test.equal(response.statusCode, 200, "got 200");
                 test.deepEqual(
                   data.result,
                   {
