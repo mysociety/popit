@@ -5,7 +5,8 @@
 process.env.NODE_ENV = 'testing';
 
 var utils    = require('../../lib/utils'),
-    PopIt    = require('../../lib/popit');
+    PopIt    = require('../../lib/popit'),
+    async    = require('async');
     
 module.exports = {
     
@@ -109,5 +110,59 @@ module.exports = {
       test.equal( joe.slug,     'joe',         'slug is correct');
       test.equal( joe.slug_url, '/person/joe', 'slug_url is correct');
       test.done();
+    },
+    
+    "name searching": function (test) {
+      var Person = this.Person;
+      test.expect(5);
+
+      var joe = null;
+
+      async.series(
+        [
+          // search for person called joe (no matches)
+          function (cb) {
+            Person.name_search('joe', function (docs) {
+              test.equal( docs.length, 0 );
+              cb();
+            });
+          },
+
+          // create joe
+          function (cb) {
+            // create joe
+            joe = new Person({name: 'Joe'});
+            joe.save(cb);
+          },
+
+          // search for person called joe (find one)
+          function (cb) {
+            Person.name_search('joe', function (docs) {
+              test.equal( docs.length, 1 );
+              test.equal( docs[0].id, joe.id );
+              cb();
+            });
+          },
+
+          // rename joe to Fred
+          function (cb) {
+            joe.name = 'Fred';
+            joe.save(cb);
+          },
+
+          // search for person called joe (no matches)
+          function (cb) {
+            Person.name_search('joe', function (docs) {
+              test.equal( docs.length, 0 );
+              cb();
+            });
+          },
+          
+        ],
+        function (err) {
+          test.ifError(err);
+          test.done();
+        }
+      );
     },
 };
