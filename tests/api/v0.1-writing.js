@@ -16,7 +16,7 @@ module.exports = {
 
     setUp: function (setUp_done) {
         
-      this.rest = new rest('test','v1');
+      this.rest = new rest('test','v0.1');
 
       utils.delete_all_testing_databases( function () {
         utils.load_test_fixtures( function () {
@@ -282,7 +282,7 @@ module.exports = {
                     contact_details: [],
                     meta: {
                       edit_url: 'http://test.127.0.0.1.xip.io:3100/person/joe-bloggs',
-                      positions_api_url: 'http://test.127.0.0.1.xip.io:3100/api/v1/position?person=' + document_id,
+                      positions_api_url: 'http://test.127.0.0.1.xip.io:3100/api/v0.1/position?person=' + document_id,
                     },
                   },
                   "Person created as expected"
@@ -330,7 +330,7 @@ module.exports = {
                     contact_details: [],
                     meta: {
                       edit_url: 'http://test.127.0.0.1.xip.io:3100/person/joe-bloggs',
-                      positions_api_url: 'http://test.127.0.0.1.xip.io:3100/api/v1/position?person=' + document_id,
+                      positions_api_url: 'http://test.127.0.0.1.xip.io:3100/api/v0.1/position?person=' + document_id,
                     },
                   },
                   "Person updated as expected"
@@ -374,7 +374,7 @@ module.exports = {
                     contact_details: [],
                     meta: {
                       edit_url: 'http://test.127.0.0.1.xip.io:3100/person/joe-bloggs',
-                      positions_api_url: 'http://test.127.0.0.1.xip.io:3100/api/v1/position?person=' + document_id,
+                      positions_api_url: 'http://test.127.0.0.1.xip.io:3100/api/v0.1/position?person=' + document_id,
                     },
                   },
                   "notInSchemaAttribute removed as expected"

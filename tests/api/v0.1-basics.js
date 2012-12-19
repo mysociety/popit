@@ -16,7 +16,7 @@ module.exports = {
 
     setUp: function (setUp_done) {
         
-      this.rest = new rest('test','v1');
+      this.rest = new rest('test','v0.1');
 
       utils.delete_all_testing_databases( function () {
         utils.load_test_fixtures( function () {
@@ -89,9 +89,9 @@ module.exports = {
           {
             "comment": "This is the API entry point - use a '*_api_url' link in 'meta' to search a collection.",
             "meta": {
-              "person_api_url":       "http://test.127.0.0.1.xip.io:3100/api/v1/person",
-              "organisation_api_url": "http://test.127.0.0.1.xip.io:3100/api/v1/organisation",
-              "position_api_url":     "http://test.127.0.0.1.xip.io:3100/api/v1/position",
+              "person_api_url":       "http://test.127.0.0.1.xip.io:3100/api/v0.1/person",
+              "organisation_api_url": "http://test.127.0.0.1.xip.io:3100/api/v0.1/organisation",
+              "position_api_url":     "http://test.127.0.0.1.xip.io:3100/api/v0.1/position",
               "image_proxy_url":      "http://test.127.0.0.1.xip.io:3100/image-proxy/"
             }
           },
@@ -179,7 +179,7 @@ module.exports = {
               links:           [],
               contact_details: [],
               meta: {
-                api_url:  'http://test.127.0.0.1.xip.io:3100/api/v1/person/4f9ea1306e8770d854c45a1d',
+                api_url:  'http://test.127.0.0.1.xip.io:3100/api/v0.1/person/4f9ea1306e8770d854c45a1d',
                 edit_url: 'http://test.127.0.0.1.xip.io:3100/person/george-bush',
               },
             },
@@ -211,7 +211,7 @@ module.exports = {
           // test that the api_url is correct
           test.equal(
             _.sortBy( results, 'slug')[0].meta.api_url,
-            'http://test.127.0.0.1.xip.io:3100/api/v1/person/4f9ea1306e8770d854c45a1d',
+            'http://test.127.0.0.1.xip.io:3100/api/v0.1/person/4f9ea1306e8770d854c45a1d',
             "got api_url as expected"
           );
                     
@@ -248,7 +248,7 @@ module.exports = {
               contact_details: [],
               meta: {
                 edit_url: 'http://test.127.0.0.1.xip.io:3100/person/george-bush',
-                positions_api_url: 'http://test.127.0.0.1.xip.io:3100/api/v1/position?person=4f9ea1306e8770d854c45a1d',
+                positions_api_url: 'http://test.127.0.0.1.xip.io:3100/api/v0.1/position?person=4f9ea1306e8770d854c45a1d',
               },
             },
             "george-bush details correct"
@@ -319,7 +319,7 @@ module.exports = {
               end_date:     { formatted: '', end: null, start: null },
               start_date:   { formatted: '', end: null, start: null },
               meta: {
-                api_url: 'http://test.127.0.0.1.xip.io:3100/api/v1/position/4f9ea1326e8770d854c45a23',
+                api_url: 'http://test.127.0.0.1.xip.io:3100/api/v0.1/position/4f9ea1326e8770d854c45a23',
                 edit_url: 'http://test.127.0.0.1.xip.io:3100/position/4f9ea1326e8770d854c45a23'
               },
             }],
