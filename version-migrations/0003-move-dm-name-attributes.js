@@ -40,18 +40,29 @@ for_each_instance( function (instance, next_instance_cb) {
     async.forEachSeries(
       docs,
       function(person, next_person_cb) {
-        console.log("  looking at person %s", person.name );
+
+        // don't run twice
+        if (!person.get('name_words')){ 
+          console.log("  skipping person %s", person.name );
+          return next_person_cb();
+        }
+
+        console.log("  updating person %s", person.name );
 
         // copy over the values
-        person.set('_internal.name_words', person.name_words);
-        person.set('_internal.name_dm',    person.name_dm);
+        person.set('_internal', {});
+        person.set('_internal.name_words', person.get('name_words') );
+        person.set('_internal.name_dm',    person.get('name_dm')    );
         
         // clear the old locations
-        person.name_words = undefined;
-        person.name_dm    = undefined;
+        person.set( 'name_words', undefined );
+        person.set( 'name_dm'   , undefined );
 
         // save, and move on
-        person.save( next_person_cb );
+        person.save( function (err) {
+          if (err) throw err;
+          next_person_cb();
+        });
       },
       next_instance_cb
     );
