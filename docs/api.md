@@ -6,18 +6,6 @@ layout: default
 
 The API allows you to easily access and edit all the data stored in PopIt from your code or other websites.
 
-## Getting Started
-
-The API returns [JSON](http://en.wikipedia.org/wiki/JSON) - a data format that is easily usable in all programming languages. It is possible to view JSON in your browser (and easily follow embedded links) if you have one of the following extensions installed:
-
-  * [JSONView](https://chrome.google.com/webstore/detail/chklaanhfefbnpoihckbnefhakgolnmc) for Chrome
-  * [JSONView](https://addons.mozilla.org/en-US/firefox/addon/jsonview/) for FireFox
-  * [Not sure it can be done easily](http://stackoverflow.com/questions/2483771) for Internet Explorer :(
-  * Try a search for "JSON Viewer <your browser name>" for other browsers.
-
-You can now <a href="/api/v1"> enter the API</a> and click around to navigate.
-
-
 ## Basics
 
 The API is based on [REST](http://en.wikipedia.org/wiki/Representational_state_transfer).

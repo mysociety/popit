@@ -239,10 +239,13 @@ module.exports = {
               images:          [],
               links:           [],
               contact_details: [],
-              name_words: [ 'george', 'bush' ],
-              name_dm: [ 'JRJ', 'KRK', 'PX', 'PX', 'george', 'bush' ],
+              _internal: {
+                name_words: [ 'george', 'bush' ],
+                name_dm: [ 'JRJ', 'KRK', 'PX', 'PX', 'george', 'bush' ],
+              },
               meta: {
                 edit_url: 'http://test.127.0.0.1.xip.io:3100/person/george-bush',
+                positions_api_url: 'http://test.127.0.0.1.xip.io:3100/api/v1/position?person=4f9ea1306e8770d854c45a1d',
               },
             },
             "george-bush details correct"

@@ -389,6 +389,7 @@ module.exports = {
             rest
               .get(document_url)
               .on('complete', function(data, response) {
+
                 test.deepEqual(
                   data.result,
                   {
@@ -405,9 +406,14 @@ module.exports = {
                     images:          [],
                     links:           [],
                     contact_details: [],
-                    name_words:      [ 'joe', 'bloggs' ],
-                    name_dm:         [ 'J', 'A', 'PLKS', 'PLKS', 'joe', 'bloggs' ],                    
-                    meta: { edit_url: 'http://test.127.0.0.1.xip.io:3100/person/joe-bloggs' },
+                    _internal: {
+                      name_words:      [ 'joe', 'bloggs' ],
+                      name_dm:         [ 'J', 'A', 'PLKS', 'PLKS', 'joe', 'bloggs' ],                    
+                    },
+                    meta: {
+                      edit_url: 'http://test.127.0.0.1.xip.io:3100/person/joe-bloggs',
+                      positions_api_url: 'http://test.127.0.0.1.xip.io:3100/api/v1/position?person=' + document_id,
+                    },
                   },
                   "Person created as expected"
                 );
@@ -448,9 +454,14 @@ module.exports = {
                     images:          [],
                     links:           [],
                     contact_details: [],
-                    name_words:      [ 'fred', 'jones' ],
-                    name_dm:         [ 'FRT', 'FRT', 'JNS', 'ANS', 'fred', 'jones' ],
-                    meta: { edit_url: 'http://test.127.0.0.1.xip.io:3100/person/joe-bloggs' },
+                    _internal: {
+                      name_words:      [ 'fred', 'jones' ],
+                      name_dm:         [ 'FRT', 'FRT', 'JNS', 'ANS', 'fred', 'jones' ],
+                    },
+                    meta: {
+                      edit_url: 'http://test.127.0.0.1.xip.io:3100/person/joe-bloggs',
+                      positions_api_url: 'http://test.127.0.0.1.xip.io:3100/api/v1/position?person=' + document_id,
+                    },
                   },
                   "Person updated as expected"
                 );
@@ -508,6 +519,29 @@ module.exports = {
           test.done();
         }
       );
+    },
+
+    "try to save a bad date to a position": function (test) {
+
+      // addresses https://github.com/mysociety/popit/issues/216
+
+      var dataJson = JSON.stringify({
+        "end_date": null,
+        "title": "Director"
+      });
+      
+      this.rest
+        .post(
+          'position/',
+          {
+            data: dataJson,
+            headers: {'Content-Type': 'application/json'},
+          }
+        )
+        .on('complete', function(data, response) {
+          test.equal(response.statusCode, 400, "got 400");
+          test.done();
+        });
     },
     
 };

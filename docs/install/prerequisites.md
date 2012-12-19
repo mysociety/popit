@@ -20,11 +20,3 @@ If you want to contribute code or run the test suite you'll need the following a
   * [Chrome](https://www.google.com/chrome) - browser used for the automated tests
   * [Chrome Driver](http://code.google.com/p/chromedriver/) - interface for the webdriver code
   * [Compass](http://compass-style.org/) - to compile the stylesheets
-
-## Documentation
-
-The documentation part of the site is constructed using:
-
-  * [Jekyll](http://jekyllrb.com/) which turns compiles the documentation source into the doc site
-  * [kramdown](http://kramdown.rubyforge.org/) for converting to HTML, and the pretty syntax highlighting
-

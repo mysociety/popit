@@ -157,7 +157,7 @@
     
     <dl>
       <% _.each( positions, function (position) { %>
-        <dt><%- position.title %>:</dt>
+        <dt><a href="/position/<%- position.id %>"><%- position.title %></a>:</dt>
         <dd>
           <% if (position.organisation) { %>
             <a href="<%- position.organisation.slug_url %>"><%- position.organisation.name %></a>

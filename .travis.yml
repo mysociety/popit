@@ -19,8 +19,8 @@ before_install:
   - sudo apt-get -y update
   # don't try to install mongo as it conflicts with the mongo provided by travis
   # don't install compass using apt as the paths then get confused with the rnm. Use gem instead.
-  - sudo apt-get -y install `cut -d " " -f 1 config/packages | egrep -v "(^#|mongodb|compass|jekyll)"`
-  - sudo gem install watir-webdriver pry compass jekyll
+  - sudo apt-get -y install `cut -d " " -f 1 config/packages | egrep -v "(^#|mongodb|compass)"`
+  - sudo gem install watir-webdriver pry compass
 
 
 # The Watir tests will be set up to use FireFox which will then run headless using xvfb
