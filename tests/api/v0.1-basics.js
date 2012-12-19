@@ -223,7 +223,7 @@ module.exports = {
       test.expect(2);
       
       this.rest
-        .get('person/4f9ea1306e8770d854c45a1d')
+        .get('person/4f9ea1316e8770d854c45a1f')
         .on('complete', function(data, response) {
       
           test.equal(response.statusCode, 200, "got 200 response");
@@ -234,21 +234,31 @@ module.exports = {
           test.deepEqual(
             result,
             {
-              id:     '4f9ea1306e8770d854c45a1d',
-              name:    'George Bush',
-              slug:    'george-bush',
-              summary: '41th President of the United States',
+              id:     '4f9ea1316e8770d854c45a1f',
+              name:    'George W. Bush',
+              slug:    'george-w-bush',
+              summary: '43rd President of the United States',
               personal_details: {
                 date_of_birth: { formatted: '', end: null, start: null },
                 date_of_death: { formatted: '', end: null, start: null },
               },
               other_names:     [],
-              images:          [],
+              images: [
+                {
+                  _id: '50d1bd87d7445531d1000007',
+                  url: 'http://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/George-W-Bush.jpeg/453px-George-W-Bush.jpeg',
+                  created: '2012-12-19T13:13:43.714Z',
+                  meta: {
+                    image_url: 'http://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/George-W-Bush.jpeg/453px-George-W-Bush.jpeg',
+                    can_use_image_proxy: false,
+                  },
+                },
+              ],
               links:           [],
               contact_details: [],
               meta: {
-                edit_url: 'http://test.127.0.0.1.xip.io:3100/person/george-bush',
-                positions_api_url: 'http://test.127.0.0.1.xip.io:3100/api/v0.1/position?person=4f9ea1306e8770d854c45a1d',
+                edit_url: 'http://test.127.0.0.1.xip.io:3100/person/george-w-bush',
+                positions_api_url: 'http://test.127.0.0.1.xip.io:3100/api/v0.1/position?person=4f9ea1316e8770d854c45a1f',
               },
             },
             "george-bush details correct"
@@ -257,7 +267,7 @@ module.exports = {
           test.done();
         });
     },
-    
+        
     "load a not found objectid" : function (test) {
       test.expect(1);
       
