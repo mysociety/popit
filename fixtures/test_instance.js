@@ -81,7 +81,14 @@ exports.people = [
             ],
           },
           "slug" : "george-w-bush",
-          "summary" : "43rd President of the United States"
+          "summary" : "43rd President of the United States",
+          "images": [
+            {
+              "_id": "50d1bd87d7445531d1000007",
+              "url": "http://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/George-W-Bush.jpeg/453px-George-W-Bush.jpeg",
+              "created": "2012-12-19T13:13:43.714Z",
+            },
+          ],
   },
   {
           "__v" : 1,
@@ -103,13 +110,6 @@ exports.people = [
           },
           "slug" : "barack-obama",
           "summary" : "44th President of the United States",
-          "images": [
-            {
-              "_id": "50d1bd87d7445531d1000007",
-              "url": "http://upload.wikimedia.org/wikipedia/commons/e/e9/Official_portrait_of_Barack_Obama.jpg",
-              "created": "2012-12-19T13:13:43.714Z",
-            },
-          ],
   }
 ];
 
