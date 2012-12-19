@@ -2,7 +2,7 @@ define( [ 'Backbone' ], function ( Backbone  ) {
   "use strict"; 
 
   var ContactModel = Backbone.Model.extend({
-    idAttribute: "id",
+    idAttribute: "_id",
     schema: {
       kind: {
         dataType:            'Text',

@@ -49,7 +49,7 @@ define(
               data,
               function (doc) {
                 return {
-                  id: doc.id,
+                  id: doc._id,
                   text: doc.name
                 };
               }
@@ -71,7 +71,7 @@ define(
           var obj = new args.model({id: val});
           obj.fetch({
             success: function (model, response) {
-              callback({ id: response.id, text: response.name });
+              callback({ id: response._id, text: response.name });
             },
             error: function (model, response) {
               args.errors_list.append("<li>Could not fetch model from server</li>");
@@ -227,7 +227,7 @@ define(
             name: data.text
           }).save({}, {
             success: function (Model, response) {
-              deferred.resolve( response.id );                
+              deferred.resolve( response._id );                
             },
             error: function (Model, response) {
               deferred.reject(response);

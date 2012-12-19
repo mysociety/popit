@@ -11,7 +11,7 @@ For an image stored on the instance:
 
 ``` javascript
 {
-  "id": "50ca0fcf32b4846962000006",
+  "_id": "50ca0fcf32b4846962000006",
   "mime_type": "image/jpeg",
   "created": "2012-12-13T17:26:39.326Z",
   "meta": {
@@ -26,7 +26,7 @@ For an image stored elsewhere:
 
 ``` javascript
 {
-  "id": "50ca10fe32b4846962000007",
+  "_id": "50ca10fe32b4846962000007",
   "url": "http://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Official_portrait_of_Barack_Obama.jpg/220px-Official_portrait_of_Barack_Obama.jpg",
   "created": "2012-12-13T17:31:42.272Z",
   "meta": {

@@ -47,7 +47,7 @@ You could then view a list of all the people in the database:
 {
   "results": [
     {
-      "id": "50c0b05c6d00a0027600187c",
+      "_id": "50c0b05c6d00a0027600187c",
       "name": "Hassan Omar Hassan Sarai",
       "slug": "hassan-omar-hassan-sarai",
       "meta": {
@@ -56,7 +56,7 @@ You could then view a list of all the people in the database:
       }
     },
     {
-      "id": "50c0b05c6d00a00276001880",
+      "_id": "50c0b05c6d00a00276001880",
       "name": "Hellen Jepkemoi Sambili",
       "slug": "hellen-jepkemoi-sambili",
       "meta": {
@@ -78,7 +78,7 @@ And finally view the record for an individual person in the database:
 {
   "result": {
     "__v": 1,
-    "id": "50c0b05c6d00a0027600187c",
+    "_id": "50c0b05c6d00a0027600187c",
     "name": "Hassan Omar Hassan Sarai",
     "slug": "hassan-omar-hassan-sarai",
     "personal_details": {
@@ -96,7 +96,7 @@ And finally view the record for an individual person in the database:
     "images": [
       {
         "url": "http://info.mzalendo.com/media_root/images/Hassan_Omar.jpg",
-        "id": "50c0b05c6d00a0027600187d",
+        "_id": "50c0b05c6d00a0027600187d",
         "created": "2012-12-06T14:49:00.635Z",
         "meta": {
           "api_url": "http://kenyan-politicians.popit.mysociety.org/api/v1/person/50c0b05c6d00a0027600187c/50c0b05c6d00a0027600187c/images/50c0b05c6d00a0027600187d",
