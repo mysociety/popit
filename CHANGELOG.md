@@ -2,7 +2,9 @@
 
 ## 0.0.10
 
-  * Added documentation section.
+  * More meta links for positions (closes #89 and #217)
+  * Added documentation section
+  * Added simpler API (closes #219)
 
 ## 0.0.9 and earlier
 
