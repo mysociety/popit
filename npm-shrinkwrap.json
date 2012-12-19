@@ -69,7 +69,7 @@
       "version": "0.0.5",
       "dependencies": {
         "gm": {
-          "version": "1.6.1",
+          "version": "1.8.0",
           "dependencies": {
             "debug": {
               "version": "0.7.0"
@@ -88,7 +88,7 @@
           "version": "1.9.2",
           "dependencies": {
             "qs": {
-              "version": "0.5.2"
+              "version": "0.5.3"
             },
             "formidable": {
               "version": "1.0.11"
