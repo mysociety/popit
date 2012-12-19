@@ -8,6 +8,10 @@ JSHINT = ./node_modules/.bin/jshint
 STOP_TEST_SERVER  = tests/test-server-stop.bash
 START_TEST_SERVER = $(STOP_TEST_SERVER); tests/test-server-start.bash
 
+# see http://stackoverflow.com/questions/4493205/unix-sort-of-version-numbers
+GET_LATEST_TAG  = git tag | sort -t. -k 1,1n -k 2,2n -k 3,3n -k 4,4n | tail -1
+
+
 all: node-modules css
 
 
@@ -99,17 +103,17 @@ test-api:
 
 production: clean node-modules
 	git checkout master
-	npm version patch -m 'deploy to production - version bump to %s'
 	npm shrinkwrap
-	git commit --amend --reuse-message HEAD npm-shrinkwrap.json
-	git tag -f `git tag | tail -1`
+	git add .
+	git commit -m "rebuild npm-shrinkwrap.json" || true
+	npm version patch -m 'deploy to production - version bump to %s'
 	git checkout production
 	git merge master
 	make public-production
 	cp .gitignore-production .gitignore
 	git add .
-	git ci -m 'Update static assets' || true
-	git tag -f `git tag | tail -1`
+	git commit -m 'Update static assets' || true
+	git tag -f `$(GET_LATEST_TAG)`
 
 clean:
 	compass clean
