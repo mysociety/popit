@@ -15,7 +15,7 @@ Positions join people to organisations.
   "person":       "4f9ea1316e8770d854c45a1e",
   "organisation": "4f9ea1326e8770d854c45a21",
   "meta": {
-    "api_url":  "http://instance.example.org:3000/api/v1/position/4f9ea1326e8770d854c45a23",
+    "api_url":  "http://instance.example.org:3000/api/v0.1/position/4f9ea1326e8770d854c45a23",
     "edit_url": "http://instance.example.org:3000/position/4f9ea1326e8770d854c45a23"
   }
 }

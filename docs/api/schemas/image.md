@@ -15,7 +15,7 @@ For an image stored on the instance:
   "mime_type": "image/jpeg",
   "created": "2012-12-13T17:26:39.326Z",
   "meta": {
-    "api_url":   "http://instance.example.org/api/v1/person/4f9ea1326e8770d854c45a20/4f9ea1326e8770d854c45a20/images/50ca0fcf32b4846962000006",
+    "api_url":   "http://instance.example.org/api/v0.1/person/4f9ea1326e8770d854c45a20/4f9ea1326e8770d854c45a20/images/50ca0fcf32b4846962000006",
     "image_url": "http://instance.example.org/person/barack-obama/images/50ca0fcf32b4846962000006",
     "can_use_image_proxy": true
   }
@@ -30,7 +30,7 @@ For an image stored elsewhere:
   "url": "http://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Official_portrait_of_Barack_Obama.jpg/220px-Official_portrait_of_Barack_Obama.jpg",
   "created": "2012-12-13T17:31:42.272Z",
   "meta": {
-    "api_url": "http://test.127.0.0.1.xip.io:3000/api/v1/person/4f9ea1326e8770d854c45a20/4f9ea1326e8770d854c45a20/images/50ca10fe32b4846962000007",
+    "api_url": "http://test.127.0.0.1.xip.io:3000/api/v0.1/person/4f9ea1326e8770d854c45a20/4f9ea1326e8770d854c45a20/images/50ca10fe32b4846962000007",
     "image_url": "http://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Official_portrait_of_Barack_Obama.jpg/220px-Official_portrait_of_Barack_Obama.jpg",
     "can_use_image_proxy": false
   }

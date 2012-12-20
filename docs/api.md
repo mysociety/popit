@@ -17,6 +17,11 @@ There is a version string in the API url. This will be updated if the API underg
 
 **NOTE**: until PopIt is considered stable the API will change and the 'v1' version will break. Please contact us if you need to know which parts of the API are stable.
 
+These versions are currently supported:
+
+  * **v0.1** - this is the recommended version
+  * **v1** - not recommended, will be deprecated when the admin interface has been changed to use `v0.1`.
+
 ### result / results
 
 When you make a query the returned data will always be a hash. There will be a result or results key that contains the data you've requested.
@@ -50,8 +55,8 @@ Note that slugs may change so your links may break. ObjectIds will never change.
 
 Currently only simple searching implemented - you can search by ObjectIds and by case-insensitive string matching. Examples:
 
-    /api/v1/person?name=joe
-    /api/v1/position?person=4f99219333fa2efc68000006
+    /api/v0.1/person?name=joe
+    /api/v0.1/position?person=4f99219333fa2efc68000006
 
 Better searching (exact matches, gte, etc) is on the TODO list.
 
