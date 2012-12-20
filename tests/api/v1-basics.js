@@ -244,6 +244,7 @@ module.exports = {
                 name_dm: [ 'JRJ', 'KRK', 'PX', 'PX', 'george', 'bush' ],
               },
               meta: {
+                api_url: 'http://test.127.0.0.1.xip.io:3100/api/v1/person/4f9ea1306e8770d854c45a1d',
                 edit_url: 'http://test.127.0.0.1.xip.io:3100/person/george-bush',
                 positions_api_url: 'http://test.127.0.0.1.xip.io:3100/api/v1/position?person=4f9ea1306e8770d854c45a1d',
               },

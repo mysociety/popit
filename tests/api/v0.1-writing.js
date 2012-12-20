@@ -281,6 +281,7 @@ module.exports = {
                     links:           [],
                     contact_details: [],
                     meta: {
+                      api_url: 'http://test.127.0.0.1.xip.io:3100/api/v0.1/person/' + document_id,                      
                       edit_url: 'http://test.127.0.0.1.xip.io:3100/person/joe-bloggs',
                       positions_api_url: 'http://test.127.0.0.1.xip.io:3100/api/v0.1/position?person=' + document_id,
                     },
@@ -329,6 +330,7 @@ module.exports = {
                     links:           [],
                     contact_details: [],
                     meta: {
+                      api_url: 'http://test.127.0.0.1.xip.io:3100/api/v0.1/person/' + document_id,                      
                       edit_url: 'http://test.127.0.0.1.xip.io:3100/person/joe-bloggs',
                       positions_api_url: 'http://test.127.0.0.1.xip.io:3100/api/v0.1/position?person=' + document_id,
                     },
@@ -373,6 +375,7 @@ module.exports = {
                     links:           [],
                     contact_details: [],
                     meta: {
+                      api_url: 'http://test.127.0.0.1.xip.io:3100/api/v0.1/person/' + document_id,                      
                       edit_url: 'http://test.127.0.0.1.xip.io:3100/person/joe-bloggs',
                       positions_api_url: 'http://test.127.0.0.1.xip.io:3100/api/v0.1/position?person=' + document_id,
                     },

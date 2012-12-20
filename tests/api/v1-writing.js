@@ -411,6 +411,7 @@ module.exports = {
                       name_dm:         [ 'J', 'A', 'PLKS', 'PLKS', 'joe', 'bloggs' ],                    
                     },
                     meta: {
+                      api_url: 'http://test.127.0.0.1.xip.io:3100/api/v1/person/' + document_id,
                       edit_url: 'http://test.127.0.0.1.xip.io:3100/person/joe-bloggs',
                       positions_api_url: 'http://test.127.0.0.1.xip.io:3100/api/v1/position?person=' + document_id,
                     },
@@ -459,6 +460,7 @@ module.exports = {
                       name_dm:         [ 'FRT', 'FRT', 'JNS', 'ANS', 'fred', 'jones' ],
                     },
                     meta: {
+                      api_url: 'http://test.127.0.0.1.xip.io:3100/api/v1/person/' + document_id,
                       edit_url: 'http://test.127.0.0.1.xip.io:3100/person/joe-bloggs',
                       positions_api_url: 'http://test.127.0.0.1.xip.io:3100/api/v1/position?person=' + document_id,
                     },
