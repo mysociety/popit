@@ -148,7 +148,7 @@ module.exports = {
       test.expect(3);
       
       this.rest
-        .get('person')
+        .get('person/')
         .on('complete', function(data, response) {
       
           test.equal(response.statusCode, 200, "got 200 response");
