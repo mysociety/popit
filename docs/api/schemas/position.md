@@ -29,7 +29,7 @@ This is assigned by the database. It cannot be changed and will never change.
 
 Required. Free form string. In the PopIt admin this is auto-completed to an existing entry to help with preventing duplicates.
 
-## Person and organisation
+## Person and Organisation
 
 The id of the person and organisation that this position is linked to.
 
