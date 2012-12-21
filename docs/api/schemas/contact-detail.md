@@ -14,10 +14,7 @@ An example entry for the person "Barack Obama":
 {
   "_id":   "50ca142132b4846962000008",
   "kind":  "Address",
-  "value": "The White House, 1600 Pennsylvania Avenue NW, Washington DC, 20500",
-  "meta": {
-    "api_url": "http://instance.example.org/api/v0.1/person/4f9ea1326e8770d854c45a20/4f9ea1326e8770d854c45a20/contact_details/50ca142132b4846962000008"
-  }
+  "value": "The White House, 1600 Pennsylvania Avenue NW, Washington DC, 20500"
 }
 ```
 
