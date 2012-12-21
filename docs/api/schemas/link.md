@@ -22,7 +22,7 @@ Please ignore this field - it will [soon be removed](https://github.com/mysociet
 
 ## URL
 
-The URL of the web page.
+The URL that this link represents.
 
 ## Comment
 
