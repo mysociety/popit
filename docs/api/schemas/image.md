@@ -39,19 +39,31 @@ For an image stored elsewhere:
 
 Please ignore this field - it will [soon be removed](https://github.com/mysociety/popit/issues/232) from the API.
 
-## url
+## For uploaded images
 
-This is an optional field - only present when the image is hosted somewhere other than on the instance.
+Images can be uploaded into PopIt by using the admin pages. It is not currently possible to do this using the API.
+
+### mime_type
+
+The mime_type of the uploaded file.
+
+## For remote url images
+
+### url
+
+The url that the image is hosted at.
 
 To link to an image you should use the `meta.image_url` value which will return the correct image url regardless.
 
 ## Image Proxy
 
-Because it is not possible to know how API users intend to use the images we've not tried to provide them in a set of standard sizes. The url given always points to the full size image that was uploaded. If you want a different size then there is an image proxy that can provide this.
+Because it is not possible to know how API users intend to use the images we've not tried to provide them in a set of standard sizes. The url given always points to the full size image that was uploaded/linked to. If you want a different size then there is an image proxy that can provide this.
 
 The base url to the image proxy is given in the meta on the API entry page (`/api/v1` on your instance). Documentation on how to use the proxy is available on the [proxy code's GitHub page](https://github.com/mysociety/node-connect-image-proxy).
 
 The proxy can only be used for images uploaded to the instance (ie that have the same host name). This is done so that it is not an open proxy that could be abused. There is a boolean in the meta that let's you know if you can pass the url to the proxy to resize: `meta.can_use_image_proxy`.
+
+Note: The image proxy may be changed so that it can be used for any URL. Let us know if you'd find this helpful.
 
 ## Future additions
 
