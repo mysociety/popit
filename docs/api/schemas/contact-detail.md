@@ -21,6 +21,10 @@ An example entry for the person "Barack Obama":
 }
 ```
 
+## ID
+
+Please ignore this field - it will [soon be removed](https://github.com/mysociety/popit/issues/232) from the API.
+
 ## Kind
 
 This is a free form string that describes what sort of contact detail this is. Suitable values include "Address", "Email", "Mobile", etc.

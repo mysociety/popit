@@ -19,6 +19,10 @@ Links are related web pages
 }
 ```
 
+## ID
+
+Please ignore this field - it will [soon be removed](https://github.com/mysociety/popit/issues/232) from the API.
+
 ## URL
 
 The URL of the web page.

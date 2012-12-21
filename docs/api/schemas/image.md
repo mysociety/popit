@@ -37,6 +37,10 @@ For an image stored elsewhere:
 }
 ```
 
+## ID
+
+Please ignore this field - it will [soon be removed](https://github.com/mysociety/popit/issues/232) from the API.
+
 ## url
 
 This is an optional field - only present when the image is hosted somewhere other than on the instance.
