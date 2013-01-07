@@ -238,7 +238,7 @@ module.exports = {
       // use this to pass the document data from one stage to the next.
       var document_data = null;
 
-      test.expect(7);
+      test.expect(11);
       
       async.series(
         [
@@ -281,6 +281,7 @@ module.exports = {
                     links:           [],
                     contact_details: [],
                     meta: {
+                      api_url: 'http://test.127.0.0.1.xip.io:3100/api/v0.1/person/' + document_id,                      
                       edit_url: 'http://test.127.0.0.1.xip.io:3100/person/joe-bloggs',
                       positions_api_url: 'http://test.127.0.0.1.xip.io:3100/api/v0.1/position?person=' + document_id,
                     },
@@ -329,6 +330,7 @@ module.exports = {
                     links:           [],
                     contact_details: [],
                     meta: {
+                      api_url: 'http://test.127.0.0.1.xip.io:3100/api/v0.1/person/' + document_id,                      
                       edit_url: 'http://test.127.0.0.1.xip.io:3100/person/joe-bloggs',
                       positions_api_url: 'http://test.127.0.0.1.xip.io:3100/api/v0.1/position?person=' + document_id,
                     },
@@ -373,11 +375,128 @@ module.exports = {
                     links:           [],
                     contact_details: [],
                     meta: {
+                      api_url: 'http://test.127.0.0.1.xip.io:3100/api/v0.1/person/' + document_id,                      
                       edit_url: 'http://test.127.0.0.1.xip.io:3100/person/joe-bloggs',
                       positions_api_url: 'http://test.127.0.0.1.xip.io:3100/api/v0.1/position?person=' + document_id,
                     },
                   },
                   "notInSchemaAttribute removed as expected"
+                );
+          
+                document_data = data.result;
+          
+                cb();
+              });
+          },
+          // add contact details
+          function (cb) {
+          
+            var put_data = document_data;
+
+            put_data.contact_details[0] = {
+              kind: 'Twitter',
+              value: '@foobar',
+            };
+          
+            rest
+              .put(
+                document_url,
+                {
+                  headers: {'Content-Type': 'application/json'},
+                  data:    JSON.stringify(put_data),
+                }
+              )
+              .on('complete', function(data, response) {
+                test.equal(response.statusCode, 200, "got 200");
+
+                // Assume that the contact detail entry has been created. Grab
+                // the ID so that we can fill in the blanks for it var
+                var contact_detail_id = data.result.contact_details[0]._id;
+
+                test.deepEqual(
+                  data.result,
+                  {
+                    id:             document_id,
+                    name:            "Fred Jones",
+                    slug:            "joe-bloggs",
+                    summary:         "Just another Joe",
+                    personal_details: {
+                      date_of_birth: { formatted: '', end: null, start: null },
+                      date_of_death: { formatted: '', end: null, start: null },
+                    },
+                    other_names:     [],
+                    images:          [],
+                    links:           [],
+                    contact_details: [
+                      {
+                        _id: contact_detail_id,
+                        kind: 'Twitter',
+                        value: '@foobar',
+                      }
+                    ],
+                    meta: {
+                      api_url: 'http://test.127.0.0.1.xip.io:3100/api/v0.1/person/' + document_id,                      
+                      edit_url: 'http://test.127.0.0.1.xip.io:3100/person/joe-bloggs',
+                      positions_api_url: 'http://test.127.0.0.1.xip.io:3100/api/v0.1/position?person=' + document_id,
+                    },
+                  },
+                  "contact detail added to record"
+                );
+          
+                document_data = data.result;
+          
+                cb();
+              });
+          },
+          // Try changing things that should not be changed.
+          function (cb) {
+          
+            var put_data = _.clone(document_data);
+
+            put_data.id = 'foo';
+            put_data.meta = { this_should_not_be_here: 'nope' };
+          
+            rest
+              .put(
+                document_url,
+                {
+                  headers: {'Content-Type': 'application/json'},
+                  data:    JSON.stringify(put_data),
+                }
+              )
+              .on('complete', function(data, response) {
+                test.equal(response.statusCode, 200, "got 200");
+
+                var contact_detail_id  = put_data.contact_details[0]._id;
+
+                test.deepEqual(
+                  data.result,
+                  {
+                    id:              document_id,
+                    name:            "Fred Jones",
+                    slug:            "joe-bloggs",
+                    summary:         "Just another Joe",
+                    personal_details: {
+                      date_of_birth: { formatted: '', end: null, start: null },
+                      date_of_death: { formatted: '', end: null, start: null },
+                    },
+                    other_names:     [],
+                    images:          [],
+                    links:           [],
+                    contact_details: [
+                      {
+                        _id: contact_detail_id,
+                        kind: 'Twitter',
+                        value: '@foobar',
+                      }
+                    ],
+                    meta: {
+                      api_url: 'http://test.127.0.0.1.xip.io:3100/api/v0.1/person/' + document_id,                      
+                      edit_url: 'http://test.127.0.0.1.xip.io:3100/person/joe-bloggs',
+                      positions_api_url: 'http://test.127.0.0.1.xip.io:3100/api/v0.1/position?person=' + document_id,
+                    },
+                  },
+                  "id and meta not changed"
                 );
           
                 document_data = data.result;

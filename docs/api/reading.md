@@ -41,5 +41,5 @@ Each response will also contain embedded `meta` blocks - please see the [Meta](.
 It is possible to filter by passing parameters. For example to find all positions with the `title` "President" you would request
 
 ``` bash
-curl http://instance.example.org/api/v1/position?title=President
+curl http://instance.example.org/api/v0.1/position?title=President
 ```

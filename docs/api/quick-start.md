@@ -4,13 +4,13 @@ description:
 layout: default
 ---
 
-These foo examples will show you some requests that you can make to the API and provide a quick discussion of the responses.
+These examples will show you some requests that you can make to the API and provide a quick discussion of the responses.
 
 ## Introduction to REST
 
 The API is REST based - which means that the URL is used to specify what you are looking for, and the HTTP method is used to specify what you want to do with it.
 
-So a `GET` of `/api/v1/person/1234` will get the details for the person with id `1234`, and a `POST` of data to `/api/v1/organisation` will create a new organisation.
+So a `GET` of `/api/v0.1/person/1234` will get the details for the person with id `1234`, and a `POST` of data to `/api/v0.1/organisation` will create a new organisation.
 
 ## Where can I try API requests?
 
@@ -26,14 +26,14 @@ The index page for the API is a directory of what is available:
 
 ``` javascript
 
-// GET http://kenyan-politicians.popit.mysociety.org/api/v1
+// GET http://kenyan-politicians.popit.mysociety.org/api/v0.1
 
 {
   "comment":"This is the API entry point - use a '*_api_url' link in 'meta' to search a collection.",
   "meta":{
-    "person_api_url":       "http://kenyan-politicians.popit.mysociety.org/api/v1/person",
-    "organisation_api_url": "http://kenyan-politicians.popit.mysociety.org/api/v1/organisation",
-    "position_api_url":     "http://kenyan-politicians.popit.mysociety.org/api/v1/position",
+    "person_api_url":       "http://kenyan-politicians.popit.mysociety.org/api/v0.1/person",
+    "organisation_api_url": "http://kenyan-politicians.popit.mysociety.org/api/v0.1/organisation",
+    "position_api_url":     "http://kenyan-politicians.popit.mysociety.org/api/v0.1/position",
     "image_proxy_url":      "http://kenyan-politicians.popit.mysociety.org/image-proxy/"
   }
 }
@@ -42,29 +42,42 @@ The index page for the API is a directory of what is available:
 You could then view a list of all the people in the database:
 
 ``` javascript
-// GET http://kenyan-politicians.popit.mysociety.org/api/v1/person
+// GET http://kenyan-politicians.popit.mysociety.org/api/v0.1/person
 
 {
   "results": [
     {
-      "_id": "50c0b05c6d00a0027600187c",
+      "id": "50c60a5f71ec32dd6e000c3d",
       "name": "Hassan Omar Hassan Sarai",
       "slug": "hassan-omar-hassan-sarai",
+      "personal_details": {
+        "date_of_death": {
+          "formatted": "",
+          "end": null,
+          "start": null
+        },
+        "date_of_birth": {
+          "formatted": "Oct 23, 1975",
+          "end": "1975-10-23T00:00:00.000Z",
+          "start": "1975-10-23T00:00:00.000Z"
+        }
+      },
+      "images": [
+        {
+          "url": "http://info.mzalendo.com/media_root/images/Hassan_Omar.jpg",
+          "_id": "50c60a5f71ec32dd6e000c3e",
+          "created": "2012-12-10T16:14:23.331Z"
+        }
+      ],
+      "links": [],
+      "contact_details": [],
+      "other_names": [],
       "meta": {
-        "api_url": "http://kenyan-politicians.popit.mysociety.org/api/v1/person/50c0b05c6d00a0027600187c",
+        "api_url": "http://kenyan-politicians.popit.mysociety.org/api/v0.1/person/50c60a5f71ec32dd6e000c3d",
         "edit_url": "http://kenyan-politicians.popit.mysociety.org/person/hassan-omar-hassan-sarai"
       }
     },
-    {
-      "_id": "50c0b05c6d00a00276001880",
-      "name": "Hellen Jepkemoi Sambili",
-      "slug": "hellen-jepkemoi-sambili",
-      "meta": {
-        "api_url": "http://kenyan-politicians.popit.mysociety.org/api/v1/person/50c0b05c6d00a00276001880",
-        "edit_url": "http://kenyan-politicians.popit.mysociety.org/person/hellen-jepkemoi-sambili"
-      }
-    },
-    // ... more data ...
+    // ... more person entries ...
   ]
 }
 ```
@@ -72,35 +85,33 @@ You could then view a list of all the people in the database:
 And finally view the record for an individual person in the database:
 
 ``` javascript
-// GET http://kenyan-politicians.popit.mysociety.org/api/v1/person/50c0b05c6d00a0027600187c
+// GET http://kenyan-politicians.popit.mysociety.org/api/v0.1/person/50c60c3c71ec32dd6e00199a
 // (note - this url may 404 if the data in this instance has been reloaded.)
 
 {
   "result": {
-    "__v": 1,
-    "_id": "50c0b05c6d00a0027600187c",
-    "name": "Hassan Omar Hassan Sarai",
-    "slug": "hassan-omar-hassan-sarai",
+    "id": "50c60c3c71ec32dd6e00199a",
+    "name": "Wycliffe William Osundwa",
+    "slug": "wycliffe-william-osundwa",
     "personal_details": {
-    "date_of_death": {
-      "formatted": "",
-      "end": null,
-      "start": null
-    },
-    "date_of_birth": {
-      "formatted": "Oct 23, 1975",
-      "end": "1975-10-23T00:00:00.000Z",
-      "start": "1975-10-23T00:00:00.000Z"
-    }
+      "date_of_death": {
+        "formatted": "",
+        "end": null,
+        "start": null
+      },
+      "date_of_birth": {
+        "formatted": "Aug 4, 1952",
+        "end": "1952-08-04T00:00:00.000Z",
+        "start": "1952-08-04T00:00:00.000Z"
+      }
     },
     "images": [
       {
-        "url": "http://info.mzalendo.com/media_root/images/Hassan_Omar.jpg",
-        "_id": "50c0b05c6d00a0027600187d",
-        "created": "2012-12-06T14:49:00.635Z",
+        "url": "http://info.mzalendo.com/media_root/images/osundwa_w.jpg",
+        "_id": "50c60c3c71ec32dd6e00199b",
+        "created": "2012-12-10T16:22:20.899Z",
         "meta": {
-          "api_url": "http://kenyan-politicians.popit.mysociety.org/api/v1/person/50c0b05c6d00a0027600187c/50c0b05c6d00a0027600187c/images/50c0b05c6d00a0027600187d",
-          "image_url": "http://info.mzalendo.com/media_root/images/Hassan_Omar.jpg",
+          "image_url": "http://info.mzalendo.com/media_root/images/osundwa_w.jpg",
           "can_use_image_proxy": false
         }
       }
@@ -109,7 +120,8 @@ And finally view the record for an individual person in the database:
     "contact_details": [],
     "other_names": [],
     "meta": {
-      "edit_url": "http://kenyan-politicians.popit.mysociety.org/person/hassan-omar-hassan-sarai"
+      "edit_url": "http://kenyan-politicians.popit.mysociety.org/person/wycliffe-william-osundwa",
+      "positions_api_url": "http://kenyan-politicians.popit.mysociety.org/api/v0.1/position?person=50c60c3c71ec32dd6e00199a"
     }
   }
 }

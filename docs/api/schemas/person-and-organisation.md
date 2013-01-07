@@ -10,7 +10,7 @@ People and organisations have very similar schemas and so are both covered by th
 
 ``` javascript
 {
-  "_id":     "4f9ea1316e8770d854c45a1e",
+  "id":     "4f9ea1316e8770d854c45a1e",
   "slug":    "bill-clinton",
   "summary": "42nd President of the United States",
 
@@ -28,7 +28,7 @@ People and organisations have very similar schemas and so are both covered by th
 
   "meta": {
     "edit_url": "http://instance.example.org/person/bill-clinton",
-    "positions_api_url": "http://instance.example.org/api/v1/position?person=4f9ea1316e8770d854c45a1e"
+    "positions_api_url": "http://instance.example.org/api/v0.1/position?person=4f9ea1316e8770d854c45a1e"
   }
 
 }
@@ -36,17 +36,23 @@ People and organisations have very similar schemas and so are both covered by th
 
 Please see the other pages for details about the [partial dates](../partial-date), the [contact details](../contact-detail), the [images](../image) and the [links](../link). For `other_names` see below.
 
+## ID
+
+This is assigned by the database. It cannot be changed and will never change.
+
 ## Slug
 
-The slug is a unique key that can be sued to identify the person or organisation. It is intended to be used in urls and so is made up of url safe characters.
+The slug is a unique key that can be used to identify the person or organisation. It is intended to be used in urls and so is made up of url safe characters.
 
 **NOTE**: This might well change when/if [issue #175](https://github.com/mysociety/popit/issues/175) is tackled.
 
 ## Summary
 
-This is a brief bit of text that provides details about the person or organisation. The exact use will depend on the purpose of the instance. 
+This is a brief bit of text that provides details about the person or organisation. The exact content will depend on the purpose of the instance. 
 
 ## Names
+
+### Name
 
 The primary `name` field holds the name that is primarily used for identifying this person or organisation. This will depend on the purpose of the instance and the primary language of the instance. For example both "[Dwayne Johnson](http://en.wikipedia.org/wiki/Dwayne_Johnson)" and "The Rock" would be valid names, but the purpose of the PopIt instance would decide which was more suitable.
 

@@ -148,7 +148,7 @@ module.exports = {
       test.expect(3);
       
       this.rest
-        .get('person')
+        .get('person/')
         .on('complete', function(data, response) {
       
           test.equal(response.statusCode, 200, "got 200 response");
@@ -259,6 +259,7 @@ module.exports = {
               meta: {
                 edit_url: 'http://test.127.0.0.1.xip.io:3100/person/george-w-bush',
                 positions_api_url: 'http://test.127.0.0.1.xip.io:3100/api/v0.1/position?person=4f9ea1316e8770d854c45a1f',
+                api_url: 'http://test.127.0.0.1.xip.io:3100/api/v0.1/person/4f9ea1316e8770d854c45a1f',
               },
             },
             "george-bush details correct"
