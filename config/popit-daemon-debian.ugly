@@ -13,7 +13,7 @@
 
 NAME=!!(*= $daemon_name *)!!
 DIR=/data/vhost/!!(*= $vhost *)!!
-DAEMON="../node/bin/node"
+DAEMON="$DIR/node/bin/node"
 DAEMON_ARGS="node_modules/.bin/supervisor --ignore . --exec ../node/bin/node ./server.js"
 PIDFILE=$DIR/popit.pid
 DUSER=!!(*= $user *)!!
