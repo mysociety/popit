@@ -18,84 +18,84 @@ exports.route = function (app) {
         res.render( 'index.html' );
     });
 
-    // Handle the post
-    var new_post = function (req, res) {
-        var slug     = req.param('slug', '').trim();
-        var email    = req.param('email', '').trim();
-    
-        // save all the values in case validation fails.
-        res.locals.slug  = slug;
-        res.locals.email = email;
-    
-        utils.password_and_hash_generate( function (password, hash) {
-    
-            // create a new instance
-            var Instance = req.popit.model('Instance');
-            var instance = new Instance({
-                slug:       slug,
-                email:      email,
-                setup_info: { password_hash: hash },
-            });
-            
-            // save the instance
-            instance.save(function (err) {
-                if ( err ) {
-                    // store error and pass control to get method
-                    res.locals.errors = err.errors;
-                    return new_get(req, res);
-                } else {
-            
-                    // send an email with the create link in it                
-                    send_new_instance_email( req, res, instance, password );
-            
-                    // Have a new instance - redirect to 
-                    res.redirect( '/instances/' + instance.slug );
-                }            
-            });
-        });
-    };
-    
-    function send_new_instance_email ( req, res, instance, password ) {
-
-        var template_args = {
-          instance: instance,
-          token:    instance.setup_info.confirmation_token,
-          host:     req.header('Host'),
-          password: password,
-        };
-        
-        res.render(
-            'emails/new_instance.txt',
-            template_args,
-            function( err, output ) {
-                if (err) winston.error( err );
-                mailer.send(
-                    req,
-                    {
-                        to: instance.email,
-                        subject: "New instance confirmation",
-                        text: output,
-                    }
-                );
-            }
-        );        
-    }
-    
-    var new_get = function (req, res) {
-      _.defaults(
-        res.locals,
-        {
-          title:  'New Instance',
-          errors: {},
-          email: '',
-          slug: '',
-        }
-      );
-      res.render('instance_new.html');
-    };
-    
-    app.post( '/instances/new', new_post );
-    app.get(  '/instances/new', new_get  );
+    // // Handle the post
+    // var new_post = function (req, res) {
+    //     var slug     = req.param('slug', '').trim();
+    //     var email    = req.param('email', '').trim();
+    // 
+    //     // save all the values in case validation fails.
+    //     res.locals.slug  = slug;
+    //     res.locals.email = email;
+    // 
+    //     utils.password_and_hash_generate( function (password, hash) {
+    // 
+    //         // create a new instance
+    //         var Instance = req.popit.model('Instance');
+    //         var instance = new Instance({
+    //             slug:       slug,
+    //             email:      email,
+    //             setup_info: { password_hash: hash },
+    //         });
+    //         
+    //         // save the instance
+    //         instance.save(function (err) {
+    //             if ( err ) {
+    //                 // store error and pass control to get method
+    //                 res.locals.errors = err.errors;
+    //                 return new_get(req, res);
+    //             } else {
+    //         
+    //                 // send an email with the create link in it                
+    //                 send_new_instance_email( req, res, instance, password );
+    //         
+    //                 // Have a new instance - redirect to 
+    //                 res.redirect( '/instances/' + instance.slug );
+    //             }            
+    //         });
+    //     });
+    // };
+    // 
+    // function send_new_instance_email ( req, res, instance, password ) {
+    // 
+    //     var template_args = {
+    //       instance: instance,
+    //       token:    instance.setup_info.confirmation_token,
+    //       host:     req.header('Host'),
+    //       password: password,
+    //     };
+    //     
+    //     res.render(
+    //         'emails/new_instance.txt',
+    //         template_args,
+    //         function( err, output ) {
+    //             if (err) winston.error( err );
+    //             mailer.send(
+    //                 req,
+    //                 {
+    //                     to: instance.email,
+    //                     subject: "New instance confirmation",
+    //                     text: output,
+    //                 }
+    //             );
+    //         }
+    //     );        
+    // }
+    // 
+    // var new_get = function (req, res) {
+    //   _.defaults(
+    //     res.locals,
+    //     {
+    //       title:  'New Instance',
+    //       errors: {},
+    //       email: '',
+    //       slug: '',
+    //     }
+    //   );
+    //   res.render('instance_new.html');
+    // };
+    // 
+    // app.post( '/instances/new', new_post );
+    // app.get(  '/instances/new', new_get  );
     
     
     // auto-load instance for the param instanceSlug
