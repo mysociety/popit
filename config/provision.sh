@@ -13,25 +13,25 @@ echo "Setting up the environment neccessary for PopIt"
 echo "##############################"
 
 # Update package index before we start
-apt-get update -yqq
+apt-get update -y
 
 # Add extra repos
 echo "##############################"
 echo "Adding neccessary repos for Node.js and MongoDB"
 echo "##############################"
 # Instructions from: https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager
-apt-get install -yqq python-software-properties
+apt-get install -y python-software-properties
 add-apt-repository -y ppa:chris-lea/node.js
 # Instructions from: http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/
 apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
 echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" > /etc/apt/sources.list.d/10gen.list
-apt-get update -yqq
-
+apt-get update -y
+	
 # Install packages
 echo "##############################"
 echo "Installing Packages"
 echo "##############################"
-apt-get install -yqq nodejs npm mongodb-10gen build-essential ruby1.9.1 ruby1.9.1-dev chromium-browser xvfb unzip git
+apt-get install -yqq nodejs mongodb-10gen build-essential ruby1.9.1 ruby1.9.1-dev chromium-browser xvfb unzip git
 
 # Download and install chromedriver
 echo "##############################"
