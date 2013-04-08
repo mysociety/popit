@@ -37,7 +37,7 @@
     "restler": ">= 2.0.1",
     "slug": ">= 0.2.2",
     "supervisor": ">= 0.4.1",
-    "twix": "https://github.com/evdb/twix.js/tarball/master",
+    "twix": "~0.2.1",
     "underscore": ">= 1.3.1",
     "underscore-template-additions": ">= 0.0.1",
     "unorm": "*",
