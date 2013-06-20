@@ -28,12 +28,8 @@ class PersonEditingTests < PopItWatirTestCase
       load_test_fixture
       goto '/person'
 
-      # check that the create new person link is not shown. But that it is if the
-      # user hovers over the sign in link
+      # check that the create new person link is not shown.
       assert ! add_person_link.present?
-      @b.link(:id, "sign_in_as_existing_user").hover
-
-      assert add_person_link.present?
 
       # login and check link is visible
       login_as user_type
