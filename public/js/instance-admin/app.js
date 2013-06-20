@@ -6,7 +6,8 @@ define(
   [
     'jquery',
     'Backbone',
-    'Backbone.Marionette'
+    'Backbone.Marionette',
+    'jquery.fancybox'
   ],
   function (
     $,
@@ -16,6 +17,11 @@ define(
     "use strict"; 
 
     var App = new Backbone.Marionette.Application();
+
+    $.fancybox.defaults.openSpeed = 100;
+    $.fancybox.defaults.closeSpeed = 100;
+    $.fancybox.defaults.helpers.overlay.speedIn = 100;
+    $.fancybox.defaults.helpers.overlay.speedOut = 100;
 
     App.on(
       'start',

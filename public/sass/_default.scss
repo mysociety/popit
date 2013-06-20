@@ -5,6 +5,9 @@ body{
 		min-width: 60em;
 }
 
+a {
+    cursor: pointer;
+}
 
 // -----------------------
 //	Main Page Header, Logo SigninBox
@@ -524,10 +527,10 @@ div.homepage-summary-box {
   padding: 0;
   display: inline;
   input {
-		-webkit-transition: width 0.5s ease-out;
-		   -moz-transition: width 0.5s ease-out;
-		     -o-transition: width 0.5s ease-out;
-		        transition: width 0.5s ease-out;
+		-webkit-transition: width 0.1s ease-out;
+		   -moz-transition: width 0.1s ease-out;
+		     -o-transition: width 0.1s ease-out;
+		        transition: width 0.1s ease-out;
     display: inline;
     margin: 0;
     padding: 0 1em;
