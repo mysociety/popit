@@ -104,7 +104,8 @@ class PopItWatirTestCase < Test::Unit::TestCase
   end
 
   def run_as_all_user_types
-    yield :guest
+    # Just test owner type for now
+    # yield :guest
     yield :owner
   end
 
