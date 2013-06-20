@@ -15,8 +15,8 @@ define(
     $,
     App,
     PositionModel,
-    PositionNewView,
-    PositionRemoveView
+    PositionNewView
+    //PositionRemoveView
   ) {
     "use strict"; 
 

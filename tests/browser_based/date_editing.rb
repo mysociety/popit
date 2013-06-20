@@ -37,7 +37,7 @@ class DateEditingTests < PopItWatirTestCase
       assert_equal '??', birth_date_value
 
       # start editing his dob
-      @b.link(:text => '^ edit this date').click
+      @b.link(:text => 'edit this date').click
       assert_equal 'no date', select2_current_value(path_to_date)
 
       # enter date and save it, check it is stored.
@@ -50,18 +50,18 @@ class DateEditingTests < PopItWatirTestCase
       assert_equal 'Aug 4, 1961', birth_date_value
 
       # test that selecting a date and then just clicking save works too
-      @b.link(:text => '^ edit this date').click
+      @b.link(:text => 'edit this date').click
       @b.input(:value => 'Save').click
       assert_equal 'Aug 4, 1961', birth_date_value
 
       # test that the user can clear the date
-      @b.link(:text => '^ edit this date').click
+      @b.link(:text => 'edit this date').click
       select2_click_clear_icon
       @b.input(:value => 'Save').click
       assert_equal '??', birth_date_value
 
       # check that we can enter a date range
-      @b.link(:text => '^ edit this date').click
+      @b.link(:text => 'edit this date').click
       select2_container(path_to_date).link.click
       @b.send_keys '1 Jan 1961 to 1961-12-31'
       assert_equal 'Jan 1 - Dec 31, 1961', select2_highlighted_option.text
