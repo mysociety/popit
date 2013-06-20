@@ -87,21 +87,21 @@
 
     <ul class="detail-list">
 
-      <li class="personal_details-date_of_birth">
+      <li class="personal_details-birth_date">
         <%= render( 'partial-date/view.html', {
-          date:             person.personal_details.date_of_birth,
+          date:             person.birth_date,
           title:            "Birthdate",
-          data_path_prefix: "personal_details.date_of_birth",
+          data_path_prefix: "birth_date",
           data_url_root:    person.api_base_url,
           data_id:          person.id
         }) %>
       </li>
 
-      <li class="personal_details-date_of_death">
+      <li class="personal_details-death_date">
         <%= render( 'partial-date/view.html', {
-          date:             person.personal_details.date_of_death,
+          date:             person.death_date,
           title:            "Deathdate",
-          data_path_prefix: "personal_details.date_of_death",
+          data_path_prefix: "death_date",
           data_url_root:    person.api_base_url,
           data_id:          person.id
         }) %>

@@ -50,17 +50,15 @@ You could then view a list of all the people in the database:
       "id": "50c60a5f71ec32dd6e000c3d",
       "name": "Hassan Omar Hassan Sarai",
       "slug": "hassan-omar-hassan-sarai",
-      "personal_details": {
-        "date_of_death": {
-          "formatted": "",
-          "end": null,
-          "start": null
-        },
-        "date_of_birth": {
-          "formatted": "Oct 23, 1975",
-          "end": "1975-10-23T00:00:00.000Z",
-          "start": "1975-10-23T00:00:00.000Z"
-        }
+      "death_date": {
+        "formatted": "",
+        "end": null,
+        "start": null
+      },
+      "birth_date": {
+        "formatted": "Oct 23, 1975",
+        "end": "1975-10-23T00:00:00.000Z",
+        "start": "1975-10-23T00:00:00.000Z"
       },
       "images": [
         {
@@ -93,17 +91,15 @@ And finally view the record for an individual person in the database:
     "id": "50c60c3c71ec32dd6e00199a",
     "name": "Wycliffe William Osundwa",
     "slug": "wycliffe-william-osundwa",
-    "personal_details": {
-      "date_of_death": {
-        "formatted": "",
-        "end": null,
-        "start": null
-      },
-      "date_of_birth": {
-        "formatted": "Aug 4, 1952",
-        "end": "1952-08-04T00:00:00.000Z",
-        "start": "1952-08-04T00:00:00.000Z"
-      }
+    "death_date": {
+      "formatted": "",
+      "end": null,
+      "start": null
+    },
+    "birth_date": {
+      "formatted": "Aug 4, 1952",
+      "end": "1952-08-04T00:00:00.000Z",
+      "start": "1952-08-04T00:00:00.000Z"
     },
     "images": [
       {

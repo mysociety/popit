@@ -15,7 +15,7 @@ class DateEditingTests < PopItWatirTestCase
   include Select2Helpers
 
   def birth_date_div
-    @b.li(:class => 'personal_details-date_of_birth').div(:class => 'list-item-value').when_present
+    @b.li(:class => 'personal_details-birth_date').div(:class => 'list-item-value').when_present
   end
 
   def birth_date_value
@@ -35,7 +35,7 @@ class DateEditingTests < PopItWatirTestCase
       @b.link(:text => 'Barack Obama').click
 
       # Store the path to the date 
-      path_to_date = 'personal_details.date_of_birth'
+      path_to_date = 'birth_date'
 
       # check that there is no current entry
       assert_equal '-', birth_date_value

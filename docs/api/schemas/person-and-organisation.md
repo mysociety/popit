@@ -17,10 +17,8 @@ People and organisations have very similar schemas and so are both covered by th
   "name":        "Bill Clinton",
   "other_names": [ ... array of other names ... ],
 
-  "personal_details": {
-    "date_of_birth": { ... partial date ... },
-    "date_of_death": { ... partial date ... }
-  },
+  "birth_date": { ... partial date ... },
+  "death_date": { ... partial date ... },
 
   "contact_details": [ ... array of contact details ... ],
   "images":          [ ... array of images ... ],

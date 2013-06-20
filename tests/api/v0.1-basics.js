@@ -170,10 +170,8 @@ module.exports = {
                slug:   'george-bush',
               name:    'George Bush',
               summary: '41th President of the United States',
-              personal_details: {
-                date_of_birth: { formatted: '', end: null, start: null },
-                date_of_death: { formatted: '', end: null, start: null },
-              },
+              birth_date: { formatted: '', end: null, start: null },
+              death_date: { formatted: '', end: null, start: null },
               other_names:     [],
               images:          [],
               links:           [],
@@ -238,10 +236,8 @@ module.exports = {
               name:    'George W. Bush',
               slug:    'george-w-bush',
               summary: '43rd President of the United States',
-              personal_details: {
-                date_of_birth: { formatted: '', end: null, start: null },
-                date_of_death: { formatted: '', end: null, start: null },
-              },
+              birth_date: { formatted: '', end: null, start: null },
+              death_date: { formatted: '', end: null, start: null },
               other_names:     [],
               images: [
                 {

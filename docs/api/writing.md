@@ -84,17 +84,15 @@ $ curl                                                 \
     "id": "50d1f2e1c03858f9f6000006",
     "name": "Joe Bloggs",
     "slug": "joe-bloggs",
-    "personal_details": {
-      "date_of_death": {
-        "formatted": "",
-        "end": null,
-        "start": null
-      },
-      "date_of_birth": {
-        "formatted": "",
-        "end": null,
-        "start": null
-      }
+    "death_date": {
+      "formatted": "",
+      "end": null,
+      "start": null
+    },
+    "birth_date": {
+      "formatted": "",
+      "end": null,
+      "start": null
     },
     "images": [],
     "links": [],
