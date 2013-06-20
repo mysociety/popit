@@ -1,6 +1,6 @@
 {
   "name": "popit",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "dependencies": {
     "async": {
       "version": "0.1.22"
@@ -69,12 +69,10 @@
       "version": "0.0.5",
       "dependencies": {
         "gm": {
-          "version": "1.8.0",
-          "dependencies": {
-            "debug": {
-              "version": "0.7.0"
-            }
-          }
+          "version": "1.3.2"
+        },
+        "mime": {
+          "version": "1.2.7"
         },
         "temp": {
           "version": "0.4.0"
@@ -437,13 +435,13 @@
       "version": "0.7.4",
       "dependencies": {
         "tap": {
-          "version": "0.3.3",
+          "version": "0.2.4",
           "dependencies": {
             "inherits": {
               "version": "1.0.0"
             },
             "yamlish": {
-              "version": "0.0.5"
+              "version": "0.0.4"
             },
             "slide": {
               "version": "1.1.3"
@@ -455,13 +453,13 @@
                   "version": "0.1.2",
                   "dependencies": {
                     "burrito": {
-                      "version": "0.2.12",
+                      "version": "0.2.11",
                       "dependencies": {
                         "traverse": {
                           "version": "0.5.2"
                         },
                         "uglify-js": {
-                          "version": "1.1.1"
+                          "version": "1.0.7"
                         }
                       }
                     }
@@ -470,7 +468,7 @@
               }
             },
             "nopt": {
-              "version": "2.0.0",
+              "version": "1.0.10",
               "dependencies": {
                 "abbrev": {
                   "version": "1.0.3"
@@ -478,20 +476,17 @@
               }
             },
             "difflet": {
-              "version": "0.2.3",
+              "version": "0.2.1",
               "dependencies": {
                 "traverse": {
-                  "version": "0.6.3"
+                  "version": "0.6.1"
                 },
                 "charm": {
-                  "version": "0.0.8"
+                  "version": "0.0.7"
                 }
               }
             },
             "deep-equal": {
-              "version": "0.0.0"
-            },
-            "buffer-equal": {
               "version": "0.0.0"
             }
           }
@@ -502,13 +497,10 @@
       "version": "1.0.1",
       "dependencies": {
         "vows": {
-          "version": "0.7.0",
+          "version": "0.6.2",
           "dependencies": {
             "eyes": {
-              "version": "0.1.8"
-            },
-            "diff": {
-              "version": "1.0.4"
+              "version": "0.1.7"
             }
           }
         }
@@ -543,13 +535,13 @@
       "version": "0.2.2",
       "dependencies": {
         "unicode": {
-          "version": "0.4.3",
+          "version": "0.3.1",
           "dependencies": {
             "bufferstream": {
               "version": "0.5.1",
               "dependencies": {
                 "buffertools": {
-                  "version": "1.1.0"
+                  "version": "1.0.9"
                 }
               }
             }
@@ -561,8 +553,12 @@
       "version": "0.5.0"
     },
     "twix": {
-      "version": "0.1.6",
-      "from": "https://github.com/evdb/twix.js/tarball/master"
+      "version": "0.2.2",
+      "dependencies": {
+        "moment": {
+          "version": "2.0.0"
+        }
+      }
     },
     "underscore": {
       "version": "1.4.2"
