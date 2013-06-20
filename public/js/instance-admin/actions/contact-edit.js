@@ -1,6 +1,4 @@
-// ------------------------
-//  Launch a backbone powered entry box when someone clicks the new-person button
-// ------------------------
+// Launch a backbone powered entry box when someone adds/edits a contact
 
 define(
   [
@@ -21,7 +19,7 @@ define(
 
       $('#content').on(
         'click',
-        'a.contact-edit',
+        '.contact-edit',
         new ListItemEditor({
           model:    ContactModel,
           template: 'contact/view.html'

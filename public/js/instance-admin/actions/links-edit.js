@@ -1,6 +1,4 @@
-// ------------------------
-//  Launch a backbone powered entry box when someone clicks the new-person button
-// ------------------------
+// Launch a backbone powered entry box when someone adds/edits a link
 
 define(
   [
@@ -21,7 +19,7 @@ define(
 
       $('#content').on(
         'click',
-        'a.link-edit',
+        '.link-edit',
         new ListItemEditor({
           model:    LinkModel,
           template: 'link/view.html'

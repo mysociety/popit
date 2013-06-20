@@ -41,7 +41,7 @@ module InPlaceEditingChecks
     
     # check that the name can be edited via the link
     assert ! @b.h1(:class => 'current-entity').input.present?
-    @b.link(:text => /edit this \w+'s name/).click
+    @b.h1(:class => 'current-entity').click
     assert @b.h1(:class => 'current-entity').input.present?
     @b.send_keys :escape
     assert ! @b.h1(:class => 'current-entity').input.present?        

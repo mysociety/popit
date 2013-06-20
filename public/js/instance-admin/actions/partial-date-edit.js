@@ -1,6 +1,4 @@
-// ------------------------
-//  Launch a backbone powered entry box when someone clicks the new-person button
-// ------------------------
+// Launch a backbone powered entry box when someone edits a date
 
 define(
   [
@@ -21,7 +19,7 @@ define(
 
       $('#content').on(
         'click',
-        'a.partial-date-edit',
+        '.partial-date-edit',
         function(event) {
 
           event.preventDefault();
