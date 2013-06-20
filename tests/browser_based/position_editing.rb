@@ -57,17 +57,18 @@ class PositionEditingTests < PopItWatirTestCase
       
       # submit the form and check that the new position is created
       position_form.submit
-      @b.wait_until { @b.url['position'] }
+      @b.div(:id, "flash-info").wait_until_present
       
       # check that the correct details have been entered
       assert_match @b.div(:id, "flash-info").ul.text, "New entry 'President' created."
+      @b.link(:xpath, "(//a[.='President'])[last()]").click
       assert_equal @b.article.h1.text, "President"
       assert_match @b.text, /Person:\ George\ Bush/
       assert_match @b.text, /Organisation:\ United\ States\ Government/
       assert_match @b.text, /Start\ Date:\ Jan\ 20,\ 2001/
       assert_match @b.text, /End\ Date:\ \?\?\?/
           
-      # go back to person page and check that the positien is now listed there
+      # go back to person page and check that the position is now listed there
       goto '/person/george-bush'
       assert_match @b.section(:class, 'positions').text, /President/
       
@@ -88,10 +89,11 @@ class PositionEditingTests < PopItWatirTestCase
       assert_equal select2_current_value('organisation'), "1600 Penn Hotel (new entry)"
       
       position_form.submit
-      @b.wait_until { @b.url['position'] }
+      @b.div(:id, "flash-info").wait_until_present
       
       assert_match @b.div(:id, "flash-info").li(:index, 0).text, "New entry '1600 Penn Hotel' created."
       assert_match @b.div(:id, "flash-info").li(:index, 1).text, "New entry 'Bottle Washer' created."
+      @b.link(:xpath, "(//a[.='Bottle Washer'])[last()]").click
       assert_equal @b.article.h1.text, "Bottle Washer"
       assert_match @b.text, /Person:\ George\ Bush/
       assert_match @b.text, /Organisation:\ 1600\ Penn\ Hotel/

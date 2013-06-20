@@ -144,7 +144,7 @@ define(
           // Save it
           position.save({},{
             success: function (model, response ) {
-              document.location = response.meta.edit_url;              
+                document.location.reload();
             },
             error: function (model, response) {
               view.$errors_list.append('<li>Something went wrong saving the position to the server.</li>');
