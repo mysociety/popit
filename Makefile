@@ -81,7 +81,7 @@ tidy:
 	# sass-convert --recursive --in-place --from scss --to scss public/sass/
 
 
-test: clean node-modules jshint test-unit test-api test-browser 
+test: clean node-modules jshint test-unit test-browser
 	echo "ALL TESTS PASS"
 
 test-unit:
@@ -93,13 +93,6 @@ test-browser: css public-production
 	$(START_TEST_SERVER)
 	@NODE_ENV=testing ruby tests/browser_based/run_tests.rb -v
 	$(STOP_TEST_SERVER)
-
-test-api:
-	$(STOP_TEST_SERVER)
-	@NODE_ENV=testing ./node_modules/.bin/nodeunit \
-	  --reporter $(REPORTER) \
-	  tests/api
-
 
 production: clean node-modules
 	git checkout master
@@ -124,5 +117,5 @@ clean:
 	find . -name chromedriver.log -delete
 
 
-.PHONY: test test-unit test-browser test-api css public-production clean tidy node-modules npm-update npm-shrinkwrap
+.PHONY: test test-unit test-browser css public-production clean tidy node-modules npm-update npm-shrinkwrap
 

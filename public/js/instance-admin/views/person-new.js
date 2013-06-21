@@ -31,7 +31,7 @@ define(
 					fields: ['name', 'slug']
 				});
         this.suggestionsView = new SuggestionsView();
-        this.suggestionsView.collection.url = '/api/v1/person';
+        this.suggestionsView.collection.url = '/api/v0.1/persons';
       },
       
       render: function () {

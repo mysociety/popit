@@ -32,7 +32,7 @@ define(
 				});
         this.suggestionsView = new SuggestionsView();
         
-        this.suggestionsView.collection.url = '/api/v1/organisation';
+        this.suggestionsView.collection.url = '/api/v0.1/organizations';
       },
       
       render: function () {

@@ -506,6 +506,124 @@
         }
       }
     },
+    "popit-api": {
+      "version": "0.0.4",
+      "from": "git://github.com/mysociety/popit-api.git",
+      "dependencies": {
+        "express": {
+          "version": "3.1.2",
+          "dependencies": {
+            "connect": {
+              "version": "2.7.5",
+              "dependencies": {
+                "qs": {
+                  "version": "0.5.1"
+                },
+                "formidable": {
+                  "version": "1.0.11"
+                },
+                "buffer-crc32": {
+                  "version": "0.1.1"
+                },
+                "bytes": {
+                  "version": "0.2.0"
+                },
+                "pause": {
+                  "version": "0.0.1"
+                }
+              }
+            },
+            "commander": {
+              "version": "0.6.1"
+            },
+            "range-parser": {
+              "version": "0.0.4"
+            },
+            "cookie": {
+              "version": "0.0.5"
+            },
+            "buffer-crc32": {
+              "version": "0.2.1"
+            },
+            "fresh": {
+              "version": "0.1.0"
+            },
+            "methods": {
+              "version": "0.0.1"
+            },
+            "send": {
+              "version": "0.1.0",
+              "dependencies": {
+                "mime": {
+                  "version": "1.2.6"
+                }
+              }
+            },
+            "cookie-signature": {
+              "version": "1.0.0"
+            },
+            "debug": {
+              "version": "0.7.2"
+            }
+          }
+        },
+        "assert": {
+          "version": "0.4.9",
+          "dependencies": {
+            "util": {
+              "version": "0.4.9",
+              "dependencies": {
+                "events.node": {
+                  "version": "0.4.9"
+                }
+              }
+            }
+          }
+        },
+        "glob": {
+          "version": "3.1.21",
+          "dependencies": {
+            "minimatch": {
+              "version": "0.2.12",
+              "dependencies": {
+                "lru-cache": {
+                  "version": "2.3.0"
+                },
+                "sigmund": {
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "graceful-fs": {
+              "version": "1.2.2"
+            },
+            "inherits": {
+              "version": "1.0.0"
+            }
+          }
+        },
+        "underscore": {
+          "version": "1.4.4"
+        },
+        "JSV": {
+          "version": "4.0.2"
+        },
+        "mongodb": {
+          "version": "1.2.14",
+          "dependencies": {
+            "bson": {
+              "version": "0.1.8"
+            }
+          }
+        },
+        "async": {
+          "version": "0.2.9"
+        },
+        "underscore.string": {
+          "version": "2.3.1"
+        }
+      }
+    },
     "pow-mongodb-fixtures": {
       "version": "0.8.1",
       "dependencies": {

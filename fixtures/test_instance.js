@@ -8,10 +8,10 @@ exports.users = [
      },
 ];
 
-exports.people = [
+exports.persons = [
   {
           "__v" : 1,
-          "_id" : ObjectId("4f9ea1306e8770d854c45a1d"),
+          "_id" : "4f9ea1306e8770d854c45a1d",
           "name" : "George Bush",
           "_internal": {
             "name_dm" : [
@@ -32,7 +32,7 @@ exports.people = [
   },
   {
           "__v" : 1,
-          "_id" : ObjectId("4f9ea1316e8770d854c45a1e"),
+          "_id" : "4f9ea1316e8770d854c45a1e",
           "links" : [
                   {
                           "_id" : ObjectId("4f9ea1326e8770d854c45a26"),
@@ -60,7 +60,7 @@ exports.people = [
   },
   {
           "__v" : 1,
-          "_id" : ObjectId("4f9ea1316e8770d854c45a1f"),
+          "_id" : "4f9ea1316e8770d854c45a1f",
           "name" : "George W. Bush",
           "_internal": {
             "name_dm" : [
@@ -92,7 +92,7 @@ exports.people = [
   },
   {
           "__v" : 1,
-          "_id" : ObjectId("4f9ea1326e8770d854c45a20"),
+          "_id" : "4f9ea1326e8770d854c45a20",
           "name" : "Barack Obama",
           "_internal": {
             "name_dm" : [
@@ -113,39 +113,39 @@ exports.people = [
   }
 ];
 
-exports.organisations = [
+exports.organizations = [
   {
-    "_id": ObjectId("4f9ea1326e8770d854c45a21"),
+    "_id": "4f9ea1326e8770d854c45a21",
     name: "United States Government",
     slug: "united-states-government",
     summary: "The government of the United States of America is the federal government of the constitutional republic of fifty states that constitute the United States of America"
   },
 ];
 
-exports.positions = [
+exports.memberships = [
   {
-    "_id":        ObjectId("4f9ea1326e8770d854c45a22"),
+    "_id":        "4f9ea1326e8770d854c45a22",
     title:        "President",
-    person:       ObjectId("4f9ea1306e8770d854c45a1d"), // george-bush
-    organisation: ObjectId("4f9ea1326e8770d854c45a21"),
+    person:       "4f9ea1306e8770d854c45a1d", // george-bush
+    organisation: "4f9ea1326e8770d854c45a21",
   },
   {
-    "_id":        ObjectId("4f9ea1326e8770d854c45a23"),
+    "_id":        "4f9ea1326e8770d854c45a23",
     title:        "President",
-    person:       ObjectId("4f9ea1316e8770d854c45a1e"), // bill-clinton
-    organisation: ObjectId("4f9ea1326e8770d854c45a21"),
+    person:       "4f9ea1316e8770d854c45a1e", // bill-clinton
+    organisation: "4f9ea1326e8770d854c45a21",
   },
   {
-    "_id":        ObjectId("4f9ea1326e8770d854c45a24"),
+    "_id":        "4f9ea1326e8770d854c45a24",
     title:        "President",
-    person:       ObjectId("4f9ea1316e8770d854c45a1f"), // george-w-bush
-    organisation: ObjectId("4f9ea1326e8770d854c45a21"),
+    person:       "4f9ea1316e8770d854c45a1f", // george-w-bush
+    organisation: "4f9ea1326e8770d854c45a21",
   },
   {
-    "_id":        ObjectId("4f9ea1326e8770d854c45a25"),
+    "_id":        "4f9ea1326e8770d854c45a25",
     title:        "President",
-    person:       ObjectId("4f9ea1326e8770d854c45a20"), // barack-obama
-    organisation: ObjectId("4f9ea1326e8770d854c45a21"),
+    person:       "4f9ea1326e8770d854c45a20", // barack-obama
+    organisation: "4f9ea1326e8770d854c45a21",
   },
 ];
 
