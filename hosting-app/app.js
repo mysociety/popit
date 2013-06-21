@@ -5,9 +5,7 @@
  */
 
 var express           = require('express'),
-    mongoose          = require('mongoose'),
     config            = require('config'),
-    utils             = require('../lib/utils'),
     masterSelector    = require('../lib/middleware/master-selector'),
     engines           = require('consolidate'),
     UTA               = require('underscore-template-additions');
@@ -37,7 +35,7 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.static(__dirname + '/../' + config.public_dir));
 
-  app.use( require('../lib/middleware/config')() );
+  app.locals( require('../lib/middleware/config') );
   app.use(masterSelector());
 
   app.use( '/docs', require('../lib/apps/docs.js')() );

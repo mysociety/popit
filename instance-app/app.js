@@ -1,15 +1,11 @@
 "use strict"; 
 
-
 /**
  *  Instance Server
  */
 
 var express           = require('express'),
-    mongoose          = require('mongoose'),
     config            = require('config'),
-    winston           = require('winston'),
-    utils             = require('../lib/utils'),
     instanceSelector  = require('../lib/middleware/instance-selector'),
     Db                = require('mongodb').Db,
     Server            = require('mongodb').Server,
@@ -18,8 +14,6 @@ var express           = require('express'),
     connect_flash     = require('connect-flash'),
     UTA               = require('underscore-template-additions'),
     current_absolute_pathname = require('../lib/middleware/route').current_absolute_pathname;
-
-
 
 var app = module.exports = express();
 
@@ -92,7 +86,7 @@ app.configure( function () {
     next();    
   });
   
-  app.use( require('../lib/middleware/config')() );
+  app.locals( require('../lib/middleware/config') );
   app.use(instanceSelector());
   
   app.use( require('../lib/apps/auth').middleware );
