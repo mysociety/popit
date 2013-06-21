@@ -81,26 +81,26 @@ exports.memberships = [
   {
     "_id":        "4f9ea1326e8770d854c45a22",
     title:        "President",
-    person:       "4f9ea1306e8770d854c45a1d", // george-bush
-    organization: "4f9ea1326e8770d854c45a21",
+    person_id:    "4f9ea1306e8770d854c45a1d", // george-bush
+    organization_id: "4f9ea1326e8770d854c45a21",
   },
   {
     "_id":        "4f9ea1326e8770d854c45a23",
     title:        "President",
-    person:       "4f9ea1316e8770d854c45a1e", // bill-clinton
-    organization: "4f9ea1326e8770d854c45a21",
+    person_id:    "4f9ea1316e8770d854c45a1e", // bill-clinton
+    organization_id: "4f9ea1326e8770d854c45a21",
   },
   {
     "_id":        "4f9ea1326e8770d854c45a24",
     title:        "President",
-    person:       "4f9ea1316e8770d854c45a1f", // george-w-bush
-    organization: "4f9ea1326e8770d854c45a21",
+    person_id:   "4f9ea1316e8770d854c45a1f", // george-w-bush
+    organization_id: "4f9ea1326e8770d854c45a21",
   },
   {
     "_id":        "4f9ea1326e8770d854c45a25",
     title:        "President",
-    person:       "4f9ea1326e8770d854c45a20", // barack-obama
-    organization: "4f9ea1326e8770d854c45a21",
+    person_id:    "4f9ea1326e8770d854c45a20", // barack-obama
+    organization_id: "4f9ea1326e8770d854c45a21",
   },
 ];
 

@@ -26,7 +26,7 @@ People and organizations have very similar schemas and so are both covered by th
 
   "meta": {
     "edit_url": "http://instance.example.org/person/bill-clinton",
-    "positions_api_url": "http://instance.example.org/api/v0.1/position?person=4f9ea1316e8770d854c45a1e"
+    "positions_api_url": "http://instance.example.org/api/v0.1/position?person_id=4f9ea1316e8770d854c45a1e"
   }
 
 }

@@ -43,10 +43,10 @@ class PositionEditingTests < PopItWatirTestCase
       assert_equal select2_current_value('title'), 'President'
       
       # click on the org and select us gov
-      select2_container('organization').link.click
+      select2_container('organization_id').link.click
       assert_equal select2_highlighted_option.text, "United States Government ← select to use existing entry"
       select2_highlighted_option.click
-      assert_equal select2_current_value('organization'), "United States Government"
+      assert_equal select2_current_value('organization_id'), "United States Government"
       
       # set the start date, but leave the end date empty
       @b.input(:name, 'start-date').click
@@ -80,11 +80,11 @@ class PositionEditingTests < PopItWatirTestCase
       select2_highlighted_option.click
       assert_equal select2_current_value('title'), 'Bottle Washer'
       
-      select2_container('organization').link.click
+      select2_container('organization_id').link.click
       @b.send_keys '1600 Penn Hotel'
       assert_equal select2_highlighted_option.text, "1600 Penn Hotel ← select to create new entry"
       select2_highlighted_option.click
-      assert_equal select2_current_value('organization'), "1600 Penn Hotel (new entry)"
+      assert_equal select2_current_value('organization_id'), "1600 Penn Hotel (new entry)"
       
       position_form.submit
       @b.div(:id, "flash-info").wait_until_present
@@ -106,7 +106,7 @@ class PositionEditingTests < PopItWatirTestCase
       assert_equal select2_options(1).text, 'Bottle Washer'
       @b.send_keys :escape
       
-      select2_container('organization').link.click
+      select2_container('organization_id').link.click
       assert_equal select2_options(0).text, "United States Government ← select to use existing entry"
       assert_equal select2_options(1).text, "1600 Penn Hotel ← select to use existing entry"
       @b.send_keys :escape

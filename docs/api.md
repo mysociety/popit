@@ -53,7 +53,7 @@ ObjectIds will never change.
 Currently only simple searching implemented - you can search by ObjectIds and by case-insensitive string matching. Examples:
 
     /api/v0.1/person?name=joe
-    /api/v0.1/position?person=4f99219333fa2efc68000006
+    /api/v0.1/position?person_id=4f99219333fa2efc68000006
 
 Better searching (exact matches, gte, etc) is on the TODO list.
 

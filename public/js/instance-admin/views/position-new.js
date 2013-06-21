@@ -36,16 +36,16 @@ define(
   
         // find the bits that are interesting and store them for easy access
         this.$title_input        = $content.find('[name=title]');
-        this.$person_input       = $content.find('[name=person]');
-        this.$organization_input = $content.find('[name=organization]');
+        this.$person_input       = $content.find('[name=person_id]');
+        this.$organization_input = $content.find('[name=organization_id]');
         this.$start_date_input   = $content.find('[name=start-date]');
         this.$end_date_input     = $content.find('[name=end-date]');
         this.$errors_list        = $content.find('ul.error');
         
         // If we have some details aready set store them
         this.$title_input.val(        this.model.get('title') );
-        this.$person_input.val(       this.model.get('person') );
-        this.$organization_input.val( this.model.get('organization') );
+        this.$person_input.val(       this.model.get('person_id') );
+        this.$organization_input.val( this.model.get('organization_id') );
         
         // set up the title as an autocompletor
         this.$title_input.select2(
@@ -122,8 +122,8 @@ define(
 
           // create a new position
           var position = new PositionModel({
-            person:       person_id,
-            organization: organization_id,
+            person_id:       person_id,
+            organization_id: organization_id,
             title:        job_title,
             start_date:   start_date_data.raw || {},
             end_date:     end_date_data.raw   || {}

@@ -101,7 +101,7 @@ $ curl                                                 \
     "meta": {
       "api_url": "http://test.127.0.0.1.xip.io:3000/api/v0.1/person/50d1f2e1c03858f9f6000006",
       "edit_url": "http://test.127.0.0.1.xip.io:3000/person/joe-bloggs",
-      "positions_api_url": "http://test.127.0.0.1.xip.io:3000/api/v0.1/position?person=50d1f2e1c03858f9f6000006"
+      "positions_api_url": "http://test.127.0.0.1.xip.io:3000/api/v0.1/position?person_id=50d1f2e1c03858f9f6000006"
     }
   }
 }

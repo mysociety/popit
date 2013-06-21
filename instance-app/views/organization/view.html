@@ -148,8 +148,8 @@
       <% _.each( positions, function ( position ) { %>
         <dt><a href="/position/<%- position.id %>"><%- position.title %></a>:</dt>
         <dd>
-          <% if (position.person) { %>
-            <a href="<%- position.person.slug_url%>" ><%- position.person.name %></a>
+          <% if (position.person_id) { %>
+            <a href="<%- position.person_id.slug_url%>" ><%- position.person_id.name %></a>
           <% } else { %>
             unknown
           <% } %>

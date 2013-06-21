@@ -26,14 +26,14 @@ define(
         event.preventDefault();
 
         var position = new PositionModel({
-          person:       $element_clicked.attr('data-person-id'),
-          organization: $element_clicked.attr('data-organization-id'),
+          person_id:       $element_clicked.attr('data-person-id'),
+          organization_id: $element_clicked.attr('data-organization-id'),
           title:        $element_clicked.attr('data-title')
         });
         
         var fields_to_hide = {
-          person:       $element_clicked.attr('data-person-hide-field')       ? true : false,
-          organization: $element_clicked.attr('data-organization-hide-field') ? true : false,
+          person_id:       $element_clicked.attr('data-person-hide-field')       ? true : false,
+          organization_id: $element_clicked.attr('data-organization-hide-field') ? true : false,
           title:        $element_clicked.attr('data-title-hide-field')        ? true : false
         };
         

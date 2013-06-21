@@ -117,7 +117,7 @@ And finally view the record for an individual person in the database:
     "other_names": [],
     "meta": {
       "edit_url": "http://kenyan-politicians.popit.mysociety.org/person/wycliffe-william-osundwa",
-      "positions_api_url": "http://kenyan-politicians.popit.mysociety.org/api/v0.1/position?person=50c60c3c71ec32dd6e00199a"
+      "positions_api_url": "http://kenyan-politicians.popit.mysociety.org/api/v0.1/position?person_id=50c60c3c71ec32dd6e00199a"
     }
   }
 }

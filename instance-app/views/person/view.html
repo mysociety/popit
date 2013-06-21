@@ -147,8 +147,8 @@
       <% _.each( positions, function (position) { %>
         <dt><a href="/position/<%- position.id %>"><%- position.title %></a>:</dt>
         <dd>
-          <% if (position.organization) { %>
-            <a href="<%- position.organization.slug_url %>"><%- position.organization.name %></a>
+          <% if (position.organization_id) { %>
+            <a href="<%- position.organization_id.slug_url %>"><%- position.organization_id.name %></a>
           <% } else { %>
             unknown
           <% } %>

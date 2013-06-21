@@ -12,20 +12,20 @@
 
   <h1><%- position.title %></h1>
 
-  <% if (position.person) { %>
+  <% if (position.person_id) { %>
     <section class="person">
       <p>
         Person:
-        <a href="<%- position.person.slug_url %>"><%- position.person.name %></a>
+        <a href="<%- position.person_id.slug_url %>"><%- position.person_id.name %></a>
       </p>
     </section>
   <% } %>
 
-  <% if (position.organization) { %>
+  <% if (position.organization_id) { %>
     <section class="organization">
       <p>
         Organization:
-        <a href="<%- position.organization.slug_url %>"><%- position.organization.name %></a>
+        <a href="<%- position.organization_id.slug_url %>"><%- position.organization_id.name %></a>
       </p>
     </section>
   <% } %>
