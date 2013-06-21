@@ -1,26 +1,26 @@
 <%= render(
   'html_head.html',
   {
-    title:       'Organisations',
-    description: 'A list of all the organisations.',
+    title:       'Organizations',
+    description: 'A list of all the organizations.',
   }
 ) %>
 
-<h1>Organisations</h1>
+<h1>Organizations</h1>
 
 <p class="admin-options">
-  <a class="new-organisation add" href="#">
+  <a class="new-organization add" href="#">
     <strong>+ Add</strong>
-    a new organisation
+    a new organization
   </a>
 </p>
 
 
-<% if (organisations.length) { %>
+<% if (organizations.length) { %>
   <ul>
-    <% _.each( organisations, function (organisation) { %>
+    <% _.each( organizations, function (organization) { %>
       <li>
-        <a href="<%- organisation.slug_url %>"><%- organisation.name %></a>
+        <a href="<%- organization.slug_url %>"><%- organization.name %></a>
       </li>                                                
     <% }); %>
   </ul>
@@ -29,8 +29,8 @@
   <div class="info">
     <% if (user) { %>
       <h3> 
-        There are no organisations in the system yet, you should probably 
-        <a class="new-organisation add" href="#">
+        There are no organizations in the system yet, you should probably 
+        <a class="new-organization add" href="#">
           <strong>add one now</strong>!
         </a> 
         
@@ -47,7 +47,7 @@
         to import it.
       </p>
     <% } else { %>
-      No organisations have been entered yet.
+      No organizations have been entered yet.
     <% } %>
   </div>
 <% } %>

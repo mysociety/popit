@@ -21,11 +21,11 @@
     </section>
   <% } %>
 
-  <% if (position.organisation) { %>
-    <section class="organisation">
+  <% if (position.organization) { %>
+    <section class="organization">
       <p>
-        Organisation:
-        <a href="<%- position.organisation.slug_url %>"><%- position.organisation.name %></a>
+        Organization:
+        <a href="<%- position.organization.slug_url %>"><%- position.organization.name %></a>
       </p>
     </section>
   <% } %>
@@ -44,7 +44,7 @@
   <section class="raw-data">
     <h2>Raw data</h2>
     <p>
-      The details for this organisation are also available in
+      The details for this organization are also available in
       <a href="/api/v0.1/memberships/#{position.id}">JSON</a>.
     </p>
   </section>

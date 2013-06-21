@@ -18,10 +18,10 @@ class PhotoTests < PopItWatirTestCase
     )
   end 
 
-  def test_organisation_upload_photo_file
+  def test_organization_upload_photo_file
     check_upload_photo(
-      :url                        => '/organisation/united-states-government',
-      :placeholder_filename_regex => /organisation_placeholder\.svg/,
+      :url                        => '/organization/united-states-government',
+      :placeholder_filename_regex => /organization_placeholder\.svg/,
       :test_image                 => 'static/barack_obama.jpg',
     )
   end 

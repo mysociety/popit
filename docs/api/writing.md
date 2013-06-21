@@ -60,7 +60,7 @@ Currently there is no pagination - this is [planned](https://github.com/mysociet
 
 A `GET` request to something like `/api/v0.1/<collection-name>/<id>` will return that entry.
 
-For the `person` and `organisation` collections the related positions are not included in the result. But there is a `positions_api_url` entry in the meta that will list them all.
+For the `person` and `organization` collections the related positions are not included in the result. But there is a `positions_api_url` entry in the meta that will list them all.
 
 
 ### Creating a new document in a collection

@@ -10,7 +10,7 @@ These examples will show you some requests that you can make to the API and prov
 
 The API is REST based - which means that the URL is used to specify what you are looking for, and the HTTP method is used to specify what you want to do with it.
 
-So a `GET` of `/api/v0.1/person/1234` will get the details for the person with id `1234`, and a `POST` of data to `/api/v0.1/organisation` will create a new organisation.
+So a `GET` of `/api/v0.1/person/1234` will get the details for the person with id `1234`, and a `POST` of data to `/api/v0.1/organization` will create a new organization.
 
 ## Where can I try API requests?
 
@@ -32,7 +32,7 @@ The index page for the API is a directory of what is available:
   "note": "This is the API entry point - use a '*_api_url' link in 'meta' to search a collection.",
   "meta": {
     "person_api_url":       "http://kenyan-politicians.popit.mysociety.org/api/v0.1/person",
-    "organisation_api_url": "http://kenyan-politicians.popit.mysociety.org/api/v0.1/organisation",
+    "organization_api_url": "http://kenyan-politicians.popit.mysociety.org/api/v0.1/organization",
     "position_api_url":     "http://kenyan-politicians.popit.mysociety.org/api/v0.1/position",
     "image_proxy_url":      "http://kenyan-politicians.popit.mysociety.org/image-proxy/"
   }

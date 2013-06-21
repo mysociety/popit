@@ -3,19 +3,19 @@ define(
     'jquery',
     'Backbone',
     'underscore',
-    'text!templates/organisation/remove.html',
-    'instance-admin/models/organisation'
+    'text!templates/organization/remove.html',
+    'instance-admin/models/organization'
   ],
   function (
     $,
     Backbone,
     _,
     orgTemplate,
-    OrganisationModel
+    OrganizationModel
   ) {
     "use strict"; 
 
-    var OrganisationRemoveView = Backbone.View.extend({
+    var OrganizationRemoveView = Backbone.View.extend({
   
       orgTemplate: _.template( orgTemplate ),
 
@@ -24,7 +24,7 @@ define(
         // winston.verbose( this.model.toJSON() );
 
         this.$el.html( this.orgTemplate( {
-            organisation: this.model.toJSON()
+            organization: this.model.toJSON()
           }
         ) );
         return this;
@@ -41,7 +41,7 @@ define(
         this.model.destroy(
           {
             success: function (model, response) {
-              document.location = '/organisation';
+              document.location = '/organization';
             },
             error: function (model, response) {
               window.alert("Something went wrong with the delete - please try again");
@@ -52,7 +52,7 @@ define(
         
     });
   
-    return OrganisationRemoveView;
+    return OrganizationRemoveView;
   
   }
 );

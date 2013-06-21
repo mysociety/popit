@@ -6,7 +6,7 @@ define(
     'underscore',
     'text!templates/position/new.html',
     'instance-admin/models/person',
-    'instance-admin/models/organisation',
+    'instance-admin/models/organization',
     'instance-admin/models/position',
     'instance-admin/utils/select2-helpers'   
     
@@ -18,7 +18,7 @@ define(
     _,
     positionTemplate,
     PersonModel,
-    OrganisationModel,
+    OrganizationModel,
     PositionModel,
     select2Helpers
   ) {
@@ -37,7 +37,7 @@ define(
         // find the bits that are interesting and store them for easy access
         this.$title_input        = $content.find('[name=title]');
         this.$person_input       = $content.find('[name=person]');
-        this.$organisation_input = $content.find('[name=organisation]');
+        this.$organization_input = $content.find('[name=organization]');
         this.$start_date_input   = $content.find('[name=start-date]');
         this.$end_date_input     = $content.find('[name=end-date]');
         this.$errors_list        = $content.find('ul.error');
@@ -45,7 +45,7 @@ define(
         // If we have some details aready set store them
         this.$title_input.val(        this.model.get('title') );
         this.$person_input.val(       this.model.get('person') );
-        this.$organisation_input.val( this.model.get('organisation') );
+        this.$organization_input.val( this.model.get('organization') );
         
         // set up the title as an autocompletor
         this.$title_input.select2(
@@ -61,16 +61,16 @@ define(
           model:       PersonModel,
           errors_list: this.$errors_list
         }) );
-        this.$organisation_input.select2( select2Helpers.create_arguments_for_model({
+        this.$organization_input.select2( select2Helpers.create_arguments_for_model({
           placeholder: "e.g Apple Inc, UK Parliament, Kenyatta University",
-          model:       OrganisationModel,
+          model:       OrganizationModel,
           errors_list: this.$errors_list
         }) );
         
         // hide inputs if requested (not happy with this - not very elegant :( )
         if (this.options.fields_to_hide.title        ) $content.find('p.title').hide();
         if (this.options.fields_to_hide.person       ) $content.find('p.person').hide();
-        if (this.options.fields_to_hide.organisation ) $content.find('p.organisation').hide();
+        if (this.options.fields_to_hide.organization ) $content.find('p.organization').hide();
         
         // add our content to the page
         this.$el.html( $content );
@@ -98,7 +98,7 @@ define(
           return;
         }
 
-        // for the person and organisation create the entry on the server if
+        // for the person and organization create the entry on the server if
         // it is a new one (ie does not have an id)
         $.when(
           // get the person id, creating them if needed.
@@ -110,12 +110,12 @@ define(
           ),
           $.Deferred(
             select2Helpers.create_model_if_needed_for_data(
-              OrganisationModel,
-              view.$organisation_input.select2('data')
+              OrganizationModel,
+              view.$organization_input.select2('data')
             )
           )
         )
-        .then(function(person_id, organisation_id) {
+        .then(function(person_id, organization_id) {
 
           var start_date_data = view.$start_date_input.select2('data') || {};
           var end_date_data   = view.$end_date_input.select2('data')   || {};
@@ -123,7 +123,7 @@ define(
           // create a new position
           var position = new PositionModel({
             person:       person_id,
-            organisation: organisation_id,
+            organization: organization_id,
             title:        job_title,
             start_date:   start_date_data.raw || {},
             end_date:     end_date_data.raw   || {}

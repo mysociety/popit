@@ -1,38 +1,38 @@
 <%= render(
   'html_head.html',
   {
-    title:       organisation.name,
-    description: organisation.name + ' ' + ( organisation.summary || '' ),
+    title:       organization.name,
+    description: organization.name + ' ' + ( organization.summary || '' ),
   }
 ) %>
 
 <script>
     var popit = popit || {};
     popit.type = 'organization';
-    popit.data = <%= JSON.stringify(organisation.toJSON()) %>;
+    popit.data = <%= JSON.stringify(organization.toJSON()) %>;
 </script>
 
-<article class="entity organisation">
+<article class="entity organization">
 
-  <header class="entity-header-nav" id="organisation-<%- organisation.slug %>">
+  <header class="entity-header-nav" id="organization-<%- organization.slug %>">
     <h1 class="edit-in-place current-entity"
         id="entity-name-in-header"
-        title="<%- organisation.name %>"
+        title="<%- organization.name %>"
         data-api-name="name"
-    ><%- organisation.name %></h1>
+    ><%- organization.name %></h1>
   </header>
   
   <aside>
 
     <ul class="photos">
-      <% if (organisation.images.length) { %>
-        <% _.each( organisation.images, function ( image ) { %>
+      <% if (organization.images.length) { %>
+        <% _.each( organization.images, function ( image ) { %>
           <li>
             <% if (image.url) { %>
               <% //- TODO - proxy will need changes to allow us to proxy remote images %>
               <img src="<%- image.url %>"  width="280" />
             <% } else { %>
-              <img src="<%- image_proxy(organisation.slug_url + "/images/" + image.id, "", 280) %>" />
+              <img src="<%- image_proxy(organization.slug_url + "/images/" + image.id, "", 280) %>" />
             <% } %>
 
             <p class="photo-source">
@@ -41,7 +41,7 @@
               <abbr class="license" title="Creative Commons - By Attribution - Share Alike">CC-BY-SA</abbr>
               <ul class="admin-options">
                 <li>
-                  <form method="post" action="<%- organisation.slug_url %>/images/<%- image.id %>/delete">
+                  <form method="post" action="<%- organization.slug_url %>/images/<%- image.id %>/delete">
                     <input type="submit" value="delete" style="width: 4em; display: inline" />
                     this photograph
                   </form>
@@ -52,14 +52,14 @@
         <% }); %>
       <% } else { %>
         <li>
-          <img src='/img/organisation_placeholder.svg' width="280" />            
+          <img src='/img/organization_placeholder.svg' width="280" />            
         </li>
       <% } %>
     </ul>
 
     <ul class="admin-options">
       <li>
-        <a class="add" href="<%- organisation.slug_url %>/images/upload">
+        <a class="add" href="<%- organization.slug_url %>/images/upload">
           <strong>+ add</strong>
           a photograph
         </a>
@@ -69,9 +69,9 @@
     
   <ul class="admin-options">
     <li>
-      <a class="delete delete-organisation">
+      <a class="delete delete-organization">
         <strong>- delete</strong>
-        this organisation
+        this organization
       </a>
     </li>
   </ul>
@@ -81,7 +81,7 @@
     <p  id="entity-summary-text"
         class="edit-in-place-textarea"
         data-api-name="summary"
-    ><%- organisation.summary %></p>
+    ><%- organization.summary %></p>
   
   </section>
 
@@ -93,7 +93,7 @@
 
       <li class="personal_details-birth_date">
         <%= render( 'partial-date/view.html', {
-          date:             organisation.founding_date,
+          date:             organization.founding_date,
           title:            "Founding date",
           data_api_name: "founding_date",
         }) %>
@@ -101,7 +101,7 @@
 
       <li class="personal_details-death_date">
         <%= render( 'partial-date/view.html', {
-          date:             organisation.dissolution_date,
+          date:             organization.dissolution_date,
           title:            "Dissolution date",
           data_api_name: "dissolution_date",
         }) %>
@@ -113,7 +113,7 @@
   <section class="other_names">
     <h2>Alternative names:</h2>
     <ul class="detail-list">
-    <% _.each( organisation.other_names, function(item) { %>
+    <% _.each( organization.other_names, function(item) { %>
       <li>
         <%= render( 'other_name/view.html', { item: item }) %>
       </li>
@@ -135,8 +135,8 @@
   
     <ul class="admin-options">
       <li>
-        <a  data-organisation-id="<%- organisation.id %>"
-          data-organisation-hide-field="1"
+        <a  data-organization-id="<%- organization.id %>"
+          data-organization-hide-field="1"
           class="add new-position">
           <strong>+ add</strong>
           a new position
@@ -164,7 +164,7 @@
 
     <ul class="detail-list">
 
-      <% _.each( organisation.contact_details, function ( item ) { %>
+      <% _.each( organization.contact_details, function ( item ) { %>
         <li>
           <%= render( 'contact/view.html', {
             item:         item,
@@ -188,7 +188,7 @@
     <h2>Links:</h2>
 
     <ul class="detail-list">
-      <% _.each( organisation.links, function (item) { %>
+      <% _.each( organization.links, function (item) { %>
         <li>
           <%= render( 'link/view.html', {
              item:         item,
@@ -212,8 +212,8 @@
   <section class="raw-data">
     <h2>Raw data</h2>
     <p>
-      The details for this organisation are also available in 
-      <a href="/api/v0.1/organizations/<%- organisation.id %>">JSON</a>.
+      The details for this organization are also available in 
+      <a href="/api/v0.1/organizations/<%- organization.id %>">JSON</a>.
     </p>
   </section>
 

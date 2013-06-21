@@ -8,14 +8,14 @@ define(
     'jquery',
     'Backbone',
     'instance-admin/models/person',
-    'instance-admin/models/organisation',
+    'instance-admin/models/organization',
     'jquery.fancybox'
   ],
   function (
     $,
     Backbone,
     PersonModel,
-    OrganisationModel
+    OrganizationModel
   ) {
     "use strict"; 
 
@@ -38,7 +38,7 @@ define(
             setup_sub_model_links('contact_details');
             setup_sub_model_links('other_names');
         } else if (popit.type == 'organization') {
-            popit.model = new OrganisationModel(popit.data);
+            popit.model = new OrganizationModel(popit.data);
             setup_sub_model_links('links');
             setup_sub_model_links('contact_details');
             setup_sub_model_links('other_names');

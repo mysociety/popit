@@ -5,8 +5,8 @@ define(
     'backbone-forms',
     'underscore',
     'utils/slugify',
-    'text!templates/organisation/new.html',
-    'instance-admin/models/organisation',
+    'text!templates/organization/new.html',
+    'instance-admin/models/organization',
     'instance-admin/views/submit-form-helper',
     'instance-admin/views/suggestions'
   ],
@@ -17,13 +17,13 @@ define(
     _,
     slugify,
     orgTemplate,
-    OrganisationModel,
+    OrganizationModel,
     submitFormHelper,
     SuggestionsView
   ) {
     "use strict"; 
 
-    var OrganisationNewView = Backbone.View.extend({
+    var OrganizationNewView = Backbone.View.extend({
   
       orgTemplate: _.template(orgTemplate),
 
@@ -32,7 +32,7 @@ define(
 					model: this.model,
 					fields: ['name', 'slug']
 				});
-        this.suggestionsView = new SuggestionsView({ url_type: 'organisation' });
+        this.suggestionsView = new SuggestionsView({ url_type: 'organization' });
         
         this.suggestionsView.collection.url = '/autocomplete/organizations';
       },
@@ -60,7 +60,7 @@ define(
         'keyup input[name=name]':   'nameEdit'
       },
       
-      submitForm: submitFormHelper({ type: 'organisation' }),
+      submitForm: submitFormHelper({ type: 'organization' }),
       
       nameEdit: function (e) {
         // When the name is being entered we should fill in the slug. This will
@@ -81,7 +81,7 @@ define(
   
     });
   
-    return OrganisationNewView;
+    return OrganizationNewView;
   
   }
 );

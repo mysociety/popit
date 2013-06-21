@@ -11,7 +11,7 @@ require([
 require ([
   'instance-admin/app',
   'instance-admin/actions/person-add-remove',
-  'instance-admin/actions/organisation-add-remove',
+  'instance-admin/actions/organization-add-remove',
   'instance-admin/actions/position-add-remove',
   'instance-admin/actions/contact-edit',
   'instance-admin/actions/other_name-edit',

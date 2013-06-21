@@ -1,10 +1,10 @@
 ---
-title: Person and Organisation schemas
+title: Person and Organization schemas
 description: 
 layout: default
 ---
 
-People and organisations have very similar schemas and so are both covered by this description.
+People and organizations have very similar schemas and so are both covered by this description.
 
 ## Schema
 
@@ -40,23 +40,23 @@ This is assigned by the database. It cannot be changed and will never change.
 
 ## Slug
 
-The slug is a unique key that can be used to identify the person or organisation. It is intended to be used in urls and so is made up of url safe characters.
+The slug is a unique key that can be used to identify the person or organization. It is intended to be used in urls and so is made up of url safe characters.
 
 **NOTE**: This might well change when/if [issue #175](https://github.com/mysociety/popit/issues/175) is tackled.
 
 ## Summary
 
-This is a brief bit of text that provides details about the person or organisation. The exact content will depend on the purpose of the instance. 
+This is a brief bit of text that provides details about the person or organization. The exact content will depend on the purpose of the instance. 
 
 ## Names
 
 ### Name
 
-The primary `name` field holds the name that is primarily used for identifying this person or organisation. This will depend on the purpose of the instance and the primary language of the instance. For example both "[Dwayne Johnson](http://en.wikipedia.org/wiki/Dwayne_Johnson)" and "The Rock" would be valid names, but the purpose of the PopIt instance would decide which was more suitable.
+The primary `name` field holds the name that is primarily used for identifying this person or organization. This will depend on the purpose of the instance and the primary language of the instance. For example both "[Dwayne Johnson](http://en.wikipedia.org/wiki/Dwayne_Johnson)" and "The Rock" would be valid names, but the purpose of the PopIt instance would decide which was more suitable.
 
 ### Other names
 
-This is an array of other names that the person/organisation might have. They could be pre-marital names, or aliases, or even latinisations. For example "[Hillary Clinton](http://en.wikipedia.org/wiki/Hillary_Rodham_Clinton)" would have as other names her full legal name "Hillary Diane Rodham Clinton", her maiden name "Hillary Diane Rodham" and her secret service codename "Evergreen".
+This is an array of other names that the person/organization might have. They could be pre-marital names, or aliases, or even latinisations. For example "[Hillary Clinton](http://en.wikipedia.org/wiki/Hillary_Rodham_Clinton)" would have as other names her full legal name "Hillary Diane Rodham Clinton", her maiden name "Hillary Diane Rodham" and her secret service codename "Evergreen".
 
 ``` javascript
 {

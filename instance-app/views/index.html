@@ -9,7 +9,7 @@
 <h1>Welcome to <%- popit.pretty_name() %></h1>
 
 <p>
-  This database currently contains <%- person_count || 'no' %> <%- person_count == 1 ? 'person' : 'people' %> and <%- organisation_count || 'no' %> <%- organisation_count == 1 ? 'organisation' : 'organisations' %>.
+  This database currently contains <%- person_count || 'no' %> <%- person_count == 1 ? 'person' : 'people' %> and <%- organization_count || 'no' %> <%- organization_count == 1 ? 'organization' : 'organizations' %>.
 </p> 
 
 <div id="person-summary" class="homepage-summary-box">
@@ -48,30 +48,30 @@
 </div>
 
   
-<div id="organisation-summary" class="homepage-summary-box">
+<div id="organization-summary" class="homepage-summary-box">
 
-  <h2>Organisations</h2>
+  <h2>Organizations</h2>
 
   <ul>
-    <% if (organisations.length) { %>    
-      <% _.each( organisations, function(organisation) { %>
+    <% if (organizations.length) { %>    
+      <% _.each( organizations, function(organization) { %>
         <li> 
-          <a href="/organisation/<%- organisation.slug %>"><%- organisation.name %></a>
+          <a href="/organization/<%- organization.slug %>"><%- organization.name %></a>
         </li>
       <% }); %>
-      <% if (organisation_count > summary_listing_count) { %>
+      <% if (organization_count > summary_listing_count) { %>
         <li>
           and 
-          <a href="/organisation"><%- organisation_count - summary_listing_count %> more</a>
+          <a href="/organization"><%- organization_count - summary_listing_count %> more</a>
         </li>  
       <% } %>
     <% } else { %>
       <li>
-        There are no organisations in the database yet. 
+        There are no organizations in the database yet. 
         <br>
         <span class="admin-options">
-          <a class="add new-organisation" href="#">
-            <strong>+ Add</strong> a new organisation
+          <a class="add new-organization" href="#">
+            <strong>+ Add</strong> a new organization
           </a>
         </span>
       </li>
@@ -79,7 +79,7 @@
   </ul>
   
   <p>
-    <a href="/organisation">Complete list (<%- organisation_count %>)</a>
+    <a href="/organization">Complete list (<%- organization_count %>)</a>
   </p>
 
 </div>

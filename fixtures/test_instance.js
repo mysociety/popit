@@ -82,25 +82,25 @@ exports.memberships = [
     "_id":        "4f9ea1326e8770d854c45a22",
     title:        "President",
     person:       "4f9ea1306e8770d854c45a1d", // george-bush
-    organisation: "4f9ea1326e8770d854c45a21",
+    organization: "4f9ea1326e8770d854c45a21",
   },
   {
     "_id":        "4f9ea1326e8770d854c45a23",
     title:        "President",
     person:       "4f9ea1316e8770d854c45a1e", // bill-clinton
-    organisation: "4f9ea1326e8770d854c45a21",
+    organization: "4f9ea1326e8770d854c45a21",
   },
   {
     "_id":        "4f9ea1326e8770d854c45a24",
     title:        "President",
     person:       "4f9ea1316e8770d854c45a1f", // george-w-bush
-    organisation: "4f9ea1326e8770d854c45a21",
+    organization: "4f9ea1326e8770d854c45a21",
   },
   {
     "_id":        "4f9ea1326e8770d854c45a25",
     title:        "President",
     person:       "4f9ea1326e8770d854c45a20", // barack-obama
-    organisation: "4f9ea1326e8770d854c45a21",
+    organization: "4f9ea1326e8770d854c45a21",
   },
 ];
 

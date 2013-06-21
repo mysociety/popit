@@ -10,12 +10,12 @@ Each schema is described in the sub sections, as are the sub schemas that are re
 
 ## Top level schemas
 
-  * [People and Organisations](person-and-organisation) are the primary objects stored in PopIt. Their schemas are very similar so explained together.
-  * [Positions](position) are the links between people and organisations (e.g. jobs, memberships, etc)
+  * [People and Organizations](person-and-organization) are the primary objects stored in PopIt. Their schemas are very similar so explained together.
+  * [Positions](position) are the links between people and organizations (e.g. jobs, memberships, etc)
 
 ## Sub Schemas
 
-There are recurring parts of the main schemas - for example both people and organisations can have contact details. These shared sub schemas are documented separately:
+There are recurring parts of the main schemas - for example both people and organizations can have contact details. These shared sub schemas are documented separately:
 
   * [Images](image)
   * [Contact Details](contact-detail)

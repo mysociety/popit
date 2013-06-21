@@ -65,10 +65,10 @@ module.exports = {
         });        
     },
     
-    "get positions from organisation": function ( test ) {    
+    "get positions from organization": function ( test ) {    
         test.expect( 3 );
 
-        this.popit.model('Organisation').findOne({slug: 'united-states-government'}, function(err, usg) {
+        this.popit.model('Organization').findOne({slug: 'united-states-government'}, function(err, usg) {
           if (err) throw err;
           test.equal( usg.name, "United States Government", "Got USG");
 

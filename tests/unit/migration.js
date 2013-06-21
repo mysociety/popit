@@ -383,7 +383,7 @@ module.exports = {
         });
     },
 
-    "create organisation and position when importing a person": function ( test ) {
+    "create organization and position when importing a person": function ( test ) {
       test.expect( 7 );
       var migration = new MigrationApp();
 
@@ -399,9 +399,9 @@ module.exports = {
 
       var that = this;
 
-      migration.doImport(that.popit, schema, mappings, data, function() {}, function(err, people, positions, organisations) {
+      migration.doImport(that.popit, schema, mappings, data, function() {}, function(err, people, positions, organizations) {
         test.ifError(err);
-        test.equal(organisations.length, 1, 'one organisation in organisations set');
+        test.equal(organizations.length, 1, 'one organization in organizations set');
 
         async.parallel([
           function(cb) {
@@ -413,9 +413,9 @@ module.exports = {
             });
           }, 
           function(cb) {
-            var query = that.popit.model('Organisation').find();
+            var query = that.popit.model('Organization').find();
             query.exec(function(err, docs) {
-              test.equal(docs.length, 1, 'one organisation in database');
+              test.equal(docs.length, 1, 'one organization in database');
               test.equal(docs[0].name, 'Aliens', 'right name for position');
               cb(err);
             });
@@ -462,7 +462,7 @@ module.exports = {
       });
     },
 
-    "handling of duplicate organisation slugs": function ( test ) {    
+    "handling of duplicate organization slugs": function ( test ) {    
       test.expect( 3 );
 
       var migration = new MigrationApp();
@@ -488,9 +488,9 @@ module.exports = {
         test.ifError(err, 'expect no error');
         test.equal(people.length, 3, 'three people in people set');
 
-        var query = that.popit.model('Organisation').find();
+        var query = that.popit.model('Organization').find();
         query.exec(function(err, docs) {
-          test.equal(docs.length, 1, 'one organisation in database');
+          test.equal(docs.length, 1, 'one organization in database');
           test.done();
         });
       });

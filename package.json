@@ -56,7 +56,7 @@
     "node": "0.8.x"
   },
   "author": "mySociety <popit@mysociety.org> (http://www.mysociety.org/)",
-  "description": "People, Organisations and Positions database website",
+  "description": "People, Organizations and Positions database website",
   "homepage": "http://popit.mysociety.org/",
   "repository": {
     "type": "git",

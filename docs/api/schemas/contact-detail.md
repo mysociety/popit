@@ -4,7 +4,7 @@ description:
 layout: default
 ---
 
-Contact details are things that help you contact the person or organisation that they belong to.
+Contact details are things that help you contact the person or organization that they belong to.
 
 ## Schema
 

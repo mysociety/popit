@@ -43,10 +43,10 @@ class PositionEditingTests < PopItWatirTestCase
       assert_equal select2_current_value('title'), 'President'
       
       # click on the org and select us gov
-      select2_container('organisation').link.click
+      select2_container('organization').link.click
       assert_equal select2_highlighted_option.text, "United States Government ← select to use existing entry"
       select2_highlighted_option.click
-      assert_equal select2_current_value('organisation'), "United States Government"
+      assert_equal select2_current_value('organization'), "United States Government"
       
       # set the start date, but leave the end date empty
       @b.input(:name, 'start-date').click
@@ -62,7 +62,7 @@ class PositionEditingTests < PopItWatirTestCase
       @b.link(:xpath, "(//a[.='President'])[last()]").click
       assert_equal @b.article.h1.text, "President"
       assert_match @b.text, /Person:\ George\ Bush/
-      assert_match @b.text, /Organisation:\ United\ States\ Government/
+      assert_match @b.text, /Organization:\ United\ States\ Government/
       assert_match @b.text, /Start\ Date:\ 2001-01-20/
       assert_match @b.text, /End\ Date:\ \?\?\?/
           
@@ -70,7 +70,7 @@ class PositionEditingTests < PopItWatirTestCase
       goto '/person/george-bush'
       assert_match @b.section(:class, 'positions').text, /President/
       
-      # create a new position but with new title and organisation
+      # create a new position but with new title and organization
       @b.link(:text, '+ add a new position').click
       position_form.wait_until_present
       
@@ -80,11 +80,11 @@ class PositionEditingTests < PopItWatirTestCase
       select2_highlighted_option.click
       assert_equal select2_current_value('title'), 'Bottle Washer'
       
-      select2_container('organisation').link.click
+      select2_container('organization').link.click
       @b.send_keys '1600 Penn Hotel'
       assert_equal select2_highlighted_option.text, "1600 Penn Hotel ← select to create new entry"
       select2_highlighted_option.click
-      assert_equal select2_current_value('organisation'), "1600 Penn Hotel (new entry)"
+      assert_equal select2_current_value('organization'), "1600 Penn Hotel (new entry)"
       
       position_form.submit
       @b.div(:id, "flash-info").wait_until_present
@@ -94,7 +94,7 @@ class PositionEditingTests < PopItWatirTestCase
       @b.link(:xpath, "(//a[.='Bottle Washer'])[last()]").click
       assert_equal @b.article.h1.text, "Bottle Washer"
       assert_match @b.text, /Person:\ George\ Bush/
-      assert_match @b.text, /Organisation:\ 1600\ Penn\ Hotel/
+      assert_match @b.text, /Organization:\ 1600\ Penn\ Hotel/
       
       # check that the new title and org are in the possible options
       goto '/person/george-bush'
@@ -106,7 +106,7 @@ class PositionEditingTests < PopItWatirTestCase
       assert_equal select2_options(1).text, 'Bottle Washer'
       @b.send_keys :escape
       
-      select2_container('organisation').link.click
+      select2_container('organization').link.click
       assert_equal select2_options(0).text, "United States Government ← select to use existing entry"
       assert_equal select2_options(1).text, "1600 Penn Hotel ← select to use existing entry"
       @b.send_keys :escape
