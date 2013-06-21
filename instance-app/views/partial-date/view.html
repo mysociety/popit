@@ -1,10 +1,6 @@
-<div class="edit partial-date-edit editable"
-     data-start="<%- date.start %>"
-     data-end="<%- date.end %>"
+<div class="edit partial-date-edit"
      data-path-prefix="<%= data_path_prefix %>"
-     data-url-root="<%= data_url_root %>"
-     data-id="<%= data_id %>"
      data-title="<%- title %>">
-    <div class="list-item-title"><%- title %>:</div>
-    <div class="list-item-value"><%- date.formatted || '-' %></div>
+    <span class="list-item-title"><%- title %>:</span>
+    <div class="list-item-value edit-in-place"><%- date || 'Unknown' %></div>
 </div>

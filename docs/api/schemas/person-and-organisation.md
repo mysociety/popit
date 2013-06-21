@@ -32,7 +32,7 @@ People and organisations have very similar schemas and so are both covered by th
 }
 ```
 
-Please see the other pages for details about the [partial dates](../partial-date), the [contact details](../contact-detail), the [images](../image) and the [links](../link). For `other_names` see below.
+Please see the other pages for details about the [contact details](../contact-detail), the [images](../image) and the [links](../link). For `other_names` see below.
 
 ## ID
 

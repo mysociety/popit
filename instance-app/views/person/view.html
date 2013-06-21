@@ -149,16 +149,17 @@
             unknown
           <% } %>
           
-          <% if (position.start_date.formatted || position.end_date.formatted) { %>
+          <% if (position.start_date || position.end_date) { %>
             (
-            <% if (position.start_date.formatted) { %>
-              from <%- position.start_date.formatted %>              
+            <% if (position.start_date) { %>
+              from <%- position.start_date %>
             <% } %>
-            <% if (position.end_date.formatted) { %>
-              to <%- position.end_date.formatted %>              
+            <% if (position.end_date) { %>
+              to <%- position.end_date %>
             <% } %>
             )
           <% } %>
+
         </dd>
       <% }); %>
     </dl>  
@@ -226,6 +227,7 @@
       The details for this person are also available in 
       <a href="/api/v0.1/person/<%- person.id %>">JSON</a>.
     </p>
+
   </section>
 
 </article>

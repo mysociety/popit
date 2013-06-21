@@ -35,4 +35,4 @@ The id of the person and organisation that this position is linked to.
 
 ## To be added
 
-Start and end dates - which will be [partial dates](partial-date).
+Start and end dates

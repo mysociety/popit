@@ -70,15 +70,6 @@ define(
           errors_list: this.$errors_list
         }) );
         
-        // set up the date inputs
-        this.$start_date_input.select2(
-          select2Helpers.create_arguments_for_partial_date({})
-        );
-        this.$end_date_input.select2(
-          select2Helpers.create_arguments_for_partial_date({})
-        );
-        
-
         // hide inputs if requested (not happy with this - not very elegant :( )
         if (this.options.fields_to_hide.title        ) $content.find('p.title').hide();
         if (this.options.fields_to_hide.person       ) $content.find('p.person').hide();

@@ -20,7 +20,6 @@ There are recurring parts of the main schemas - for example both people and orga
   * [Images](image)
   * [Contact Details](contact-detail)
   * [Links](link)
-  * [Partial Dates](partial-date)
 
 ## Additional information
 
