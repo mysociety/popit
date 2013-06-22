@@ -29,12 +29,6 @@ define(
         var id = $link.attr('data-id');
         if (id) object.id = id;
         
-
-        // Manually set the urlRoot for this contact. It needs to include the 
-        // document id that this contact is embedded in. (Don't seem to be able 
-        // to set it in contructor above)
-        object.urlRoot = $link.attr('data-url-root');
-
         // create the view. Hook it up to the enclosing element.
         var view = new ListItemEditView({
           model:    object,

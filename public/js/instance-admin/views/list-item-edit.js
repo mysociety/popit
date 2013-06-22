@@ -94,8 +94,7 @@ define(
         var view = this;
 
         var template_args = {
-          item: model.toJSON(),
-          api_url_root: model.urlRoot
+          item: model.toJSON()
         };
         
         view.$el.html( templates.render(view.template, template_args ) );

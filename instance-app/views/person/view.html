@@ -92,8 +92,6 @@
           date:             person.birth_date,
           title:            "Birthdate",
           data_path_prefix: "birth_date",
-          data_url_root:    person.api_base_url,
-          data_id:          person.id
         }) %>
       </li>
 
@@ -102,8 +100,6 @@
           date:             person.death_date,
           title:            "Deathdate",
           data_path_prefix: "death_date",
-          data_url_root:    person.api_base_url,
-          data_id:          person.id
         }) %>
       </li>
 
@@ -175,14 +171,13 @@
         <li>
           <%= render( 'contact/view.html', {
             item:         item,
-            api_url_root: person.api_url + '/contact_details/',
           }) %>
         </li>
       <% }); %>
 
       <li>
         <span class="admin-options">
-          <a data-url-root="<%- person.api_url + '/contact_details/' %>" class="add contact-edit">
+          <a class="add contact-edit">
             <strong>+ add</strong>
             a new contact detail
           </a>
@@ -200,14 +195,13 @@
         <li>
           <%= render( 'link/view.html', {
              item:         item,
-             api_url_root: person.api_url + '/links/'
           }) %>
         </li>
       <% }); %>
 
       <li>
         <span class="admin-options">
-          <a data-url-root="<%- person.api_url + '/links/' %>" class="add link-edit">
+          <a class="add link-edit">
             <strong>+ add</strong>
             a new link
           </a>
