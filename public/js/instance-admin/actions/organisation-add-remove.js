@@ -1,3 +1,4 @@
+/*global popit:false */
 // ------------------------
 //  Launch a backbone powered entry box when someone clicks the new-organisation button
 // ------------------------
@@ -37,16 +38,8 @@ define(
         var $link = $(this);
         event.preventDefault();
 
-        var organisation = new OrganisationModel({
-          id: $link.attr('data-id')
-        });
-
-        organisation.fetch({
-          success: function (model, response) {
-            var view   = new OrganisationRemoveView({model: model});
-            $.fancybox( view.render().el );            
-          }
-        });
+        var view = new OrganisationRemoveView({model: popit.model});
+        $.fancybox( view.render().el );
         
       });
       

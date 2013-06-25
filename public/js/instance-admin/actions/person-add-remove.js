@@ -1,3 +1,4 @@
+/*global popit:false */
 // ------------------------
 //  Launch a backbone powered entry box when someone clicks the new-person button
 // ------------------------
@@ -37,16 +38,8 @@ define(
         var $link = $(this);
         event.preventDefault();
 
-        var person = new PersonModel({
-          id: $link.attr('data-id')
-        });
-
-        person.fetch({
-          success: function (model, response) {
-            var view   = new PersonRemoveView({model: model});
-            $.fancybox( view.render().el );            
-          }
-        });
+        var view = new PersonRemoveView({model: popit.model});
+        $.fancybox( view.render().el );
         
       });
       

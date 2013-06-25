@@ -6,13 +6,18 @@
   }
 ) %>
 
+<script>
+    var popit = popit || {};
+    popit.type = 'person';
+    popit.data = <%= JSON.stringify(person.toJSON()) %>;
+</script>
+
 <article class="entity person" itemscope itemtype="http://schema.org/Person">
 
   <header class="entity-header-nav" id="person-<%- person.slug %>">
     <h1 class="current-entity edit-in-place"
         id="entity-name-in-header"
         title="<%- person.name %>"
-        data-api-url="/person/<%- person.id %>"
         data-api-name="name"
     ><%- person.name %></h1>
   </header>
@@ -62,7 +67,7 @@
     
   <ul class="admin-options">
     <li>
-      <a class="delete delete-person" data-id="<%- person.id %>" >
+      <a class="delete delete-person">
         <strong>- delete</strong>
         this person
       </a>
@@ -75,7 +80,6 @@
     <p
       id="entity-summary-text"
       class="edit-in-place-textarea"
-      data-api-url="/person/<%- person.id %>"
       data-api-name="summary"
     ><%- person.summary %></p>
   
@@ -91,7 +95,7 @@
         <%= render( 'partial-date/view.html', {
           date:             person.birth_date,
           title:            "Birthdate",
-          data_path_prefix: "birth_date",
+          data_api_name: "birth_date",
         }) %>
       </li>
 
@@ -99,7 +103,7 @@
         <%= render( 'partial-date/view.html', {
           date:             person.death_date,
           title:            "Deathdate",
-          data_path_prefix: "death_date",
+          data_api_name: "death_date",
         }) %>
       </li>
 

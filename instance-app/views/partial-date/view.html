@@ -1,6 +1,4 @@
 <div class="edit partial-date-edit"
-     data-path-prefix="<%= data_path_prefix %>"
-     data-title="<%- title %>">
     <span class="list-item-title"><%- title %>:</span>
-    <div class="list-item-value edit-in-place"><%- date || 'Unknown' %></div>
+    <div data-api-name="<%= data_api_name %>" class="list-item-value edit-in-place"><%- date || 'Unknown' %></div>
 </div>

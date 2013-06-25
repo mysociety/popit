@@ -13,22 +13,19 @@
 // (multi field, constraints, etc) something more involved should be used.
 
 require(
-  ['jquery', 'jquery.jeditable'],
-  function ($) {
+  ['Backbone', 'jquery', 'jquery.jeditable'],
+  function (Backbone, $) {
     "use strict";
 
     var onSubmit = function (value, settings) { 
-  
-      var element = $(this);
-      
-      var apiUrl  = element.attr('data-api-url');
-      var apiName = element.attr('data-api-name');
-  
-      var submitData = {};
+
+      var element = $(this),
+          apiName = element.attr('data-api-name'),
+          submitData = {};
+
       submitData[apiName] = value;
-      
-      // XXX Update model here
-  
+      Backbone.trigger('in-place-edit', submitData);
+
       return(value);
     };
   
