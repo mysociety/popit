@@ -49,7 +49,7 @@ define(
               data,
               function (doc) {
                 return {
-                  id: doc._id, // XXX TODO Should be id now
+                  id: doc.id,
                   text: doc.name
                 };
               }
