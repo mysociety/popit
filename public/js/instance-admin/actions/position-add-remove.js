@@ -5,7 +5,6 @@
 define(
   [
     'jquery',
-    'instance-admin/app',
     'instance-admin/models/position',
     'instance-admin/views/position-new',
     // 'instance-admin/views/position-remove',
@@ -13,14 +12,13 @@ define(
   ],
   function (
     $,
-    App,
     PositionModel,
     PositionNewView
     //PositionRemoveView
   ) {
     "use strict"; 
 
-    App.addInitializer(function(options){
+    $(function(){
 
       $('a.new-position').click(function(event) {
         var $element_clicked = $(this);

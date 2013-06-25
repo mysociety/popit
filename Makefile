@@ -49,12 +49,7 @@ css:
 optipng:
 	find public -name '*.png' | xargs optipng --clobber -o4
 
-
-js-templates:
-	rm -rf public/js/templates.js
-	node_modules/.bin/uta-compile-templates-to-amd instance-app/views > public/js/templates.js
-
-public-production: css js-templates
+public-production: css
 	rm -rf public-build public-production
 	node_modules/.bin/r.js -o public/js/app.build.js
 	mkdir public-production
@@ -72,7 +67,6 @@ public-production: css js-templates
 
 	# clean up generated content that we don't need now
 	rm -r public-build
-	rm -r public/js/templates.js	
 
 
 tidy:
@@ -111,7 +105,6 @@ production: clean node-modules
 clean:
 	compass clean
 	rm -rf public/css
-	rm -rf public/js/templates.js	
 	rm -rf public-build
 	rm -rf public-production
 	find . -name chromedriver.log -delete

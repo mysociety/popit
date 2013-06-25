@@ -5,10 +5,12 @@
 define(
   [
     'jquery',
+    'underscore',
     'instance-admin/views/list-item-edit'
   ],
   function (
     $,
+    _,
     ListItemEditView
   ) {
     "use strict"; 
@@ -36,7 +38,7 @@ define(
         });
 
         // set the template on the view
-        view.template = args.template;
+        view.template = _.template(args.template);
         
         if (object.isNew()) {
           // clone the li item so that the 'create new' link is still present.

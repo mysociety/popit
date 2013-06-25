@@ -3,27 +3,27 @@ define(
     'jquery',
     'Backbone',
     'underscore',
-    'templates',
+    'text!templates/organisation/remove.html',
     'instance-admin/models/organisation'
   ],
   function (
     $,
     Backbone,
     _,
-    templates,
+    orgTemplate,
     OrganisationModel
   ) {
     "use strict"; 
 
     var OrganisationRemoveView = Backbone.View.extend({
   
+      orgTemplate: _.template( orgTemplate ),
+
       render: function () {
 
         // winston.verbose( this.model.toJSON() );
 
-        this.$el.html( templates.render(
-          'organisation/remove.html',
-          {
+        this.$el.html( this.orgTemplate( {
             organisation: this.model.toJSON()
           }
         ) );

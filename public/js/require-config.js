@@ -17,9 +17,6 @@ require.config({
     'Backbone':         './libs/backbone-0.9.2-amd',
     'backbone-forms':   './libs/backbone-forms-0.9.0-amd',
 
-    // https://raw.github.com/derickbailey/backbone.marionette/master/lib/amd/backbone.marionette.js
-    'Backbone.Marionette': './libs/backbone.marionette-0.8.4',
-
     // Require.js plugins
     'text':  './libs/requirejs/text-1.0.8.min',
     'order': './libs/requirejs/order-1.0.5.min'

@@ -3,19 +3,17 @@
 define(
   [
     'jquery',
-    'instance-admin/app',
     'instance-admin/actions/list-item-editor',
     'instance-admin/models/link'
   ],
   function (
     $,
-    App,
     ListItemEditor,
     LinkModel
   ) {
     "use strict";     
 
-    App.addInitializer(function(options){
+    $(function(){
 
       $('#content').on(
         'click',

@@ -5,7 +5,7 @@ define(
     'backbone-forms',
     'underscore',
     'utils/slugify',
-    'templates',
+    'text!templates/person/new.html',
     'instance-admin/models/person',
     'instance-admin/views/submit-form-helper',
     'instance-admin/views/suggestions'
@@ -16,7 +16,7 @@ define(
     BackboneForms,
     _,
     slugify,
-    templates,
+    personTemplate,
     PersonModel,
     submitFormHelper,
     SuggestionsView
@@ -25,6 +25,8 @@ define(
 
     var PersonNewView = Backbone.View.extend({
   
+      personTemplate: _.template(personTemplate),
+
       initialize: function () {
         this.form = new BackboneForms({
 					model: this.model,
@@ -37,7 +39,7 @@ define(
       render: function () {
   
         // render the template and form
-        var $content = $( templates.render('person/new.html', {}) );
+        var $content = $( this.personTemplate() );
         var $form    = $( this.form.render().el );
   
         // add the contents of the form to the template content
@@ -57,7 +59,7 @@ define(
         'keyup input[name=name]':   'nameEdit'
       },
       
-      submitForm: submitFormHelper(),
+      submitForm: submitFormHelper({ type: 'person' }),
       
       nameEdit: function (e) {
         // When the name is being entered we should fill in the slug. This will

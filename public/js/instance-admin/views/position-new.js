@@ -4,11 +4,10 @@ define(
     'Backbone',
     'backbone-forms',
     'underscore',
-    'templates',
+    'text!templates/position/new.html',
     'instance-admin/models/person',
     'instance-admin/models/organisation',
     'instance-admin/models/position',
-    'instance-admin/views/submit-form-helper',
     'instance-admin/views/suggestions',
     'instance-admin/utils/select2-helpers'   
     
@@ -18,11 +17,10 @@ define(
     Backbone,
     BackboneForms,
     _,
-    templates,
+    positionTemplate,
     PersonModel,
     OrganisationModel,
     PositionModel,
-    submitFormHelper,
     SuggestionsView,
     select2Helpers
   ) {
@@ -30,12 +28,13 @@ define(
   
     var PositionNewView = Backbone.View.extend({
   
+      positionTemplate: _.template(positionTemplate),
       // initialize: function () {},
       
       render: function () {
   
         // Render the template
-        var $content = $( templates.render('position/new.html',{}) );
+        var $content = $( this.positionTemplate() );
   
         // find the bits that are interesting and store them for easy access
         this.$title_input        = $content.find('[name=title]');

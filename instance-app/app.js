@@ -48,10 +48,6 @@ app.configure(function(){
   app.use(express.methodOverride());
 });
 
-app.configure('development', function () {
-  app.use( '/js/templates.js', templates.middlewareAMD() );
-});
-
 app.configure( function () {
   app.use(express.static(__dirname + '/../' + config.public_dir));
   

@@ -5,7 +5,6 @@
 define(
   [
     'jquery',
-    'instance-admin/app',
     'instance-admin/models/organisation',
     'instance-admin/views/organisation-new',
     'instance-admin/views/organisation-remove',
@@ -13,14 +12,13 @@ define(
   ],
   function (
     $,
-    App,
     OrganisationModel,
     OrganisationNewView,
     OrganisationRemoveView
   ) {
     "use strict"; 
 
-    App.addInitializer(function(options){
+    $(function(){
 
       $('a.new-organisation').click(function(event) {
 

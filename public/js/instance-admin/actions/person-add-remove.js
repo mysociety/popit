@@ -5,7 +5,6 @@
 define(
   [
     'jquery',
-    'instance-admin/app',
     'instance-admin/models/person',
     'instance-admin/views/person-new',
     'instance-admin/views/person-remove',
@@ -13,14 +12,13 @@ define(
   ],
   function (
     $,
-    App,
     PersonModel,
     PersonNewView,
     PersonRemoveView
   ) {
     "use strict"; 
 
-    App.addInitializer(function(options){
+    $(function(){
 
       $('a.new-person').click(function(event) {
 

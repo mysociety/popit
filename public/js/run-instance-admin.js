@@ -18,8 +18,8 @@ require ([
 ]);
 
 require (
-  [ 'order!jquery', 'instance-admin/app' ],
-  function ($, App) {
+  [ 'order!jquery' ],
+  function ($) {
     "use strict"; 
 
     // TODO - we shouldn't be mucking around with the global jQuery behaviour like this.
@@ -45,7 +45,5 @@ require (
         }
       }
     });
-    
-    $( function() { App.start(); } );
   }
 );

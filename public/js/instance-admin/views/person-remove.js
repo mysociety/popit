@@ -4,7 +4,7 @@ define(
     'Backbone',
     'backbone-forms',
     'underscore',
-    'templates',
+    'text!templates/person/remove.html',
     'instance-admin/models/person',
     'instance-admin/views/suggestions'
   ],
@@ -13,22 +13,21 @@ define(
     Backbone,
     BackboneForms,
     _,
-    templates,
+    personTemplate,
     PersonModel,
-    submitFormHelper,
     SuggestionsView
   ) {
     "use strict"; 
 
     var PersonRemoveView = Backbone.View.extend({
   
+      personTemplate: _.template( personTemplate ),
+
       render: function () {
 
         // winston.verbose( this.model.toJSON() );
 
-        this.$el.html( templates.render(
-          'person/remove.html',
-          {
+        this.$el.html( this.personTemplate( {
             person: this.model.toJSON()
           }
         ));

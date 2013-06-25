@@ -5,7 +5,7 @@ define(
     'backbone-forms',
     'underscore',
     'utils/slugify',
-    'templates',
+    'text!templates/organisation/new.html',
     'instance-admin/models/organisation',
     'instance-admin/views/submit-form-helper',
     'instance-admin/views/suggestions'
@@ -16,7 +16,7 @@ define(
     BackboneForms,
     _,
     slugify,
-    templates,
+    orgTemplate,
     OrganisationModel,
     submitFormHelper,
     SuggestionsView
@@ -25,6 +25,8 @@ define(
 
     var OrganisationNewView = Backbone.View.extend({
   
+      orgTemplate: _.template(orgTemplate),
+
       initialize: function () {
         this.form = new BackboneForms({
 					model: this.model,
@@ -38,7 +40,7 @@ define(
       render: function () {
   
         // render the template and form
-        var $content = $( templates.render('organisation/new.html', {}) );
+        var $content = $( this.orgTemplate() );
         var $form    = $( this.form.render().el );
   
         // add the contents of the form to the template content
@@ -58,7 +60,7 @@ define(
         'keyup input[name=name]':   'nameEdit'
       },
       
-      submitForm: submitFormHelper(),
+      submitForm: submitFormHelper({ type: 'organisation' }),
       
       nameEdit: function (e) {
         // When the name is being entered we should fill in the slug. This will
