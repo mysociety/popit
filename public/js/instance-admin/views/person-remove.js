@@ -5,8 +5,7 @@ define(
     'backbone-forms',
     'underscore',
     'text!templates/person/remove.html',
-    'instance-admin/models/person',
-    'instance-admin/views/suggestions'
+    'instance-admin/models/person'
   ],
   function (
     $,
@@ -14,8 +13,7 @@ define(
     BackboneForms,
     _,
     personTemplate,
-    PersonModel,
-    SuggestionsView
+    PersonModel
   ) {
     "use strict"; 
 

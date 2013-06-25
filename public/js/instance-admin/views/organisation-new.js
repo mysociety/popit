@@ -32,9 +32,9 @@ define(
 					model: this.model,
 					fields: ['name', 'slug']
 				});
-        this.suggestionsView = new SuggestionsView();
+        this.suggestionsView = new SuggestionsView({ url_type: 'organisation' });
         
-        this.suggestionsView.collection.url = '/api/v0.1/organizations';
+        this.suggestionsView.collection.url = '/autocomplete/organizations';
       },
       
       render: function () {

@@ -32,8 +32,8 @@ define(
 					model: this.model,
 					fields: ['name', 'slug']
 				});
-        this.suggestionsView = new SuggestionsView();
-        this.suggestionsView.collection.url = '/api/v0.1/persons';
+        this.suggestionsView = new SuggestionsView({ url_type: 'person' });
+        this.suggestionsView.collection.url = '/autocomplete/persons';
       },
       
       render: function () {

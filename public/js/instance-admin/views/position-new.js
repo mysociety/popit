@@ -8,7 +8,6 @@ define(
     'instance-admin/models/person',
     'instance-admin/models/organisation',
     'instance-admin/models/position',
-    'instance-admin/views/suggestions',
     'instance-admin/utils/select2-helpers'   
     
   ],
@@ -21,7 +20,6 @@ define(
     PersonModel,
     OrganisationModel,
     PositionModel,
-    SuggestionsView,
     select2Helpers
   ) {
     "use strict"; 

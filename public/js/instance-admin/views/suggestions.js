@@ -3,7 +3,7 @@ define(
     'Backbone',
     'underscore',
     'instance-admin/collections/suggestions',
-    'text!templates/person/compact_list.html'
+    'text!templates/suggestions/compact_list.html'
   ],
   function(
     Backbone,
@@ -21,7 +21,7 @@ define(
       listTemplate: _.template( listTemplate ),
 
       render: function () {
-        var content = this.listTemplate({ items: this.collection.toJSON() });
+        var content = this.listTemplate({ url_type: this.options.url_type, items: this.collection.toJSON() });
         this.$el.html( content );
         return this;
       },
