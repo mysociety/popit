@@ -29,8 +29,8 @@ The index page for the API is a directory of what is available:
 // GET http://kenyan-politicians.popit.mysociety.org/api/v0.1
 
 {
-  "comment":"This is the API entry point - use a '*_api_url' link in 'meta' to search a collection.",
-  "meta":{
+  "note": "This is the API entry point - use a '*_api_url' link in 'meta' to search a collection.",
+  "meta": {
     "person_api_url":       "http://kenyan-politicians.popit.mysociety.org/api/v0.1/person",
     "organisation_api_url": "http://kenyan-politicians.popit.mysociety.org/api/v0.1/organisation",
     "position_api_url":     "http://kenyan-politicians.popit.mysociety.org/api/v0.1/position",

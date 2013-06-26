@@ -23,7 +23,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
       
       # Start to enter a detail and then cancel - check no contact added
       @b.link(:text => '+ add a new contact detail').click
-      @b.text_field(:name => 'kind').send_keys( 'Ignore' )
+      @b.text_field(:name => 'type').send_keys( 'Ignore' )
       @b.text_field(:name => 'value').send_keys( 'ignore' )
       @b.button(:name => 'cancel').click
       @b.wait_until { ! @b.form(:class => 'bbf-form').present? }
@@ -33,13 +33,13 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
       
       # Enter a phone number
       @b.link(:text => '+ add a new contact detail').click
-      @b.text_field(:name => 'kind').send_keys( 'Phone')
+      @b.text_field(:name => 'type').send_keys( 'voice')
       @b.text_field(:name => 'value').send_keys( '01234 567 890')
       @b.input(:type => 'submit').click
       
       # Enter an address
       @b.link(:text => '+ add a new contact detail').click
-      @b.text_field(:name => 'kind').send_keys( 'Address' )
+      @b.text_field(:name => 'type').send_keys( 'address' )
       @b.text_field(:name => 'value').send_keys( '1600 Pennsylvania Avenue' )
       @b.input(:name => 'save').click
       
@@ -68,11 +68,11 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
       
       # check that the autocomplete pops up
       @b.element(:text => '11111 222 333').click
-      @b.text_field(:name => 'kind').when_present.set( 'a')
+      @b.text_field(:name => 'type').when_present.set( 'a')
       @b.wait_until { @b.li(:class => 'ui-menu-item').present? }
-      assert_equal @b.li(:class => 'ui-menu-item').text, 'Address'
+      assert_equal @b.li(:class => 'ui-menu-item').text, 'address'
       @b.li(:class => 'ui-menu-item').link.click
-      assert_equal @b.text_field(:name => 'kind').value, 'Address'
+      assert_equal @b.text_field(:name => 'type').value, 'address'
       @b.input(:name => 'save').click
       
       # Delete the phone number
@@ -99,7 +99,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
       
       # Start to enter a detail and then cancel - check no link added
       @b.link(:text => '+ add a new link').click
-      @b.text_field(:name => 'comment').send_keys( 'Ignore' )
+      @b.text_field(:name => 'note').send_keys( 'Ignore' )
       @b.text_field(:name => 'url').send_keys( 'ignore' )
       @b.button(:name => 'cancel').click
       @b.wait_until { ! @b.form(:class => 'bbf-form').present? }
@@ -109,13 +109,13 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
       
       # Enter a wikipedia link
       @b.link(:text => '+ add a new link').click
-      @b.text_field(:name => 'comment').send_keys( 'Wikipedia' )
+      @b.text_field(:name => 'note').send_keys( 'Wikipedia' )
       @b.text_field(:name => 'url').send_keys( 'http://en.wikipedia.org/wiki/George_W._Bush' )
       @b.input(:type => 'submit').click
       
       # Enter a WH link
       @b.link(:text => '+ add a new link').click
-      @b.text_field(:name => 'comment').send_keys( 'White House' )
+      @b.text_field(:name => 'note').send_keys( 'White House' )
       @b.text_field(:name => 'url').send_keys( 'http://www.whitehouse.gov/about/presidents/georgehwbush' )
       @b.input(:name => 'save').click
       
@@ -144,11 +144,11 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
       
       # check that the autocomplete pops up
       assert @b.element(:text => 'Wikipedia:').click
-      @b.text_field(:name => 'comment').when_present.set( 'wik')
+      @b.text_field(:name => 'note').when_present.set( 'wik')
       @b.wait_until { @b.li(:class => 'ui-menu-item').present? }
       assert_equal @b.li(:class => 'ui-menu-item').text, 'Wikipedia'
       @b.li(:class => 'ui-menu-item').link.click
-      assert_equal @b.text_field(:name => 'comment').value, 'Wikipedia'
+      assert_equal @b.text_field(:name => 'note').value, 'Wikipedia'
       @b.input(:name => 'save').click
       
       assert_equal 3, @b.section(:class => 'links').ul.lis.count

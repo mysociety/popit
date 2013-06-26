@@ -14,18 +14,8 @@ exports.persons = [
           "_id" : "4f9ea1306e8770d854c45a1d",
           "name" : "George Bush",
           "_internal": {
-            "name_dm" : [
-                    "JRJ",
-                    "KRK",
-                    "PX",
-                    "PX",
-                    "george",
-                    "bush"
-            ],
-            "name_words" : [
-                    "george",
-                    "bush"
-            ],
+            "name_dm" : [ "JRJ", "KRK", "PX", "PX", "george", "bush" ],
+            "name_words" : [ "george", "bush" ],
           },
           "slug" : "george-bush",
           "summary" : "41th President of the United States"
@@ -37,23 +27,13 @@ exports.persons = [
                   {
                           "_id" : ObjectId("4f9ea1326e8770d854c45a26"),
                           "url" : "http://www.clintonfoundation.org/",
-                          "comment" : "William J. Clinton Foundation"
+                          "note" : "William J. Clinton Foundation"
                   }
           ],
           "name" : "Bill Clinton",
           "_internal": {
-            "name_dm" : [
-                    "PL",
-                    "PL",
-                    "KLNT",
-                    "KLNT",
-                    "bill",
-                    "clinton"
-            ],
-            "name_words" : [
-                    "bill",
-                    "clinton"
-            ],
+            "name_dm" : [ "PL", "PL", "KLNT", "KLNT", "bill", "clinton" ],
+            "name_words" : [ "bill", "clinton" ],
           },
           "slug" : "bill-clinton",
           "summary" : "42nd President of the United States"
@@ -63,22 +43,8 @@ exports.persons = [
           "_id" : "4f9ea1316e8770d854c45a1f",
           "name" : "George W. Bush",
           "_internal": {
-            "name_dm" : [
-                    "JRJ",
-                    "KRK",
-                    "",
-                    "",
-                    "PX",
-                    "PX",
-                    "george",
-                    "w.",
-                    "bush"
-            ],
-            "name_words" : [
-                    "george",
-                    "w.",
-                    "bush"
-            ],
+            "name_dm" : [ "JRJ", "KRK", "", "", "PX", "PX", "george", "w.", "bush" ],
+            "name_words" : [ "george", "w.", "bush" ],
           },
           "slug" : "george-w-bush",
           "summary" : "43rd President of the United States",
@@ -95,18 +61,8 @@ exports.persons = [
           "_id" : "4f9ea1326e8770d854c45a20",
           "name" : "Barack Obama",
           "_internal": {
-            "name_dm" : [
-                    "PRK",
-                    "PRK",
-                    "APM",
-                    "APM",
-                    "barack",
-                    "obama"
-            ],
-            "name_words" : [
-                    "barack",
-                    "obama"
-            ],
+            "name_dm" : [ "PRK", "PRK", "APM", "APM", "barack", "obama" ],
+            "name_words" : [ "barack", "obama" ],
           },
           "slug" : "barack-obama",
           "summary" : "44th President of the United States",

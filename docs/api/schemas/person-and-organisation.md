@@ -60,8 +60,8 @@ This is an array of other names that the person/organisation might have. They co
 
 ``` javascript
 {
-  name:    "Evergreen",
-  comment: "Secret service code name",
+  name: "Evergreen",
+  note: "Secret service code name",
   // start date - to be added
   // end date   - to be added
 }

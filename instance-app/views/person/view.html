@@ -117,7 +117,7 @@
 
       <dl>
         <% _.each( person.other_names, function(name) { %>
-          <dt><%- name.comment || 'Alternative name' %>:</dt>
+          <dt><%- name.note || 'Alternative name' %>:</dt>
           <dd itemprop="name"><%- name.name %></dd>
         <% }); %>
       </dl>

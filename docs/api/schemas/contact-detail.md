@@ -13,7 +13,7 @@ An example entry for the person "Barack Obama":
 ``` javascript
 {
   "_id":   "50ca142132b4846962000008",
-  "kind":  "Address",
+  "type":  "address",
   "value": "The White House, 1600 Pennsylvania Avenue NW, Washington DC, 20500"
 }
 ```
@@ -22,11 +22,14 @@ An example entry for the person "Barack Obama":
 
 Please ignore this field - it will [soon be removed](https://github.com/mysociety/popit/issues/232) from the API.
 
-## Kind
+## Type
 
-This is a free form string that describes what sort of contact detail this is. Suitable values include "Address", "Email", "Mobile", etc.
+This is a string that describes what sort of contact detail this is. Suitable
+values include "address", "email", "voice", etc.
 
-You should make all similar contact details have the same kind string. In the admin this is encouraged by providing autocompletion that suggests kinds used in  existing entries.
+You should make all similar contact details have the same type string. In the
+admin this is encouraged by providing autocompletion that suggests types used
+in existing entries.
 
 ## Value
 

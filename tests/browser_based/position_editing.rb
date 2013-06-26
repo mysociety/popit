@@ -50,8 +50,8 @@ class PositionEditingTests < PopItWatirTestCase
       
       # set the start date, but leave the end date empty
       @b.input(:name, 'start-date').click
-      @b.send_keys '20 Jan 2001'
-      assert_equal @b.input(:name, 'start-date').value, '20 Jan 2001'
+      @b.send_keys '2001-01-20'
+      assert_equal @b.input(:name, 'start-date').value, '2001-01-20'
       
       # submit the form and check that the new position is created
       position_form.submit
@@ -63,7 +63,7 @@ class PositionEditingTests < PopItWatirTestCase
       assert_equal @b.article.h1.text, "President"
       assert_match @b.text, /Person:\ George\ Bush/
       assert_match @b.text, /Organisation:\ United\ States\ Government/
-      assert_match @b.text, /Start\ Date:\ Jan\ 20,\ 2001/
+      assert_match @b.text, /Start\ Date:\ 2001-01-20/
       assert_match @b.text, /End\ Date:\ \?\?\?/
           
       # go back to person page and check that the position is now listed there

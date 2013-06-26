@@ -507,7 +507,7 @@
       }
     },
     "popit-api": {
-      "version": "0.0.6",
+      "version": "0.0.7",
       "from": "git://github.com/mysociety/popit-api.git",
       "dependencies": {
         "express": {

@@ -135,8 +135,8 @@ module.exports = {
               [ 'district', '', '' ],
               [ 'in_office', '', '' ],
               [ 'gender', '', '' ],
-              [ 'phone', 'contact', 'Phone' ],
-              [ 'fax', 'contact', 'Fax' ],
+              [ 'phone', 'contact', 'voice' ],
+              [ 'fax', 'contact', 'fax' ],
               [ 'website', 'links', 'Website' ],
               [ 'webform', 'links', 'Webform' ],
               [ 'congress_office', '', '' ],
@@ -261,8 +261,8 @@ module.exports = {
               [ 'school', 'data', 'School' ],
               [ 'university', 'data', 'University' ],
               [ 'gender', 'data', 'Gender' ],
-              [ 'phone', 'contact', 'Phone' ],
-              [ 'fax', 'contact', 'Fax' ],
+              [ 'phone', 'contact', 'voice' ],
+              [ 'fax', 'contact', 'fax' ],
               [ 'website', 'links', 'Website' ],
               [ 'popit_id', 'id', 'PopIt' ],
               [ 'twitter_id', 'id', 'Twitter' ],
@@ -314,11 +314,11 @@ module.exports = {
             test.equal(p.links.length, 2);
 
             var el;
-            el = _.filter(p.links, function(e) { return e.comment == "Website"; });
+            el = _.filter(p.links, function(e) { return e.note == "Website"; });
             test.equal(el.length, 1);
             test.equal(el[0].url, 'http://www.doe.senate.gov/');
 
-            el = _.filter(p.links, function(e) { return e.comment == "Wikipedia"; });
+            el = _.filter(p.links, function(e) { return e.note == "Wikipedia"; });
             test.equal(el.length, 1);
             test.equal(el[0].url, 'http://www.wikipedia.org/wiki/John_Doe');
 
@@ -335,7 +335,7 @@ module.exports = {
 
 
             test.equal(p.contact_details.length, 1);
-            test.equal(p.contact_details[0].kind, "Phone");
+            test.equal(p.contact_details[0].type, "voice");
             test.equal(p.contact_details[0].value, "734-234-3545");
 
             var data = p.get('data');
