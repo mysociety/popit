@@ -85,6 +85,31 @@
   
   </section>
 
+  <section class="personal-details">
+
+    <h2>Dates</h2>
+
+    <ul class="detail-list">
+
+      <li class="personal_details-birth_date">
+        <%= render( 'partial-date/view.html', {
+          date:             organisation.founding_date,
+          title:            "Founding date",
+          data_api_name: "founding_date",
+        }) %>
+      </li>
+
+      <li class="personal_details-death_date">
+        <%= render( 'partial-date/view.html', {
+          date:             organisation.dissolution_date,
+          title:            "Dissolution date",
+          data_api_name: "dissolution_date",
+        }) %>
+      </li>
+
+    </ul>
+  </section>
+
   <section class="other_names">
     <h2>Alternative names:</h2>
     <ul class="detail-list">

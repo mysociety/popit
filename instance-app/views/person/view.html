@@ -87,14 +87,14 @@
   
   <section class="personal-details">
 
-    <h2>Dates etc</h2>
+    <h2>Dates</h2>
 
     <ul class="detail-list">
 
       <li class="personal_details-birth_date">
         <%= render( 'partial-date/view.html', {
           date:             person.birth_date,
-          title:            "Birthdate",
+          title:            "Date of birth",
           data_api_name: "birth_date",
         }) %>
       </li>
@@ -102,7 +102,7 @@
       <li class="personal_details-death_date">
         <%= render( 'partial-date/view.html', {
           date:             person.death_date,
-          title:            "Deathdate",
+          title:            "Date of death",
           data_api_name: "death_date",
         }) %>
       </li>
