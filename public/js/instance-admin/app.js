@@ -36,10 +36,12 @@ define(
             popit.model = new PersonModel(popit.data);
             setup_sub_model_links('links');
             setup_sub_model_links('contact_details');
+            setup_sub_model_links('other_names');
         } else if (popit.type == 'organization') {
             popit.model = new OrganisationModel(popit.data);
             setup_sub_model_links('links');
             setup_sub_model_links('contact_details');
+            setup_sub_model_links('other_names');
         }
     });
 

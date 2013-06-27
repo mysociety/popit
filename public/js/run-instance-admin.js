@@ -14,6 +14,7 @@ require ([
   'instance-admin/actions/organisation-add-remove',
   'instance-admin/actions/position-add-remove',
   'instance-admin/actions/contact-edit',
+  'instance-admin/actions/other_name-edit',
   'instance-admin/actions/links-edit'
 ]);
 

@@ -85,6 +85,25 @@
   
   </section>
 
+  <section class="other_names">
+    <h2>Alternative names:</h2>
+    <ul class="detail-list">
+    <% _.each( organisation.other_names, function(item) { %>
+      <li>
+        <%= render( 'other_name/view.html', { item: item }) %>
+      </li>
+    <% }); %>
+      <li>
+        <span class="admin-options">
+          <a class="add other_name-edit">
+            <strong>+ add</strong>
+            an alternate name
+          </a>
+        </span>
+      </li>
+  </ul>
+  </section>
+
   <section class="positions">
   
     <h2>Associated people, now or in the past:</h2>

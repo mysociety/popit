@@ -110,20 +110,24 @@
     </ul>
   </section>
   
-  <% if (person.other_names.length) { %>
-    <section class="personal-details">
-
-      <h2>Alternative names:</h2>
-
-      <dl>
-        <% _.each( person.other_names, function(name) { %>
-          <dt><%- name.note || 'Alternative name' %>:</dt>
-          <dd itemprop="name"><%- name.name %></dd>
-        <% }); %>
-      </dl>
-    </section>  
-
-  <% } %>    
+  <section class="other_names">
+    <h2>Alternative names:</h2>
+    <ul class="detail-list">
+    <% _.each( person.other_names, function(item) { %>
+      <li>
+        <%= render( 'other_name/view.html', { item: item }) %>
+      </li>
+    <% }); %>
+      <li>
+        <span class="admin-options">
+          <a class="add other_name-edit">
+            <strong>+ add</strong>
+            an alternate name
+          </a>
+        </span>
+      </li>
+  </ul>
+  </section>
 
   <section class="positions">
 
