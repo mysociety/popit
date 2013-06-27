@@ -1,22 +1,13 @@
-define( [ 'Backbone', 'underscore',
+define( [ 'Backbone',
+    'instance-admin/models/nested',
     'instance-admin/collections/contacts',
     'instance-admin/collections/links'
 ],
-function ( Backbone, _, ContactCollection, LinkCollection ) {
+function ( Backbone, NestedModel, ContactCollection, LinkCollection ) {
   "use strict"; 
 
-  var PersonModel = Backbone.Model.extend({
+  var PersonModel = NestedModel.extend({
     urlRoot: '/api/v0.1/persons',
-
-    nest: function(key, Collection, attrs) {
-      if (this[key]) {
-        this[key].reset( attrs[key] );
-      } else {
-        this[key] = new Collection( attrs[key] );
-        this[key].on('add change remove', function(){ this.save(); }, this);
-      }
-      attrs[key] = this[key];
-    },
 
     set: function(attrs, options) {
       this.nest('links', LinkCollection, attrs);

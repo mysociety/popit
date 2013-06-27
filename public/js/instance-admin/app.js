@@ -38,6 +38,8 @@ define(
             setup_sub_model_links('contact_details');
         } else if (popit.type == 'organization') {
             popit.model = new OrganisationModel(popit.data);
+            setup_sub_model_links('links');
+            setup_sub_model_links('contact_details');
         }
     });
 

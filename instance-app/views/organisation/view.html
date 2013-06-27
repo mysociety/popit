@@ -114,7 +114,57 @@
     </dl>    
   </section>
 
-  
+  <section class="contact_details">
+
+    <h2>Contact Information:</h2>
+
+    <ul class="detail-list">
+
+      <% _.each( organisation.contact_details, function ( item ) { %>
+        <li>
+          <%= render( 'contact/view.html', {
+            item:         item,
+          }) %>
+        </li>
+      <% }); %>
+
+      <li>
+        <span class="admin-options">
+          <a class="add contact-edit">
+            <strong>+ add</strong>
+            a new contact detail
+          </a>
+        </span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="links">
+
+    <h2>Links:</h2>
+
+    <ul class="detail-list">
+      <% _.each( organisation.links, function (item) { %>
+        <li>
+          <%= render( 'link/view.html', {
+             item:         item,
+          }) %>
+        </li>
+      <% }); %>
+
+      <li>
+        <span class="admin-options">
+          <a class="add link-edit">
+            <strong>+ add</strong>
+            a new link
+          </a>
+        </span>
+      </li>
+
+    </ul>
+
+  </section>
+
   <section class="raw-data">
     <h2>Raw data</h2>
     <p>
