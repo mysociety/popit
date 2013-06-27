@@ -79,45 +79,39 @@ define(
       
       cancelEntry: function (event) {
         event.preventDefault();
-        if ( this.model.id ) {
+        if ( this.model.exists ) {
           // model soved on server - re-render it.
-          this.render_listing( this.model );
+          this.render_listing();
         } else {
           // model a new one - remove the whole input form.
           this.remove();
         }
       },
       
-      render_listing: function (model) {
+      render_listing: function () {
         var view = this;
 
         var template_args = {
-          item: model.toJSON()
+          item: this.model.toJSON()
         };
         
-        view.$el.html( view.template( template_args ) );
+        view.$el.html( view.options.template( template_args ) );
       },
 
-      submitForm: function (event) {
-        var view = this;
-        
-        var submitter = submitFormHelper({
 
-          // Assume that the save will be a success - update the form at once
-          pre_save_cb: function () {
-            view.render_listing( view.model );
-          },
-
-          // Also render upon response - in case details have changed on server.
-          success_cb: function (model, response) {
-            view.render_listing(model);
-          },
-          view: view
-        });
-        
-        submitter(event);
+      submitForm: function (e) {
+        e.preventDefault();
+        var form = this.form,
+            model = this.model,
+            errors = form.commit();
+        if (_.isEmpty(errors)) {
+          this.render_listing();
+          if (!model.exists) {
+              model.collection.add(model);
+          }
+        }
       }
-      
+
     });
   
     return ListItemEditView;

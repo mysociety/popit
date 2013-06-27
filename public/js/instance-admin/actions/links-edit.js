@@ -1,26 +1,30 @@
+/*global popit:false */
 // Launch a backbone powered entry box when someone adds/edits a link
 
 define(
   [
     'jquery',
     'instance-admin/actions/list-item-editor',
-    'instance-admin/models/link'
+    'text!templates/link/view.html'
   ],
   function (
     $,
     ListItemEditor,
-    LinkModel
+    LinkTemplate
   ) {
     "use strict";     
 
     $(function(){
+      if (typeof popit === 'undefined') {
+         return;
+      }
 
       $('#content').on(
         'click',
         '.link-edit',
         new ListItemEditor({
-          model:    LinkModel,
-          template: 'link/view.html'
+          collection: popit.model.get('links'),
+          template: LinkTemplate
         })
       );
 

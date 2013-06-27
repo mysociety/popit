@@ -77,11 +77,11 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
       
       # Delete the phone number
       @b.refresh    
-      assert_equal 3, @b.section(:class => 'contact-information').ul.lis.count
+      assert_equal 3, @b.section(:class => 'contact_details').ul.lis.count
       @b.element(:text => '11111 222 333').click
       @b.wait_until { @b.button(:name => 'delete').present? }
       @b.button(:name => 'delete').click
-      @b.wait_until { 2 == @b.section(:class => 'contact-information').ul.lis.count }
+      @b.wait_until { 2 == @b.section(:class => 'contact_details').ul.lis.count }
       assert ! @b.element(:text => '11111 222 333').present?
     }
   end

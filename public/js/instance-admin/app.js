@@ -34,10 +34,23 @@ define(
         }
         if (popit.type == 'person') {
             popit.model = new PersonModel(popit.data);
+            setup_sub_model_links('links');
+            setup_sub_model_links('contact_details');
         } else if (popit.type == 'organization') {
             popit.model = new OrganisationModel(popit.data);
         }
     });
+
+    function setup_sub_model_links(key) {
+      popit.model[key].on('reset', function(){
+        $('section.' + key + ' li').each(function(i, l){
+          var m = popit.model.get(key).at(i);
+          if (!m) return;
+          $.data(l, 'id', m.cid);
+        });
+      });
+      popit.model[key].trigger('reset');
+    }
 
   }
 );

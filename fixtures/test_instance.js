@@ -24,11 +24,10 @@ exports.persons = [
           "__v" : 1,
           "_id" : "4f9ea1316e8770d854c45a1e",
           "links" : [
-                  {
-                          "_id" : ObjectId("4f9ea1326e8770d854c45a26"),
-                          "url" : "http://www.clintonfoundation.org/",
-                          "note" : "William J. Clinton Foundation"
-                  }
+              {
+                  "url" : "http://www.clintonfoundation.org/",
+                  "note" : "William J. Clinton Foundation"
+              }
           ],
           "name" : "Bill Clinton",
           "_internal": {

@@ -18,39 +18,39 @@ define(
     
     return function (args) {
 
-      var Model    = args.model;
+      var collection = args.collection;
 
       return function(event) {
-        var $link    = $(this);
-        var $element = $(this).closest('li');
-
         event.preventDefault();
 
+        var $link    = $(this),
+            $element = $link.closest('li'),
+            cid = $element.data('id'),
+            object;
+
         // create contact. Might be existing one, or a new one.
-        var object = new Model({});
-        var id = $link.attr('data-id');
-        if (id) object.id = id;
+        if (cid) {
+            object = collection.get(cid);
+            object.exists = true;
+        } else {
+            object = new collection.model({}, { collection: collection });
+            object.exists = false;
+        }
         
         // create the view. Hook it up to the enclosing element.
         var view = new ListItemEditView({
+          template: _.template(args.template),
           model:    object,
           el:       $element
         });
 
-        // set the template on the view
-        view.template = _.template(args.template);
-        
-        if (object.isNew()) {
+        if (!cid) {
           // clone the li item so that the 'create new' link is still present.
           $element.after( $element.clone() );
-          // render the form - no need to fetch content.
-          view.render();
-        } else {
-          // If it is existing then fetch latest details from the API (they'll
-          // get rendered by the 'change' event).
-          object.fetch();
+          $element.data('id', object.cid);
         }
-        
+
+        view.render();
       };
     };
 
