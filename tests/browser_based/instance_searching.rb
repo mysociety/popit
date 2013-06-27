@@ -36,7 +36,7 @@ class InstanceSearchingTests < PopItWatirTestCase
     prep_for_test
     run_search 'Clinton'      
     # only one result should redirect straight to the result
-    assert_path '/person/bill-clinton'
+    assert_path '/persons/bill-clinton'
   end    
 
   def test_multi_result_search

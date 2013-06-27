@@ -82,7 +82,7 @@ class MigrationTests < PopItWatirTestCase
 
     # check that the names are there correctly
     @b.link(:id => "_finished").click
-    assert @b.url['/person']
+    assert @b.url['/persons']
     assert @b.text['Joe Bloggs']
     assert @b.text['D’Angelo “Oddball” Fritz']
 
@@ -118,7 +118,7 @@ class MigrationTests < PopItWatirTestCase
     
     # check that the names are there correctly
     @b.link(:id => "_finished").click
-    assert @b.url['/person']
+    assert @b.url['/persons']
     assert @b.text['Bath commuters’ “More Train Less Strain” campaign']
     assert @b.text['Ivybridge Rail Users’ Group']
 

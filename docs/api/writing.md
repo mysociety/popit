@@ -48,9 +48,9 @@ All the not implemented methods will return the status code `405 Method Not Allo
 
 ### Listing documents in a collection
 
-If you go to a url such as `/api/v0.1/person` you will then get an array of all the entries in the database. Each item in the array is the complete document so there is no need to request the document again for more details.
+If you go to a url such as `/api/v0.1/persons` you will then get an array of all the entries in the database. Each item in the array is the complete document so there is no need to request the document again for more details.
 
-You can filter the results using query arguments - eg `/api/v0.1/person?name=joe`.
+You can filter the results using query arguments - eg `/api/v0.1/persons?name=joe`.
 
 See also the notes on reading a single document below.
 
@@ -77,7 +77,7 @@ $ curl                                                 \
     --header "Accept: application/json"                \
     --header "Content-Type: application/json"          \
     --data '{ "name": "Joe Bloggs" }'                  \
-    http://test.127.0.0.1.xip.io:3000/api/v0.1/person
+    http://test.127.0.0.1.xip.io:3000/api/v0.1/persons
 
 {
   "result": {
@@ -99,8 +99,8 @@ $ curl                                                 \
     "contact_details": [],
     "other_names": [],
     "meta": {
-      "api_url": "http://test.127.0.0.1.xip.io:3000/api/v0.1/person/50d1f2e1c03858f9f6000006",
-      "edit_url": "http://test.127.0.0.1.xip.io:3000/person/joe-bloggs",
+      "api_url": "http://test.127.0.0.1.xip.io:3000/api/v0.1/persons/50d1f2e1c03858f9f6000006",
+      "edit_url": "http://test.127.0.0.1.xip.io:3000/persons/joe-bloggs",
       "positions_api_url": "http://test.127.0.0.1.xip.io:3000/api/v0.1/position?person_id=50d1f2e1c03858f9f6000006"
     }
   }
@@ -125,7 +125,7 @@ Sending a `DELETE` request to a document url will cause that document to be dele
 $ curl                                     \
     --user you@example.com:s3cr3t          \
     -X DELETE                              \
-    http://test.127.0.0.1.xip.io:3000/api/v0.1/person/50d1f2e1c03858f9f6000006
+    http://test.127.0.0.1.xip.io:3000/api/v0.1/persons/50d1f2e1c03858f9f6000006
 
 {}
 ```

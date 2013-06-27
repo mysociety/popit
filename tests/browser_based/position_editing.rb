@@ -20,7 +20,7 @@ class PositionEditingTests < PopItWatirTestCase
       delete_instance_database
       load_test_fixture
       login_as user_type
-      goto '/person/george-bush'
+      goto '/persons/george-bush'
       
       def position_form
         return @b.form(:name, "create-new-position")
@@ -67,7 +67,7 @@ class PositionEditingTests < PopItWatirTestCase
       assert_match @b.text, /End\ Date:\ \?\?\?/
           
       # go back to person page and check that the position is now listed there
-      goto '/person/george-bush'
+      goto '/persons/george-bush'
       assert_match @b.section(:class, 'positions').text, /President/
       
       # create a new position but with new title and organization
@@ -97,7 +97,7 @@ class PositionEditingTests < PopItWatirTestCase
       assert_match @b.text, /Organization:\ 1600\ Penn\ Hotel/
       
       # check that the new title and org are in the possible options
-      goto '/person/george-bush'
+      goto '/persons/george-bush'
       @b.link(:text, '+ add a new position').click
       position_form.wait_until_present
       

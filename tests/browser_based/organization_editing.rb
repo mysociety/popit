@@ -25,7 +25,7 @@ class OrganizationEditingTests < PopItWatirTestCase
       login_as user_type    
       
       # goto bush and check he is there
-      goto '/organization/united-states-government'    
+      goto '/organizations/united-states-government'    
       
       check_delete_entity(
         :delete_link_text => '- delete this organization',
@@ -40,7 +40,7 @@ class OrganizationEditingTests < PopItWatirTestCase
       goto_instance 'test'
       delete_instance_database
       load_test_fixture
-      goto '/organization/united-states-government'    
+      goto '/organizations/united-states-government'    
 
       check_editing_summary user_type
 
@@ -58,14 +58,14 @@ class OrganizationEditingTests < PopItWatirTestCase
       goto_instance 'test'
       delete_instance_database
       load_test_fixture
-      goto '/organization'
+      goto '/organizations'
 
       # check that the create new organization link is not shown.
       assert ! add_organization_link.present?
       
       # login and check link is visible
       login_as user_type
-      goto '/organization'
+      goto '/organizations'
       assert @b.link(:text, '+ Add a new organization').present?
       
       # click on the create new organization link and check that the form has popped up    
@@ -84,7 +84,7 @@ class OrganizationEditingTests < PopItWatirTestCase
       @b.input(:value, "Create new organization").click
       @b.wait_until { @b.title != 'Organizations' }
       assert_equal "Acme Inc", @b.title
-      assert_path '/organization/acme-inc'
+      assert_path '/organizations/acme-inc'
       
       # check that this organization is in the list of organizations too
       @b.back
@@ -114,7 +114,7 @@ class OrganizationEditingTests < PopItWatirTestCase
       
       # click on a suggestion, check get existing organization
       @b.ul(:class, 'suggestions').li.link.click
-      assert_path '/organization/united-states-government'
+      assert_path '/organizations/united-states-government'
       
       # enter dup, create anyway, check for new organization
       @b.back
@@ -123,7 +123,7 @@ class OrganizationEditingTests < PopItWatirTestCase
       @b.text_field(:name, 'name').set "United States Government"
       @b.input(:value, "Create new organization").click
       @b.wait_until { @b.title != 'Organizations' }
-      assert_path '/organization/united-states-government-1'
+      assert_path '/organizations/united-states-government-1'
       
       # enter name that can't be slugged
       @b.back
@@ -138,7 +138,7 @@ class OrganizationEditingTests < PopItWatirTestCase
       @b.input(:value, "Create new organization").click
       @b.wait_until { @b.title != 'Organizations' }
       assert_equal "网页", @b.title
-      assert_path '/organization/chinese-name'
+      assert_path '/organizations/chinese-name'
     }
   end
 

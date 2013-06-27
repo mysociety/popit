@@ -19,7 +19,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
       load_test_fixture
       goto '/'
       login_as user_type
-      goto '/person/george-bush'    
+      goto '/persons/george-bush'    
       
       # Start to enter a detail and then cancel - check no contact added
       @b.link(:text => '+ add a new contact detail').click
@@ -95,7 +95,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
       load_test_fixture
       goto '/'
       login_as user_type
-      goto '/person/george-bush'    
+      goto '/persons/george-bush'    
       
       # Start to enter a detail and then cancel - check no link added
       @b.link(:text => '+ add a new link').click

@@ -43,7 +43,7 @@ define(
         this.model.destroy(
           {
             success: function (model, response) {
-              document.location = '/person';
+              document.location = '/persons';
             },
             error: function (model, response) {
               window.alert("Something went wrong with the delete - please try again");

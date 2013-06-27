@@ -90,7 +90,7 @@ class PopItWatirTestCase < Test::Unit::TestCase
 
     # We can't always rely on the fixture to have loaded before the page comes
     # back. Check that the right data is on the person's page.
-    goto '/person'
+    goto '/persons'
     @b.li(:text, "George W. Bush").wait_until_present
 
     goto_dev_page

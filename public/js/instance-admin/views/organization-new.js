@@ -32,7 +32,7 @@ define(
 					model: this.model,
 					fields: ['name', 'slug']
 				});
-        this.suggestionsView = new SuggestionsView({ url_type: 'organization' });
+        this.suggestionsView = new SuggestionsView({ url_type: 'organizations' });
         
         this.suggestionsView.collection.url = '/autocomplete/organizations';
       },
@@ -60,7 +60,7 @@ define(
         'keyup input[name=name]':   'nameEdit'
       },
       
-      submitForm: submitFormHelper({ type: 'organization' }),
+      submitForm: submitFormHelper({ type: 'organizations' }),
       
       nameEdit: function (e) {
         // When the name is being entered we should fill in the slug. This will

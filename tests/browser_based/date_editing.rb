@@ -35,7 +35,7 @@ class DateEditingTests < PopItWatirTestCase
       login_as user_type
 
       # open Barack's page
-      goto '/person'
+      goto '/persons'
       @b.link(:text => 'Barack Obama').click
 
       # Store the path to the date 

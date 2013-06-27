@@ -15,7 +15,7 @@ For an image stored on the instance:
   "mime_type": "image/jpeg",
   "created": "2012-12-13T17:26:39.326Z",
   "meta": {
-    "image_url": "http://instance.example.org/person/barack-obama/images/50ca0fcf32b4846962000006",
+    "image_url": "http://instance.example.org/persons/barack-obama/images/50ca0fcf32b4846962000006",
     "can_use_image_proxy": true
   }
 }

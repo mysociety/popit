@@ -10,7 +10,7 @@ These examples will show you some requests that you can make to the API and prov
 
 The API is REST based - which means that the URL is used to specify what you are looking for, and the HTTP method is used to specify what you want to do with it.
 
-So a `GET` of `/api/v0.1/person/1234` will get the details for the person with id `1234`, and a `POST` of data to `/api/v0.1/organization` will create a new organization.
+So a `GET` of `/api/v0.1/persons/1234` will get the details for the person with id `1234`, and a `POST` of data to `/api/v0.1/organizations` will create a new organization.
 
 ## Where can I try API requests?
 
@@ -31,8 +31,8 @@ The index page for the API is a directory of what is available:
 {
   "note": "This is the API entry point - use a '*_api_url' link in 'meta' to search a collection.",
   "meta": {
-    "person_api_url":       "http://kenyan-politicians.popit.mysociety.org/api/v0.1/person",
-    "organization_api_url": "http://kenyan-politicians.popit.mysociety.org/api/v0.1/organization",
+    "person_api_url":       "http://kenyan-politicians.popit.mysociety.org/api/v0.1/persons",
+    "organization_api_url": "http://kenyan-politicians.popit.mysociety.org/api/v0.1/organizations",
     "position_api_url":     "http://kenyan-politicians.popit.mysociety.org/api/v0.1/position",
     "image_proxy_url":      "http://kenyan-politicians.popit.mysociety.org/image-proxy/"
   }
@@ -42,7 +42,7 @@ The index page for the API is a directory of what is available:
 You could then view a list of all the people in the database:
 
 ``` javascript
-// GET http://kenyan-politicians.popit.mysociety.org/api/v0.1/person
+// GET http://kenyan-politicians.popit.mysociety.org/api/v0.1/persons
 
 {
   "results": [
@@ -71,8 +71,8 @@ You could then view a list of all the people in the database:
       "contact_details": [],
       "other_names": [],
       "meta": {
-        "api_url": "http://kenyan-politicians.popit.mysociety.org/api/v0.1/person/50c60a5f71ec32dd6e000c3d",
-        "edit_url": "http://kenyan-politicians.popit.mysociety.org/person/hassan-omar-hassan-sarai"
+        "api_url": "http://kenyan-politicians.popit.mysociety.org/api/v0.1/persons/50c60a5f71ec32dd6e000c3d",
+        "edit_url": "http://kenyan-politicians.popit.mysociety.org/persons/hassan-omar-hassan-sarai"
       }
     },
     // ... more person entries ...
@@ -83,7 +83,7 @@ You could then view a list of all the people in the database:
 And finally view the record for an individual person in the database:
 
 ``` javascript
-// GET http://kenyan-politicians.popit.mysociety.org/api/v0.1/person/50c60c3c71ec32dd6e00199a
+// GET http://kenyan-politicians.popit.mysociety.org/api/v0.1/persons/50c60c3c71ec32dd6e00199a
 // (note - this url may 404 if the data in this instance has been reloaded.)
 
 {
@@ -116,7 +116,7 @@ And finally view the record for an individual person in the database:
     "contact_details": [],
     "other_names": [],
     "meta": {
-      "edit_url": "http://kenyan-politicians.popit.mysociety.org/person/wycliffe-william-osundwa",
+      "edit_url": "http://kenyan-politicians.popit.mysociety.org/persons/wycliffe-william-osundwa",
       "positions_api_url": "http://kenyan-politicians.popit.mysociety.org/api/v0.1/position?person_id=50c60c3c71ec32dd6e00199a"
     }
   }

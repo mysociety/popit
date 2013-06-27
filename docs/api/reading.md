@@ -15,7 +15,7 @@ No authentication is required for read access.
 All `GET` requests are returned `JSON` responses. These will have the form:
 
 ``` javascript
-// For a collection read, eg '.../person'
+// For a collection read, eg '.../persons'
 {
   "results": [
     // list of {} results here
@@ -24,7 +24,7 @@ All `GET` requests are returned `JSON` responses. These will have the form:
 ```
 
 ``` javascript
-// For a document read, eg '.../person/1234'
+// For a document read, eg '.../persons/1234'
 {
   "result": {
     // The data stored for the person

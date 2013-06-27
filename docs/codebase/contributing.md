@@ -35,7 +35,7 @@ When you run the code locally and are in `development` or `testing` mode the dev
 
 On the master site this will let you delete, create and goto instances. On the instance sites it will let you delete the database and load the test fixture which contains a few sample people (recent US Presidents).
 
-Loading this data make dev easier as there is some data to work with, and you can share links to it with others that they can run on their own machines. For example [Bill Clinton](http://test.127.0.0.1.xip.io:3000/person/bill-clinton).
+Loading this data make dev easier as there is some data to work with, and you can share links to it with others that they can run on their own machines. For example [Bill Clinton](http://test.127.0.0.1.xip.io:3000/persons/bill-clinton).
 
 By convention the instance name is set to `test`.
 

@@ -41,7 +41,7 @@ define(
         this.model.destroy(
           {
             success: function (model, response) {
-              document.location = '/organization';
+              document.location = '/organizations';
             },
             error: function (model, response) {
               window.alert("Something went wrong with the delete - please try again");

@@ -19,13 +19,13 @@
     <% if (persons.length) { %>    
       <% _.each( persons, function(person) { %>
         <li> 
-          <a href="/person/<%- person.slug %>"><%- person.name %></a>
+          <a href="/persons/<%- person.slug %>"><%- person.name %></a>
         </li>
       <% }); %>
       <% if (person_count > summary_listing_count) { %>
         <li>
           and 
-          <a href="/person"><%- person_count - summary_listing_count %> more</a>
+          <a href="/persons"><%- person_count - summary_listing_count %> more</a>
         </li>
       <% } %>
     <% } else { %>
@@ -42,7 +42,7 @@
   </ul>
 
   <p>
-    <a href="/person">Complete list (<%- person_count %>)</a>
+    <a href="/persons">Complete list (<%- person_count %>)</a>
   </p>
 
 </div>
@@ -56,13 +56,13 @@
     <% if (organizations.length) { %>    
       <% _.each( organizations, function(organization) { %>
         <li> 
-          <a href="/organization/<%- organization.slug %>"><%- organization.name %></a>
+          <a href="/organizations/<%- organization.slug %>"><%- organization.name %></a>
         </li>
       <% }); %>
       <% if (organization_count > summary_listing_count) { %>
         <li>
           and 
-          <a href="/organization"><%- organization_count - summary_listing_count %> more</a>
+          <a href="/organizations"><%- organization_count - summary_listing_count %> more</a>
         </li>  
       <% } %>
     <% } else { %>
@@ -79,7 +79,7 @@
   </ul>
   
   <p>
-    <a href="/organization">Complete list (<%- organization_count %>)</a>
+    <a href="/organizations">Complete list (<%- organization_count %>)</a>
   </p>
 
 </div>
