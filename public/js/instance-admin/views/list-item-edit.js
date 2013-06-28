@@ -20,8 +20,6 @@ define(
   
       initialize: function () {
       
-        this.model.on( 'change', this.render, this );
-      
         this.form = new BackboneForms({
           model: this.model
         });
@@ -106,6 +104,9 @@ define(
             errors = form.commit();
         if (_.isEmpty(errors)) {
           this.render_listing();
+          if (model.direct) {
+              model.save();
+          }
           if (!model.exists) {
               model.collection.add(model);
           }

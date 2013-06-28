@@ -10,6 +10,7 @@
     var popit = popit || {};
     popit.type = 'organization';
     popit.data = <%= JSON.stringify(organization.toJSON()) %>;
+    popit.posts = <%= JSON.stringify(posts) %>;
 </script>
 
 <article class="entity organization">
@@ -127,6 +128,20 @@
         </span>
       </li>
   </ul>
+  </section>
+
+  <section class="posts">
+
+    <h2>Associated posts</h2>
+
+    <ul>
+      <% _.each( posts, function ( post ) { %>
+        <li><%= render( 'post/view.html', { item: post }) %></li>
+      <% }); %>
+      <li><span class="admin-options">
+        <a class="add edit-post"> <strong>+ add</strong> a new post </a>
+        </span></li>
+    </ul>
   </section>
 
   <section class="positions">

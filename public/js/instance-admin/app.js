@@ -7,6 +7,7 @@ define(
   [
     'jquery',
     'Backbone',
+    'instance-admin/collections/posts',
     'instance-admin/models/person',
     'instance-admin/models/organization',
     'jquery.fancybox'
@@ -14,6 +15,7 @@ define(
   function (
     $,
     Backbone,
+    PostCollection,
     PersonModel,
     OrganizationModel
   ) {
@@ -42,13 +44,15 @@ define(
             setup_sub_model_links('links');
             setup_sub_model_links('contact_details');
             setup_sub_model_links('other_names');
+            popit.model.posts = new PostCollection(popit.posts);
+            setup_sub_model_links('posts'); // No reset happens, just for initial setup
         }
     });
 
     function setup_sub_model_links(key) {
       popit.model[key].on('reset', function(){
         $('section.' + key + ' li').each(function(i, l){
-          var m = popit.model.get(key).at(i);
+          var m = popit.model[key].at(i);
           if (!m) return;
           $.data(l, 'id', m.cid);
         });

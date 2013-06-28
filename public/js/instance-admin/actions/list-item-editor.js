@@ -19,6 +19,7 @@ define(
     return function (args) {
 
       var collection = args.collection;
+      var defaults = args.defaults || {};
 
       return function(event) {
         event.preventDefault();
@@ -33,9 +34,10 @@ define(
             object = collection.get(cid);
             object.exists = true;
         } else {
-            object = new collection.model({}, { collection: collection });
+            object = new collection.model(defaults, { collection: collection });
             object.exists = false;
         }
+        object.direct = args.direct;
         
         // create the view. Hook it up to the enclosing element.
         var view = new ListItemEditView({
