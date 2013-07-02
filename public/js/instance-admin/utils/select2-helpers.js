@@ -50,7 +50,7 @@ define(
               function (doc) {
                 return {
                   id: doc.id,
-                  text: doc.name
+                  text: doc[args.lookup_term || 'name']
                 };
               }
             );
@@ -58,6 +58,7 @@ define(
           }
         },
         createSearchChoice: function (term) {
+          if (args.no_creation) return null;
           return {
             id: 0,
             text: term
@@ -87,6 +88,7 @@ define(
          },
          formatResult: function (object, container) {
            var $element = $('<span>').text(object.text);
+           if (args.no_creation) return $element;
            $element.append(
               object.id ?
                  "<em> &larr; select to use existing entry</em>" :

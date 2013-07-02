@@ -34,7 +34,7 @@ class MembershipEditingTests < PopItWatirTestCase
       
       # Submit the form and check that it complains about missing role
       membership_form.submit
-      assert_equal @b.ul(:class, 'error').text, "Role is required"
+      assert_equal @b.ul(:class, 'error').text, "You must specify a role or a post."
       
       # click on the role and select President
       select2_container('role').link.click
