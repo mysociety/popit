@@ -144,30 +144,24 @@
     </ul>
   </section>
 
-  <section class="positions">
+  <section class="memberships">
   
     <h2>Associated people, now or in the past:</h2>
   
     <ul class="admin-options">
       <li>
-        <a  data-organization-id="<%- organization.id %>"
-          data-organization-hide-field="1"
-          class="add new-position">
+        <a class="add new-membership">
           <strong>+ add</strong>
-          a new position
+          a new membership
         </a>
       </li>
     </ul>
 
     <dl>
-      <% _.each( positions, function ( position ) { %>
-        <dt><a href="/position/<%- position.id %>"><%- position.title %></a>:</dt>
+      <% _.each( memberships, function ( membership ) { %>
+        <dt><a href="/memberships/<%- membership.id %>"><%- membership.role %></a>:</dt>
         <dd>
-          <% if (position.person_id) { %>
-            <a href="<%- position.person_id.slug_url%>" ><%- position.person_id.name %></a>
-          <% } else { %>
-            unknown
-          <% } %>
+          <a href="<%- membership.person_id.slug_url%>" ><%- membership.person_id.name %></a>
         </dd>
       <% }); %>
     </dl>    

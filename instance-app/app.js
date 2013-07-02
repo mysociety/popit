@@ -97,7 +97,7 @@ app.configure( function () {
 
   app.use('/migration',      require('../lib/apps/migration')() );
   app.use('/persons',        require('../lib/apps/person')() );
-  app.use('/position',       require('../lib/apps/position')() );
+  app.use('/memberships',    require('../lib/apps/membership')() );
   app.use('/organizations',  require('../lib/apps/organization')() );
   app.use('/about',          require('../lib/apps/about')() );
 

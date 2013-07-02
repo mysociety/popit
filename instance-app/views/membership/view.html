@@ -1,37 +1,33 @@
 <%= render(
   'html_head.html',
   {
-    title:       position.name,
+    title:       membership.name,
     description: '',
   }
 ) %>
 
 <h1></h1>
 
-<article class="position">
+<article class="membership">
 
-  <h1><%- position.title %></h1>
+  <h1><%- membership.role %></h1>
 
-  <% if (position.person_id) { %>
     <section class="person">
       <p>
         Person:
-        <a href="<%- position.person_id.slug_url %>"><%- position.person_id.name %></a>
+        <a href="<%- membership.person_id.slug_url %>"><%- membership.person_id.name %></a>
       </p>
     </section>
-  <% } %>
 
-  <% if (position.organization_id) { %>
     <section class="organization">
       <p>
         Organization:
-        <a href="<%- position.organization_id.slug_url %>"><%- position.organization_id.name %></a>
+        <a href="<%- membership.organization_id.slug_url %>"><%- membership.organization_id.name %></a>
       </p>
     </section>
-  <% } %>
 
-  <p>Start Date: <%- position.start_date.formatted || '???' %></p>
-  <p>End Date:   <%- position.end_date.formatted   || '???' %></p>
+  <p>Start Date: <%- membership.start_date || 'Unknown' %></p>
+  <p>End Date:   <%- membership.end_date   || 'Unknown' %></p>
 
   <section class="to_be_added">
     <p>
@@ -45,7 +41,7 @@
     <h2>Raw data</h2>
     <p>
       The details for this organization are also available in
-      <a href="/api/v0.1/memberships/#{position.id}">JSON</a>.
+      <a href="/api/v0.1/memberships/#{membership.id}">JSON</a>.
     </p>
   </section>
 

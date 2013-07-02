@@ -51,7 +51,7 @@ class MigrationTests < PopItWatirTestCase
     @b.select_list(:xpath, "//tr[@id='id_Email']//select").select("Contact Information")
     @b.text_field(:xpath, "//tr[@id='id_Email']//input[@name='db-attribute']").set("Email")
 
-    @b.select_list(:xpath, "//tr[@id='id_Party']//select").select("Position")
+    @b.select_list(:xpath, "//tr[@id='id_Party']//select").select("Membership")
     @b.text_field(:xpath, "//tr[@id='id_Party']//input[@name='db-attribute']").set("Party")
 
     @b.select_list(:xpath, "//tr[@id='id_Date_of_Birth']//select").select("Name, birthday & similar")

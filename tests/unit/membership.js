@@ -28,7 +28,7 @@ module.exports = {
         this.popit.close_db_connections(cb);
     },
     
-    "get positions from person (with cb)": function ( test ) {    
+    "get memberships from person (with cb)": function ( test ) {    
         test.expect( 4 );
 
         this.popit.model('Person').findOne({slug: 'barack-obama'}, function(err, obama) {
@@ -36,45 +36,45 @@ module.exports = {
           
           test.equal( obama.name, "Barack Obama", "Got Obama");
         
-          obama.find_positions(function(err, positions) {
+          obama.find_memberships(function(err, memberships) {
             test.ifError(err);
-            test.equal( positions.length, 1, "count positions");
-            test.equal( positions[0].title, "President", "is president");
+            test.equal( memberships.length, 1, "count memberships");
+            test.equal( memberships[0].role, "President", "is president");
             test.done();
           });        
         });        
     },
     
-    "get positions from person (without cb)": function ( test ) {    
+    "get memberships from person (without cb)": function ( test ) {    
         test.expect( 4 );
 
         this.popit.model('Person').findOne({slug: 'barack-obama'}, function(err, obama) {
           if (err) throw err;
           test.equal( obama.name, "Barack Obama", "Got Obama");
 
-          var positions = obama.find_positions();
+          var memberships = obama.find_memberships();
         
-          positions.exec(function(err, positions) {
+          memberships.exec(function(err, memberships) {
 
             test.ifError(err);
 
-            test.equal( positions.length, 1, "count positions");
-            test.equal( positions[0].title, "President", "is president");
+            test.equal( memberships.length, 1, "count memberships");
+            test.equal( memberships[0].role, "President", "is president");
             test.done();
           });        
         });        
     },
     
-    "get positions from organization": function ( test ) {    
+    "get memberships from organization": function ( test ) {    
         test.expect( 3 );
 
         this.popit.model('Organization').findOne({slug: 'united-states-government'}, function(err, usg) {
           if (err) throw err;
           test.equal( usg.name, "United States Government", "Got USG");
 
-          usg.find_positions(function(err, positions) {
+          usg.find_memberships(function(err, memberships) {
             test.ifError(err);
-            test.equal( positions.length, 4, "count positions");
+            test.equal( memberships.length, 4, "count memberships");
             test.done();
           });        
         });        

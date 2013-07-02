@@ -10,7 +10,6 @@ exports.users = [
 
 exports.persons = [
   {
-          "__v" : 1,
           "_id" : "4f9ea1306e8770d854c45a1d",
           "name" : "George Bush",
           "_internal": {
@@ -21,7 +20,6 @@ exports.persons = [
           "summary" : "41th President of the United States"
   },
   {
-          "__v" : 1,
           "_id" : "4f9ea1316e8770d854c45a1e",
           "links" : [
               {
@@ -38,7 +36,6 @@ exports.persons = [
           "summary" : "42nd President of the United States"
   },
   {
-          "__v" : 1,
           "_id" : "4f9ea1316e8770d854c45a1f",
           "name" : "George W. Bush",
           "_internal": {
@@ -56,7 +53,6 @@ exports.persons = [
           ],
   },
   {
-          "__v" : 1,
           "_id" : "4f9ea1326e8770d854c45a20",
           "name" : "Barack Obama",
           "_internal": {
@@ -80,25 +76,25 @@ exports.organizations = [
 exports.memberships = [
   {
     "_id":        "4f9ea1326e8770d854c45a22",
-    title:        "President",
+    role:         "President",
     person_id:    "4f9ea1306e8770d854c45a1d", // george-bush
     organization_id: "4f9ea1326e8770d854c45a21",
   },
   {
     "_id":        "4f9ea1326e8770d854c45a23",
-    title:        "President",
+    role:         "President",
     person_id:    "4f9ea1316e8770d854c45a1e", // bill-clinton
     organization_id: "4f9ea1326e8770d854c45a21",
   },
   {
     "_id":        "4f9ea1326e8770d854c45a24",
-    title:        "President",
+    role:         "President",
     person_id:   "4f9ea1316e8770d854c45a1f", // george-w-bush
     organization_id: "4f9ea1326e8770d854c45a21",
   },
   {
     "_id":        "4f9ea1326e8770d854c45a25",
-    title:        "President",
+    role:         "President",
     person_id:    "4f9ea1326e8770d854c45a20", // barack-obama
     organization_id: "4f9ea1326e8770d854c45a21",
   },
