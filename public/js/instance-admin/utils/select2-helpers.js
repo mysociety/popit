@@ -64,6 +64,7 @@ define(
           };
         },
         initSelection: function (element, callback) {
+          // XXX We almost always have the model here, no need to do a server fetch!
           var val = element.val();
           if ( !val )
             return callback(null);
@@ -71,7 +72,7 @@ define(
           var obj = new args.model({id: val});
           obj.fetch({
             success: function (model, response) {
-              callback({ id: response._id, text: response.name });
+              callback({ id: response.id, text: response.name });
             },
             error: function (model, response) {
               args.errors_list.append("<li>Could not fetch model from server</li>");
@@ -107,7 +108,7 @@ define(
         $(title_input).select2(
           select2Helpers.create_arguments_for_autocompleter({
             placeholder:      "e.g President, CEO, Professor, Coach",
-            autocomplete_url: "/autocomplete/position_title"
+            autocomplete_url: "/autocomplete/memberships"
           })
         );
     
@@ -162,7 +163,7 @@ define(
             name: data.text
           }).save({}, {
             success: function (Model, response) {
-              deferred.resolve( response._id );                
+              deferred.resolve( response.id );
             },
             error: function (Model, response) {
               deferred.reject(response);

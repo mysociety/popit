@@ -4,54 +4,54 @@ define(
     'Backbone',
     'backbone-forms',
     'underscore',
-    'text!templates/position/new.html',
+    'text!templates/membership/new.html',
     'instance-admin/models/person',
     'instance-admin/models/organization',
-    'instance-admin/models/position',
-    'instance-admin/utils/select2-helpers'   
-    
+    'instance-admin/models/membership',
+    'instance-admin/utils/select2-helpers'
+
   ],
   function (
     $,
     Backbone,
     BackboneForms,
     _,
-    positionTemplate,
+    membershipTemplate,
     PersonModel,
     OrganizationModel,
-    PositionModel,
+    MembershipModel,
     select2Helpers
   ) {
-    "use strict"; 
-  
-    var PositionNewView = Backbone.View.extend({
-  
-      positionTemplate: _.template(positionTemplate),
+    "use strict";
+
+    var MembershipNewView = Backbone.View.extend({
+
+      membershipTemplate: _.template(membershipTemplate),
       // initialize: function () {},
-      
+
       render: function () {
-  
+
         // Render the template
-        var $content = $( this.positionTemplate() );
-  
+        var $content = $( this.membershipTemplate() );
+
         // find the bits that are interesting and store them for easy access
-        this.$title_input        = $content.find('[name=title]');
+        this.$role_input        = $content.find('[name=role]');
         this.$person_input       = $content.find('[name=person_id]');
         this.$organization_input = $content.find('[name=organization_id]');
-        this.$start_date_input   = $content.find('[name=start-date]');
-        this.$end_date_input     = $content.find('[name=end-date]');
+        this.$start_date_input   = $content.find('[name=start_date]');
+        this.$end_date_input     = $content.find('[name=end_date]');
         this.$errors_list        = $content.find('ul.error');
-        
-        // If we have some details aready set store them
-        this.$title_input.val(        this.model.get('title') );
+
+        // If we have some details already set, store them
+        this.$role_input.val(        this.model.get('role') );
         this.$person_input.val(       this.model.get('person_id') );
         this.$organization_input.val( this.model.get('organization_id') );
-        
-        // set up the title as an autocompletor
-        this.$title_input.select2(
+
+        // set up the role as an autocompletor
+        this.$role_input.select2(
           select2Helpers.create_arguments_for_autocompleter({
             placeholder:      "e.g President, CEO, Professor, Coach",
-            autocomplete_url: "/autocomplete/position_title"
+            autocomplete_url: "/autocomplete/memberships"
           })
         );
 
@@ -66,35 +66,34 @@ define(
           model:       OrganizationModel,
           errors_list: this.$errors_list
         }) );
-        
+
         // hide inputs if requested (not happy with this - not very elegant :( )
-        if (this.options.fields_to_hide.title        ) $content.find('p.title').hide();
-        if (this.options.fields_to_hide.person       ) $content.find('p.person').hide();
+        if (this.options.fields_to_hide.person ) $content.find('p.person').hide();
         if (this.options.fields_to_hide.organization ) $content.find('p.organization').hide();
-        
+
         // add our content to the page
         this.$el.html( $content );
-  
+
         return this;
       },
-      
+
       events: {
         'submit form': 'submitForm'
       },
-      
+
       submitForm: function (e) {
         e.preventDefault();
-        
+
         var view = this;
 
         // clear the errors
         view.$errors_list.html('');
 
-        // Get the title, error if it is not set
-        var job_title_data = view.$title_input.select2('data');
-        var job_title = job_title_data ? job_title_data.text : false;        
-        if (!job_title) {
-          view.$errors_list.append("<li>Title is required</li>");
+        // Get the role, error if it is not set
+        var job_role_data = view.$role_input.select2('data');
+        var job_role = job_role_data ? job_role_data.text : false;
+        if (!job_role) {
+          view.$errors_list.append("<li>Role is required</li>");
           return;
         }
 
@@ -117,33 +116,33 @@ define(
         )
         .then(function(person_id, organization_id) {
 
-          var start_date_data = view.$start_date_input.select2('data') || {};
-          var end_date_data   = view.$end_date_input.select2('data')   || {};
+          var start_date_data = view.$start_date_input.val();
+          var end_date_data   = view.$end_date_input.val();
 
-          // create a new position
-          var position = new PositionModel({
+          // create a new membership
+          var membership = new MembershipModel({
             person_id:       person_id,
             organization_id: organization_id,
-            title:        job_title,
-            start_date:   start_date_data.raw || {},
-            end_date:     end_date_data.raw   || {}
+            role:        job_role,
+            start_date:   start_date_data || null,
+            end_date:     end_date_data || null
           });
-          
+
           // Save it
-          position.save({},{
+          membership.save({},{
             success: function (model, response ) {
                 document.location.reload();
             },
             error: function (model, response) {
-              view.$errors_list.append('<li>Something went wrong saving the position to the server.</li>');
+              view.$errors_list.append('<li>Something went wrong saving the membership to the server.</li>');
             }
           });
         });
       }
-        
+
     });
-  
-    return PositionNewView;
-  
+
+    return MembershipNewView;
+
   }
 );
