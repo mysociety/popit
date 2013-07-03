@@ -78,7 +78,7 @@ define(
       cancelEntry: function (event) {
         event.preventDefault();
         if ( this.model.exists ) {
-          // model soved on server - re-render it.
+          // model saved on server - re-render it.
           this.render_listing();
         } else {
           // model a new one - remove the whole input form.
@@ -87,15 +87,13 @@ define(
       },
       
       render_listing: function () {
-        var view = this;
-
         var template_args = {
           item: this.model.toJSON()
         };
-        
-        view.$el.html( view.options.template( template_args ) );
-      },
 
+        this.$el.html( this.options.template( template_args ) );
+        return this;
+      },
 
       submitForm: function (e) {
         e.preventDefault();
@@ -110,6 +108,7 @@ define(
           if (!model.exists) {
               model.collection.add(model);
           }
+          this.undelegateEvents(); // As might be different view next time
         }
       }
 
