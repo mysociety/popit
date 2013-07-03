@@ -106,7 +106,7 @@ define(
               model.save();
           }
           if (!model.exists) {
-              model.collection.add(model);
+              model.collection.add(model, { at: 0 });
           }
           this.undelegateEvents(); // As might be different view next time
         }

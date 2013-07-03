@@ -15,7 +15,7 @@ class DateEditingTests < PopItWatirTestCase
   include Select2Helpers
 
   def birth_date_div
-    @b.li(:class => 'personal_details-birth_date').div(:class => 'list-item-value').when_present
+    @b.li(:class => 'personal_details-birth_date').span(:class => 'list-item-value').when_present
   end
 
   def birth_date_value

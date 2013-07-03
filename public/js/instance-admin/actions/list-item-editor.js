@@ -25,8 +25,14 @@ define(
         event.preventDefault();
 
         var $link    = $(this),
-            $element = $link.closest('li'),
-            cid = $element.data('id'),
+            $element = $link.closest('li');
+
+        if (!$element.length) {
+            $element = $('<li/>');
+            $link.closest('section').find('ul').prepend($element);
+        }
+
+        var cid = $element.data('id'),
             object;
 
         // create contact. Might be existing one, or a new one.
@@ -36,6 +42,7 @@ define(
         } else {
             object = new collection.model(defaults, { collection: collection });
             object.exists = false;
+            $element.data('id', object.cid);
         }
         object.direct = args.direct;
         
@@ -45,12 +52,6 @@ define(
           model:    object,
           el:       $element
         });
-
-        if (!cid) {
-          // clone the li item so that the 'create new' link is still present.
-          $element.after( $element.clone() );
-          $element.data('id', object.cid);
-        }
 
         view.render();
       };

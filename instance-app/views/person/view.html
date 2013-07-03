@@ -84,12 +84,6 @@
       data-api-name="summary"
     ><%- person.summary %></p>
   
-  </section>
-  
-  <section class="personal-details">
-
-    <h2>Dates</h2>
-
     <ul class="detail-list">
 
       <li class="personal_details-birth_date">
@@ -112,6 +106,10 @@
   </section>
   
   <section class="other_names">
+    <div class="admin-options">
+      <a class="add other_name-edit"><i class="foundicon-add-doc"></i> <span>Add</span></a>
+    </div>
+
     <h2>Alternative names:</h2>
     <ul class="detail-list">
     <% _.each( person.other_names, function(item) { %>
@@ -119,18 +117,14 @@
         <%= render( 'other_name/view.html', { item: item }) %>
       </li>
     <% }); %>
-      <li>
-        <span class="admin-options">
-          <a class="add other_name-edit">
-            <strong>+ add</strong>
-            an alternate name
-          </a>
-        </span>
-      </li>
   </ul>
   </section>
 
   <section class="memberships">
+
+    <div class="admin-options">
+      <a class="add edit-membership"><i class="foundicon-add-doc"></i> <span>Add</span></a>
+    </div>
 
     <h2>Memberships held now or in the past:</h2>
 
@@ -160,19 +154,19 @@
           <% } %>
         </li>
       <% }); %>
-      <li class="admin-options">
-        <a class="add edit-membership"><i class="foundicon-add-doc"></i> <span>Add</span></a>
-      </li>
 
     </ul>
   </section>
 
   <section class="contact_details">
 
+    <div class="admin-options">
+      <a class="add contact-edit"><i class="foundicon-add-doc"></i> <span>Add</span></a>
+    </div>
+
     <h2>Contact Information:</h2>
 
     <ul class="detail-list">
-
       <% _.each( person.contact_details, function ( item ) { %>
         <li>
           <%= render( 'contact/view.html', {
@@ -180,19 +174,14 @@
           }) %>
         </li>
       <% }); %>
-
-      <li>
-        <span class="admin-options">
-          <a class="add contact-edit">
-            <strong>+ add</strong>
-            a new contact detail
-          </a>
-        </span>
-      </li>
     </ul>
   </section>            
 
   <section class="links">
+
+    <div class="admin-options">
+      <a class="add link-edit"><i class="foundicon-add-doc"></i> <span>Add</span></a>
+    </div>
 
     <h2>Links:</h2>
 
@@ -204,16 +193,6 @@
           }) %>
         </li>
       <% }); %>
-
-      <li>
-        <span class="admin-options">
-          <a class="add link-edit">
-            <strong>+ add</strong>
-            a new link
-          </a>
-        </span>
-      </li>
-
     </ul>
 
   </section>

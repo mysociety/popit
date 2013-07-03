@@ -116,7 +116,7 @@ class MembershipEditingTests < PopItWatirTestCase
 
       # click on the create new membership link and check that the form has popped up
       assert ! membership_form.present?
-      @b.section(:class, 'memberships').link(:class, 'edit-membership').click
+      @b.section(:class, 'memberships').ul.link(:class, 'edit-membership').click
       membership_form.wait_until_present
 
       assert_equal select2_current_value('role'), 'President'
