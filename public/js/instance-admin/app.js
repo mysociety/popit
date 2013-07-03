@@ -37,6 +37,11 @@ define(
             popit.data.id = popit.data._id;
             delete popit.data._id;
         }
+        if (popit.posts) {
+          $.each(popit.posts, function(i, m) {
+            m.id = m._id; delete m._id;
+          });
+        }
         if (popit.memberships) {
           $.each(popit.memberships, function(i, m) {
             m.id = m._id; delete m._id;
