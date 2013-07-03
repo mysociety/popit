@@ -8,34 +8,24 @@ define(
     'jquery',
     'instance-admin/models/membership',
     'instance-admin/views/membership-new',
-    // 'instance-admin/views/membership-remove',
+    'instance-admin/views/membership-remove',
     'jquery.fancybox'
   ],
   function (
     $,
     MembershipModel,
-    MembershipNewView
-    //MembershipRemoveView
+    MembershipNewView,
+    MembershipRemoveView
   ) {
     "use strict";
 
     $(function(){
 
-      $('.edit-membership').click(function(event) {
-        event.preventDefault();
-
-        var $link    = $(this),
-            $element = $link.closest('li'),
+      function fetch_model($link) {
+        var $element = $link.closest('li'),
             cid = $element.data('id'),
             collection = popit.model.memberships,
             object;
-
-        var fields_to_hide = {};
-        if (popit.type == 'person') {
-          fields_to_hide.person = true;
-        } else if (popit.type == 'organization') {
-          fields_to_hide.organization = true;
-        }
 
         // create membership. Might be existing one, or a new one.
         if (cid) {
@@ -57,34 +47,41 @@ define(
           object = new collection.model(defaults, { collection: collection });
           object.exists = false;
         }
+        return object;
+      }
 
-        var view     = new MembershipNewView({
+      $('.edit-membership').click(function(event) {
+        event.preventDefault();
+
+        var object = fetch_model($(this));
+
+        var fields_to_hide = {};
+        if (popit.type == 'person') {
+          fields_to_hide.person = true;
+        } else if (popit.type == 'organization') {
+          fields_to_hide.organization = true;
+        }
+
+        var view = new MembershipNewView({
           model: object,
           fields_to_hide: fields_to_hide
         });
 
-        // render in lightbox
         $.fancybox( view.render().el );
 
       });
 
-      // $('a.delete-membership').click(function(event) {
-      //
-      //   var $link = $(this);
-      //   event.preventDefault();
-      //
-      //   var membership = new MembershipModel({
-      //     id: $link.attr('data-id')
-      //   });
-      //
-      //   membership.fetch({
-      //     success: function (model, response) {
-      //       var view   = new MembershipRemoveView({model: model});
-      //       $.fancybox( view.render().el );
-      //     }
-      //   });
-      //
-      // });
+      $('.delete-membership').click(function(event) {
+        event.preventDefault();
+
+        var $link = $(this),
+            $element = $link.closest('li'),
+            model = fetch_model($link),
+            view = new MembershipRemoveView({ model: model, attached: $element });
+
+        $.fancybox( view.render().el );
+
+      });
 
     });
   }

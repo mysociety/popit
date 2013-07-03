@@ -244,44 +244,49 @@ header.entity-header-nav{
 
 
 
-.admin-options{
+.admin-options {
 	padding:0;
 	margin:0;
 	text-indent:0;
 	list-style:none;
 	
-	a{
+	a {
 		font-size: 0.875em;
-		color: rgba(76, 76, 76, 0.3);
+		color: rgba(76, 76, 76, 0.5);
 		text-shadow: rgba(0,0,0,0) 0 0 0;
-		-webkit-transition: opacity, color 0.3s linear;
-		   -moz-transition: opacity, color 0.3s linear;
-		     -o-transition: opacity, color 0.3s linear;
-		        transition: opacity, color 0.3s linear;
-		&.add strong{
-			color: #7aa701;
-		}
-		&.edit strong{
-			color: #c26400;
-		}
-		&.delete strong{
-			color: #c20000;
-		}
+		-webkit-transition: opacity, color 0.2s linear;
+		   -moz-transition: opacity, color 0.2s linear;
+		     -o-transition: opacity, color 0.2s linear;
+		        transition: opacity, color 0.2s linear;
 	}
+
+    a:hover {
+        color: rgba(76, 76, 76, 1);
+        text-decoration: none;
+    }
+
+    .add span, .edit span, .delete span {
+    }
+    .add strong, a:hover .foundicon-add-doc {
+        color: #7aa701;
+    }
+    .edit strong, a:hover .foundicon-edit {
+        color: #c26400;
+    }
+    .delete strong, a:hover .foundicon-trash {
+        color: #c20000;
+    }
 }
 
-
+.cleared li {
+    clear: both;
+}
 
 article.entity{
 
-  .admin-options {
-    float:right;    
-  }
-	
-	section:hover .admin-options a
-	{
-		color: rgba(76, 76, 76, 1);
-	}
+    .admin-options {
+        float:right;
+    }
 	
 	.photos li:hover a,
 	aside a.add
@@ -323,10 +328,10 @@ article.entity{
 				    -ms-transform: rotate(-90deg) translate(15%, -15em);
 				     -o-transform: rotate(-90deg) translate(15%, -15em);
 				        transform: rotate(-90deg) translate(15%, -15em);
-					-webkit-transition: opacity 0.3s linear;
-					   -moz-transition: opacity 0.3s linear;
-					     -o-transition: opacity 0.3s linear;
-					        transition: opacity 0.3s linear;
+					-webkit-transition: opacity 0.2s linear;
+					   -moz-transition: opacity 0.2s linear;
+					     -o-transition: opacity 0.2s linear;
+					        transition: opacity 0.2s linear;
 			}
 			&:hover .photo-source{
 				opacity:1;
@@ -361,6 +366,7 @@ article.entity{
 	}
 	
 }
+
 // Just to demo design states admin options shouldn't be in the html if not signed in.
 .admin-options{ visibility:hidden; }
 body.instance-admin-app-active .admin-options{ visibility: visible; }

@@ -26,10 +26,9 @@ class MembershipEditingTests < PopItWatirTestCase
         return @b.form(:name, "edit-membership")
       end
       
-      
-      # click on the create new person link and check that the form has popped up    
+      # click on the create new membership link and check that the form has popped up
       assert ! membership_form.present?
-      @b.link(:text, '+ add a new membership').click
+      @b.section(:class, 'memberships').link(:class, 'add').click
       membership_form.wait_until_present
       
       # Submit the form and check that it complains about missing role
@@ -63,7 +62,7 @@ class MembershipEditingTests < PopItWatirTestCase
       assert_match @b.section(:class, 'memberships').text, /President/
       
       # create a new membership but with new role and organization
-      @b.link(:text, '+ add a new membership').click
+      @b.section(:class, 'memberships').link(:class, 'add').click
       membership_form.wait_until_present
       
       select2_container('role').link.click
@@ -84,7 +83,7 @@ class MembershipEditingTests < PopItWatirTestCase
       
       # check that the new role and org are in the possible options
       goto '/persons/george-bush'
-      @b.link(:text, '+ add a new membership').click
+      @b.section(:class, 'memberships').link(:class, 'add').click
       membership_form.wait_until_present
       
       select2_container('role').link.click

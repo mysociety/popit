@@ -134,9 +134,13 @@
 
     <h2>Memberships held now or in the past:</h2>
 
-    <ul>
+    <ul class="cleared">
       <% _.each( memberships, function (membership) { %>
-      <li><div class="editable edit-membership">
+      <li>
+        <span class="admin-options">
+          <a class="edit edit-membership"><i class="foundicon-edit"></i> <span>Edit</span></a>
+          <a class="delete delete-membership"><i class="foundicon-trash"></i> <span>Delete</span></a>
+        </span>
         <% if (membership.post_id) { %>
           <%- membership.post_id.label %>:
         <% } %>
@@ -154,15 +158,10 @@
             <% } %>
             )
           <% } %>
-        </div></li>
+        </li>
       <% }); %>
-      <li>
-        <span class="admin-options">
-          <a class="add edit-membership">
-            <strong>+ add</strong>
-            a new membership
-          </a>
-        </span>
+      <li class="admin-options">
+        <a class="add edit-membership"><i class="foundicon-add-doc"></i> <span>Add</span></a>
       </li>
 
     </ul>
