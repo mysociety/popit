@@ -11,6 +11,7 @@
     popit.type = 'organization';
     popit.data = <%= JSON.stringify(organization.toJSON()) %>;
     popit.posts = <%= JSON.stringify(posts) %>;
+    popit.memberships = <%= JSON.stringify(memberships) %>;
 </script>
 
 <article class="entity organization">
@@ -148,23 +149,37 @@
   
     <h2>Associated people, now or in the past:</h2>
   
-    <ul class="admin-options">
+    <ul>
+      <% _.each( memberships, function ( membership ) { %>
+      <li><div class="editable edit-membership">
+        <% if (membership.post_id) { %>
+          <%- membership.post_id.label %>:
+        <% } %>
+        <% if (membership.role) { %>
+          <%- membership.role %>:
+        <% } %>
+        <a href="<%- membership.person_id.slug_url%>" ><%- membership.person_id.name %></a>
+          <% if (membership.start_date || membership.end_date) { %>
+            (
+            <% if (membership.start_date) { %>
+              from <%- membership.start_date %>
+            <% } %>
+            <% if (membership.end_date) { %>
+              to <%- membership.end_date %>
+            <% } %>
+            )
+          <% } %>
+      </div></li>
+      <% }); %>
       <li>
-        <a class="add new-membership">
+        <span class="admin-options">
+        <a class="add edit-membership">
           <strong>+ add</strong>
           a new membership
         </a>
+        </span>
       </li>
     </ul>
-
-    <dl>
-      <% _.each( memberships, function ( membership ) { %>
-        <dt><a href="/memberships/<%- membership.id %>"><%- membership.role %></a>:</dt>
-        <dd>
-          <a href="<%- membership.person_id.slug_url%>" ><%- membership.person_id.name %></a>
-        </dd>
-      <% }); %>
-    </dl>    
   </section>
 
   <section class="contact_details">

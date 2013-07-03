@@ -73,6 +73,21 @@ exports.organizations = [
   },
 ];
 
+exports.posts = [
+  {
+    "_id": "post1",
+     label: "President",
+     role: "President",
+     organization_id: "4f9ea1326e8770d854c45a21"
+  },
+  {
+    "_id": "post2",
+     label: "Vice-President",
+     role: "Vice-President",
+     organization_id: "4f9ea1326e8770d854c45a21"
+  },
+];
+
 exports.memberships = [
   {
     "_id":        "4f9ea1326e8770d854c45a22",

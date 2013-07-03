@@ -21,23 +21,45 @@ define(
 
     $(function(){
 
-      $('a.new-membership').click(function(event) {
-        var $element_clicked = $(this);
-
+      $('.edit-membership').click(function(event) {
         event.preventDefault();
 
-        var attrs = {}, fields_to_hide = {};
+        var $link    = $(this),
+            $element = $link.closest('li'),
+            cid = $element.data('id'),
+            collection = popit.model.memberships,
+            object;
+
+        var fields_to_hide = {};
         if (popit.type == 'person') {
-          attrs.person_id = popit.model.id;
           fields_to_hide.person = true;
         } else if (popit.type == 'organization') {
-          attrs.organization_id = popit.model.id;
           fields_to_hide.organization = true;
         }
-        var membership = new MembershipModel(attrs);
+
+        // create membership. Might be existing one, or a new one.
+        if (cid) {
+          object = collection.get(cid);
+          // Need to set a full object on the link back, not just ID
+          if (popit.type == 'person') {
+            object.set('person_id', popit.model.attributes);
+          } else if (popit.type == 'organization') {
+            object.set('organization_id', popit.model.attributes);
+          }
+          object.exists = true;
+        } else {
+          var defaults = {};
+          if (popit.type == 'person') {
+            defaults.person_id = popit.model.attributes;
+          } else if (popit.type == 'organization') {
+            defaults.organization_id = popit.model.attributes;
+          }
+          object = new collection.model(defaults, { collection: collection });
+          object.exists = false;
+        }
 
         var view     = new MembershipNewView({
-          model: membership,
+          model: object,
           fields_to_hide: fields_to_hide
         });
 

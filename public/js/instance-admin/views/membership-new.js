@@ -45,11 +45,8 @@ define(
         this.$end_date_input     = $content.find('[name=end_date]');
         this.$errors_list        = $content.find('ul.error');
 
-        // If we have some details already set, store them
-        this.$role_input.val(        this.model.get('role') );
-        this.$person_input.val(       this.model.get('person_id') );
-        this.$organization_input.val( this.model.get('organization_id') );
-        this.$post_input.val( this.model.get('post_id') );
+        this.$start_date_input.val( this.model.get('start_date') );
+        this.$end_date_input.val( this.model.get('end_date') );
 
         // set up the role as an autocompletor
         this.$role_input.select2(
@@ -77,6 +74,17 @@ define(
           no_creation: true,
           errors_list: this.$errors_list
         }) );
+
+        // If we have some details already set, store them
+        var obj;
+        obj = this.model.get('person_id');
+        if (obj) { this.$person_input.select2('data', { id: obj.id, text: obj.name }); }
+        obj = this.model.get('organization_id');
+        if (obj) { this.$organization_input.select2('data', { id: obj.id, text: obj.name }); }
+        obj = this.model.get('post_id');
+        if (obj) { this.$post_input.select2('data', { id: obj.id, text: obj.label }); }
+        obj = this.model.get('role');
+        if (obj) { this.$role_input.select2('data', { id: obj, text: obj }); }
 
         // hide inputs if requested (not happy with this - not very elegant :( )
         if (this.options.fields_to_hide.person ) $content.find('p.person').hide();
@@ -136,21 +144,17 @@ define(
             return;
           }
 
-          var start_date_data = view.$start_date_input.val();
-          var end_date_data   = view.$end_date_input.val();
+          var start_date = view.$start_date_input.val();
+          var end_date   = view.$end_date_input.val();
 
-          // create a new membership
-          var membership = new MembershipModel({
+          view.model.save({
             post_id: post_id,
             person_id: person_id,
             organization_id: organization_id,
             role: job_role || null,
-            start_date: start_date_data || null,
-            end_date: end_date_data || null
-          });
-
-          // Save it
-          membership.save({},{
+            start_date: start_date || null,
+            end_date: end_date || null
+          },{
             success: function (model, response ) {
                 document.location.reload();
             },

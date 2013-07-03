@@ -10,6 +10,7 @@
     var popit = popit || {};
     popit.type = 'person';
     popit.data = <%= JSON.stringify(person.toJSON()) %>;
+    popit.memberships = <%= JSON.stringify(memberships) %>;
 </script>
 
 <article class="entity person" itemscope itemtype="http://schema.org/Person">
@@ -133,22 +134,16 @@
 
     <h2>Memberships held now or in the past:</h2>
 
-    <ul class="admin-options">
-      <li>
-        <span class="admin-options">
-          <a class="add new-membership">
-            <strong>+ add</strong>
-            a new membership
-          </a>
-      </li>
-    </ul>
-    
-    <dl>
+    <ul>
       <% _.each( memberships, function (membership) { %>
-        <dt><a href="/memberships/<%- membership.id %>"><%- membership.role %></a>:</dt>
-        <dd>
+      <li><div class="editable edit-membership">
+        <% if (membership.post_id) { %>
+          <%- membership.post_id.label %>:
+        <% } %>
+        <% if (membership.role) { %>
+          <%- membership.role %>:
+        <% } %>
           <a href="<%- membership.organization_id.slug_url %>"><%- membership.organization_id.name %></a>
-          
           <% if (membership.start_date || membership.end_date) { %>
             (
             <% if (membership.start_date) { %>
@@ -159,12 +154,20 @@
             <% } %>
             )
           <% } %>
-
-        </dd>
+        </div></li>
       <% }); %>
-    </dl>  
+      <li>
+        <span class="admin-options">
+          <a class="add edit-membership">
+            <strong>+ add</strong>
+            a new membership
+          </a>
+        </span>
+      </li>
+
+    </ul>
   </section>
-  
+
   <section class="contact_details">
 
     <h2>Contact Information:</h2>

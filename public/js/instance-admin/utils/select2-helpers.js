@@ -64,38 +64,21 @@ define(
             text: term
           };
         },
-        initSelection: function (element, callback) {
-          // XXX We almost always have the model here, no need to do a server fetch!
-          var val = element.val();
-          if ( !val )
-            return callback(null);
-    
-          var obj = new args.model({id: val});
-          obj.fetch({
-            success: function (model, response) {
-              callback({ id: response.id, text: response.name });
-            },
-            error: function (model, response) {
-              args.errors_list.append("<li>Could not fetch model from server</li>");
-              callback(null);
-            }
-          });
-         },
-         formatSelection: function (object, container) {
-           var text = object.text;
-           if (!object.id) text += " <em>(new entry)</em>"; 
-           return text;
-         },
-         formatResult: function (object, container) {
-           var $element = $('<span>').text(object.text);
-           if (args.no_creation) return $element;
-           $element.append(
-              object.id ?
-                 "<em> &larr; select to use existing entry</em>" :
-                 "<em> &larr; select to create new entry</em>"
-            );
-           return $element;           
-         }
+        formatSelection: function (object, container) {
+          var text = object.text;
+          if (!object.id) text += " <em>(new entry)</em>";
+          return text;
+        },
+        formatResult: function (object, container) {
+          var $element = $('<span>').text(object.text);
+          if (args.no_creation) return $element;
+          $element.append(
+             object.id ?
+                "<em> &larr; select to use existing entry</em>" :
+                "<em> &larr; select to create new entry</em>"
+          );
+          return $element;
+        }
       };
     };
     

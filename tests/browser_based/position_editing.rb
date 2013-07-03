@@ -23,7 +23,7 @@ class MembershipEditingTests < PopItWatirTestCase
       goto '/persons/george-bush'
       
       def membership_form
-        return @b.form(:name, "create-new-membership")
+        return @b.form(:name, "edit-membership")
       end
       
       
@@ -55,16 +55,9 @@ class MembershipEditingTests < PopItWatirTestCase
       
       # submit the form and check that the new membership is created
       membership_form.submit
-      sleep 1 # WAIT UNTIL FORM DISAPPERS
-      
-      # check that the correct details have been entered
-      @b.link(:xpath, "(//a[.='President'])[last()]").click
-      assert_equal @b.article.h1.text, "President"
-      assert_match @b.text, /Person:\ George\ Bush/
-      assert_match @b.text, /Organization:\ United\ States\ Government/
-      assert_match @b.text, /Start\ Date:\ 2001-01-20/
-      assert_match @b.text, /End\ Date:\ Unknown/
-          
+      @b.wait_until { ! membership_form.present? }
+      assert_match @b.text, /President:\ United\ States\ Government\ \(\ from\ 2001-01-20\ \)/
+
       # go back to person page and check that the membership is now listed there
       goto '/persons/george-bush'
       assert_match @b.section(:class, 'memberships').text, /President/
@@ -86,11 +79,8 @@ class MembershipEditingTests < PopItWatirTestCase
       assert_equal select2_current_value('organization_id'), "1600 Penn Hotel (new entry)"
       
       membership_form.submit
-      sleep 1 # XXX See above
-      @b.link(:xpath, "(//a[.='Bottle Washer'])[last()]").click
-      assert_equal @b.article.h1.text, "Bottle Washer"
-      assert_match @b.text, /Person:\ George\ Bush/
-      assert_match @b.text, /Organization:\ 1600\ Penn\ Hotel/
+      @b.wait_until { ! membership_form.present? }
+      assert_match @b.text, /Bottle Washer:\ 1600\ Penn\ Hotel/
       
       # check that the new role and org are in the possible options
       goto '/persons/george-bush'
