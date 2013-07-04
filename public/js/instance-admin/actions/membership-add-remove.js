@@ -8,14 +8,16 @@ define(
     'jquery',
     'instance-admin/models/membership',
     'instance-admin/views/membership-new',
-    'instance-admin/views/membership-remove',
+    'instance-admin/views/remove-modal',
+    'text!templates/membership/remove.html',
     'jquery.fancybox'
   ],
   function (
     $,
     MembershipModel,
     MembershipNewView,
-    MembershipRemoveView
+    RemoveModalView,
+    mTemplate
   ) {
     "use strict";
 
@@ -77,7 +79,16 @@ define(
         var $link = $(this),
             $element = $link.closest('li'),
             model = fetch_model($link),
-            view = new MembershipRemoveView({ model: model, attached: $element });
+            view = new RemoveModalView({
+              model: model,
+              template: mTemplate,
+              submitSuccess: function (model, response) {
+                // Remove attached membership row, and this view
+                $element.remove();
+                $.fancybox.close();
+                this.remove();
+              }
+            });
 
         $.fancybox( view.render().el );
 

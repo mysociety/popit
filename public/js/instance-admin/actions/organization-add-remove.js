@@ -8,14 +8,16 @@ define(
     'jquery',
     'instance-admin/models/organization',
     'instance-admin/views/organization-new',
-    'instance-admin/views/organization-remove',
+    'instance-admin/views/remove-modal',
+    'text!templates/organization/remove.html',
     'jquery.fancybox'
   ],
   function (
     $,
     OrganizationModel,
     OrganizationNewView,
-    OrganizationRemoveView
+    RemoveModalView,
+    orgTemplate
   ) {
     "use strict"; 
 
@@ -34,11 +36,16 @@ define(
       });
       
       $('a.delete-organization').click(function(event) {
-
-        var $link = $(this);
         event.preventDefault();
 
-        var view = new OrganizationRemoveView({model: popit.model});
+        var $link = $(this),
+            view = new RemoveModalView({
+              model: popit.model,
+              template: orgTemplate,
+              submitSuccess: function (model, response) {
+                document.location = '/organizations';
+              }
+            });
         $.fancybox( view.render().el );
         
       });

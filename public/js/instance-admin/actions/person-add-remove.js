@@ -8,14 +8,16 @@ define(
     'jquery',
     'instance-admin/models/person',
     'instance-admin/views/person-new',
-    'instance-admin/views/person-remove',
+    'instance-admin/views/remove-modal',
+    'text!templates/person/remove.html',
     'jquery.fancybox'
   ],
   function (
     $,
     PersonModel,
     PersonNewView,
-    PersonRemoveView
+    RemoveModalView,
+    personTemplate
   ) {
     "use strict"; 
 
@@ -34,11 +36,16 @@ define(
       });
       
       $('a.delete-person').click(function(event) {
-
-        var $link = $(this);
         event.preventDefault();
 
-        var view = new PersonRemoveView({model: popit.model});
+        var $link = $(this),
+            view = new RemoveModalView({
+              model: popit.model,
+              template: personTemplate,
+              submitSuccess: function (model, response) {
+                document.location = '/persons';
+              }
+            });
         $.fancybox( view.render().el );
         
       });
