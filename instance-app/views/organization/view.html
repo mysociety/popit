@@ -115,7 +115,7 @@
 
     <h2>Associated posts</h2>
 
-    <ul>
+    <ul class="cleared">
       <% _.each( posts, function ( post ) { %>
         <li><%= render( 'post/view.html', { item: post }) %></li>
       <% }); %>

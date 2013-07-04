@@ -32,7 +32,7 @@ define(
         // render the form and add save button
         var $form    = $( this.form.render().el );
         $form
-          .find('ul')
+          .find('ul').first()
             .append('<input type="submit" name="save" value="Save" />')
             .append('<button name="delete">Delete</button>')
             .append('<button name="cancel">Cancel</button>');
