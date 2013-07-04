@@ -10,6 +10,11 @@ require 'uri'
 
 class PersonContactDetailEditingTests < PopItWatirTestCase
 
+  def edit_link(e)
+    @b.element(e).hover
+    @b.element(e).parent.link(:text => 'Edit').click
+  end
+
   def test_person_contact_detail_editing
     run_as_all_user_types {
       |user_type|
@@ -51,7 +56,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
       assert @b.element(:text => '1600 Pennsylvania Avenue').present?
       
       # Edit the phone number
-      @b.element(:text => '01234 567 890').click
+      edit_link(:text => '01234 567 890')
       @b.text_field(:name => 'value').when_present.set( '11111 222 333')
       @b.input(:name => 'save').click
       @b.wait_until { @b.element(:text => '11111 222 333').present? }
@@ -59,7 +64,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
       assert @b.element(:text => '11111 222 333').present?
       
       # Edit and then cancel the phone number
-      @b.element(:text => '11111 222 333').click
+      edit_link(:text => '11111 222 333')
       @b.text_field(:name => 'value').when_present.set( 'should be ignored')
       @b.button(:name => 'cancel').click
       @b.wait_until { @b.element(:text => '11111 222 333').present? }
@@ -67,7 +72,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
       assert @b.element(:text => '11111 222 333').present?
       
       # check that the autocomplete pops up
-      @b.element(:text => '11111 222 333').click
+      edit_link(:text => '11111 222 333')
       @b.text_field(:name => 'type').when_present.set( 'a')
       @b.wait_until { @b.li(:class => 'ui-menu-item').present? }
       assert_equal @b.li(:class => 'ui-menu-item').text, 'address'
@@ -78,7 +83,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
       # Delete the phone number
       @b.refresh    
       assert_equal 2, @b.section(:class => 'contact_details').ul.lis.count
-      @b.element(:text => '11111 222 333').click
+      edit_link(:text => '11111 222 333')
       @b.wait_until { @b.button(:name => 'delete').present? }
       @b.button(:name => 'delete').click
       @b.wait_until { 1 == @b.section(:class => 'contact_details').ul.lis.count }
@@ -127,7 +132,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
       assert @b.element(:text => 'http://en.wikipedia.org/wiki/George_W._Bush').present?
       
       # Edit a link
-      assert @b.element(:text => 'Wikipedia:').click
+      edit_link(:text => 'Wikipedia:')
       @b.text_field(:name => 'url').when_present.set( 'http://foo.com/')
       @b.input(:name => 'save').click
       @b.wait_until { @b.element(:text => 'http://foo.com/').present? }
@@ -135,7 +140,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
       assert @b.element(:text => 'http://foo.com/').present?
       
       # Cancel editing a link
-      assert @b.element(:text => 'Wikipedia:').click
+      edit_link(:text => 'Wikipedia:')
       @b.text_field(:name => 'url').when_present.set( 'should be ignored')
       @b.button(:name => 'cancel').click
       @b.wait_until { @b.element(:text => 'http://foo.com/').present? }
@@ -143,7 +148,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
       assert @b.element(:text => 'http://foo.com/').present?
       
       # check that the autocomplete pops up
-      assert @b.element(:text => 'Wikipedia:').click
+      edit_link(:text => 'Wikipedia:')
       @b.text_field(:name => 'note').when_present.set( 'wik')
       @b.wait_until { @b.li(:class => 'ui-menu-item').present? }
       assert_equal @b.li(:class => 'ui-menu-item').text, 'Wikipedia'
@@ -152,7 +157,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
       @b.input(:name => 'save').click
       
       assert_equal 2, @b.section(:class => 'links').ul.lis.count
-      assert @b.element(:text => 'Wikipedia:').click
+      edit_link(:text => 'Wikipedia:')
       @b.button(:name => 'delete').when_present.click
       @b.wait_until { 1 == @b.section(:class => 'links').ul.lis.count }
       assert ! @b.element(:text => 'http://foo.com/').present?

@@ -242,7 +242,18 @@ header.entity-header-nav{
 	}
 }
 
-
+.admin-options { visibility:hidden; }
+body.instance-admin-app-active {
+    .admin-options {
+        visibility: visible;
+        &.hover-only {
+            visibility: hidden;
+        }
+    }
+    li:hover .admin-options.hover-only {
+        visibility: visible;
+    }
+}
 
 .admin-options {
 	padding:0;
@@ -366,12 +377,6 @@ article.entity{
 	}
 	
 }
-
-// Just to demo design states admin options shouldn't be in the html if not signed in.
-.admin-options{ visibility:hidden; }
-body.instance-admin-app-active .admin-options{ visibility: visible; }
-
-
 
 // -----------------------
 //	Main Page Footer

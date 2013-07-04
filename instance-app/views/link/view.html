@@ -1,4 +1,5 @@
-<div class="edit link-edit editable">
-    <div class="list-item-title"><%- item.note %>: </div>
-    <div class="list-item-value"><%- item.url %></div>
-</div>
+<span class="admin-options hover-only">
+  <a class="edit link-edit"><i class="foundicon-edit"></i> <span>Edit</span></a>
+</span>
+<div class="list-item-title"><%- item.note %>: </div>
+<div class="list-item-value"><a href="<%- item.url %>"><%- item.url %></a></div>

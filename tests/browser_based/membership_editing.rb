@@ -13,6 +13,16 @@ class MembershipEditingTests < PopItWatirTestCase
 
   include Select2Helpers
 
+  def edit_link
+    @b.section(:class, 'memberships').li.hover
+    @b.section(:class, 'memberships').li.link(:text => 'Edit').click
+  end
+
+  def delete_link
+    @b.section(:class, 'memberships').li.hover
+    @b.section(:class, 'memberships').li.link(:text => 'Delete').click
+  end
+
   def test_membership_creation
     run_as_all_user_types {
       |user_type|
@@ -116,7 +126,7 @@ class MembershipEditingTests < PopItWatirTestCase
 
       # click on the create new membership link and check that the form has popped up
       assert ! membership_form.present?
-      @b.section(:class, 'memberships').ul.link(:class, 'edit-membership').click
+      edit_link
       membership_form.wait_until_present
 
       assert_equal select2_current_value('role'), 'President'
@@ -148,7 +158,7 @@ class MembershipEditingTests < PopItWatirTestCase
 
       # click on the create new membership link and check that the form has popped up
       assert ! membership_form.present?
-      @b.section(:class, 'memberships').link(:class, 'delete-membership').click
+      delete_link
       membership_form.wait_until_present
 
       membership_form.submit

@@ -106,20 +106,7 @@
     </ul>
   </section>
 
-  <section class="other_names">
-    <div class="admin-options">
-      <a class="add other_name-edit"><i class="foundicon-add-doc"></i> <span>Add</span></a>
-    </div>
-
-    <h2>Alternative names:</h2>
-    <ul class="detail-list">
-    <% _.each( organization.other_names, function(item) { %>
-      <li>
-        <%= render( 'other_name/view.html', { item: item }) %>
-      </li>
-    <% }); %>
-    </ul>
-  </section>
+  <%= render( 'other_name/list.html', { other_names: organization.other_names } ) %>
 
   <section class="posts">
     <div class="admin-options">
@@ -145,7 +132,7 @@
     <ul class="cleared">
       <% _.each( memberships, function ( membership ) { %>
       <li>
-        <span class="admin-options">
+        <span class="admin-options hover-only">
           <a class="edit edit-membership"><i class="foundicon-edit"></i> <span>Edit</span></a>
           <a class="delete delete-membership"><i class="foundicon-trash"></i> <span>Delete</span></a>
         </span>
@@ -171,42 +158,8 @@
     </ul>
   </section>
 
-  <section class="contact_details">
-    <div class="admin-options">
-      <a class="add contact-edit"><i class="foundicon-add-doc"></i> <span>Add</span></a>
-    </div>
-
-    <h2>Contact Information:</h2>
-
-    <ul class="detail-list">
-      <% _.each( organization.contact_details, function ( item ) { %>
-        <li>
-          <%= render( 'contact/view.html', {
-            item:         item,
-          }) %>
-        </li>
-      <% }); %>
-    </ul>
-  </section>
-
-  <section class="links">
-    <div class="admin-options">
-      <a class="add link-edit"><i class="foundicon-add-doc"></i> <span>Add</span></a>
-    </div>
-
-    <h2>Links:</h2>
-
-    <ul class="detail-list">
-      <% _.each( organization.links, function (item) { %>
-        <li>
-          <%= render( 'link/view.html', {
-             item:         item,
-          }) %>
-        </li>
-      <% }); %>
-    </ul>
-
-  </section>
+  <%= render( 'contact/list.html', { contacts: organization.contact_details } ) %>
+  <%= render( 'link/list.html', { links: organization.links } ) %>
 
   <section class="raw-data">
     <h2>Raw data</h2>
