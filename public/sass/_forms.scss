@@ -2,8 +2,15 @@
     padding: 0.625em 1em;
 }
 
-form{
-	margin: 2.8em 0;
+.edit-in-place form {
+    display: inline;
+}
+.edit-in-place form input {
+    display: inline;
+}
+
+form {
+	margin: 0;
 	
 	p{
 		margin-bottom: 1.4em;

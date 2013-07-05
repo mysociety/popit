@@ -23,6 +23,7 @@ require(
           apiName = element.attr('data-api-name'),
           submitData = {};
 
+      if (!value) value = null;
       submitData[apiName] = value;
       Backbone.trigger('in-place-edit', submitData);
 
@@ -34,7 +35,11 @@ require(
       // We only want the editing to be enabled for users who are signed in
       var $signed_in = $('body.signed_in');
 
-      $signed_in.find('.edit-in-place'         ).editable( onSubmit, {} );
+      $signed_in.find('.edit-in-place').editable( onSubmit, {
+        placeholder: 'Unknown',
+        width: 'none',
+        height: 'none'
+      } );
 
       $signed_in.find('.edit-in-place-textarea').editable( onSubmit, {
         type: 'textarea',

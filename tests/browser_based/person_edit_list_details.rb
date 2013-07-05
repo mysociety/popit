@@ -30,7 +30,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
       @b.section(:class => 'contact_details').link(:class => 'add').click
       @b.text_field(:name => 'type').send_keys( 'Ignore' )
       @b.text_field(:name => 'value').send_keys( 'ignore' )
-      @b.button(:name => 'cancel').click
+      @b.section(:class => 'contact_details').link(:class => 'cancel').click
       @b.wait_until { ! @b.form(:class => 'bbf-form').present? }
       assert ! @b.element(:text => 'ignore').present?
       @b.refresh
@@ -66,7 +66,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
       # Edit and then cancel the phone number
       edit_link(:text => '11111 222 333')
       @b.text_field(:name => 'value').when_present.set( 'should be ignored')
-      @b.button(:name => 'cancel').click
+      @b.section(:class => 'contact_details').link(:class => 'cancel').click
       @b.wait_until { @b.element(:text => '11111 222 333').present? }
       @b.refresh
       assert @b.element(:text => '11111 222 333').present?
@@ -84,8 +84,8 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
       @b.refresh    
       assert_equal 2, @b.section(:class => 'contact_details').ul.lis.count
       edit_link(:text => '11111 222 333')
-      @b.wait_until { @b.button(:name => 'delete').present? }
-      @b.button(:name => 'delete').click
+      @b.wait_until { @b.section(:class => 'contact_details').link(:class => 'delete').present? }
+      @b.section(:class => 'contact_details').link(:class => 'delete').click
       @b.wait_until { 1 == @b.section(:class => 'contact_details').ul.lis.count }
       assert ! @b.element(:text => '11111 222 333').present?
     }
@@ -106,7 +106,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
       @b.section(:class => 'links').link(:text => 'Add').click
       @b.text_field(:name => 'note').send_keys( 'Ignore' )
       @b.text_field(:name => 'url').send_keys( 'ignore' )
-      @b.button(:name => 'cancel').click
+      @b.section(:class => 'links').link(:class => 'cancel').click
       @b.wait_until { ! @b.form(:class => 'bbf-form').present? }
       assert ! @b.element(:text => 'ignore').present?
       @b.refresh
@@ -142,7 +142,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
       # Cancel editing a link
       edit_link(:text => 'Wikipedia:')
       @b.text_field(:name => 'url').when_present.set( 'should be ignored')
-      @b.button(:name => 'cancel').click
+      @b.section(:class => 'links').link(:class => 'cancel').click
       @b.wait_until { @b.element(:text => 'http://foo.com/').present? }
       @b.refresh
       assert @b.element(:text => 'http://foo.com/').present?
@@ -158,7 +158,7 @@ class PersonContactDetailEditingTests < PopItWatirTestCase
       
       assert_equal 2, @b.section(:class => 'links').ul.lis.count
       edit_link(:text => 'Wikipedia:')
-      @b.button(:name => 'delete').when_present.click
+      @b.section(:class => 'links').link(:class => 'delete').when_present.click
       @b.wait_until { 1 == @b.section(:class => 'links').ul.lis.count }
       assert ! @b.element(:text => 'http://foo.com/').present?
     }

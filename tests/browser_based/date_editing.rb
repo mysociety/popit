@@ -46,7 +46,7 @@ class DateEditingTests < PopItWatirTestCase
 
       # start editing his dob
       birth_date_div.click
-      assert_equal 'Unknown', birth_date_input.value
+      assert_equal '', birth_date_input.value
 
       # enter date and save it, check it is stored.
       birth_date_input.click
@@ -63,7 +63,7 @@ class DateEditingTests < PopItWatirTestCase
       birth_date_div.click
       birth_date_input.set ''
       @b.send_keys :return
-      assert_equal 'Click to edit', birth_date_value
+      assert_equal 'Unknown', birth_date_value
     }
 
   end

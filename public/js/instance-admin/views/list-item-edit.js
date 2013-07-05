@@ -34,8 +34,8 @@ define(
         $form
           .find('ul').first()
             .append('<input type="submit" name="save" value="Save" />')
-            .append('<button name="delete">Delete</button>')
-            .append('<button name="cancel">Cancel</button>');
+            .append('<a class="delete"><i class="foundicon-trash"></i> Delete</a> ')
+            .append('<a class="cancel">Cancel</a>');
       
         // add an autocomplete to those fields that want one
         var ac_field_names = _.filter(
@@ -64,9 +64,9 @@ define(
       },
 
       events: {
-        'submit form ':                'submitForm',
-        'click button[name="cancel"]': 'cancelEntry',
-        'click button[name="delete"]': 'deleteEntry'
+        'submit form': 'submitForm',
+        'click a.cancel': 'cancelEntry',
+        'click a.delete': 'deleteEntry'
       },
       
       deleteEntry: function (event) {
