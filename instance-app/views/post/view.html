@@ -2,3 +2,14 @@
   <a class="edit edit-post"><i class="foundicon-edit"></i> <span>Edit</span></a>
 </span>
 <%- item.label %><% if (item.role) { %> (<%- item.role %>)<% } %>
+
+<% if (item.start_date || item.end_date) { %>
+  (
+  <% if (item.start_date) { %>
+    from <%- item.start_date %>
+  <% } %>
+  <% if (item.end_date) { %>
+    to <%- item.end_date %>
+  <% } %>
+  )
+<% } %>
