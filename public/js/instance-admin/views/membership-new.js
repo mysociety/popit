@@ -103,7 +103,8 @@ define(
       submitForm: function (e) {
         e.preventDefault();
 
-        var view = this;
+        var view = this,
+            errors = false;
 
         // clear the errors
         view.$errors_list.html('');
@@ -115,8 +116,24 @@ define(
         var post_id = view.$post_input.select2('data');
         if (post_id) post_id = post_id.id;
 
+        var start_date = view.$start_date_input.val();
+        var end_date = view.$end_date_input.val();
+
         if (!post_id && !job_role) {
           view.$errors_list.append('<li>You must specify a role or a post.</li>');
+          errors = true;
+        }
+
+        var dateValidator = /^[0-9]{4}(-[0-9]{2}){0,2}$/;
+        if (start_date && !start_date.match(dateValidator)) {
+          view.$errors_list.append('<li>Start date not in correct format.</li>');
+          errors = true;
+        }
+        if (end_date && !end_date.match(dateValidator)) {
+          view.$errors_list.append('<li>End date not in correct format.</li>');
+          errors = true;
+        }
+        if (errors) {
           return;
         }
 
@@ -143,9 +160,6 @@ define(
             view.$errors_list.append('<li>You must specify a person and an organization.</li>');
             return;
           }
-
-          var start_date = view.$start_date_input.val();
-          var end_date   = view.$end_date_input.val();
 
           view.model.save({
             post_id: post_id,

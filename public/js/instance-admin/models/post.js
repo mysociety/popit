@@ -7,13 +7,15 @@ define( [ 'Backbone', 'backbone-forms' ], function ( Backbone, BackboneForms ) {
     }
   });
 
+  var dateValidator = /^[0-9]{4}(-[0-9]{2}){0,2}$/;
+
   return Backbone.Model.extend({
     urlRoot: '/api/v0.1/posts',
     schema: {
       label: { dataType: 'Text', validators: ['required'] },
       role: { dataType: 'Text' },
-      start_date: { title: 'Start date', type: NullText },
-      end_date: { title: 'End date', type: NullText },
+      start_date: { title: 'Start date', type: NullText, validators: [ dateValidator ] },
+      end_date: { title: 'End date', type: NullText, validators: [ dateValidator ] },
       area: {
         type: 'Object', subSchema: {
           id: {},
