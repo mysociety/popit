@@ -8,7 +8,7 @@ define(
     'jquery',
     'instance-admin/models/person',
     'instance-admin/views/person-new',
-    'instance-admin/views/remove-modal',
+    'instance-admin/views/remove-model',
     'text!templates/person/remove.html',
     'jquery.fancybox'
   ],
@@ -16,7 +16,7 @@ define(
     $,
     PersonModel,
     PersonNewView,
-    RemoveModalView,
+    RemoveModelView,
     personTemplate
   ) {
     "use strict"; 
@@ -39,7 +39,7 @@ define(
         event.preventDefault();
 
         var $link = $(this),
-            view = new RemoveModalView({
+            view = new RemoveModelView({
               model: popit.model,
               template: personTemplate,
               submitSuccess: function (model, response) {

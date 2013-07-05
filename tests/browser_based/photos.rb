@@ -54,8 +54,12 @@ class PhotoTests < PopItWatirTestCase
       assert @b.ul(:class => 'photos').li.img.present?
       
       # delete the photo
-      @b.ul(:class => 'photos').input(:value => 'delete').click
-      
+      @b.ul(:class => 'photos').link(:class => 'delete-photo').click
+      @b.wait_until { @b.form(:action, /images.*delete/).present? }
+
+      assert @b.input(:value, "Really delete photo?").present?
+      @b.input(:value, "Really delete photo?").click
+
       # check that the photo is now gone
       assert_path opts[:url]
       assert @b.ul(:class => 'photos').li.img.present?

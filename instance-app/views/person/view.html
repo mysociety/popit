@@ -39,15 +39,13 @@
               source:
               <a href="#photographer-url">Photographer</a>
               <abbr class="license" title="Creative Commons - By Attribution - Share Alike">CC-BY-SA</abbr>
-              <ul class="admin-options">
-                <li>
-                  <form method="post" action="<%- person.slug_url %>/images/<%- image.id %>/delete">
-                    <input type="submit" value="delete" style="width: 4em; display: inline">
-                    this photograph
-                  </form>
-                </li>
-              </ul>
             </p>
+            <div class="admin-options">
+              <a class="delete-photo" data-image-url="<%- person.slug_url %>/images/<%- image.id %>">
+                <i class="foundicon-trash"></i>
+                Delete this photograph
+              </a>
+            </div>
           </li>
         <% }); %>
       <% } else { %>

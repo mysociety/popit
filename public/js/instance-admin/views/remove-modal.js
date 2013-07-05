@@ -13,31 +13,15 @@ define(
 
       initialize: function(options) {
         this.template = _.template( options.template );
-        this.submitSuccess = options.submitSuccess;
-        _.bindAll(this, 'submitSuccess');
       },
 
-      render: function () {
-
-        this.$el.html( this.template( {
-            item: this.model.toJSON()
-          }
-        ));
+      render: function (args) {
+        args = _.extend({}, args);
+        if (this.model) {
+          args.item = this.model.toJSON();
+        }
+        this.$el.html( this.template( args ) );
         return this;
-      },
-
-      events: {
-        'submit form': 'submitForm'
-      },
-
-      submitForm: function (e) {
-        e.preventDefault();
-        this.model.destroy( {
-          success: this.submitSuccess,
-          error: function (model, response) {
-            window.alert("Something went wrong with the delete - please try again");
-          }
-        } );
       }
 
     });
