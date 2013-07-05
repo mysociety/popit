@@ -17,6 +17,7 @@ require ([
   'instance-admin/actions/post-edit',
   'instance-admin/actions/contact-edit',
   'instance-admin/actions/other_name-edit',
+  'instance-admin/actions/identifier-edit',
   'instance-admin/actions/links-edit'
 ]);
 

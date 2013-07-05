@@ -2,9 +2,10 @@ define( [ 'Backbone',
     'instance-admin/models/nested',
     'instance-admin/collections/contacts',
     'instance-admin/collections/other_names',
+    'instance-admin/collections/identifiers',
     'instance-admin/collections/links'
 ],
-function ( Backbone, NestedModel, ContactCollection, OtherNamesCollection, LinkCollection ) {
+function ( Backbone, NestedModel, ContactCollection, OtherNamesCollection, IdentifierCollection, LinkCollection ) {
   "use strict"; 
 
   var PersonModel = NestedModel.extend({
@@ -14,6 +15,7 @@ function ( Backbone, NestedModel, ContactCollection, OtherNamesCollection, LinkC
       this.nest('links', LinkCollection, attrs);
       this.nest('contact_details', ContactCollection, attrs);
       this.nest('other_names', OtherNamesCollection, attrs);
+      this.nest('identifiers', IdentifierCollection, attrs);
       return Backbone.Model.prototype.set.call(this, attrs, options);
     },
 
