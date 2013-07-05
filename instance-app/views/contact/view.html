@@ -1,5 +1,14 @@
 <span class="admin-options hover-only">
   <a class="edit contact-edit"><i class="foundicon-edit"></i> <span>Edit</span></a>
 </span>
-<div class="list-item-title"><%- item.type %>:</div>
-<div class="list-item-value"><%- item.value %></div>
+<div class="list-item-title">
+  <% if (item.label) { %>
+    <%- item.label %> (<%- item.type %>):
+  <% } else { %>
+    <%- item.type %>:
+  <% } %>
+</div>
+<div class="list-item-value">
+  <%- item.value %>
+  <% if (item.note) { %>(<%- item.note %>)<% } %>
+</div>

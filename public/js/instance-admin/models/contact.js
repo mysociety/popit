@@ -3,6 +3,7 @@ define( [ 'Backbone' ], function ( Backbone  ) {
 
   var ContactModel = Backbone.Model.extend({
     schema: {
+      label: {},
       type: {
         dataType:            'Text',
         validators:          ['required'],
@@ -11,7 +12,8 @@ define( [ 'Backbone' ], function ( Backbone  ) {
       value: {
         dataType:   'Text',
         validators: ['required']
-      }
+      },
+      note: {}
     }
   });
 
