@@ -115,29 +115,7 @@
 
     <ul class="cleared">
       <% _.each( memberships, function (membership) { %>
-      <li>
-        <span class="admin-options hover-only">
-          <a class="edit edit-membership"><i class="foundicon-edit"></i> <span>Edit</span></a>
-          <a class="delete delete-membership"><i class="foundicon-trash"></i> <span>Delete</span></a>
-        </span>
-        <% if (membership.post_id) { %>
-          <%- membership.post_id.label %>:
-        <% } %>
-        <% if (membership.role) { %>
-          <%- membership.role %>:
-        <% } %>
-          <a href="<%- membership.organization_id.slug_url %>"><%- membership.organization_id.name %></a>
-          <% if (membership.start_date || membership.end_date) { %>
-            (
-            <% if (membership.start_date) { %>
-              from <%- membership.start_date %>
-            <% } %>
-            <% if (membership.end_date) { %>
-              to <%- membership.end_date %>
-            <% } %>
-            )
-          <% } %>
-        </li>
+        <%= render( 'membership/list-item.html', { membership: membership, type: 'person' } ) %>
       <% }); %>
 
     </ul>

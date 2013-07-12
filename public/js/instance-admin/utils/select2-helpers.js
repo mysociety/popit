@@ -102,6 +102,7 @@ define(
     helpers.create_arguments_for_autocompleter = function (args) {
       return {
         placeholder: args.placeholder,
+        allowClear: true,
         ajax: {
           url: args.autocomplete_url,
           data: function (term, page) {

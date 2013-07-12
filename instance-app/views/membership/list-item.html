@@ -1,0 +1,26 @@
+<li>
+  <span class="admin-options hover-only">
+    <a class="edit edit-membership"><i class="foundicon-edit"></i> <span>Edit</span></a>
+    <a class="delete delete-membership"><i class="foundicon-trash"></i> <span>Delete</span></a>
+  </span>
+  <% if (membership.post_id) { %> <%- membership.post_id.label %>: <% } %>
+  <% if (membership.label) { %> <%- membership.label %> <% } %>
+  <% if (membership.role) { %> (<%- membership.role %>) <% } %>
+  <% if (membership.role || membership.label) { %> : <% } %>
+  <% if (type == 'person') { %>
+  <a href="<%- membership.organization_id.slug_url %>"><%- membership.organization_id.name %></a>
+  <% } else if (type == 'organization') { %>
+  <a href="<%- membership.person_id.slug_url%>" ><%- membership.person_id.name %></a>
+  <% } %>
+  <% if (membership.start_date || membership.end_date) { %>
+    (
+    <% if (membership.start_date) { %>
+      from <%- membership.start_date %>
+    <% } %>
+    <% if (membership.end_date) { %>
+      to <%- membership.end_date %>
+    <% } %>
+    )
+  <% } %>
+</li>
+

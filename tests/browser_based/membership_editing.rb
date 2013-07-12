@@ -43,7 +43,7 @@ class MembershipEditingTests < PopItWatirTestCase
 
       # Submit the form and check that it complains about missing role
       membership_form.submit
-      assert_equal @b.ul(:class, 'error').text, "You must specify a role or a post."
+      assert_equal @b.ul(:class, 'error').text, "You must specify a person and an organization."
 
       # click on the role and select President
       select2_container('role').link.click
@@ -65,7 +65,7 @@ class MembershipEditingTests < PopItWatirTestCase
       # submit the form and check that the new membership is created
       membership_form.submit
       @b.wait_until { ! membership_form.present? }
-      assert_match @b.text, /President:\ United\ States\ Government\ \(\ from\ 2001-01-20\ \)/
+      assert_match @b.text, /\(President\)\ :\ United\ States\ Government\ \(\ from\ 2001-01-20\ \)/
 
       # go back to person page and check that the membership is now listed there
       goto '/persons/george-bush'
@@ -89,7 +89,7 @@ class MembershipEditingTests < PopItWatirTestCase
 
       membership_form.submit
       @b.wait_until { ! membership_form.present? }
-      assert_match @b.text, /Bottle Washer:\ 1600\ Penn\ Hotel/
+      assert_match @b.text, /\(Bottle Washer\)\ :\ 1600\ Penn\ Hotel/
 
       # check that the new role and org are in the possible options
       goto '/persons/george-bush'
@@ -139,7 +139,7 @@ class MembershipEditingTests < PopItWatirTestCase
 
       membership_form.submit
       @b.wait_until { ! membership_form.present? }
-      assert_match @b.text, /President:\ United\ States\ Government\ \(\ to\ 2013-01-01\ \)/
+      assert_match @b.text, /\(President\)\ :\ United\ States\ Government\ \(\ to\ 2013-01-01\ \)/
     }
   end
 

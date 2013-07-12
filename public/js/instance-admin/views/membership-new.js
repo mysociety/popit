@@ -32,21 +32,28 @@ define(
       // initialize: function () {},
 
       render: function () {
+        var view = this;
 
         // Render the template
         var $content = $( this.membershipTemplate() );
 
         // find the bits that are interesting and store them for easy access
-        this.$role_input        = $content.find('[name=role]');
-        this.$person_input       = $content.find('[name=person_id]');
-        this.$organization_input = $content.find('[name=organization_id]');
-        this.$post_input = $content.find('[name=post_id]');
-        this.$start_date_input   = $content.find('[name=start_date]');
-        this.$end_date_input     = $content.find('[name=end_date]');
-        this.$errors_list        = $content.find('ul.error');
+        this.$errors_list = $content.find('ul.error');
+        var fields = [ 'role', 'label', 'person_id', 'organization_id', 'post_id', 'start_date', 'end_date', 'area_id', 'area_name' ];
+        var fields_simple = [ 'label', 'start_date', 'end_date' ];
 
-        this.$start_date_input.val( this.model.get('start_date') );
-        this.$end_date_input.val( this.model.get('end_date') );
+        _.each(fields, function(val) {
+          view['$' + val + '_input'] = $content.find('[name=' + val + ']');
+        });
+
+        _.each(fields_simple, function(val) {
+          view['$' + val + '_input'].val( view.model.get(val) );
+        });
+        var area = view.model.get('area');
+        if (area) {
+          view.$area_id_input.val( area.id );
+          view.$area_name_input.val( area.name );
+        }
 
         // set up the role as an autocompletor
         this.$role_input.select2(
@@ -57,17 +64,17 @@ define(
         );
 
         // set up the model lookups
-        this.$person_input.select2( select2Helpers.create_arguments_for_model({
+        this.$person_id_input.select2( select2Helpers.create_arguments_for_model({
           placeholder: "e.g Joe Bloggs, Jane Smith",
           model:       PersonModel,
           errors_list: this.$errors_list
         }) );
-        this.$organization_input.select2( select2Helpers.create_arguments_for_model({
+        this.$organization_id_input.select2( select2Helpers.create_arguments_for_model({
           placeholder: "e.g Apple Inc, UK Parliament, Kenyatta University",
           model:       OrganizationModel,
           errors_list: this.$errors_list
         }) );
-        this.$post_input.select2( select2Helpers.create_arguments_for_model({
+        this.$post_id_input.select2( select2Helpers.create_arguments_for_model({
           placeholder: "e.g MP for Avalon, President of the US",
           model:       PostModel,
           lookup_term: 'label',
@@ -76,15 +83,20 @@ define(
         }) );
 
         // If we have some details already set, store them
-        var obj;
-        obj = this.model.get('person_id');
-        if (obj) { this.$person_input.select2('data', { id: obj.id, text: obj.name }); }
-        obj = this.model.get('organization_id');
-        if (obj) { this.$organization_input.select2('data', { id: obj.id, text: obj.name }); }
-        obj = this.model.get('post_id');
-        if (obj) { this.$post_input.select2('data', { id: obj.id, text: obj.label }); }
-        obj = this.model.get('role');
-        if (obj) { this.$role_input.select2('data', { id: obj, text: obj }); }
+        var fields_select2 = {
+          'person_id': [ 'id', 'name' ],
+          'organization_id': [ 'id', 'name' ],
+          'post_id': [ 'id', 'label' ],
+          'role': [ '', '' ]
+        };
+        _.each(fields_select2, function(val, key) {
+            var obj = view.model.get(key);
+            if (obj) {
+                var id = val[0] ? obj[val[0]] : obj;
+                var text = val[1] ? obj[val[1]] : obj;
+                view['$' + key + '_input'].select2('data', { id: id, text: text });
+            }
+        });
 
         // hide inputs if requested (not happy with this - not very elegant :( )
         if (this.options.fields_to_hide.person ) $content.find('p.person').hide();
@@ -104,37 +116,41 @@ define(
         e.preventDefault();
 
         var view = this,
+            new_model = {},
             errors = false;
 
         // clear the errors
         view.$errors_list.html('');
 
         // Get the role, error if it is not set
-        var job_role_data = view.$role_input.select2('data');
-        var job_role = job_role_data ? job_role_data.text : false;
+        var role_data = view.$role_input.select2('data');
+        new_model.role = role_data ? role_data.text : null;
 
-        var post_id = view.$post_input.select2('data');
-        if (post_id) post_id = post_id.id;
+        var post_id = view.$post_id_input.select2('data');
+        new_model.post_id = post_id ? post_id.id : null;
 
-        var start_date = view.$start_date_input.val();
-        var end_date = view.$end_date_input.val();
-
-        if (!post_id && !job_role) {
-          view.$errors_list.append('<li>You must specify a role or a post.</li>');
-          errors = true;
-        }
+        var fields_simple = [ 'label', 'start_date', 'end_date', 'area_id', 'area_name' ];
+        _.each(fields_simple, function(val){
+          new_model[val] = view['$' + val + '_input'].val() || null;
+        });
 
         var dateValidator = /^[0-9]{4}(-[0-9]{2}){0,2}$/;
-        if (start_date && !start_date.match(dateValidator)) {
+        if (new_model.start_date && !new_model.start_date.match(dateValidator)) {
           view.$errors_list.append('<li>Start date not in correct format.</li>');
           errors = true;
         }
-        if (end_date && !end_date.match(dateValidator)) {
+        if (new_model.end_date && !new_model.end_date.match(dateValidator)) {
           view.$errors_list.append('<li>End date not in correct format.</li>');
           errors = true;
         }
         if (errors) {
           return;
+        }
+
+        if (new_model.area_id) {
+            new_model.area = { 'id': new_model.area_id, 'name': new_model.area_name };
+            delete new_model.area_id;
+            delete new_model.area_name;
         }
 
         // for the person and organization create the entry on the server if
@@ -144,13 +160,13 @@ define(
           $.Deferred(
             select2Helpers.create_model_if_needed_for_data(
               PersonModel,
-              view.$person_input.select2('data')
+              view.$person_id_input.select2('data')
             )
           ),
           $.Deferred(
             select2Helpers.create_model_if_needed_for_data(
               OrganizationModel,
-              view.$organization_input.select2('data')
+              view.$organization_id_input.select2('data')
             )
           )
         )
@@ -161,14 +177,9 @@ define(
             return;
           }
 
-          view.model.save({
-            post_id: post_id,
-            person_id: person_id,
-            organization_id: organization_id,
-            role: job_role || null,
-            start_date: start_date || null,
-            end_date: end_date || null
-          },{
+          new_model.person_id = person_id;
+          new_model.organization_id = organization_id;
+          view.model.save(new_model, {
             success: function (model, response ) {
                 document.location.reload();
             },
