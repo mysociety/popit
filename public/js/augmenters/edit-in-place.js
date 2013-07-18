@@ -27,6 +27,11 @@ require(
       submitData[apiName] = value;
       Backbone.trigger('in-place-edit', submitData);
 
+      if (apiName == 'parent_id') {
+        // We want the text of the select option, not the ID key
+        value = element.find('option[value=' + value + ']').text();
+      }
+
       return(value);
     };
   
@@ -39,6 +44,15 @@ require(
         placeholder: '---',
         width: 'none',
         height: 'none'
+      } );
+
+      $signed_in.find('.edit-in-place-select').editable( onSubmit, {
+        placeholder: '---',
+        width: 'none',
+        height: 'none',
+        loadurl: '/autocomplete/all_orgs',
+        type: 'select',
+        submit: 'OK'
       } );
 
       $signed_in.find('.edit-in-place-textarea').editable( onSubmit, {
