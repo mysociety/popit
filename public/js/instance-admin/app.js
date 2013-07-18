@@ -43,17 +43,8 @@ define(
           });
         }
         if (popit.memberships) {
-          $.each(popit.memberships, function(i, m) {
-            m.id = m._id; delete m._id;
-            if (m.person_id && m.person_id._id) {
-              m.person_id.id = m.person_id._id; delete m.person_id._id;
-            }
-            if (m.organization_id && m.organization_id._id) {
-              m.organization_id.id = m.organization_id._id; delete m.organization_id._id;
-            }
-            if (m.post_id && m.post_id._id) {
-              m.post_id.id = m.post_id._id; delete m.post_id._id;
-            }
+          popit.memberships = $.map(popit.memberships, function(m) {
+            return { 'id': m };
           });
         }
         if (popit.type == 'person') {

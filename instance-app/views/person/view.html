@@ -10,7 +10,7 @@
     var popit = popit || {};
     popit.type = 'person';
     popit.data = <%= JSON.stringify(person.toJSON()) %>;
-    popit.memberships = <%= JSON.stringify(memberships) %>;
+    popit.memberships = <%= JSON.stringify( _.map( memberships, function(m) { return m.id; } ) ) %>;
 </script>
 
 <article class="entity person" itemscope itemtype="http://schema.org/Person">

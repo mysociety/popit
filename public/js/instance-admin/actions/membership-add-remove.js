@@ -7,6 +7,8 @@ define(
   [
     'jquery',
     'instance-admin/models/membership',
+    'instance-admin/models/person',
+    'instance-admin/models/organization',
     'instance-admin/views/membership-new',
     'instance-admin/views/remove-model',
     'text!templates/membership/remove.html',
@@ -15,6 +17,8 @@ define(
   function (
     $,
     MembershipModel,
+    PersonModel,
+    OrganizationModel,
     MembershipNewView,
     RemoveModelView,
     mTemplate
@@ -32,11 +36,18 @@ define(
         // create membership. Might be existing one, or a new one.
         if (cid) {
           object = collection.get(cid);
+          object.fetch({ async: false });
           // Need to set a full object on the link back, not just ID
           if (popit.type == 'person') {
             object.set('person_id', popit.model.attributes);
+            var o = new OrganizationModel({ id: object.get('organization_id') });
+            o.fetch({ async: false });
+            object.set('organization_id', o.attributes);
           } else if (popit.type == 'organization') {
             object.set('organization_id', popit.model.attributes);
+            var p = new PersonModel({ id: object.get('person_id') });
+            p.fetch({ async: false });
+            object.set('person_id', p.attributes);
           }
           object.exists = true;
         } else {

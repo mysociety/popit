@@ -11,7 +11,7 @@
     popit.type = 'organization';
     popit.data = <%= JSON.stringify(organization.toJSON()) %>;
     popit.posts = <%= JSON.stringify(posts) %>;
-    popit.memberships = <%= JSON.stringify(memberships) %>;
+    popit.memberships = <%= JSON.stringify( _.map( memberships, function(m) { return m.id; } ) ) %>;
 </script>
 
 <article class="entity organization">
