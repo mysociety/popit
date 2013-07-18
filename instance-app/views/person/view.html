@@ -67,7 +67,7 @@
   <ul class="admin-options">
     <li>
       <a class="delete delete-person">
-        <strong>- delete</strong>
+        <i class="foundicon-trash"></i> delete
         this person
       </a>
     </li>
@@ -101,8 +101,9 @@
       </li>
 
     </ul>
-  </section>
   
+  </section>
+
   <%= render( 'other_name/list.html', { other_names: person.other_names } ) %>
 
   <section class="memberships">

@@ -28,7 +28,7 @@ class OrganizationEditingTests < PopItWatirTestCase
       goto '/organizations/united-states-government'    
       
       check_delete_entity(
-        :delete_link_text => '- delete this organization',
+        :delete_link_text => 'delete this organization',
         :form_name        => 'remove-organization',
       )
     }

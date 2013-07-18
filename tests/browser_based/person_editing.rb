@@ -124,7 +124,7 @@ class PersonEditingTests < PopItWatirTestCase
       goto '/persons/george-bush'
       
       check_delete_entity(
-        :delete_link_text => '- delete this person',
+        :delete_link_text => 'delete this person',
         :form_name        => 'remove-person',
       )
     }

@@ -102,12 +102,7 @@ body.brand_page #user_menu{
 		}
 	}
 }
-.entity{
-	p{
-		font-size: 1.125em;
-		line-height: 1.667em;
-	}
-}
+
 p.intro{
 	line-height: 1.667em;
 	max-width:100%;
@@ -365,10 +360,10 @@ article.entity{
 		}
 	}
 	
-	.description{
-		p{
-			font-size:1.125em;
-			line-height: 1.667em;
+	.description {
+		p:first-child {
+			font-size: 1.125em;
+			line-height: 1.5em;
 		}
 	}
 	

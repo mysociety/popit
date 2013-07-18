@@ -42,7 +42,7 @@ class DateEditingTests < PopItWatirTestCase
       path_to_date = 'birth_date'
 
       # check that there is no current entry
-      assert_equal 'Unknown', birth_date_value
+      assert_equal '---', birth_date_value
 
       # start editing his dob
       birth_date_div.click
@@ -63,7 +63,7 @@ class DateEditingTests < PopItWatirTestCase
       birth_date_div.click
       birth_date_input.set ''
       @b.send_keys :return
-      assert_equal 'Unknown', birth_date_value
+      assert_equal '---', birth_date_value
     }
 
   end

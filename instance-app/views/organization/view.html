@@ -70,7 +70,7 @@
   <ul class="admin-options">
     <li>
       <a class="delete delete-organization">
-        <strong>- delete</strong>
+        <i class="foundicon-trash"></i> delete
         this organization
       </a>
     </li>
@@ -83,9 +83,16 @@
         data-api-name="summary"
     ><%- organization.summary %></p>
   
-    <p id="entity-classification-text">
+    <p>
       Classification:
       <span class="edit-in-place" data-api-name="classification"><%- organization.classification %></span>
+    </p>
+
+    <p>
+      Parent:
+      <span data-api-name="parent_id"><% if (organization.parent_id) { %>
+        <%- organization.parent_id.name %>
+      <% } %></span>
     </p>
 
     <ul class="detail-list">
@@ -107,6 +114,7 @@
       </li>
 
     </ul>
+
   </section>
 
   <%= render( 'other_name/list.html', { other_names: organization.other_names } ) %>
@@ -116,7 +124,7 @@
       <a class="add edit-post"><i class="foundicon-add-doc"></i> <span>Add</span></a>
     </div>
 
-    <h2>Associated posts</h2>
+    <h2>Associated posts:</h2>
 
     <ul class="cleared">
       <% _.each( posts, function ( post ) { %>

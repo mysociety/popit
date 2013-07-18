@@ -36,7 +36,7 @@ require(
       var $signed_in = $('body.signed_in');
 
       $signed_in.find('.edit-in-place').editable( onSubmit, {
-        placeholder: 'Unknown',
+        placeholder: '---',
         width: 'none',
         height: 'none'
       } );
