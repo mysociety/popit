@@ -66,17 +66,20 @@ define(
         // set up the model lookups
         this.$person_id_input.select2( select2Helpers.create_arguments_for_model({
           placeholder: "e.g Joe Bloggs, Jane Smith",
-          model:       PersonModel,
+          //url: '/api/v0.1/persons',
+          url: '/autocomplete/persons',
           errors_list: this.$errors_list
         }) );
         this.$organization_id_input.select2( select2Helpers.create_arguments_for_model({
           placeholder: "e.g Apple Inc, UK Parliament, Kenyatta University",
-          model:       OrganizationModel,
+          //url: '/api/v0.1/organizations',
+          url: '/autocomplete/organizations',
           errors_list: this.$errors_list
         }) );
         this.$post_id_input.select2( select2Helpers.create_arguments_for_model({
           placeholder: "e.g MP for Avalon, President of the US",
-          model:       PostModel,
+          //url: '/api/v0.1/posts',
+          url: '/autocomplete/posts',
           lookup_term: 'label',
           no_creation: true,
           errors_list: this.$errors_list

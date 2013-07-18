@@ -30,19 +30,17 @@ define(
     */
     
     helpers.create_arguments_for_model = function (args) {
-    
-      // get the api url from the model
-      var ajax_url = new args.model().urlRoot;
+      var lookup_term = args.lookup_term || 'name';
     
       return {
         placeholder: args.placeholder,
         allowClear: true,
         ajax: {
-          url: ajax_url,
+          url: args.url,
           data: function (term, page) {
-            return {
-              name: term
-            };
+            var a = {};
+            a[lookup_term] = term;
+            return a;
           },
           results: function (data, page) {
             var results = _.map(
@@ -50,7 +48,7 @@ define(
               function (doc) {
                 return {
                   id: doc.id,
-                  text: doc[args.lookup_term || 'name']
+                  text: doc[lookup_term]
                 };
               }
             );
