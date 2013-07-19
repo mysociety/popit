@@ -7,6 +7,7 @@ define(
   [
     'jquery',
     'Backbone',
+    'jsoneditor',
     'instance-admin/collections/posts',
     'instance-admin/collections/memberships',
     'instance-admin/models/person',
@@ -16,6 +17,7 @@ define(
   function (
     $,
     Backbone,
+    jsoneditor,
     PostCollection,
     MembershipCollection,
     PersonModel,
@@ -66,6 +68,20 @@ define(
             popit.model.memberships = new MembershipCollection(popit.memberships);
             setup_sub_model_links('memberships'); // Ditto
         }
+
+        var jsoncontainer = $('#jsoneditor');
+        if (jsoncontainer.length) {
+            var editor = new jsoneditor.JSONEditor(jsoncontainer[0], {
+                change: function() {
+                    //var data = { 'data': editor.get() };
+                    var data = editor.get();
+                    Backbone.trigger('in-place-edit', data);
+                }
+            });
+            //editor.set(popit.data.data || {});
+            editor.set(JSON.parse(JSON.stringify(popit.data)));
+        }
+
     });
 
     function setup_sub_model_links(key) {

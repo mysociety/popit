@@ -61,8 +61,10 @@ public-production: css
 	mv public-build/img         public-production/
 
 	# copy across only the javascript that we need
-	mkdir -p public-production/js/libs
+	mkdir -p public-production/js/libs/jsoneditor/img
 	mv public-build/js/libs/require-*  public-production/js/libs/
+	mv public-build/js/libs/jsoneditor/img/* public-production/js/libs/jsoneditor/img/
+	mv public-build/js/libs/jsoneditor/*.css  public-production/js/libs/jsoneditor/
 	mv public-build/js/main-*          public-production/js/
 
 	# clean up generated content that we don't need now

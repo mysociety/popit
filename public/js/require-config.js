@@ -7,6 +7,8 @@ require.config({
     'jquery.pulse':     './libs/jquery.pulse',
     'jquery.select2':   './libs/jquery.select2-3.2',
 
+    'jsoneditor': './libs/jsoneditor/jsoneditor',
+
     // AMD version of jquery-ui - generated using https://github.com/jrburke/jqueryui-amd
     'jqueryui': './libs/jqueryui-1.8.22',
 

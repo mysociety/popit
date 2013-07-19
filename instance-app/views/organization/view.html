@@ -151,6 +151,11 @@
   <%= render( 'link/list.html', { links: organization.links } ) %>
   <%= render( 'identifier/list.html', { identifiers: organization.identifiers } ) %>
 
+  <section class="custom-data">
+    <h2>Custom data:</h2>
+    <div id="jsoneditor"></div>
+  </section>
+
   <section class="raw-data">
     <h2>Raw data</h2>
     <p>
