@@ -12,8 +12,8 @@ define( [ 'Backbone', 'backbone-forms' ], function ( Backbone, BackboneForms ) {
   var OtherNameModel = Backbone.Model.extend({
     schema: {
       name: { dataType: 'Text', validators: [ 'required' ] },
-      start_date: { title: 'Start date', type: NullText, validators: [ dateValidator ] },
-      end_date: { title: 'End date', type: NullText, validators: [ dateValidator ] },
+      start_date: { title: 'Start date', type: NullText, validators: [ dateValidator ], editorClass: 'edit-date' },
+      end_date: { title: 'End date', type: NullText, validators: [ dateValidator ], editorClass: 'edit-date' },
       note: { dataType: 'Text' }
     }
   });

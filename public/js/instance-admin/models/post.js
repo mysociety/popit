@@ -14,8 +14,8 @@ define( [ 'Backbone', 'backbone-forms' ], function ( Backbone, BackboneForms ) {
     schema: {
       label: { dataType: 'Text', validators: ['required'] },
       role: { dataType: 'Text' },
-      start_date: { title: 'Start date', type: NullText, validators: [ dateValidator ] },
-      end_date: { title: 'End date', type: NullText, validators: [ dateValidator ] },
+      start_date: { title: 'Start date', type: NullText, validators: [ dateValidator ], editorClass: 'edit-date' },
+      end_date: { title: 'End date', type: NullText, validators: [ dateValidator ], editorClass: 'edit-date' },
       area: {
         type: 'Object', subSchema: {
           id: {},

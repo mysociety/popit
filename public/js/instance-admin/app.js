@@ -82,6 +82,10 @@ define(
             editor.set(JSON.parse(JSON.stringify(popit.data)));
         }
 
+        $('body').on('focus', 'input.edit-date, .edit-date input', function(){
+            $(this).attr('pattern', '^[0-9]{4}(-[0-9]{2}){0,2}$');
+            $(this).attr('title', 'Please enter YYYY-MM-DD, YYYY-MM or just YYYY.');
+        });
     });
 
     function setup_sub_model_links(key) {
