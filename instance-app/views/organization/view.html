@@ -9,7 +9,14 @@
 <script>
     var popit = popit || {};
     popit.type = 'organization';
-    popit.data = <%= JSON.stringify(organization.toJSON()) %>;
+    popit.data = <%
+      o = organization.toJSON();
+      if (o.parent_id) {
+        // Only want the ID in the popit data, for correct saving from client
+        o.parent_id = o.parent_id.id;
+      }
+      print( JSON.stringify(o) );
+    %>;
     popit.posts = <%= JSON.stringify(posts) %>;
     popit.memberships = <%= JSON.stringify( _.map( memberships, function(m) { return m.id; } ) ) %>;
 </script>
