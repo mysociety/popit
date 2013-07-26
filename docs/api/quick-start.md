@@ -33,7 +33,7 @@ The index page for the API is a directory of what is available:
   "meta": {
     "person_api_url":       "http://kenyan-politicians.popit.mysociety.org/api/v0.1/persons",
     "organization_api_url": "http://kenyan-politicians.popit.mysociety.org/api/v0.1/organizations",
-    "position_api_url":     "http://kenyan-politicians.popit.mysociety.org/api/v0.1/position",
+    "membership_api_url":     "http://kenyan-politicians.popit.mysociety.org/api/v0.1/memberships",
     "image_proxy_url":      "http://kenyan-politicians.popit.mysociety.org/image-proxy/"
   }
 }
@@ -45,21 +45,13 @@ You could then view a list of all the people in the database:
 // GET http://kenyan-politicians.popit.mysociety.org/api/v0.1/persons
 
 {
-  "results": [
+  "result": [
     {
       "id": "50c60a5f71ec32dd6e000c3d",
       "name": "Hassan Omar Hassan Sarai",
       "slug": "hassan-omar-hassan-sarai",
-      "death_date": {
-        "formatted": "",
-        "end": null,
-        "start": null
-      },
-      "birth_date": {
-        "formatted": "Oct 23, 1975",
-        "end": "1975-10-23T00:00:00.000Z",
-        "start": "1975-10-23T00:00:00.000Z"
-      },
+      "death_date": "",
+      "birth_date": "1975-10-23",
       "images": [
         {
           "url": "http://info.mzalendo.com/media_root/images/Hassan_Omar.jpg",
@@ -69,11 +61,7 @@ You could then view a list of all the people in the database:
       ],
       "links": [],
       "contact_details": [],
-      "other_names": [],
-      "meta": {
-        "api_url": "http://kenyan-politicians.popit.mysociety.org/api/v0.1/persons/50c60a5f71ec32dd6e000c3d",
-        "edit_url": "http://kenyan-politicians.popit.mysociety.org/persons/hassan-omar-hassan-sarai"
-      }
+      "other_names": []
     },
     // ... more person entries ...
   ]
@@ -91,16 +79,8 @@ And finally view the record for an individual person in the database:
     "id": "50c60c3c71ec32dd6e00199a",
     "name": "Wycliffe William Osundwa",
     "slug": "wycliffe-william-osundwa",
-    "death_date": {
-      "formatted": "",
-      "end": null,
-      "start": null
-    },
-    "birth_date": {
-      "formatted": "Aug 4, 1952",
-      "end": "1952-08-04T00:00:00.000Z",
-      "start": "1952-08-04T00:00:00.000Z"
-    },
+    "death_date": "",
+    "birth_date": "1952-08-04",
     "images": [
       {
         "url": "http://info.mzalendo.com/media_root/images/osundwa_w.jpg",
@@ -114,16 +94,10 @@ And finally view the record for an individual person in the database:
     ],
     "links": [],
     "contact_details": [],
-    "other_names": [],
-    "meta": {
-      "edit_url": "http://kenyan-politicians.popit.mysociety.org/persons/wycliffe-william-osundwa",
-      "positions_api_url": "http://kenyan-politicians.popit.mysociety.org/api/v0.1/position?person_id=50c60c3c71ec32dd6e00199a"
-    }
+    "other_names": []
   }
 }
 ```
-
-Note that in all the above there are `meta` blocks that provide further details such as URLs. These are not part of the actual record, but are added by the API to make working with the results easier.
 
 ## Viewing API responses in the browser.
 
