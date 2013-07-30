@@ -14,8 +14,6 @@ module EntityCreateAndDelete
     @b.input(:value, "Really delete '#{page_title}'?").click
     
     @b.wait_until { @b.title != page_title }
-    assert_equal @b.element(:id, "flash-info").li.text, "Entry '#{page_title}' deleted."
-
     goto page_url    
     assert_equal @b.title, 'Page not found'
     

@@ -26,18 +26,14 @@ class PersonEditingTests < PopItWatirTestCase
       goto_instance 'test'
       delete_instance_database
       load_test_fixture
-      goto '/person'
+      goto '/persons'
 
-      # check that the create new person link is not shown. But that it is if the
-      # user hovers over the sign in link
+      # check that the create new person link is not shown.
       assert ! add_person_link.present?
-      @b.link(:id, "sign_in_as_existing_user").hover
-
-      assert add_person_link.present?
 
       # login and check link is visible
       login_as user_type
-      goto '/person'
+      goto '/persons'
       assert @b.link(:text, '+ Add a new person').present?
 
       # click on the create new person link and check that the form has popped up    
@@ -56,7 +52,7 @@ class PersonEditingTests < PopItWatirTestCase
       @b.input(:value, "Create new person").click
       @b.wait_until { @b.title != 'People' }
       assert_equal "Joe Bloggs", @b.title
-      assert_path '/person/joe-bloggs'
+      assert_path '/persons/joe-bloggs'
 
       # check that this person is in the list of people too
       @b.back
@@ -86,7 +82,7 @@ class PersonEditingTests < PopItWatirTestCase
 
       # click on a suggestion, check get existing person
       @b.ul(:class, 'suggestions').li.link.click
-      assert_path '/person/george-bush'
+      assert_path '/persons/george-bush'
 
       # enter dup, create anyway, check for new person
       @b.back
@@ -95,7 +91,7 @@ class PersonEditingTests < PopItWatirTestCase
       @b.text_field(:name, 'name').set "George Bush"
       @b.input(:value, "Create new person").click
       @b.wait_until { @b.title != 'People' }
-      assert_path '/person/george-bush-1'
+      assert_path '/persons/george-bush-1'
 
       # enter name that can't be slugged
       @b.back
@@ -111,7 +107,7 @@ class PersonEditingTests < PopItWatirTestCase
       @b.input(:value, "Create new person").click
       @b.wait_until { @b.title != 'People' }
       assert_equal "网页", @b.title
-      assert_path '/person/chinese-name'
+      assert_path '/persons/chinese-name'
     }    
   end
 
@@ -125,10 +121,10 @@ class PersonEditingTests < PopItWatirTestCase
       login_as user_type
       
       # goto bush and check he is there
-      goto '/person/george-bush'
+      goto '/persons/george-bush'
       
       check_delete_entity(
-        :delete_link_text => '- delete this person',
+        :delete_link_text => 'delete this person',
         :form_name        => 'remove-person',
       )
     }
@@ -140,7 +136,7 @@ class PersonEditingTests < PopItWatirTestCase
       goto_instance 'test'
       delete_instance_database
       load_test_fixture
-      goto '/person/george-bush'    
+      goto '/persons/george-bush'    
       
       check_editing_summary user_type
       

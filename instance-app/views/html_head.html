@@ -34,7 +34,11 @@
   <title><%- title %></title>
 
   <link rel="stylesheet" href="/css/popit.css?v<%- config.popit_version %>" type="text/css" media="screen, print" charset="utf-8">
+  <link rel="stylesheet" href="/css/foundicons/general_foundicons.css">
   <link rel="stylesheet" href="/css/print.css?v<%- config.popit_version %>" type="text/css" media="print" charset="utf-8">
+  <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/css/foundicons/general_foundicons_ie7.css">
+  <![endif]-->
 
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -49,7 +53,7 @@
 
 </head>
 
-<body id="popit-<%- popit ? popit.instance_name() : 'no-site-found' %>" class="<%- user || guest  ? 'signed_in' : '' %>">
+<body id="popit-<%- popit ? popit.instance_name() : 'no-site-found' %>" class="<%- user || guest  ? 'signed_in instance-admin-app-active' : '' %>">
 
   <% if ( config.show_dev_site_warning ) { %>
   <div id="dev-site-warning">
@@ -122,8 +126,8 @@
       
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/person">People</a></li>
-          <li><a href="/organisation">Organisations</a></li>
+          <li><a href="/persons">People</a></li>
+          <li><a href="/organizations">Organizations</a></li>
           <li><a href="/about">About Us</a></li>
         
           <li>
@@ -153,7 +157,7 @@
     </div>
     
     <div class="tagline">
-      A public database of people and organisations, hosted on PopIt. 
+      A public database of people and organizations, hosted on PopIt. 
       <br>
       Available for easy browsing and re-use as structured data over a REST API.
     </div>
@@ -161,4 +165,3 @@
   </header>
   
   <div id="content">
-    

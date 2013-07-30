@@ -1,13 +1,18 @@
-form{
-	margin: 2.8em 0;
-	
-	p{
-		margin-bottom: 1.4em;
-	}
+.bbf-field label {
+    padding: 0.625em 1em;
+}
+
+.edit-in-place form {
+    display: inline;
+}
+.edit-in-place form input {
+    display: inline;
+}
+
+form {
+	margin: 0;
 	
 	label{
-		display: block;
-		margin-bottom: 5px;
 		color: #333333;
 	}
 
@@ -93,7 +98,7 @@ form{
 
 // apply styling to edit-in-place elements when user logged in
 body.signed_in {
-  .edit-in-place, .edit-in-place-textarea {
+  .edit-in-place, .edit-in-place-textarea, .editable {
     &:hover{
       background-color: $edit-in-place-background-color;
       cursor: pointer;

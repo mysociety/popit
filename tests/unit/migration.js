@@ -130,13 +130,13 @@ module.exports = {
               [ 'lastname', 'name', 'Last name' ],
               [ 'name_suffix', 'name', 'Name suffix' ],
               [ 'nickname', '', '' ],
-              [ 'party', 'position', 'Party' ],
+              [ 'party', 'membership', 'Party' ],
               [ 'state', '', '' ],
               [ 'district', '', '' ],
               [ 'in_office', '', '' ],
               [ 'gender', '', '' ],
-              [ 'phone', 'contact', 'Phone' ],
-              [ 'fax', 'contact', 'Fax' ],
+              [ 'phone', 'contact', 'voice' ],
+              [ 'fax', 'contact', 'fax' ],
               [ 'website', 'links', 'Website' ],
               [ 'webform', 'links', 'Webform' ],
               [ 'congress_office', '', '' ],
@@ -257,12 +257,12 @@ module.exports = {
               [ 'middlename', 'name', 'Middle name' ],
               [ 'lastname', 'name', 'Last name' ],
               [ 'birthdate', 'name', 'Birthdate' ],
-              [ 'party', 'position', 'Party' ],
+              [ 'party', 'membership', 'Party' ],
               [ 'school', 'data', 'School' ],
               [ 'university', 'data', 'University' ],
               [ 'gender', 'data', 'Gender' ],
-              [ 'phone', 'contact', 'Phone' ],
-              [ 'fax', 'contact', 'Fax' ],
+              [ 'phone', 'contact', 'voice' ],
+              [ 'fax', 'contact', 'fax' ],
               [ 'website', 'links', 'Website' ],
               [ 'popit_id', 'id', 'PopIt' ],
               [ 'twitter_id', 'id', 'Twitter' ],
@@ -314,11 +314,11 @@ module.exports = {
             test.equal(p.links.length, 2);
 
             var el;
-            el = _.filter(p.links, function(e) { return e.comment == "Website"; });
+            el = _.filter(p.links, function(e) { return e.note == "Website"; });
             test.equal(el.length, 1);
             test.equal(el[0].url, 'http://www.doe.senate.gov/');
 
-            el = _.filter(p.links, function(e) { return e.comment == "Wikipedia"; });
+            el = _.filter(p.links, function(e) { return e.note == "Wikipedia"; });
             test.equal(el.length, 1);
             test.equal(el[0].url, 'http://www.wikipedia.org/wiki/John_Doe');
 
@@ -335,7 +335,7 @@ module.exports = {
 
 
             test.equal(p.contact_details.length, 1);
-            test.equal(p.contact_details[0].kind, "Phone");
+            test.equal(p.contact_details[0].type, "voice");
             test.equal(p.contact_details[0].value, "734-234-3545");
 
             var data = p.get('data');
@@ -383,7 +383,7 @@ module.exports = {
         });
     },
 
-    "create organisation and position when importing a person": function ( test ) {
+    "create organization and membership when importing a person": function ( test ) {
       test.expect( 7 );
       var migration = new MigrationApp();
 
@@ -391,7 +391,7 @@ module.exports = {
       var mappings = [
         [ 'firstname', 'name', 'First name' ],
         [ 'lastname', 'name', 'Last name' ],
-        [ 'party', 'position', 'Party' ] ];
+        [ 'party', 'membership', 'Party' ] ];
       var data = {'675':
         [ 'John',
           'Doe',
@@ -399,24 +399,24 @@ module.exports = {
 
       var that = this;
 
-      migration.doImport(that.popit, schema, mappings, data, function() {}, function(err, people, positions, organisations) {
+      migration.doImport(that.popit, schema, mappings, data, function() {}, function(err, people, memberships, organizations) {
         test.ifError(err);
-        test.equal(organisations.length, 1, 'one organisation in organisations set');
+        test.equal(organizations.length, 1, 'one organization in organizations set');
 
         async.parallel([
           function(cb) {
-            var query = that.popit.model('Position').find();
+            var query = that.popit.model('Membership').find();
             query.exec(function(err, docs) {
-              test.equal(docs.length, 1, 'one position in database');
-              test.equal(docs[0].title, 'Party', 'right name for position');
+              test.equal(docs.length, 1, 'one membership in database');
+              test.equal(docs[0].role, 'Party', 'right name for membership');
               cb(err);
             });
           }, 
           function(cb) {
-            var query = that.popit.model('Organisation').find();
+            var query = that.popit.model('Organization').find();
             query.exec(function(err, docs) {
-              test.equal(docs.length, 1, 'one organisation in database');
-              test.equal(docs[0].name, 'Aliens', 'right name for position');
+              test.equal(docs.length, 1, 'one organization in database');
+              test.equal(docs[0].name, 'Aliens', 'right name for membership');
               cb(err);
             });
           }], 
@@ -462,7 +462,7 @@ module.exports = {
       });
     },
 
-    "handling of duplicate organisation slugs": function ( test ) {    
+    "handling of duplicate organization slugs": function ( test ) {    
       test.expect( 3 );
 
       var migration = new MigrationApp();
@@ -470,7 +470,7 @@ module.exports = {
       var schema = 'person';
       var mappings = 
         [ [ 'firstname', 'name', 'First name' ],
-        [ 'party', 'position', 'Member' ] ];
+        [ 'party', 'membership', 'Member' ] ];
       var data = {
         '0': 
           [ 'John',
@@ -488,9 +488,9 @@ module.exports = {
         test.ifError(err, 'expect no error');
         test.equal(people.length, 3, 'three people in people set');
 
-        var query = that.popit.model('Organisation').find();
+        var query = that.popit.model('Organization').find();
         query.exec(function(err, docs) {
-          test.equal(docs.length, 1, 'one organisation in database');
+          test.equal(docs.length, 1, 'one organization in database');
           test.done();
         });
       });

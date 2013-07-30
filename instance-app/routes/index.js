@@ -27,16 +27,16 @@ exports.route = function (app) {
             .count()
             .exec(callback);            
         },
-        organisations: function (callback) {
+        organizations: function (callback) {
           req.popit
-            .model('Organisation')
+            .model('Organization')
             .find()
             .limit(summary_listing_count)
             .exec(callback);
         },
-        organisation_count: function (callback) {
+        organization_count: function (callback) {
           req.popit
-            .model('Organisation')
+            .model('Organization')
             .count()
             .exec(callback);            
         }

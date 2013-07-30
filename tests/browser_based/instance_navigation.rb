@@ -20,13 +20,13 @@ class NavigationTests < PopItWatirTestCase
 
     # go to org
     @b.link(:text => 'United States Government').click
-    assert_path '/organisation/united-states-government'
+    assert_path '/organizations/united-states-government'
 
     # go to person and then back to the org
     @b.link(:text => 'Bill Clinton').click
-    assert_path '/person/bill-clinton'
+    assert_path '/persons/bill-clinton'
     @b.link(:text => 'United States Government').click
-    assert_path '/organisation/united-states-government'
+    assert_path '/organizations/united-states-government'
     
   end 
 

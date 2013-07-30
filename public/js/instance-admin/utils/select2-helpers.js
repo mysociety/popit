@@ -30,27 +30,25 @@ define(
     */
     
     helpers.create_arguments_for_model = function (args) {
-    
-      // get the api url from the model
-      var ajax_url = new args.model().urlRoot;
+      var lookup_term = args.lookup_term || 'name';
     
       return {
         placeholder: args.placeholder,
         allowClear: true,
         ajax: {
-          url: ajax_url,
+          url: args.url,
           data: function (term, page) {
-            return {
-              name: term
-            };
+            var a = {};
+            a[lookup_term] = term;
+            return a;
           },
           results: function (data, page) {
             var results = _.map(
               data,
               function (doc) {
                 return {
-                  id: doc._id,
-                  text: doc.name
+                  id: doc.id,
+                  text: doc[lookup_term]
                 };
               }
             );
@@ -58,41 +56,27 @@ define(
           }
         },
         createSearchChoice: function (term) {
+          if (args.no_creation) return null;
           return {
             id: 0,
             text: term
           };
         },
-        initSelection: function (element, callback) {
-          var val = element.val();
-          if ( !val )
-            return callback(null);
-    
-          var obj = new args.model({id: val});
-          obj.fetch({
-            success: function (model, response) {
-              callback({ id: response._id, text: response.name });
-            },
-            error: function (model, response) {
-              args.errors_list.append("<li>Could not fetch model from server</li>");
-              callback(null);
-            }
-          });
-         },
-         formatSelection: function (object, container) {
-           var text = object.text;
-           if (!object.id) text += " <em>(new entry)</em>"; 
-           return text;
-         },
-         formatResult: function (object, container) {
-           var $element = $('<span>').text(object.text);
-           $element.append(
-              object.id ?
-                 "<em> &larr; select to use existing entry</em>" :
-                 "<em> &larr; select to create new entry</em>"
-            );
-           return $element;           
-         }
+        formatSelection: function (object, container) {
+          var text = object.text;
+          if (!object.id) text += " <em>(new entry)</em>";
+          return text;
+        },
+        formatResult: function (object, container) {
+          var $element = $('<span>').text(object.text);
+          if (args.no_creation) return $element;
+          $element.append(
+             object.id ?
+                "<em> &larr; select to use existing entry</em>" :
+                "<em> &larr; select to create new entry</em>"
+          );
+          return $element;
+        }
       };
     };
     
@@ -107,7 +91,7 @@ define(
         $(title_input).select2(
           select2Helpers.create_arguments_for_autocompleter({
             placeholder:      "e.g President, CEO, Professor, Coach",
-            autocomplete_url: "/autocomplete/position_title"
+            autocomplete_url: "/autocomplete/memberships"
           })
         );
     
@@ -116,6 +100,7 @@ define(
     helpers.create_arguments_for_autocompleter = function (args) {
       return {
         placeholder: args.placeholder,
+        allowClear: true,
         ajax: {
           url: args.autocomplete_url,
           data: function (term, page) {
@@ -137,72 +122,7 @@ define(
         }
       };
     };
-    
-    
-    /*
-    
-      Create the arguments for a partial date select box.
 
-      If the date already has a value then the formatted string needs to be set
-      as the inputs .val() so that select2 will show run the initSelection code.
-
-      Usage:
-
-        $(date_input).select2(a
-          select2Helpers.create_arguments_for_partial_date({
-            initial_date: { start: ..., end: ..., formatted: ... }
-          })
-        );
-
-    */
-    
-    helpers.create_arguments_for_partial_date = function (args) {
-
-      var initial_date = args.initial_date || {};
-
-      return {
-        placeholder: "no date",
-        allowClear: true,
-        initSelection: function (element, callback) {
-          // Would also like to pre-fill input field - see https://github.com/ivaynberg/select2/issues/505
-
-          callback({
-            id:   initial_date.formatted,
-            text: initial_date.formatted,
-            raw:  initial_date
-          });            
-        },
-        ajax: {
-          url: '/autocomplete/partial_date',
-          data: function (term, page) {
-            if ( !term ) {
-              term = initial_date.formatted;
-            }
-            return { term: term };
-          },
-          results: function (data) {
-            // console.log( 'data', data );
-
-            var results = _.map(data, function(item) {
-              return {
-                id:   item.formatted,
-                text: item.formatted,
-                raw:  item
-              };
-            });
-
-            // console.log( 'results', results );
-
-            return { results: results };
-          }
-        },
-        width: '100%'
-      };
-    };
-    
-    
-    
-    
     /*
     
       Helper that creates a document using the API if needed and then passes the
@@ -227,7 +147,7 @@ define(
             name: data.text
           }).save({}, {
             success: function (Model, response) {
-              deferred.resolve( response._id );                
+              deferred.resolve( response.id );
             },
             error: function (Model, response) {
               deferred.reject(response);

@@ -1,9 +1,0 @@
-<% if (items.length) { %>
-  <% _.each( items, function ( item ) { %>
-    <li>
-      <a href="<%- item.meta.edit_url%>"><%- item.name %> (<%- item.slug %>)</a>
-    </li>
-  <% }); %>
-<% } else { %>
-  <li>No matches</li>
-<% } %>

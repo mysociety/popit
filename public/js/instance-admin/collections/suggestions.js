@@ -1,5 +1,5 @@
 define( [ 'Backbone' ], function ( Backbone  ) {
-  "use strict"; 
+  "use strict";
 
   var SuggestionsCollection = Backbone.Collection.extend({
   });

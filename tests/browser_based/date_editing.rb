@@ -14,8 +14,16 @@ class DateEditingTests < PopItWatirTestCase
 
   include Select2Helpers
 
+  def birth_date_div
+    @b.li(:class => 'personal_details-birth_date').span(:class => 'list-item-value').when_present
+  end
+
   def birth_date_value
-    @b.li(:class => 'personal_details-date_of_birth').div(:class => 'list-item-value').when_present.text
+    birth_date_div.text
+  end
+
+  def birth_date_input
+    birth_date_div.text_field(:name => 'value')
   end
 
   def test_date_editing
@@ -27,48 +35,35 @@ class DateEditingTests < PopItWatirTestCase
       login_as user_type
 
       # open Barack's page
-      goto '/person'
+      goto '/persons'
       @b.link(:text => 'Barack Obama').click
 
       # Store the path to the date 
-      path_to_date = 'personal_details.date_of_birth'
+      path_to_date = 'birth_date'
 
       # check that there is no current entry
-      assert_equal '??', birth_date_value
+      assert_equal '---', birth_date_value
 
       # start editing his dob
-      @b.link(:text => '^ edit this date').click
-      assert_equal 'no date', select2_current_value(path_to_date)
+      birth_date_div.click
+      assert_equal '', birth_date_input.value
 
       # enter date and save it, check it is stored.
-      select2_container(path_to_date).link.click
-      @b.send_keys '4 Aug 1961'
-      assert_equal 'Aug 4, 1961', select2_highlighted_option.text
-      select2_highlighted_option.click
-      assert_equal 'Aug 4, 1961', select2_current_value(path_to_date)
-      @b.input(:value => 'Save').click
-      assert_equal 'Aug 4, 1961', birth_date_value
+      birth_date_input.click
+      birth_date_input.set '1961-08-04'
+      @b.send_keys :return
+      assert_equal '1961-08-04', birth_date_value
 
       # test that selecting a date and then just clicking save works too
-      @b.link(:text => '^ edit this date').click
-      @b.input(:value => 'Save').click
-      assert_equal 'Aug 4, 1961', birth_date_value
+      birth_date_div.click
+      @b.send_keys :return
+      assert_equal '1961-08-04', birth_date_value
 
       # test that the user can clear the date
-      @b.link(:text => '^ edit this date').click
-      select2_click_clear_icon
-      @b.input(:value => 'Save').click
-      assert_equal '??', birth_date_value
-
-      # check that we can enter a date range
-      @b.link(:text => '^ edit this date').click
-      select2_container(path_to_date).link.click
-      @b.send_keys '1 Jan 1961 to 1961-12-31'
-      assert_equal 'Jan 1 - Dec 31, 1961', select2_highlighted_option.text
-      select2_highlighted_option.click
-      assert_equal 'Jan 1 - Dec 31, 1961', select2_current_value(path_to_date)
-      @b.input(:value => 'Save').click
-      assert_equal 'Jan 1 - Dec 31, 1961', birth_date_value
+      birth_date_div.click
+      birth_date_input.set ''
+      @b.send_keys :return
+      assert_equal '---', birth_date_value
     }
 
   end

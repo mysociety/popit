@@ -10,56 +10,45 @@
     font-weight: normal;
     font-style: normal;
 }
-h1, h2
-{
-	font-family: 'MuseoSlab500', 'sans-serif'; font-weight: normal;
+
+body {
+    color:#555;
 }
 
-dl{
-	dt{
-		font-size: 0.875em;
-		color:#aaa;
-	}
-	dd{
-		font-size: 1.125em;
-		margin:0 0 1.4em 0;
-	}
+h1, h2, h3, h4, h5 {
+    color:#333;
+	font-family: 'MuseoSlab500', 'sans-serif';
+    font-weight: normal;
 }
 
-
+dt {
+    color: #aaa;
+}
+dd {
+    margin: 0 0 1.4em 0;
+}
 
 ul.detail-list {
-
-  padding-left: 0;
-
-	li{
-
-    list-style: none;
-
-    .list-item-title {
-	    font-size: 0.875em;
-	    color:#aaa;
-	  }
-
-	  .list-item-value {
-	    font-size: 1.125em;
-	    margin:0 0 1.4em 0;
-	  }
-
-  }
+    padding-left: 0;
+	li {
+        list-style: none;
+        .list-item-title {
+            color: #aaa;
+        }
+        .list-item-value {
+            margin: 0 0 1.4em 0;
+	    }
+    }
 }
 
-a{
+a {
 	color: #006480;
 	text-decoration: none;
-	&:hover{
+	&:hover {
 		color:#006480;
 		text-decoration: underline;
 	}
-	&:visited:hover{
+	&:visited:hover {
 		color: #006480;
 	}
 }
-
-body{ color:#555; }
-h1, h2, h3, h4, h5{ color:#333; }

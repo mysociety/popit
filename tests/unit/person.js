@@ -6,7 +6,9 @@ process.env.NODE_ENV = 'testing';
 
 var utils    = require('../../lib/utils'),
     PopIt    = require('../../lib/popit'),
-    async    = require('async');
+    async    = require('async'),
+    mongoose = require('mongoose'),
+    ObjectId = mongoose.Types.ObjectId;
     
 module.exports = {
     
@@ -88,7 +90,7 @@ module.exports = {
       test.expect(4);
       
       var Person = this.Person;
-      var joe = new Person({name: 'Joe'});
+      var joe = new Person({name: 'Joe', _id: new ObjectId() });
       test.equal( joe.slug, 'joe', 'slug is Joe');
       
       joe.save(function(err, doc) {
@@ -108,7 +110,7 @@ module.exports = {
       var Person = this.Person;
       var joe = new Person({name: 'Joe'});
       test.equal( joe.slug,     'joe',         'slug is correct');
-      test.equal( joe.slug_url, '/person/joe', 'slug_url is correct');
+      test.equal( joe.slug_url, '/persons/joe', 'slug_url is correct');
       test.done();
     },
     
@@ -131,7 +133,7 @@ module.exports = {
           // create joe
           function (cb) {
             // create joe
-            joe = new Person({name: 'Joe'});
+            joe = new Person({name: 'Joe', _id: new ObjectId() });
             joe.save(cb);
           },
 
@@ -139,7 +141,7 @@ module.exports = {
           function (cb) {
             Person.name_search('joe', function (err, docs) {
               test.equal( docs.length, 1, "find joe we just inserted" );
-              test.equal( docs[0].id, joe.id );
+              test.equal( docs[0]._id, joe._id );
               cb(err);
             });
           },

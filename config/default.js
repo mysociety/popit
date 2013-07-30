@@ -7,8 +7,6 @@ module.exports = {
     public_dir: 'public-production',
     docs_dir:   path.normalize(__dirname + '/../docs'),
 
-    api_root_url: '/api/v1',
-
     show_dev_site_warning: false,
 
     server: {

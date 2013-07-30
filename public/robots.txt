@@ -2,7 +2,7 @@
 User-agent: *
 
 # non-html parts of the site:
-Disallow: /api/v1
+Disallow: /api
 
 # logged in users only
 Disallow: /migration

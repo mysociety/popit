@@ -1,8 +1,14 @@
-<span class="admin-options">
-  <a data-id= <%- item.id || item._id %> data-url-root=<%- api_url_root %> class="edit contact-edit">
-    <strong>^ edit</strong>
-  </a>
+<span class="admin-options hover-only">
+  <a class="edit contact-edit"><i class="foundicon-edit"></i> <span>Edit</span></a>
 </span>
-
-<div class="list-item-title"><%- item.kind %>:</div>
-<div class="list-item-value"><%- item.value %></div>
+<div class="list-item-title">
+  <% if (item.label) { %>
+    <%- item.label %> (<%- item.type %>):
+  <% } else { %>
+    <%- item.type %>:
+  <% } %>
+</div>
+<div class="list-item-value">
+  <%- item.value %>
+  <% if (item.note) { %>(<%- item.note %>)<% } %>
+</div>

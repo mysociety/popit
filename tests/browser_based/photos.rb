@@ -12,16 +12,16 @@ class PhotoTests < PopItWatirTestCase
 
   def test_person_upload_photo_file
     check_upload_photo(
-      :url                        => '/person/barack-obama',
+      :url                        => '/persons/barack-obama',
       :placeholder_filename_regex => /person_placeholder\.svg/,
       :test_image                 => 'static/barack_obama.jpg',
     )
   end 
 
-  def test_organisation_upload_photo_file
+  def test_organization_upload_photo_file
     check_upload_photo(
-      :url                        => '/organisation/united-states-government',
-      :placeholder_filename_regex => /organisation_placeholder\.svg/,
+      :url                        => '/organizations/united-states-government',
+      :placeholder_filename_regex => /organization_placeholder\.svg/,
       :test_image                 => 'static/barack_obama.jpg',
     )
   end 
@@ -54,8 +54,12 @@ class PhotoTests < PopItWatirTestCase
       assert @b.ul(:class => 'photos').li.img.present?
       
       # delete the photo
-      @b.ul(:class => 'photos').input(:value => 'delete').click
-      
+      @b.ul(:class => 'photos').link(:class => 'delete-photo').click
+      @b.wait_until { @b.form(:action, /images.*delete/).present? }
+
+      assert @b.input(:value, "Really delete photo?").present?
+      @b.input(:value, "Really delete photo?").click
+
       # check that the photo is now gone
       assert_path opts[:url]
       assert @b.ul(:class => 'photos').li.img.present?

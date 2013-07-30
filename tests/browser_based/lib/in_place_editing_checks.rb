@@ -41,7 +41,7 @@ module InPlaceEditingChecks
     
     # check that the name can be edited via the link
     assert ! @b.h1(:class => 'current-entity').input.present?
-    @b.link(:text => /\^ edit this \w+'s name/).click
+    @b.h1(:class => 'current-entity').click
     assert @b.h1(:class => 'current-entity').input.present?
     @b.send_keys :escape
     assert ! @b.h1(:class => 'current-entity').input.present?        
@@ -75,8 +75,10 @@ module InPlaceEditingChecks
     new_text = 'This is some new text'
     @b.element(:css => '[data-api-name=summary]').click
     @b.textarea(:name => 'value').set new_text
-    @b.send_keys :tab
-    @b.send_keys :return
+    # Tab doesn't work in my ChromeDriver: https://code.google.com/p/chromedriver/issues/detail?id=369
+    @b.button().click
+    # @b.send_keys :tab
+    # @b.send_keys :return
     assert ! @b.textarea(:name => 'value').present?
     assert_equal new_text, @b.element(:css => '[data-api-name=summary]').text
 

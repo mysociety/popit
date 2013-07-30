@@ -10,18 +10,20 @@ require([
 // PopIt editing app - load it and add bits needed
 require ([
   'instance-admin/app',
+  'instance-admin/actions/photo-remove',
   'instance-admin/actions/person-add-remove',
-  'instance-admin/actions/organisation-add-remove',
-  'instance-admin/actions/position-add-remove',
+  'instance-admin/actions/organization-add-remove',
+  'instance-admin/actions/membership-add-remove',
+  'instance-admin/actions/post-edit',
   'instance-admin/actions/contact-edit',
-  'instance-admin/actions/links-edit',
-  'instance-admin/actions/partial-date-edit'
-  
+  'instance-admin/actions/other_name-edit',
+  'instance-admin/actions/identifier-edit',
+  'instance-admin/actions/links-edit'
 ]);
 
 require (
-  [ 'order!jquery', 'instance-admin/app' ],
-  function ($, App) {
+  [ 'order!jquery' ],
+  function ($) {
     "use strict"; 
 
     // TODO - we shouldn't be mucking around with the global jQuery behaviour like this.
@@ -47,7 +49,5 @@ require (
         }
       }
     });
-    
-    $( function() { App.start(); } );
   }
 );

@@ -1,3 +1,4 @@
+/*global popit:false */
 // ------------------------
 //  Launch a backbone powered entry box when someone clicks the new-person button
 // ------------------------
@@ -5,22 +6,22 @@
 define(
   [
     'jquery',
-    'instance-admin/app',
     'instance-admin/models/person',
     'instance-admin/views/person-new',
-    'instance-admin/views/person-remove',
+    'instance-admin/views/remove-model',
+    'text!templates/person/remove.html',
     'jquery.fancybox'
   ],
   function (
     $,
-    App,
     PersonModel,
     PersonNewView,
-    PersonRemoveView
+    RemoveModelView,
+    personTemplate
   ) {
     "use strict"; 
 
-    App.addInitializer(function(options){
+    $(function(){
 
       $('a.new-person').click(function(event) {
 
@@ -35,20 +36,17 @@ define(
       });
       
       $('a.delete-person').click(function(event) {
-
-        var $link = $(this);
         event.preventDefault();
 
-        var person = new PersonModel({
-          id: $link.attr('data-id')
-        });
-
-        person.fetch({
-          success: function (model, response) {
-            var view   = new PersonRemoveView({model: model});
-            $.fancybox( view.render().el );            
-          }
-        });
+        var $link = $(this),
+            view = new RemoveModelView({
+              model: popit.model,
+              template: personTemplate,
+              submitSuccess: function (model, response) {
+                document.location = '/persons';
+              }
+            });
+        $.fancybox( view.render().el );
         
       });
       

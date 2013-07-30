@@ -1,9 +1,5 @@
-<span class="admin-options">
-  <a data-id="<%- item.id || item._id %>" data-url-root="<%- api_url_root %>" class="edit link-edit">
-    <strong>^ edit</strong>
-  </a>
+<span class="admin-options hover-only">
+  <a class="edit link-edit"><i class="foundicon-edit"></i> <span>Edit</span></a>
 </span>
-
-
-<div class="list-item-title"><%- item.comment %>: </div>
-<div class="list-item-value"><%- item.url %></div>
+<div class="list-item-title"><%- item.note %>: </div>
+<div class="list-item-value"><a href="<%- item.url %>"><%- item.url %></a></div>

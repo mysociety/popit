@@ -1,12 +1,12 @@
 {
   "name": "popit",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "dependencies": {
     "async": {
       "version": "0.1.22"
     },
     "bcrypt": {
-      "version": "0.7.3",
+      "version": "0.7.5",
       "dependencies": {
         "bindings": {
           "version": "1.0.0"
@@ -69,12 +69,10 @@
       "version": "0.0.5",
       "dependencies": {
         "gm": {
-          "version": "1.8.0",
-          "dependencies": {
-            "debug": {
-              "version": "0.7.0"
-            }
-          }
+          "version": "1.3.2"
+        },
+        "mime": {
+          "version": "1.2.7"
         },
         "temp": {
           "version": "0.4.0"
@@ -437,13 +435,13 @@
       "version": "0.7.4",
       "dependencies": {
         "tap": {
-          "version": "0.3.3",
+          "version": "0.2.4",
           "dependencies": {
             "inherits": {
               "version": "1.0.0"
             },
             "yamlish": {
-              "version": "0.0.5"
+              "version": "0.0.4"
             },
             "slide": {
               "version": "1.1.3"
@@ -455,13 +453,13 @@
                   "version": "0.1.2",
                   "dependencies": {
                     "burrito": {
-                      "version": "0.2.12",
+                      "version": "0.2.11",
                       "dependencies": {
                         "traverse": {
                           "version": "0.5.2"
                         },
                         "uglify-js": {
-                          "version": "1.1.1"
+                          "version": "1.0.7"
                         }
                       }
                     }
@@ -470,7 +468,7 @@
               }
             },
             "nopt": {
-              "version": "2.0.0",
+              "version": "1.0.10",
               "dependencies": {
                 "abbrev": {
                   "version": "1.0.3"
@@ -478,20 +476,17 @@
               }
             },
             "difflet": {
-              "version": "0.2.3",
+              "version": "0.2.1",
               "dependencies": {
                 "traverse": {
-                  "version": "0.6.3"
+                  "version": "0.6.1"
                 },
                 "charm": {
-                  "version": "0.0.8"
+                  "version": "0.0.7"
                 }
               }
             },
             "deep-equal": {
-              "version": "0.0.0"
-            },
-            "buffer-equal": {
               "version": "0.0.0"
             }
           }
@@ -502,15 +497,130 @@
       "version": "1.0.1",
       "dependencies": {
         "vows": {
-          "version": "0.7.0",
+          "version": "0.6.2",
           "dependencies": {
             "eyes": {
-              "version": "0.1.8"
-            },
-            "diff": {
-              "version": "1.0.4"
+              "version": "0.1.7"
             }
           }
+        }
+      }
+    },
+    "popit-api": {
+      "version": "0.0.9",
+      "from": "git://github.com/mysociety/popit-api.git",
+      "dependencies": {
+        "express": {
+          "version": "3.1.2",
+          "dependencies": {
+            "connect": {
+              "version": "2.7.5",
+              "dependencies": {
+                "qs": {
+                  "version": "0.5.1"
+                },
+                "formidable": {
+                  "version": "1.0.11"
+                },
+                "buffer-crc32": {
+                  "version": "0.1.1"
+                },
+                "bytes": {
+                  "version": "0.2.0"
+                },
+                "pause": {
+                  "version": "0.0.1"
+                }
+              }
+            },
+            "commander": {
+              "version": "0.6.1"
+            },
+            "range-parser": {
+              "version": "0.0.4"
+            },
+            "cookie": {
+              "version": "0.0.5"
+            },
+            "buffer-crc32": {
+              "version": "0.2.1"
+            },
+            "fresh": {
+              "version": "0.1.0"
+            },
+            "methods": {
+              "version": "0.0.1"
+            },
+            "send": {
+              "version": "0.1.0",
+              "dependencies": {
+                "mime": {
+                  "version": "1.2.6"
+                }
+              }
+            },
+            "cookie-signature": {
+              "version": "1.0.0"
+            },
+            "debug": {
+              "version": "0.7.2"
+            }
+          }
+        },
+        "assert": {
+          "version": "0.4.9",
+          "dependencies": {
+            "util": {
+              "version": "0.4.9",
+              "dependencies": {
+                "events.node": {
+                  "version": "0.4.9"
+                }
+              }
+            }
+          }
+        },
+        "glob": {
+          "version": "3.1.21",
+          "dependencies": {
+            "minimatch": {
+              "version": "0.2.12",
+              "dependencies": {
+                "lru-cache": {
+                  "version": "2.3.0"
+                },
+                "sigmund": {
+                  "version": "1.0.0"
+                }
+              }
+            },
+            "graceful-fs": {
+              "version": "1.2.2"
+            },
+            "inherits": {
+              "version": "1.0.0"
+            }
+          }
+        },
+        "underscore": {
+          "version": "1.4.4"
+        },
+        "JSV": {
+          "version": "4.0.2"
+        },
+        "mongodb": {
+          "version": "1.2.14",
+          "dependencies": {
+            "bson": {
+              "version": "0.1.8"
+            }
+          }
+        },
+        "async": {
+          "version": "0.2.9"
+        },
+        "underscore.string": {
+          "version": "2.3.1"
         }
       }
     },
@@ -543,13 +653,13 @@
       "version": "0.2.2",
       "dependencies": {
         "unicode": {
-          "version": "0.4.3",
+          "version": "0.3.1",
           "dependencies": {
             "bufferstream": {
               "version": "0.5.1",
               "dependencies": {
                 "buffertools": {
-                  "version": "1.1.0"
+                  "version": "1.0.9"
                 }
               }
             }
@@ -561,8 +671,12 @@
       "version": "0.5.0"
     },
     "twix": {
-      "version": "0.1.6",
-      "from": "https://github.com/evdb/twix.js/tarball/master"
+      "version": "0.2.2",
+      "dependencies": {
+        "moment": {
+          "version": "2.0.0"
+        }
+      }
     },
     "underscore": {
       "version": "1.4.2"

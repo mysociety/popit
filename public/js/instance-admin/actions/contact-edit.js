@@ -1,30 +1,30 @@
-// ------------------------
-//  Launch a backbone powered entry box when someone clicks the new-person button
-// ------------------------
+/*global popit:false */
+// Launch a backbone powered entry box when someone adds/edits a contact
 
 define(
   [
     'jquery',
-    'instance-admin/app',
     'instance-admin/actions/list-item-editor',
-    'instance-admin/models/contact'
+    'text!templates/contact/view.html'
   ],
   function (
     $,
-    App,
     ListItemEditor,
-    ContactModel
+    contactTemplate
   ) {
     "use strict"; 
 
-    App.addInitializer(function(options){
+    $(function(){
+      if (typeof popit === 'undefined') {
+         return;
+      }
 
       $('#content').on(
         'click',
-        'a.contact-edit',
+        '.contact-edit',
         new ListItemEditor({
-          model:    ContactModel,
-          template: 'contact/view.html'
+          collection: popit.model.get('contact_details'),
+          template: contactTemplate
         })
       );
 

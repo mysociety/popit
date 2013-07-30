@@ -1,3 +1,4 @@
+/*global popit:false */
 // ------------------------
 //  Create the new app
 // ------------------------
@@ -6,27 +7,97 @@ define(
   [
     'jquery',
     'Backbone',
-    'Backbone.Marionette'
+    'jsoneditor',
+    'instance-admin/collections/posts',
+    'instance-admin/collections/memberships',
+    'instance-admin/models/person',
+    'instance-admin/models/organization',
+    'jquery.fancybox'
   ],
   function (
     $,
     Backbone,
-    BackboneMarionette
+    jsoneditor,
+    PostCollection,
+    MembershipCollection,
+    PersonModel,
+    OrganizationModel
   ) {
     "use strict"; 
 
-    var App = new Backbone.Marionette.Application();
+    $.fancybox.defaults.openSpeed = 100;
+    $.fancybox.defaults.closeSpeed = 100;
+    $.fancybox.defaults.helpers.overlay.speedIn = 100;
+    $.fancybox.defaults.helpers.overlay.speedOut = 100;
 
-    App.on(
-      'start',
-      function(opts) {
-        // only show the admin links once the app is up and running. Prevents
-        // people (and tests) clicking on links that have no effect.
-        $('body').addClass('instance-admin-app-active');
-      }
-    );
+    $(function(){
+        if (typeof popit === 'undefined') {
+           return;
+        }
+        // Switch any "_id"s to "id"s
+        if (popit.data && popit.data._id) {
+            popit.data.id = popit.data._id;
+            delete popit.data._id;
+        }
+        if (popit.posts) {
+          $.each(popit.posts, function(i, m) {
+            m.id = m._id; delete m._id;
+          });
+        }
+        if (popit.memberships) {
+          popit.memberships = $.map(popit.memberships, function(m) {
+            return { 'id': m };
+          });
+        }
+        if (popit.type == 'person') {
+            popit.model = new PersonModel(popit.data);
+            setup_sub_model_links('links');
+            setup_sub_model_links('contact_details');
+            setup_sub_model_links('other_names');
+            setup_sub_model_links('identifiers');
+            popit.model.memberships = new MembershipCollection(popit.memberships);
+            setup_sub_model_links('memberships'); // No reset happens, just for initial setup
+        } else if (popit.type == 'organization') {
+            popit.model = new OrganizationModel(popit.data);
+            setup_sub_model_links('links');
+            setup_sub_model_links('contact_details');
+            setup_sub_model_links('other_names');
+            setup_sub_model_links('identifiers');
+            popit.model.posts = new PostCollection(popit.posts);
+            setup_sub_model_links('posts'); // No reset happens, just for initial setup
+            popit.model.memberships = new MembershipCollection(popit.memberships);
+            setup_sub_model_links('memberships'); // Ditto
+        }
 
-    return App;
+        var jsoncontainer = $('#jsoneditor');
+        if (jsoncontainer.length) {
+            var editor = new jsoneditor.JSONEditor(jsoncontainer[0], {
+                change: function() {
+                    //var data = { 'data': editor.get() };
+                    var data = editor.get();
+                    Backbone.trigger('in-place-edit', data);
+                }
+            });
+            //editor.set(popit.data.data || {});
+            editor.set(JSON.parse(JSON.stringify(popit.data)));
+        }
+
+        $('body').on('focus', 'input.edit-date, .edit-date input', function(){
+            $(this).attr('pattern', '^[0-9]{4}(-[0-9]{2}){0,2}$');
+            $(this).attr('title', 'Please enter YYYY-MM-DD, YYYY-MM or just YYYY.');
+        });
+    });
+
+    function setup_sub_model_links(key) {
+      popit.model[key].on('reset', function(){
+        $('section.' + key + ' li').each(function(i, l){
+          var m = popit.model[key].at(i);
+          if (!m) return;
+          $.data(l, 'id', m.cid);
+        });
+      });
+      popit.model[key].trigger('reset');
+    }
 
   }
 );

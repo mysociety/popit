@@ -23,7 +23,7 @@ define(
         
         
         var success_cb = options.success_cb || function (model, response) {
-          document.location = response.meta.edit_url;
+          document.location = '/' + options.type + '/' + response.slug;
         };
     
     

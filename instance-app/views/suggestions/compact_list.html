@@ -1,0 +1,9 @@
+<% if (items.length) { %>
+  <% _.each( items, function ( item ) { %>
+    <li>
+      <a href="/<%- url_type %>/<%- item.slug %>"><%- item.name %> (<%- item.slug %>)</a>
+    </li>
+  <% }); %>
+<% } else { %>
+  <li>No matches</li>
+<% } %>

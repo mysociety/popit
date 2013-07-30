@@ -2,7 +2,6 @@ define(
   [
     'jquery',
     'underscore',
-    'templates',
     'Backbone',
     'backbone-forms',
     'instance-admin/views/submit-form-helper',
@@ -11,7 +10,6 @@ define(
   function (
     $,
     _,
-    templates,
     Backbone,
     BackboneForms,
     submitFormHelper
@@ -21,8 +19,6 @@ define(
     var ListItemEditView = Backbone.View.extend({
   
       initialize: function () {
-      
-        this.model.on( 'change', this.render, this );
       
         this.form = new BackboneForms({
           model: this.model
@@ -36,10 +32,10 @@ define(
         // render the form and add save button
         var $form    = $( this.form.render().el );
         $form
-          .find('ul')
+          .find('ul').first()
             .append('<input type="submit" name="save" value="Save" />')
-            .append('<button name="delete">Delete</button>')
-            .append('<button name="cancel">Cancel</button>');
+            .append('<a class="delete"><i class="foundicon-trash"></i> Delete</a> ')
+            .append('<a class="cancel">Cancel</a>');
       
         // add an autocomplete to those fields that want one
         var ac_field_names = _.filter(
@@ -68,9 +64,9 @@ define(
       },
 
       events: {
-        'submit form ':                'submitForm',
-        'click button[name="cancel"]': 'cancelEntry',
-        'click button[name="delete"]': 'deleteEntry'
+        'submit form': 'submitForm',
+        'click a.cancel': 'cancelEntry',
+        'click a.delete': 'deleteEntry'
       },
       
       deleteEntry: function (event) {
@@ -81,46 +77,41 @@ define(
       
       cancelEntry: function (event) {
         event.preventDefault();
-        if ( this.model.id ) {
-          // model soved on server - re-render it.
-          this.render_listing( this.model );
+        if ( this.model.exists ) {
+          // model saved on server - re-render it.
+          this.render_listing();
         } else {
           // model a new one - remove the whole input form.
           this.remove();
         }
       },
       
-      render_listing: function (model) {
-        var view = this;
-
+      render_listing: function () {
         var template_args = {
-          item: model.toJSON(),
-          api_url_root: model.urlRoot
+          item: this.model.toJSON()
         };
-        
-        view.$el.html( templates.render(view.template, template_args ) );
+
+        this.$el.html( this.options.template( template_args ) );
+        return this;
       },
 
-      submitForm: function (event) {
-        var view = this;
-        
-        var submitter = submitFormHelper({
-
-          // Assume that the save will be a success - update the form at once
-          pre_save_cb: function () {
-            view.render_listing( view.model );
-          },
-
-          // Also render upon response - in case details have changed on server.
-          success_cb: function (model, response) {
-            view.render_listing(model);
-          },
-          view: view
-        });
-        
-        submitter(event);
+      submitForm: function (e) {
+        e.preventDefault();
+        var form = this.form,
+            model = this.model,
+            errors = form.commit();
+        if (_.isEmpty(errors)) {
+          this.render_listing();
+          if (model.direct) {
+              model.save();
+          }
+          if (!model.exists) {
+              model.collection.add(model, { at: 0 });
+          }
+          this.undelegateEvents(); // As might be different view next time
+        }
       }
-      
+
     });
   
     return ListItemEditView;

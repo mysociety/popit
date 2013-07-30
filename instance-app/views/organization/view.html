@@ -1,0 +1,177 @@
+<%= render(
+  'html_head.html',
+  {
+    title:       organization.name,
+    description: organization.name + ' ' + ( organization.summary || '' ),
+  }
+) %>
+
+<script>
+    var popit = popit || {};
+    popit.type = 'organization';
+    popit.data = <%
+      o = organization.toJSON();
+      if (o.parent_id) {
+        // Only want the ID in the popit data, for correct saving from client
+        o.parent_id = o.parent_id.id;
+      }
+      print( JSON.stringify(o) );
+    %>;
+    popit.posts = <%= JSON.stringify(posts) %>;
+    popit.memberships = <%= JSON.stringify( _.map( memberships, function(m) { return m.id; } ) ) %>;
+</script>
+
+<article class="entity organization">
+
+  <header class="entity-header-nav" id="organization-<%- organization.slug %>">
+    <h1 class="edit-in-place current-entity"
+        id="entity-name-in-header"
+        title="<%- organization.name %>"
+        data-api-name="name"
+    ><%- organization.name %></h1>
+  </header>
+  
+  <aside>
+
+    <ul class="photos">
+      <% if (organization.images.length) { %>
+        <% _.each( organization.images, function ( image ) { %>
+          <li>
+            <% if (image.url) { %>
+              <% //- TODO - proxy will need changes to allow us to proxy remote images %>
+              <img src="<%- image.url %>"  width="280" />
+            <% } else { %>
+              <img src="<%- image_proxy(organization.slug_url + "/images/" + image.id, "", 280) %>" />
+            <% } %>
+
+            <p class="photo-source">
+               source:
+              <a href="#photographer-url">Photographer</a>
+              <abbr class="license" title="Creative Commons - By Attribution - Share Alike">CC-BY-SA</abbr>
+            </p>
+            <div class="admin-options">
+              <a class="delete-photo" data-image-url="<%- organization.slug_url %>/images/<%- image.id %>">
+                <i class="foundicon-trash"></i>
+                Delete this photograph
+              </a>
+            </div>
+          </li>
+        <% }); %>
+      <% } else { %>
+        <li>
+          <img src='/img/organization_placeholder.svg' width="280" />            
+        </li>
+      <% } %>
+    </ul>
+
+    <ul class="admin-options">
+      <li>
+        <a class="add" href="<%- organization.slug_url %>/images/upload">
+          <strong>+ add</strong>
+          a photograph
+        </a>
+      </li>
+    </ul>
+  </aside>
+    
+  <ul class="admin-options">
+    <li>
+      <a class="delete delete-organization">
+        <i class="foundicon-trash"></i> delete
+        this organization
+      </a>
+    </li>
+  </ul>
+
+  <section class="description" itemprop="description">
+                
+    <p  id="entity-summary-text"
+        class="edit-in-place-textarea"
+        data-api-name="summary"
+    ><%- organization.summary %></p>
+  
+    <p>
+      Classification:
+      <span class="edit-in-place" data-api-name="classification"><%- organization.classification %></span>
+    </p>
+
+    <p>
+      Parent:
+      <span class="edit-in-place-select" data-api-name="parent_id"><% if (organization.parent_id) { %>
+        <%- organization.parent_id.name %>
+      <% } %></span>
+    </p>
+
+    <ul class="detail-list">
+
+      <li class="personal_details-birth_date">
+        <%= render( 'partial-date/view.html', {
+          date:             organization.founding_date,
+          title:            "Founding date",
+          data_api_name: "founding_date",
+        }) %>
+      </li>
+
+      <li class="personal_details-death_date">
+        <%= render( 'partial-date/view.html', {
+          date:             organization.dissolution_date,
+          title:            "Dissolution date",
+          data_api_name: "dissolution_date",
+        }) %>
+      </li>
+
+    </ul>
+
+  </section>
+
+  <%= render( 'other_name/list.html', { other_names: organization.other_names } ) %>
+
+  <section class="posts">
+    <div class="admin-options">
+      <a class="add edit-post"><i class="foundicon-add-doc"></i> <span>Add</span></a>
+    </div>
+
+    <h2>Associated posts:</h2>
+
+    <ul class="cleared">
+      <% _.each( posts, function ( post ) { %>
+        <li><%= render( 'post/view.html', { item: post }) %></li>
+      <% }); %>
+    </ul>
+  </section>
+
+  <section class="memberships">
+    <div class="admin-options">
+      <a class="add edit-membership"><i class="foundicon-add-doc"></i> <span>Add</span></a>
+    </div>
+  
+    <h2>Associated people, now or in the past:</h2>
+  
+    <ul class="cleared">
+      <% _.each( memberships, function ( membership ) { %>
+        <%= render( 'membership/list-item.html', { membership: membership, type: 'organization' } ) %>
+      <% }); %>
+    </ul>
+  </section>
+
+  <%= render( 'contact/list.html', { contacts: organization.contact_details } ) %>
+  <%= render( 'link/list.html', { links: organization.links } ) %>
+  <%= render( 'identifier/list.html', { identifiers: organization.identifiers } ) %>
+
+  <section class="custom-data">
+    <h2>Custom data:</h2>
+    <div id="jsoneditor"></div>
+  </section>
+
+  <section class="raw-data">
+    <h2>Raw data</h2>
+    <p>
+      The details for this organization are also available in 
+      <a href="/api/v0.1/organizations/<%- organization.id %>">JSON</a>.
+    </p>
+  </section>
+
+</article>
+
+<%= render('html_footer.html' )%>
+

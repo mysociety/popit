@@ -6,13 +6,19 @@
   }
 ) %>
 
+<script>
+    var popit = popit || {};
+    popit.type = 'person';
+    popit.data = <%= JSON.stringify(person.toJSON()) %>;
+    popit.memberships = <%= JSON.stringify( _.map( memberships, function(m) { return m.id; } ) ) %>;
+</script>
+
 <article class="entity person" itemscope itemtype="http://schema.org/Person">
 
   <header class="entity-header-nav" id="person-<%- person.slug %>">
     <h1 class="current-entity edit-in-place"
         id="entity-name-in-header"
         title="<%- person.name %>"
-        data-api-url="/person/<%- person.id %>"
         data-api-name="name"
     ><%- person.name %></h1>
   </header>
@@ -33,15 +39,13 @@
               source:
               <a href="#photographer-url">Photographer</a>
               <abbr class="license" title="Creative Commons - By Attribution - Share Alike">CC-BY-SA</abbr>
-              <ul class="admin-options">
-                <li>
-                  <form method="post" action="<%- person.slug_url %>/images/<%- image.id %>/delete">
-                    <input type="submit" value="delete" style="width: 4em; display: inline">
-                    this photograph
-                  </form>
-                </li>
-              </ul>
             </p>
+            <div class="admin-options">
+              <a class="delete-photo" data-image-url="<%- person.slug_url %>/images/<%- image.id %>">
+                <i class="foundicon-trash"></i>
+                Delete this photograph
+              </a>
+            </div>
           </li>
         <% }); %>
       <% } else { %>
@@ -62,16 +66,9 @@
     
   <ul class="admin-options">
     <li>
-      <a class="delete delete-person" data-id="<%- person.id %>" >
-        <strong>- delete</strong>
+      <a class="delete delete-person">
+        <i class="foundicon-trash"></i> delete
         this person
-      </a>
-    </li>
-    
-    <li>
-      <a class="edit activate-edit-in-place" data-edit-in-place-id="entity-name-in-header" href="#">
-        <strong>^ edit</strong>
-        this person's name
       </a>
     </li>
   </ul>
@@ -79,160 +76,60 @@
   
   <section class="description" itemprop="description">
                 
-    <ul class="admin-options">
-      <li>
-        <a class="edit activate-edit-in-place" data-edit-in-place-id="entity-summary-text" href="#">
-          <strong>^ edit</strong>
-          this summary
-        </a>
-      </li>
-    </ul>
-    
     <p
       id="entity-summary-text"
       class="edit-in-place-textarea"
-      data-api-url="/person/<%- person.id %>"
       data-api-name="summary"
     ><%- person.summary %></p>
   
-  </section>
-  
-  <section class="personal-details">
-
-    <h2>Dates etc</h2>
-
     <ul class="detail-list">
 
-      <li class="personal_details-date_of_birth">
+      <li class="personal_details-birth_date">
         <%= render( 'partial-date/view.html', {
-          date:             person.personal_details.date_of_birth,
-          title:            "Birthdate",
-          data_path_prefix: "personal_details.date_of_birth",
-          data_url_root:    person.api_base_url,
-          data_id:          person.id
+          date:             person.birth_date,
+          title:            "Date of birth",
+          data_api_name: "birth_date",
         }) %>
       </li>
 
-      <li class="personal_details-date_of_death">
+      <li class="personal_details-death_date">
         <%= render( 'partial-date/view.html', {
-          date:             person.personal_details.date_of_death,
-          title:            "Deathdate",
-          data_path_prefix: "personal_details.date_of_death",
-          data_url_root:    person.api_base_url,
-          data_id:          person.id
+          date:             person.death_date,
+          title:            "Date of death",
+          data_api_name: "death_date",
         }) %>
       </li>
 
     </ul>
-  </section>
   
-  <% if (person.other_names.length) { %>
-    <section class="personal-details">
-
-      <h2>Alternative names:</h2>
-
-      <dl>
-        <% _.each( person.other_names, function(name) { %>
-          <dt><%- name.comment || 'Alternative name' %>:</dt>
-          <dd itemprop="name"><%- name.name %></dd>
-        <% }); %>
-      </dl>
-    </section>  
-
-  <% } %>    
-
-  <section class="positions">
-
-    <h2>Jobs and positions held now or in the past:</h2>
-
-    <ul class="admin-options">
-      <li>
-        <span class="admin-options">
-          <a data-person-id="<%- person.id %>" data-person-hide-field="1" class="add new-position">
-            <strong>+ add</strong>
-            a new position
-          </a>
-      </li>
-    </ul>
-    
-    <dl>
-      <% _.each( positions, function (position) { %>
-        <dt><a href="/position/<%- position.id %>"><%- position.title %></a>:</dt>
-        <dd>
-          <% if (position.organisation) { %>
-            <a href="<%- position.organisation.slug_url %>"><%- position.organisation.name %></a>
-          <% } else { %>
-            unknown
-          <% } %>
-          
-          <% if (position.start_date.formatted || position.end_date.formatted) { %>
-            (
-            <% if (position.start_date.formatted) { %>
-              from <%- position.start_date.formatted %>              
-            <% } %>
-            <% if (position.end_date.formatted) { %>
-              to <%- position.end_date.formatted %>              
-            <% } %>
-            )
-          <% } %>
-        </dd>
-      <% }); %>
-    </dl>  
-  </section>
-  
-  <section class="contact-information">
-
-    <h2>Contact Information:</h2>
-
-    <ul class="detail-list">
-
-      <% _.each( person.contact_details, function ( item ) { %>
-        <li>
-          <%= render( 'contact/view.html', {
-            item:         item,
-            api_url_root: person.api_url + '/contact_details/',
-          }) %>
-        </li>
-      <% }); %>
-
-      <li>
-        <span class="admin-options">
-          <a data-url-root="<%- person.api_url + '/contact_details/' %>" class="add contact-edit">
-            <strong>+ add</strong>
-            a new contact detail
-          </a>
-        </span>
-      </li>
-    </ul>
-  </section>            
-
-  <section class="links">
-
-    <h2>Links:</h2>
-
-    <ul class="detail-list">
-      <% _.each( person.links, function (item) { %>
-        <li>
-          <%= render( 'link/view.html', {
-             item:         item,
-             api_url_root: person.api_url + '/links/'
-          }) %>
-        </li>
-      <% }); %>
-
-      <li>
-        <span class="admin-options">
-          <a data-url-root="<%- person.api_url + '/links/' %>" class="add link-edit">
-            <strong>+ add</strong>
-            a new link
-          </a>
-        </span>
-      </li>
-
-    </ul>
-
   </section>
 
+  <%= render( 'other_name/list.html', { other_names: person.other_names } ) %>
+
+  <section class="memberships">
+
+    <div class="admin-options">
+      <a class="add edit-membership"><i class="foundicon-add-doc"></i> <span>Add</span></a>
+    </div>
+
+    <h2>Memberships held now or in the past:</h2>
+
+    <ul class="cleared">
+      <% _.each( memberships, function (membership) { %>
+        <%= render( 'membership/list-item.html', { membership: membership, type: 'person' } ) %>
+      <% }); %>
+
+    </ul>
+  </section>
+
+  <%= render( 'contact/list.html', { contacts: person.contact_details } ) %>
+  <%= render( 'link/list.html', { links: person.links } ) %>
+  <%= render( 'identifier/list.html', { identifiers: person.identifiers } ) %>
+
+  <section class="custom-data">
+    <h2>Custom data:</h2>
+    <div id="jsoneditor"></div>
+  </section>
 
   <section class="raw-data">
     
@@ -240,8 +137,9 @@
     
     <p>
       The details for this person are also available in 
-      <a href="/api/v0.1/person/<%- person.id %>">JSON</a>.
+      <a href="/api/v0.1/persons/<%- person.id %>">JSON</a>.
     </p>
+
   </section>
 
 </article>

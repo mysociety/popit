@@ -2,19 +2,17 @@ define( [ 'Backbone' ], function ( Backbone  ) {
   "use strict"; 
 
   return Backbone.Model.extend({
-    idAttribute: "_id",
     schema: {
       url: {
         dataType:   'Text',
         validators: ['required']
       },
-      comment: {
+      note: {
         dataType:            'Text',
         validators:          ['required'],
-        autocomplete_source: '/autocomplete/link_comment'
+        autocomplete_source: '/autocomplete/link_note'
       }
     }
   });
-
 
 });

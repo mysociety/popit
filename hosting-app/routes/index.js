@@ -1,13 +1,9 @@
 "use strict"; 
 
-var Validator     = require('validator').Validator,
-    sanitize      = require('validator').sanitize,
-    mongoose      = require('mongoose'),
-    winston       = require('winston'),
+var winston       = require('winston'),
     PopIt         = require('../../lib/popit'),
     utils         = require('../../lib/utils'),
     mailer        = require('../../lib/mailer'),
-    config        = require('config'),
     moment        = require('moment'),
     _             = require('underscore'),     
     Error404      = require('../../lib/errors').Error404;

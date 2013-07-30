@@ -48,19 +48,13 @@ All the not implemented methods will return the status code `405 Method Not Allo
 
 ### Listing documents in a collection
 
-If you go to a url such as `/api/v0.1/person` you will then get an array of all the entries in the database. Each item in the array is the complete document so there is no need to request the document again for more details.
-
-You can filter the results using query arguments - eg `/api/v0.1/person?name=joe`.
-
-See also the notes on reading a single document below.
-
-Currently there is no pagination - this is [planned](https://github.com/mysociety/popit/issues/166) however.
+If you go to a url such as `/api/v0.1/persons` you will then get an array of all the entries in the database. Each item in the array is the complete document so there is no need to request the document again for more details.
 
 ### Reading a single document
 
 A `GET` request to something like `/api/v0.1/<collection-name>/<id>` will return that entry.
 
-For the `person` and `organisation` collections the related positions are not included in the result. But there is a `positions_api_url` entry in the meta that will list them all.
+For the `persons` and `organizations` collections the related positions are not included in the result.
 
 
 ### Creating a new document in a collection
@@ -77,34 +71,12 @@ $ curl                                                 \
     --header "Accept: application/json"                \
     --header "Content-Type: application/json"          \
     --data '{ "name": "Joe Bloggs" }'                  \
-    http://test.127.0.0.1.xip.io:3000/api/v0.1/person
+    http://test.127.0.0.1.xip.io:3000/api/v0.1/persons
 
 {
   "result": {
     "id": "50d1f2e1c03858f9f6000006",
-    "name": "Joe Bloggs",
-    "slug": "joe-bloggs",
-    "personal_details": {
-      "date_of_death": {
-        "formatted": "",
-        "end": null,
-        "start": null
-      },
-      "date_of_birth": {
-        "formatted": "",
-        "end": null,
-        "start": null
-      }
-    },
-    "images": [],
-    "links": [],
-    "contact_details": [],
-    "other_names": [],
-    "meta": {
-      "api_url": "http://test.127.0.0.1.xip.io:3000/api/v0.1/person/50d1f2e1c03858f9f6000006",
-      "edit_url": "http://test.127.0.0.1.xip.io:3000/person/joe-bloggs",
-      "positions_api_url": "http://test.127.0.0.1.xip.io:3000/api/v0.1/position?person=50d1f2e1c03858f9f6000006"
-    }
+    "name": "Joe Bloggs"
   }
 }
 ```
@@ -121,13 +93,14 @@ When you put the order of items in arrays (like images) will be changed as well 
 
 ### Deleting a document
 
-Sending a `DELETE` request to a document url will cause that document to be deleted. An empty (`{}`) response will be returned with status `200 OK`.
+Sending a `DELETE` request to a document url will cause that document to be
+deleted. An empty 204 response will be returned.
 
 ```bash
 $ curl                                     \
     --user you@example.com:s3cr3t          \
     -X DELETE                              \
-    http://test.127.0.0.1.xip.io:3000/api/v0.1/person/50d1f2e1c03858f9f6000006
+    http://test.127.0.0.1.xip.io:3000/api/v0.1/persons/50d1f2e1c03858f9f6000006
 
 {}
 ```

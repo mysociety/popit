@@ -49,12 +49,7 @@ css:
 optipng:
 	find public -name '*.png' | xargs optipng --clobber -o4
 
-
-js-templates:
-	rm -rf public/js/templates.js
-	node_modules/.bin/uta-compile-templates-to-amd instance-app/views > public/js/templates.js
-
-public-production: css js-templates
+public-production: css
 	rm -rf public-build public-production
 	node_modules/.bin/r.js -o public/js/app.build.js
 	mkdir public-production
@@ -66,13 +61,14 @@ public-production: css js-templates
 	mv public-build/img         public-production/
 
 	# copy across only the javascript that we need
-	mkdir -p public-production/js/libs
+	mkdir -p public-production/js/libs/jsoneditor/img
 	mv public-build/js/libs/require-*  public-production/js/libs/
+	mv public-build/js/libs/jsoneditor/img/* public-production/js/libs/jsoneditor/img/
+	mv public-build/js/libs/jsoneditor/*.css  public-production/js/libs/jsoneditor/
 	mv public-build/js/main-*          public-production/js/
 
 	# clean up generated content that we don't need now
 	rm -r public-build
-	rm -r public/js/templates.js	
 
 
 tidy:
@@ -81,7 +77,7 @@ tidy:
 	# sass-convert --recursive --in-place --from scss --to scss public/sass/
 
 
-test: clean node-modules jshint test-unit test-api test-browser 
+test: clean node-modules jshint test-unit test-browser
 	echo "ALL TESTS PASS"
 
 test-unit:
@@ -93,13 +89,6 @@ test-browser: css public-production
 	$(START_TEST_SERVER)
 	@NODE_ENV=testing ruby tests/browser_based/run_tests.rb -v
 	$(STOP_TEST_SERVER)
-
-test-api:
-	$(STOP_TEST_SERVER)
-	@NODE_ENV=testing ./node_modules/.bin/nodeunit \
-	  --reporter $(REPORTER) \
-	  tests/api
-
 
 production: clean node-modules
 	git checkout master
@@ -118,11 +107,10 @@ production: clean node-modules
 clean:
 	compass clean
 	rm -rf public/css
-	rm -rf public/js/templates.js	
 	rm -rf public-build
 	rm -rf public-production
 	find . -name chromedriver.log -delete
 
 
-.PHONY: test test-unit test-browser test-api css public-production clean tidy node-modules npm-update npm-shrinkwrap
+.PHONY: test test-unit test-browser css public-production clean tidy node-modules npm-update npm-shrinkwrap
 

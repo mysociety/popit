@@ -3,7 +3,9 @@ layout: default
 title: Installation instructions
 ---
 
-We hope that PopIt is quite easy to install and get running. If you have any issues please let us know at popit@mysociety.org or by reporting it on the [GitHub issue tracker](https://github.com/mysociety/popit/issues).
+We hope that PopIt is quite easy to install and get running. If you have any
+issues please let us know by reporting it on the [GitHub issue
+tracker](https://github.com/mysociety/popit/issues).
 
 ## Just want a PopIt site?
 

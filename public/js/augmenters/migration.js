@@ -14,7 +14,7 @@ require(['jquery', 'underscore'], function ($, _) {
        $.getJSON('/migration/progress/'+id, function(json) {
         var status_html = 'Imported ' + json.progress+' of '+json.total+' items.';
         if (json.total === json.progress && json.count >= 0) {
-          status_html = 'Finished importing <a href="/person" id="_finished">'+json.count+'</a> people.';
+          status_html = 'Finished importing <a href="/persons" id="_finished">'+json.count+'</a> people.';
           $('#migration_completed_message').show();
           clearInterval(migration_progress_poll_id);
         }

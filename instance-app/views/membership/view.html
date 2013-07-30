@@ -1,0 +1,50 @@
+<%= render(
+  'html_head.html',
+  {
+    title:       membership.name,
+    description: '',
+  }
+) %>
+
+<h1></h1>
+
+<article class="membership">
+
+  <h1><%- membership.role %></h1>
+
+    <section class="person">
+      <p>
+        Person:
+        <a href="<%- membership.person_id.slug_url %>"><%- membership.person_id.name %></a>
+      </p>
+    </section>
+
+    <section class="organization">
+      <p>
+        Organization:
+        <a href="<%- membership.organization_id.slug_url %>"><%- membership.organization_id.name %></a>
+      </p>
+    </section>
+
+  <p>Start Date: <%- membership.start_date || 'Unknown' %></p>
+  <p>End Date:   <%- membership.end_date   || 'Unknown' %></p>
+
+  <section class="to_be_added">
+    <p>
+      There is a
+      <a href="https://github.com/mysociety/popit/issues/183">github ticket</a>
+      to put more details on this page.
+    </p>
+  </section>
+  
+  <section class="raw-data">
+    <h2>Raw data</h2>
+    <p>
+      The details for this organization are also available in
+      <a href="/api/v0.1/memberships/#{membership.id}">JSON</a>.
+    </p>
+  </section>
+
+</article>
+
+<%= render('html_footer.html' )%>
