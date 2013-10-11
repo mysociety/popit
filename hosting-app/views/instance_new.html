@@ -12,7 +12,22 @@
   To start using PopIt you need to create a new instance. This is quick, easy, free and you do it by filling in the form below. A temporary password will be emailed to you that you can change once you login.
 </p>
 
+<p>
+  To create an instance you need an invitation code - please contact us to get one.
+</p>
+
 <form class="well form-horizontal" method='post' action=''>
+
+    <p class="control-group <%- errors.invite ? 'error' : '' %>">
+      <label class="control-label" for='email'>Invitation Code</label>
+      <span class="controls">
+        <input id="invite" class="input-xlarge" type='text' name='invite' data-validation='required' value='<%- invite %>' />
+      </span>
+
+      <% if (errors.invite) { %>
+        <span class="help-block">Invitation code not correct - please contact us to get one.</span>
+      <% } %>
+    </p>
 
     <p class="control-group <%- errors.slug ? 'error' : '' %>">
       <label class="control-label" for='slug'>Pick a website name</label>

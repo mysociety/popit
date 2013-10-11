@@ -47,6 +47,16 @@ class HostingTests < PopItWatirTestCase
     
     # submit the form with no values, check for error
     @b.input(:value, 'Create your own PopIt').click
+    assert_match "Invitation code not correct - please contact us to get one", @b.text
+    
+    # submit the form with no values, check for error
+    @b.text_field(:name, 'invite').set("Bad Value")
+    @b.input(:value, 'Create your own PopIt').click
+    assert_match "Invitation code not correct - please contact us to get one", @b.text
+    
+    # submit the form with no values, check for error
+    @b.text_field(:name, 'invite').set("Open Sesame")
+    @b.input(:value, 'Create your own PopIt').click
     assert_match "Error is 'required'", @b.text
     assert_match "Error is 'required'", @b.text    
     
@@ -85,6 +95,7 @@ class HostingTests < PopItWatirTestCase
     goto '/'
     # @b.link(:text, "Create your PopIt site").click
     goto "/instances/new"
+    @b.text_field(:name, 'invite').set("Open Sesame")
     @b.text_field(:id, 'slug').set("test")
     @b.input(:value, 'Create your own PopIt').click
     assert_match "Error is 'slug_not_unique'", @b.text    
