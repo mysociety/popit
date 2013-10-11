@@ -151,16 +151,16 @@ ul.buttons a:hover {
   background: linear-gradient(top, #ffffff 0%, #dddddd 100%);
 }
 ul.buttons a:active {
-  -webkit-box-shadow: inset 0px 2px 2px 0px #ddd;
-  -moz-box-shadow: inset 0px 2px 2px 0px #ddd;
-  box-shadow: inset 0px 2px 2px 0px #ddd;
+  -webkit-box-shadow: inset 0px 2px 2px 0px #dddddd;
+  -moz-box-shadow: inset 0px 2px 2px 0px #dddddd;
+  box-shadow: inset 0px 2px 2px 0px #dddddd;
 }
 strong {
   font-weight: 700;
 }
 ul.buttons li + li {
   width: 88px;
-  border-left: 1px solid #fff;
+  border-left: 1px solid white;
 }
 ul.buttons li + li + li {
   border-right: none;
@@ -258,7 +258,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 */
 pre code {
   color: #000;
-  background: #f8f8ff;
+  background: ghostwhite;
 }
 pre .comment,
 pre .template_comment,

@@ -101,7 +101,7 @@ code,
 kbd,
 samp {
   font-family: monospace, serif;
-  _font-family: 'courier new', monospace;
+  _font-family: "courier new", monospace;
   font-size: 1em;
 }
 pre {
@@ -168,7 +168,7 @@ form {
   margin: 0;
 }
 fieldset {
-  border: 1px solid #c0c0c0;
+  border: 1px solid silver;
   margin: 0 2px;
   padding: 0.35em 0.625em 0.75em;
 }
@@ -304,7 +304,7 @@ table {
   list-style-type: none;
 }
 .bbf-list ul {
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc;
   border-bottom: none;
   max-height: 150px;
   overflow: auto;
@@ -312,8 +312,8 @@ table {
   padding: 0;
 }
 .bbf-list li {
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
   height: 16px;
   background: #fff;
   padding: 4px;
@@ -538,7 +538,7 @@ table {
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
   border-radius: 15px;
-  text-shadow: 0 1px 2px #222;
+  text-shadow: 0 1px 2px #222222;
   color: #FFF;
   font-weight: bold;
   line-height: 24px;
@@ -573,7 +573,7 @@ body {
 }
 h1, h2, h3, h4, h5 {
   color: #333;
-  font-family: 'MuseoSlab500', 'sans-serif';
+  font-family: "MuseoSlab500", "sans-serif";
   font-weight: normal;
 }
 dt {
@@ -690,8 +690,8 @@ p.intro {
   text-transform: lowercase;
 }
 header.entity-header-nav {
-  margin-left: -1.688em;
-  margin-right: -1.688em;
+  margin-left: -1.6875em;
+  margin-right: -1.6875em;
   margin-bottom: 1em;
   float: left;
   clear: both;
@@ -736,7 +736,7 @@ header.entity-header-nav .current-entity {
   padding: 0.5em;
   font-size: 1.875em;
   text-align: center;
-  font-family: 'MuseoSlab500', 'sans-serif';
+  font-family: "MuseoSlab500", "sans-serif";
   font-weight: normal;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -876,10 +876,10 @@ article.entity > aside ul.photos > li:hover .photo-source {
 }
 article.entity > aside img {
   max-width: 100%;
-  border: 1px solid #ddd;
+  border: 1px solid #dddddd;
 }
 article.entity > section {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #dddddd;
   float: right;
   padding: 0.625em;
   margin-top: 0.625em;
@@ -1072,7 +1072,7 @@ form textarea {
   -webkit-border-radius: 0.625em;
   -moz-border-radius: 0.625em;
   border-radius: 0.625em;
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc;
   padding: 0.625em 1em;
   width: 25em;
   max-width: 100%;
@@ -1085,7 +1085,7 @@ form textarea {
 form input:hover,
 form .append:hover,
 form textarea:hover {
-  border: 1px solid #888;
+  border: 1px solid #888888;
 }
 form input:focus,
 form .append:focus,
@@ -1123,7 +1123,7 @@ table.migration-table {
   border-spacing: 2;
 }
 table.migration-table tr {
-  border: 1px solid #aaa;
+  border: 1px solid #aaaaaa;
 }
 table.migration-table tr:nth-child(even) {
   background-color: #eef;
@@ -1214,7 +1214,7 @@ button:hover, a.btn:hover, input.btn:hover {
 .ui-menu .ui-menu-item a {
   text-decoration: none;
   display: block;
-  padding: .2em .4em;
+  padding: 0.2em 0.4em;
   line-height: 1.5;
   zoom: 1;
 }
@@ -1326,7 +1326,7 @@ button:hover, a.btn:hover, input.btn:hover {
   color: #222222;
 }
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
-  border: 1px solid #d3d3d3;
+  border: 1px solid lightgrey;
   background: #e6e6e6 url(images/ui-bg_glass_75_e6e6e6_1x400.png) 50% 50% repeat-x;
   font-weight: normal;
   color: #555555;
@@ -2095,7 +2095,7 @@ button:hover, a.btn:hover, input.btn:hover {
 .ui-accordion .ui-accordion-header a {
   display: block;
   font-size: 1em;
-  padding: .5em .5em .5em .7em;
+  padding: 0.5em 0.5em 0.5em 0.7em;
 }
 .ui-accordion-icons .ui-accordion-header a {
   padding-left: 2.2em;
@@ -2166,7 +2166,7 @@ button:hover, a.btn:hover, input.btn:hover {
 .ui-menu .ui-menu-item a {
   text-decoration: none;
   display: block;
-  padding: .2em .4em;
+  padding: 0.2em 0.4em;
   line-height: 1.5;
   zoom: 1;
 }
@@ -2211,25 +2211,25 @@ button.ui-button-icons-only {
   line-height: 1.4;
 }
 .ui-button-text-only .ui-button-text {
-  padding: .4em 1em;
+  padding: 0.4em 1em;
 }
 .ui-button-icon-only .ui-button-text, .ui-button-icons-only .ui-button-text {
   padding: .4em;
   text-indent: -9999999px;
 }
 .ui-button-text-icon-primary .ui-button-text, .ui-button-text-icons .ui-button-text {
-  padding: .4em 1em .4em 2.1em;
+  padding: 0.4em 1em 0.4em 2.1em;
 }
 .ui-button-text-icon-secondary .ui-button-text {
-  padding: .4em 2.1em .4em 1em;
+  padding: 0.4em 2.1em 0.4em 1em;
 }
 .ui-button-text-icons .ui-button-text {
-  padding: .4em 2.1em .4em 1em;
+  padding: 0.4em 2.1em 0.4em 1em;
   padding-left: 2.1em;
   padding-right: 2.1em;
 }
 input.ui-button {
-  padding: .4em 1em;
+  padding: 0.4em 1em;
 }
 .ui-button-icon-only .ui-icon, .ui-button-text-icon-primary .ui-icon, .ui-button-text-icon-secondary .ui-icon, .ui-button-text-icons .ui-icon, .ui-button-icons-only .ui-icon {
   position: absolute;
@@ -2273,12 +2273,12 @@ button.ui-button::-moz-focus-inner {
   overflow: hidden;
 }
 .ui-dialog .ui-dialog-titlebar {
-  padding: .4em 1em;
+  padding: 0.4em 1em;
   position: relative;
 }
 .ui-dialog .ui-dialog-title {
   float: left;
-  margin: .1em 16px .1em 0;
+  margin: 0.1em 16px 0.1em 0;
 }
 .ui-dialog .ui-dialog-titlebar-close {
   position: absolute;
@@ -2299,7 +2299,7 @@ button.ui-button::-moz-focus-inner {
 .ui-dialog .ui-dialog-content {
   position: relative;
   border: 0;
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   background: none;
   overflow: auto;
   zoom: 1;
@@ -2308,14 +2308,14 @@ button.ui-button::-moz-focus-inner {
   text-align: left;
   border-width: 1px 0 0 0;
   background-image: none;
-  margin: .5em 0 0 0;
-  padding: .3em 1em .5em .4em;
+  margin: 0.5em 0 0 0;
+  padding: 0.3em 1em 0.5em 0.4em;
 }
 .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
   float: right;
 }
 .ui-dialog .ui-dialog-buttonpane button {
-  margin: .5em .4em .5em 0;
+  margin: 0.5em 0.4em 0.5em 0;
   cursor: pointer;
 }
 .ui-dialog .ui-resizable-se {
@@ -2407,21 +2407,21 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-tabs .ui-tabs-nav {
   margin: 0;
-  padding: .2em .2em 0;
+  padding: 0.2em 0.2em 0;
 }
 .ui-tabs .ui-tabs-nav li {
   list-style: none;
   float: left;
   position: relative;
   top: 1px;
-  margin: 0 .2em 1px 0;
+  margin: 0 0.2em 1px 0;
   border-bottom: 0 !important;
   padding: 0;
   white-space: nowrap;
 }
 .ui-tabs .ui-tabs-nav li a {
   float: left;
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   text-decoration: none;
 }
 .ui-tabs .ui-tabs-nav li.ui-tabs-selected {
@@ -2460,12 +2460,12 @@ button.ui-button::-moz-focus-inner {
  */
 .ui-datepicker {
   width: 17em;
-  padding: .2em .2em 0;
+  padding: 0.2em 0.2em 0;
   display: none;
 }
 .ui-datepicker .ui-datepicker-header {
   position: relative;
-  padding: .2em 0;
+  padding: 0.2em 0;
 }
 .ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next {
   position: absolute;
@@ -2515,10 +2515,10 @@ button.ui-button::-moz-focus-inner {
   width: 100%;
   font-size: .9em;
   border-collapse: collapse;
-  margin: 0 0 .4em;
+  margin: 0 0 0.4em;
 }
 .ui-datepicker th {
-  padding: .7em .3em;
+  padding: 0.7em 0.3em;
   text-align: center;
   font-weight: bold;
   border: 0;
@@ -2535,17 +2535,17 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-datepicker .ui-datepicker-buttonpane {
   background-image: none;
-  margin: .7em 0 0 0;
-  padding: 0 .2em;
+  margin: 0.7em 0 0 0;
+  padding: 0 0.2em;
   border-left: 0;
   border-right: 0;
   border-bottom: 0;
 }
 .ui-datepicker .ui-datepicker-buttonpane button {
   float: right;
-  margin: .5em .2em .4em;
+  margin: 0.5em 0.2em 0.4em;
   cursor: pointer;
-  padding: .2em .6em .3em .6em;
+  padding: 0.2em 0.6em 0.3em 0.6em;
   width: auto;
   overflow: visible;
 }
@@ -2560,7 +2560,7 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-datepicker-multi .ui-datepicker-group table {
   width: 95%;
-  margin: 0 auto .4em;
+  margin: 0 auto 0.4em;
 }
 .ui-datepicker-multi-2 .ui-datepicker-group {
   width: 50%;
@@ -2724,7 +2724,7 @@ button.ui-button::-moz-focus-inner {
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  border: 1px solid #aaa;
+  border: 1px solid #aaaaaa;
   display: block;
   overflow: hidden;
   white-space: nowrap;
@@ -2778,7 +2778,7 @@ button.ui-button::-moz-focus-inner {
 .select2-drop {
   background: #fff;
   color: #000;
-  border: 1px solid #aaa;
+  border: 1px solid #aaaaaa;
   border-top: 0;
   position: absolute;
   top: 100%;
@@ -2798,7 +2798,7 @@ button.ui-button::-moz-focus-inner {
   -moz-border-radius: 4px 4px 0px 0px;
   border-radius: 4px 4px 0px 0px;
   margin-top: 1px;
-  border-top: 1px solid #aaa;
+  border-top: 1px solid #aaaaaa;
   border-bottom: 0;
   -webkit-box-shadow: 0 -4px 5px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 0 -4px 5px rgba(0, 0, 0, 0.15);
@@ -2820,7 +2820,7 @@ button.ui-button::-moz-focus-inner {
   background-image: -ms-linear-gradient(top, #cccccc 0%, #eeeeee 60%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#cccccc', endColorstr = '#eeeeee', GradientType = 0);
   background-image: linear-gradient(top, #cccccc 0%, #eeeeee 60%);
-  border-left: 1px solid #aaa;
+  border-left: 1px solid #aaaaaa;
   position: absolute;
   right: 0;
   top: 0;
@@ -2859,7 +2859,7 @@ button.ui-button::-moz-focus-inner {
   background: url("select2.png") no-repeat 100% -22px, linear-gradient(top, #ffffff 85%, #eeeeee 99%);
   padding: 4px 20px 4px 5px;
   outline: 0;
-  border: 1px solid #aaa;
+  border: 1px solid #aaaaaa;
   font-family: sans-serif;
   font-size: 1em;
   width: 100%;
@@ -2894,12 +2894,12 @@ button.ui-button::-moz-focus-inner {
   outline: none;
 }
 .select2-dropdown-open .select2-choice {
-  border: 1px solid #aaa;
+  border: 1px solid #aaaaaa;
   border-bottom-color: transparent;
-  -webkit-box-shadow: 0 1px 0 #fff inset;
-  -moz-box-shadow: 0 1px 0 #fff inset;
-  -o-box-shadow: 0 1px 0 #fff inset;
-  box-shadow: 0 1px 0 #fff inset;
+  -webkit-box-shadow: 0 1px 0 white inset;
+  -moz-box-shadow: 0 1px 0 white inset;
+  -o-box-shadow: 0 1px 0 white inset;
+  box-shadow: 0 1px 0 white inset;
   background-color: #eee;
   background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, white), color-stop(0.5, #eeeeee));
   background-image: -webkit-linear-gradient(center bottom, white 0%, #eeeeee 50%);
@@ -2994,7 +2994,7 @@ button.ui-button::-moz-focus-inner {
 .select2-container.select2-container-disabled .select2-choice {
   background-color: #f4f4f4;
   background-image: none;
-  border: 1px solid #ddd;
+  border: 1px solid #dddddd;
   cursor: default;
 }
 .select2-container.select2-container-disabled .select2-choice div {
@@ -3010,7 +3010,7 @@ button.ui-button::-moz-focus-inner {
   background-image: -o-linear-gradient(top, #eeeeee 1%, white 15%);
   background-image: -ms-linear-gradient(top, #eeeeee 1%, white 15%);
   background-image: linear-gradient(top, #eeeeee 1%, #ffffff 15%);
-  border: 1px solid #aaa;
+  border: 1px solid #aaaaaa;
   margin: 0;
   padding: 0;
   cursor: text;
@@ -3056,7 +3056,7 @@ button.ui-button::-moz-focus-inner {
   background: white url("spinner.gif") no-repeat 100% !important;
 }
 .select2-default {
-  color: #999 !important;
+  color: #999999 !important;
 }
 .select2-container-multi .select2-choices .select2-search-choice {
   -webkit-border-radius: 3px;
@@ -3110,13 +3110,13 @@ button.ui-button::-moz-focus-inner {
 .select2-container-multi.select2-container-disabled .select2-choices {
   background-color: #f4f4f4;
   background-image: none;
-  border: 1px solid #ddd;
+  border: 1px solid #dddddd;
   cursor: default;
 }
 .select2-container-multi.select2-container-disabled .select2-choices .select2-search-choice {
   background-image: none;
   background-color: #f4f4f4;
-  border: 1px solid #ddd;
+  border: 1px solid #dddddd;
   padding: 3px 5px 3px 5px;
 }
 .select2-container-multi.select2-container-disabled .select2-choices .select2-search-choice .select2-search-choice-close {
