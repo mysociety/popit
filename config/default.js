@@ -29,6 +29,10 @@ module.exports = {
         host:       'www.127.0.0.1.xip.io',
         base_url:   'http://www.127.0.0.1.xip.io:3000',
         email_from: 'PopIt <popit@mysociety.org>', 
+
+        // This is a token asked for on the un-publicised create new instance page. It
+        // is a simple way to let only invited people create instances.
+        create_instance_invite_code: "Open Sesame",
     },
     instance_server: {
         // This is used to create the url to the instance site. '%s' is
