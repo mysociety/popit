@@ -1,7 +1,7 @@
 
 # note - this needs to be default so that the nodeunit process will exit with
 # error if tests fail. Otherwise make will not abort.
-REPORTER = default 
+REPORTER = default
 
 JSHINT = ./node_modules/.bin/jshint
 
@@ -25,22 +25,14 @@ npm-update:
 	npm install
 	npm prune
 	make test
-	make shrinkwrap-tidy
+	npm shrinkwrap
 
 npm-shrinkwrap:
 	npm install
 	rm npm-shrinkwrap.json
 	npm install
 	npm prune
-	make shrinkwrap-tidy
-
-# This step removes the "from": lines that later npms create but that the npm on
-# server does not recognise. Ideally it'll be removed when the server npm is
-# updated (probably when node goes to 0.10.*)
-shrinkwrap-tidy:
 	npm shrinkwrap
-	perl config/cleanup-shrinkwrap.pl < npm-shrinkwrap.json > npm-shrinkwrap.json.tidy
-	mv npm-shrinkwrap.json.tidy npm-shrinkwrap.json
 
 
 jshint:
@@ -101,7 +93,7 @@ test-browser: css public-production
 
 production: clean node-modules
 	git checkout master
-	make shrinkwrap-tidy
+	npm shrinkwrap
 	git add .
 	git commit -m "rebuild npm-shrinkwrap.json" || true
 	npm version patch -m 'deploy to production - version bump to %s'
@@ -121,5 +113,5 @@ clean:
 	find . -name chromedriver.log -delete
 
 
-.PHONY: test test-unit test-browser css public-production clean tidy node-modules npm-update npm-shrinkwrap shrinkwrap-tidy
+.PHONY: test test-unit test-browser css public-production clean tidy node-modules npm-update npm-shrinkwrap
 
