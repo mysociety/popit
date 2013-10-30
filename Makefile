@@ -1,7 +1,7 @@
 
 # note - this needs to be default so that the nodeunit process will exit with
 # error if tests fail. Otherwise make will not abort.
-REPORTER = default 
+REPORTER = default
 
 JSHINT = ./node_modules/.bin/jshint
 
@@ -33,6 +33,7 @@ npm-shrinkwrap:
 	npm install
 	npm prune
 	npm shrinkwrap
+
 
 jshint:
 	$(JSHINT) *.js lib/ hosting-app/ instance-app/ tests/
