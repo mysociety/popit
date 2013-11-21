@@ -14,11 +14,13 @@ class MembershipEditingTests < PopItWatirTestCase
   include Select2Helpers
 
   def edit_link
+    @b.execute_script('arguments[0].scrollIntoView();', @b.section(:class, 'memberships'))
     @b.section(:class, 'memberships').li.hover
     @b.section(:class, 'memberships').li.link(:text => 'Edit').click
   end
 
   def delete_link
+    @b.execute_script('arguments[0].scrollIntoView();', @b.section(:class, 'memberships'))
     @b.section(:class, 'memberships').li.hover
     @b.section(:class, 'memberships').li.link(:text => 'Delete').click
   end
