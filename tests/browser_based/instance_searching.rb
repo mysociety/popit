@@ -29,7 +29,7 @@ class InstanceSearchingTests < PopItWatirTestCase
   def test_empty_search
     prep_for_test
     run_search ''
-    assert_match @b.text, /Sorry, no results/
+    assert_match /Sorry, no results/, @b.text
   end    
 
   def test_single_result_search
