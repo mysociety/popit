@@ -32,9 +32,11 @@ before_script:
   - export WATIR_BROWSER=firefox
 
 notifications:
-  irc: "irc.mysociety.org#popit"
-  use_notice: true
-  skip_join: true
+  irc:
+    channels:
+      - "irc.mysociety.org#popit"
+    use_notice: true
+    skip_join: true
 
 env:
   global:
