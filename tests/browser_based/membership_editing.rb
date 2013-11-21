@@ -65,11 +65,11 @@ class MembershipEditingTests < PopItWatirTestCase
       # submit the form and check that the new membership is created
       membership_form.submit
       @b.wait_until { ! membership_form.present? }
-      assert_match @b.text, /\(President\)\ :\ United\ States\ Government\ \(\ from\ 2001-01-20\ \)/
+      assert_match /\(President\)\ :\ United\ States\ Government\ \(\ from\ 2001-01-20\ \)/, @b.text
 
       # go back to person page and check that the membership is now listed there
       goto '/persons/george-bush'
-      assert_match @b.section(:class, 'memberships').text, /President/
+      assert_match /President/, @b.section(:class, 'memberships').text
 
       # create a new membership but with new role and organization
       @b.section(:class, 'memberships').link(:class, 'add').click
@@ -89,7 +89,7 @@ class MembershipEditingTests < PopItWatirTestCase
 
       membership_form.submit
       @b.wait_until { ! membership_form.present? }
-      assert_match @b.text, /\(Bottle Washer\)\ :\ 1600\ Penn\ Hotel/
+      assert_match /\(Bottle Washer\)\ :\ 1600\ Penn\ Hotel/, @b.text
 
       # check that the new role and org are in the possible options
       goto '/persons/george-bush'
@@ -139,7 +139,7 @@ class MembershipEditingTests < PopItWatirTestCase
 
       membership_form.submit
       @b.wait_until { ! membership_form.present? }
-      assert_match @b.text, /\(President\)\ :\ United\ States\ Government\ \(\ to\ 2013-01-01\ \)/
+      assert_match /\(President\)\ :\ United\ States\ Government\ \(\ to\ 2013-01-01\ \)/, @b.text
     }
   end
 

@@ -42,7 +42,7 @@ class PhotoTests < PopItWatirTestCase
       
       # check that only the placeholder photo is shown to start with
       assert @b.ul(:class => 'photos').li.img.present?
-      assert_match @b.ul(:class => 'photos').li.img.attribute_value('src'), opts[:placeholder_filename_regex]
+      assert_match opts[:placeholder_filename_regex], @b.ul(:class => 'photos').li.img.attribute_value('src')
       
       # upload a file
       @b.link(:text => '+ add a photograph').click
@@ -63,7 +63,7 @@ class PhotoTests < PopItWatirTestCase
       # check that the photo is now gone
       assert_path opts[:url]
       assert @b.ul(:class => 'photos').li.img.present?
-      assert_match @b.ul(:class => 'photos').li.img.attribute_value('src'), opts[:placeholder_filename_regex]
+      assert_match opts[:placeholder_filename_regex], @b.ul(:class => 'photos').li.img.attribute_value('src')
     }
   end 
 
