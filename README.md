@@ -10,7 +10,7 @@ Learn more about what PopIt is, how to use it and how to contribute to it on the
 
 Here be dragons! This is **alpha** software - it is currently undergoing active development so should be used with caution.
 
-[![Build Status](https://secure.travis-ci.org/mysociety/popit.png)](http://travis-ci.org/mysociety/popit)
+[![Build Status](https://travis-ci.org/mysociety/popit.png?branch=master)](https://travis-ci.org/mysociety/popit)
 
 ## Installing
 
