@@ -8,7 +8,7 @@ It should be possible to manage all the public data stored in a PopIt instance u
 
 (Note - there is currently some data that cannot be managed using the API, notably image uploads.)
 
-To edit data you will need to [authenticate your requests](../auth).
+To edit data you will need to [authenticate your requests](/docs/api/auth).
 
 ## Method summary
 
