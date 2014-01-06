@@ -15,9 +15,9 @@ We run a free [PopIt hosting service](http://popit.mysociety.org/) - if you just
 
 There are specific install instructions for some platforms:
 
-  * [MacOS X](macos)
-  * [Ubuntu](ubuntu)
-  * [Vagrant](vagrant)
+  * [MacOS X](/docs/install/macos)
+  * [Ubuntu](/docs/install/ubuntu)
+  * [Vagrant](/docs/install/vagrant)
 
 ## Configuration
 

@@ -33,4 +33,4 @@ All `GET` requests are returned `JSON` responses. These will have the form:
 ```
 
 The exact format of the response depends on the schema of the collection you
-are looking at. Please see [Schemas](../schemas) for more details.
+are looking at. Please see [Schemas](/docs/api/schemas) for more details.
