@@ -11,8 +11,8 @@ node_js:
 # assets committed. As these are generated as part of the test suite testing
 # production would not tell us anything new.
 branches:
-  only:
-    - master
+  except:
+    - production
 
 services:
   - mongodb
