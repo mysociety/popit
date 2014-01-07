@@ -21,7 +21,7 @@ body {
   font-size: 12pt;
 }
 h1, h2, h3, h4, h5, h6 {
-  font-family: "MuseoSlab500", "sans-serif";
+  font-family: 'MuseoSlab500', 'sans-serif';
   font-weight: normal;
 }
 h1 {
@@ -73,11 +73,11 @@ table {
   text-align: left;
 }
 th {
-  border-bottom: 1px solid #333333;
+  border-bottom: 1px solid #333;
   font-weight: bold;
 }
 td {
-  border-bottom: 1px solid #333333;
+  border-bottom: 1px solid #333;
 }
 th, td {
   padding: 4px 10px 4px 0;
