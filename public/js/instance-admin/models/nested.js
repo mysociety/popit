@@ -4,6 +4,9 @@ function ( Backbone ) {
 
   var NestedModel = Backbone.Model.extend({
     nest: function(key, Collection, attrs) {
+      if (!attrs[key]) {
+        return;
+      }
       if (this[key]) {
         this[key].reset( attrs[key] );
       } else {

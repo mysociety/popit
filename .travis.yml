@@ -1,17 +1,18 @@
 language: node_js
 
-# Only run tests on 0.8 to match what we deploy on.
+# Run tests on 0.8 to match what we deploy on and 0.10 to match what most
+# people are using in the wild.
 node_js:
 #   - "0.6"
   - "0.8"
-#   - "0.10"
+  - "0.10"
 
 # don't test production - the only real difference is that production has static
 # assets committed. As these are generated as part of the test suite testing
 # production would not tell us anything new.
 branches:
-  only:
-    - master
+  except:
+    - production
 
 services:
   - mongodb
@@ -32,9 +33,10 @@ before_script:
   - export WATIR_BROWSER=firefox
 
 notifications:
-  irc: "irc.mysociety.org#popit"
-  use_notice: true
-  skip_join: true
+  irc:
+    channels:
+      - "irc.mysociety.org#popit"
+    use_notice: true
 
 env:
   global:

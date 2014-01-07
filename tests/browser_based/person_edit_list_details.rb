@@ -11,6 +11,7 @@ require 'uri'
 class PersonContactDetailEditingTests < PopItWatirTestCase
 
   def edit_link(e)
+    @b.execute_script('arguments[0].scrollIntoView();', @b.element(e).parent)
     @b.element(e).hover
     @b.element(e).parent.link(:text => 'Edit').click
   end

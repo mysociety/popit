@@ -139,6 +139,29 @@ class OrganizationEditingTests < PopItWatirTestCase
       @b.wait_until { @b.title != 'Organizations' }
       assert_equal "网页", @b.title
       assert_path '/organizations/chinese-name'
+
+      # check edits are kept
+      @b.back
+      @b.refresh
+      add_organization_link.click
+      @b.text_field(:name, 'name').set 'Test'
+      @b.input(:value, "Create new organization").click
+      @b.wait_until { sleep 0.4; @b.link(:class => 'other_name-edit').present? }
+
+      # Add an alternative name
+      @b.element(:css, '.other_name-edit').click
+      alternative_name_input = @b.element(:css, '.other_names').input(:name, 'name')
+      @b.wait_until { sleep 0.4; alternative_name_input.present? }
+      alternative_name_input.send_keys("Some alternative name", :enter)
+
+      # Change the organization name
+      name_element = @b.element(:css, '#entity-name-in-header')
+      name_element.click
+      name_element.element(:css, 'input').send_keys("Bar Test", :enter)
+      @b.refresh
+
+      # The alternative name should be preserved
+      assert_match /Some alternative name/, @b.element(:css, '.other_names').text
     }
   end
 

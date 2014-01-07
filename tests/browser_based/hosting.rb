@@ -75,8 +75,8 @@ class HostingTests < PopItWatirTestCase
     # check that a good slug does not error
     @b.text_field(:name, 'slug').set("test")
     @b.input(:value, 'Create your own PopIt').click
-    assert_not_match "Error is 'regexp'", @b.text
-    assert_match "Error is 'required'", @b.text    
+    assert_not_match Regexp.new("Error is 'regexp'"), @b.text
+    assert_match Regexp.new("Error is 'required'"), @b.text
     
     # check that a bad email is rejected
     #   NOTE - these tests are commented out as recent browsers catch the bad
