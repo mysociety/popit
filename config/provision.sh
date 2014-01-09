@@ -31,7 +31,8 @@ apt-get update -y
 echo "##############################"
 echo "Installing Packages"
 echo "##############################"
-apt-get install -yqq nodejs mongodb-10gen build-essential ruby1.9.1 ruby1.9.1-dev chromium-browser xvfb unzip git
+apt-get install -yqq nodejs mongodb-10gen build-essential ruby1.9.1 \
+  ruby1.9.1-dev chromium-browser xvfb unzip git graphicsmagick
 
 # Download and install chromedriver
 echo "##############################"
