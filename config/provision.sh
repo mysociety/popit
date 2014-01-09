@@ -37,10 +37,11 @@ apt-get install -yqq nodejs mongodb-10gen build-essential ruby1.9.1 ruby1.9.1-de
 echo "##############################"
 echo "Installing chromedriver"
 echo "##############################"
-wget -q http://chromedriver.googlecode.com/files/chromedriver_linux64_23.0.1240.0.zip
-unzip chromedriver_linux64_23.0.1240.0.zip
-rm chromedriver_linux64_23.0.1240.0.zip
+wget -q http://chromedriver.storage.googleapis.com/2.8/chromedriver_linux64.zip
+unzip chromedriver_linux64.zip
+rm chromedriver_linux64.zip
 mv chromedriver /usr/local/bin
+chmod 755 /usr/local/bin/chromedriver
 
 # Install compass, watir-webdriver and pry
 echo "##############################"
