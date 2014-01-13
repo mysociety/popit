@@ -31,22 +31,24 @@ apt-get update -y
 echo "##############################"
 echo "Installing Packages"
 echo "##############################"
-apt-get install -yqq nodejs mongodb-10gen build-essential ruby1.9.1 ruby1.9.1-dev chromium-browser xvfb unzip git
+apt-get install -yqq nodejs mongodb-10gen build-essential ruby1.9.1 \
+  ruby1.9.1-dev chromium-browser xvfb unzip git graphicsmagick
 
 # Download and install chromedriver
 echo "##############################"
 echo "Installing chromedriver"
 echo "##############################"
-wget -q http://chromedriver.googlecode.com/files/chromedriver_linux64_23.0.1240.0.zip
-unzip chromedriver_linux64_23.0.1240.0.zip
-rm chromedriver_linux64_23.0.1240.0.zip
+wget -q http://chromedriver.storage.googleapis.com/2.8/chromedriver_linux64.zip
+unzip chromedriver_linux64.zip
+rm chromedriver_linux64.zip
 mv chromedriver /usr/local/bin
+chmod 755 /usr/local/bin/chromedriver
 
 # Install compass, watir-webdriver and pry
 echo "##############################"
 echo "Installing compass, watir-webdriver and pry"
 echo "##############################"
-gem install compass watir-webdriver pry
+gem install compass watir-webdriver pry --no-rdoc --no-ri
 
 # Set up Xvfb to run all the time on display :99
 echo "##############################"
