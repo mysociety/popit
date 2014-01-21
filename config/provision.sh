@@ -32,7 +32,14 @@ echo "##############################"
 echo "Installing Packages"
 echo "##############################"
 apt-get install -yqq nodejs mongodb-10gen build-essential ruby1.9.1 \
-  ruby1.9.1-dev chromium-browser xvfb unzip git graphicsmagick
+  ruby1.9.1-dev chromium-browser xvfb unzip git graphicsmagick openjdk-6-jre
+
+# Install elasticsearch
+echo "##############################"
+echo "Installing elasticsearch"
+echo "##############################"
+wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.10.deb
+dpkg -i elasticsearch-0.90.10.deb
 
 # Download and install chromedriver
 echo "##############################"
