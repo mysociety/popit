@@ -55,4 +55,4 @@ You can match date ranges using the API, e.g. to find all memberships which star
 
 ### Further reading
 
-The underlying search engine is elasticsearch, for more details about the kinds of query you can perform, check out the [query string syntax guide](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax).
+The underlying search engine is elasticsearch. For more details about the kinds of query you can perform, check out the [query string syntax guide](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax).
