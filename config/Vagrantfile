@@ -9,31 +9,13 @@ Vagrant.configure("2") do |config|
   # doesn't already exist on the user's system.
   config.vm.box_url = "http://files.vagrantup.com/precise64.box"
 
-  # configure nfs export (performance)
-  # config.vm.synced_folder ".", "/vagrant", :nfs => true
-  config.vm.synced_folder "~/", "/me", :nfs => true
-
-  # network configurations
-  #
-  # NFS exports need an explicitly-defined IP,
-  # so create a private, NFS-dedicated network on 192.168.10.x
-  # Forward a port from the guest to the host, which allows for outside
-  # computers to access the VM, whereas host only networking does not.
-  config.vm.network :private_network, ip: "192.168.10.2"
   config.vm.network :forwarded_port, guest: 3000, host: 3000
 
-  # box customisations
   config.vm.provider :virtualbox do |v|
-    # Enable the creating of symlinks on the default shared folder
-    # Needs to be explicitly enabled because virtualbox disables this
-    # feature by default because it breaks NFS shares in some wayvag
-    v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
-
     # assign memory and CPU as needed
     v.customize ["modifyvm", :id, "--memory", "1024"]
   end
 
   # Provision using the shell provisioner
-  # config.vm.provision :shell, :path => "provision.sh"
-
+  config.vm.provision :shell, :path => "provision.sh"
 end

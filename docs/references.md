@@ -4,6 +4,7 @@ These are the more major tools used to create the PopIt app:
 
  * [Mongoose](http://mongoosejs.com/) object modelling tool
  * [MongoDB](http://www.mongodb.org/display/DOCS/Home) database docs
+ * [Elasticsearch](http://www.elasticsearch.org/) search engine
 
 ## Web framework
 

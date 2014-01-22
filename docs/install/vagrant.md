@@ -9,7 +9,16 @@ The basic process is to create a "base" vm, and then "provision" it with the sof
 
 1. [Install VirtualBox](http://www.virtualbox.org/wiki/Downloads) and [Vagrant](http://downloads.vagrantup.com/), create a folder somewhere that you'll be doing your work from and clone [popit](https://github.com/mysociety/popit) into it.
 
-2. From your newly cloned `popit` directory, move `popit/config/Vagrantfile` and `popit/config/provision.sh` out, so that they're in the same directory as `popit`.
+2. From your newly cloned `popit` directory, move `popit/config/Vagrantfile` and `popit/config/provision.sh` out, so that they're in the same directory as the `popit` repository, e.g.:
+
+        popit_root
+        ├── Vagrantfile
+        ├── popit
+        │   ├── CHANGELOG.md
+        │   ├── LICENSE.txt
+        │   ...
+        │   └── version-migrations
+        └── provision.sh
 
 3. Run `vagrant up` in the same directory you just moved `Vagrantfile` into.
 

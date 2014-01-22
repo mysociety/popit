@@ -13,5 +13,9 @@ NODE_ENV=testing node server.js &
 # print out the pid
 echo $! > $PID_FILE
 
-# give the server time to start.
-sleep 5
+# give the server time to start, this assumes the server is running on
+# port 3100.
+until nc -z localhost 3100; do
+  echo "Waiting for test server to start on port 3100"
+  sleep 1
+done

@@ -25,7 +25,10 @@ Almost all the packages required are available from apt-get repositories in the 
     # (you may have some of these already)
     # Note you need version 1.9 of Ruby, which in Ubuntu packages is helpfully
     # labelled 1.9.1, version 1.8 won't work.
-    sudo apt-get install nodejs npm mongodb-10gen build-essential ruby1.9.1 ruby1.9.1-dev
+    sudo apt-get install nodejs mongodb-10gen build-essential ruby1.9.1 \
+      ruby1.9.1-dev chromium-browser xvfb unzip git graphicsmagick openjdk-6-jre
+    wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.10.deb
+    dpkg -i elasticsearch-0.90.10.deb
 
     # 4. Install gems needed to build the code
     sudo gem install compass 

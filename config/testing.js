@@ -3,6 +3,8 @@ module.exports = {
     // show the worning on the web pages
     show_dev_site_warning: true,
 
+    // If you change this you will also need to change it in
+    // tests/test-server-start.bash
     server: {
         port: 3100,
     },

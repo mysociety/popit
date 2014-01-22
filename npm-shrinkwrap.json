@@ -1,6 +1,6 @@
 {
   "name": "popit",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "dependencies": {
     "async": {
       "version": "0.1.22",
@@ -760,9 +760,9 @@
       }
     },
     "popit-api": {
-      "version": "0.0.11",
-      "from": "popit-api@git://github.com/mysociety/popit-api.git#0bddb34226d4da8ac9e2ca5f22ed84a4757716a5",
-      "resolved": "git://github.com/mysociety/popit-api.git#0bddb34226d4da8ac9e2ca5f22ed84a4757716a5",
+      "version": "0.0.12",
+      "from": "https://registry.npmjs.org/popit-api/-/popit-api-0.0.12.tgz",
+      "resolved": "https://registry.npmjs.org/popit-api/-/popit-api-0.0.12.tgz",
       "dependencies": {
         "express": {
           "version": "3.1.2",
@@ -939,9 +939,9 @@
           "resolved": "https://registry.npmjs.org/unorm/-/unorm-1.3.1.tgz"
         },
         "mongoose": {
-          "version": "3.8.3",
-          "from": "https://registry.npmjs.org/mongoose/-/mongoose-3.8.3.tgz",
-          "resolved": "https://registry.npmjs.org/mongoose/-/mongoose-3.8.3.tgz",
+          "version": "3.8.4",
+          "from": "https://registry.npmjs.org/mongoose/-/mongoose-3.8.4.tgz",
+          "resolved": "https://registry.npmjs.org/mongoose/-/mongoose-3.8.4.tgz",
           "dependencies": {
             "hooks": {
               "version": "0.2.1",
@@ -949,14 +949,14 @@
               "resolved": "https://registry.npmjs.org/hooks/-/hooks-0.2.1.tgz"
             },
             "mongodb": {
-              "version": "1.3.19",
-              "from": "https://registry.npmjs.org/mongodb/-/mongodb-1.3.19.tgz",
-              "resolved": "https://registry.npmjs.org/mongodb/-/mongodb-1.3.19.tgz",
+              "version": "1.3.23",
+              "from": "https://registry.npmjs.org/mongodb/-/mongodb-1.3.23.tgz",
+              "resolved": "https://registry.npmjs.org/mongodb/-/mongodb-1.3.23.tgz",
               "dependencies": {
                 "bson": {
-                  "version": "0.2.2",
-                  "from": "https://registry.npmjs.org/bson/-/bson-0.2.2.tgz",
-                  "resolved": "https://registry.npmjs.org/bson/-/bson-0.2.2.tgz"
+                  "version": "0.2.5",
+                  "from": "https://registry.npmjs.org/bson/-/bson-0.2.5.tgz",
+                  "resolved": "https://registry.npmjs.org/bson/-/bson-0.2.5.tgz"
                 },
                 "kerberos": {
                   "version": "0.0.3",
@@ -981,9 +981,9 @@
               "resolved": "https://registry.npmjs.org/muri/-/muri-0.3.1.tgz"
             },
             "mpromise": {
-              "version": "0.3.0",
-              "from": "https://registry.npmjs.org/mpromise/-/mpromise-0.3.0.tgz",
-              "resolved": "https://registry.npmjs.org/mpromise/-/mpromise-0.3.0.tgz"
+              "version": "0.4.3",
+              "from": "https://registry.npmjs.org/mpromise/-/mpromise-0.4.3.tgz",
+              "resolved": "https://registry.npmjs.org/mpromise/-/mpromise-0.4.3.tgz"
             },
             "mpath": {
               "version": "0.1.1",
@@ -996,14 +996,70 @@
               "resolved": "https://registry.npmjs.org/regexp-clone/-/regexp-clone-0.0.1.tgz"
             },
             "mquery": {
-              "version": "0.3.2",
-              "from": "https://registry.npmjs.org/mquery/-/mquery-0.3.2.tgz",
-              "resolved": "https://registry.npmjs.org/mquery/-/mquery-0.3.2.tgz",
+              "version": "0.4.1",
+              "from": "https://registry.npmjs.org/mquery/-/mquery-0.4.1.tgz",
+              "resolved": "https://registry.npmjs.org/mquery/-/mquery-0.4.1.tgz",
               "dependencies": {
                 "debug": {
                   "version": "0.7.0",
                   "from": "https://registry.npmjs.org/debug/-/debug-0.7.0.tgz",
                   "resolved": "https://registry.npmjs.org/debug/-/debug-0.7.0.tgz"
+                },
+                "mongodb": {
+                  "version": "1.3.19",
+                  "from": "https://registry.npmjs.org/mongodb/-/mongodb-1.3.19.tgz",
+                  "resolved": "https://registry.npmjs.org/mongodb/-/mongodb-1.3.19.tgz",
+                  "dependencies": {
+                    "bson": {
+                      "version": "0.2.2",
+                      "from": "https://registry.npmjs.org/bson/-/bson-0.2.2.tgz",
+                      "resolved": "https://registry.npmjs.org/bson/-/bson-0.2.2.tgz"
+                    },
+                    "kerberos": {
+                      "version": "0.0.3",
+                      "from": "https://registry.npmjs.org/kerberos/-/kerberos-0.0.3.tgz",
+                      "resolved": "https://registry.npmjs.org/kerberos/-/kerberos-0.0.3.tgz"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "elasticsearch": {
+          "version": "1.0.3",
+          "from": "https://registry.npmjs.org/elasticsearch/-/elasticsearch-1.0.3.tgz",
+          "resolved": "https://registry.npmjs.org/elasticsearch/-/elasticsearch-1.0.3.tgz",
+          "dependencies": {
+            "when": {
+              "version": "2.6.0",
+              "from": "https://registry.npmjs.org/when/-/when-2.6.0.tgz",
+              "resolved": "https://registry.npmjs.org/when/-/when-2.6.0.tgz"
+            },
+            "lodash": {
+              "version": "2.3.0",
+              "from": "https://registry.npmjs.org/lodash/-/lodash-2.3.0.tgz",
+              "resolved": "https://registry.npmjs.org/lodash/-/lodash-2.3.0.tgz"
+            },
+            "agentkeepalive": {
+              "version": "0.1.5",
+              "from": "https://registry.npmjs.org/agentkeepalive/-/agentkeepalive-0.1.5.tgz",
+              "resolved": "https://registry.npmjs.org/agentkeepalive/-/agentkeepalive-0.1.5.tgz"
+            },
+            "chalk": {
+              "version": "0.3.0",
+              "from": "https://registry.npmjs.org/chalk/-/chalk-0.3.0.tgz",
+              "resolved": "https://registry.npmjs.org/chalk/-/chalk-0.3.0.tgz",
+              "dependencies": {
+                "has-color": {
+                  "version": "0.1.2",
+                  "from": "https://registry.npmjs.org/has-color/-/has-color-0.1.2.tgz",
+                  "resolved": "https://registry.npmjs.org/has-color/-/has-color-0.1.2.tgz"
+                },
+                "ansi-styles": {
+                  "version": "0.2.0",
+                  "from": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-0.2.0.tgz",
+                  "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-0.2.0.tgz"
                 }
               }
             }
