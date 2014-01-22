@@ -9,6 +9,7 @@ The following services are needed by PopIt and you'll need to install them manua
 
   * [Node.js](http://nodejs.org/) - the platform that the codebase runs on.
   * [MongoDB](http://www.mongodb.org/) - the database we store all the data in.
+  * [Elasticsearch](http://www.elasticsearch.org/) - the database we use for search
 
 
 ## Dev tools

@@ -16,6 +16,7 @@ branches:
 
 services:
   - mongodb
+  - elasticsearch
 
 before_install:
   - export DEBIAN_FRONTEND=noninteractive
