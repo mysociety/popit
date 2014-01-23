@@ -390,7 +390,7 @@ module.exports = {
     },
 
     "create organization and membership when importing a person": function ( test ) {
-      test.expect( 7 );
+      test.expect( 8 );
       var migration = new MigrationApp();
 
       var schema = 'person';
@@ -415,7 +415,10 @@ module.exports = {
             query.exec(function(err, docs) {
               test.equal(docs.length, 1, 'one membership in database');
               test.equal(docs[0].role, 'Party', 'right name for membership');
-              cb(err);
+              that.popit.model('Person').findOne(function(err, person) {
+                test.equal(docs[0].person_id, person._id, 'correct id for person');
+                cb(err);
+              });
             });
           }, 
           function(cb) {
