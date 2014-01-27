@@ -115,7 +115,7 @@ module.exports = {
     },
 
     "import two people": function ( test ) {
-        test.expect( 10 );
+        test.expect( 12 );
 
         var migration = new MigrationApp();
         test.ok( migration, "got new migation app" );
@@ -236,7 +236,13 @@ module.exports = {
               test.equal(doc.contact_details.length, 1, 'one contact detail per person');
             });
 
-            test.done();
+            that.popit.model('Person').collection.findOne(function(err, person) {
+              test.ifError(err);
+
+              test.equal('string', typeof person._id, 'id should be a string in the database');
+              test.done();
+            });
+
           });
         });
     },
