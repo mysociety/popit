@@ -20,7 +20,13 @@ master.model('Instance').find(function(err, instances) {
 
   async.forEachSeries(instances, function(instance, done) {
     var databaseName = config.MongoDB.popit_prefix + instance.slug;
-    reIndex(databaseName, done);
+    reIndex(databaseName, function(err, total) {
+      if (err) {
+        return done(err);
+      }
+      console.log("Re-indexed " + total + " docs from " + databaseName);
+      done();
+    });
   }, function(err) {
     if (err) {
       throw err;
