@@ -1,6 +1,6 @@
 {
   "name": "popit",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "dependencies": {
     "async": {
       "version": "0.1.22",
@@ -93,7 +93,7 @@
         },
         "debug": {
           "version": "0.7.0",
-          "from": "https://registry.npmjs.org/debug/-/debug-0.7.0.tgz",
+          "from": "debug@0.7.0",
           "resolved": "https://registry.npmjs.org/debug/-/debug-0.7.0.tgz"
         }
       }
@@ -761,7 +761,8 @@
     },
     "popit-api": {
       "version": "0.0.13",
-      "from": "popit-api@0.0.13",
+      "from": "git://github.com/mysociety/popit-api.git#master",
+      "resolved": "git://github.com/mysociety/popit-api.git#48e9e145afc20ddc45d36ba3ff62686e7eaaba88",
       "dependencies": {
         "express": {
           "version": "3.1.2",
@@ -906,8 +907,8 @@
           "from": "unorm@~1.3.1"
         },
         "mongoose": {
-          "version": "3.8.5",
-          "from": "mongoose@~3.8.2",
+          "version": "3.8.6",
+          "from": "mongoose@~3.8.5",
           "dependencies": {
             "hooks": {
               "version": "0.2.1",
@@ -952,26 +953,12 @@
               "from": "regexp-clone@0.0.1"
             },
             "mquery": {
-              "version": "0.4.1",
-              "from": "mquery@0.4.1",
+              "version": "0.5.2",
+              "from": "mquery@0.5.2",
               "dependencies": {
                 "debug": {
-                  "version": "0.7.0",
-                  "from": "debug@0.7.0"
-                },
-                "mongodb": {
-                  "version": "1.3.19",
-                  "from": "mongodb@1.3.19",
-                  "dependencies": {
-                    "bson": {
-                      "version": "0.2.2",
-                      "from": "bson@0.2.2"
-                    },
-                    "kerberos": {
-                      "version": "0.0.3",
-                      "from": "kerberos@0.0.3"
-                    }
-                  }
+                  "version": "0.7.4",
+                  "from": "debug@0.7.4"
                 }
               }
             }
@@ -998,7 +985,7 @@
               "from": "chalk@~0.3.0",
               "dependencies": {
                 "has-color": {
-                  "version": "0.1.2",
+                  "version": "0.1.3",
                   "from": "has-color@~0.1.0"
                 },
                 "ansi-styles": {

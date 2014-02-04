@@ -1,6 +1,6 @@
 {
   "name": "popit",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "private": true,
   "dependencies": {
     "async": ">= 0.1.18",
