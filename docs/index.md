@@ -16,8 +16,7 @@ PopIt is an easy-to-install web service for storing and sharing the names and ca
 
 You can contact at us at any of the following:
 
-  * The [Components mailing list](https://secure.mysociety.org/admin/lists/mailman/listinfo/components) for general discussion about PopIt and other similar components.
-  * The [PopIt-dev mailing list](https://secure.mysociety.org/admin/lists/mailman/listinfo/popit-dev) for development questions and discussion about PopIt.
+  * The [Poplus mailing list](https://groups.google.com/forum/#!forum/poplus) for general discussion about PopIt and other similar components.
   * Chat on the [#popit IRC channel](irc://irc.mysociety.org/popit) on `irc.mysociety.org`.
   * Read our [development diary](http://popit-dev.tumblr.com/) for frequent updates and musings.
   * Email us direct at [popit@mysociety.org](mailto:popit@mysociety.org).
