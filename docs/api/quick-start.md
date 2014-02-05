@@ -14,7 +14,7 @@ So a `GET` of `/api/v0.1/persons/1234` will get the details for the person with 
 
 ## Where can I try API requests?
 
-Every PopIt Instance has API access. It is always at `/api/...`. You can pick any instance to use to try commands on from [this list](http://popit.mysociety.org/instances) or use an instance that is fairly complete such as the [Kenyan Politicians](http://kenyan-politicians.popit.mysociety.org/) instance.
+Every PopIt Instance has API access. It is always at `/api/...`. You can pick any instance to use to try commands on from [this list](http://popit.mysociety.org/instances) or use an instance that is fairly complete such as the [South African People's Assembly](http://za-peoples-assembly.popit.mysociety.org/) instance.
 
 You can do `GET` requests from your browser. To view the JSON responses in your browser you may need to install the extensions suggested at the end of this article.
 
@@ -26,15 +26,15 @@ The index page for the API is a directory of what is available:
 
 ``` javascript
 
-// GET http://kenyan-politicians.popit.mysociety.org/api/v0.1
+// GET http://za-peoples-assembly.popit.mysociety.org/api/v0.1
 
 {
   "note": "This is the API entry point - use a '*_api_url' link in 'meta' to search a collection.",
   "meta": {
-    "person_api_url":       "http://kenyan-politicians.popit.mysociety.org/api/v0.1/persons",
-    "organization_api_url": "http://kenyan-politicians.popit.mysociety.org/api/v0.1/organizations",
-    "membership_api_url":     "http://kenyan-politicians.popit.mysociety.org/api/v0.1/memberships",
-    "image_proxy_url":      "http://kenyan-politicians.popit.mysociety.org/image-proxy/"
+    "person_api_url": "http://za-peoples-assembly.popit.mysociety.org\/api\/v0.1\/persons",
+    "organization_api_url": "http://za-peoples-assembly.popit.mysociety.org\/api\/v0.1\/organizations",
+    "membership_api_url": "http://za-peoples-assembly.popit.mysociety.org\/api\/v0.1\/memberships",
+    "image_proxy_url": "http://za-peoples-assembly.popit.mysociety.org\/image-proxy\/"
   }
 }
 ```
@@ -42,61 +42,192 @@ The index page for the API is a directory of what is available:
 You could then view a list of all the people in the database:
 
 ``` javascript
-// GET http://kenyan-politicians.popit.mysociety.org/api/v0.1/persons
+// GET http://za-peoples-assembly.popit.mysociety.org/api/v0.1/persons
 
 {
-  "result": [
-    {
-      "id": "50c60a5f71ec32dd6e000c3d",
-      "name": "Hassan Omar Hassan Sarai",
-      "slug": "hassan-omar-hassan-sarai",
-      "death_date": "",
-      "birth_date": "1975-10-23",
-      "images": [
-        {
-          "url": "http://info.mzalendo.com/media_root/images/Hassan_Omar.jpg",
-          "_id": "50c60a5f71ec32dd6e000c3e",
-          "created": "2012-12-10T16:14:23.331Z"
-        }
-      ],
-      "links": [],
-      "contact_details": [],
-      "other_names": []
-    },
-    // ... more person entries ...
+   "result":[
+      {
+         "id":"org.mysociety.za/person/1",
+         "family_name":"Swart",
+         "given_names":"Steven Nicholas",
+         "image":"http://www.parliament.gov.za/content/SWART%20STEVEN%20NICHOLAS.jpg",
+         "slug":"steven-nicholas-swart",
+         "honorific_prefix":"Mr",
+         "name":"Steven Nicholas Swart",
+         "memberships":[
+            {
+               "id":"org.mysociety.za/membership/1",
+               "organization_id":"org.mysociety.za/party/acdp",
+               "person_id":"org.mysociety.za/person/1",
+               "links":[],
+               "contact_details":[]
+            },
+            {
+               "id":"org.mysociety.za/membership/1484",
+               "organization_id":"org.mysociety.za/committee/74",
+               "person_id":"org.mysociety.za/person/1",
+               "links":[],
+               "contact_details":[]
+            },
+            {
+               "id":"org.mysociety.za/membership/1485",
+               "organization_id":"org.mysociety.za/committee/18",
+               "person_id":"org.mysociety.za/person/1",
+               "links":[],
+               "contact_details":[]
+            },
+            {
+               "id":"org.mysociety.za/membership/1620",
+               "organization_id":"org.mysociety.za/committee_pmg/8",
+               "person_id":"org.mysociety.za/person/1",
+               "role":"Alternate Member",
+               "links":[],
+               "contact_details":[]
+            },
+            {
+               "id":"org.mysociety.za/membership/1727",
+               "organization_id":"org.mysociety.za/committee_pmg/16",
+               "person_id":"org.mysociety.za/person/1",
+               "role":"Alternate Member",
+               "links":[],
+               "contact_details":[]
+            },
+            {
+               "id":"org.mysociety.za/membership/966",
+               "area":{
+                  "name":"Western Cape",
+                  "id":"org.mysociety.za/mapit/code/p/WC"
+               },
+               "label":"Member for Western Cape",
+               "organization_id":"org.mysociety.za/house/national-assembly",
+               "role":"Member",
+               "start_date":"2009-05-06",
+               "person_id":"org.mysociety.za/person/1",
+               "links":[],
+               "contact_details":[]
+            },
+            {
+               "id":"org.mysociety.za/membership/1644",
+               "organization_id":"org.mysociety.za/committee_pmg/10",
+               "person_id":"org.mysociety.za/person/1",
+               "role":"Alternate Member",
+               "links":[],
+               "contact_details":[]
+            },
+            {
+               "id":"org.mysociety.za/membership/2222",
+               "organization_id":"org.mysociety.za/committee_pmg/53",
+               "person_id":"org.mysociety.za/person/1",
+               "role":"Alternate Member",
+               "links":[],
+               "contact_details":[]
+            }
+         ],
+         "links":[],
+         "contact_details":[
+            {
+               "type":"email",
+               "value":"sswart@parliament.gov.za"
+            }
+         ],
+         "identifiers":[
+            {
+               "scheme":"za.gov.parliament/person",
+               "identifier":"875"
+            },
+            {
+               "scheme":"myreps_person_id",
+               "identifier":"5453"
+            },
+            {
+               "scheme":"myreps_id",
+               "identifier":"8222"
+            }
+         ],
+         "other_names":[]
+      }
+   },
+   // ... more person entries ...
   ]
 }
 ```
 
-And finally view the record for an individual person in the database:
+Or view the record for an individual person in the database:
 
 ``` javascript
-// GET http://kenyan-politicians.popit.mysociety.org/api/v0.1/persons/50c60c3c71ec32dd6e00199a
-// (note - this url may 404 if the data in this instance has been reloaded.)
+// GET http://za-peoples-assembly.popit.mysociety.org/api/v0.1/persons/org.mysociety.za/person/104
 
 {
-  "result": {
-    "id": "50c60c3c71ec32dd6e00199a",
-    "name": "Wycliffe William Osundwa",
-    "slug": "wycliffe-william-osundwa",
-    "death_date": "",
-    "birth_date": "1952-08-04",
-    "images": [
-      {
-        "url": "http://info.mzalendo.com/media_root/images/osundwa_w.jpg",
-        "_id": "50c60c3c71ec32dd6e00199b",
-        "created": "2012-12-10T16:22:20.899Z",
-        "meta": {
-          "image_url": "http://info.mzalendo.com/media_root/images/osundwa_w.jpg",
-          "can_use_image_proxy": false
-        }
-      }
-    ],
-    "links": [],
-    "contact_details": [],
-    "other_names": []
-  }
+   "result":{
+      "id":"org.mysociety.za/person/104",
+      "family_name":"Sisulu",
+      "given_names":"Max Vuyisile",
+      "image":"http://www.parliament.gov.za/content/SISULU%20MAX%20VUYISILE.jpg",
+      "slug":"max-vuyisile-sisulu",
+      "honorific_prefix":"Mr",
+      "name":"Max Vuyisile Sisulu",
+      "memberships":[
+         {
+            "id":"org.mysociety.za/membership/1005",
+            "organization_id":"org.mysociety.za/house/national-assembly",
+            "person_id":"org.mysociety.za/person/104",
+            "role":"Speaker",
+            "links":[],
+            "contact_details":[]
+         },
+         {
+            "id":"org.mysociety.za/membership/104",
+            "organization_id":"org.mysociety.za/party/anc",
+            "person_id":"org.mysociety.za/person/104",
+            "links":[],
+            "contact_details":[]
+         },
+         {
+            "id":"org.mysociety.za/membership/743",
+            "organization_id":"org.mysociety.za/house/national-assembly",
+            "role":"Member",
+            "person_id":"org.mysociety.za/person/104",
+            "label":"Member",
+            "start_date":"2009-05-06",
+            "links":[],
+            "contact_details":[]
+         }
+      ],
+      "links":[],
+      "contact_details":[
+         {
+            "type":"email",
+            "value":"speaker@parliament.gov.za"
+         },
+         {
+            "note":"Session Fax Number",
+            "type":"fax",
+            "value":"(021) 461 9462"
+         },
+         {
+            "note":"Session Phone Number",
+            "type":"voice",
+            "value":"(021) 403 2595/3812"
+         }
+      ],
+      "identifiers":[
+         {
+            "scheme":"za.gov.parliament/person",
+            "identifier":"629"
+         },
+         {
+            "scheme":"myreps_person_id",
+            "identifier":"5428"
+         },
+         {
+            "scheme":"myreps_id",
+            "identifier":"8172"
+         }
+      ],
+      "other_names":[]
+   }
 }
+
 ```
 
 ## Viewing API responses in the browser.
