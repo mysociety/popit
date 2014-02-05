@@ -31,10 +31,10 @@ The index page for the API is a directory of what is available:
 {
   "note": "This is the API entry point - use a '*_api_url' link in 'meta' to search a collection.",
   "meta": {
-    "person_api_url": "http:\/\/za-peoples-assembly.popit.mysociety.org\/api\/v0.1\/persons",
-    "organization_api_url": "http:\/\/za-peoples-assembly.popit.mysociety.org\/api\/v0.1\/organizations",
-    "membership_api_url": "http:\/\/za-peoples-assembly.popit.mysociety.org\/api\/v0.1\/memberships",
-    "image_proxy_url": "http:\/\/za-peoples-assembly.popit.mysociety.org\/image-proxy\/"
+    "person_api_url": "http://za-peoples-assembly.popit.mysociety.org\/api\/v0.1\/persons",
+    "organization_api_url": "http://za-peoples-assembly.popit.mysociety.org\/api\/v0.1\/organizations",
+    "membership_api_url": "http://za-peoples-assembly.popit.mysociety.org\/api\/v0.1\/memberships",
+    "image_proxy_url": "http://za-peoples-assembly.popit.mysociety.org\/image-proxy\/"
   }
 }
 ```
