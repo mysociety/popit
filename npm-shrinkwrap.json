@@ -1,6 +1,6 @@
 {
   "name": "popit",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "dependencies": {
     "async": {
       "version": "0.1.22",
@@ -530,7 +530,7 @@
       "dependencies": {
         "hooks": {
           "version": "0.2.1",
-          "from": "https://registry.npmjs.org/hooks/-/hooks-0.2.1.tgz",
+          "from": "hooks@0.2.1",
           "resolved": "https://registry.npmjs.org/hooks/-/hooks-0.2.1.tgz"
         },
         "mongodb": {
@@ -540,7 +540,7 @@
         },
         "ms": {
           "version": "0.1.0",
-          "from": "https://registry.npmjs.org/ms/-/ms-0.1.0.tgz",
+          "from": "ms@0.1.0",
           "resolved": "https://registry.npmjs.org/ms/-/ms-0.1.0.tgz"
         },
         "sliced": {
@@ -762,7 +762,7 @@
     "popit-api": {
       "version": "0.0.13",
       "from": "git://github.com/mysociety/popit-api.git#master",
-      "resolved": "git://github.com/mysociety/popit-api.git#48e9e145afc20ddc45d36ba3ff62686e7eaaba88",
+      "resolved": "git://github.com/mysociety/popit-api.git#9dc240e82abedb3fec2843b06945f5178dcf28fc",
       "dependencies": {
         "express": {
           "version": "3.1.2",
