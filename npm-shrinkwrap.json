@@ -1,6 +1,6 @@
 {
   "name": "popit",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "dependencies": {
     "async": {
       "version": "0.1.22",
@@ -525,7 +525,7 @@
     },
     "mongoose": {
       "version": "3.8.4",
-      "from": "mongoose@3.8.4",
+      "from": "https://registry.npmjs.org/mongoose/-/mongoose-3.8.4.tgz",
       "resolved": "https://registry.npmjs.org/mongoose/-/mongoose-3.8.4.tgz",
       "dependencies": {
         "hooks": {
@@ -574,22 +574,22 @@
         },
         "mquery": {
           "version": "0.4.1",
-          "from": "mquery@0.4.1",
+          "from": "https://registry.npmjs.org/mquery/-/mquery-0.4.1.tgz",
           "resolved": "https://registry.npmjs.org/mquery/-/mquery-0.4.1.tgz",
           "dependencies": {
             "debug": {
               "version": "0.7.0",
-              "from": "debug@0.7.0",
+              "from": "https://registry.npmjs.org/debug/-/debug-0.7.0.tgz",
               "resolved": "https://registry.npmjs.org/debug/-/debug-0.7.0.tgz"
             },
             "mongodb": {
               "version": "1.3.19",
-              "from": "mongodb@1.3.19",
+              "from": "https://registry.npmjs.org/mongodb/-/mongodb-1.3.19.tgz",
               "resolved": "https://registry.npmjs.org/mongodb/-/mongodb-1.3.19.tgz",
               "dependencies": {
                 "bson": {
                   "version": "0.2.2",
-                  "from": "bson@0.2.2",
+                  "from": "https://registry.npmjs.org/bson/-/bson-0.2.2.tgz",
                   "resolved": "https://registry.npmjs.org/bson/-/bson-0.2.2.tgz"
                 },
                 "kerberos": {
@@ -814,7 +814,7 @@
     "popit-api": {
       "version": "0.0.13",
       "from": "git://github.com/mysociety/popit-api.git#master",
-      "resolved": "git://github.com/mysociety/popit-api.git#41d36c71e71b3f3989ddadfba887d9a56059618c",
+      "resolved": "git://github.com/mysociety/popit-api.git#861c00084c41866e2e828c4298c8a3a01605846f",
       "dependencies": {
         "express": {
           "version": "3.1.2",
@@ -1017,21 +1017,9 @@
           }
         },
         "elasticsearch": {
-          "version": "1.0.3",
-          "from": "elasticsearch@~1.0.3",
+          "version": "1.5.8",
+          "from": "elasticsearch@~1.5.1",
           "dependencies": {
-            "when": {
-              "version": "2.6.0",
-              "from": "when@~2.6.0"
-            },
-            "lodash": {
-              "version": "2.3.0",
-              "from": "lodash@~2.3.0"
-            },
-            "agentkeepalive": {
-              "version": "0.1.5",
-              "from": "agentkeepalive@~0.1"
-            },
             "chalk": {
               "version": "0.3.0",
               "from": "chalk@~0.3.0",
@@ -1045,6 +1033,18 @@
                   "from": "ansi-styles@~0.2.0"
                 }
               }
+            },
+            "forever-agent": {
+              "version": "0.5.2",
+              "from": "forever-agent@~0.5.2"
+            },
+            "lodash-node": {
+              "version": "2.3.0",
+              "from": "lodash-node@~2.3.0"
+            },
+            "when": {
+              "version": "2.6.0",
+              "from": "when@~2.6.0"
             }
           }
         }

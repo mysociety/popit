@@ -8,7 +8,13 @@ var _             = require('underscore'),
     async         = require('async'),
     utils         = require('../../lib/utils'),
     PopIt         = require('../../lib/popit'),
-    MigrationApp  = require('../../lib/apps/migration');
+    MigrationApp  = require('../../lib/apps/migration'),
+    nodeunit      = require('nodeunit'),
+    elasticsearch = require('popit-api/src/mongoose/elasticsearch');
+
+nodeunit.on('done', function() {
+  elasticsearch.client.close();
+});
 
 module.exports = {
     
