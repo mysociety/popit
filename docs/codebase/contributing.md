@@ -7,6 +7,10 @@ Contributions to the PopIt project are very welcome. Really very welcome indeed.
 
 ## Code (and test) contributions
 
+PopIt is written in [JavaScript](http://en.wikipedia.org/wiki/JavaScript) to run on [Node](http://nodejs.org/) and your web browser.
+
+It also uses some [Ruby](http://www.ruby-lang.org/) code for testing and generating the documents.
+
 We use the _Fork & Pull_ development model and so the easiest way to contribute code changes is via a [pull request](http://help.github.com/send-pull-requests/).
 
 We welcome pull requests for several things:

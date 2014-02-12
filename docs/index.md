@@ -3,7 +3,7 @@ layout: default
 title: Overview
 ---
 
-PopIt is an easy-to-install web service for storing and sharing the names and career histories of public figures like politicians and celebrities. We built it to save time and save pain for anyone building a website that is built on top of a list of people, whether a politician-watching site or a celeb-spotting one.
+PopIt is a web service for storing and sharing the names and career histories of public figures like politicians or celebrities. We built it to save time and save pain for anyone building a website that is built on top of a list of people, whether a politician-watching site or a celeb-spotting one.
 
 ## Key features
 

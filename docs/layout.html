@@ -23,21 +23,6 @@
 
           <ul>
             <li><a href="/docs">Home</a></li>
-            
-            <li>
-              <a href="/docs/install">Installing&hellip;</a>
-              
-              <% if (/^\/install/.test(page.url) ) { %>
-              <ul>
-                <li><a href="/docs/install/get-the-code">Get the code</a></li>
-                <li><a href="/docs/install/prerequisites">Prerequisites</a></li>                
-                <li><a href="/docs/install/macos">Mac OS X</a></li>
-                <li><a href="/docs/install/ubuntu">Ubuntu</a></li>
-                <li><a href="/docs/install/vagrant">Vagrant</a></li>
-                <li><a href="/docs/install/configuration">Configuration</a></li>
-              </ul>
-              <% } %>
-            </li>
 
             <li>
               <a href="/docs/api">API&hellip;</a>
@@ -51,16 +36,6 @@
                   <li><a href="/docs/api/search">Search</a></li>
                   <li><a href="/docs/api/schemas">Schemas</a></li>
                   <li><a href="/docs/api/auth">Auth</a></li>
-                </ul>
-              <% } %>
-            </li>
-
-            <li>
-              <a href="/docs/codebase">The PopIt Codebase&hellip;</a>
-              
-              <% if (/^\/codebase/.test(page.url) ) { %>
-                <ul>
-                  <li><a href="/docs/codebase/contributing">Contributing</a></li>
                 </ul>
               <% } %>
             </li>

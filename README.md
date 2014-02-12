@@ -14,9 +14,9 @@ Here be dragons! This is **alpha** software - it is currently undergoing active 
 
 ## Installing
 
-Please see [the installation documentation](http://popit.mysociety.org/docs/install) for full instructions.
-
 You can use our [free hosting service](http://popit.mysociety.org/) instead of installing and let us run the site for you.
+
+Please see [the installation documentation](http://popit.mysociety.org/docs/install) for full instructions.
 
 ## Get in touch
 
