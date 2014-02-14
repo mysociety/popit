@@ -1,6 +1,6 @@
 {
   "name": "popit",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "dependencies": {
     "async": {
       "version": "0.1.22",
@@ -761,8 +761,8 @@
     },
     "popit-api": {
       "version": "0.0.13",
-      "from": "git://github.com/mysociety/popit-api.git#master",
-      "resolved": "git://github.com/mysociety/popit-api.git#9dc240e82abedb3fec2843b06945f5178dcf28fc",
+      "from": "git://github.com/mysociety/popit-api.git",
+      "resolved": "git://github.com/mysociety/popit-api.git#90d5f2cd188ebba1aec031066c0f4d60c843d81d",
       "dependencies": {
         "express": {
           "version": "3.1.2",
@@ -843,8 +843,9 @@
           "from": "assert@~0.4.9",
           "dependencies": {
             "util": {
-              "version": "0.10.2",
+              "version": "0.10.3",
               "from": "util@>= 0.4.9",
+              "resolved": "https://registry.npmjs.org/util/-/util-0.10.3.tgz",
               "dependencies": {
                 "inherits": {
                   "version": "2.0.1",
@@ -907,8 +908,9 @@
           "from": "unorm@~1.3.1"
         },
         "mongoose": {
-          "version": "3.8.6",
+          "version": "3.8.7",
           "from": "mongoose@~3.8.5",
+          "resolved": "https://registry.npmjs.org/mongoose/-/mongoose-3.8.7.tgz",
           "dependencies": {
             "hooks": {
               "version": "0.2.1",
@@ -985,8 +987,9 @@
               "from": "chalk@~0.3.0",
               "dependencies": {
                 "has-color": {
-                  "version": "0.1.3",
-                  "from": "has-color@~0.1.0"
+                  "version": "0.1.4",
+                  "from": "has-color@~0.1.0",
+                  "resolved": "https://registry.npmjs.org/has-color/-/has-color-0.1.4.tgz"
                 },
                 "ansi-styles": {
                   "version": "0.2.0",
