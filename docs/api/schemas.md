@@ -8,7 +8,7 @@ All textual entries stored in PopIt follow the [Popolo
 schema](http://popoloproject.com/). You can also add additional fields on top
 of this using the admin interface or the API.
 
-Additionally to the current Popolo schema we have added an area object on
+In addition to the current Popolo schemas we have added an area object on
 Memberships and Posts.
 
 ## Images

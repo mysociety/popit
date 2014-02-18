@@ -22,6 +22,6 @@ Please see [the installation documentation](http://popit.mysociety.org/docs/inst
 
 You can contact at us at any of the following:
 
-  * The [Poplus mailing list](https://groups.google.com/forum/#!forum/poplus) for general discussion about PopIt and other similar components.
-  * Chat on the [#popit IRC channel](irc://irc.mysociety.org/popit) on `irc.mysociety.org`.
-  * Email us direct at [popit@mysociety.org](mailto:popit@mysociety.org).
+- [GitHub Issues](https://github.com/mysociety/popit/issues) if you've found an issue with the site.
+- The [Poplus mailing list](https://groups.google.com/forum/#!forum/poplus) for general discussion about PopIt and other similar components.
+- Chat on the [#popit IRC channel](irc://irc.mysociety.org/popit) on `irc.mysociety.org`.

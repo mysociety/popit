@@ -8,7 +8,9 @@ It should be possible to manage all the public data stored in a PopIt instance u
 
 (Note - there is currently some data that cannot be managed using the API, notably image uploads.)
 
-To edit data you will need to [authenticate your requests](/docs/api/auth).
+## Authorization
+
+No authentication is required for read access. For write operations on the API you need to be authenticated. This can  either be done using [Basic Authentication](http://en.wikipedia.org/wiki/Basic_access_authentication) or by cookie auth. Basic is probably best for scripts and programatic access, cookie based for Ajax calls etc.
 
 ## Method summary
 
@@ -38,25 +40,6 @@ PopIt closely follows the suggested REST method behaviours, but with a few devia
   </tr>
 </table>
 
-### Not Implemented Methods
-
-These are `PUT` and `DELETE` on collections. Implementing these would mean that you could replace an entire collection, or delete it, in one operation. It is not likely that this is something that you'll want to do often, and the penalty for doing it by mistake is high.
-
-A `POST` to a document endpoint means that you should treat the document as a collection and add an entry to it. For PopIt this makes no sense and so it is not implemented.
-
-All the not implemented methods will return the status code `405 Method Not Allowed`.
-
-### Listing documents in a collection
-
-If you go to a url such as `/api/v0.1/persons` you will then get an array of all the entries in the database. Each item in the array is the complete document so there is no need to request the document again for more details.
-
-### Reading a single document
-
-A `GET` request to something like `/api/v0.1/<collection-name>/<id>` will return that entry.
-
-For the `persons` and `organizations` collections the related positions are not included in the result.
-
-
 ### Creating a new document in a collection
 
 If you `POST` to a collection you will create a new entry.
@@ -71,7 +54,7 @@ $ curl                                                 \
     --header "Accept: application/json"                \
     --header "Content-Type: application/json"          \
     --data '{ "name": "Joe Bloggs" }'                  \
-    http://test.127.0.0.1.xip.io:3000/api/v0.1/persons
+    http://test.popit.mysociety.org/api/v0.1/persons
 
 {
   "result": {
@@ -104,3 +87,11 @@ $ curl                                     \
 
 {}
 ```
+
+### Not Implemented Methods
+
+These are `PUT` and `DELETE` on collections. Implementing these would mean that you could replace an entire collection, or delete it, in one operation. It is not likely that this is something that you'll want to do often, and the penalty for doing it by mistake is high.
+
+A `POST` to a document endpoint means that you should treat the document as a collection and add an entry to it. For PopIt this makes no sense and so it is not implemented.
+
+All the not implemented methods will return the status code `405 Method Not Allowed`.

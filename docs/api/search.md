@@ -5,10 +5,6 @@ title: Search
 
 PopIt provides a full-featured search API that allows you to find the documents you're looking for within a collection. It supports wildcard queries, date ranges and more.
 
-## Pagination
-
-Results are limited to 30 items by default. You can access further pages by specifying the `?page` parameter, up to a maximum of 1000 pages. You can also set a custom number of results per page (up to 100) with the `?per_page` parameter.
-
 ## Search collections
 
 Find records via various criteria.
