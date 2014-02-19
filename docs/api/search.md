@@ -5,10 +5,6 @@ title: Search
 
 PopIt provides a full-featured search API that allows you to find the documents you're looking for within a collection. It supports wildcard queries, date ranges and more.
 
-## Pagination
-
-Results are limited to 30 items by default. You can access further pages by specifying the `?page` parameter, up to a maximum of 1000 pages. You can also set a custom number of results per page (up to 100) with the `?per_page` parameter.
-
 ## Search collections
 
 Find records via various criteria.
@@ -55,4 +51,4 @@ You can match date ranges using the API, e.g. to find all memberships which star
 
 ### Further reading
 
-The underlying search engine is elasticsearch, for more details about the kinds of query you can perform, check out the [query string syntax guide](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax).
+The underlying search engine is elasticsearch. For more details about the kinds of query you can perform, check out the [query string syntax guide](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax).
