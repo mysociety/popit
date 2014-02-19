@@ -8,7 +8,13 @@ var _             = require('underscore'),
     async         = require('async'),
     utils         = require('../../lib/utils'),
     PopIt         = require('../../lib/popit'),
-    MigrationApp  = require('../../lib/apps/migration');
+    MigrationApp  = require('../../lib/apps/migration'),
+    nodeunit      = require('nodeunit'),
+    elasticsearch = require('popit-api/src/mongoose/elasticsearch');
+
+nodeunit.on('done', function() {
+  elasticsearch.client.close();
+});
 
 module.exports = {
     
@@ -115,7 +121,7 @@ module.exports = {
     },
 
     "import two people": function ( test ) {
-        test.expect( 10 );
+        test.expect( 12 );
 
         var migration = new MigrationApp();
         test.ok( migration, "got new migation app" );
@@ -236,7 +242,13 @@ module.exports = {
               test.equal(doc.contact_details.length, 1, 'one contact detail per person');
             });
 
-            test.done();
+            that.popit.model('Person').collection.findOne(function(err, person) {
+              test.ifError(err);
+
+              test.equal('string', typeof person._id, 'id should be a string in the database');
+              test.done();
+            });
+
           });
         });
     },
@@ -384,7 +396,7 @@ module.exports = {
     },
 
     "create organization and membership when importing a person": function ( test ) {
-      test.expect( 7 );
+      test.expect( 8 );
       var migration = new MigrationApp();
 
       var schema = 'person';
@@ -409,7 +421,10 @@ module.exports = {
             query.exec(function(err, docs) {
               test.equal(docs.length, 1, 'one membership in database');
               test.equal(docs[0].role, 'Party', 'right name for membership');
-              cb(err);
+              that.popit.model('Person').findOne(function(err, person) {
+                test.equal(docs[0].person_id, person._id, 'correct id for person');
+                cb(err);
+              });
             });
           }, 
           function(cb) {

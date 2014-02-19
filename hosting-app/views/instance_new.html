@@ -38,7 +38,7 @@
       
       <% if (errors.slug) { %>
         <span class="help-block">Your website name can only contain letters and numbers. It should be at least four letters long but no longer than 20.</span>
-        <span class="help-block">Error is '<%- errors.slug.type %>'.</span>
+        <span class="help-block">Error is '<%- errors.slug.message %>'.</span>
       <% } %>
     </p>
 
@@ -50,7 +50,7 @@
       </span>
 
       <% if (errors.email) { %>
-        <span class="help-block">Error is '<%- errors.email.type %>'.</span>
+        <span class="help-block">Error is '<%- errors.email.message %>'.</span>
       <% } %>
     </p>
 
