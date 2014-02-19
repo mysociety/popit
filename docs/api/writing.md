@@ -27,15 +27,15 @@ PopIt closely follows the suggested REST method behaviours, but with a few devia
   <tr>
     <th>Collection endpoint:</th>
     <td>List documents</td>
-    <td>Not implemented</td>
+    <td>*Not implemented*</td>
     <td>Create document</td>
-    <td>Not implemented</td>
+    <td>*Not implemented*</td>
   </tr>
   <tr>
     <th>Document endpoint:</th>
     <td>Retrieve document</td>
     <td>Update document</td>
-    <td>Not implemented</td>
+    <td>*Not implemented*</td>
     <td>Delete document</td>
   </tr>
 </table>

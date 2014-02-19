@@ -10,6 +10,12 @@ The PopIt API offers a JSON interface for accessing and manipulating People, Org
 
 There is a version string in the API url, currently `v0.1`. This will be updated if the API undergoes significant changes that breaks backwards compatibility.
 
+## Data schema
+
+All textual entries stored in PopIt follow the [Popolo](http://popoloproject.com/) schema. You can also add additional fields on top of this using the admin interface or the API.
+
+In addition to the [Popolo schemas](http://popoloproject.com/specs/) we have added an area object on Memberships and Posts.
+
 ## API collections
 
 The API allows you to query four types of collection, **persons**, **organizations**, **memberships** and **posts**. Anywhere in the documentation you see `:collection` you can replace it with one of those four types.
@@ -18,6 +24,8 @@ The API allows you to query four types of collection, **persons**, **organizatio
 - http://za-peoples-assembly.popit.mysociety.org/api/v0.1/organizations
 - http://za-peoples-assembly.popit.mysociety.org/api/v0.1/memberships
 - http://za-peoples-assembly.popit.mysociety.org/api/v0.1/posts
+
+**Note**: the South Africa People's Assembly instance doesn't currently use the **posts** collection.
 
 ## Responses
 
