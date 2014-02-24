@@ -8,9 +8,9 @@
   <% if (membership.role) { %> (<%- membership.role %>) <% } %>
   <% if (membership.role || membership.label) { %> : <% } %>
   <% if (type == 'person') { %>
-  <a href="<%- membership.organization_id.slug_url %>"><%- membership.organization_id.name %></a>
+  <a href="<%- membership.organization_id.url %>"><%- membership.organization_id.name %></a>
   <% } else if (type == 'organization') { %>
-  <a href="<%- membership.person_id.slug_url%>" ><%- membership.person_id.name %></a>
+  <a href="<%- membership.person_id.url %>" ><%- membership.person_id.name %></a>
   <% } %>
   <% if (membership.start_date || membership.end_date) { %>
     (
