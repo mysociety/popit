@@ -30,7 +30,7 @@ define(
       initialize: function () {
         this.form = new BackboneForms({
 					model: this.model,
-					fields: ['name', 'slug']
+					fields: ['name']
 				});
         this.suggestionsView = new SuggestionsView({ url_type: 'persons' });
         this.suggestionsView.collection.url = '/autocomplete/persons';
@@ -60,24 +60,15 @@ define(
       },
       
       submitForm: submitFormHelper({ type: 'persons' }),
-      
+
       nameEdit: function (e) {
-        // When the name is being entered we should fill in the slug. This will
-        // let the user edit the slug, or see that it can't be generated from the
-        // name. Also means that we don't need to explain why that field is there.
         var $name = this.$(':input[name=name]');
-        var $slug = this.$(':input[name=slug]');
-        $slug.val( slugify( $name.val() ) );
-                
         // Try to load matching people from the server and display them in the
         // 'possible matches' list.
-        var self = this;
-
-        self.suggestionsView.setName($name.val());              
-  
+        this.suggestionsView.setName($name.val());
         return true;
       }
-  
+
     });
   
     return PersonNewView;

@@ -28,8 +28,7 @@ function ( Backbone, NestedModel, ContactCollection, OtherNamesCollection, Ident
     },
 
     schema: {
-      name: { dataType: 'Text', validators: ['required'] },
-      slug: { dataType: 'Text', validators: ['required'] }
+      name: { dataType: 'Text', validators: ['required'] }
     }
   });
 
