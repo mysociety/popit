@@ -110,7 +110,7 @@ module.exports = {
       var Person = this.Person;
       var joe = new Person({name: 'Joe'});
       test.equal( joe.slug,     'joe',         'slug is correct');
-      test.equal( joe.slug_url, '/persons/joe', 'slug_url is correct');
+      test.equal( joe.url, '/persons/' + joe.id, 'url is correct');
       test.done();
     },
     
