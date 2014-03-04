@@ -28,6 +28,8 @@ before_install:
   - gem install pry -v 0.9.12.6
   - gem install sass -v 3.2.14
   - gem install compass -v 0.12.2
+  # tell npm to use known registrars
+  - npm config set ca ""
 
 
 # The Watir tests will be set up to use FireFox which will then run headless using xvfb
