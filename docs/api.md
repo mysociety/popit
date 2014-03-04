@@ -62,7 +62,27 @@ You can provide an `id` field for a record when creating it. If the dataset you'
 
 ## Pagination
 
-Results are limited to 30 items by default. You can access further pages by specifying the `?page` parameter, up to a maximum of 1000 pages. You can also set a custom number of results per page (up to 100) with the `?per_page` parameter.
+Result listings default to 30 items per page.  When results are paginated there will be extra metadata properties exposed on the body of the response:
+
+- **page** - Integer representing current page number, defaulting to 1. Pass a `?page` parameter to access further pages (maximum page number is 1000)
+- **per_page** - Integer representing number of items to return per page of results. Pass `?per_page` parameter to change this (maximum items per page is 100).
+- **total** - Integer representing the total number of results in this listing.
+- **has_more** - A boolean indicating whether there is another page of results after this one.
+- **prev_url** - The url to access the previous page of results. Will not be present on the first page of results.
+- **next_url** - The url to access the next page of results. Will not be present on the last page of results.
+
+```json
+{
+  "total": 90,
+  "page": 2,
+  "per_page": 30,
+  "has_more": true,
+  "prev_url": "http://za-peoples-assembly.popit.mysociety.org/api/v0.1/persons?page=1",
+  "next_url": "http://za-peoples-assembly.popit.mysociety.org/api/v0.1/persons?page=3",
+  "result": [...]
+}
+
+```
 
 ## Examples
 
