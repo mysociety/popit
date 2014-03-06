@@ -91,20 +91,6 @@ test-browser: css public-production
 	@NODE_ENV=testing ruby tests/browser_based/run_tests.rb -v
 	$(STOP_TEST_SERVER)
 
-production: clean node-modules
-	git checkout master
-	npm shrinkwrap
-	git add .
-	git commit -m "rebuild npm-shrinkwrap.json" || true
-	npm version patch -m 'deploy to production - version bump to %s'
-	git checkout production
-	git merge master
-	make public-production
-	cp .gitignore-production .gitignore
-	git add .
-	git commit -m 'Update static assets' || true
-	git tag -f `$(GET_LATEST_TAG)`
-
 clean:
 	compass clean
 	rm -rf public/css
