@@ -46,7 +46,7 @@ class PhotoTests < PopItWatirTestCase
       
       # upload a file
       @b.link(:text => '+ add a photograph').click
-      @b.file_field(:name => 'image').set( File.join( File.dirname(__FILE__), opts[:test_image]) )
+      @b.file_field(:name => 'image').set( File.expand_path("../#{opts[:test_image]}", __FILE__) )
       @b.input(:type => 'submit').click
       
       # check that the file is now shown on the page
@@ -66,5 +66,22 @@ class PhotoTests < PopItWatirTestCase
       assert_match opts[:placeholder_filename_regex], @b.ul(:class => 'photos').li.img.attribute_value('src')
     }
   end 
+
+  def test_adding_images_indexes_in_api
+    goto_instance 'test'
+    delete_instance_database
+    load_test_fixture
+    goto '/'
+    login_as :owner
+
+    goto '/persons/barack-obama'
+    @b.link(:text => '+ add a photograph').click
+    @b.text_field(:id, 'image_url').set('http://example.org/barak.jpg')
+    @b.input(:type => 'submit').click
+    assert @b.ul(:class => 'photos').li.img.present?
+
+    goto '/api/v0.1/search/persons?q=barack-obama'
+    assert @b.text.include?('http://example.org/barak.jpg')
+  end
 
 end
