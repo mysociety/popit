@@ -1,6 +1,6 @@
 {
   "name": "popit",
-  "version": "0.0.26",
+  "version": "0.0.27",
   "dependencies": {
     "async": {
       "version": "0.1.22",
@@ -818,9 +818,9 @@
       }
     },
     "popit-api": {
-      "version": "0.0.13",
+      "version": "0.0.14",
       "from": "git://github.com/mysociety/popit-api.git#master",
-      "resolved": "git://github.com/mysociety/popit-api.git#c20258047830a26a893317885ed922bf6d9bb481",
+      "resolved": "git://github.com/mysociety/popit-api.git#e9f8a3dfc883da614e0d0dd7cb5cb3c74ea4c1e0",
       "dependencies": {
         "express": {
           "version": "3.1.2",
@@ -836,7 +836,8 @@
                 },
                 "formidable": {
                   "version": "1.0.11",
-                  "from": "formidable@1.0.11"
+                  "from": "formidable@1.0.11",
+                  "resolved": "https://registry.npmjs.org/formidable/-/formidable-1.0.11.tgz"
                 },
                 "buffer-crc32": {
                   "version": "0.1.1",
@@ -879,10 +880,12 @@
             "send": {
               "version": "0.1.0",
               "from": "send@0.1.0",
+              "resolved": "https://registry.npmjs.org/send/-/send-0.1.0.tgz",
               "dependencies": {
                 "mime": {
                   "version": "1.2.6",
-                  "from": "mime@1.2.6"
+                  "from": "mime@1.2.6",
+                  "resolved": "https://registry.npmjs.org/mime/-/mime-1.2.6.tgz"
                 }
               }
             },
@@ -961,8 +964,9 @@
           "from": "doublemetaphone@~0.1.2"
         },
         "unorm": {
-          "version": "1.3.2",
-          "from": "unorm@~1.3.1"
+          "version": "1.3.3",
+          "from": "unorm@~1.3.1",
+          "resolved": "https://registry.npmjs.org/unorm/-/unorm-1.3.3.tgz"
         },
         "mongoose": {
           "version": "3.8.8",
@@ -975,6 +979,7 @@
             "mongodb": {
               "version": "1.3.23",
               "from": "mongodb@1.3.23",
+              "resolved": "https://registry.npmjs.org/mongodb/-/mongodb-1.3.23.tgz",
               "dependencies": {
                 "bson": {
                   "version": "0.2.5",
@@ -1023,35 +1028,44 @@
           }
         },
         "elasticsearch": {
-          "version": "1.5.10",
+          "version": "1.5.11",
           "from": "elasticsearch@~1.5.1",
-          "resolved": "https://registry.npmjs.org/elasticsearch/-/elasticsearch-1.5.10.tgz",
+          "resolved": "https://registry.npmjs.org/elasticsearch/-/elasticsearch-1.5.11.tgz",
           "dependencies": {
             "chalk": {
-              "version": "0.3.0",
-              "from": "chalk@~0.3.0",
+              "version": "0.4.0",
+              "from": "chalk@~0.4",
+              "resolved": "https://registry.npmjs.org/chalk/-/chalk-0.4.0.tgz",
               "dependencies": {
                 "has-color": {
                   "version": "0.1.4",
                   "from": "has-color@~0.1.0"
                 },
                 "ansi-styles": {
-                  "version": "0.2.0",
-                  "from": "ansi-styles@~0.2.0"
+                  "version": "1.0.0",
+                  "from": "ansi-styles@~1.0.0",
+                  "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-1.0.0.tgz"
+                },
+                "strip-ansi": {
+                  "version": "0.1.1",
+                  "from": "strip-ansi@~0.1.0",
+                  "resolved": "https://registry.npmjs.org/strip-ansi/-/strip-ansi-0.1.1.tgz"
                 }
               }
             },
             "forever-agent": {
               "version": "0.5.2",
-              "from": "forever-agent@~0.5.2"
+              "from": "forever-agent@~0.5"
             },
             "lodash-node": {
-              "version": "2.3.0",
-              "from": "lodash-node@~2.3.0"
+              "version": "2.4.1",
+              "from": "lodash-node@~2.4",
+              "resolved": "https://registry.npmjs.org/lodash-node/-/lodash-node-2.4.1.tgz"
             },
             "when": {
-              "version": "2.6.0",
-              "from": "when@~2.6.0"
+              "version": "2.8.0",
+              "from": "when@~2.8",
+              "resolved": "https://registry.npmjs.org/when/-/when-2.8.0.tgz"
             }
           }
         }
