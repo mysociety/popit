@@ -50,7 +50,7 @@ class InstanceAboutTests < PopItWatirTestCase
     # enter field values and submit
     @b.checkbox(:name, 'allow_guest_access').set
     @b.text_field(:name, 'name').set "Test Name"
-    @b.text_field(:name, 'description').set "Test description"
+    @b.textarea(:name, 'description').set "Test description"
     @b.text_field(:name, 'region').set "Test region"
     @b.text_field(:name, 'purpose').set "Test purpose"
     @b.text_field(:name, 'contact_name').set "Test contact name"
