@@ -27,4 +27,4 @@ fi
 
 export PATH="$NODE_DIR/bin:$PATH"
 # Fetch NPM modules, compile CSS
-make
+make all public-production
