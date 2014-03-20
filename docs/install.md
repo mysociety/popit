@@ -27,3 +27,5 @@ See the [configuration notes](/docs/install/configuration).
 
 In addition to these notes please see the [contributing notes](/docs/codebase/contributing/) if you want to work on the code.
 
+There is a [quick start guide](/docs/install/quickstart) to help you get up and running.
+
