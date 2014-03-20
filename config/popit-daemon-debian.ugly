@@ -19,7 +19,7 @@ PIDFILE=$DIR/popit.pid
 DUSER=!!(*= $user *)!!
 
 !!(*
-if ($vhost eq 'popit.mysociety.org') {
+if ($vhost eq 'popit.mysociety.org' || $vhost eq 'popit.staging.mysociety.org') {
     $node_env = 'production';
 } elsif ( $vhost =~ m{\w+\.popit\.dev\.mysociety\.org} ) {
     $node_env = 'development';
