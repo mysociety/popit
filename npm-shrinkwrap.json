@@ -1,6 +1,6 @@
 {
   "name": "popit",
-  "version": "0.0.28",
+  "version": "0.0.29",
   "dependencies": {
     "async": {
       "version": "0.1.22",
@@ -820,7 +820,7 @@
     "popit-api": {
       "version": "0.0.14",
       "from": "git://github.com/mysociety/popit-api.git#master",
-      "resolved": "git://github.com/mysociety/popit-api.git#e9f8a3dfc883da614e0d0dd7cb5cb3c74ea4c1e0",
+      "resolved": "git://github.com/mysociety/popit-api.git#70d43e26b305d34d2e4c4a26588ea52b620ddd52",
       "dependencies": {
         "express": {
           "version": "3.1.2",
@@ -863,7 +863,8 @@
             },
             "cookie": {
               "version": "0.0.5",
-              "from": "cookie@0.0.5"
+              "from": "cookie@0.0.5",
+              "resolved": "https://registry.npmjs.org/cookie/-/cookie-0.0.5.tgz"
             },
             "buffer-crc32": {
               "version": "0.2.1",
@@ -891,7 +892,8 @@
             },
             "cookie-signature": {
               "version": "1.0.0",
-              "from": "cookie-signature@1.0.0"
+              "from": "cookie-signature@1.0.0",
+              "resolved": "https://registry.npmjs.org/cookie-signature/-/cookie-signature-1.0.0.tgz"
             },
             "debug": {
               "version": "0.7.4",
@@ -965,8 +967,7 @@
         },
         "unorm": {
           "version": "1.3.3",
-          "from": "unorm@~1.3.1",
-          "resolved": "https://registry.npmjs.org/unorm/-/unorm-1.3.3.tgz"
+          "from": "unorm@~1.3.1"
         },
         "mongoose": {
           "version": "3.8.8",
@@ -983,11 +984,13 @@
               "dependencies": {
                 "bson": {
                   "version": "0.2.5",
-                  "from": "bson@0.2.5"
+                  "from": "bson@0.2.5",
+                  "resolved": "https://registry.npmjs.org/bson/-/bson-0.2.5.tgz"
                 },
                 "kerberos": {
                   "version": "0.0.3",
-                  "from": "kerberos@0.0.3"
+                  "from": "kerberos@0.0.3",
+                  "resolved": "https://registry.npmjs.org/kerberos/-/kerberos-0.0.3.tgz"
                 }
               }
             },
@@ -997,7 +1000,8 @@
             },
             "sliced": {
               "version": "0.0.5",
-              "from": "sliced@0.0.5"
+              "from": "sliced@0.0.5",
+              "resolved": "https://registry.npmjs.org/sliced/-/sliced-0.0.5.tgz"
             },
             "muri": {
               "version": "0.3.1",
@@ -1018,24 +1022,25 @@
             "mquery": {
               "version": "0.5.3",
               "from": "mquery@0.5.3",
+              "resolved": "https://registry.npmjs.org/mquery/-/mquery-0.5.3.tgz",
               "dependencies": {
                 "debug": {
                   "version": "0.7.4",
-                  "from": "debug@0.7.4"
+                  "from": "debug@0.7.4",
+                  "resolved": "https://registry.npmjs.org/debug/-/debug-0.7.4.tgz"
                 }
               }
             }
           }
         },
         "elasticsearch": {
-          "version": "1.5.11",
+          "version": "1.5.14",
           "from": "elasticsearch@~1.5.1",
-          "resolved": "https://registry.npmjs.org/elasticsearch/-/elasticsearch-1.5.11.tgz",
+          "resolved": "https://registry.npmjs.org/elasticsearch/-/elasticsearch-1.5.14.tgz",
           "dependencies": {
             "chalk": {
               "version": "0.4.0",
               "from": "chalk@~0.4",
-              "resolved": "https://registry.npmjs.org/chalk/-/chalk-0.4.0.tgz",
               "dependencies": {
                 "has-color": {
                   "version": "0.1.4",
@@ -1043,29 +1048,25 @@
                 },
                 "ansi-styles": {
                   "version": "1.0.0",
-                  "from": "ansi-styles@~1.0.0",
-                  "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-1.0.0.tgz"
+                  "from": "ansi-styles@~1.0.0"
                 },
                 "strip-ansi": {
                   "version": "0.1.1",
-                  "from": "strip-ansi@~0.1.0",
-                  "resolved": "https://registry.npmjs.org/strip-ansi/-/strip-ansi-0.1.1.tgz"
+                  "from": "strip-ansi@~0.1.0"
                 }
               }
             },
             "forever-agent": {
               "version": "0.5.2",
-              "from": "forever-agent@~0.5"
+              "from": "forever-agent@0.5.2"
             },
             "lodash-node": {
               "version": "2.4.1",
-              "from": "lodash-node@~2.4",
-              "resolved": "https://registry.npmjs.org/lodash-node/-/lodash-node-2.4.1.tgz"
+              "from": "lodash-node@~2.4"
             },
             "when": {
               "version": "2.8.0",
-              "from": "when@~2.8",
-              "resolved": "https://registry.npmjs.org/when/-/when-2.8.0.tgz"
+              "from": "when@~2.8"
             }
           }
         }
