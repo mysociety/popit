@@ -54,7 +54,7 @@ The exact format of the response depends on the schema of the collection you are
 
 ### Errors
 
-If something goes wrong there will be an `error` or `errors` key that will explain the error. Often an HTTP error code will also be used (eg **404** if a result cannot be found).
+If something goes wrong there will be an `errors` array that will explain the error. Often an HTTP error code will also be used (eg **404** if a result cannot be found).
 
 ## Record ids
 
