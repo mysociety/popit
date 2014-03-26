@@ -1,4 +1,5 @@
-var assert = require('assert');
+"use strict";
+
 var apiApp = require('../lib/apps/api/index.js');
 var supertest = require('supertest');
 
@@ -17,6 +18,6 @@ describe("API v0.1", function() {
         posts_api_url: "http://test.popit.example.org/api/v0.1/posts",
         image_proxy_url: "http://test.popit.example.org/image-proxy/"
       }
-    }, done)
+    }, done);
   });
 });
