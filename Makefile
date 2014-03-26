@@ -1,8 +1,4 @@
 
-# note - this needs to be default so that the nodeunit process will exit with
-# error if tests fail. Otherwise make will not abort.
-REPORTER = default
-
 JSHINT = ./node_modules/.bin/jshint
 
 STOP_TEST_SERVER  = tests/test-server-stop.bash
@@ -83,9 +79,7 @@ test: node-modules jshint test-unit
 	@echo "ALL TESTS PASS"
 
 test-unit:
-	@NODE_ENV=testing ./node_modules/.bin/nodeunit \
-	  --reporter $(REPORTER) \
-	  tests/unit
+	@NODE_ENV=testing ./node_modules/.bin/mocha
 
 test-browser: css public-production
 	$(START_TEST_SERVER)
