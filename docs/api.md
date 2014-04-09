@@ -84,6 +84,39 @@ Result listings default to 30 items per page.  When results are paginated there 
 
 ```
 
+## Storing content in multiple languages
+
+**Note**: If you don't want to store content in multiple languages then you can safely ignore this section.
+
+Any value that can be a string can instead be an language object where each key is a valid language code (see **Language keys** section below for details). For example if you wanted to store a person's name in English and Russian, you would use the following JSON:
+
+```json
+{
+  "name": {
+    "en": "John Smith",
+    "ru": "Джон Смит"
+  }
+}
+```
+
+When retrieving records the `Accept-Language` header is checked to see which language the user wants the record in. For example if it's set to `Accept-Language: ru` then the response will contain the record translated to Russian:
+
+```json
+{
+  "name": "Джон Смит"
+}
+```
+
+If there is no match for the requested language, or if the `Accept-Language` header is absent then it will fall back to the default language for the instance, which is currently English (en) but will be configurable in the future.
+
+### Language keys
+
+An object is determined to be a translation object if all of the keys are valid language codes. This is checked against IANA's [official repository](http://www.iana.org/assignments/language-subtag-registry/language-subtag-registry) of language tags. If one of the keys of the object is not a valid language code then it won't be detected as a translation. If your translations aren't being detected them check your language codes against the repository above.
+
+### Searching
+
+When indexing multiple languages each translation is stored in a separate string key. So for the example above the English and Russian translations would be stored in `name_en` and `name_ru` respectively. So to search for a name in Russian you can use a query like `name_ru:Джон`. The `name` key will still exist, but will only contain the default language.
+
 ## Examples
 
 To view a list of all the people (**persons**) in the database:
