@@ -14,7 +14,23 @@ There is a version string in the API url, currently `v0.1`. This will be updated
 
 All textual entries stored in PopIt follow the [Popolo](http://popoloproject.com/) schema. You can also add additional fields on top of this using the admin interface or the API.
 
-In addition to the [Popolo schemas](http://popoloproject.com/specs/) we have added an area object on Memberships and Posts.
+### Popolo extensions
+
+In addition to the [Popolo schemas](http://popoloproject.com/specs/) we have added some PopIt specific customisations.
+
+#### Area objects
+
+An area object on Memberships and Posts: this allows you to store the name and id of an area that relates to the Membership or Post that it appears in. You can put any string value in the id field, but the most common use case is to put a [MapIt](http://mapit.mysociety.org/) url there. For example if you wanted to associate a Post with an area:
+
+```json
+{
+  "label": "MP for Witney",
+  "area": {
+    "id": "http://mapit.mysociety.org/area/65622",
+    "name": "Witney (UK Parliament constituency)"
+  }
+}
+```
 
 ## API collections
 
