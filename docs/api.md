@@ -32,6 +32,38 @@ An area object on Memberships and Posts: this allows you to store the name and i
 }
 ```
 
+#### Organization memberships
+
+Popolo currently only allows the members of an Organization to be Persons, but we've extended this to allow them to also be other Organizations. This allows you to e.g. model coalitions. The party Organizations which are part of the coalition have Memberships connecting them to the coalition Organization.
+
+An example Membership modelling The Conservative Party's Membership in the UK's Cameron Ministry coalition might look something like:
+
+```json
+{
+  "organization_id": "cameron_ministry",
+  "member": {
+    "@type": "Organization",
+    "id": "conservative_party"
+  }
+}
+```
+
+Then the Liberal Democrats' Membership would look something like:
+
+```json
+{
+  "organization_id": "cameron_ministry",
+  "member": {
+    "@type": "Organization",
+    "id": "liberal_democrats"
+  }
+}
+```
+
+Where `cameron_ministry` is the id of the coalition Organization and `conservative_party` and `liberal_democrats` are the ids of the parties in the coalition.
+
+When the API returns the `conservative_party` or `liberal_democrats` record, the `memberships` array property will include the Membership to the coalition. Likewise when the API returns the `cameron_ministry` record the `memberships` array property will include the Memberships to the two parties' Organizations.
+
 ## API collections
 
 The API allows you to query four types of collection, **persons**, **organizations**, **memberships** and **posts**. Anywhere in the documentation you see `:collection` you can replace it with one of those four types.
