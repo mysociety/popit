@@ -14,8 +14,6 @@ There is a version string in the API url, currently `v0.1`. This will be updated
 
 All textual entries stored in PopIt follow the [Popolo](http://popoloproject.com/) schema. You can also add additional fields on top of this using the admin interface or the API.
 
-In addition to the [Popolo schemas](http://popoloproject.com/specs/) we have added an area object on Memberships and Posts.
-
 ## API collections
 
 The API allows you to query four types of collection, **persons**, **organizations**, **memberships** and **posts**. Anywhere in the documentation you see `:collection` you can replace it with one of those four types.
@@ -83,6 +81,89 @@ Result listings default to 30 items per page.  When results are paginated there 
 }
 
 ```
+
+## Storing content in multiple languages
+
+**Note**: If you don't want to store content in multiple languages then you can safely ignore this section.
+
+Any value that can be a string can instead be an language object where each key is a valid language code (see **Language keys** section below for details). For example if you wanted to store a person's name in English and Russian, you would use the following JSON:
+
+```json
+{
+  "name": {
+    "en": "John Smith",
+    "ru": "Джон Смит"
+  }
+}
+```
+
+When retrieving records the `Accept-Language` header is checked to see which language the user wants the record in. For example if it's set to `Accept-Language: ru` then the response will contain the record translated to Russian:
+
+```json
+{
+  "name": "Джон Смит"
+}
+```
+
+If there is no match for the requested language, or if the `Accept-Language` header is absent then it will fall back to the default language for the instance, which is currently English (en) but will be configurable in the future.
+
+### Language keys
+
+An object is determined to be a translation object if all of the keys are valid language codes. This is checked against IANA's [official repository](http://www.iana.org/assignments/language-subtag-registry/language-subtag-registry) of language tags. If one of the keys of the object is not a valid language code then it won't be detected as a translation. If your translations aren't being detected them check your language codes against the repository above.
+
+### Searching
+
+When indexing multiple languages each translation is stored in a separate string key. So for the example above the English and Russian translations would be stored in `name_en` and `name_ru` respectively. So to search for a name in Russian you can use a query like `name_ru:Джон`. The `name` key will still exist, but will only contain the default language.
+
+### Popolo extensions
+
+In addition to the [Popolo schemas](http://popoloproject.com/specs/) we have added some PopIt specific customisations.
+
+#### Area objects
+
+An area object on Memberships and Posts: this allows you to store the name and id of an area that relates to the Membership or Post that it appears in. You can put any string value in the id field, but the most common use case is to put a [MapIt](http://mapit.mysociety.org/) url there. For example if you wanted to associate a Post with an area:
+
+```json
+{
+  "label": "MP for Witney",
+  "area": {
+    "id": "http://mapit.mysociety.org/area/65622",
+    "name": "Witney (UK Parliament constituency)"
+  }
+}
+```
+
+#### Organization memberships
+
+Popolo currently only allows the members of an Organization to be Persons, but we've extended this to allow them to also be other Organizations. This allows you to e.g. model coalitions. The party Organizations which are part of the coalition have Memberships connecting them to the coalition Organization.
+
+An example Membership modelling The Conservative Party's Membership in the UK's Cameron Ministry coalition might look something like:
+
+```json
+{
+  "organization_id": "cameron_ministry",
+  "member": {
+    "@type": "Organization",
+    "id": "conservative_party"
+  }
+}
+```
+
+Then the Liberal Democrats' Membership would look something like:
+
+```json
+{
+  "organization_id": "cameron_ministry",
+  "member": {
+    "@type": "Organization",
+    "id": "liberal_democrats"
+  }
+}
+```
+
+Where `cameron_ministry` is the id of the coalition Organization and `conservative_party` and `liberal_democrats` are the ids of the parties in the coalition.
+
+When the API returns the `conservative_party` or `liberal_democrats` record, the `memberships` array property will include the Membership to the coalition. Likewise when the API returns the `cameron_ministry` record the `memberships` array property will include the Memberships to the two parties' Organizations.
 
 ## Examples
 
