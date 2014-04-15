@@ -1,57 +1,34 @@
   </div>
   <footer id="footer">
     <div class="row">
-      <div class="small-12 columns">
 
-        <div id="sitemap">
-          <ul>
-              <li><a href="/about/">About Us</a></li>
-              <li><a href="<%- config.hosting_site_base_url %>/docs">Documentation</a></li>
-              <li><a href="/persons">People</a>, <a href="/organizations">Organizations</a></li>
-              <li><a href="<%- config.hosting_site_base_url %>/info/about">About PopIt</a></li>
-              <li><a href="/api">API</a> / <a href="/info/data-import">Data Freedom</a></li>
-              <li><a href="<%- config.hosting_site_base_url %>/info/self-hosting">Self Hosting</a></li>
-              <li><a href="/info/privacy">Terms &amp; Privacy Policy</a></li>
-          </ul>
-        </div>
-
-        <div id="about-mysociety">
-            <p>
-              This is a database hosted on
-              <a href="<%- config.hosting_site_base_url %>">PopIt</a>
-              - a new service from
-              <a href="http://www.mysociety.org" title="mySociety">mySociety</a>
-              that lowers the barrier to getting started with transparency projects. Development is ongoing and this is
-              <a href="http://en.wikipedia.org/wiki/Software_release_life_cycle#Alpha">αlpha</a> code. Please feel free to
-              <!-- <a href="<%- config.hosting_site_base_url %>/instances/new">make your own instance</a>
-              , and --> join the
-              <a href="https://groups.google.com/forum/#!forum/poplus">poplus mailing list</a>
-              to let us know that you're interested in giving it a go.
-            </p>
-
-            <p>
-              The <a href='https://github.com/mysociety/popit'>code is available on Github</a>.
-            </p>
-
-            <p>
-              Learn more at
-              <a href="<%- config.hosting_site_base_url %>/info/about" title="About PopIt"><%- config.hosting_site_base_url %></a>
-            </p>
-
-            <p>
-              <a href="http://www.mysociety.org", title="mySociety">
-                <img id="mysociety-logo" src="/img/mysociety-logo.png" />
-              </a>
-            </p>
-
-        </div>
-
-        <div class="copyright">&copy; 2012 mySociety.org - v<%- config.popit_version %></div>
-
-        <% // This is used to indicate to the test suite that the admin app is loaded. %>
-        <span id="instance-app-activated" class="admin-options">admin on</span>
-
+      <div class="small-6 columns">
+        <% if (popit) { %>
+          <p><strong><%- popit.pretty_name() %></strong> is an instance of PopIt, a new service from mySociety that lowers the barrier to getting started with transparency projects.</p>
+        <% } else { %>
+          <p>PopIt is a new service from mySociety that lowers the barrier to getting started with transparency projects. Try it here, or self host it!</p>
+        <% } %>
       </div>
+
+      <div class="small-3 columns">
+        <ul>
+            <li><a href="<%- config.hosting_site_base_url %>/info/about">About PopIt</a></li>
+            <li><a href="<%- config.hosting_site_base_url %>/docs">PopIt documentation</a></li>
+            <li><a href="https://github.com/mysociety/popit">PopIt source code</a></li>
+        </ul>
+      </div>
+
+      <div class="small-3 columns">
+        <p class="footer-logo">
+          <a href="http://www.mysociety.org", title="mySociety">
+            <img id="mysociety-logo" src="/img/mysociety-logo.png" />
+          </a>
+        </p>
+        <p class="copyright">&copy; 2014 mySociety.org - v<%- config.popit_version %></p>
+        <% // This is used to indicate to the test suite that the admin app is loaded. %>
+        <p id="instance-app-activated" class="admin-options">admin on</p>
+      </div>
+
     </div>
   </footer>
 </body>

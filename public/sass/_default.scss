@@ -44,3 +44,23 @@ h1.logo {
   height: auto;
   width: 100px;
 }
+
+#footer {
+  padding: 2em 0;
+
+  .footer-logo {
+    margin-bottom: 0.2em;
+
+    img {
+      margin-top: -5px; /* compensate for the empty looking image */
+      max-height: 40px;
+    }
+  }
+
+  .copyright, #instance-app-activated {
+    font-size: 0.8em;
+    line-height: 1.3em;
+    color: #666;
+    margin-bottom: 0.4em;
+  }
+}
