@@ -1,6 +1,12 @@
 #no-js-warning {
   text-align: center;
-  background-color: lighten($warning_colour, 40%);
-  border-bottom: 1px solid $warning_colour;
+  background-color: lighten(#f00, 40%);
+  border-bottom: 1px solid #f00;
   padding: 0.25em;
+}
+
+#dev-site-warning {
+  background-color: #faa;
+  padding: 0.25em;
+  text-align: center;
 }
