@@ -1,0 +1,12 @@
+@mixin list-reset {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
+  li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+}

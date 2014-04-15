@@ -1,12 +1,34 @@
-#no-js-warning {
+@mixin top-alert-bar($color: #f1bebe) {
+  @include alert($bg: $color);
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
   text-align: center;
-  background-color: lighten(#f00, 40%);
-  border-bottom: 1px solid #f00;
-  padding: 0.25em;
+  margin-bottom: 0;
+}
+
+#no-js-warning {
+  @include top-alert-bar();
 }
 
 #dev-site-warning {
-  background-color: #faa;
-  padding: 0.25em;
-  text-align: center;
+  @include top-alert-bar();
+
+  a {
+    @include button(0.2rem, #c0392b, true);
+    margin: -0.3rem 0 -0.3rem 0.5rem;
+  }
+
+  span {
+    @media #{$small-only} {
+      display: none;
+    }
+  }
+}
+
+#flash-info {
+  @include top-alert-bar(#f9eec0);
+  ul {
+    @include list-reset;
+  }
 }

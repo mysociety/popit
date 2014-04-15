@@ -57,27 +57,27 @@
 
   <% if ( config.show_dev_site_warning ) { %>
   <div id="dev-site-warning">
-    <strong>WARNING!</strong>
-    This is a development site and data may be deleted at any time!
-    <a href="/_dev">(dev tools)</a>
+    <strong>This is a development site.</strong>
+    <span>Data may be deleted at any time.</span>
+    <a href="/_dev">Open dev tools</a>
   </div>
   <% } %>
 
   <% var flash_info = flash('info'); %>
   <% if (flash_info.length) { %>
-    <div id="flash-info">
-      <a class="close" href="#">[x]</a>
+    <div id="flash-info" data-alert class="alert-box">
       <ul>
-          <% _.each(flash_info, function (message) { %>
-            <li><%- message %></li>
-          <% }); %>
-        </ul>
+        <% _.each(flash_info, function (message) { %>
+          <li><%- message %></li>
+        <% }); %>
+      </ul>
+      <a class="close" href="#">&times;</a>
     </div>
   <% } %>
 
   <% if ( user || guest ) { %>
     <noscript>
-      <div id="no-js-warning">
+      <div id="no-js-warning" class="alert-box">
         Please <a href="http://www.enable-javascript.com/" target="_blank">enable JavaScript</a>
         - without it much of the admin on this website will not work.
       </div>
