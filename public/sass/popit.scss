@@ -1,8 +1,13 @@
 /* PopIt */
 
 @import "normalise";
+
 @import "backbone-forms-0.9.0";
 @import "jquery.fancybox";
+@import "jqueryui/jquery.ui.autocomplete";
+@import "jqueryui/smoothness";
+@import "select2/select2";
+
 @import "colours";
 @import "typography";
 @import "default";
@@ -11,7 +16,3 @@
 @import "buttons";
 @import "warnings";
 @import "overrides";
-
-@import "jqueryui/jquery.ui.autocomplete";
-@import "jqueryui/smoothness";
-@import "select2/select2";
