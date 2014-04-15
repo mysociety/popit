@@ -1,1 +1,46 @@
 /* Baseline Styles - Starting point for custom user themes */
+
+#user_menu {
+  display: none; /* temporary, while working on header */
+}
+
+#header, #footer {
+  background-color: #eee;
+}
+
+h1.logo {
+  float: left;
+  line-height: 50px;
+  margin: 0;
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+#nav {
+  @include list-reset;
+  float: right;
+  font-size: 0.9em;
+
+  li {
+    float: left;
+
+    a, form {
+      display: inline-block;
+      padding: 0 10px;
+      line-height: 50px;
+    }
+
+    form {
+      padding-right: 0;
+      padding-top: 12px; /* this is a really bad way to vertically position the search box */
+    }
+  }
+}
+
+#header_search_box {
+  @include radius($global-rounded);
+  padding: 0.3em 0.8em;
+  margin: 0;
+  height: auto;
+  width: 100px;
+}
