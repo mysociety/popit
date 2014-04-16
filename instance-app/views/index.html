@@ -9,100 +9,56 @@
 <div class="row">
   <div class="small-12 columns">
 
-<h1>Welcome to <%- popit.pretty_name() %></h1>
-
-<p>
-  This database currently contains <%- person_count || 'no' %> <%- person_count == 1 ? 'person' : 'people' %> and <%- organization_count || 'no' %> <%- organization_count == 1 ? 'organization' : 'organizations' %>.
-</p> 
-
 <div id="person-summary" class="homepage-summary-box">
-  <h2>People</h2>
+  <h2><%- person_count || 'no' %> <%- person_count == 1 ? 'person' : 'people' %></h2>
 
-  <ul>
-    <% if (persons.length) { %>    
+  <ul class="homepage-summary-toolbar">
+    <li>
+      <a class="new-person add" href="#">+ Add new person</a>
+    </li>
+  </ul>
+
+  <% if (persons.length) { %>
+    <ul class="homepage-summary-list">
       <% _.each( persons, function(person) { %>
-        <li> 
+        <li>
           <a href="/persons/<%- person.slug %>"><%- person.name %></a>
         </li>
       <% }); %>
-      <% if (person_count > summary_listing_count) { %>
-        <li>
-          and 
-          <a href="/persons"><%- person_count - summary_listing_count %> more</a>
-        </li>
-      <% } %>
-    <% } else { %>
+      <% if (person_count > persons.length) { %>
       <li>
-        There are no people in the database yet. 
-        <br>
-        <span class="admin-options">
-          <a class="new-person add" href="#"> 
-            <strong>+ Add</strong> a new person
-          </a>
-        </span>
+        <a href="/persons/">Show all <%- person_count %>&hellip;</a>
       </li>
-    <% } %>
-  </ul>
-
-  <p>
-    <a href="/persons">Complete list (<%- person_count %>)</a>
-  </p>
-
+      <% } %>
+    </ul>
+  <% } %>
 </div>
 
-  
+
 <div id="organization-summary" class="homepage-summary-box">
 
-  <h2>Organizations</h2>
+  <h2><%- organization_count || 'no' %> <%- organization_count == 1 ? 'organization' : 'organizations' %></h2>
 
-  <ul>
-    <% if (organizations.length) { %>    
+  <ul class="homepage-summary-toolbar">
+    <li>
+      <a class="new-organization add" href="#">+ Add new organization</a>
+    </li>
+  </ul>
+
+  <% if (organizations.length) { %>
+    <ul class="homepage-summary-list">
       <% _.each( organizations, function(organization) { %>
-        <li> 
+        <li>
           <a href="/organizations/<%- organization.slug %>"><%- organization.name %></a>
         </li>
       <% }); %>
-      <% if (organization_count > summary_listing_count) { %>
-        <li>
-          and 
-          <a href="/organizations"><%- organization_count - summary_listing_count %> more</a>
-        </li>  
-      <% } %>
-    <% } else { %>
+      <% if (organization_count > organizations.length) { %>
       <li>
-        There are no organizations in the database yet. 
-        <br>
-        <span class="admin-options">
-          <a class="add new-organization" href="#">
-            <strong>+ Add</strong> a new organization
-          </a>
-        </span>
+        <a href="/organizations/">Show all <%- organization_count %>&hellip;</a>
       </li>
-    <% } %>
-  </ul>
-  
-  <p>
-    <a href="/organizations">Complete list (<%- organization_count %>)</a>
-  </p>
-
-</div>
-
-
-<div id="actions" class="homepage-summary-box">
-
-  <div class="info">
-    <p>
-      <a href='<%-config.hosting_site_base_url%>/info/about'>Learn more about PopIt</a>
-      - the pre-alpha platform that hosts this database.
-    </p>
-  </div>
-  
-  <div class="info admin-options">
-    <a class="new-person add" href="#"> 
-      <strong>+ Add</strong> a new person to the database.
-    </a>
-  </div>
-
+      <% } %>
+    </ul>
+  <% } %>
 </div>
 
   </div>
