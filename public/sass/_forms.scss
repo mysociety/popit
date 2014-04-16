@@ -31,6 +31,21 @@ body.signed_in {
 }
 
 
+// <input type="search"> will have rounded ends like God intended
 input[type="search"].form-control {
   border-radius: 50px;
+}
+
+
+// faster focus transition to make everything feel snappier
+.form-control {
+  @include transition(border-color ease-in-out 0.05s, box-shadow ease-in-out 0.05s);
+}
+
+// a new "xtra small" size for inputs, just like buttons
+.input-xs, .input-group-xs > .form-control, .input-group-xs > .input-group-addon, .input-group-xs > .input-group-btn > .btn {
+  height: 28px;
+  padding: 3px 10px;
+  font-size: 14px;
+  line-height: 1.5;
 }
