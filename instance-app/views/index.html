@@ -12,12 +12,6 @@
 <div id="person-summary" class="homepage-summary-box">
   <h2><%- person_count || 'no' %> <%- person_count == 1 ? 'person' : 'people' %></h2>
 
-  <ul class="homepage-summary-toolbar">
-    <li>
-      <a class="new-person add" href="#">+ Add new person</a>
-    </li>
-  </ul>
-
   <% if (persons.length) { %>
     <ul class="homepage-summary-list">
       <% _.each( persons, function(person) { %>
@@ -32,18 +26,19 @@
       <% } %>
     </ul>
   <% } %>
+
+  <ul class="homepage-summary-toolbar">
+    <li>
+      <a class="new-person add" href="#">+ Add new person</a>
+    </li>
+  </ul>
+
 </div>
 
 
 <div id="organization-summary" class="homepage-summary-box">
 
   <h2><%- organization_count || 'no' %> <%- organization_count == 1 ? 'organization' : 'organizations' %></h2>
-
-  <ul class="homepage-summary-toolbar">
-    <li>
-      <a class="new-organization add" href="#">+ Add new organization</a>
-    </li>
-  </ul>
 
   <% if (organizations.length) { %>
     <ul class="homepage-summary-list">
@@ -59,6 +54,13 @@
       <% } %>
     </ul>
   <% } %>
+
+  <ul class="homepage-summary-toolbar">
+    <li>
+      <a class="new-organization add" href="#">+ Add new organization</a>
+    </li>
+  </ul>
+
 </div>
 
   </div>
