@@ -2,19 +2,20 @@
 
 $header-footer-background: #E2E8EB;
 $content-background: #fff;
-$header-footer-link-color: #13465A;
-$header-footer-link-hover-color: #009FC7;
+$header-link-color: #13465A;
+$header-link-hover-color: #009FC7;
 
 body, #header, #footer {
   background-color: $header-footer-background;
 }
 
-#header, #footer {
+#header {
   a {
-    color: $header-footer-link-color;
+    color: $header-link-color;
+    text-decoration: none;
 
     &:hover {
-      color: $header-footer-link-hover-color;
+      color: $header-link-hover-color;
     }
   }
 }
@@ -42,46 +43,38 @@ h1.logo {
 #nav {
   @include list-reset;
   float: right;
-  font-size: 0.9em;
 
   li {
     float: left;
 
-    a, form {
+    a {
       display: inline-block;
       padding: 0 10px;
       line-height: 50px;
     }
 
     form {
-      padding-right: 0;
-      padding-top: 12px; /* this is a really bad way to vertically position the search box */
+      display: inline-block;
+      padding: 10px 0 0 10px;
     }
   }
-}
-
-#header_search_box {
-  padding: 0.3em 0.8em;
-  margin: 0;
-  height: auto;
-  width: 100px;
 }
 
 #footer {
   padding: 2em 0;
+  color: #73838B;
 
-  ul, p {
-    font-size: 0.9rem;
-  }
+  a {
+    color: inherit;
+    text-decoration: none;
 
-  @media only screen and (min-width: 40.063em) {
-    ul {
-      margin-left: 0;
+    &:hover {
+      color: $header-link-hover-color;
     }
   }
 
   .footer-logo {
-    margin-bottom: 0.2em;
+    margin-bottom: 0.4em;
 
     img {
       margin-top: -3px; /* compensate for the empty looking image */
@@ -90,9 +83,21 @@ h1.logo {
   }
 
   .copyright, #instance-app-activated {
-    font-size: 0.8em;
-    line-height: 1.3em;
     color: #666;
-    margin-bottom: 0.4em;
+    margin-bottom: 0.7em;
+    font-size: 0.7em;
+    line-height: 1em;
+  }
+}
+
+.homepage-description, .homepage-api-guide {
+  padding: 30px 0;
+
+  h2:first-child {
+    margin-top: 0;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
   }
 }

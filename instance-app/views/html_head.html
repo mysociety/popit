@@ -32,6 +32,7 @@
 
   <title><%- title %></title>
 
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/css/popit.css?v<%- config.popit_version %>" type="text/css" media="screen, print" charset="utf-8">
   <link rel="stylesheet" href="/css/print.css?v<%- config.popit_version %>" type="text/css" media="print" charset="utf-8">
 
@@ -51,28 +52,28 @@
 <body id="popit-<%- popit ? popit.instance_name() : 'no-site-found' %>" class="<%- user || guest  ? 'signed_in instance-admin-app-active' : '' %>">
 
   <% if ( config.show_dev_site_warning ) { %>
-  <div id="dev-site-warning">
+  <div id="dev-site-warning" class="alert alert-danger">
     <strong>This is a development site.</strong>
     <span>Data may be deleted at any time.</span>
-    <a href="/_dev">Open dev tools</a>
+    <a href="/_dev" class="btn btn-danger btn-xs">Open dev tools</a>
   </div>
   <% } %>
 
   <% var flash_info = flash('info'); %>
   <% if (flash_info.length) { %>
-    <div id="flash-info" data-alert class="alert-box">
+    <div id="flash-info" class="alert alert-warning alert-dismissable">
       <ul>
         <% _.each(flash_info, function (message) { %>
           <li><%- message %></li>
         <% }); %>
       </ul>
-      <a class="close" href="#">&times;</a>
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
     </div>
   <% } %>
 
   <% if ( user || guest ) { %>
     <noscript>
-      <div id="no-js-warning" class="alert-box">
+      <div id="no-js-warning" class="alert alert-danger">
         Please <a href="http://www.enable-javascript.com/" target="_blank">enable JavaScript</a>
         - without it much of the admin on this website will not work.
       </div>
@@ -80,33 +81,31 @@
   <% } %>
 
   <header id="header">
-    <div class="row">
-      <div class="small-12 columns">
-        <h1 class="logo">
-          <a href='/'>
-            <% if (popit) { %>
-              <span id="popit_instance_name"><%- popit.pretty_name() %></span>
-            <% } else { %>
-              PopIt
-            <% } %>
-          </a>
-        </h1>
+    <div class="container">
+      <h1 class="logo">
+        <a href='/'>
+          <% if (popit) { %>
+            <span id="popit_instance_name"><%- popit.pretty_name() %></span>
+          <% } else { %>
+            PopIt
+          <% } %>
+        </a>
+      </h1>
 
-        <% if ( popit) { %>
-          <ul id="nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="/persons">People</a></li>
-            <li><a href="/organizations">Organizations</a></li>
-            <li><a href="/about">About Us</a></li>
-            <li><a href="/api">API</a></li>
-            <li>
-              <form id="header_search_form" action="/search" method="get">
-                <input id="header_search_box" type="search" placeholder="Search..." name="q">
-              </form>
-            </li>
-          </ul>
-        <% } %>
-      </div>
+      <% if ( popit) { %>
+        <ul id="nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="/persons">People</a></li>
+          <li><a href="/organizations">Organizations</a></li>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/api">API</a></li>
+          <li>
+            <form id="header_search_form" action="/search" method="get">
+              <input id="header_search_box" type="search" class="form-control input-sm" placeholder="Search..." name="q">
+            </form>
+          </li>
+        </ul>
+      <% } %>
     </div>
   </header>
 

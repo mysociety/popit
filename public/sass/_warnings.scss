@@ -1,18 +1,22 @@
-@mixin top-alert-bar($color: #f1bebe) {
-  background-color: $color;
+@mixin top-alert-bar {
   border-top: 0;
   border-left: 0;
   border-right: 0;
+  border-radius: 0;
   text-align: center;
   margin-bottom: 0;
 }
 
 #no-js-warning {
-  @include top-alert-bar();
+  @include top-alert-bar;
 }
 
 #dev-site-warning {
-  @include top-alert-bar();
+  @include top-alert-bar;
+
+  .btn {
+    margin-left: 5px;
+  }
 
   span {
     @media only screen and (max-width: 40em) {
@@ -22,7 +26,7 @@
 }
 
 #flash-info {
-  @include top-alert-bar(#f9eec0);
+  @include top-alert-bar;
   ul {
     @include list-reset;
   }

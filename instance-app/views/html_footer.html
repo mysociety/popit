@@ -1,34 +1,36 @@
   </div>
   <footer id="footer">
-    <div class="row">
+    <div class="container">
+      <div class="row">
 
-      <div class="medium-5 columns">
-        <% if (popit) { %>
-          <p><strong><%- popit.pretty_name() %></strong> is an instance of PopIt, a new service from mySociety that lowers the barrier to getting started with transparency projects.</p>
-        <% } else { %>
-          <p>PopIt is a new service from mySociety that lowers the barrier to getting started with transparency projects. Try it here, or self host it!</p>
-        <% } %>
+        <div class="col-sm-5">
+          <% if (popit) { %>
+            <p><strong><%- popit.pretty_name() %></strong> is an instance of PopIt, a new service from mySociety that lowers the barrier to getting started with transparency projects.</p>
+          <% } else { %>
+            <p>PopIt is a new service from mySociety that lowers the barrier to getting started with transparency projects. Try it here, or self host it!</p>
+          <% } %>
+        </div>
+
+        <div class="col-sm-3 col-sm-offset-1">
+          <ul>
+              <li><a href="<%- config.hosting_site_base_url %>/info/about">About PopIt</a></li>
+              <li><a href="<%- config.hosting_site_base_url %>/docs">PopIt documentation</a></li>
+              <li><a href="https://github.com/mysociety/popit">PopIt source code</a></li>
+          </ul>
+        </div>
+
+        <div class="col-sm-3">
+          <p class="footer-logo">
+            <a href="http://www.mysociety.org", title="mySociety">
+              <img id="mysociety-logo" src="/img/mysociety-logo.png" />
+            </a>
+          </p>
+          <p class="copyright">&copy; 2014 mySociety.org - v<%- config.popit_version %></p>
+          <% // This is used to indicate to the test suite that the admin app is loaded. %>
+          <p id="instance-app-activated" class="admin-options">admin on</p>
+        </div>
+
       </div>
-
-      <div class="medium-3 medium-offset-1 columns">
-        <ul>
-            <li><a href="<%- config.hosting_site_base_url %>/info/about">About PopIt</a></li>
-            <li><a href="<%- config.hosting_site_base_url %>/docs">PopIt documentation</a></li>
-            <li><a href="https://github.com/mysociety/popit">PopIt source code</a></li>
-        </ul>
-      </div>
-
-      <div class="medium-3 columns">
-        <p class="footer-logo">
-          <a href="http://www.mysociety.org", title="mySociety">
-            <img id="mysociety-logo" src="/img/mysociety-logo.png" />
-          </a>
-        </p>
-        <p class="copyright">&copy; 2014 mySociety.org - v<%- config.popit_version %></p>
-        <% // This is used to indicate to the test suite that the admin app is loaded. %>
-        <p id="instance-app-activated" class="admin-options">admin on</p>
-      </div>
-
     </div>
   </footer>
 </body>
