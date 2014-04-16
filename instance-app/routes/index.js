@@ -1,4 +1,4 @@
-"use strict"; 
+"use strict";
 
 var Error404 = require('../../lib/errors').Error404,
     async    = require('async'),
@@ -25,7 +25,7 @@ exports.route = function (app) {
           req.popit
             .model('Person')
             .count()
-            .exec(callback);            
+            .exec(callback);
         },
         organizations: function (callback) {
           req.popit
@@ -38,7 +38,7 @@ exports.route = function (app) {
           req.popit
             .model('Organization')
             .count()
-            .exec(callback);            
+            .exec(callback);
         }
       },
       function(err, results) {
