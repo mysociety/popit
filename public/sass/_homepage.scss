@@ -1,0 +1,61 @@
+/* Homepage */
+
+@mixin homepage-header {
+  font-size: 21px;
+  line-height: 25px;
+  text-transform: uppercase;
+}
+
+.homepage-summaries {
+  background-color: #F3F5F6;
+}
+
+.homepage-summary-box {
+  position: relative;
+  margin: 40px 0;
+
+  h2 {
+    @include homepage-header;
+    color: #AAB8BE;
+    text-shadow: 0 1px 0 #fff;
+    margin-top: 0;
+  }
+
+  .homepage-summary-toolbar {
+    @include list-reset;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    .btn-default {
+      background-color: rgba(255,255,255,0.5);
+    }
+  }
+}
+
+.homepage-description, .homepage-api-guide {
+  background-color: $content-background;
+  padding: 40px 0;
+
+  h2:first-child {
+    margin-top: 0;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.homepage-api-guide {
+  h2 {
+    @include homepage-header;
+    color: #AAB8BE;
+  }
+
+  label {
+    display: block;
+    margin-top: 10px;
+    font-weight: normal;
+    color: #999;
+  }
+}

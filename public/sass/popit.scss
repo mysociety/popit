@@ -1,6 +1,6 @@
 /* PopIt */
 
-@import "bootstrap_overrides";
+@import "bootstrap-overrides";
 @import "bootstrap";
 
 @import "backbone-forms-0.9.0";
@@ -12,9 +12,12 @@
 @import "functions";
 @import "colours";
 @import "typography";
-@import "default";
 @import "forms";
 @import "tables";
 @import "buttons";
 @import "warnings";
+
+@import "header-and-footer";
+@import "homepage";
+
 @import "overrides";
