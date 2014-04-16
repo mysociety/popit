@@ -6,29 +6,46 @@
   }
 ) %>
 
-<% if (person_count === organization_count === 0 || typeof popit.setting('name') === 'undefined') { %>
+<% if (typeof current_step !== 'undefined') { %>
 
   <div class="homepage-setup-guide container">
     <div class="container">
       <h2>Set up your new PopIt Instance</h2>
       <div class="row">
-        <div class="col-sm-4 col-lg-3">
-          <h3><strong>1</strong> Populate</h3>
+        <div class="col-sm-4 col-lg-3 homepage-setup-guide-step <% if (current_step === 1) { %>incomplete<% } else { %>complete<% } %>">
+          <h3>
+            <% if (current_step === 1) { %>
+              <span class="circled-number">1</span>
+            <% } else { %>
+              <span class="glyphicon glyphicon-ok"></span>
+            <% } %>
+            Populate
+          </h3>
           <p>Add people and organizations to your PopIt instance.</p>
-          <a class="new-person add btn btn-primary" href="#">Add your first person</a>
+          <a class="new-person add btn <% if (current_step === 1) { %>btn-primary<% } else { %>btn-default<% } %>" href="#">Add your first person</a>
         </div>
-        <div class="col-sm-4 col-lg-3 col-lg-offset-1">
-          <h3><strong>2</strong> Describe</h3>
+        <div class="col-sm-4 col-lg-3 col-lg-offset-1 homepage-setup-guide-step <% if (current_step === 2) { %>incomplete<% } else { %>complete<% } %>">
+          <h3>
+            <% if (current_step === 2) { %>
+              <span class="circled-number">2</span>
+            <% } else { %>
+              <span class="glyphicon glyphicon-ok"></span>
+            <% } %>
+            Describe
+          </h3>
           <p>Help people find and understand your instance.</p>
-          <a href="/about/edit" class="btn btn-default">Edit details</a>
+          <a href="/about/edit" class="btn <% if (current_step === 2) { %>btn-primary<% } else { %>btn-default<% } %>">Edit details</a>
         </div>
-        <div class="col-sm-4 col-lg-3 col-lg-offset-1">
-          <h3><strong>3</strong> Share</h3>
+        <div class="col-sm-4 col-lg-3 col-lg-offset-1 homepage-setup-guide-step incomplete">
+          <h3>
+            <span class="circled-number">3</span>
+            Share
+          </h3>
           <p>Connect your data to other websites via the PopIt API.</p>
           <div class="input-group">
             <input type="text" id="api-url" class="form-control" value="http://<%- popit._instance_name %><%- config.instance_site_base_url_suffix %>/api" />
             <span class="input-group-btn">
-              <button class="btn btn-default" type="button">Copy</button>
+              <button class="btn <% if (current_step === 3) { %>btn-primary<% } else { %>btn-default<% } %>" type="button">Copy</button>
             </span>
           </div>
         </div>
