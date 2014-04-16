@@ -1,11 +1,26 @@
 /* Baseline Styles - Starting point for custom user themes */
 
-#user_menu {
-  display: none; /* temporary, while working on header */
+$header-footer-background: #E2E8EB;
+$content-background: #fff;
+$header-footer-link-color: #13465A;
+$header-footer-link-hover-color: #009FC7;
+
+body, #header, #footer {
+  background-color: $header-footer-background;
 }
 
 #header, #footer {
-  background-color: #eee;
+  a {
+    color: $header-footer-link-color;
+
+    &:hover {
+      color: $header-footer-link-hover-color;
+    }
+  }
+}
+
+#content {
+  background-color: $content-background;
 }
 
 h1.logo {
@@ -14,6 +29,10 @@ h1.logo {
   margin: 0;
   font-size: 1.4em;
   font-weight: bold;
+
+  a {
+    display: block;
+  }
 }
 
 #nav {
@@ -48,12 +67,22 @@ h1.logo {
 #footer {
   padding: 2em 0;
 
+  ul, p {
+    font-size: 0.9rem;
+  }
+
+  @media #{$medium-up} {
+    ul {
+      margin-left: 0;
+    }
+  }
+
   .footer-logo {
     margin-bottom: 0.2em;
 
     img {
-      margin-top: -5px; /* compensate for the empty looking image */
-      max-height: 40px;
+      margin-top: -3px; /* compensate for the empty looking image */
+      max-height: 30px;
     }
   }
 

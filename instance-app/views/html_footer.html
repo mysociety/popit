@@ -2,7 +2,7 @@
   <footer id="footer">
     <div class="row">
 
-      <div class="small-6 columns">
+      <div class="medium-5 columns">
         <% if (popit) { %>
           <p><strong><%- popit.pretty_name() %></strong> is an instance of PopIt, a new service from mySociety that lowers the barrier to getting started with transparency projects.</p>
         <% } else { %>
@@ -10,7 +10,7 @@
         <% } %>
       </div>
 
-      <div class="small-3 columns">
+      <div class="medium-3 medium-offset-1 columns">
         <ul>
             <li><a href="<%- config.hosting_site_base_url %>/info/about">About PopIt</a></li>
             <li><a href="<%- config.hosting_site_base_url %>/docs">PopIt documentation</a></li>
@@ -18,7 +18,7 @@
         </ul>
       </div>
 
-      <div class="small-3 columns">
+      <div class="medium-3 columns">
         <p class="footer-logo">
           <a href="http://www.mysociety.org", title="mySociety">
             <img id="mysociety-logo" src="/img/mysociety-logo.png" />
