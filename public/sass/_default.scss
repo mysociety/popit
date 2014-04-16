@@ -61,7 +61,6 @@ h1.logo {
 }
 
 #header_search_box {
-  @include radius($global-rounded);
   padding: 0.3em 0.8em;
   margin: 0;
   height: auto;
@@ -75,7 +74,7 @@ h1.logo {
     font-size: 0.9rem;
   }
 
-  @media #{$medium-up} {
+  @media only screen and (min-width: 40.063em) {
     ul {
       margin-left: 0;
     }

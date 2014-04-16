@@ -1,5 +1,5 @@
 @mixin top-alert-bar($color: #f1bebe) {
-  @include alert($bg: $color);
+  background-color: $color;
   border-top: 0;
   border-left: 0;
   border-right: 0;
@@ -14,13 +14,8 @@
 #dev-site-warning {
   @include top-alert-bar();
 
-  a {
-    @include button(0.2rem, #c0392b, true);
-    margin: -0.3rem 0 -0.3rem 0.5rem;
-  }
-
   span {
-    @media #{$small-only} {
+    @media only screen and (max-width: 40em) {
       display: none;
     }
   }
