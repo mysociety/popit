@@ -11,7 +11,31 @@
   <div class="homepage-setup-guide">
     <div class="row">
       <div class="small-12 columns">
-        <p>TODO: Setup guide goes here!</p>
+        <h2>Set up your new PopIt Instance</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="medium-3 columns">
+        <h3><strong>1</strong> Populate</h3>
+        <p>Add people and organizations to your PopIt instance.</p>
+        <a class="new-person add button small radius" href="#">Add your first person</a>
+      </div>
+      <div class="medium-3 medium-offset-1 columns">
+        <h3><strong>2</strong> Describe</h3>
+        <p>Help people find and understand your instance.</p>
+        <a href="/about/edit" class="button small radius">Edit details</a>
+      </div>
+      <div class="medium-3 medium-offset-1 end columns">
+        <h3><strong>3</strong> Share</h3>
+        <p>Connect your data to other websites via the PopIt API.</p>
+        <div class="row collapse">
+          <div class="small-9 columns">
+            <input type="text" id="api-url" value="http://<%- popit._instance_name %><%- config.instance_site_base_url_suffix %>/api" />
+          </div>
+          <div class="small-3 columns">
+            <span class="postfix">C</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
