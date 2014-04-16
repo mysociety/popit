@@ -6,6 +6,48 @@
   text-transform: uppercase;
 }
 
+.homepage-setup-guide {
+  padding: 40px 0 50px 0;
+
+  h2 {
+    margin-top: 0;
+    padding-bottom: 20px;
+    border-bottom: 1px solid $header-footer-background;
+  }
+}
+
+.homepage-setup-guide-step {
+  &.complete {
+    color: #999;
+  }
+
+  p {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    & > .glyphicon {
+      font-size: 21px;
+      vertical-align: 2px;
+      margin-right: 5px;
+    }
+
+    & > .circled-number {
+      display: inline-block;
+      background: #666;
+      color: #fff;
+      margin-right: 5px;
+      font-size: 21px;
+      line-height: 30px;
+      width: 30px;
+      text-align: center;
+      border-radius: 50px;
+      vertical-align: 2px;
+    }
+  }
+}
+
 .homepage-summaries {
   background-color: #F3F5F6;
 }
