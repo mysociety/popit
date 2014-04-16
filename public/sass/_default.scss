@@ -19,8 +19,12 @@ body, #header, #footer {
   }
 }
 
-#content {
+#content, .homepage-setup-guide, .homepage-api-guide {
   background-color: $content-background;
+}
+
+.homepage-summaries {
+  background-color: #F3F5F6;
 }
 
 h1.logo {
