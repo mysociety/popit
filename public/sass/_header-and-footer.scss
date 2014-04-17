@@ -64,6 +64,10 @@ h1.logo {
     }
   }
 
+  & > .container > .row > :first-child p a {
+    border-bottom: 1px solid #B2C2CA;
+  }
+
   .footer-logo {
     margin-bottom: 0.4em;
 
