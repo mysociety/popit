@@ -6,22 +6,26 @@
   }
 ) %>
 
-<h1>Fantastic!</h1>
+<div class="container simple-container">
 
-<p>You have confirmed your email address, now create your instance.</p>
+  <h1>Fantastic!</h1>
 
-<p>Please note that:</p>
+  <p>You have confirmed your email address, now create your instance.</p>
 
-<ul>
-  <li>PopIt is still alpha code - things might break.</li>
-  <li>All data you enter from now on will be public.</li>
-  <li>Some features are missing - we're working on adding them.</li>
-</ul>
+  <p>Please note that:</p>
 
-<form method='post' action=''>
-  <p>
-    <input type='submit' class="btn" value='I understand, create my site!' />
-  </p>
-</form>
+  <ul>
+    <li>PopIt is still alpha code - things might break.</li>
+    <li>All data you enter from now on will be public.</li>
+    <li>Some features are missing - we're working on adding them.</li>
+  </ul>
+
+  <form method='post' action=''>
+    <p>
+      <input type='submit' class="btn btn-primary" value='I understand, create my site!' />
+    </p>
+  </form>
+
+</div>
 
 <%= render('html_footer.html' )%>
