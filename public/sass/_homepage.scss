@@ -18,7 +18,19 @@
 
 .homepage-setup-guide-step {
   &.complete {
-    color: #999;
+    color: #999; // make completed steps less prominent
+
+    h3 {
+      color: #6E946E;
+    }
+
+    .btn-default {
+      color: #999; // make button look semi-disabled
+
+      &:hover, &:focus, &:active {
+        color: #333; // back to Bootstrap default
+      }
+    }
   }
 
   p {
@@ -35,7 +47,7 @@
 
     & > .circled-number {
       display: inline-block;
-      background: #666;
+      background: #889EB3;
       color: #fff;
       margin-right: 5px;
       font-size: 21px;
@@ -50,17 +62,63 @@
 
 .homepage-summaries {
   background-color: #F3F5F6;
+  padding-bottom: 50px;
+}
+
+.homepage-summary-list {
+  @include list-reset;
+  margin: 0 -15px; // to compensate for 15px gutter either side of children li's
+
+  li {
+    margin-bottom: 30px;
+
+    a {
+      display: block;
+      padding: 13px 10px;
+      padding-top: 130px;
+      background: #fff;
+      text-align: center;
+      color: #999;
+      text-decoration: none;
+      @include box-shadow(0 1px 2px rgba(0,0,0,0.3));
+
+      strong {
+        display: block;
+        color: #666;
+        font-weight: normal;
+        margin-bottom: 3px;
+        @include dotdotdot;
+      }
+
+      small {
+        display: block;
+        @include dotdotdot;
+      }
+
+      &:hover, &:focus, &:active {
+        position: relative;
+        top: -2px;
+        color: #666;
+        @include box-shadow(0 3px 7px rgba(0,0,0,0.2));
+
+        strong {
+          color: #333;
+        }
+      }
+    }
+  }
 }
 
 .homepage-summary-box {
   position: relative;
-  margin: 40px 0;
+  margin-top: 40px;
+  margin-bottom: -30px; // compensate for 30px margin-bottom on .homepage-summary-list items
 
   h2 {
     @include homepage-header;
     color: #AAB8BE;
     text-shadow: 0 1px 0 #fff;
-    margin-top: 0;
+    margin: 0 0 20px 0;
   }
 
   .homepage-summary-toolbar {

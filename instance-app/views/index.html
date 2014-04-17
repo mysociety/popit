@@ -22,7 +22,11 @@
             Populate
           </h3>
           <p>Add people and organizations to your PopIt instance.</p>
-          <a class="new-person add btn <% if (current_step === 1) { %>btn-primary<% } else { %>btn-default<% } %>" href="#">Add your first person</a>
+          <a class="new-person add btn <% if (current_step === 1) { %>btn-primary<% } else { %>btn-default<% } %>" href="#"><% if (current_step < 2) { %>
+              Add your first person
+            <% } else { %>
+              Add another person
+            <% } %></a>
         </div>
         <div class="col-sm-4 col-lg-3 col-lg-offset-1 homepage-setup-guide-step <% if (current_step === 2) { %>incomplete<% } else { %>complete<% } %>">
           <h3>
@@ -83,14 +87,17 @@
         <h2><%- person_count || 'no' %> <%- person_count == 1 ? 'person' : 'people' %></h2>
 
         <% if (persons.length) { %>
-          <ul class="homepage-summary-list">
+          <ul class="homepage-summary-list row">
             <% _.each( persons, function(person) { %>
-              <li>
-                <a href="/persons/<%- person.slug %>"><%- person.name %></a>
+              <li class="col-md-2 col-sm-4">
+                <a href="/persons/<%- person.slug %>">
+                  <strong title="<%- person.name %>"><%- person.name %></strong>
+                  <small title="TODO: current position">TODO: current position</small>
+                </a>
               </li>
             <% }); %>
             <% if (person_count > persons.length) { %>
-            <li>
+            <li class="col-md-2 col-sm-4">
               <a href="/persons/">Show all <%- person_count %>&hellip;</a>
             </li>
             <% } %>
@@ -108,14 +115,17 @@
         <h2><%- organization_count || 'no' %> <%- organization_count == 1 ? 'organization' : 'organizations' %></h2>
 
         <% if (organizations.length) { %>
-          <ul class="homepage-summary-list">
+          <ul class="homepage-summary-list row">
             <% _.each( organizations, function(organization) { %>
-              <li>
-                <a href="/organizations/<%- organization.slug %>"><%- organization.name %></a>
+              <li class="col-md-2 col-sm-4">
+                <a href="/organizations/<%- organization.slug %>">
+                  <strong title="<%- organization.name %>"><%- organization.name %></strong>
+                  <small title="TODO: number of members">TODO: number of members</small>
+                </a>
               </li>
             <% }); %>
             <% if (organization_count > organizations.length) { %>
-            <li>
+            <li class="col-md-2 col-sm-4">
               <a href="/organizations/">Show all <%- organization_count %>&hellip;</a>
             </li>
             <% } %>
@@ -140,7 +150,7 @@
           <p>Share this data with other websites using the PopIt API. Just copy the URL to get started, or <a href="<%- config.hosting_site_base_url %>/docs/api">check out the documentation</a>.</p>
         </div>
         <div class="col-sm-4 col-sm-offset-2">
-          <div class="row">
+          <div>
             <label for="api-url">API Base URL:</label>
             <div class="input-group">
               <input type="text" id="api-url" class="form-control" value="http://<%- popit._instance_name %><%- config.instance_site_base_url_suffix %>/api" />

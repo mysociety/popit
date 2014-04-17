@@ -6,7 +6,12 @@
   line-height: inherit;
   li {
     list-style-type: none;
-    padding: 0;
-    margin: 0;
   }
+}
+
+@mixin dotdotdot {
+  width: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
