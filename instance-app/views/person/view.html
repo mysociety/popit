@@ -19,6 +19,9 @@
       <div class="btn-group">
         <a class="btn btn-default" href="/api/v0.1/persons/<%- person.id %>">JSON API</a>
       </div>
+      <div class="btn-group" style="display: none">
+        <a class="btn btn-default delete delete-person">Delete person</a>
+      </div>
       <div class="btn-group">
         <a class="btn btn-default" href="#">Edit person <span class="glyphicon glyphicon-chevron-right"></span></a>
       </div>
@@ -29,15 +32,7 @@
 
 <article class="container entity person person-view" itemscope itemtype="http://schema.org/Person">
 
-  <header class="entity-header-nav" id="person-<%- person.slug %>">
-    <h1 class="current-entity edit-in-place"
-        id="entity-name-in-header"
-        title="<%- person.name %>"
-        data-api-name="name"
-    ><%- person.name %></h1>
-  </header>
-
-  <aside>
+  <aside class="pull-right">
     <ul class="photos">
       <% if (person.images.length) { %>
         <% _.each( person.images, function(image) { %>
@@ -71,52 +66,46 @@
     <ul class="admin-options">
       <li>
         <a class="add" href="<%- person.slug_url %>/images/upload">
-          <strong>+ add</strong>
-          a photograph
+          <strong>+</strong> Add a photograph
         </a>
       </li>
     </ul>
   </aside>
 
-  <ul class="admin-options">
-    <li>
-      <a class="delete delete-person">
-        <i class="foundicon-trash"></i> delete
-        this person
-      </a>
-    </li>
-  </ul>
+  <dl class="dl-horizontal">
 
+    <dt class="person-attr-name">Name</dt>
+    <dd class="person-attr-name">
+      <h1 class="current-entity edit-in-place" id="entity-name-in-header" title="<%- person.name %>" data-api-name="name" ><%- person.name %></h1>
+    </dd>
 
-  <section class="description" itemprop="description">
+    <dt>Summary</dt>
+    <dd>
+      <p id="entity-summary-text" class="edit-in-place-textarea" data-api-name="summary"><%- person.summary %></p>
+    </dd>
 
-    <p
-      id="entity-summary-text"
-      class="edit-in-place-textarea"
-      data-api-name="summary"
-    ><%- person.summary %></p>
-
-    <ul class="detail-list">
-
-      <li class="personal_details-birth_date">
+    <dt>Born</dt>
+    <dd>
+      <p class="personal_details-birth_date">
         <%= render( 'partial-date/view.html', {
           date:             person.birth_date,
           title:            "Date of birth",
           data_api_name: "birth_date",
         }) %>
-      </li>
+      </p>
+    </dd>
 
-      <li class="personal_details-death_date">
+    <dt>Died</dt>
+    <dd>
+      <p class="personal_details-death_date">
         <%= render( 'partial-date/view.html', {
           date:             person.death_date,
           title:            "Date of death",
           data_api_name: "death_date",
         }) %>
-      </li>
-
-    </ul>
-
-  </section>
+      </p>
+    </dd>
+  </dl>
 
   <%= render( 'other_name/list.html', { other_names: person.other_names } ) %>
 

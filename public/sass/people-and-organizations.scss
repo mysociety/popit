@@ -2,6 +2,8 @@
 
 .entity-toolbar {
   background-color: $light-grey-background;
+  border-top: 1px solid darken($header-footer-background, 5%);
+  border-bottom: 1px solid darken($light-grey-background, 5%);
   padding: 20px 0;
   line-height: 36px; // height of a button
 
