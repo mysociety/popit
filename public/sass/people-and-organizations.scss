@@ -1,0 +1,49 @@
+/* Person and Organization (ie: "entity") pages */
+
+.entity-toolbar {
+  background-color: $light-grey-background;
+  padding: 20px 0;
+  line-height: 36px; // height of a button
+
+  .btn-default {
+    background: transparent;
+
+    &:hover, &:active, &:focus {
+      background: darken($light-grey-background, 5%)
+    }
+
+    .glyphicon-chevron-right {
+      font-size: 12px;
+      vertical-align: 1px;
+    }
+  }
+
+  .btn-group + .btn-group {
+    margin-left: 20px;
+  }
+
+}
+
+.entity-toolbar-name {
+  display: inline;
+  vertical-align: middle;
+  color: #ccc;
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: 300;
+
+  a {
+    color: #666;
+    margin: 0 5px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:hover, &:focus {
+      color: #444;
+      border-bottom: 1px solid #ccc;
+      text-decoration: none;
+    }
+  }
+}

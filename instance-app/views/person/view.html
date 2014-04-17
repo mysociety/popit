@@ -13,7 +13,21 @@
     popit.memberships = <%= JSON.stringify( _.map( memberships, function(m) { return m.id; } ) ) %>;
 </script>
 
-<article class="entity person" itemscope itemtype="http://schema.org/Person">
+<div class="entity-toolbar">
+  <div class="container">
+    <div class="btn-toolbar pull-right">
+      <div class="btn-group">
+        <a class="btn btn-default" href="/api/v0.1/persons/<%- person.id %>">JSON API</a>
+      </div>
+      <div class="btn-group">
+        <a class="btn btn-default" href="#">Edit person <span class="glyphicon glyphicon-chevron-right"></span></a>
+      </div>
+    </div>
+    <p class="entity-toolbar-name"><a href="/persons">People</a> / <a href="/persons/<%- person.slug %>"><%- person.id %></a></p>
+  </div>
+</div>
+
+<article class="container entity person person-view" itemscope itemtype="http://schema.org/Person">
 
   <header class="entity-header-nav" id="person-<%- person.slug %>">
     <h1 class="current-entity edit-in-place"
@@ -22,7 +36,7 @@
         data-api-name="name"
     ><%- person.name %></h1>
   </header>
-    
+
   <aside>
     <ul class="photos">
       <% if (person.images.length) { %>
@@ -63,7 +77,7 @@
       </li>
     </ul>
   </aside>
-    
+
   <ul class="admin-options">
     <li>
       <a class="delete delete-person">
@@ -72,16 +86,16 @@
       </a>
     </li>
   </ul>
-  
-  
+
+
   <section class="description" itemprop="description">
-                
+
     <p
       id="entity-summary-text"
       class="edit-in-place-textarea"
       data-api-name="summary"
     ><%- person.summary %></p>
-  
+
     <ul class="detail-list">
 
       <li class="personal_details-birth_date">
@@ -101,7 +115,7 @@
       </li>
 
     </ul>
-  
+
   </section>
 
   <%= render( 'other_name/list.html', { other_names: person.other_names } ) %>
@@ -129,17 +143,6 @@
   <section class="custom-data">
     <h2>Custom data:</h2>
     <div id="jsoneditor"></div>
-  </section>
-
-  <section class="raw-data">
-    
-    <h2>Raw data</h2>
-    
-    <p>
-      The details for this person are also available in 
-      <a href="/api/v0.1/persons/<%- person.id %>">JSON</a>.
-    </p>
-
   </section>
 
 </article>
