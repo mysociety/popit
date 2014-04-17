@@ -49,3 +49,10 @@ input[type="search"].form-control {
   font-size: 14px;
   line-height: 1.5;
 }
+
+// override Bootstrap's default .form-control[readonly]
+// styling for .click-to-select inputs
+.form-control.click-to-select[readonly] {
+  background-color: #fff;
+  cursor: text;
+}
