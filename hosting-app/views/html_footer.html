@@ -1,31 +1,36 @@
   </div>
   <footer id="footer">
-    <div>
+    <div class="container">
+      <div class="row">
 
-      <div id="sitemap">
-        <ul>
-          <li><a href="/info/about">About PopIt</a></li>
-          <li><a href="/docs">Documentation</a></li>
-          <li><a href="/info/data-import">Data Freedom</a></li>
-          <li><a href="/info/self-hosting">Self Hosting</a></li>
-          <li><a href="/info/privacy">Terms &amp; Privacy Policy</a></li>
-        </ul>
-      </div>
+        <div class="col-sm-5">
+          <p>This is the <a href="http://en.wikipedia.org/wiki/Software_release_life_cycle#Alpha">alpha</a> of <a href="<%= config.hosting_site_base_url %>">PopIt</a>, a new service for lowering the barrier to getting started with transparency projects. Please feel free to join <a href="https://groups.google.com/forum/#!forum/poplus">the poplus mailing list</a> if you&rsquo;re interested in giving it a go.</p>
+          <p>The PopIt <a href="https://github.com/mysociety/popit">source code is available on Github</a>.</p>
+        </div>
 
-      <div id="about-mysociety">
-        <a href="http://www.mysociety.org" title="mySociety">
-          <img src="/img/mysociety-logo.png" class="mysociety-logo">
-        </a>
-        
-        <p>This is the <a href="http://en.wikipedia.org/wiki/Software_release_life_cycle#Alpha">α</a>lpha of <a href="<%= config.hosting_site_base_url %>">PopIt</a>, a new service for lowering the barrier to getting started with transparency projects. Please feel free to <!-- make a <a href="<%= config.hosting_site_base_url %>/instances/new">new instance</a>, and --> join <a href="https://groups.google.com/forum/#!forum/poplus">the poplus mailing list</a> to let us know that you're interested in giving it a go.</p>
+        <div class="col-sm-3 col-sm-offset-1">
+          <ul>
+            <li><a href="/info/about">About PopIt</a></li>
+            <li><a href="/docs">Documentation</a></li>
+            <li><a href="/info/data-import">Data Freedom</a></li>
+            <li><a href="/info/self-hosting">Self Hosting</a></li>
+          </ul>
+        </div>
 
-        <p>The <a href="https://github.com/mysociety/popit">code is available on Github</a>.</p>
-
-        <p>Learn more at <a href="http://popit.mysociety.org/info/about" title="About PopIt">popit.mysociety.org</a></p>
+        <div class="col-sm-3">
+          <p class="footer-logo">
+            <a href="http://www.mysociety.org", title="mySociety">
+              <img id="mysociety-logo" src="/img/mysociety-logo.png" />
+            </a>
+          </p>
+          <p class="copyright">&copy; 2014 mySociety.org - v<%- config.popit_version %></p>
+          <p class="terms"><a href="/info/privacy">Terms &amp; Privacy Policy</a></p>
+          <% // This is used to indicate to the test suite that the admin app is loaded. %>
+          <!-- <p id="instance-app-activated" class="admin-options">admin on</p> -->
+        </div>
 
       </div>
     </div>
-    <div class="copyright">&copy; 2012 mySociety.org - v<%- config.popit_version %></div>
   </footer>
 </body>
 
