@@ -8,13 +8,13 @@
 
 <% if (typeof current_step !== 'undefined') { %>
 
-  <div class="homepage-setup-guide container">
+  <div class="homepage-setup-guide container <% if (person_count + organization_count === 0) { %>solo<% } %>">
     <div class="container">
       <h2>Set up your new PopIt Instance</h2>
       <div class="row">
-        <div class="col-sm-4 col-lg-3 homepage-setup-guide-step <% if (current_step === 1) { %>incomplete<% } else { %>complete<% } %>">
+        <div class="col-sm-4 col-lg-3 homepage-setup-guide-step <% if (current_step <= 1) { %>incomplete<% } else { %>complete<% } %>">
           <h3>
-            <% if (current_step === 1) { %>
+            <% if (current_step <= 1) { %>
               <span class="circled-number">1</span>
             <% } else { %>
               <span class="glyphicon glyphicon-ok"></span>
@@ -28,9 +28,9 @@
               Add another person
             <% } %></a>
         </div>
-        <div class="col-sm-4 col-lg-3 col-lg-offset-1 homepage-setup-guide-step <% if (current_step === 2) { %>incomplete<% } else { %>complete<% } %>">
+        <div class="col-sm-4 col-lg-3 col-lg-offset-1 homepage-setup-guide-step <% if (current_step <= 2) { %>incomplete<% } else { %>complete<% } %>">
           <h3>
-            <% if (current_step === 2) { %>
+            <% if (current_step <= 2) { %>
               <span class="circled-number">2</span>
             <% } else { %>
               <span class="glyphicon glyphicon-ok"></span>

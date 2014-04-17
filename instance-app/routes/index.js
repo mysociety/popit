@@ -47,7 +47,7 @@ exports.route = function (app) {
         res.locals.summary_listing_count = summary_listing_count;
         res.locals.current_step = undefined;
 
-        if (results.person_count === results.organization_count === 0){
+        if (results.person_count + results.organization_count === 0){
             res.locals.current_step = 1;
         } else if (typeof req.popit.setting('name') === 'undefined') {
             res.locals.current_step = 2;
