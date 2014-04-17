@@ -56,3 +56,24 @@ input[type="search"].form-control {
   background-color: #fff;
   cursor: text;
 }
+
+// replicate the default Bootstrap :hover styling
+// for artificially 'hovering' ZeroClipboard buttons
+.btn-default.zeroclipboard-is-hover {
+  color: #333333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+.btn-primary.zeroclipboard-is-hover {
+  color: white;
+  background-color: #3071a9;
+  border-color: #285e8e;
+}
+.input-group-btn > .btn.zeroclipboard-is-hover {
+  z-index: 2;
+}
+
+.btn.zeroclipboard-is-copied {
+  color: $brand-success;
+}
+

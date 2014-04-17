@@ -46,7 +46,7 @@
             Share
           </h3>
           <p>Connect your data to other websites via the PopIt API.</p>
-          <div class="input-group">
+          <div class="input-group click-to-copy">
             <input type="text" readonly="readonly" class="form-control click-to-select" value="http://<%- popit._instance_name %><%- config.instance_site_base_url_suffix %>/api" />
             <span class="input-group-btn">
               <button class="btn <% if (current_step === 3) { %>btn-primary<% } else { %>btn-default<% } %>" type="button">Copy</button>
@@ -152,7 +152,7 @@
         <div class="col-sm-4 col-sm-offset-2">
           <div>
             <label for="api-url">API Base URL:</label>
-            <div class="input-group">
+            <div class="input-group click-to-copy">
               <input type="text" id="api-url" readonly="readonly" class="form-control click-to-select" value="http://<%- popit._instance_name %><%- config.instance_site_base_url_suffix %>/api" />
               <span class="input-group-btn">
                 <button class="btn btn-default" type="button">Copy</button>
