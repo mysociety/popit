@@ -1,0 +1,28 @@
+/* Homepage */
+
+.hosting-app-welcome {
+  padding-top: 10px;
+  padding-bottom: 30px;
+
+  max-width: 580px; // keep comfortable line lengths on wide screens
+
+  h1, p.lead, p.lead + p {
+    text-align: center;
+  }
+
+  @media (min-width: $screen-sm-min) {
+    padding-top: 40px;
+    padding-bottom: 50px;
+    font-size: 18px;
+
+    .lead {
+      font-size: 26px;
+    }
+  }
+
+  .btn-primary {
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+}
+
