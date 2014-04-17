@@ -73,7 +73,9 @@ input[type="search"].form-control {
   z-index: 2;
 }
 
-.btn.zeroclipboard-is-copied {
+.btn-default.zeroclipboard-is-copied {
   color: $brand-success;
+  background-color: #E7F7CF;
+  border-color: #A3C47F;
 }
 
