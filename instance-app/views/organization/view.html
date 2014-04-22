@@ -21,18 +21,26 @@
     popit.memberships = <%= JSON.stringify( _.map( memberships, function(m) { return m.id; } ) ) %>;
 </script>
 
-<article class="entity organization">
+<div class="popit-toolbar entity-toolbar">
+  <div class="container">
+    <div class="btn-toolbar pull-right">
+      <div class="btn-group">
+        <a class="btn btn-default" href="/api/v0.1/organizations/<%- organization.id %>">JSON API</a>
+      </div>
+      <div class="btn-group" style="display: none">
+        <a class="btn btn-default delete delete-organization">Delete organization</a>
+      </div>
+      <div class="btn-group">
+        <a class="btn btn-default" href="#">Edit organization <span class="glyphicon glyphicon-chevron-right"></span></a>
+      </div>
+    </div>
+    <p><a href="/organizations">Organizations</a> / <a href="/organizations/<%- organization.slug %>"><%- organization.id %></a></p>
+  </div>
+</div>
 
-  <header class="entity-header-nav" id="organization-<%- organization.slug %>">
-    <h1 class="edit-in-place current-entity"
-        id="entity-name-in-header"
-        title="<%- organization.name %>"
-        data-api-name="name"
-    ><%- organization.name %></h1>
-  </header>
-  
-  <aside>
+<article class="container entity organization organization-view" itemscope itemtype="http://schema.org/Organization">
 
+  <aside class="pull-right">
     <ul class="photos">
       <% if (organization.images.length) { %>
         <% _.each( organization.images, function ( image ) { %>
@@ -59,70 +67,67 @@
         <% }); %>
       <% } else { %>
         <li>
-          <img src='/img/organization_placeholder.svg' width="280" />            
+          <img src='/img/organization_placeholder.svg' width="280" />
         </li>
       <% } %>
     </ul>
-
     <ul class="admin-options">
       <li>
         <a class="add" href="<%- organization.slug_url %>/images/upload">
-          <strong>+ add</strong>
-          a photograph
+          <strong>+</strong> add a photograph
         </a>
       </li>
     </ul>
   </aside>
-    
-  <ul class="admin-options">
-    <li>
-      <a class="delete delete-organization">
-        <i class="foundicon-trash"></i> delete
-        this organization
-      </a>
-    </li>
-  </ul>
 
-  <section class="description" itemprop="description">
-                
-    <p  id="entity-summary-text"
-        class="edit-in-place-textarea"
-        data-api-name="summary"
-    ><%- organization.summary %></p>
-  
-    <p>
-      Classification:
-      <span class="edit-in-place" data-api-name="classification"><%- organization.classification %></span>
-    </p>
+  <dl class="dl-horizontal">
 
-    <p>
-      Parent:
-      <span class="edit-in-place-select" data-api-name="parent_id"><% if (organization.parent_id) { %>
-        <%- organization.parent_id.name %>
-      <% } %></span>
-    </p>
+    <dt class="organization-attr-name">Name</dt>
+    <dd class="organization-attr-name">
+      <h1 class="current-entity edit-in-place" id="entity-name-in-header" title="<%- organization.name %>" data-api-name="name" ><%- organization.name %></h1>
+    </dd>
 
-    <ul class="detail-list">
+    <dt>Summary</dt>
+    <dd itemprop="description">
+      <p id="entity-summary-text" class="edit-in-place-textarea" data-api-name="summary"><%- organization.summary %></p>
+    </dd>
 
-      <li class="personal_details-birth_date">
+    <dt>Classification</dt>
+    <dd>
+      <p class="edit-in-place" data-api-name="classification"><%- organization.classification %></p>
+    </dd>
+
+    <dt>Parent</dt>
+    <dd>
+      <p class="edit-in-place-select" data-api-name="parent_id">
+        <% if (organization.parent_id) { %>
+          <%- organization.parent_id.name %>
+        <% } %>
+      </p>
+    </dd>
+
+    <dt>Born</dt>
+    <dd>
+      <p class="personal_details-birth_date">
         <%= render( 'partial-date/view.html', {
           date:             organization.founding_date,
           title:            "Founding date",
           data_api_name: "founding_date",
         }) %>
-      </li>
+      </p>
+    </dd>
 
-      <li class="personal_details-death_date">
+    <dt>Died</dt>
+    <dd>
+      <p class="personal_details-death_date">
         <%= render( 'partial-date/view.html', {
           date:             organization.dissolution_date,
           title:            "Dissolution date",
           data_api_name: "dissolution_date",
         }) %>
-      </li>
-
-    </ul>
-
-  </section>
+      </p>
+    </dd>
+  </dl>
 
   <%= render( 'other_name/list.html', { other_names: organization.other_names } ) %>
 
@@ -144,9 +149,9 @@
     <div class="admin-options">
       <a class="add edit-membership"><i class="foundicon-add-doc"></i> <span>Add</span></a>
     </div>
-  
+
     <h2>Associated people, now or in the past:</h2>
-  
+
     <ul class="cleared">
       <% _.each( memberships, function ( membership ) { %>
         <%= render( 'membership/list-item.html', { membership: membership, type: 'organization' } ) %>
@@ -166,7 +171,7 @@
   <section class="raw-data">
     <h2>Raw data</h2>
     <p>
-      The details for this organization are also available in 
+      The details for this organization are also available in
       <a href="/api/v0.1/organizations/<%- organization.id %>">JSON</a>.
     </p>
   </section>
