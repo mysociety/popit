@@ -22,17 +22,19 @@
 
 .homepage-setup-guide-step {
   &.complete {
-    color: #999; // make completed steps less prominent
+    color: #9AB69A; // light green
 
     h3 {
-      color: #6E946E;
+      color: #6E946E;  // slightly darker green
     }
 
     .btn-default {
-      color: #999; // make button look semi-disabled
+      color: #9AB69A; // light green
+      border-color: #BFD6BF; // even lighter green
 
       &:hover, &:focus, &:active {
         color: #333; // back to Bootstrap default
+        border-color: #adadad; // back to Bootstrap default
       }
     }
   }
