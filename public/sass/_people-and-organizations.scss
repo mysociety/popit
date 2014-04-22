@@ -1,6 +1,6 @@
 /* Person and Organization (ie: "entity") pages */
 
-.entity-toolbar {
+.popit-toolbar {
   background-color: $light-grey-background;
   border-top: 1px solid darken($header-footer-background, 5%);
   border-bottom: 1px solid darken($light-grey-background, 5%);
@@ -24,28 +24,40 @@
     margin-left: 20px;
   }
 
+  & > .container > p,
+  & > .container > h1 {
+    display: inline;
+    vertical-align: middle;
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: 300;
+  }
+
+  & > .container > h1 {
+    font-size: 28px;
+  }
+
 }
 
-.entity-toolbar-name {
-  display: inline;
-  vertical-align: middle;
-  color: #ccc;
-  font-size: 20px;
-  line-height: 20px;
-  font-weight: 300;
+.entity-toolbar {
 
-  a {
-    color: #666;
-    margin: 0 5px;
+  & > .container > p {
+    color: #ccc;
 
-    &:first-child {
-      margin-left: 0;
-    }
+    a {
+      color: #666;
+      margin: 0 5px;
 
-    &:hover, &:focus {
-      color: #444;
-      border-bottom: 1px solid #ccc;
-      text-decoration: none;
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:hover, &:focus {
+        color: #444;
+        border-bottom: 1px solid #ccc;
+        text-decoration: none;
+      }
     }
   }
+
 }

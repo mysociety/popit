@@ -1,0 +1,27 @@
+/* Styles for the About, API, Login pages, etc */
+
+.instance-details {
+  margin-top: 24px;
+  margin-bottom: 24px;
+
+  dd {
+    margin-bottom: 1em;
+  }
+}
+
+.edit-instance-details {
+
+  dd {
+    margin-bottom: 1.5em;
+  }
+
+  textarea {
+    height: 60px;
+    min-height: 0;
+  }
+
+  & + button {
+    margin-left: 180px;
+    margin-bottom: 24px;
+  }
+}

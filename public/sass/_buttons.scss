@@ -1,1 +1,12 @@
 /* Buttons */
+
+// Add space before / after icons.
+// Especially useful inside buttons.
+
+.glyphicon-space-after {
+  margin-right: 4px;
+}
+
+.glyphicon-space-before {
+  margin-left: 4px;
+}

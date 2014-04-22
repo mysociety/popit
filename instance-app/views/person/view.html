@@ -13,7 +13,7 @@
     popit.memberships = <%= JSON.stringify( _.map( memberships, function(m) { return m.id; } ) ) %>;
 </script>
 
-<div class="entity-toolbar">
+<div class="popit-toolbar entity-toolbar">
   <div class="container">
     <div class="btn-toolbar pull-right">
       <div class="btn-group">
@@ -26,7 +26,7 @@
         <a class="btn btn-default" href="#">Edit person <span class="glyphicon glyphicon-chevron-right"></span></a>
       </div>
     </div>
-    <p class="entity-toolbar-name"><a href="/persons">People</a> / <a href="/persons/<%- person.slug %>"><%- person.id %></a></p>
+    <p><a href="/persons">People</a> / <a href="/persons/<%- person.slug %>"><%- person.id %></a></p>
   </div>
 </div>
 
