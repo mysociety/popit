@@ -1,16 +1,8 @@
-<section class="identifiers">
-
-  <div class="admin-options">
-    <a class="add identifier-edit"><i class="foundicon-add-doc"></i> <span>Add</span></a>
-  </div>
-
-  <h2>Identifiers:</h2>
-
-  <ul class="detail-list cleared">
-    <% _.each( identifiers, function (item) { %>
-      <li><%= render( 'identifier/view.html', { item: item }) %></li>
-    <% }); %>
-  </ul>
-
-</section>
-
+<ul>
+  <% _.each( identifiers, function (item) { %>
+    <li><%= render( 'identifier/view.html', { item: item }) %></li>
+  <% }); %>
+  <li>
+    <a class="add identifier-edit">Add an<% if(identifiers.length){ %>other<% } %> identifier</a>
+  </li>
+</ul>

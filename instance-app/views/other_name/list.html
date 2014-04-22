@@ -1,16 +1,8 @@
-<section class="other_names">
-
-  <div class="admin-options">
-    <a class="add other_name-edit"><i class="foundicon-add-doc"></i> <span>Add</span></a>
-  </div>
-
-  <h2>Alternative names:</h2>
-
-  <ul class="detail-list cleared">
-    <% _.each( other_names, function (item) { %>
-      <li><%= render( 'other_name/view.html', { item: item }) %></li>
-    <% }); %>
-  </ul>
-
-</section>
-
+<ul>
+  <% _.each( other_names, function (item) { %>
+    <li><%= render( 'other_name/view.html', { item: item }) %></li>
+  <% }); %>
+  <li>
+    <a class="add other_name-edit">Add a<% if(other_names.length){ %>nother<% } %> name</a>
+  </li>
+</ul>

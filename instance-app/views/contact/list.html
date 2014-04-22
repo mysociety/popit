@@ -1,16 +1,8 @@
-<section class="contact_details">
-
-  <div class="admin-options">
-    <a class="add contact-edit"><i class="foundicon-add-doc"></i> <span>Add</span></a>
-  </div>
-
-  <h2>Contact Information:</h2>
-
-  <ul class="detail-list">
-    <% _.each( contacts, function (item) { %>
-      <li><%= render( 'contact/view.html', { item: item }) %></li>
-    <% }); %>
-  </ul>
-
-</section>
-
+<ul>
+  <% _.each( contact_details, function (item) { %>
+    <li><%= render( 'contact/view.html', { item: item }) %></li>
+  <% }); %>
+  <li>
+    <a class="add contact-edit">Add contact details</a>
+  </li>
+</ul>

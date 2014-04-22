@@ -58,32 +58,60 @@
 
 }
 
-.photo-sidebar {
-  text-align: center;
-  margin-top: 30px;
-}
+.entity {
 
-ul.photos {
-  @include list-reset;
-  margin-bottom: 20px;
-
-  li {
-    position: relative;
-    border: 1px solid #eee;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  .photo-sidebar {
+    text-align: center;
+    margin-top: 30px;
   }
 
-  img {
-    background-color: $light-grey-background;
-    border: 10px solid #fff;
+  ul.photos {
+    @include list-reset;
+    margin-bottom: 20px;
+
+    li {
+      position: relative;
+      border: 1px solid #eee;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+
+    img {
+      background-color: $light-grey-background;
+      border: 10px solid #fff;
+    }
+
+    .photo-actions {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+    }
   }
 
-  .photo-actions {
-    position: absolute;
-    bottom: 10px;
-    left: 0;
-    right: 0;
+  dt.entity-attr-name {
+    line-height: 45px; // default h1 line-height, so label lines up vertically
   }
+
+  dd {
+    margin-bottom: 10px;
+
+    ul {
+      @include list-reset;
+
+      a.add, a.edit, a.delete {
+        cursor: pointer;
+      }
+    }
+
+    li + li {
+      margin-top: 10px;
+    }
+
+    p, h1 {
+      margin: 0;
+    }
+  }
+
 }
 
 .empty-entity-message {
