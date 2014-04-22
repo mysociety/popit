@@ -6,47 +6,57 @@
   }
 ) %>
 
-<h1>People</h1>
+<div class="popit-toolbar entity-toolbar">
+  <div class="container">
+    <div class="btn-toolbar pull-right">
+      <div class="btn-group">
+        <a class="btn btn-default" href="/api/v0.1/persons/">JSON API</a>
+      </div>
+      <div class="btn-group">
+        <% if (user) { %>
+          <a class="btn btn-default new-person add" href="#"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span> Add a new person</a>
+        <% } else { %>
+          <a class="btn btn-default" href="/login"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span> Log in to add a person</a>
+        <% } %>
+      </div>
+    </div>
+    <p><a href="/persons">People</a></p>
+  </div>
+</div>
 
-<p class="admin-options">
-  <a class="new-person add" href="#"> 
-    <strong>+ Add</strong>
-    a new person
-  </a>
-</p>
+<div class="container entity-list person">
 
 <% if (people.length) { %>
+
   <ul>
-    <% _.each( people, function(person) { %>
+    <% _.each(people, function(person) { %>
       <li>
-        <a href="<%- person.slug_url %>"><%- person.name %></a>
+        <a class="media" href="<%- person.slug_url %>">
+          <!-- TODO: images or initials? -->
+          <div class="media-body">
+            <h4><%- person.name %></h4>
+            <% if (person.summary) { %>
+              <p><%- person.summary %></p>
+            <% } %>
+          </div>
+        </a>
       </li>
     <% }); %>
   </ul>
 
 <% } else { %>
-  <div class="info">
-    <% if (user) { %>
-      <h3> 
-        There are no people in the system yet, you should probably 
-        <a class="new-person add" href="#">
-          <strong>add one now</strong>!
-        </a>
-      </h3>
-      
-      <p>
-        You just need to provide their name, once you've 
-        created their page you can add more details.
-      </p>
-      
-      <p>
-        If you already have data in a spreadsheet or similar you can use the 
-        <a href="/migration" id="migration_tool">migration tool</a>
-        to import it.
-      </p>
-    <% } else { %>
-      No people have been entered yet.
-    <% } %>
+  <div class="empty-entity-message">
+
+    <!-- TODO: replace this with the people icon from the homepage -->
+    <span class="glyphicon glyphicon-user"></span>
+
+    <h2>There are no people in the system yet</h2>
+
+    <p>
+      <a class="btn btn-primary new-person add">Add your first person</a>
+      <a class="btn btn-default" href="/migration">Upload a CSV of people</a>
+    </p>
+
   </div>
 <% } %>
 

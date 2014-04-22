@@ -14,10 +14,12 @@
       background: darken($light-grey-background, 5%)
     }
 
-    .glyphicon-chevron-right {
+    .glyphicon-chevron-right,
+    .glyphicon-plus {
       font-size: 12px;
       vertical-align: 1px;
     }
+
   }
 
   .btn-group + .btn-group {
@@ -60,4 +62,57 @@
     }
   }
 
+}
+
+.empty-entity-message {
+  text-align: center;
+  padding: 40px 0;
+
+  & > .glyphicon {
+    display: block;
+    font-size: 4em;
+    color: $light-grey-background;
+    text-shadow: 0 -1px 0 darken($light-grey-background, 10%);
+  }
+
+  h2 {
+    margin: 30px 0;
+  }
+
+  .btn + .btn {
+    margin-left: 20px;
+  }
+}
+
+.entity-list > ul {
+  @include list-reset;
+  padding: 40px 0;
+  max-width: 760px;
+
+  li {
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  a {
+    text-decoration: none;
+
+    h4 {
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    p {
+      color: #999;
+    }
+
+    &:hover {
+      h4 {
+        text-decoration: underline;
+      }
+      p {
+        color: #777;
+      }
+    }
+  }
 }
