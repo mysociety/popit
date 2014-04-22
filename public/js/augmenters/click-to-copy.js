@@ -2,7 +2,7 @@
 //  Uses zClipboard to copy text from an <input> on .btn press.
 // ------------------------
 
-require(['jquery', 'js/libs/zeroclipboard/ZeroClipboard.js'], function($, ZeroClipboard) {
+require(['jquery', '/js/libs/zeroclipboard/ZeroClipboard.js'], function($, ZeroClipboard) {
   "use strict";
 
   ZeroClipboard.config({
