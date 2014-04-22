@@ -26,7 +26,7 @@
         <a class="btn btn-default" href="#">Edit person <span class="glyphicon glyphicon-chevron-right"></span></a>
       </div>
     </div>
-    <p><a href="/persons">People</a> / <a href="/persons/<%- person.slug %>"><%- person.id %></a></p>
+    <p><a href="/persons">People</a> / <a href="<%- person.url %>"><%- person.id %></a></p>
   </div>
 </div>
 
@@ -41,7 +41,7 @@
               <% // TODO - proxy will need changes to allow us to proxy remote images %>
               <img src="<%- image.url %>" width="280" />
             <% } else { %>
-              <img src="<%- image_proxy(person.slug_url + "/images/" + image.id, "", 280) %>" />
+              <img src="<%- image_proxy(person.url + "/images/" + image.id, "", 280) %>" />
             <% } %>
 
             <p class="photo-source">
@@ -50,7 +50,7 @@
               <abbr class="license" title="Creative Commons - By Attribution - Share Alike">CC-BY-SA</abbr>
             </p>
             <div class="admin-options">
-              <a class="delete-photo" data-image-url="<%- person.slug_url %>/images/<%- image.id %>">
+              <a class="delete-photo" data-image-url="<%- person.url %>/images/<%- image.id %>">
                 <i class="foundicon-trash"></i>
                 Delete this photograph
               </a>
@@ -65,7 +65,7 @@
     </ul>
     <ul class="admin-options">
       <li>
-        <a class="add" href="<%- person.slug_url %>/images/upload">
+        <a class="add" href="<%- person.url %>/images/upload">
           <strong>+</strong> Add a photograph
         </a>
       </li>

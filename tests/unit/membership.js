@@ -31,7 +31,7 @@ module.exports = {
     "get memberships from person (with cb)": function ( test ) {    
         test.expect( 4 );
 
-        this.popit.model('Person').findOne({slug: 'barack-obama'}, function(err, obama) {
+        this.popit.model('Person').findOne({_id: 'barack-obama'}, function(err, obama) {
           if (err) throw err;
           
           test.equal( obama.name, "Barack Obama", "Got Obama");
@@ -48,7 +48,7 @@ module.exports = {
     "get memberships from person (without cb)": function ( test ) {    
         test.expect( 4 );
 
-        this.popit.model('Person').findOne({slug: 'barack-obama'}, function(err, obama) {
+        this.popit.model('Person').findOne({_id: 'barack-obama'}, function(err, obama) {
           if (err) throw err;
           test.equal( obama.name, "Barack Obama", "Got Obama");
 
@@ -68,7 +68,7 @@ module.exports = {
     "get memberships from organization": function ( test ) {    
         test.expect( 3 );
 
-        this.popit.model('Organization').findOne({slug: 'united-states-government'}, function(err, usg) {
+        this.popit.model('Organization').findOne({_id: 'united-states-government'}, function(err, usg) {
           if (err) throw err;
           test.equal( usg.name, "United States Government", "Got USG");
 

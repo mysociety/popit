@@ -47,12 +47,9 @@ class PersonEditingTests < PopItWatirTestCase
 
       # enter a proper name, get sent to person page
       @b.text_field(:name, 'name').set "Joe Bloggs"
-      assert_equal "joe-bloggs", @b.text_field(:name, 'slug').value
-
       @b.input(:value, "Create new person").click
       @b.wait_until { @b.title != 'People' }
       assert_equal "Joe Bloggs", @b.title
-      assert_path '/persons/joe-bloggs'
 
       # check that this person is in the list of people too
       @b.back
@@ -83,6 +80,8 @@ class PersonEditingTests < PopItWatirTestCase
       # click on a suggestion, check get existing person
       @b.ul(:class, 'suggestions').li.link.click
       assert_path '/persons/george-bush'
+      assert_equal @b.title, "George Bush"
+      gb_url = @b.url
 
       # enter dup, create anyway, check for new person
       @b.back
@@ -91,24 +90,17 @@ class PersonEditingTests < PopItWatirTestCase
       @b.text_field(:name, 'name').set "George Bush"
       @b.input(:value, "Create new person").click
       @b.wait_until { @b.title != 'People' }
-      assert_path '/persons/george-bush-1'
+      assert @b.url != gb_url
 
-      # enter name that can't be slugged
+      # enter name that uses non-ascii characters
       @b.back
       @b.refresh
       add_person_link.click
       @b.text_field(:name, 'name').set "网页"
-      assert_equal "", @b.text_field(:name, 'slug').value
-      @b.input(:value, "Create new person").click
-      @b.wait_until {
-       @b.div(:class =>'bbf-help', :index => 1 ).text['Required'] 
-      }
-      @b.text_field(:name, 'slug').set 'chinese-name'
       @b.input(:value, "Create new person").click
       @b.wait_until { @b.title != 'People' }
       assert_equal "网页", @b.title
-      assert_path '/persons/chinese-name'
-    }    
+    }
   end
 
   def test_person_deleting
