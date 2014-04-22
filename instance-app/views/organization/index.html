@@ -51,10 +51,12 @@
 
     <h2>There are no organizations in the system yet</h2>
 
-    <p>
-      <a class="btn btn-primary new-organization add">Add your first organization</a>
-      <a class="btn btn-default" href="/migration">Upload a CSV of members</a>
-    </p>
+    <% if (user) { %>
+      <p>
+        <a class="btn btn-primary new-organization add">Add your first organization</a>
+        <a class="btn btn-default" href="/migration">Upload a CSV of members</a>
+      </p>
+    <% } %>
 
   </div>
 <% } %>
