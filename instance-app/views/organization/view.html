@@ -41,7 +41,7 @@
               <% //- TODO - proxy will need changes to allow us to proxy remote images %>
               <img src="<%- image.url %>"  width="280" />
             <% } else { %>
-              <img src="<%- image_proxy(organization.url + "/images/" + image.id, "", 280) %>" />
+              <img src="<%- image_proxy("/organizations/images/" + image.id + '/' + organization.id, "", 280) %>" />
             <% } %>
 
             <p class="photo-source">
@@ -50,7 +50,7 @@
               <abbr class="license" title="Creative Commons - By Attribution - Share Alike">CC-BY-SA</abbr>
             </p>
             <div class="admin-options">
-              <a class="delete-photo" data-image-url="<%- organization.url %>/images/<%- image.id %>">
+              <a class="delete-photo" data-image-url="/organizations/images/<%- image.id %>/<%- organization.id %>">
                 <i class="foundicon-trash"></i>
                 Delete this photograph
               </a>
