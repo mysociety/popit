@@ -79,12 +79,28 @@
     a {
       display: block;
       padding: 13px 10px;
-      padding-top: 130px;
       background: #fff;
       text-align: center;
       color: #999;
       text-decoration: none;
       @include box-shadow(0 1px 2px rgba(0,0,0,0.3));
+
+      .initials {
+        display: block;
+        line-height: 120px;
+        height: 120px;
+        font-size: 90px;
+        text-transform: uppercase;
+        color: $light-grey-background;
+        text-shadow: 0 -1px 0 darken($light-grey-background, 10%);
+        font-weight: bold;
+
+        @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+          line-height: 90px;
+          height: 90px;
+          font-size: 60px;
+        }
+      }
 
       strong {
         display: block;
