@@ -90,7 +90,7 @@
           <ul class="homepage-summary-list row">
             <% _.each( persons, function(person) { %>
               <li class="col-md-2 col-sm-4">
-                <a href="/persons/<%- person.slug %>">
+                <a href="<%- person.url %>">
                   <strong title="<%- person.name %>"><%- person.name %></strong>
                   <small title="TODO: current position">TODO: current position</small>
                 </a>
@@ -118,7 +118,7 @@
           <ul class="homepage-summary-list row">
             <% _.each( organizations, function(organization) { %>
               <li class="col-md-2 col-sm-4">
-                <a href="/organizations/<%- organization.slug %>">
+                <a href="<%- organization.url %>">
                   <strong title="<%- organization.name %>"><%- organization.name %></strong>
                   <small title="TODO: number of members">TODO: number of members</small>
                 </a>

@@ -79,12 +79,10 @@ class OrganizationEditingTests < PopItWatirTestCase
       
       # enter a proper name, get sent to organization page
       @b.text_field(:name, 'name').set "Acme Inc"
-      assert_equal "acme-inc", @b.text_field(:name, 'slug').value
       
       @b.input(:value, "Create new organization").click
       @b.wait_until { @b.title != 'Organizations' }
       assert_equal "Acme Inc", @b.title
-      assert_path '/organizations/acme-inc'
       
       # check that this organization is in the list of organizations too
       @b.back
@@ -115,6 +113,7 @@ class OrganizationEditingTests < PopItWatirTestCase
       # click on a suggestion, check get existing organization
       @b.ul(:class, 'suggestions').li.link.click
       assert_path '/organizations/united-states-government'
+      usg_url = @b.url
       
       # enter dup, create anyway, check for new organization
       @b.back
@@ -123,22 +122,16 @@ class OrganizationEditingTests < PopItWatirTestCase
       @b.text_field(:name, 'name').set "United States Government"
       @b.input(:value, "Create new organization").click
       @b.wait_until { @b.title != 'Organizations' }
-      assert_path '/organizations/united-states-government-1'
+      assert @b.url != usg_url
       
-      # enter name that can't be slugged
+      # enter name that uses non-ascii characters
       @b.back
       @b.refresh
       add_organization_link.click
       @b.text_field(:name, 'name').set "网页"
-      assert_equal "", @b.text_field(:name, 'slug').value
-      @b.input(:value, "Create new organization").click
-      @b.wait_until{ @b.div(:class =>'bbf-help', :index => 1 ).present? }
-      assert_equal 'Required', @b.div(:class =>'bbf-help', :index => 1 ).text
-      @b.text_field(:name, 'slug').set 'chinese-name'
       @b.input(:value, "Create new organization").click
       @b.wait_until { @b.title != 'Organizations' }
       assert_equal "网页", @b.title
-      assert_path '/organizations/chinese-name'
 
       # check edits are kept
       @b.back

@@ -580,7 +580,7 @@ module.exports = {
     },
 
     "import curly punctuation name": function ( test ) {
-        test.expect( 7 );
+        test.expect( 6 );
 
         var migration = new MigrationApp();
 
@@ -611,8 +611,7 @@ module.exports = {
             test.equal(docs.length, 1, 'one person in database');
 
             docs.forEach(function(doc) {
-              test.equal(doc.name, 'D’Angelo “Oddball” Fritz', 'D’Angelo “Oddball” Fritz');
-              test.equal(doc.slug, 'd\'angelo-"oddball"-fritz', 'slug is correct');
+              test.equal(doc.name, 'D’Angelo “Oddball” Fritz');
             });
 
             test.done();

@@ -147,7 +147,7 @@ class PopItWatirTestCase < Test::Unit::TestCase
   end
 
   def assert_path(expected)
-    assert_equal URI.parse(@b.url).path, expected
+    assert_equal expected, URI.parse(@b.url).path
   end
   
 end
