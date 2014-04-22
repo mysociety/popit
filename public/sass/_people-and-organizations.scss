@@ -1,5 +1,7 @@
 /* Person and Organization (ie: "entity") pages */
 
+$entity-photo-sidebar-width: 285px;
+
 .popit-toolbar {
   background-color: $light-grey-background;
   border-top: 1px solid darken($header-footer-background, 5%);
@@ -63,6 +65,12 @@
   .photo-sidebar {
     text-align: center;
     margin-top: 30px;
+
+    @media (min-width: $screen-sm-min){
+      float: right;
+      width: $entity-photo-sidebar-width;
+    }
+
   }
 
   ul.photos {
@@ -85,6 +93,37 @@
       bottom: 10px;
       left: 0;
       right: 0;
+    }
+  }
+
+  .dl-horizontal {
+    margin: 30px 0;
+
+    @media (min-width: $screen-sm-min) {
+      float: left;
+      width: $container-sm - $entity-photo-sidebar-width - 40px;
+
+      dd {
+        margin-left: 140px;  // narrower labels than bootstrap default
+      }
+      dt {
+        width: 120px;  // narrower labels than bootstrap default
+      }
+    }
+
+    @media (min-width: $screen-md-min) {
+      width: $container-md - $entity-photo-sidebar-width - 60px;
+
+      dd {
+        margin-left: 180px; // back to bootstrap default
+      }
+      dt {
+        width: 160px; // back to bootstrap default
+      }
+    }
+
+    @media (min-width: $screen-lg-min) {
+      width: $container-lg - $entity-photo-sidebar-width - 60px;
     }
   }
 
