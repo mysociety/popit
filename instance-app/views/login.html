@@ -6,33 +6,27 @@
   }
 ) %>
 
-<div class="login-form">
+<div class="login-form container">
 
   <% if ( as_guest ) { %>
+
     <h1>Guest login</h1>
-    <p class="instructions">
-      <p>You are about to log in to this web site as a guest user, letting you anonymously add and edit content.</p>
+    <p class="form-group">You are about to log in to this web site as a guest user, letting you anonymously add and edit content.</p>
+    <p class="form-group">Please be nice - for this to work we're relying on the wisdom of the crowd and the kindness of strangers.</p>
 
-      <p>Please be nice - for this to work we're relying on the wisdom of the crowd and the kindness of strangers.</p>
-    </p>
   <% } else { %>
-    <h1>Login</h1>
-    <p class="instructions">
-      Log back in to manage your PopIt site.       
 
-      <% if ( popit.allow_guest_access() ) { %>
-        <p>You can also <a href="?as_guest=1">log in anonymously as a guest</a>.</p>
-      <% } %>
+    <h1>Log in</h1>
+    <% if ( popit.allow_guest_access() ) { %>
+      <p>You can also <a href="?as_guest=1">log in anonymously as a guest</a>.</p>
+    <% } %>
 
-    </p>
-    
   <% } %>
-
 
   <% if (errors.length) { %>
     <ul id="errors">
       <% _.each(errors, function(error) { %>
-        <li class="error"><%- error %></li>        
+        <li class="error"><%- error %></li>
       <%}); %>
     </ul>
   <% } %>
@@ -40,33 +34,24 @@
   <form action='/login' method='post'>
 
     <% if ( as_guest ) { %>
-          
-      <input type='hidden' name='as_guest', value="1">
-
-      <p>
-        <input id="login" class="btn" type="submit" value="Login as Guest">
-      </p>
-
+      <input type="hidden" name="as_guest", value="1">
     <% } else { %>
-      <p>
-        <label for='email'> Email:</label>
-        <input id="email" type='text' name='email', value="<%- email %>">
-      </p>
-      
-      <p>
-        <label for='password'>Password:</label>
-        <input id="password" type='password' name='password'>
-      </p>
-      
-      <p>
-        <input id="login" class="btn" type="submit" value="Login">
+      <p class="form-group">
+        <label for="email" class="control-label"> Email:</label>
+        <input id="email" type="text" name="email" class="form-control" value="<%- email %>">
       </p>
 
-      <p>
-        (<a href='https://github.com/mysociety/popit/issues/17'>Forgotten your details?</a>)
+      <p class="form-group">
+        <a href="https://github.com/mysociety/popit/issues/17" class="pull-right">Forgotten?</a>
+        <label for="password" class="control-label">Password:</label>
+        <input id="password" type="password" name="password" class="form-control">
       </p>
     <% } %>
-    
+
+      <p class="form-group">
+        <button id="login" class="btn btn-primary" type="submit">Log in<% if ( as_guest ) { %> as Guest<% } %></button>
+      </p>
+
   </form>
 
 </div>

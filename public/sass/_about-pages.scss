@@ -25,3 +25,22 @@
     margin-bottom: 24px;
   }
 }
+
+
+.login-form {
+  width: 320px;
+  min-width: 0;
+  padding: 40px 0;
+
+  @media (min-width: $screen-sm-min) {
+    padding: 60px 0;
+  }
+
+  @media (min-width: $screen-sm-min) and (min-height: 700px) {
+    padding: 80px 0;
+  }
+
+  h1 {
+    margin: 0 0 20px 0;
+  }
+}
