@@ -32,7 +32,7 @@
 
 <article class="container entity person person-view" itemscope itemtype="http://schema.org/Person">
 
-  <aside class="pull-right">
+  <aside class="pull-right photo-sidebar">
     <ul class="photos">
       <% if (person.images.length) { %>
         <% _.each( person.images, function(image) { %>
@@ -44,17 +44,13 @@
               <img src="<%- image_proxy(person.url + "/images/" + image.id, "", 280) %>" />
             <% } %>
 
-            <p class="photo-source">
-              source:
-              <a href="#photographer-url">Photographer</a>
-              <abbr class="license" title="Creative Commons - By Attribution - Share Alike">CC-BY-SA</abbr>
-            </p>
-            <div class="admin-options">
-              <a class="delete-photo" data-image-url="<%- person.url %>/images/<%- image.id %>">
-                <i class="foundicon-trash"></i>
+            <!-- TODO: show this only on /edit page -->
+            <p class="photo-actions">
+              <a class="delete-photo btn btn-default btn-sm" data-image-url="<%- person.url %>/images/<%- image.id %>">
+                <span class="glyphicon glyphicon-trash glyphicon-space-after"></span>
                 Delete this photograph
               </a>
-            </div>
+            </p>
           </li>
         <% }); %>
       <% } else { %>
@@ -63,13 +59,14 @@
         </li>
       <% } %>
     </ul>
-    <ul class="admin-options">
-      <li>
-        <a class="add" href="<%- person.url %>/images/upload">
-          <strong>+</strong> Add a photograph
-        </a>
-      </li>
-    </ul>
+
+    <!-- TODO: show this only on /edit page -->
+    <p>
+      <a class="add btn btn-default btn-sm" href="<%- person.url %>/images/upload">
+        <span class="glyphicon glyphicon-plus glyphicon-space-after"></span>
+        Add a photograph
+      </a>
+    </p>
   </aside>
 
   <dl class="dl-horizontal">

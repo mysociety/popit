@@ -5,8 +5,36 @@
 
 .glyphicon-space-after {
   margin-right: 4px;
+
+  .btn-xs & {
+    margin-right: 2px;
+  }
 }
 
 .glyphicon-space-before {
   margin-left: 4px;
+
+  .btn-xs & {
+    margin-left: 2px;
+  }
 }
+
+
+.glyphicon {
+  .btn & {
+    font-size: 12px;
+    vertical-align: 1px;
+  }
+  .btn-lg & {
+    font-size: 14px;
+  }
+  .btn-sm & {
+    vertical-align: 0;
+  }
+  .btn-xs & {
+    font-size: 11px;
+    vertical-align: 0;
+  }
+}
+
+
