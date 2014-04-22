@@ -67,21 +67,4 @@ class PhotoTests < PopItWatirTestCase
     }
   end 
 
-  def test_adding_images_indexes_in_api
-    goto_instance 'test'
-    delete_instance_database
-    load_test_fixture
-    goto '/'
-    login_as :owner
-
-    goto '/persons/barack-obama'
-    @b.link(:text => '+ add a photograph').click
-    @b.text_field(:id, 'image_url').set('http://example.org/barak.jpg')
-    @b.input(:type => 'submit').click
-    assert @b.ul(:class => 'photos').li.img.present?
-
-    goto '/api/v0.1/search/persons?q=barack-obama'
-    assert @b.text.include?('http://example.org/barak.jpg')
-  end
-
 end

@@ -19,7 +19,7 @@
     <% if (persons.length) { %>    
       <% _.each( persons, function(person) { %>
         <li> 
-          <a href="/persons/<%- person.slug %>"><%- person.name %></a>
+          <a href="<%= person.url %>"><%- person.name %></a>
         </li>
       <% }); %>
       <% if (person_count > summary_listing_count) { %>
@@ -56,7 +56,7 @@
     <% if (organizations.length) { %>    
       <% _.each( organizations, function(organization) { %>
         <li> 
-          <a href="/organizations/<%- organization.slug %>"><%- organization.name %></a>
+          <a href="<%= organization.url %>"><%- organization.name %></a>
         </li>
       <% }); %>
       <% if (organization_count > summary_listing_count) { %>
