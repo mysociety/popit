@@ -4,23 +4,37 @@ define(['jquery'], function ($) {
   var enterEditMode = function(){
     $('.entity-viewing-toolbar').hide();
     $('.entity-editing-toolbar').show();
-    // We'll also want to insert/show the text inputs here
+      $('.edit-group').each(function() {
+          $(this).children('.hidden').removeClass('hidden');
+          $(this).children('.edit-static').addClass('hidden');
+      });
   }
 
   var leaveEditMode = function(){
     $('.entity-viewing-toolbar').show();
     $('.entity-editing-toolbar').hide();
-    // We'll also want to remove/hide the text inputs here
+      $('.edit-group').each(function() {
+          $(this).children().addClass('hidden');
+          $(this).children('.edit-static').removeClass('hidden');
+      });
   }
 
   var saveChanges = function(){
     toggleSavingButton();
-    setTimeout(function(){
-      // This is a fake timeout, to
-      // simulate the delay of an ajax save
-      toggleSavingButton();
-      leaveEditMode();
-    }, 1500);
+    popit.model.set('name', $('[name="name"]').val());
+    popit.model.set('summary', $('[name="summary"]').val());
+    popit.model.save(
+        {},
+        {
+            success: function() {
+              $('#entity-name-in-header').text(popit.model.get('name'));
+              $('#entity-summary-text').text(popit.model.get('summary'));
+              toggleSavingButton();
+              leaveEditMode();
+            }
+        }
+    );
+
   }
 
   var toggleSavingButton = function(){

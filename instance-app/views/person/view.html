@@ -80,13 +80,15 @@
   <dl class="dl-horizontal">
 
     <dt class="entity-attr-name">Name</dt>
-    <dd class="entity-attr-name">
-      <h1 class="current-entity edit-in-place" id="entity-name-in-header" title="<%- person.name %>" data-api-name="name" ><%- person.name %></h1>
+    <dd class="entity-attr-name edit-group">
+      <h1 class="edit-static current-entity" id="entity-name-in-header" title="<%- person.name %>" data-api-name="name" ><%- person.name %></h1>
+      <input type="text" class="hidden" name="name" value="<%- person.name %>">
     </dd>
 
     <dt>Summary</dt>
-    <dd itemprop="description">
-      <p id="entity-summary-text" class="edit-in-place-textarea" data-api-name="summary"><%- person.summary %></p>
+    <dd itemprop="description" class="edit-group">
+      <p id="entity-summary-text" class="edit-static" data-api-name="summary"><%- person.summary %></p>
+      <textarea class="hidden" name="summary"><%- person.summary %></textarea>
     </dd>
 
     <dt>Born</dt>
