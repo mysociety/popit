@@ -15,7 +15,7 @@
 
 <div class="popit-toolbar entity-toolbar">
   <div class="container">
-    <div class="btn-toolbar pull-right entity-viewing-toolbar">
+    <div class="btn-toolbar pull-right view-mode">
       <div class="btn-group">
         <a class="btn btn-default" href="/api/v0.1/persons/<%- person.id %>">JSON API</a>
       </div>
@@ -23,7 +23,7 @@
         <a class="btn btn-default entity-enter-edit-mode">Edit person <span class="glyphicon glyphicon-chevron-right"></span></a>
       </div>
     </div>
-    <div class="btn-toolbar pull-right entity-editing-toolbar" style="display: none">
+    <div class="btn-toolbar pull-right edit-mode">
       <div class="btn-group">
         <a class="btn btn-default entity-leave-edit-mode"><span class="glyphicon glyphicon-remove glyphicon-space-after"></span> Cancel</a>
       </div>
@@ -53,7 +53,7 @@
             <% } %>
 
             <!-- TODO: show this only on /edit page -->
-            <p class="photo-actions">
+            <p class="photo-actions edit-mode">
               <a class="delete-photo btn btn-default btn-sm" data-image-url="<%- person.url %>/images/<%- image.id %>">
                 <span class="glyphicon glyphicon-trash glyphicon-space-after"></span>
                 Delete this photograph
@@ -69,7 +69,7 @@
     </ul>
 
     <!-- TODO: show this only on /edit page -->
-    <p>
+    <p class="edit-mode">
       <a class="add btn btn-default btn-sm" href="<%- person.url %>/images/upload">
         <span class="glyphicon glyphicon-plus glyphicon-space-after"></span>
         Add a photograph
@@ -81,22 +81,26 @@
 
     <dt class="entity-attr-name">Name</dt>
     <dd class="entity-attr-name">
-      <h1 class="current-entity edit-in-place" id="entity-name-in-header" title="<%- person.name %>" data-api-name="name" ><%- person.name %></h1>
+      <h1 itemprop="name" class="view-mode"><%- person.name %></h1>
+      <input type="text" class="form-control edit-mode" data-api-name="name" value="<%- person.name %>">
     </dd>
 
     <dt>Summary</dt>
     <dd itemprop="description">
-      <p id="entity-summary-text" class="edit-in-place-textarea" data-api-name="summary"><%- person.summary %></p>
+      <p class="view-mode"><%- person.summary %></p>
+      <textarea class="form-control edit-mode" data-api-name="summary"><%- person.summary %></textarea>
     </dd>
 
     <dt>Born</dt>
     <dd>
-      <span data-api-name="birth_date" class="list-item-value edit-in-place"><%- person.birth_date || '---' %></span>
+      <p class="view-mode"><%- person.birth_date || '' %></p>
+      <input type="date" class="form-control edit-mode" data-api-name="birth_date" value="<%- person.birth_date || '' %>">
     </dd>
 
     <dt>Died</dt>
     <dd>
-      <span data-api-name="death_date" class="list-item-value edit-in-place"><%- person.death_date || '---' %></span>
+      <p class="view-mode"><%- person.death_date || '' %></p>
+      <input type="date" class="form-control edit-mode" data-api-name="death_date" value="<%- person.death_date || '' %>">
     </dd>
 
     <dt>Other names</dt>
@@ -110,8 +114,8 @@
         <% _.each( memberships, function (membership) { %>
           <%= render( 'membership/list-item.html', { membership: membership, type: 'person' } ) %>
         <% }); %>
-        <li>
-          <a class="add edit-membership">Add a<% if(memberships.length){ %>nother<% } %> membership</a>
+        <li class="edit-mode">
+          <a class="add edit-membership btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(memberships.length){ %>nother<% } %> membership</a>
         </li>
       </ul>
     </dd>

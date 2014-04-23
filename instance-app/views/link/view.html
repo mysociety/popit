@@ -1,5 +1,14 @@
-<span class="admin-options hover-only">
-  <a class="edit link-edit"><i class="foundicon-edit"></i> <span>Edit</span></a>
-</span>
-<div class="list-item-title"><%- item.note %>: </div>
-<div class="list-item-value"><a href="<%- item.url %>"><%- item.url %></a></div>
+<div class="view-mode">
+  <strong>
+    <%- item.note %>:
+  </strong>
+  <a href="<%- item.url %>"><%- item.url %></a>
+</div>
+<div class="edit-mode edit-group">
+  <a class="delete"><span class="glyphicon glyphicon-ban-circle glyphicon-space-after"></span>Delete</a>
+  <a class="edit link-edit"><span class="glyphicon glyphicon-pencil glyphicon-space-after"></span>Edit</a>
+  <strong>
+    <%- item.note %>:
+  </strong>
+  <a href="<%- item.url %>"><%- item.url %></a>
+</div>

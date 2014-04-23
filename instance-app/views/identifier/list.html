@@ -2,7 +2,7 @@
   <% _.each( identifiers, function (item) { %>
     <li><%= render( 'identifier/view.html', { item: item }) %></li>
   <% }); %>
-  <li>
-    <a class="add identifier-edit">Add an<% if(identifiers.length){ %>other<% } %> identifier</a>
+  <li class="edit-mode">
+    <a class="add identifier-edit btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add an<% if(identifiers.length){ %>other<% } %> identifier</a>
   </li>
 </ul>

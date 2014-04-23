@@ -2,15 +2,15 @@ define(['jquery'], function ($) {
   "use strict";
 
   var enterEditMode = function(){
-    $('.entity-viewing-toolbar').hide();
-    $('.entity-editing-toolbar').show();
-    // We'll also want to insert/show the text inputs here
+    $('.view-mode').hide();
+    $('.edit-mode').show();
+    $('.entity').addClass('editing');
   }
 
   var leaveEditMode = function(){
-    $('.entity-viewing-toolbar').show();
-    $('.entity-editing-toolbar').hide();
-    // We'll also want to remove/hide the text inputs here
+    $('.view-mode').show();
+    $('.edit-mode').hide();
+    $('.entity').removeClass('editing');
   }
 
   var saveChanges = function(){

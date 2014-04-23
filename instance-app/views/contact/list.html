@@ -2,7 +2,7 @@
   <% _.each( contact_details, function (item) { %>
     <li><%= render( 'contact/view.html', { item: item }) %></li>
   <% }); %>
-  <li>
-    <a class="add contact-edit">Add contact details</a>
+  <li class="edit-mode">
+    <a class="add contact-edit btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add contact details</a>
   </li>
 </ul>

@@ -1,10 +1,20 @@
-<span class="admin-options hover-only">
-  <a class="edit other_name-edit"><i class="foundicon-edit"></i> <span>Edit</span></a>
-</span>
-
-<% if (item.note) { %><%- item.note %>: <% } %>
-<%- item.name %>
-<% if (item.start_date || item.end_date) { %>
-(<%- item.start_date || '?' %> &ndash; <%- item.end_date || '?' %>)
-<% } %>
-
+<div class="view-mode">
+  <% if (item.note) { %>
+    <strong><%- item.note %>:</strong>
+  <% } %>
+  <%- item.name %>
+  <% if (item.start_date || item.end_date) { %>
+    <span class="text-muted">(<%- item.start_date || '?' %> &ndash; <%- item.end_date || '?' %>)</span>
+  <% } %>
+</div>
+<div class="edit-mode">
+  <a class="delete"><span class="glyphicon glyphicon-ban-circle glyphicon-space-after"></span>Delete</a>
+  <a class="edit other_name-edit"><span class="glyphicon glyphicon-pencil glyphicon-space-after"></span>Edit</a>
+  <% if (item.note) { %>
+    <strong><%- item.note %>:</strong>
+  <% } %>
+  <%- item.name %>
+  <% if (item.start_date || item.end_date) { %>
+    <span class="text-muted">(<%- item.start_date || '?' %> &ndash; <%- item.end_date || '?' %>)</span>
+  <% } %>
+</div>

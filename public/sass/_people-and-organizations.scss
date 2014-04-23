@@ -60,6 +60,10 @@ $entity-photo-sidebar-width: 285px;
 
 }
 
+.edit-mode {
+  display: none;
+}
+
 .entity {
 
   .photo-sidebar {
@@ -131,6 +135,12 @@ $entity-photo-sidebar-width: 285px;
     line-height: 45px; // default h1 line-height, so label lines up vertically
   }
 
+  dd.entity-attr-name .form-control {
+    font-size: 41px;
+    line-height: 45px;
+    height: auto;
+  }
+
   dd {
     margin-bottom: 10px;
 
@@ -148,6 +158,59 @@ $entity-photo-sidebar-width: 285px;
 
     p, h1 {
       margin: 0;
+    }
+
+    .add.btn {
+      display: block;
+      text-align: left;
+      border: 1px solid darken($light-grey-background, 10%);
+
+      &:hover, &:focus {
+        text-decoration: underline; // make it act less like a btn, more like a link
+        color: $link-hover-color; // make it act less like a btn, more like a link
+        background-color: $light-grey-background;
+        border: 1px solid darken($light-grey-background, 15%);
+      }
+
+      .glyphicon {
+        font-size: 12px;
+      }
+    }
+
+    .edit-group {
+      padding: 6px 12px; // to match bootstrap buttons and inputs
+      background-color: $light-grey-background;
+      border: 1px solid darken($light-grey-background, 10%);
+      border-radius: $border-radius-base;
+
+      .delete, .edit {
+        float: right;
+
+        .glyphicon {
+          font-size: 12px;
+        }
+      }
+
+      .delete + .edit,
+      .edit + .delete {
+        margin-right: 10px;
+      }
+    }
+
+    .bbf-form {
+      padding: 6px 12px; // to match bootstrap buttons and inputs
+      background-color: $light-grey-background;
+      border: 1px solid darken($light-grey-background, 10%);
+      border-radius: $border-radius-base;
+    }
+  }
+
+  &.editing {
+    dt {
+      margin-top: 7px; // line up with text inputs
+    }
+    dd {
+      margin-bottom: 20px; // more space between inputs
     }
   }
 

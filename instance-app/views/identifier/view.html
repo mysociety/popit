@@ -1,6 +1,14 @@
-<span class="admin-options hover-only">
-  <a class="edit identifier-edit"><i class="foundicon-edit"></i> <span>Edit</span></a>
-</span>
-
-<% if (item.scheme) { %><%- item.scheme %>: <% } %>
-<%- item.identifier %>
+<div class="view-mode">
+  <% if (item.scheme) { %>
+    <strong><%- item.scheme %>:</strong>
+  <% } %>
+  <%- item.identifier %>
+</div>
+<div class="edit-mode edit-group">
+  <a class="delete"><span class="glyphicon glyphicon-ban-circle glyphicon-space-after"></span>Delete</a>
+  <a class="edit identifier-edit"><span class="glyphicon glyphicon-pencil glyphicon-space-after"></span>Edit</a>
+  <% if (item.scheme) { %>
+    <strong><%- item.scheme %>:</strong>
+  <% } %>
+  <%- item.identifier %>
+</div>

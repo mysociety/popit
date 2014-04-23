@@ -2,7 +2,7 @@
   <% _.each( links, function (item) { %>
     <li><%= render( 'link/view.html', { item: item }) %></li>
   <% }); %>
-  <li>
-    <a class="add link-edit">Add a<% if(links.length){ %>nother<% } %> link</a>
+  <li class="edit-mode">
+    <a class="add link-edit btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(links.length){ %>nother<% } %> link</a>
   </li>
 </ul>

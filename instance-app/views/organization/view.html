@@ -23,7 +23,7 @@
 
 <div class="popit-toolbar entity-toolbar">
   <div class="container">
-    <div class="btn-toolbar pull-right entity-viewing-toolbar">
+    <div class="btn-toolbar pull-right view-mode">
       <div class="btn-group">
         <a class="btn btn-default" href="/api/v0.1/organizations/<%- organization.id %>">JSON API</a>
       </div>
@@ -31,7 +31,7 @@
         <a class="btn btn-default entity-enter-edit-mode">Edit organization <span class="glyphicon glyphicon-chevron-right"></span></a>
       </div>
     </div>
-    <div class="btn-toolbar pull-right entity-editing-toolbar" style="display: none">
+    <div class="btn-toolbar pull-right edit-mode">
       <div class="btn-group">
         <a class="btn btn-default entity-leave-edit-mode"><span class="glyphicon glyphicon-remove glyphicon-space-after"></span> Cancel</a>
       </div>
@@ -61,7 +61,7 @@
             <% } %>
 
             <!-- TODO: show this only on /edit page -->
-            <p class="photo-actions">
+            <p class="photo-actions edit-mode">
               <a class="delete-photo btn btn-default btn-sm" data-image-url="<%- organization.url %>/images/<%- image.id %>">
                 <span class="glyphicon glyphicon-trash glyphicon-space-after"></span>
                 Delete this photograph
@@ -77,7 +77,7 @@
     </ul>
 
     <!-- TODO: show this only on /edit page -->
-    <p>
+    <p class="edit-mode">
       <a class="add btn btn-default btn-sm" href="<%- organization.url %>/images/upload">
         <span class="glyphicon glyphicon-plus glyphicon-space-after"></span>
         Add a photograph
@@ -89,36 +89,42 @@
 
     <dt class="entity-attr-name">Name</dt>
     <dd class="entity-attr-name">
-      <h1 class="current-entity edit-in-place" id="entity-name-in-header" title="<%- organization.name %>" data-api-name="name" ><%- organization.name %></h1>
+      <h1 itemprop="name" class="view-mode"><%- organization.name %></h1>
+      <input type="text" class="form-control edit-mode" data-api-name="name" value="<%- organization.name %>">
     </dd>
 
     <dt>Summary</dt>
     <dd itemprop="description">
-      <p id="entity-summary-text" class="edit-in-place-textarea" data-api-name="summary"><%- organization.summary %></p>
+      <p class="view-mode"><%- organization.summary %></p>
+      <textarea class="form-control edit-mode" data-api-name="summary"><%- organization.summary %></textarea>
     </dd>
 
     <dt>Classification</dt>
     <dd>
-      <p class="edit-in-place" data-api-name="classification"><%- organization.classification %></p>
+      <p class="view-mode"><%- organization.classification %></p>
+      <input type="text" class="form-control edit-mode" data-api-name="classification" value="<%- organization.classification %>">
     </dd>
 
     <dt>Parent</dt>
     <dd>
-      <p class="edit-in-place-select" data-api-name="parent_id">
+      <p class="view-mode">
         <% if (organization.parent_id) { %>
           <%- organization.parent_id.name %>
         <% } %>
       </p>
+      <input type="text" class="form-control edit-mode" data-api-name="parent_id" value="<%- organization.parent_id %>">
     </dd>
 
     <dt>Founded</dt>
     <dd>
-      <span data-api-name="founding_date" class="list-item-value edit-in-place"><%- organization.founding_date || '---' %></span>
+      <p class="view-mode"><%- organization.founding_date || '' %></p>
+      <input type="date" class="form-control edit-mode" data-api-name="founding_date" value="<%- organization.founding_date || '' %>">
     </dd>
 
     <dt>Dissolved</dt>
     <dd>
-      <span data-api-name="dissolution_date" class="list-item-value edit-in-place"><%- organization.dissolution_date || '---' %></span>
+      <p class="view-mode"><%- organization.dissolution_date || '' %></p>
+      <input type="date" class="form-control edit-mode" data-api-name="dissolution_date" value="<%- organization.dissolution_date || '' %>">
     </dd>
 
     <dt>Other names</dt>
@@ -132,8 +138,8 @@
         <% _.each( posts, function ( post ) { %>
           <li><%= render( 'post/view.html', { item: post }) %></li>
         <% }); %>
-        <li>
-          <a class="add edit-post">Add a<% if(posts.length){ %>nother<% } %> post</a>
+        <li class="edit-mode">
+          <a class="add edit-post btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(posts.length){ %>nother<% } %> post</a>
         </li>
       </ul>
     </dd>
@@ -144,8 +150,8 @@
         <% _.each( memberships, function ( membership ) { %>
           <%= render( 'membership/list-item.html', { membership: membership, type: 'organization' } ) %>
         <% }); %>
-        <li>
-          <a class="add edit-membership">Add a<% if(posts.length){ %>nother<% } %> post</a>
+        <li class="edit-mode">
+          <a class="add edit-membership btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(posts.length){ %>nother<% } %> member</a>
         </li>
       </ul>
     </dd>
