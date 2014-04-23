@@ -60,7 +60,6 @@
               <img src="<%- image_proxy(organization.url + "/images/" + image.id, "", 280) %>" />
             <% } %>
 
-            <!-- TODO: show this only on /edit page -->
             <p class="photo-actions edit-mode">
               <a class="delete-photo btn btn-default btn-sm" data-image-url="<%- organization.url %>/images/<%- image.id %>">
                 <span class="glyphicon glyphicon-trash glyphicon-space-after"></span>
@@ -76,7 +75,6 @@
       <% } %>
     </ul>
 
-    <!-- TODO: show this only on /edit page -->
     <p class="edit-mode">
       <a class="add btn btn-default btn-sm" href="<%- organization.url %>/images/upload">
         <span class="glyphicon glyphicon-plus glyphicon-space-after"></span>
@@ -89,13 +87,13 @@
 
     <dt class="entity-attr-name">Name</dt>
     <dd class="entity-attr-name">
-      <h1 itemprop="name" class="view-mode"><%- organization.name %></h1>
+      <h1 itemprop="name" class="view-mode" data-api-name="name"><%- organization.name %></h1>
       <input type="text" class="form-control edit-mode" data-api-name="name" value="<%- organization.name %>">
     </dd>
 
     <dt>Summary</dt>
     <dd itemprop="description">
-      <p class="view-mode"><%- organization.summary %></p>
+      <p class="view-mode" data-api-name="summary"><%- organization.summary %></p>
       <textarea class="form-control edit-mode" data-api-name="summary"><%- organization.summary %></textarea>
     </dd>
 

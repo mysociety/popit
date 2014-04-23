@@ -15,12 +15,19 @@ define(['jquery'], function ($) {
 
   var saveChanges = function(){
     toggleSavingButton();
-    setTimeout(function(){
-      // This is a fake timeout, to
-      // simulate the delay of an ajax save
-      toggleSavingButton();
-      leaveEditMode();
-    }, 1500);
+    popit.model.set('name', $('[data-api-name="name"]').val());
+    popit.model.set('summary', $('[data-api-name="summary"]').val());
+    popit.model.save(
+      {},
+      {
+        success: function() {
+          $('.view-mode[data-api-name="name"]').text(popit.model.get('name'));
+          $('.view-mode[data-api-name="summary"]').text(popit.model.get('summary'));
+          toggleSavingButton();
+          leaveEditMode();
+        }
+      }
+    );
   }
 
   var toggleSavingButton = function(){
