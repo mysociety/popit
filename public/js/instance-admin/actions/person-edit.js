@@ -13,6 +13,17 @@ define(['jquery'], function ($) {
     $('.entity').removeClass('editing');
   }
 
+  var cancelEdit = function(){
+      leaveEditMode();
+      var fields = [ 'name', 'summary', 'birth_date', 'death_date' ];
+      for ( var i = 0; i < fields.length; i++ ) {
+        var field = fields[i];
+        var original = '.view-mode[data-api-name="' + field + '"]';
+        var changed = '.edit-mode[data-api-name="' + field + '"]';
+        $(changed).val($(original).text());
+      }
+  }
+
   var saveChanges = function(){
     toggleSavingButton();
     var name = $('.edit-mode[data-api-name="name"]').val();
@@ -72,7 +83,7 @@ define(['jquery'], function ($) {
 
   $(function(){
     $('.entity-enter-edit-mode').on('click', enterEditMode);
-    $('.entity-leave-edit-mode').on('click', leaveEditMode);
+    $('.entity-leave-edit-mode').on('click', cancelEdit);
     $('.entity-save-changes').on('click', saveChanges);
   });
 
