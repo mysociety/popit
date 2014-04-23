@@ -13,7 +13,7 @@
         <a class="btn btn-default" href="/api/v0.1/persons/">JSON API</a>
       </div>
       <div class="btn-group">
-        <% if (user) { %>
+        <% if (user || guest) { %>
           <a class="btn btn-default new-person add" href="#"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span> Add a new person</a>
         <% } else { %>
           <a class="btn btn-default" href="/login"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span> Log in to add a person</a>
@@ -52,7 +52,7 @@
 
     <h2>There are no people in the system yet</h2>
 
-    <% if (user) { %>
+    <% if (user || guest) { %>
       <p>
         <a class="btn btn-primary new-person add">Add your first person</a>
         <a class="btn btn-default" href="/migration">Upload a CSV of people</a>

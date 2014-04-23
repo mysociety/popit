@@ -9,7 +9,7 @@
 <div class="popit-toolbar">
   <div class="container">
     <div class="btn-toolbar pull-right">
-      <% if (user) { %>
+      <% if (user || guest) { %>
         <a class="btn btn-default" href="/about/edit">Edit details <span class="glyphicon glyphicon-chevron-right"></span></a>
       <% } else { %>
         <a class="btn btn-default" href="/login">Log in to edit <span class="glyphicon glyphicon-chevron-right"></span></a>

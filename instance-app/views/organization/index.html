@@ -13,7 +13,7 @@
         <a class="btn btn-default" href="/api/v0.1/organizations/">JSON API</a>
       </div>
       <div class="btn-group">
-        <% if (user) { %>
+        <% if (user || guest) { %>
           <a class="btn btn-default new-organization add" href="#"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span> Add a new organization</a>
         <% } else { %>
           <a class="btn btn-default" href="/login"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span> Log in to add an organization</a>
@@ -51,7 +51,7 @@
 
     <h2>There are no organizations in the system yet</h2>
 
-    <% if (user) { %>
+    <% if (user || guest) { %>
       <p>
         <a class="btn btn-primary new-organization add">Add your first organization</a>
         <a class="btn btn-default" href="/migration">Upload a CSV of members</a>
