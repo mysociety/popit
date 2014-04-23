@@ -15,16 +15,43 @@ define(['jquery'], function ($) {
 
   var saveChanges = function(){
     toggleSavingButton();
-    popit.model.set('name', $('[data-api-name="name"]').val());
-    popit.model.set('summary', $('[data-api-name="summary"]').val());
+    var name = $('.edit-mode[data-api-name="name"]').val();
+    if ( !name ) {
+        $('.edit-mode[data-api-name="name"]').parent().addClass('has-error');
+        toggleSavingButton();
+        return;
+    }
+    popit.model.set('name', name);
+    popit.model.set('summary', $('.edit-mode[data-api-name="summary"]').val());
+    var dates = ['death_date', 'birth_date'];
+    for ( var i = 0; i < dates.length; i++ ) {
+        var selector = '.edit-mode[data-api-name="' + dates[i] + '"]';
+        var value = $(selector).val();
+        if ( ! value ) {
+            value = null;
+        }
+        popit.model.set(dates[i], value);
+    }
     popit.model.save(
       {},
       {
         success: function() {
-          $('.view-mode[data-api-name="name"]').text(popit.model.get('name'));
-          $('.view-mode[data-api-name="summary"]').text(popit.model.get('summary'));
+          var fields = [ 'name', 'summary', 'birth_date', 'death_date' ];
+          for ( var i = 0; i < fields.length; i++ ) {
+            var field = fields[i];
+            var selector = '.view-mode[data-api-name="' + field + '"]';
+            var value = popit.model.get(field);
+            if ( value == null ) {
+                value = '';
+            }
+            $(selector).text(value);
+          }
           toggleSavingButton();
           leaveEditMode();
+        },
+        error: function(obj, err) {
+            console.log(err);
+            toggleSavingButton();
         }
       }
     );
