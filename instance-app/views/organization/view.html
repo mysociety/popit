@@ -23,15 +23,23 @@
 
 <div class="popit-toolbar entity-toolbar">
   <div class="container">
-    <div class="btn-toolbar pull-right">
+    <div class="btn-toolbar pull-right entity-viewing-toolbar">
       <div class="btn-group">
         <a class="btn btn-default" href="/api/v0.1/organizations/<%- organization.id %>">JSON API</a>
       </div>
-      <div class="btn-group" style="display: none">
-        <a class="btn btn-default delete delete-organization">Delete organization</a>
+      <div class="btn-group">
+        <a class="btn btn-default entity-enter-edit-mode">Edit organization <span class="glyphicon glyphicon-chevron-right"></span></a>
+      </div>
+    </div>
+    <div class="btn-toolbar pull-right entity-editing-toolbar" style="display: none">
+      <div class="btn-group">
+        <a class="btn btn-default entity-leave-edit-mode"><span class="glyphicon glyphicon-remove glyphicon-space-after"></span> Cancel</a>
       </div>
       <div class="btn-group">
-        <a class="btn btn-default" href="#">Edit organization <span class="glyphicon glyphicon-chevron-right"></span></a>
+        <a class="btn btn-danger entity-delete"><span class="glyphicon glyphicon-ban-circle glyphicon-space-after"></span> Delete organization</a>
+      </div>
+      <div class="btn-group">
+        <a class="btn btn-success entity-save-changes"><span class="glyphicon glyphicon-ok glyphicon-space-after"></span> Save changes</a>
       </div>
     </div>
     <p><a href="/organizations">Organizations</a> / <a href="/organizations/<%- organization.slug %>"><%- organization.id %></a></p>

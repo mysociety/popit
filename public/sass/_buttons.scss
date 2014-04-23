@@ -19,6 +19,8 @@
   }
 }
 
+// Compensate for larger base font size,
+// by repositioning icons inside of buttons
 
 .glyphicon {
   .btn & {
@@ -34,6 +36,41 @@
   .btn-xs & {
     font-size: 11px;
     vertical-align: 0;
+  }
+}
+
+// Add a .btn-loading style, which overrides
+// any child glyphicons with a spinning cog
+
+@-moz-keyframes spin {
+  0% { -moz-transform: rotate(0deg); }
+  100% { -moz-transform: rotate(359deg); }
+}
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(359deg); }
+}
+@-o-keyframes spin {
+  0% { -o-transform: rotate(0deg); }
+  100% { -o-transform: rotate(359deg); }
+}
+@-ms-keyframes spin {
+  0% { -ms-transform: rotate(0deg); }
+  100% { -ms-transform: rotate(359deg); }
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(359deg); }
+}
+
+.btn-loading .glyphicon {
+  -webkit-animation: spin 4s infinite linear;
+  -moz-animation: spin 4s infinite linear;
+  -o-animation: spin 4s infinite linear;
+  animation: spin 4s infinite linear;
+
+  &:before {
+    content: "\e019";
   }
 }
 
