@@ -10,9 +10,19 @@ define(['jquery'], function ($) {
   var leaveEditMode = function(){
     $('.view-mode').show();
     $('.edit-mode').hide();
+    $('.entity').removeClass('editing');
+    resetErrorStates();
+  }
+
+  var resetErrorStates = function(){
     $('.edit-mode-error').hide();
     $('.has-error').removeClass('has-error');
-    $('.entity').removeClass('editing');
+    $('.alert.backbone-error').slideUp(100);
+  }
+
+  var showBackboneError = function(){
+    var $alert = $('<div class="alert alert-danger backbone-error"><p class="container"><strong>There was a problem saving your changes.</strong> Please try again.</p></div>');
+    $alert.hide().insertBefore('.entity').slideDown(100);
   }
 
   var cancelEdit = function(){
@@ -67,6 +77,7 @@ define(['jquery'], function ($) {
         },
         error: function(obj, err) {
             console.log(err);
+            showBackboneError();
             toggleSavingButton();
         }
       }

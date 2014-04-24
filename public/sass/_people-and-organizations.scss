@@ -64,6 +64,14 @@ $entity-photo-sidebar-width: 285px;
   display: none;
 }
 
+.alert.backbone-error {
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0;
+  margin-bottom: 0;
+  margin-top: -1px; // overlap the previous bar's (or the edit-toolbar's) border
+}
+
 .entity {
 
   .photo-sidebar {
