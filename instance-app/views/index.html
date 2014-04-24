@@ -22,11 +22,19 @@
             Populate
           </h3>
           <p>Add people and organizations to your PopIt instance.</p>
-          <a class="new-person add btn <% if (current_step === 1) { %>btn-primary<% } else { %>btn-default<% } %>" href="#"><% if (current_step < 2) { %>
-              Add your first person
-            <% } else { %>
-              Add another person
-            <% } %></a>
+          <% if (user || guest) { %>
+            <a class="new-person add btn <% if (current_step === 1) { %>btn-primary<% } else { %>btn-default<% } %>" href="#"><% if (current_step < 2) { %>
+                Add your first person
+              <% } else { %>
+                Add another person
+              <% } %></a>
+          <% } else { %>
+            <a class="add btn <% if (current_step === 1) { %>btn-primary<% } else { %>btn-default<% } %>" href="/login"><% if (current_step < 2) { %>
+                Log in to add people
+              <% } else { %>
+                Log in to add more people
+              <% } %></a>
+          <% } %>
         </div>
         <div class="col-sm-4 col-lg-3 col-lg-offset-1 homepage-setup-guide-step <% if (current_step <= 2) { %>incomplete<% } else { %>complete<% } %>">
           <h3>
@@ -38,7 +46,11 @@
             Describe
           </h3>
           <p>Help people find and understand your instance.</p>
-          <a href="/about/edit" class="btn <% if (current_step === 2) { %>btn-primary<% } else { %>btn-default<% } %>">Edit details</a>
+          <% if (user || guest) { %>
+            <a href="/about/edit" class="btn <% if (current_step === 2) { %>btn-primary<% } else { %>btn-default<% } %>">Edit details</a>
+          <% } else { %>
+            <a href="/login" class="btn <% if (current_step === 2) { %>btn-primary<% } else { %>btn-default<% } %>">Log in to edit details</a>
+          <% } %>
         </div>
         <div class="col-sm-4 col-lg-3 col-lg-offset-1 homepage-setup-guide-step incomplete">
           <h3>
@@ -110,7 +122,11 @@
 
         <ul class="homepage-summary-toolbar">
           <li>
-            <a class="new-person add btn btn-default btn-xs" href="#">+ Add new person</a>
+            <% if (user || guest) { %>
+              <a class="new-person add btn btn-default btn-xs" href="#">+ Add new person</a>
+            <% } else { %>
+              <a class="add btn btn-default btn-xs" href="/login">Log in to add a new person</a>
+            <% } %>
           </li>
         </ul>
       </div>
@@ -142,7 +158,11 @@
 
         <ul class="homepage-summary-toolbar">
           <li>
-            <a class="new-organization add btn btn-default btn-xs" href="#">+ Add new organization</a>
+            <% if (user || guest) { %>
+              <a class="new-organization add btn btn-default btn-xs" href="#">+ Add new organization</a>
+            <% } else { %>
+              <a class="add btn btn-default btn-xs" href="/login">Log in to add a new organization</a>
+            <% } %>
           </li>
         </ul>
       </div>
