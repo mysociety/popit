@@ -49,7 +49,7 @@
               <% // TODO - proxy will need changes to allow us to proxy remote images %>
               <img src="<%- image.url %>" width="280" />
             <% } else { %>
-              <img src="<%- image_proxy(person.url + "/images/" + image.id, "", 280) %>" />
+              <img src="<%- image_proxy("/persons/images/" + image.id + '/' + person.id, "", 280) %>" />
             <% } %>
 
             <p class="photo-actions edit-mode">
