@@ -127,8 +127,13 @@
           color: #333;
         }
       }
+    }
 
-      &.homepage-summary-show-all {
+    &.homepage-summary-show-all {
+      a {
+        position: relative; // so we can stack the fake card behind this
+        z-index: 2;
+
         img {
           height: 85px;
           width: auto;
@@ -144,6 +149,21 @@
           line-height: 44px;
           margin-bottom: 0;
         }
+
+      }
+
+      // A fake, slightly rotated card, to sit behind the main <a> card for visual effect
+      &:after {
+        content: "";
+        display: block;
+        position: relative;
+        top: -190px; // position behind the 190px-high sibling <a>
+        z-index: 0;
+        height: 190px; // height of the sibling <a>
+        margin-bottom: -190px; // compensate for -190px relative top shift
+        @include rotate(3deg);
+        @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+        background: #fff;
       }
     }
   }
