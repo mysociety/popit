@@ -20,8 +20,8 @@ define(['jquery'], function ($) {
     $('.alert.backbone-error').slideUp(100);
   }
 
-  var showBackboneError = function(){
-    var $alert = $('<div class="alert alert-danger backbone-error"><p class="container"><strong>There was a problem saving your changes.</strong> Please try again.</p></div>');
+  var showBackboneError = function(msg){
+    var $alert = $('<div class="alert alert-danger backbone-error"><p class="container"><strong>' + msg + '</strong> Please try again.</p></div>');
     $alert.hide().insertBefore('.entity').slideDown(100);
   }
 
@@ -77,7 +77,7 @@ define(['jquery'], function ($) {
         },
         error: function(obj, err) {
             console.log(err);
-            showBackboneError();
+            showBackboneError('There was a problem saving your changes.');
             toggleSavingButton();
         }
       }
@@ -109,7 +109,7 @@ define(['jquery'], function ($) {
           window.location = '/persons';
         },
         error: function(model, response) {
-          alert('Failed to delete person, please try again');
+          showBackboneError('There was a problem deleting this person.');
         }
     });
   }
