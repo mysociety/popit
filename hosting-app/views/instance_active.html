@@ -15,7 +15,11 @@
     <dd><a href="<%- instance.base_url %>"><%- instance.base_url %></a></dd>
     <dt>Description:</dt>
     <dd>
-      <%- instance.info.description || '<span class="text-muted">(None)</span>' %>
+      <% if ( instance.info.description ) { %>
+        <%- instance.info.description %>
+      <% } else { %>
+        <span class="text-muted">(None)</span>
+      <% } %>
     </dd>
     <% if ( instance.info.name ) { %>
       <dt>People:</dt>
