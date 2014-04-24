@@ -20,7 +20,11 @@
         <a class="btn btn-default" href="/api/v0.1/persons/<%- person.id %>">JSON API</a>
       </div>
       <div class="btn-group">
-        <a class="btn btn-default entity-enter-edit-mode">Edit person <span class="glyphicon glyphicon-chevron-right"></span></a>
+        <% if (user || guest) { %>
+          <a class="btn btn-default entity-enter-edit-mode">Edit person <span class="glyphicon glyphicon-chevron-right"></span></a>
+        <% } else { %>
+          <a class="btn btn-default" href="/login">Log in to edit <span class="glyphicon glyphicon-chevron-right"></span></a>
+          <% } %>
       </div>
     </div>
     <div class="btn-toolbar pull-right edit-mode">
@@ -62,7 +66,7 @@
         <% }); %>
       <% } else { %>
         <li>
-          <img src='/img/person_placeholder.svg' width="280" />
+          <img src='/img/placeholder-person.gif' width="280" />
         </li>
       <% } %>
     </ul>
