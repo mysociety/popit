@@ -97,10 +97,28 @@ define(['jquery'], function ($) {
     }
   }
 
+  var deletePersonConfirm = function(){
+      if ( window.confirm('Are you sure you want to delete ' + popit.model.get('name')) ) {
+        deletePerson();
+      }
+  }
+
+  var deletePerson = function(){
+    popit.model.destroy({
+        success: function() {
+          window.location = '/persons';
+        },
+        error: function(model, response) {
+          alert('Failed to delete person, please try again');
+        }
+    });
+  }
+
   $(function(){
     $('.entity-enter-edit-mode').on('click', enterEditMode);
     $('.entity-leave-edit-mode').on('click', cancelEdit);
     $('.entity-save-changes').on('click', saveChanges);
+    $('.entity-delete').on('click', deletePersonConfirm);
   });
 
 });
