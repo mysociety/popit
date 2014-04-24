@@ -91,13 +91,13 @@
 
     <dt>Born</dt>
     <dd>
-      <p class="view-mode"><%- person.birth_date || '' %></p>
+      <p class="view-mode" data-api-name="birth_date"><%- person.birth_date || '' %></p>
       <input type="date" class="form-control edit-mode" data-api-name="birth_date" value="<%- person.birth_date || '' %>">
     </dd>
 
     <dt>Died</dt>
     <dd>
-      <p class="view-mode"><%- person.death_date || '' %></p>
+      <p class="view-mode" data-api-name="death_date"><%- person.death_date || '' %></p>
       <input type="date" class="form-control edit-mode" data-api-name="death_date" value="<%- person.death_date || '' %>">
     </dd>
 
