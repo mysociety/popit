@@ -99,7 +99,10 @@
             <% }); %>
             <% if (person_count > persons.length) { %>
             <li class="col-md-2 col-sm-4">
-              <a href="/persons/">Show all <%- person_count %>&hellip;</a>
+              <a href="/persons/" class="homepage-summary-show-all">
+                <img src="/img/icon-persons.gif" width="115" height="85" alt="">
+                <strong>Show all <%- person_count %>&hellip;</strong>
+              </a>
             </li>
             <% } %>
           </ul>
@@ -128,7 +131,10 @@
             <% }); %>
             <% if (organization_count > organizations.length) { %>
             <li class="col-md-2 col-sm-4">
-              <a href="/organizations/">Show all <%- organization_count %>&hellip;</a>
+              <a href="/organizations/" class="homepage-summary-show-all">
+                <img src="/img/icon-organizations.gif" width="115" height="85" alt="">
+                <strong>Show all <%- organization_count %>&hellip;</strong>
+              </a>
             </li>
             <% } %>
           </ul>

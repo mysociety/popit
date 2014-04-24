@@ -127,6 +127,24 @@
           color: #333;
         }
       }
+
+      &.homepage-summary-show-all {
+        img {
+          height: 85px;
+          width: auto;
+          margin: 20px 0 15px 0; // 20 + 15 = 35. 35 + 85 (image height) = 120 (initials height)
+          @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+            height: 55px;
+            width: auto;
+          }
+        }
+
+        strong {
+          height: 44px;
+          line-height: 44px;
+          margin-bottom: 0;
+        }
+      }
     }
   }
 }
