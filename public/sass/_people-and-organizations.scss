@@ -131,14 +131,39 @@ $entity-photo-sidebar-width: 285px;
     }
   }
 
-  dt.entity-attr-name {
-    line-height: 45px; // default h1 line-height, so label lines up vertically
+  &.editing {
+    dt {
+      margin-top: 7px; // line up with text inputs
+    }
+    dd {
+      margin-bottom: 20px; // more space between inputs
+    }
   }
 
-  dd.entity-attr-name .form-control {
-    font-size: 41px;
-    line-height: 45px;
-    height: auto;
+  dt.entity-attr-name {
+    line-height: 45px; // default h1 line-height, so label lines up vertically
+
+    &.has-error {
+      margin-top: 35px; //
+    }
+  }
+
+  dd.entity-attr-name {
+    .form-control {
+      font-size: 41px;
+      line-height: 45px;
+      height: auto;
+    }
+
+    .control-label {
+      margin-bottom: 5px;
+    }
+
+    &.has-error {
+      .form-control {
+        background-color: lighten($state-danger-bg, 5%);
+      }
+    }
   }
 
   dd {
@@ -202,15 +227,6 @@ $entity-photo-sidebar-width: 285px;
       background-color: $light-grey-background;
       border: 1px solid darken($light-grey-background, 10%);
       border-radius: $border-radius-base;
-    }
-  }
-
-  &.editing {
-    dt {
-      margin-top: 7px; // line up with text inputs
-    }
-    dd {
-      margin-bottom: 20px; // more space between inputs
     }
   }
 

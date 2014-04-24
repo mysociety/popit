@@ -10,6 +10,8 @@ define(['jquery'], function ($) {
   var leaveEditMode = function(){
     $('.view-mode').show();
     $('.edit-mode').hide();
+    $('.edit-mode-error').hide();
+    $('.has-error').removeClass('has-error');
     $('.entity').removeClass('editing');
   }
 
@@ -28,9 +30,12 @@ define(['jquery'], function ($) {
     toggleSavingButton();
     var name = $('.edit-mode[data-api-name="name"]').val();
     if ( !name ) {
-        $('.edit-mode[data-api-name="name"]').parent().addClass('has-error');
-        toggleSavingButton();
-        return;
+      var $dd = $('.edit-mode[data-api-name="name"]').parent();
+      $dd.addClass('has-error'); // the text input and error text
+      $dd.prev().addClass('has-error'); // the label
+      $('.edit-mode-error', $dd).show();
+      toggleSavingButton();
+      return;
     }
     popit.model.set('name', name);
     popit.model.set('summary', $('.edit-mode[data-api-name="summary"]').val());
