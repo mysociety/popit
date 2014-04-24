@@ -12,6 +12,8 @@
     popit.data = <%= JSON.stringify(person.toJSON()) %>;
 </script>
 
+
+<% if (user || guest) { %>
 <div class="popit-toolbar entity-toolbar">
   <div class="container">
     <div class="btn-toolbar pull-right view-mode">
@@ -51,5 +53,17 @@
     </dd>
 
 </article>
+<% } else { %>
+<div class="popit-toolbar entity-toolbar">
+  <div class="container">
+    <div class="btn-toolbar pull-right view-mode">
+      <div class="btn-group">
+        <a class="add btn btn-default btn-xs" href="/login">Log in to add a new person</a>
+      </div>
+    </div>
+    <p><a href="/persons">People</a> / New Person</p>
+  </div>
+</div>
+<% } %>
 
 <%= render('html_footer.html' )%>
