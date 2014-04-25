@@ -67,6 +67,7 @@ public-production: css
 	mv public-build/js/libs/jsoneditor/img/* public-production/js/libs/jsoneditor/img/
 	mv public-build/js/libs/jsoneditor/*.css  public-production/js/libs/jsoneditor/
 	mv public-build/js/main-*          public-production/js/
+	mv public-build/js/libs/zeroclipboard public-production/js/libs/
 
 	# clean up generated content that we don't need now
 	rm -r public-build
