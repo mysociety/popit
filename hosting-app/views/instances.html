@@ -13,6 +13,7 @@
     <h1 class="text-center">PopIt instances</h1>
 
     <div class="list-group">
+      <% if ( config.host != 'http://popit.mysociety.org' ) { %>
       <% _.each(instances, function(instance) { %>
         <a id="instance-<%- instance.slug %>" href="/instances/<%- instance.slug %>" class="list-group-item">
           <h4 class="list-group-item-heading"><%- instance.info.name || instance.slug %></h4>
@@ -21,6 +22,20 @@
           <% } %>
         </a>
       <% }); %>
+      <% } else { %>
+        <a id="instance-kenyan" href="/instances/kenyan-politicians" class="list-group-item">
+          <h4 class="list-group-item-heading">Kenyan Politicians</h4>
+        </a>
+        <a id="instance-za-peoples-assembly" href="/instances/za-peoples-assembly" class="list-group-item">
+          <h4 class="list-group-item-heading">South African peoples assembly</h4>
+        </a>
+        <a id="instance-legisladores-ar" href="/instances/legisladores-ar" class="list-group-item">
+          <h4 class="list-group-item-heading">Legisladores, Argentina</h4>
+        </a>
+        <a id="instance-chetan" href="/instances/chetan" class="list-group-item">
+          <h4 class="list-group-item-heading">Chetan</h4>
+        </a>
+      <% } %>
     </div>
 
   <% } else { %>
