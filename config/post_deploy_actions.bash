@@ -33,6 +33,10 @@ if [ ! -f ../gems/bin/sass ]; then
   gem install sass --version=3.2.14 --no-rdoc --no-ri
 fi
 
+if [ ! -f ../gems/bin/compass ]; then
+  gem install compass --version=0.12.2 --no-rdoc --no-ri
+fi
+
 export PATH="$GEM_HOME/bin:$PATH"
 
 # Fetch NPM modules, compile CSS
