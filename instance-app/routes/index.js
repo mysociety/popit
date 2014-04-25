@@ -26,7 +26,7 @@ exports.route = function (app) {
                   if (err) {
                     return done(err);
                   }
-                  var membershipWithRole = _.find(memberships, function(m) { return m.role });
+                  var membershipWithRole = _.find(memberships, function(m) { return m.role; });
                   if (membershipWithRole) {
                     person.position = membershipWithRole.role + ' at ' + membershipWithRole.organization_id.name;
                   } else {
