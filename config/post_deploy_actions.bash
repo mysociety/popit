@@ -26,5 +26,14 @@ elif [ "`../node/bin/node -v`" != "$NODE_VERSION" ]; then
 fi
 
 export PATH="$NODE_DIR/bin:$PATH"
+
+export GEM_HOME=../gems
+
+if [ ! -f ../gems/bin/sass ]; then
+  gem install sass --version=3.2.14 --no-rdoc --no-ri
+fi
+
+export PATH="$GEM_HOME/bin:$PATH"
+
 # Fetch NPM modules, compile CSS
 make all public-production
