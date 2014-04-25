@@ -145,7 +145,7 @@
                 <a href="<%- organization.url %>">
                   <span class="initials"><%- organization.initials %></span>
                   <strong title="<%- organization.name %>"><%- organization.name %></strong>
-                  <small title="<%= organization.personCount %> members"><%= organization.personCount %> members</small>
+                  <small title="<%= organization.personCount %> member<%= organization.personCount !== 1 ? 's' : '' %>"><%= organization.personCount %> member<%= organization.personCount !== 1 ? 's' : '' %></small>
                 </a>
               </li>
             <% }); %>
