@@ -13,17 +13,38 @@
     popit.memberships = <%= JSON.stringify( _.map( memberships, function(m) { return m.id; } ) ) %>;
 </script>
 
-<article class="entity person" itemscope itemtype="http://schema.org/Person">
+<div class="popit-toolbar entity-toolbar">
+  <div class="container">
+    <div class="btn-toolbar pull-right view-mode">
+      <div class="btn-group">
+        <a class="btn btn-default" href="/api/v0.1/persons/<%- person.id %>">JSON API</a>
+      </div>
+      <div class="btn-group">
+        <% if (user || guest) { %>
+          <a class="btn btn-default entity-enter-edit-mode">Edit person <span class="glyphicon glyphicon-chevron-right"></span></a>
+        <% } else { %>
+          <a class="btn btn-default" href="/login">Log in to edit <span class="glyphicon glyphicon-chevron-right"></span></a>
+          <% } %>
+      </div>
+    </div>
+    <div class="btn-toolbar pull-right edit-mode">
+      <div class="btn-group">
+        <a class="btn btn-default entity-leave-edit-mode"><span class="glyphicon glyphicon-remove glyphicon-space-after"></span> Cancel</a>
+      </div>
+      <div class="btn-group">
+        <a class="btn btn-danger entity-delete"><span class="glyphicon glyphicon-ban-circle glyphicon-space-after"></span> Delete person</a>
+      </div>
+      <div class="btn-group">
+        <a class="btn btn-success entity-save-changes"><span class="glyphicon glyphicon-ok glyphicon-space-after"></span> Save changes</a>
+      </div>
+    </div>
+    <p><a href="/persons">People</a> / <a href="<%- person.url %>"><%- person.id %></a></p>
+  </div>
+</div>
 
-  <header class="entity-header-nav" id="person-<%- person.slug %>">
-    <h1 class="current-entity edit-in-place"
-        id="entity-name-in-header"
-        title="<%- person.name %>"
-        data-api-name="name"
-    ><%- person.name %></h1>
-  </header>
-    
-  <aside>
+<article class="container entity person person-view" itemscope itemtype="http://schema.org/Person">
+
+  <aside class="photo-sidebar">
     <ul class="photos">
       <% if (person.images.length) { %>
         <% _.each( person.images, function(image) { %>
@@ -35,111 +56,92 @@
               <img src="<%- image_proxy("/persons/images/" + image.id + '/' + person.id, "", 280) %>" />
             <% } %>
 
-            <p class="photo-source">
-              source:
-              <a href="#photographer-url">Photographer</a>
-              <abbr class="license" title="Creative Commons - By Attribution - Share Alike">CC-BY-SA</abbr>
-            </p>
-            <div class="admin-options">
-              <a class="delete-photo" data-image-url="/persons/images/<%- image.id %>/<%- person.id %>">
-                <i class="foundicon-trash"></i>
+            <p class="photo-actions edit-mode">
+              <a class="delete-photo btn btn-default btn-sm" data-image-url="<%- person.url %>/images/<%- image.id %>">
+                <span class="glyphicon glyphicon-trash glyphicon-space-after"></span>
                 Delete this photograph
               </a>
-            </div>
+            </p>
           </li>
         <% }); %>
       <% } else { %>
         <li>
-          <img src='/img/person_placeholder.svg' width="280" />
+          <img src='/img/placeholder-person.gif' width="280" />
         </li>
       <% } %>
     </ul>
-    <ul class="admin-options">
-      <li>
-        <a class="add" href="<%- person.url %>/images/upload">
-          <strong>+ add</strong>
-          a photograph
-        </a>
-      </li>
-    </ul>
-  </aside>
-    
-  <ul class="admin-options">
-    <li>
-      <a class="delete delete-person">
-        <i class="foundicon-trash"></i> delete
-        this person
+
+    <p class="edit-mode">
+      <a class="add btn btn-default btn-sm" href="<%- person.url %>/images/upload">
+        <span class="glyphicon glyphicon-plus glyphicon-space-after"></span>
+        Add a photograph
       </a>
-    </li>
-  </ul>
-  
-  
-  <section class="description" itemprop="description">
-                
-    <p
-      id="entity-summary-text"
-      class="edit-in-place-textarea"
-      data-api-name="summary"
-    ><%- person.summary %></p>
-  
-    <ul class="detail-list">
+    </p>
+  </aside>
 
-      <li class="personal_details-birth_date">
-        <%= render( 'partial-date/view.html', {
-          date:             person.birth_date,
-          title:            "Date of birth",
-          data_api_name: "birth_date",
-        }) %>
-      </li>
+  <dl class="dl-horizontal">
 
-      <li class="personal_details-death_date">
-        <%= render( 'partial-date/view.html', {
-          date:             person.death_date,
-          title:            "Date of death",
-          data_api_name: "death_date",
-        }) %>
-      </li>
+    <dt class="entity-attr-name">Name</dt>
+    <dd class="entity-attr-name">
+      <h1 itemprop="name" class="view-mode" data-api-name="name"><%- person.name %></h1>
+      <strong class="control-label edit-mode-error" style="display: none">This person must have a name</strong>
+      <input type="text" class="form-control edit-mode" data-api-name="name" value="<%- person.name %>">
+    </dd>
 
-    </ul>
-  
-  </section>
+    <dt>Summary</dt>
+    <dd itemprop="description">
+      <p class="view-mode" data-api-name="summary"><%- person.summary %></p>
+      <textarea class="form-control edit-mode" data-api-name="summary"><%- person.summary %></textarea>
+    </dd>
 
-  <%= render( 'other_name/list.html', { other_names: person.other_names } ) %>
+    <dt>Born</dt>
+    <dd>
+      <p class="view-mode" data-api-name="birth_date"><%- person.birth_date || '' %></p>
+      <input type="date" class="form-control edit-mode" data-api-name="birth_date" value="<%- person.birth_date || '' %>">
+    </dd>
 
-  <section class="memberships">
+    <dt>Died</dt>
+    <dd>
+      <p class="view-mode" data-api-name="death_date"><%- person.death_date || '' %></p>
+      <input type="date" class="form-control edit-mode" data-api-name="death_date" value="<%- person.death_date || '' %>">
+    </dd>
 
-    <div class="admin-options">
-      <a class="add edit-membership"><i class="foundicon-add-doc"></i> <span>Add</span></a>
-    </div>
+    <dt>Other names</dt>
+    <dd>
+      <%= render( 'other_name/list.html', { other_names: person.other_names } ) %>
+    </dd>
 
-    <h2>Memberships held now or in the past:</h2>
+    <dt>Memberships</dt>
+    <dd>
+      <ul class="cleared">
+        <% _.each( memberships, function (membership) { %>
+          <%= render( 'membership/list-item.html', { membership: membership, type: 'person' } ) %>
+        <% }); %>
+        <li class="edit-mode">
+          <a class="add edit-membership btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(memberships.length){ %>nother<% } %> membership</a>
+        </li>
+      </ul>
+    </dd>
 
-    <ul class="cleared">
-      <% _.each( memberships, function (membership) { %>
-        <%= render( 'membership/list-item.html', { membership: membership, type: 'person' } ) %>
-      <% }); %>
+    <dt>Contact details</dt>
+    <dd>
+      <%= render( 'contact/list.html', { contact_details: person.contact_details } ) %>
+    </dd>
 
-    </ul>
-  </section>
+    <dt>Links</dt>
+    <dd>
+      <%= render( 'link/list.html', { links: person.links } ) %>
+    </dd>
 
-  <%= render( 'contact/list.html', { contacts: person.contact_details } ) %>
-  <%= render( 'link/list.html', { links: person.links } ) %>
-  <%= render( 'identifier/list.html', { identifiers: person.identifiers } ) %>
+    <dt>Identifiers</dt>
+    <dd>
+      <%= render( 'identifier/list.html', { identifiers: person.identifiers } ) %>
+    </dd>
+  </dl>
 
-  <section class="custom-data">
+  <section class="custom-data" style="display: none">
     <h2>Custom data:</h2>
     <div id="jsoneditor"></div>
-  </section>
-
-  <section class="raw-data">
-    
-    <h2>Raw data</h2>
-    
-    <p>
-      The details for this person are also available in 
-      <a href="/api/v0.1/persons/<%- person.id %>">JSON</a>.
-    </p>
-
   </section>
 
 </article>

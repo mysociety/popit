@@ -1,0 +1,221 @@
+/* Homepage */
+
+@mixin homepage-header {
+  font-size: 21px;
+  line-height: 25px;
+  text-transform: uppercase;
+}
+
+.homepage-setup-guide {
+  padding: 40px 0 50px 0;
+
+  &.solo {
+    padding: 60px 0 80px 0;
+  }
+
+  h2 {
+    margin-top: 0;
+    padding-bottom: 20px;
+    border-bottom: 1px solid $header-footer-background;
+  }
+}
+
+.homepage-setup-guide-step {
+  &.complete {
+    color: #9AB69A; // light green
+
+    h3 {
+      color: #6E946E;  // slightly darker green
+    }
+
+    .btn-default {
+      color: #9AB69A; // light green
+      border-color: #BFD6BF; // even lighter green
+
+      &:hover, &:focus, &:active {
+        color: #333; // back to Bootstrap default
+        border-color: #adadad; // back to Bootstrap default
+      }
+    }
+  }
+
+  p {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    & > .glyphicon {
+      font-size: 21px;
+      vertical-align: 2px;
+      margin-right: 5px;
+    }
+
+    & > .circled-number {
+      display: inline-block;
+      background: #889EB3;
+      color: #fff;
+      margin-right: 5px;
+      font-size: 21px;
+      line-height: 30px;
+      width: 30px;
+      text-align: center;
+      border-radius: 50px;
+      vertical-align: 2px;
+    }
+  }
+}
+
+.homepage-summaries {
+  background-color: $light-grey-background;
+  padding-bottom: 50px;
+}
+
+.homepage-summary-list {
+  @include list-reset;
+  margin: 0 -15px; // to compensate for 15px gutter either side of children li's
+
+  li {
+    margin-bottom: 30px;
+
+    a {
+      display: block;
+      padding: 13px 10px;
+      background: #fff;
+      text-align: center;
+      color: #999;
+      text-decoration: none;
+      @include box-shadow(0 1px 2px rgba(0,0,0,0.3));
+
+      .initials {
+        display: block;
+        line-height: 120px;
+        height: 120px;
+        font-size: 90px;
+        text-transform: uppercase;
+        color: $light-grey-background;
+        text-shadow: 0 -1px 0 darken($light-grey-background, 10%);
+        font-weight: bold;
+
+        @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+          line-height: 90px;
+          height: 90px;
+          font-size: 60px;
+        }
+      }
+
+      strong {
+        display: block;
+        color: #666;
+        font-weight: normal;
+        margin-bottom: 3px;
+        @include dotdotdot;
+      }
+
+      small {
+        display: block;
+        @include dotdotdot;
+      }
+
+      &:hover, &:focus, &:active {
+        position: relative;
+        top: -2px;
+        color: #666;
+        @include box-shadow(0 3px 7px rgba(0,0,0,0.2));
+
+        strong {
+          color: #333;
+        }
+      }
+    }
+
+    &.homepage-summary-show-all {
+      a {
+        position: relative; // so we can stack the fake card behind this
+        z-index: 2;
+
+        img {
+          height: 85px;
+          width: auto;
+          margin: 20px 0 15px 0; // 20 + 15 = 35. 35 + 85 (image height) = 120 (initials height)
+          @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+            height: 55px;
+            width: auto;
+          }
+        }
+
+        strong {
+          height: 44px;
+          line-height: 44px;
+          margin-bottom: 0;
+        }
+
+      }
+
+      // A fake, slightly rotated card, to sit behind the main <a> card for visual effect
+      &:after {
+        content: "";
+        display: block;
+        position: relative;
+        top: -190px; // position behind the 190px-high sibling <a>
+        z-index: 0;
+        height: 190px; // height of the sibling <a>
+        margin-bottom: -190px; // compensate for -190px relative top shift
+        @include rotate(3deg);
+        @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+        background: #fff;
+      }
+    }
+  }
+}
+
+.homepage-summary-box {
+  position: relative;
+  margin-top: 40px;
+  margin-bottom: -30px; // compensate for 30px margin-bottom on .homepage-summary-list items
+
+  h2 {
+    @include homepage-header;
+    color: #AAB8BE;
+    text-shadow: 0 1px 0 #fff;
+    margin: 0 0 20px 0;
+  }
+
+  .homepage-summary-toolbar {
+    @include list-reset;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    .btn-default {
+      background-color: rgba(255,255,255,0.5);
+    }
+  }
+}
+
+.homepage-description, .homepage-api-guide {
+  background-color: $content-background;
+  padding: 40px 0;
+
+  h2:first-child {
+    margin-top: 0;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.homepage-api-guide {
+  h2 {
+    @include homepage-header;
+    color: #AAB8BE;
+  }
+
+  label {
+    display: block;
+    margin-top: 10px;
+    font-weight: normal;
+    color: #999;
+  }
+}

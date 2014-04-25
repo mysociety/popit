@@ -1,36 +1,49 @@
 <%= render(
   'html_head.html',
   {
-    title:       'Edit About Info',
+    title:       'Edit instance details',
     description: '',
   }
 ) %>
 
-<h1>Edit About Info</h1>
-
-<form method="post" action="" name="edit-about-info">
-
-  <% _.each( fields, function ( val, field ) { %>
-    <div class="about-field">
-      <label><%- val.label %></label>        
-      <% if (val.type == 'textarea') { %>
-        <textarea name="<%- field %>"><%- val.value %></textarea>
-      <% } else if (val.type == 'checkbox') { %>
-        <input
-          type="checkbox"
-          value="1"
-          name="<%- field %>"
-          <% if (val.value) { %>checked="checked"<% } %>
-        />
-      <% } else { %>
-        <input name="<%- field %>" value="<%- val.value %>">
-      <% } %>
+<div class="popit-toolbar">
+  <div class="container">
+    <div class="btn-toolbar pull-right">
+      <div class="btn-group">
+        <a class="btn btn-default" href="/about">Cancel</a>
+      </div>
+      <div class="btn-group">
+        <a class="btn btn-primary" id="about-toolbar-save-button"><span class="glyphicon glyphicon-ok glyphicon-space-after"></span> Save changes</a>
+      </div>
     </div>
-    <br />
-  <% }); %>
+    <h1>Edit instance details</h1>
+  </div>
+</div>
 
-  <input type="submit" class="btn" value="Update Info">
+<form class="container" method="post" action="" name="edit-about-info">
+  <dl class="dl-horizontal instance-details edit-instance-details">
+    <% _.each( fields, function ( val, field ) { %>
+      <dt><%- val.label %>:</dt>
+      <dd class="about-field about-field-<%- val.key %>">
+        <% if (val.type == 'textarea') { %>
+          <textarea class="form-control" name="<%- field %>"><%- val.value %></textarea>
+        <% } else if (val.type == 'checkbox') { %>
+          <input
+            class="checkbox-inline"
+            type="checkbox"
+            value="1"
+            name="<%- field %>"
+            <% if (val.value) { %>checked="checked"<% } %>
+          />
+        <% } else { %>
+          <input class="form-control" name="<%- field %>" value="<%- val.value %>">
+        <% } %>
+      </dd>
+    <% }); %>
+  </dl>
 
-</form>
+  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok glyphicon-space-after"></span> Save changes</button>
+
+</div>
 
 <%= render('html_footer.html' )%>

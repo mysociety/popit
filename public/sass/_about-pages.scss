@@ -1,0 +1,87 @@
+/* Styles for the About, API, Login pages, etc */
+
+.instance-details {
+  margin-top: 24px;
+  margin-bottom: 24px;
+
+  dd {
+    margin-bottom: 1em;
+  }
+}
+
+.edit-instance-details {
+  max-width: 600px;
+
+  dt {
+    margin-top: 7px; // line up with input boxes
+  }
+
+  dd {
+    margin-bottom: 1.5em;
+  }
+
+  textarea {
+    height: 60px;
+    min-height: 0;
+  }
+
+  & + button {
+    margin-left: 180px;
+    margin-bottom: 24px;
+  }
+
+  .checkbox-inline {
+    margin-top: 9px;
+  }
+}
+
+
+.login-form {
+  width: 320px;
+  min-width: 0;
+  padding: 40px 0;
+
+  @media (min-width: $screen-sm-min) {
+    padding: 60px 0;
+  }
+
+  @media (min-width: $screen-sm-min) and (min-height: 700px) {
+    padding: 80px 0;
+  }
+
+  h1 {
+    margin: 0 0 20px 0;
+  }
+}
+
+.api-container {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+.api-help-section {
+  margin-top: 30px;
+  color: #666;
+}
+
+.fourohfour-container {
+  text-align: center;
+  padding-top: 60px;
+  padding-bottom: 60px;
+
+  & > .glyphicon {
+    display: block;
+    font-size: 4em;
+    color: $light-grey-background;
+    text-shadow: 0 -1px 0 darken($light-grey-background, 10%);
+  }
+}
+
+.search-container {
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+  h1 {
+    margin-top: 0;
+  }
+}

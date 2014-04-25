@@ -6,23 +6,33 @@
   }
 ) %>
 
-<h1>
-  About Us
-  <% if (user) { %>
-    <a href="/about/edit">(edit)</a>
-  <% } %>
-</h1>
-
-<% _.each( fields, function ( val, field ) { %>
-  <div class="about-field about-field-<%- val.key %>">
-    <b><%- val.label %>:</b>
-    <% if ( val.type == 'checkbox' ) { %>
-      <%- val.value ? 'Yes' : 'No' %>
-    <% } else { %>
-      <%- val.value %>
-    <% } %>
+<div class="popit-toolbar">
+  <div class="container">
+    <div class="btn-toolbar pull-right">
+      <% if (user || guest) { %>
+        <a class="btn btn-default" href="/about/edit">Edit details <span class="glyphicon glyphicon-chevron-right"></span></a>
+      <% } else { %>
+        <a class="btn btn-default" href="/login">Log in to edit <span class="glyphicon glyphicon-chevron-right"></span></a>
+      <% } %>
+    </div>
+    <h1>About Us</h1>
   </div>
-  <br />
-<% }); %>
-    
+</div>
+
+<div class="container">
+  <dl class="dl-horizontal instance-details">
+    <% _.each( fields, function ( val, field ) { %>
+      <dt><%- val.label %>:</dt>
+      <dd class="about-field about-field-<%- val.key %>">
+        <% if ( val.type == 'checkbox' ) { %>
+          <%- val.value ? 'Yes' : 'No' %>
+        <% } else { %>
+          <%- val.value %>
+        <% } %>
+      </dd>
+    <% }); %>
+  </dl>
+
+</div>
+
 <%= render('html_footer.html' )%>

@@ -1,14 +1,79 @@
-<div id="new-person">
-  <h1>Add a person</h1>
-  
-  <form name="create-new-person">
+<%= render(
+  'html_head.html',
+  {
+    title:       'New Person',
+    description: 'New Person',
+  }
+) %>
 
-    <% // more content inserted in the bb view %>
+<script>
+    var popit = popit || {};
+    popit.type = 'person';
+    popit.data = <%= JSON.stringify(person.toJSON()) %>;
+</script>
 
-    <h2>Suggestions</h2>
 
-    <ul class="suggestions" />
-    
-    <input type='submit' value="Create new person">
-  </form>
+<% if (user || guest) { %>
+<div class="popit-toolbar entity-toolbar">
+  <div class="container">
+    <div class="btn-toolbar pull-right view-mode">
+      <div class="btn-group">
+        <a class="btn btn-default entity-cancel-new-mode"><span class="glyphicon glyphicon-remove glyphicon-space-after"></span> Cancel</a>
+      </div>
+      <div class="btn-group">
+        <a class="btn btn-success entity-save-new"><span class="glyphicon glyphicon-ok glyphicon-space-after"></span> Save Person</a>
+      </div>
+    </div>
+    <p><a href="/persons">People</a> / New Person</p>
+  </div>
 </div>
+
+<article class="container entity person person-view" itemscope itemtype="http://schema.org/Person">
+
+  <dl class="dl-horizontal">
+
+    <dt class="entity-attr-name">Name</dt>
+    <dd class="entity-attr-name">
+      <input type="text" class="form-control view-mode" data-api-name="name" value="">
+    </dd>
+
+    <dt>Summary</dt>
+    <dd itemprop="description">
+      <textarea class="form-control view-mode" data-api-name="summary"></textarea>
+    </dd>
+
+    <dt>Born</dt>
+    <dd>
+      <input type="date" class="form-control view-mode" data-api-name="birth_date" value="">
+    </dd>
+
+    <dt>Died</dt>
+    <dd>
+      <input type="date" class="form-control view-mode" data-api-name="death_date" value="">
+    </dd>
+
+</article>
+<% } else { %>
+<div class="popit-toolbar entity-toolbar">
+  <div class="container">
+    <div class="btn-toolbar pull-right view-mode">
+      <div class="btn-group">
+        <a class="add btn btn-default" href="/login">Log in to add a new person <span class="glyphicon glyphicon-chevron-right glyphicon-space-before"></span></a>
+      </div>
+    </div>
+    <p><a href="/persons">People</a> / <span style="margin-left: 5px">New Person</span></p>
+  </div>
+</div>
+
+<div class="container fourohfour-container">
+
+  <span class="glyphicon glyphicon-remove"></span>
+
+  <h1>You must be logged in to do that</h1>
+
+  <p style="margin-top: 30px;"><a class="btn btn-primary" href="/login">Log in to add a new person <span class="glyphicon glyphicon-chevron-right glyphicon-space-before"></span></a></p>
+
+</div>
+<% } %>
+
+<%= render('html_footer.html' )%>

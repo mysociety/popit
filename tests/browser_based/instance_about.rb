@@ -40,7 +40,7 @@ class InstanceAboutTests < PopItWatirTestCase
     assert @b.link(:text, '(edit)').present?
 
     # check that defaults are as we expect
-    assert_equal "Allow guests to edit this site?: No", @b.element(:class => 'about-field-allow_guest_access').text    
+    assert_equal "Allow guest editing: No", @b.element(:class => 'about-field-allow_guest_access').text    
 
     # click on the edit link and check that the form has popped up
     assert ! @b.form(:name, 'edit-about-info').present?
@@ -60,7 +60,7 @@ class InstanceAboutTests < PopItWatirTestCase
 
     # check that the entries are as expected
     assert_path '/about'
-    assert_equal "Allow guests to edit this site?: Yes", @b.element(:class => 'about-field-allow_guest_access').text
+    assert_equal "Allow guest editing: Yes", @b.element(:class => 'about-field-allow_guest_access').text
     assert_equal "Name: Test Name",                   @b.element(:class => 'about-field-name').text
     assert_equal "Description: Test description",     @b.element(:class => 'about-field-description').text
     assert_equal "Region: Test region",               @b.element(:class => 'about-field-region').text
@@ -76,7 +76,7 @@ class InstanceAboutTests < PopItWatirTestCase
     @b.text_field(:name, 'purpose').clear
     @b.input(:value, "Update Info").click
     assert_equal "Purpose:",                            @b.element(:class => 'about-field-purpose').text
-    assert_equal "Allow guests to edit this site?: No", @b.element(:class => 'about-field-allow_guest_access').text
+    assert_equal "Allow guest editing: No", @b.element(:class => 'about-field-allow_guest_access').text
 
     # check that the site title is now the site name
     goto '/'

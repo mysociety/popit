@@ -6,27 +6,31 @@
   }
 ) %>
 
-<h1><%= instance.info.name || instance.slug %></h1>
+<div class="container hosting-app-instance">
 
-<p><a href="<%- instance.base_url %>"><%- instance.base_url %></a></p>
+  <dl class="dl-horizontal">
+    <dt class="hosting-app-instance-name">Instance:</dt>
+    <dd class="hosting-app-instance-name"><%= instance.info.name || instance.slug %></dd>
+    <dt>URL:</dt>
+    <dd><a href="<%- instance.base_url %>"><%- instance.base_url %></a></dd>
+    <dt>Description:</dt>
+    <dd>
+      <% if ( instance.info.description ) { %>
+        <%- instance.info.description %>
+      <% } else { %>
+        <span class="text-muted">(None)</span>
+      <% } %>
+    </dd>
+    <% if ( instance.info.name ) { %>
+      <dt>People:</dt>
+      <dd><%- instance.info.person_count || 0 %></dd>
+      <dt>Organizations:</dt>
+      <dd><%- instance.info.organization_count || 0 %></dd>
+      <dt>Last updated:</dt>
+      <dd><%- moment( instance.info.last_updated ).fromNow() %></dd>
+    <% } %>
 
-<% if ( instance.info.description ) { %>
-  <p><%- instance.info.description %></p>  
-<% } %>
-
-<% if ( instance.info.name ) { %>
-  <h2>Details</h2>
-  <p>Number of people: <%- instance.info.person_count || 0 %></p>
-  <p>Number of organizations: <%- instance.info.organization_count || 0 %></p>
-  <p>Last updated (approx): <%- moment( instance.info.last_updated ).fromNow() %></p>
-  
-  <%
-    // TODO - display more details here
-    // https://github.com/mysociety/popit/issues/157
-    // <pre>instance.info</pre>
-  %>
-
-<% } %>
+</div>
 
 <%= render('html_footer.html' )%>
 

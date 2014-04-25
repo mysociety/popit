@@ -1,6 +1,33 @@
-#no-js-warning {
+@mixin top-alert-bar {
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0;
   text-align: center;
-  background-color: lighten($warning_colour, 40%);
-  border-bottom: 1px solid $warning_colour;
-  padding: 0.25em;
+  margin-bottom: 0;
+}
+
+#no-js-warning {
+  @include top-alert-bar;
+}
+
+#dev-site-warning {
+  @include top-alert-bar;
+
+  .btn {
+    margin-left: 5px;
+  }
+
+  span {
+    @media only screen and (max-width: 40em) {
+      display: none;
+    }
+  }
+}
+
+#flash-info {
+  @include top-alert-bar;
+  ul {
+    @include list-reset;
+  }
 }

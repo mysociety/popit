@@ -6,100 +6,196 @@
   }
 ) %>
 
-<h1>Welcome to <%- popit.pretty_name() %></h1>
+<% if (typeof current_step !== 'undefined') { %>
 
-<p>
-  This database currently contains <%- person_count || 'no' %> <%- person_count == 1 ? 'person' : 'people' %> and <%- organization_count || 'no' %> <%- organization_count == 1 ? 'organization' : 'organizations' %>.
-</p> 
-
-<div id="person-summary" class="homepage-summary-box">
-  <h2>People</h2>
-
-  <ul>
-    <% if (persons.length) { %>    
-      <% _.each( persons, function(person) { %>
-        <li> 
-          <a href="<%= person.url %>"><%- person.name %></a>
-        </li>
-      <% }); %>
-      <% if (person_count > summary_listing_count) { %>
-        <li>
-          and 
-          <a href="/persons"><%- person_count - summary_listing_count %> more</a>
-        </li>
-      <% } %>
-    <% } else { %>
-      <li>
-        There are no people in the database yet. 
-        <br>
-        <span class="admin-options">
-          <a class="new-person add" href="#"> 
-            <strong>+ Add</strong> a new person
-          </a>
-        </span>
-      </li>
-    <% } %>
-  </ul>
-
-  <p>
-    <a href="/persons">Complete list (<%- person_count %>)</a>
-  </p>
-
-</div>
-
-  
-<div id="organization-summary" class="homepage-summary-box">
-
-  <h2>Organizations</h2>
-
-  <ul>
-    <% if (organizations.length) { %>    
-      <% _.each( organizations, function(organization) { %>
-        <li> 
-          <a href="<%= organization.url %>"><%- organization.name %></a>
-        </li>
-      <% }); %>
-      <% if (organization_count > summary_listing_count) { %>
-        <li>
-          and 
-          <a href="/organizations"><%- organization_count - summary_listing_count %> more</a>
-        </li>  
-      <% } %>
-    <% } else { %>
-      <li>
-        There are no organizations in the database yet. 
-        <br>
-        <span class="admin-options">
-          <a class="add new-organization" href="#">
-            <strong>+ Add</strong> a new organization
-          </a>
-        </span>
-      </li>
-    <% } %>
-  </ul>
-  
-  <p>
-    <a href="/organizations">Complete list (<%- organization_count %>)</a>
-  </p>
-
-</div>
-
-
-<div id="actions" class="homepage-summary-box">
-
-  <div class="info">
-    <p>
-      <a href='<%-config.hosting_site_base_url%>/info/about'>Learn more about PopIt</a>
-      - the pre-alpha platform that hosts this database.
-    </p>
-  </div>
-  
-  <div class="info admin-options">
-    <a class="new-person add" href="#"> 
-      <strong>+ Add</strong> a new person to the database.
-    </a>
+  <div class="homepage-setup-guide container <% if (person_count + organization_count === 0) { %>solo<% } %>">
+    <div class="container">
+      <h2>Set up your new PopIt Instance</h2>
+      <div class="row">
+        <div class="col-sm-4 col-lg-3 homepage-setup-guide-step <% if (current_step <= 1) { %>incomplete<% } else { %>complete<% } %>">
+          <h3>
+            <% if (current_step <= 1) { %>
+              <span class="circled-number">1</span>
+            <% } else { %>
+              <span class="glyphicon glyphicon-ok"></span>
+            <% } %>
+            Populate
+          </h3>
+          <p>Add people and organizations to your PopIt instance.</p>
+          <% if (user || guest) { %>
+            <a class="new-person add btn <% if (current_step === 1) { %>btn-primary<% } else { %>btn-default<% } %>" href="#"><% if (current_step < 2) { %>
+                Add your first person
+              <% } else { %>
+                Add another person
+              <% } %></a>
+          <% } else { %>
+            <a class="add btn <% if (current_step === 1) { %>btn-primary<% } else { %>btn-default<% } %>" href="/login"><% if (current_step < 2) { %>
+                Log in to add people
+              <% } else { %>
+                Log in to add more people
+              <% } %></a>
+          <% } %>
+        </div>
+        <div class="col-sm-4 col-lg-3 col-lg-offset-1 homepage-setup-guide-step <% if (current_step <= 2) { %>incomplete<% } else { %>complete<% } %>">
+          <h3>
+            <% if (current_step <= 2) { %>
+              <span class="circled-number">2</span>
+            <% } else { %>
+              <span class="glyphicon glyphicon-ok"></span>
+            <% } %>
+            Describe
+          </h3>
+          <p>Help people find and understand your instance.</p>
+          <% if (user || guest) { %>
+            <a href="/about/edit" class="btn <% if (current_step === 2) { %>btn-primary<% } else { %>btn-default<% } %>">Edit details</a>
+          <% } else { %>
+            <a href="/login" class="btn <% if (current_step === 2) { %>btn-primary<% } else { %>btn-default<% } %>">Log in to edit details</a>
+          <% } %>
+        </div>
+        <div class="col-sm-4 col-lg-3 col-lg-offset-1 homepage-setup-guide-step incomplete">
+          <h3>
+            <span class="circled-number">3</span>
+            Share
+          </h3>
+          <p>Connect your data to other websites via the PopIt API.</p>
+          <div class="input-group click-to-copy">
+            <input type="text" readonly="readonly" class="form-control click-to-select" value="http://<%- popit._instance_name %><%- config.instance_site_base_url_suffix %>/api/v0.1" />
+            <span class="input-group-btn">
+              <button class="btn <% if (current_step === 3) { %>btn-primary<% } else { %>btn-default<% } %>" type="button">Copy</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-</div>
+<% } else { %>
+
+  <div class="homepage-description">
+      <div class="container">
+      <div class="row">
+        <div class="col-sm-8">
+          <% if (typeof popit.setting('description') === 'undefined') { %>
+            <p class="lead"><a href="/about/edit">Give your PopIt instance a description</a> and it&rsquo;ll show up here.<p>
+          <% } else { %>
+            <p class="lead"><%- popit.setting('description') %></p>
+          <% } %>
+        </div>
+        <div class="col-sm-4">
+          <a href="/about/edit" class="btn btn-default pull-right">Edit details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% } %>
+
+<% if (person_count > 0 || organization_count > 0) { %>
+
+  <div class="homepage-summaries">
+    <div class="container">
+
+      <div id="person-summary" class="homepage-summary-box">
+        <h2><%- person_count || 'no' %> <%- person_count == 1 ? 'person' : 'people' %></h2>
+
+        <% if (persons.length) { %>
+          <ul class="homepage-summary-list row">
+            <% _.each( persons, function(person) { %>
+              <li class="col-md-2 col-sm-4">
+                <a href="<%- person.url %>">
+                  <span class="initials"><%- person.initials %></span>
+                  <strong title="<%- person.name %>"><%- person.name %></strong>
+                  <% if (person.position) { %>
+                    <small title="<%= person.position %>"><%= person.position %></small>
+                  <% } else { %>
+                    <small>&nbsp;</small>
+                  <% } %>
+                </a>
+              </li>
+            <% }); %>
+            <% if (person_count > persons.length) { %>
+            <li class="col-md-2 col-sm-4 homepage-summary-show-all">
+              <a href="/persons/">
+                <img src="/img/icon-persons.gif" width="115" height="85" alt="">
+                <strong>Show all <%- person_count %>&hellip;</strong>
+              </a>
+            </li>
+            <% } %>
+          </ul>
+        <% } %>
+
+        <ul class="homepage-summary-toolbar">
+          <li>
+            <% if (user || guest) { %>
+              <a class="new-person add btn btn-default btn-xs" href="/persons/new">+ Add new person</a>
+            <% } else { %>
+              <a class="add btn btn-default btn-xs" href="/login">Log in to add a new person</a>
+            <% } %>
+          </li>
+        </ul>
+      </div>
+
+      <div id="organization-summary" class="homepage-summary-box">
+        <h2><%- organization_count || 'no' %> <%- organization_count == 1 ? 'organization' : 'organizations' %></h2>
+
+        <% if (organizations.length) { %>
+          <ul class="homepage-summary-list row">
+            <% _.each( organizations, function(organization) { %>
+              <li class="col-md-2 col-sm-4">
+                <a href="<%- organization.url %>">
+                  <span class="initials"><%- organization.initials %></span>
+                  <strong title="<%- organization.name %>"><%- organization.name %></strong>
+                  <small title="<%= organization.personCount %> member<%= organization.personCount !== 1 ? 's' : '' %>"><%= organization.personCount %> member<%= organization.personCount !== 1 ? 's' : '' %></small>
+                </a>
+              </li>
+            <% }); %>
+            <% if (organization_count > organizations.length) { %>
+            <li class="col-md-2 col-sm-4 homepage-summary-show-all">
+              <a href="/organizations/">
+                <img src="/img/icon-organizations.gif" width="115" height="85" alt="">
+                <strong>Show all <%- organization_count %>&hellip;</strong>
+              </a>
+            </li>
+            <% } %>
+          </ul>
+        <% } %>
+
+        <ul class="homepage-summary-toolbar">
+          <li>
+            <% if (user || guest) { %>
+              <a class="new-organization add btn btn-default btn-xs" href="#">+ Add new organization</a>
+            <% } else { %>
+              <a class="add btn btn-default btn-xs" href="/login">Log in to add a new organization</a>
+            <% } %>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="homepage-api-guide">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <h2>Reuse this data</h2>
+          <p>Share this data with other websites using the PopIt API. Just copy the URL to get started, or <a href="<%- config.hosting_site_base_url %>/docs/api">check out the documentation</a>.</p>
+        </div>
+        <div class="col-sm-4 col-sm-offset-2">
+          <div>
+            <label for="api-url">API Base URL:</label>
+            <div class="input-group click-to-copy">
+              <input type="text" id="api-url" readonly="readonly" class="form-control click-to-select" value="http://<%- popit._instance_name %><%- config.instance_site_base_url_suffix %>/api/v0.1" />
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Copy</button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% } %>
 
 <%= render('html_footer.html' )%>

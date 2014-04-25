@@ -1,109 +1,85 @@
-.bbf-field label {
-    padding: 0.625em 1em;
-}
+/* Forms */
 
 .edit-in-place form {
-    display: inline;
+  display: inline;
 }
 .edit-in-place form input {
-    display: inline;
+  display: inline;
 }
 
 form {
-	margin: 0;
-	
-	label{
-		color: #333333;
-	}
+  input, textarea {
+    display:block;
+    width:25em;
+    max-width:100%;
+  }
 
-	.form-action{
-		margin-top: 2em;
-	}
-
-	.help-block{
-              display:block;
-		background-color: #fff;
-		width:32em;
-		font-size:0.75em;
-		max-width:100%;
-		border: 1px solid red;
-		padding: 0.625em 1em;
-		margin-top:1em;
-		margin-left:3em;
-//              position: absolute;
-//              display:none;
-	}
-	
-	.suggestion{
-		display:block;
-	}
-	
-	input,
-	.append,
-	textarea
-	{
-		display:block;
-		-webkit-border-radius: 0.625em;
-		   -moz-border-radius: 0.625em;
-		        border-radius: 0.625em;
-		border: 1px solid #ccc;
-		padding: 0.625em 1em;
-		width:25em;
-		max-width:100%;
-		color: #444;
-		-webkit-transition: all 0.5s linear;
-		   -moz-transition: all 0.5s linear;
-		     -o-transition: all 0.5s linear;
-		        transition: all 0.5s linear;
-
-		&:hover{
-			border: 1px solid #888;
-		}
-
-		&:focus{
-		 	outline:none;
-		 	border: 1px solid #006480;
-		}
-		&[disabled] {
-		        opacity: 0.3;
-		}
-	}
-	textarea{
-		min-height:10em;
-	}
-	.append{
-		input{
-			border:none;
-			padding:0;
-			width:17em;
-			max-width:30%;
-			text-align:right;
-			float:left;
-		}
-		.add-on{
-      // max-width:30%;
-      // width:5em;
-			color: #888;
-		}
-	}
-	
+  textarea{
+    min-height:10em;
+  }
 }
 
-// in FF without this the input is unreadable as the padding squashes it down to
-// nothing. Result now is ugly, but workable.
-// TODO - tidy this up so that input is nice in FF
-.edit-in-place input {
-  padding: 0 1em;
-}
 
 // apply styling to edit-in-place elements when user logged in
 body.signed_in {
   .edit-in-place, .edit-in-place-textarea, .editable {
-    &:hover{
+    &:hover {
       background-color: $edit-in-place-background-color;
       cursor: pointer;
-    };
+    }
   }
 }
 
+
+// <input type="search"> will have rounded ends like God intended
+input[type="search"].form-control {
+  border-radius: 50px;
+}
+
+
+// faster focus transition to make everything feel snappier
+.form-control {
+  @include transition(border-color ease-in-out 0.05s, box-shadow ease-in-out 0.05s);
+}
+
+// a new "xtra small" size for inputs, just like buttons
+.input-xs, .input-group-xs > .form-control, .input-group-xs > .input-group-addon, .input-group-xs > .input-group-btn > .btn {
+  height: 28px;
+  padding: 3px 10px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+// override Bootstrap's default .form-control[readonly]
+// styling for .click-to-select inputs
+.form-control.click-to-select[readonly] {
+  background-color: #fff;
+  cursor: text;
+}
+
+// replicate the default Bootstrap :hover styling
+// for artificially 'hovering' ZeroClipboard buttons
+.btn-default.zeroclipboard-is-hover {
+  color: #333333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+.btn-primary.zeroclipboard-is-hover {
+  color: white;
+  background-color: #3071a9;
+  border-color: #285e8e;
+}
+.input-group-btn > .btn.zeroclipboard-is-hover {
+  z-index: 2;
+}
+
+.btn-default.zeroclipboard-is-copied {
+  color: $brand-success;
+  background-color: #E7F7CF;
+  border-color: #A3C47F;
+}
+
+.form-group .help-block:last-child {
+  margin-bottom: 0;
+}
 

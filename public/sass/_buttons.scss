@@ -1,26 +1,77 @@
-button, a.btn, input.btn{
-	border:none;
-	display: inline-block;
-	padding: 0.625em;
-	width: inherit;
-	min-width: 12.5em;
-	color: #fff;
-	color: rgba(255,255,255,0.9);
-	text-align:center;
-	background-color: #006480;
-	-webkit-border-radius: 0.625em;
-	   -moz-border-radius: 0.625em;
-	        border-radius: 0.625em;
-	-webkit-transition: background-color 0.25s linear;
-	   -moz-transition: background-color 0.25s linear;
-	     -o-transition: background-color 0.25s linear;
-	        transition: background-color 0.25s linear;
-	&:hover{
-		background-color: #007899;
-		color: #fff;
-		color: rgba(255,255,255,1);
-		text-decoration:none;
-		border:none;
-	}
+/* Buttons */
+
+// Add space before / after icons.
+// Especially useful inside buttons.
+
+.glyphicon-space-after {
+  margin-right: 4px;
+
+  .btn-xs & {
+    margin-right: 2px;
+  }
 }
+
+.glyphicon-space-before {
+  margin-left: 4px;
+
+  .btn-xs & {
+    margin-left: 2px;
+  }
+}
+
+// Compensate for larger base font size,
+// by repositioning icons inside of buttons
+
+.glyphicon {
+  .btn & {
+    font-size: 12px;
+    vertical-align: 1px;
+  }
+  .btn-lg & {
+    font-size: 14px;
+  }
+  .btn-sm & {
+    vertical-align: 0;
+  }
+  .btn-xs & {
+    font-size: 11px;
+    vertical-align: 0;
+  }
+}
+
+// Add a .btn-loading style, which overrides
+// any child glyphicons with a spinning cog
+
+@-moz-keyframes spin {
+  0% { -moz-transform: rotate(0deg); }
+  100% { -moz-transform: rotate(359deg); }
+}
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(359deg); }
+}
+@-o-keyframes spin {
+  0% { -o-transform: rotate(0deg); }
+  100% { -o-transform: rotate(359deg); }
+}
+@-ms-keyframes spin {
+  0% { -ms-transform: rotate(0deg); }
+  100% { -ms-transform: rotate(359deg); }
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(359deg); }
+}
+
+.btn-loading .glyphicon {
+  -webkit-animation: spin 4s infinite linear;
+  -moz-animation: spin 4s infinite linear;
+  -o-animation: spin 4s infinite linear;
+  animation: spin 4s infinite linear;
+
+  &:before {
+    content: "\e019";
+  }
+}
+
 

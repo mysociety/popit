@@ -6,11 +6,31 @@
   }
 ) %>
 
+<div class="container api-container">
 
-<h1>API</h1>
+  <h1>API</h1>
 
-<p>The API allows you to easily access and edit all the data stored in PopIt from your code or other websites.</p>
+  <div class="row">
+    <div class="col-md-6">
+      <p class="lead">The PopIt API allows you to easily access and edit all the data stored in this site, from your code or other websites.</p>
+    </div>
+    <div class="col-md-5 col-md-offset-1">
+      <label for="api-url">API Base URL:</label>
+      <div class="input-group click-to-copy">
+        <input type="text" readonly="readonly" id="api-url" class="form-control click-to-select" value="http://<%- popit._instance_name %><%- config.instance_site_base_url_suffix %>/api/v0.1" />
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">Copy</button>
+        </span>
+      </div>
+    </div>
+  </div>
 
-<p>Please see the <a href="<%- config.hosting_site_base_url %>/docs/api">full API documentation</a>.</p>
+  <hr/>
+
+  <div class="api-help-section">
+    <p><strong>Stuck?</strong> See the <a href="<%- config.hosting_site_base_url %>/docs/api">PopIt API documentation</a> for help.</p>
+  </div>
+
+</div>
 
 <%= render('html_footer.html' )%>

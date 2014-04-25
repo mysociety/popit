@@ -1,0 +1,298 @@
+/* Person and Organization (ie: "entity") pages */
+
+$entity-photo-sidebar-width: 285px;
+
+.popit-toolbar {
+  background-color: $light-grey-background;
+  border-top: 1px solid darken($header-footer-background, 5%);
+  border-bottom: 1px solid darken($light-grey-background, 5%);
+  padding: 20px 0;
+  line-height: 36px; // height of a button
+
+  .btn-default {
+    background: transparent;
+
+    &:hover, &:active, &:focus {
+      background: darken($light-grey-background, 5%)
+    }
+
+  }
+
+  .btn-group + .btn-group {
+    margin-left: 20px;
+  }
+
+  & > .container > p,
+  & > .container > h1 {
+    display: inline;
+    vertical-align: middle;
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: 300;
+  }
+
+  & > .container > h1 {
+    font-size: 28px;
+  }
+
+}
+
+.entity-toolbar {
+
+  & > .container > p {
+    color: #ccc;
+
+    a {
+      color: #666;
+      margin: 0 5px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:hover, &:focus {
+        color: #444;
+        border-bottom: 1px solid #ccc;
+        text-decoration: none;
+      }
+    }
+  }
+
+}
+
+.edit-mode {
+  display: none;
+}
+
+.alert.backbone-error {
+  border-left: 0;
+  border-right: 0;
+  border-radius: 0;
+  margin-bottom: 0;
+  margin-top: -1px; // overlap the previous bar's (or the edit-toolbar's) border
+}
+
+.entity {
+
+  .photo-sidebar {
+    text-align: center;
+    margin-top: 30px;
+
+    @media (min-width: $screen-sm-min){
+      float: right;
+      width: $entity-photo-sidebar-width;
+    }
+
+  }
+
+  ul.photos {
+    @include list-reset;
+    margin-bottom: 20px;
+
+    li {
+      position: relative;
+      border: 1px solid #eee;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+
+    img {
+      background-color: $light-grey-background;
+      border: 10px solid #fff;
+    }
+
+    .photo-actions {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  .dl-horizontal {
+    margin: 30px 0;
+
+    @media (min-width: $screen-sm-min) {
+      float: left;
+      width: $container-sm - $entity-photo-sidebar-width - 40px;
+
+      dd {
+        margin-left: 140px;  // narrower labels than bootstrap default
+      }
+      dt {
+        width: 120px;  // narrower labels than bootstrap default
+      }
+    }
+
+    @media (min-width: $screen-md-min) {
+      width: $container-md - $entity-photo-sidebar-width - 60px;
+
+      dd {
+        margin-left: 180px; // back to bootstrap default
+      }
+      dt {
+        width: 160px; // back to bootstrap default
+      }
+    }
+
+    @media (min-width: $screen-lg-min) {
+      width: $container-lg - $entity-photo-sidebar-width - 60px;
+    }
+  }
+
+  &.editing {
+    dt {
+      margin-top: 7px; // line up with text inputs
+    }
+    dd {
+      margin-bottom: 20px; // more space between inputs
+    }
+  }
+
+  dt.entity-attr-name {
+    line-height: 45px; // default h1 line-height, so label lines up vertically
+
+    &.has-error {
+      margin-top: 35px; //
+    }
+  }
+
+  dd.entity-attr-name {
+    .form-control {
+      font-size: 41px;
+      line-height: 45px;
+      height: auto;
+    }
+
+    .control-label {
+      margin-bottom: 5px;
+    }
+
+    &.has-error {
+      .form-control {
+        background-color: lighten($state-danger-bg, 5%);
+      }
+    }
+  }
+
+  dd {
+    margin-bottom: 10px;
+
+    ul {
+      @include list-reset;
+
+      a.add, a.edit, a.delete {
+        cursor: pointer;
+      }
+    }
+
+    li + li {
+      margin-top: 10px;
+    }
+
+    p, h1 {
+      margin: 0;
+    }
+
+    .add.btn {
+      display: block;
+      text-align: left;
+      border: 1px solid darken($light-grey-background, 10%);
+
+      &:hover, &:focus {
+        text-decoration: underline; // make it act less like a btn, more like a link
+        color: $link-hover-color; // make it act less like a btn, more like a link
+        background-color: $light-grey-background;
+        border: 1px solid darken($light-grey-background, 15%);
+      }
+
+      .glyphicon {
+        font-size: 12px;
+      }
+    }
+
+    .edit-group {
+      padding: 6px 12px; // to match bootstrap buttons and inputs
+      background-color: $light-grey-background;
+      border: 1px solid darken($light-grey-background, 10%);
+      border-radius: $border-radius-base;
+
+      .delete, .edit {
+        float: right;
+
+        .glyphicon {
+          font-size: 12px;
+        }
+      }
+
+      .delete + .edit,
+      .edit + .delete {
+        margin-right: 10px;
+      }
+    }
+
+    .bbf-form {
+      padding: 6px 12px; // to match bootstrap buttons and inputs
+      background-color: $light-grey-background;
+      border: 1px solid darken($light-grey-background, 10%);
+      border-radius: $border-radius-base;
+    }
+  }
+
+}
+
+.empty-entity-message {
+  text-align: center;
+  padding: 40px 0;
+
+  & > .glyphicon {
+    display: block;
+    font-size: 4em;
+    color: $light-grey-background;
+    text-shadow: 0 -1px 0 darken($light-grey-background, 10%);
+  }
+
+  h2 {
+    margin: 30px 0 0 0;
+  }
+
+  h2 + p {
+    margin-top: 30px;
+  }
+
+  .btn + .btn {
+    margin-left: 20px;
+  }
+}
+
+.entity-list > ul {
+  @include list-reset;
+  padding: 40px 0;
+  max-width: 760px;
+
+  li {
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  a {
+    text-decoration: none;
+
+    h4 {
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    p {
+      color: #999;
+    }
+
+    &:hover {
+      h4 {
+        text-decoration: underline;
+      }
+      p {
+        color: #777;
+      }
+    }
+  }
+}

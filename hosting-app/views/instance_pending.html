@@ -7,32 +7,36 @@
 ) %>
 
 <%
-  // This text assumes that the only person seeing this page is the person who 
-  // created the site, which is reasonable. If we find that there are many 
-  // un-confirmed sites then it might be worth having a different message, or 
+  // This text assumes that the only person seeing this page is the person who
+  // created the site, which is reasonable. If we find that there are many
+  // un-confirmed sites then it might be worth having a different message, or
   // better deleting the pending sites after a week.
 %>
 
-  <h2>Nearly Done! Now check your email...</h2>
-  
-  <p> 
-    The confirmation email <strong>may</strong> take a few minutes to arrive 
+<div class="container simple-container">
+
+  <h2>Nearly Done! Now check your email&hellip;</h2>
+
+  <p>
+    The confirmation email <strong>may</strong> take a few minutes to arrive
     &mdash; <em>please</em> be patient.
   </p>
 
   <p>
-    If you use web-based email or have 'junk mail' filters, you may wish to   
-    check your bulk/spam mail folders: sometimes, our messages are marked 
+    If you use web-based email or have 'junk mail' filters, you may wish to
+    check your bulk/spam mail folders: sometimes, our messages are marked
     that way.
   </p>
-  
+
   <p>
-    You must now click on the link within the email we've just sent you 
+    You must now click on the link within the email we've just sent you
     - if you do not we won't create your site.
   </p>
-  
+
   <p>
     (Don't worry - we'll wait while you're checking your email.)
   </p>
+
+</div>
 
 <%= render('html_footer.html' )%>

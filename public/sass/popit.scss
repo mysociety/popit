@@ -1,17 +1,26 @@
 /* PopIt */
 
-@import "normalise";
+@import "bootstrap-overrides";
+@import "bootstrap";
+
 @import "backbone-forms-0.9.0";
 @import "jquery.fancybox";
+@import "jqueryui/jquery.ui.autocomplete";
+@import "jqueryui/smoothness";
+@import "select2/select2";
+
+@import "functions";
 @import "colours";
 @import "typography";
-@import "default";
 @import "forms";
 @import "tables";
 @import "buttons";
 @import "warnings";
-@import "overrides";
 
-@import "jqueryui/jquery.ui.autocomplete";
-@import "jqueryui/smoothness";
-@import "select2/select2";
+@import "header-and-footer";
+@import "hosting-app";
+@import "homepage";
+@import "people-and-organizations";
+@import "about-pages";
+
+@import "overrides";

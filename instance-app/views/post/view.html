@@ -1,15 +1,32 @@
-<span class="admin-options hover-only">
-  <a class="edit edit-post"><i class="foundicon-edit"></i> <span>Edit</span></a>
-</span>
-<%- item.label %><% if (item.role) { %> (<%- item.role %>)<% } %>
+<div class="view-mode">
+  <%- item.label %>
 
-<% if (item.start_date || item.end_date) { %>
-  (
-  <% if (item.start_date) { %>
-    from <%- item.start_date %>
+  <% if (item.role) { %>
+    (<%- item.role %>)
   <% } %>
-  <% if (item.end_date) { %>
-    to <%- item.end_date %>
+
+  <% if (item.start_date && item.end_date) { %>
+    <span class="text-muted">(from <%- item.start_date %> to <%- item.end_date %>)</span>
+  <% } else if (item.start_date) { %>
+    <span class="text-muted">(from <%- item.start_date %>)</span>
+  <% } else if (item.end_date) { %>
+    <span class="text-muted">(to <%- item.end_date %>)</span>
   <% } %>
-  )
-<% } %>
+</div>
+<div class="edit-mode edit-group">
+  <a class="delete"><span class="glyphicon glyphicon-ban-circle glyphicon-space-after"></span>Delete</a>
+  <a class="edit edit-post"><span class="glyphicon glyphicon-pencil glyphicon-space-after"></span>Edit</a>
+  <%- item.label %>
+
+  <% if (item.role) { %>
+    (<%- item.role %>)
+  <% } %>
+
+  <% if (item.start_date && item.end_date) { %>
+    <span class="text-muted">(from <%- item.start_date %> to <%- item.end_date %>)</span>
+  <% } else if (item.start_date) { %>
+    <span class="text-muted">(from <%- item.start_date %>)</span>
+  <% } else if (item.end_date) { %>
+    <span class="text-muted">(to <%- item.end_date %>)</span>
+  <% } %>
+</div>

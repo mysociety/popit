@@ -1,4 +1,4 @@
-"use strict"; 
+"use strict";
 
 var Error404 = require('../../lib/errors').Error404,
     async    = require('async'),
@@ -19,32 +19,73 @@ exports.route = function (app) {
             .model('Person')
             .find()
             .limit(summary_listing_count)
-            .exec(callback);
+            .exec(function(err, persons) {
+              if (err) return callback(err);
+              async.map(persons, function(person, done) {
+                person.currentMemberships(function(err, memberships) {
+                  if (err) {
+                    return done(err);
+                  }
+                  var membershipWithRole = _.find(memberships, function(m) { return m.role; });
+                  if (membershipWithRole) {
+                    person.position = membershipWithRole.role + ' at ' + membershipWithRole.organization_id.name;
+                  } else {
+                    if (memberships[0]) {
+                      person.position = memberships[0].organization_id.name;
+                    }
+                  }
+                  done(null, person);
+                });
+              }, callback);
+            });
         },
         person_count: function (callback) {
           req.popit
             .model('Person')
             .count()
-            .exec(callback);            
+            .exec(callback);
         },
         organizations: function (callback) {
           req.popit
             .model('Organization')
             .find()
             .limit(summary_listing_count)
-            .exec(callback);
+            .exec(function(err, organizations) {
+              if (err) {
+                return callback(err);
+              }
+              async.map(organizations, function(organization, done) {
+                organization.model('Membership').count({organization_id: organization._id, person_id: {$ne: null}}, function(err, count) {
+                  if (err) {
+                    return done(err);
+                  }
+                  organization.personCount = count;
+                  done(null, organization);
+                });
+              }, callback);
+            });
         },
         organization_count: function (callback) {
           req.popit
             .model('Organization')
             .count()
-            .exec(callback);            
+            .exec(callback);
         }
       },
       function(err, results) {
         if (err) return next(err);
         res.locals = _.extend(res.locals, results);
         res.locals.summary_listing_count = summary_listing_count;
+        res.locals.current_step = undefined;
+
+        if (results.person_count + results.organization_count === 0){
+            res.locals.current_step = 1;
+        } else if (typeof req.popit.setting('name') === 'undefined') {
+            res.locals.current_step = 2;
+        } else if (false) {
+            res.locals.current_step = 3;
+        }
+
         res.render('index.html');
       }
     );

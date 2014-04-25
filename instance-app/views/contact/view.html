@@ -1,14 +1,31 @@
-<span class="admin-options hover-only">
-  <a class="edit contact-edit"><i class="foundicon-edit"></i> <span>Edit</span></a>
-</span>
-<div class="list-item-title">
-  <% if (item.label) { %>
-    <%- item.label %> (<%- item.type %>):
-  <% } else { %>
-    <%- item.type %>:
+<div class="view-mode">
+  <strong>
+    <% if (item.label) { %>
+      <%- item.label %> (<%- item.type %>):
+    <% } else { %>
+      <%- item.type %>:
+    <% } %>
+  </strong>
+  <%- item.value %>
+  <% if (item.note) { %>
+    <span class="text-muted">(<%- item.note %>)</span>
   <% } %>
 </div>
-<div class="list-item-value">
+<div class="edit-mode edit-group">
+  <a class="delete"><span class="glyphicon glyphicon-ban-circle glyphicon-space-after"></span>Delete</a>
+  <a class="edit contact-edit"><span class="glyphicon glyphicon-pencil glyphicon-space-after"></span>Edit</a>
+  <strong>
+    <% if (item.label) { %>
+      <%- item.label %> (<%- item.type %>):
+    <% } else { %>
+      <%- item.type %>:
+    <% } %>
+  </strong>
   <%- item.value %>
-  <% if (item.note) { %>(<%- item.note %>)<% } %>
+  <% if (item.note) { %>
+    <span class="text-muted">(<%- item.note %>)</span>
+  <% } %>
 </div>
+
+
+

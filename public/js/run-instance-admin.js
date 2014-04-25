@@ -18,20 +18,22 @@ require ([
   'instance-admin/actions/contact-edit',
   'instance-admin/actions/other_name-edit',
   'instance-admin/actions/identifier-edit',
-  'instance-admin/actions/links-edit'
+  'instance-admin/actions/links-edit',
+  'instance-admin/actions/person-edit',
+  'instance-admin/actions/person-new'
 ]);
 
 require (
   [ 'order!jquery' ],
   function ($) {
-    "use strict"; 
+    "use strict";
 
     // TODO - we shouldn't be mucking around with the global jQuery behaviour like this.
     // handle the API wrapping the responses in result(s): {...}
 
     // FIXME fix this by creating a base model/collection, using the
     // http://backbonejs.org/#Model-parse method and then inheriting from that.
-    
+
     $.ajaxSetup({
       converters: {
         "text json": function (json) {
