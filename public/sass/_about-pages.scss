@@ -10,6 +10,11 @@
 }
 
 .edit-instance-details {
+  max-width: 600px;
+
+  dt {
+    margin-top: 7px; // line up with input boxes
+  }
 
   dd {
     margin-bottom: 1.5em;
@@ -23,6 +28,10 @@
   & + button {
     margin-left: 180px;
     margin-bottom: 24px;
+  }
+
+  .checkbox-inline {
+    margin-top: 9px;
   }
 }
 

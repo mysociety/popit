@@ -59,7 +59,7 @@
           </h3>
           <p>Connect your data to other websites via the PopIt API.</p>
           <div class="input-group click-to-copy">
-            <input type="text" readonly="readonly" class="form-control click-to-select" value="http://<%- popit._instance_name %><%- config.instance_site_base_url_suffix %>/api" />
+            <input type="text" readonly="readonly" class="form-control click-to-select" value="http://<%- popit._instance_name %><%- config.instance_site_base_url_suffix %>/api/v0.1" />
             <span class="input-group-btn">
               <button class="btn <% if (current_step === 3) { %>btn-primary<% } else { %>btn-default<% } %>" type="button">Copy</button>
             </span>
@@ -105,7 +105,11 @@
                 <a href="<%- person.url %>">
                   <span class="initials"><%- person.initials %></span>
                   <strong title="<%- person.name %>"><%- person.name %></strong>
-                  <small title="TODO: current position">TODO: current position</small>
+                  <% if (person.position) { %>
+                    <small title="<%= person.position %>"><%= person.position %></small>
+                  <% } else { %>
+                    <small>&nbsp;</small>
+                  <% } %>
                 </a>
               </li>
             <% }); %>
@@ -141,7 +145,7 @@
                 <a href="<%- organization.url %>">
                   <span class="initials"><%- organization.initials %></span>
                   <strong title="<%- organization.name %>"><%- organization.name %></strong>
-                  <small title="TODO: number of members">TODO: number of members</small>
+                  <small title="<%= organization.personCount %> member<%= organization.personCount !== 1 ? 's' : '' %>"><%= organization.personCount %> member<%= organization.personCount !== 1 ? 's' : '' %></small>
                 </a>
               </li>
             <% }); %>
@@ -181,7 +185,7 @@
           <div>
             <label for="api-url">API Base URL:</label>
             <div class="input-group click-to-copy">
-              <input type="text" id="api-url" readonly="readonly" class="form-control click-to-select" value="http://<%- popit._instance_name %><%- config.instance_site_base_url_suffix %>/api" />
+              <input type="text" id="api-url" readonly="readonly" class="form-control click-to-select" value="http://<%- popit._instance_name %><%- config.instance_site_base_url_suffix %>/api/v0.1" />
               <span class="input-group-btn">
                 <button class="btn btn-default" type="button">Copy</button>
               </span>
