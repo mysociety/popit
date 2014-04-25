@@ -13,7 +13,7 @@
     <h1 class="text-center">PopIt instances</h1>
 
     <div class="list-group">
-      <% if ( config.host != 'http://popit.mysociety.org' ) { %>
+      <% if ( config.hosting_server.host != 'popit.mysociety.org' ) { %>
       <% _.each(instances, function(instance) { %>
         <a id="instance-<%- instance.slug %>" href="/instances/<%- instance.slug %>" class="list-group-item">
           <h4 class="list-group-item-heading"><%- instance.info.name || instance.slug %></h4>
