@@ -20,7 +20,7 @@ exports.route = function (app) {
             .find()
             .limit(summary_listing_count)
             .exec(function(err, persons) {
-              if (err) return next(err);
+              if (err) return callback(err);
               async.map(persons, function(person, done) {
                 person.currentMemberships(function(err, memberships) {
                   if (err) {
@@ -46,7 +46,20 @@ exports.route = function (app) {
             .model('Organization')
             .find()
             .limit(summary_listing_count)
-            .exec(callback);
+            .exec(function(err, organizations) {
+              if (err) {
+                return callback(err);
+              }
+              async.map(organizations, function(organization, done) {
+                organization.model('Membership').count({organization_id: organization._id, person_id: {$ne: null}}, function(err, count) {
+                  if (err) {
+                    return done(err);
+                  }
+                  organization.personCount = count;
+                  done(null, organization);
+                });
+              }, callback);
+            });
         },
         organization_count: function (callback) {
           req.popit
