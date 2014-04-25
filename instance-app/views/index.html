@@ -107,6 +107,8 @@
                   <strong title="<%- person.name %>"><%- person.name %></strong>
                   <% if (person.position) { %>
                     <small title="<%= person.position %>"><%= person.position %></small>
+                  <% } else { %>
+                    <small>&nbsp;</small>
                   <% } %>
                 </a>
               </li>
