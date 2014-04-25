@@ -105,7 +105,9 @@
                 <a href="<%- person.url %>">
                   <span class="initials"><%- person.initials %></span>
                   <strong title="<%- person.name %>"><%- person.name %></strong>
-                  <small title="TODO: current position">TODO: current position</small>
+                  <% if (person.position) { %>
+                    <small title="<%= person.position %>"><%= person.position %></small>
+                  <% } %>
                 </a>
               </li>
             <% }); %>

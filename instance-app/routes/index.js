@@ -19,7 +19,21 @@ exports.route = function (app) {
             .model('Person')
             .find()
             .limit(summary_listing_count)
-            .exec(callback);
+            .exec(function(err, persons) {
+              if (err) return next(err);
+              async.map(persons, function(person, done) {
+                person.currentMemberships(function(err, memberships) {
+                  if (err) {
+                    return done(err);
+                  }
+                  var membershipWithRole = _.find(memberships, function(m) { return m.role });
+                  if (membershipWithRole) {
+                    person.position = membershipWithRole.role + ' at ' + membershipWithRole.organization_id.name;
+                  }
+                  done(null, person);
+                });
+              }, callback);
+            });
         },
         person_count: function (callback) {
           req.popit
