@@ -28,11 +28,11 @@
 
 <% if (people.length) { %>
 
-  <ul>
+  <ul class="row">
     <% _.each(people, function(person) { %>
-      <li>
+      <li class="col-sm-12 col-md-6 col-lg-4">
         <a class="media" href="<%- person.url %>">
-          <!-- TODO: images or initials? -->
+          <span class="pull-left media-object initials"><%- person.initials %></span>
           <div class="media-body">
             <h4><%- person.name %></h4>
             <% if (person.summary) { %>

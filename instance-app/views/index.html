@@ -82,7 +82,11 @@
           <% } %>
         </div>
         <div class="col-sm-4">
-          <a href="/about/edit" class="btn btn-default pull-right">Edit details</a>
+          <% if (user || guest) { %>
+            <a href="/about/edit" class="btn btn-default pull-right">Edit details</a>
+          <% } else { %>
+            <a href="/login" class="btn btn-default pull-right">Log in to edit details</a>
+          <% } %>
         </div>
       </div>
     </div>

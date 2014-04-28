@@ -27,11 +27,12 @@
 <div class="container entity-list organization">
 
 <% if (organizations.length) { %>
-  <ul>
+
+  <ul class="row">
     <% _.each(organizations, function(organization) { %>
-      <li>
+      <li class="col-sm-12 col-md-6 col-lg-4">
         <a class="media" href="<%- organization.url %>">
-          <!-- TODO: images or initials? -->
+          <span class="pull-left media-object initials"><%- organization.initials %></span>
           <div class="media-body">
             <h4><%- organization.name %></h4>
             <% if (organization.summary) { %>
