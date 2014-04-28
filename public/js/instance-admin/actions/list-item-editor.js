@@ -24,12 +24,14 @@ define(
       return function(event) {
         event.preventDefault();
 
-        var $link    = $(this),
-            $element = $link.closest('li');
+        var $link    = $(this);
+        var $element = $link.hasClass('add') ?
+            null :
+            $link.closest('li');
 
-        if (!$element.length) {
+        if (!$element || !$element.length) {
             $element = $('<li/>');
-            $link.closest('section').find('ul').prepend($element);
+            $link.closest('ul').prepend($element);
         }
 
         var cid = $element.data('id'),
