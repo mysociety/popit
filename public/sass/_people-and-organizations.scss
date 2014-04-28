@@ -267,26 +267,47 @@ $entity-photo-sidebar-width: 285px;
 .entity-list > ul {
   @include list-reset;
   padding: 40px 0;
-  max-width: 760px;
 
   li {
     font-size: 18px;
     line-height: 18px;
+    margin-bottom: 20px;
   }
 
   a {
     text-decoration: none;
 
+    .initials {
+      display: block;
+      line-height: 40px;
+      height: 40px;
+      width: 40px;
+      font-size: 21px;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: #fff;
+      background: $header-footer-background;
+      text-align: center;
+      text-shadow: 0 -1px 0 darken($header-footer-background, 20%);
+    }
+
     h4 {
+      margin-top: 10px;
       margin-bottom: 5px;
       font-weight: 500;
+      @include dotdotdot;
     }
 
     p {
+      display: none;
       color: #999;
     }
 
     &:hover {
+      .initials {
+        background-color: darken($header-footer-background, 10%);
+        text-shadow: 0 -1px 0 darken($header-footer-background, 30%);
+      }
       h4 {
         text-decoration: underline;
       }
