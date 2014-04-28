@@ -1,3 +1,4 @@
+/*global popit:false console:false alert:false */
 define(['jquery'], function ($) {
   "use strict";
 
@@ -5,21 +6,21 @@ define(['jquery'], function ($) {
     $('.view-mode').hide();
     $('.edit-mode').show();
     $('.entity').addClass('editing');
-  }
+  };
 
   var leaveEditMode = function(){
     $('.view-mode').show();
     $('.edit-mode').hide();
     $('.entity').removeClass('editing');
-  }
+  };
 
   var goNewPerson = function() {
       window.location = '/persons/new';
-  }
+  };
 
   var cancelEdit = function(){
       window.location = '/persons';
-  }
+  };
 
   var saveChanges = function(){
     toggleSavingButton();
@@ -53,20 +54,21 @@ define(['jquery'], function ($) {
         }
       }
     );
-  }
+  };
 
   var toggleSavingButton = function(){
+    var newHtml;
     var $btn = $('.entity-save-new');
     if($btn.is('.btn-loading')){
-      var newHtml = $btn.html().replace('Saving Person', 'Save Person');
+      newHtml = $btn.html().replace('Saving Person', 'Save Person');
       $btn.removeClass('btn-loading');
       $btn.html(newHtml);
     } else {
-      var newHtml = $btn.html().replace('Save Person', 'Saving Person');
+      newHtml = $btn.html().replace('Save Person', 'Saving Person');
       $btn.addClass('btn-loading');
       $btn.html(newHtml);
     }
-  }
+  };
 
   $(function(){
     $('.entity-cancel-new-mode').on('click', cancelEdit);

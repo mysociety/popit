@@ -1,3 +1,4 @@
+/*global popit:false */
 define(
   [
     'jquery',
@@ -206,7 +207,7 @@ define(
               view.$source_el.replaceWith( $changed );
               $changed.children('.view-mode').hide();
               $changed.children('.edit-mode').show();
-              popit.model['memberships'].add(model);
+              popit.model.memberships.add(model);
               $changed.data('id', model.cid);
               $.fancybox.close();
             },

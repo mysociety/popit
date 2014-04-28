@@ -1,3 +1,4 @@
+/*global popit:false console:false */
 define(['jquery'], function ($) {
   "use strict";
 
@@ -21,7 +22,7 @@ define(['jquery'], function ($) {
     $('.edit-mode').show();
     $('.entity').addClass('editing');
       popit.model.on('invalid', onInvalid);
-  }
+  };
 
   var leaveEditMode = function(){
     $('.view-mode').show();
@@ -29,18 +30,18 @@ define(['jquery'], function ($) {
     $('.entity').removeClass('editing');
     resetErrorStates();
     popit.model.off('invalid', onInvalid);
-  }
+  };
 
   var resetErrorStates = function(){
     $('.edit-mode-error').hide();
     $('.has-error').removeClass('has-error');
     $('.alert.backbone-error').slideUp(100);
-  }
+  };
 
   var showBackboneError = function(msg){
     var $alert = $('<div class="alert alert-danger backbone-error"><p class="container"><strong>' + msg + '</strong> Please try again.</p></div>');
     $alert.hide().insertBefore('.entity').slideDown(100);
-  }
+  };
 
   var cancelEdit = function(){
       leaveEditMode();
@@ -50,7 +51,7 @@ define(['jquery'], function ($) {
         var changed = '.edit-mode[data-api-name="' + field + '"]';
         $(changed).val($(original).text());
       }
-  }
+  };
 
   var saveChanges = function(){
     toggleSavingButton();
@@ -74,7 +75,7 @@ define(['jquery'], function ($) {
             var field = fields[i];
             var selector = '.view-mode[data-api-name="' + field + '"]';
             var value = popit.model.get(field);
-            if ( value == null ) {
+            if ( value === null ) {
                 value = '';
             }
             $(selector).text(value);
@@ -89,26 +90,27 @@ define(['jquery'], function ($) {
         }
       }
     );
-  }
+  };
 
   var toggleSavingButton = function(){
+    var newHtml;
     var $btn = $('.entity-save-changes');
     if($btn.is('.btn-loading')){
-      var newHtml = $btn.html().replace('Saving changes', 'Save changes');
+      newHtml = $btn.html().replace('Saving changes', 'Save changes');
       $btn.removeClass('btn-loading');
       $btn.html(newHtml);
     } else {
-      var newHtml = $btn.html().replace('Save changes', 'Saving changes');
+      newHtml = $btn.html().replace('Save changes', 'Saving changes');
       $btn.addClass('btn-loading');
       $btn.html(newHtml);
     }
-  }
+  };
 
   var deletePersonConfirm = function(){
       if ( window.confirm('Are you sure you want to delete ' + popit.model.get('name')) ) {
         deletePerson();
       }
-  }
+  };
 
   var deletePerson = function(){
     popit.model.destroy({
@@ -119,7 +121,7 @@ define(['jquery'], function ($) {
           showBackboneError('There was a problem deleting this person.');
         }
     });
-  }
+  };
 
   $(function(){
     $('.entity-enter-edit-mode').on('click', enterEditMode);
