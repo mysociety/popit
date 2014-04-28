@@ -82,11 +82,12 @@
           <% } %>
         </div>
         <div class="col-sm-4">
-          <% if (user || guest) { %>
-            <a href="/about/edit" class="btn btn-default pull-right">Edit details</a>
-          <% } else { %>
-            <a href="/login" class="btn btn-default pull-right">Log in to edit details</a>
-          <% } %>
+          <div class="input-group click-to-copy">
+            <input type="text" id="api-url" readonly="readonly" class="form-control click-to-select" value="http://<%- popit._instance_name %><%- config.instance_site_base_url_suffix %>/api/v0.1" />
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">Copy</button>
+            </span>
+          </div>
         </div>
       </div>
     </div>
