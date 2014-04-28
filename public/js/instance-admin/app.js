@@ -90,7 +90,7 @@ define(
 
     function setup_sub_model_links(key) {
       popit.model[key].on('reset', function(){
-        $('section.' + key + ' li').each(function(i, l){
+        $('ul.' + key + ' li').each(function(i, l){
           var m = popit.model[key].at(i);
           if (!m) return;
           $.data(l, 'id', m.cid);

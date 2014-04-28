@@ -92,6 +92,8 @@ define(
         };
 
         this.$el.html( this.options.template( template_args ) );
+        this.$el.children('.view-mode').hide();
+        this.$el.children('.edit-mode').show();
         return this;
       },
 
