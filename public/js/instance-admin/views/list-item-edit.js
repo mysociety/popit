@@ -71,7 +71,7 @@ define(
       
       deleteEntry: function (event) {
         event.preventDefault();
-        this.model.destroy();
+        this.model.collection.remove(this.model.cid);
         this.remove();
       },
       
