@@ -5,6 +5,7 @@ define(
     'backbone-forms',
     'underscore',
     'text!templates/membership/new.html',
+    'text!templates/membership/list-item.html',
     'instance-admin/models/person',
     'instance-admin/models/organization',
     'instance-admin/models/membership',
@@ -18,6 +19,7 @@ define(
     BackboneForms,
     _,
     membershipTemplate,
+    membershipItemTemplate,
     PersonModel,
     OrganizationModel,
     MembershipModel,
@@ -29,6 +31,7 @@ define(
     var MembershipNewView = Backbone.View.extend({
 
       membershipTemplate: _.template(membershipTemplate),
+      membershipItemTemplate: _.template(membershipItemTemplate),
       // initialize: function () {},
 
       render: function () {
@@ -36,6 +39,7 @@ define(
 
         // Render the template
         var $content = $( this.membershipTemplate() );
+        view.$source_el = this.options.source_el;
 
         // find the bits that are interesting and store them for easy access
         this.$errors_list = $content.find('ul.error');
@@ -184,7 +188,24 @@ define(
           new_model.organization_id = organization_id;
           view.model.save(new_model, {
             success: function (model, response ) {
-                document.location.reload();
+                var o = new OrganizationModel({ id: model.get('organization_id') });
+                var p = new PostModel({ id: model.get('post_id') });
+                    o.fetch({ async: false });
+                    p.fetch({ async: false });
+                    model.set('organization_id', o.attributes);
+                    model.set('post_id', p.attributes);
+                    var template_args = {
+                        type: 'person',
+                        membership: model.toJSON()
+                    };
+
+                    var $changed = $( view.membershipItemTemplate( template_args ) );
+                    view.$source_el.replaceWith( $changed );
+                    $changed.children('.view-mode').hide();
+                    $changed.children('.edit-mode').show();
+                    popit.model['memberships'].add(model);
+                    $changed.data('id', model.cid);
+                    $.fancybox.close();
             },
             error: function (model, response) {
               view.$errors_list.append('<li>Something went wrong saving the membership to the server.</li>');

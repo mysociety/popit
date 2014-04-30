@@ -68,10 +68,20 @@ define(
         return object;
       }
 
-      $('.edit-membership').click(function(event) {
+      $('.edit-membership').live('click', function(event) {
         event.preventDefault();
 
         var object = fetch_model($(this));
+
+        var $link    = $(this);
+        var $element = $link.hasClass('add') ?
+            null :
+            $link.closest('li');
+
+        if (!$element || !$element.length) {
+            $element = $('<li/>');
+            $link.closest('ul').prepend(element);
+        }
 
         var fields_to_hide = {};
         if (popit.type == 'person') {
@@ -81,6 +91,7 @@ define(
         }
 
         var view = new MembershipNewView({
+          source_el: $element,
           model: object,
           fields_to_hide: fields_to_hide
         });
@@ -89,7 +100,7 @@ define(
 
       });
 
-      $('.delete-membership').click(function(event) {
+      $('.delete-membership').live('click', function(event) {
         event.preventDefault();
 
         var $link = $(this),
