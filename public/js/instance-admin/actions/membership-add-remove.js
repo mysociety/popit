@@ -9,6 +9,7 @@ define(
     'instance-admin/models/membership',
     'instance-admin/models/person',
     'instance-admin/models/organization',
+    'instance-admin/models/post',
     'instance-admin/views/membership-new',
     'instance-admin/views/remove-model',
     'text!templates/membership/remove.html',
@@ -19,6 +20,7 @@ define(
     MembershipModel,
     PersonModel,
     OrganizationModel,
+    PostModel,
     MembershipNewView,
     RemoveModelView,
     mTemplate
@@ -43,6 +45,9 @@ define(
             var o = new OrganizationModel({ id: object.get('organization_id') });
             o.fetch({ async: false });
             object.set('organization_id', o.attributes);
+            o = new PostModel({ id: object.get('post_id') });
+            o.fetch({ async: false });
+            object.set('post_id', o.attributes);
           } else if (popit.type == 'organization') {
             object.set('organization_id', popit.model.attributes);
             var p = new PersonModel({ id: object.get('person_id') });
