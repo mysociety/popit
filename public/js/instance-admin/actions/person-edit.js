@@ -113,7 +113,7 @@ define(['jquery'], function ($) {
   var deletePerson = function(){
     popit.model.destroy({
         success: function() {
-          window.location = '/persons';
+          window.location = '/' + popit.type + 's';
         },
         error: function(model, response) {
           showBackboneError('There was a problem deleting this person.');
