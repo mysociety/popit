@@ -80,7 +80,7 @@ define(
 
         if (!$element || !$element.length) {
             $element = $('<li/>');
-            $link.closest('ul').prepend(element);
+            $link.closest('ul').prepend($element);
         }
 
         var fields_to_hide = {};
