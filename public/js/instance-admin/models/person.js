@@ -29,6 +29,26 @@ function ( Backbone, NestedModel, ContactCollection, OtherNamesCollection, Ident
 
     schema: {
       name: { dataType: 'Text', validators: ['required'] }
+    },
+
+    validate: function(attrs) {
+        var errs = {}, invalid = false;
+        if ( !attrs.name ) {
+            invalid = true;
+            errs.name = 'Name is required';
+        }
+        if ( attrs.birth_date && !attrs.birth_date.match(/^\d\d\d\d-\d\d-\d\d$/) ) {
+            invalid = true;
+            errs.birth_date = 'Wrong date format, expects YYYY-MM-DD';
+        }
+        if ( attrs.death_date && !attrs.death_date.match(/^\d\d\d\d-\d\d-\d\d$/) ) {
+            invalid = true;
+            errs.death_date = 'Wrong date format, expects YYYY-MM-DD';
+        }
+
+        if ( invalid ) {
+            return errs;
+        }
     }
   });
 

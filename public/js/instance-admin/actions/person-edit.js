@@ -1,10 +1,26 @@
 define(['jquery'], function ($) {
   "use strict";
 
+  var fields = [ 'name', 'summary', 'birth_date', 'death_date' ];
+
+  var onInvalid = function(model, err) {
+      for ( var i = 0; i < fields.length; i++ ) {
+        var field = fields[i];
+        if ( err[field] ) {
+          var $dd = $('.edit-mode[data-api-name="' + field + '"]').parent();
+          $dd.addClass('has-error'); // the text input and error text
+          $dd.prev().addClass('has-error'); // the label
+          $('.edit-mode-error', $dd).show();
+          toggleSavingButton();
+        }
+      }
+  };
+
   var enterEditMode = function(){
     $('.view-mode').hide();
     $('.edit-mode').show();
     $('.entity').addClass('editing');
+      popit.model.on('invalid', onInvalid);
   }
 
   var leaveEditMode = function(){
@@ -12,6 +28,7 @@ define(['jquery'], function ($) {
     $('.edit-mode').hide();
     $('.entity').removeClass('editing');
     resetErrorStates();
+    popit.model.off('invalid', onInvalid);
   }
 
   var resetErrorStates = function(){
@@ -27,7 +44,6 @@ define(['jquery'], function ($) {
 
   var cancelEdit = function(){
       leaveEditMode();
-      var fields = [ 'name', 'summary', 'birth_date', 'death_date' ];
       for ( var i = 0; i < fields.length; i++ ) {
         var field = fields[i];
         var original = '.view-mode[data-api-name="' + field + '"]';
@@ -39,14 +55,6 @@ define(['jquery'], function ($) {
   var saveChanges = function(){
     toggleSavingButton();
     var name = $('.edit-mode[data-api-name="name"]').val();
-    if ( !name ) {
-      var $dd = $('.edit-mode[data-api-name="name"]').parent();
-      $dd.addClass('has-error'); // the text input and error text
-      $dd.prev().addClass('has-error'); // the label
-      $('.edit-mode-error', $dd).show();
-      toggleSavingButton();
-      return;
-    }
     popit.model.set('name', name);
     popit.model.set('summary', $('.edit-mode[data-api-name="summary"]').val());
     var dates = ['death_date', 'birth_date'];
@@ -62,7 +70,6 @@ define(['jquery'], function ($) {
       {},
       {
         success: function() {
-          var fields = [ 'name', 'summary', 'birth_date', 'death_date' ];
           for ( var i = 0; i < fields.length; i++ ) {
             var field = fields[i];
             var selector = '.view-mode[data-api-name="' + field + '"]';

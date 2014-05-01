@@ -97,12 +97,14 @@
     <dt>Born</dt>
     <dd>
       <p class="view-mode" data-api-name="birth_date"><%- person.birth_date || '' %></p>
+      <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY-MM-DD format</strong>
       <input type="date" class="form-control edit-mode" data-api-name="birth_date" value="<%- person.birth_date || '' %>">
     </dd>
 
     <dt>Died</dt>
     <dd>
       <p class="view-mode" data-api-name="death_date"><%- person.death_date || '' %></p>
+      <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY-MM-DD format</strong>
       <input type="date" class="form-control edit-mode" data-api-name="death_date" value="<%- person.death_date || '' %>">
     </dd>
 
