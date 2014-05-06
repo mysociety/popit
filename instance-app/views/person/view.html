@@ -53,11 +53,11 @@
               <% // TODO - proxy will need changes to allow us to proxy remote images %>
               <img src="<%- image.url %>" width="280" />
             <% } else { %>
-              <img src="<%- image_proxy("/persons/images/" + image.id + '/' + person.id, "", 280) %>" />
+              <img src="<%- image_proxy(image_url('person', person, image), "", 280) %>" />
             <% } %>
 
             <p class="photo-actions edit-mode">
-              <a class="delete-photo btn btn-default btn-sm" data-image-url="<%- person.url %>/images/<%- image.id %>">
+              <a class="delete-photo btn btn-default btn-sm" data-image-url="<%- image_url( 'person', person, image ) %>">
                 <span class="glyphicon glyphicon-trash glyphicon-space-after"></span>
                 Delete this photograph
               </a>
