@@ -69,7 +69,7 @@ define(['jquery'], function ($) {
   }
 
   $(function(){
-    $('.entity-leave-cancel-new-mode').on('click', cancelEdit);
+    $('.entity-cancel-new-mode').on('click', cancelEdit);
     $('.entity-save-new').on('click', saveChanges);
     $('.new-person').on('click', goNewPerson);
   });

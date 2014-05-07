@@ -7,7 +7,6 @@ define(
   [
     'jquery',
     'instance-admin/models/person',
-    'instance-admin/views/person-new',
     'instance-admin/views/remove-model',
     'text!templates/person/remove.html',
     'jquery.fancybox'
@@ -15,7 +14,6 @@ define(
   function (
     $,
     PersonModel,
-    PersonNewView,
     RemoveModelView,
     personTemplate
   ) {
@@ -23,18 +21,6 @@ define(
 
     $(function(){
 
-      $('a.new-person').click(function(event) {
-
-        event.preventDefault();
-
-        var person = new PersonModel({});
-        var view   = new PersonNewView({model: person});
-        
-        // render in lightbox, focus on first input
-        $.fancybox( view.render().el );
-        view.$(':input:first').focus();
-      });
-      
       $('a.delete-person').click(function(event) {
         event.preventDefault();
 
