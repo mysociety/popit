@@ -40,6 +40,10 @@ define(
           data: function (term, page) {
             var a = {};
             a[lookup_term] = term;
+
+            if (args.current_post) {
+              a.post_id = args.current_post.val();
+            }
             return a;
           },
           results: function (data, page) {
