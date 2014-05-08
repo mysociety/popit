@@ -78,7 +78,8 @@ define(
           placeholder: "e.g Apple Inc, UK Parliament, Kenyatta University",
           //url: '/api/v0.1/organizations',
           url: '/autocomplete/organizations',
-          errors_list: this.$errors_list
+          errors_list: this.$errors_list,
+          current_post: this.$post_id_input
         }) );
         this.$post_id_input.select2( select2Helpers.create_arguments_for_model({
           placeholder: "e.g MP for Avalon, President of the US",
