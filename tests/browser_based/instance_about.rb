@@ -25,7 +25,7 @@ class InstanceAboutTests < PopItWatirTestCase
     # cleared as part of database deleteing)
     goto '/about'
     assert_equal 'About Us', @b.title
-    assert_equal 'Description:', @b.element(:class => 'about-field-description').text
+    assert_equal '', @b.element(:class => 'about-field-description').text
 
     # Check that the edit link is not displayed
     assert ! @b.link(:text, '(edit)').present?

@@ -15,7 +15,8 @@ class DateEditingTests < PopItWatirTestCase
   include Select2Helpers
 
   def birth_date_div
-    @b.li(:class => 'personal_details-birth_date').span(:class => 'list-item-value').when_present
+    #@b.li(:class => 'personal_details-birth_date').span(:class => 'list-item-value').when_present
+    @b.p(:xpath => '//p[@data-api-name="birth_date"]')
   end
 
   def birth_date_value
@@ -36,13 +37,13 @@ class DateEditingTests < PopItWatirTestCase
 
       # open Barack's page
       goto '/persons'
-      @b.link(:text => 'Barack Obama').click
+      @b.link(:text => /Barack Obama/).click
 
       # Store the path to the date 
       path_to_date = 'birth_date'
 
       # check that there is no current entry
-      assert_equal '---', birth_date_value
+      assert_equal '', birth_date_value
 
       # start editing his dob
       birth_date_div.click

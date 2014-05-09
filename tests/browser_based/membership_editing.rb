@@ -14,15 +14,15 @@ class MembershipEditingTests < PopItWatirTestCase
   include Select2Helpers
 
   def edit_link
-    @b.execute_script('arguments[0].scrollIntoView();', @b.section(:class, 'memberships'))
-    @b.section(:class, 'memberships').li.hover
-    @b.section(:class, 'memberships').li.link(:text => 'Edit').click
+    @b.execute_script('arguments[0].scrollIntoView();', @b.ul(:class, 'memberships'))
+    @b.ul(:class, 'memberships').li.hover
+    @b.ul(:class, 'memberships').li.link(:text => 'Edit').click
   end
 
   def delete_link
-    @b.execute_script('arguments[0].scrollIntoView();', @b.section(:class, 'memberships'))
-    @b.section(:class, 'memberships').li.hover
-    @b.section(:class, 'memberships').li.link(:text => 'Delete').click
+    @b.execute_script('arguments[0].scrollIntoView();', @b.ul(:class, 'memberships'))
+    @b.ul(:class, 'memberships').li.hover
+    @b.ul(:class, 'memberships').li.link(:text => 'Delete').click
   end
 
   def test_membership_creation
@@ -38,9 +38,12 @@ class MembershipEditingTests < PopItWatirTestCase
         return @b.form(:name, "edit-membership")
       end
 
+      # make the edit fields visible
+      @b.link(:class => /entity-enter-edit-mode/).click
+
       # click on the create new membership link and check that the form has popped up
       assert ! membership_form.present?
-      @b.section(:class, 'memberships').link(:class, 'add').click
+      @b.ul(:class, 'memberships').link(:class, 'add').click
       membership_form.wait_until_present
 
       # Submit the form and check that it complains about missing role
@@ -67,14 +70,15 @@ class MembershipEditingTests < PopItWatirTestCase
       # submit the form and check that the new membership is created
       membership_form.submit
       @b.wait_until { ! membership_form.present? }
-      assert_match /\(President\)\ :\ United\ States\ Government\ \(\ from\ 2001-01-20\ \)/, @b.text
+      assert_match /\(President\)\ :\ United\ States\ Government\ \(from\ 2001-01-20\)/, @b.text
 
       # go back to person page and check that the membership is now listed there
       goto '/persons/george-bush'
-      assert_match /President/, @b.section(:class, 'memberships').text
+      assert_match /President/, @b.ul(:class, 'memberships').text
+      @b.link(:class => /entity-enter-edit-mode/).click
 
       # create a new membership but with new role and organization
-      @b.section(:class, 'memberships').link(:class, 'add').click
+      @b.ul(:class, 'memberships').link(:class, 'add').click
       membership_form.wait_until_present
 
       select2_container('role').link.click
@@ -95,7 +99,8 @@ class MembershipEditingTests < PopItWatirTestCase
 
       # check that the new role and org are in the possible options
       goto '/persons/george-bush'
-      @b.section(:class, 'memberships').link(:class, 'add').click
+      @b.link(:class => /entity-enter-edit-mode/).click
+      @b.ul(:class, 'memberships').link(:class, 'add').click
       membership_form.wait_until_present
 
       select2_container('role').link.click
@@ -127,6 +132,7 @@ class MembershipEditingTests < PopItWatirTestCase
       end
 
       # click on the create new membership link and check that the form has popped up
+      @b.link(:class => /entity-enter-edit-mode/).click
       assert ! membership_form.present?
       edit_link
       membership_form.wait_until_present
@@ -159,6 +165,7 @@ class MembershipEditingTests < PopItWatirTestCase
       end
 
       # click on the create new membership link and check that the form has popped up
+      @b.link(:class => /entity-enter-edit-mode/).click
       assert ! membership_form.present?
       delete_link
       membership_form.wait_until_present

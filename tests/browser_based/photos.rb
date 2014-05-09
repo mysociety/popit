@@ -43,6 +43,9 @@ class PhotoTests < PopItWatirTestCase
       # check that only the placeholder photo is shown to start with
       assert @b.ul(:class => 'photos').li.img.present?
       assert_match opts[:placeholder_filename_regex], @b.ul(:class => 'photos').li.img.attribute_value('src')
+
+      # make the edit fields visible
+      @b.link(:class => /entity-enter-edit-mode/).click
       
       # upload a file
       @b.link(:text => '+ add a photograph').click

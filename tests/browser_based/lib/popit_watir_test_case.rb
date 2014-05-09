@@ -123,13 +123,13 @@ class PopItWatirTestCase < Test::Unit::TestCase
   def login_as_instance_owner
     goto_dev_page
     @b.button(:id, 'login_as_instance_owner').click
-    assert_match 'Signed in as owner@example.com', @b.li(:id, 'signed_in').text
+    assert_match 'You are now logged in', @b.div(:id, 'flash-info').li.text
   end
   
   def login_as_instance_guest
     enable_guest_access
     @b.button(:id, 'login_as_instance_guest').click
-    assert_match 'Signed in as a Guest', @b.li(:id, 'signed_in').text
+    assert_match 'You are now logged in', @b.div(:id, 'flash-info').li.text
   end
 
   def enable_guest_access
