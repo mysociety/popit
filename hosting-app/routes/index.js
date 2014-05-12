@@ -17,21 +17,12 @@ exports.route = function (app) {
 
     // Handle the post
     var new_post = function (req, res) {
-        var invite   = req.param('invite', '').trim();
         var slug     = req.param('slug', '').trim();
         var email    = req.param('email', '').trim();
     
         // save all the values in case validation fails.
-        res.locals.invite = invite;
         res.locals.slug  = slug;
         res.locals.email = email;
-    
-        // Check that the invite code is correct.
-        if ( invite != config.hosting_server.create_instance_invite_code) {
-          // store error and pass control to get method
-          res.locals.errors = { invite: { type: "wrong" } };
-          return new_get(req, res);
-        }
 
         utils.password_and_hash_generate( function (password, hash) {
     
@@ -95,7 +86,6 @@ exports.route = function (app) {
           errors: {},
           email: '',
           slug: '',
-          invite: '',
         }
       );
       res.render('instance_new.html');

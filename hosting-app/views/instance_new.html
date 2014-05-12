@@ -18,15 +18,6 @@
 
   <form class="form-horizontal" method='post' action='' role="form">
 
-    <p class="form-group <%- errors.invite ? 'has-error' : '' %>">
-      <a href="https://groups.google.com/forum/#!forum/poplus" class="invite-link">Need an invite? Contact us.</a>
-      <label class="control-label" for="invite">Invitation Code</label>
-      <input id="invite" class="form-control" type="text" name="invite" data-validation="required" required value="<%- invite %>" />
-      <% if (errors.invite) { %>
-        <span class="help-block">Invitation code not correct. <a href="https://groups.google.com/forum/#!forum/poplus">please contact us</a> to get one.</span>
-      <% } %>
-    </p>
-
     <p class="form-group <%- errors.slug ? 'has-error' : '' %>">
       <label class="control-label" for="slug">Pick a website name</label>
       <span class="input-group">
