@@ -190,11 +190,13 @@ define(
           view.model.save(new_model, {
             success: function (model, response ) {
               var o = new OrganizationModel({ id: model.get('organization_id') });
-              var p = new PostModel({ id: model.get('post_id') });
               o.fetch({ async: false });
-              p.fetch({ async: false });
               model.set('organization_id', o.attributes);
-              model.set('post_id', p.attributes);
+              if ( post_id ) {
+                var p = new PostModel({ id: model.get('post_id') });
+                p.fetch({ async: false });
+                model.set('post_id', p.attributes);
+              }
               var template_args = {
                 type: 'person',
                 membership: model.toJSON()
