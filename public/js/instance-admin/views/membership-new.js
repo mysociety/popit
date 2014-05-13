@@ -189,24 +189,24 @@ define(
           new_model.organization_id = organization_id;
           view.model.save(new_model, {
             success: function (model, response ) {
-                var o = new OrganizationModel({ id: model.get('organization_id') });
-                var p = new PostModel({ id: model.get('post_id') });
-                    o.fetch({ async: false });
-                    p.fetch({ async: false });
-                    model.set('organization_id', o.attributes);
-                    model.set('post_id', p.attributes);
-                    var template_args = {
-                        type: 'person',
-                        membership: model.toJSON()
-                    };
+              var o = new OrganizationModel({ id: model.get('organization_id') });
+              var p = new PostModel({ id: model.get('post_id') });
+              o.fetch({ async: false });
+              p.fetch({ async: false });
+              model.set('organization_id', o.attributes);
+              model.set('post_id', p.attributes);
+              var template_args = {
+                type: 'person',
+                membership: model.toJSON()
+              };
 
-                    var $changed = $( view.membershipItemTemplate( template_args ) );
-                    view.$source_el.replaceWith( $changed );
-                    $changed.children('.view-mode').hide();
-                    $changed.children('.edit-mode').show();
-                    popit.model['memberships'].add(model);
-                    $changed.data('id', model.cid);
-                    $.fancybox.close();
+              var $changed = $( view.membershipItemTemplate( template_args ) );
+              view.$source_el.replaceWith( $changed );
+              $changed.children('.view-mode').hide();
+              $changed.children('.edit-mode').show();
+              popit.model['memberships'].add(model);
+              $changed.data('id', model.cid);
+              $.fancybox.close();
             },
             error: function (model, response) {
               view.$errors_list.append('<li>Something went wrong saving the membership to the server.</li>');
