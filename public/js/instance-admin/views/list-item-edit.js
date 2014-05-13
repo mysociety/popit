@@ -71,7 +71,15 @@ define(
       
       deleteEntry: function (event) {
         event.preventDefault();
+        // removing from the collection fires the save event on the
+        // model in which they are nested for most things so we don't
+        // need to destroy them
         this.model.collection.remove(this.model.cid);
+        // posts aren't a nested collection so we explicitely need
+        // to destroy them
+        if ( $(this).parent('ul.posts').length ) {
+          this.model.destroy();
+        }
         this.remove();
       },
       

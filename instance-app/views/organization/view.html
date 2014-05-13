@@ -137,7 +137,7 @@
 
     <dt>Posts</dt>
     <dd>
-      <ul class="cleared">
+      <ul class="cleared posts">
         <% _.each( posts, function ( post ) { %>
           <li><%= render( 'post/view.html', { item: post }) %></li>
         <% }); %>
@@ -149,7 +149,7 @@
 
     <dt>Members</dt>
     <dd>
-      <ul class="cleared">
+      <ul class="cleared memberships">
         <% _.each( memberships, function ( membership ) { %>
           <%= render( 'membership/list-item.html', { membership: membership, type: 'organization' } ) %>
         <% }); %>
