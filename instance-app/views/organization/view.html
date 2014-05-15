@@ -29,7 +29,7 @@
       </div>
       <div class="btn-group">
         <% if (user || guest) { %>
-          <a class="btn btn-default entity-enter-edit-mode">Edit organization <span class="glyphicon glyphicon-chevron-right"></span></a>
+          <a id="edit-organization" class="btn btn-default entity-enter-edit-mode">Edit organization <span class="glyphicon glyphicon-chevron-right"></span></a>
         <% } else { %>
           <a class="btn btn-default" href="/login">Log in to edit <span class="glyphicon glyphicon-chevron-right"></span></a>
           <% } %>
@@ -37,13 +37,13 @@
     </div>
     <div class="btn-toolbar pull-right edit-mode">
       <div class="btn-group">
-        <a class="btn btn-default entity-leave-edit-mode"><span class="glyphicon glyphicon-remove glyphicon-space-after"></span> Cancel</a>
+        <a id="cancel-org-edit" class="btn btn-default entity-leave-edit-mode"><span class="glyphicon glyphicon-remove glyphicon-space-after"></span> Cancel</a>
       </div>
       <div class="btn-group">
-        <a class="btn btn-danger entity-delete"><span class="glyphicon glyphicon-ban-circle glyphicon-space-after"></span> Delete organization</a>
+        <a id="delete-organization" class="btn btn-danger entity-delete"><span class="glyphicon glyphicon-ban-circle glyphicon-space-after"></span> Delete organization</a>
       </div>
       <div class="btn-group">
-        <a class="btn btn-success entity-save-changes"><span class="glyphicon glyphicon-ok glyphicon-space-after"></span> Save changes</a>
+        <a id="save-organization" class="btn btn-success entity-save-changes"><span class="glyphicon glyphicon-ok glyphicon-space-after"></span> Save changes</a>
       </div>
     </div>
     <p><a href="/organizations">Organizations</a> / <a href="/organizations/<%- organization.slug %>"><%- organization.id %></a></p>
@@ -104,13 +104,13 @@
 
     <dt>Classification</dt>
     <dd>
-      <p class="view-mode"><%- organization.classification %></p>
+      <p class="view-mode" data-api-name="classification"><%- organization.classification %></p>
       <input type="text" class="form-control edit-mode" data-api-name="classification" value="<%- organization.classification %>">
     </dd>
 
     <dt>Parent</dt>
     <dd>
-      <p class="view-mode">
+      <p class="view-mode" data-api-name="parent_id">
         <% if (organization.parent_id) { %>
           <%- organization.parent_id.name %>
         <% } %>
@@ -120,13 +120,15 @@
 
     <dt>Founded</dt>
     <dd>
-      <p class="view-mode"><%- organization.founding_date || '' %></p>
+      <p class="view-mode" data-api-name="founding_date"><%- organization.founding_date || '' %></p>
+      <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
       <input type="date" class="form-control edit-mode" data-api-name="founding_date" value="<%- organization.founding_date || '' %>">
     </dd>
 
     <dt>Dissolved</dt>
     <dd>
-      <p class="view-mode"><%- organization.dissolution_date || '' %></p>
+      <p class="view-mode" data-api-name="dissolution_date"><%- organization.dissolution_date || '' %></p>
+      <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
       <input type="date" class="form-control edit-mode" data-api-name="dissolution_date" value="<%- organization.dissolution_date || '' %>">
     </dd>
 

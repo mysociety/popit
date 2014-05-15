@@ -21,7 +21,7 @@
       </div>
       <div class="btn-group">
         <% if (user || guest) { %>
-          <a class="btn btn-default entity-enter-edit-mode">Edit person <span class="glyphicon glyphicon-chevron-right"></span></a>
+          <a id="edit-person" class="btn btn-default entity-enter-edit-mode">Edit person <span class="glyphicon glyphicon-chevron-right"></span></a>
         <% } else { %>
           <a class="btn btn-default" href="/login">Log in to edit <span class="glyphicon glyphicon-chevron-right"></span></a>
           <% } %>
@@ -29,13 +29,13 @@
     </div>
     <div class="btn-toolbar pull-right edit-mode">
       <div class="btn-group">
-        <a class="btn btn-default entity-leave-edit-mode"><span class="glyphicon glyphicon-remove glyphicon-space-after"></span> Cancel</a>
+        <a id="cancel-person-edit" class="btn btn-default entity-leave-edit-mode"><span class="glyphicon glyphicon-remove glyphicon-space-after"></span> Cancel</a>
       </div>
       <div class="btn-group">
-        <a class="btn btn-danger entity-delete"><span class="glyphicon glyphicon-ban-circle glyphicon-space-after"></span> Delete person</a>
+        <a id="delete-person" class="btn btn-danger entity-delete"><span class="glyphicon glyphicon-ban-circle glyphicon-space-after"></span> Delete person</a>
       </div>
       <div class="btn-group">
-        <a class="btn btn-success entity-save-changes"><span class="glyphicon glyphicon-ok glyphicon-space-after"></span> Save changes</a>
+        <a id="save-person" class="btn btn-success entity-save-changes"><span class="glyphicon glyphicon-ok glyphicon-space-after"></span> Save changes</a>
       </div>
     </div>
     <p><a href="/persons">People</a> / <a href="<%- person.url %>"><%- person.id %></a></p>
