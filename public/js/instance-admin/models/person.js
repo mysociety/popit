@@ -37,13 +37,13 @@ function ( Backbone, NestedModel, ContactCollection, OtherNamesCollection, Ident
             invalid = true;
             errs.name = 'Name is required';
         }
-        if ( attrs.birth_date && !attrs.birth_date.match(/^\d\d\d\d-\d\d-\d\d$/) ) {
+        if ( attrs.birth_date && !attrs.birth_date.match(/^[0-9]{4}(-[0-9]{2}){0,2}$/) ) {
             invalid = true;
-            errs.birth_date = 'Wrong date format, expects YYYY-MM-DD';
+            errs.birth_date = 'Wrong date format, expects YYYY, YYYY-MM or YYYY-MM-DD';
         }
-        if ( attrs.death_date && !attrs.death_date.match(/^\d\d\d\d-\d\d-\d\d$/) ) {
+        if ( attrs.death_date && !attrs.death_date.match(/^[0-9]{4}(-[0-9]{2}){0,2}$/) ) {
             invalid = true;
-            errs.death_date = 'Wrong date format, expects YYYY-MM-DD';
+            errs.death_date = 'Wrong date format, expects YYYY, YYYY-MM or YYYY-MM-DD';
         }
 
         if ( invalid ) {
