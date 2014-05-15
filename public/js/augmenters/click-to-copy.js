@@ -7,7 +7,7 @@ require(['jquery', '/js/libs/zeroclipboard/ZeroClipboard.js'], function($, ZeroC
 
   ZeroClipboard.config({
     moviePath: '/js/libs/zeroclipboard/ZeroClipboard.swf'
-  })
+  });
 
   $(function() {
 
@@ -32,7 +32,7 @@ require(['jquery', '/js/libs/zeroclipboard/ZeroClipboard.js'], function($, ZeroC
       }, 500, function(){
         $clone.remove();
       });
-    }
+    };
 
     $('.click-to-copy .btn').each(function(event) {
       var $btn = $(this);
