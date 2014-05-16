@@ -1,27 +1,16 @@
 # PopIt
 
-The software that powers http://popit.mysociety.org/
+PopIt helps you create and maintain reusable information about politicians and generates open data to power your project.
 
-## Documentation
+## Why use PopIt?
 
-Learn more about what PopIt is, how to use it and how to contribute to it on the [documentation site](http://popit.poplus.org/docs/).
+- [Find out more about PopIt and the problem it's trying to solve](http://popit.poplus.org/about/)
 
-## Warning
+## How can I use PopIt?
 
-Here be dragons! This is **alpha** software - it is currently undergoing active development so should be used with caution.
+- [Read our Getting Started guide](http://popit.poplus.org/docs/getting-started/)
 
-[![Build Status](https://travis-ci.org/mysociety/popit.png?branch=master)](https://travis-ci.org/mysociety/popit)
+## How can I set up a Popit server myself?
 
-## Installing
-
-You can use our [free hosting service](http://popit.mysociety.org/) instead of installing and let us run the site for you.
-
-Please see [the installation documentation](http://popit.poplus.org/docs/install/) for full instructions.
-
-## Get in touch
-
-You can contact at us at any of the following:
-
-- [GitHub Issues](https://github.com/mysociety/popit/issues) if you've found an issue with the site.
-- The [Poplus mailing list](https://groups.google.com/forum/#!forum/poplus) for general discussion about PopIt and other similar components.
-- Chat on the [#popit IRC channel](irc://irc.mysociety.org/popit) on `irc.mysociety.org`.
+- You can use our hosted version of PopIt at [popit.mysociety.org](http://popit.mysociety.org/instances/new)
+- If you want to host it yourself check out out [install documentation](http://popit.poplus.org/docs/install/)
