@@ -95,6 +95,7 @@ define(
         var view = new MembershipNewView({
           source_el: $element,
           model: object,
+          type: popit.type,
           fields_to_hide: fields_to_hide
         });
 
