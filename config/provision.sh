@@ -1,50 +1,39 @@
-#!/bin/sh
+#!/bin/bash
 
-set -e # Exit script immediately on first error.
-set -x # Print commands and their arguments as they are executed.
+set -e
 
-# Abort provisioning if toolchain is already installed.npm tet
+# To prevent "dpkg-preconfigure: unable to re-open stdin: No such file or directory" warnings
+export DEBIAN_FRONTEND=noninteractive
+
+# Abort provisioning if toolchain is already installed
 command -v make chromium-browser npm mongo Xvfb chromedriver git >/dev/null 2>&1 &&
 { echo "Everything already installed."; exit 0; }
-
-# If we get here, we've never provisioned before
-echo "##############################"
-echo "Setting up the environment neccessary for PopIt"
-echo "##############################"
 
 # Update package index before we start
 apt-get update -y
 
-# Add extra repos
-echo "##############################"
-echo "Adding neccessary repos for Node.js and MongoDB"
-echo "##############################"
 # Instructions from: https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager
 apt-get install -y python-software-properties
 add-apt-repository -y ppa:chris-lea/node.js
+apt-get update -y
+apt-get install -y python g++ make nodejs
+
 # Instructions from: http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/
 apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
-echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" > /etc/apt/sources.list.d/10gen.list
+echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' > /etc/apt/sources.list.d/mongodb.list
 apt-get update -y
-	
-# Install packages
-echo "##############################"
-echo "Installing Packages"
-echo "##############################"
-apt-get install -yqq nodejs mongodb-10gen build-essential ruby1.9.1 \
-  ruby1.9.1-dev chromium-browser xvfb unzip git graphicsmagick openjdk-6-jre
+apt-get install -y mongodb-org
 
 # Install elasticsearch
-echo "##############################"
-echo "Installing elasticsearch"
-echo "##############################"
-wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.10.deb
-dpkg -i elasticsearch-0.90.10.deb
+wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add -
+echo 'deb http://packages.elasticsearch.org/elasticsearch/0.90/debian stable main' > /etc/apt/sources.list.d/elasticsearch.list
+apt-get update -y
+apt-get install -y openjdk-6-jre elasticsearch
+
+# Install other packages
+apt-get install -y ruby1.9.1 ruby1.9.1-dev chromium-browser xvfb git graphicsmagick unzip sendmail
 
 # Download and install chromedriver
-echo "##############################"
-echo "Installing chromedriver"
-echo "##############################"
 wget -q http://chromedriver.storage.googleapis.com/2.8/chromedriver_linux64.zip
 unzip chromedriver_linux64.zip
 rm chromedriver_linux64.zip
@@ -52,18 +41,12 @@ mv chromedriver /usr/local/bin
 chmod 755 /usr/local/bin/chromedriver
 
 # Install compass, watir-webdriver and pry
-echo "##############################"
-echo "Installing compass, watir-webdriver and pry"
-echo "##############################"
-gem install watir-webdriver -v 0.6.7
-gem install pry -v 0.9.12.6
-gem install sass -v 3.2.14
-gem install compass -v 0.12.2
+gem install watir-webdriver --version=0.6.7 --no-rdoc --no-ri
+gem install pry --version=0.9.12.6 --no-rdoc --no-ri
+gem install sass --version=3.2.14 --no-rdoc --no-ri
+gem install compass --version=0.12.2 --no-rdoc --no-ri
 
 # Set up Xvfb to run all the time on display :99
-echo "##############################"
-echo "Setting up Xvfb and making it run on every start"
-echo "##############################"
 Xvfb :99 -ac &
 cp /etc/rc.local /etc/rc.local.old
 sed -i 's/^exit 0/Xvfb :99 -ac\n\nexit 0/' /etc/rc.local
