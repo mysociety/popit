@@ -29,6 +29,22 @@ function ( Backbone, NestedModel, ContactCollection, OtherNamesCollection, Ident
 
     schema: {
       name: { dataType: 'Text', validators: ['required'] }
+    },
+
+    validate: function(attrs) {
+        var errs = {}, invalid = false;
+        if ( attrs.founding_date && !attrs.founding_date.match(/^[0-9]{4}(-[0-9]{2}){0,2}$/) ) {
+            invalid = true;
+            errs.founding_date = 'Wrong date format, expects YYYY, YYYY-MM or YYYY-MM-DD';
+        }
+        if ( attrs.dissolution_date && !attrs.dissolution_date.match(/^[0-9]{4}(-[0-9]{2}){0,2}$/) ) {
+            invalid = true;
+            errs.dissolution_date = 'Wrong date format, expects YYYY, YYYY-MM or YYYY-MM-DD';
+        }
+
+        if ( invalid ) {
+            return errs;
+        }
     }
   });
 

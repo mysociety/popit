@@ -2,16 +2,19 @@
 define(['jquery'], function ($) {
   "use strict";
 
-  var enterEditMode = function(){
-    $('.view-mode').hide();
-    $('.edit-mode').show();
-    $('.entity').addClass('editing');
-  };
+  var fields = [ 'name', 'summary', 'birth_date', 'death_date' ];
 
-  var leaveEditMode = function(){
-    $('.view-mode').show();
-    $('.edit-mode').hide();
-    $('.entity').removeClass('editing');
+  var onInvalid = function(model, err) {
+    for ( var i = 0; i < fields.length; i++ ) {
+      var field = fields[i];
+      if ( err[field] ) {
+        var $dd = $('[data-api-name="' + field + '"]').parent();
+        $dd.addClass('has-error'); // the text input and error text
+        $dd.prev().addClass('has-error'); // the label
+        $('.edit-mode-error', $dd).show();
+        toggleSavingButton();
+      }
+    }
   };
 
   var goNewPerson = function() {
@@ -63,10 +66,12 @@ define(['jquery'], function ($) {
       newHtml = $btn.html().replace('Saving Person', 'Save Person');
       $btn.removeClass('btn-loading');
       $btn.html(newHtml);
+      popit.model.off('invalid', onInvalid);
     } else {
       newHtml = $btn.html().replace('Save Person', 'Saving Person');
       $btn.addClass('btn-loading');
       $btn.html(newHtml);
+      popit.model.on('invalid', onInvalid);
     }
   };
 
