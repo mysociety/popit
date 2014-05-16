@@ -1,3 +1,4 @@
+/*global popit:false console:false */
 define(['jquery'], function ($) {
   "use strict";
 
@@ -20,7 +21,7 @@ define(['jquery'], function ($) {
     $('.edit-mode').show();
     $('.entity').addClass('editing');
     popit.model.on('invalid', onInvalid);
-  }
+  };
 
   var leaveEditMode = function(){
     $('.view-mode').show();
@@ -28,18 +29,18 @@ define(['jquery'], function ($) {
     $('.entity').removeClass('editing');
     resetErrorStates();
     popit.model.off('invalid', onInvalid);
-  }
+  };
 
   var resetErrorStates = function(){
     $('.edit-mode-error').hide();
     $('.has-error').removeClass('has-error');
     $('.alert.backbone-error').slideUp(100);
-  }
+  };
 
   var showBackboneError = function(msg){
     var $alert = $('<div class="alert alert-danger backbone-error"><p class="container"><strong>' + msg + '</strong> Please try again.</p></div>');
     $alert.hide().insertBefore('.entity').slideDown(100);
-  }
+  };
 
   var cancelEdit = function(){
       leaveEditMode();
@@ -49,19 +50,20 @@ define(['jquery'], function ($) {
         var changed = '.edit-mode[data-api-name="' + field + '"]';
         $(changed).val($(original).text());
       }
-  }
+  };
 
   var saveChanges = function(){
+    var i, selector, value;
     toggleSavingButton();
-    for ( var i = 0; i < fields.length; i++ ) {
-      var selector = '.edit-mode[data-api-name="' + fields[i] + '"]';
-      var value = $(selector).val();
+    for ( i = 0; i < fields.length; i++ ) {
+      selector = '.edit-mode[data-api-name="' + fields[i] + '"]';
+      value = $(selector).val();
       popit.model.set(fields[i], value);
     }
     var dates = ['founding_date', 'dissolution_date'];
-    for ( var i = 0; i < dates.length; i++ ) {
-      var selector = '.edit-mode[data-api-name="' + dates[i] + '"]';
-      var value = $(selector).val();
+    for ( i = 0; i < dates.length; i++ ) {
+      selector = '.edit-mode[data-api-name="' + dates[i] + '"]';
+      value = $(selector).val();
       if ( ! value ) {
         value = null;
       }
@@ -75,7 +77,7 @@ define(['jquery'], function ($) {
             var field = fields[i];
             var selector = '.view-mode[data-api-name="' + field + '"]';
             var value = popit.model.get(field);
-            if ( value == null ) {
+            if ( value === null ) {
               value = '';
             }
             $(selector).text(value);
@@ -90,26 +92,27 @@ define(['jquery'], function ($) {
         }
       }
     );
-  }
+  };
 
   var toggleSavingButton = function(){
+    var newHtml;
     var $btn = $('.entity-save-changes');
     if($btn.is('.btn-loading')){
-      var newHtml = $btn.html().replace('Saving changes', 'Save changes');
+      newHtml = $btn.html().replace('Saving changes', 'Save changes');
       $btn.removeClass('btn-loading');
       $btn.html(newHtml);
     } else {
-      var newHtml = $btn.html().replace('Save changes', 'Saving changes');
+      newHtml = $btn.html().replace('Save changes', 'Saving changes');
       $btn.addClass('btn-loading');
       $btn.html(newHtml);
     }
-  }
+  };
 
   var deleteOrganizationConfirm = function(){
       if ( window.confirm('Are you sure you want to delete ' + popit.model.get('name')) ) {
         deleteOrganization();
       }
-  }
+  };
 
   var deleteOrganization = function(){
     popit.model.destroy({
@@ -120,7 +123,7 @@ define(['jquery'], function ($) {
           showBackboneError('There was a problem deleting this organization.');
         }
     });
-  }
+  };
 
   $(function(){
     $('#edit-organization').on('click', enterEditMode);
