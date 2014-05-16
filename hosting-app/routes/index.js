@@ -12,7 +12,13 @@ var winston       = require('winston'),
 exports.route = function (app) {
 
     app.get('/', function(req, res){
-        res.render( 'index.html' );
+        // Redirect production site to the documentation site for now.
+        // TODO: Undo this once we're happy with the homepage.
+        if (req.host === 'popit.mysociety.org') {
+            res.redirect('http://popit.poplus.org/');
+        } else {
+            res.render('index.html');
+        }
     });
 
     // Handle the post
