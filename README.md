@@ -1,6 +1,6 @@
 # PopIt
 
-PopIt helps you create and maintain reusable information about politicians and generates open data to power your project.
+PopIt helps you create and maintain reusable fundamental 'who's who' open data about politicians, to help power projects that need such data. It has various features that make it a better choice than just opening a blank database and dumping the names you can find in.
 
 ## Why use PopIt?
 
