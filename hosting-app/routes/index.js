@@ -7,7 +7,8 @@ var winston       = require('winston'),
     moment        = require('moment'),
     _             = require('underscore'),     
     config        = require('config'),
-    Error404      = require('../../lib/errors').Error404;
+    Error404      = require('../../lib/errors').Error404,
+    format        = require('util').format;
 
 exports.route = function (app) {
 
@@ -118,11 +119,7 @@ exports.route = function (app) {
     });
     
     app.get( '/instances/:instanceSlug', function (req, res) {
-            var template_file = 'instance_' + req.instance.status + '.html';
-            res.render( template_file, {
-              instance: req.instance,
-              moment: moment,
-            } );
+        res.redirect(format(config.instance_server.base_url_format, req.param('instanceSlug')));
     });
     
     
