@@ -13,14 +13,14 @@
         <a class="btn btn-default" href="/about">Cancel</a>
       </div>
       <div class="btn-group">
-        <a class="btn btn-primary" id="about-toolbar-save-button"><span class="glyphicon glyphicon-ok glyphicon-space-after"></span> Save changes</a>
+        <a id="save-instance-about" class="btn btn-primary" id="about-toolbar-save-button"><span class="glyphicon glyphicon-ok glyphicon-space-after"></span> Save changes</a>
       </div>
     </div>
     <h1>Edit instance details</h1>
   </div>
 </div>
 
-<form class="container" method="post" action="" name="edit-about-info">
+<form id="instance-about-form" class="container" method="post" action="" name="edit-about-info">
   <dl class="dl-horizontal instance-details edit-instance-details">
     <% _.each( fields, function ( val, field ) { %>
       <dt><%- val.label %>:</dt>
@@ -42,7 +42,7 @@
     <% }); %>
   </dl>
 
-  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok glyphicon-space-after"></span> Save changes</button>
+  <button id="save-instance-submit" type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok glyphicon-space-after"></span> Save changes</button>
 
 </div>
 

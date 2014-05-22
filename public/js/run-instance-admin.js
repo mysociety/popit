@@ -10,6 +10,7 @@ require([
 // PopIt editing app - load it and add bits needed
 require ([
   'instance-admin/app',
+  'instance-admin/actions/about-save',
   'instance-admin/actions/photo-remove',
   'instance-admin/actions/person-add-remove',
   'instance-admin/actions/organization-add-remove',
