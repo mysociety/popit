@@ -41,6 +41,7 @@ define(
         // Render the template
         var $content = $( this.membershipTemplate() );
         view.$source_el = this.options.source_el;
+        view.model_type = this.options.type;
 
         // find the bits that are interesting and store them for easy access
         this.$errors_list = $content.find('ul.error');
@@ -190,16 +191,23 @@ define(
           new_model.organization_id = organization_id;
           view.model.save(new_model, {
             success: function (model, response ) {
-              var o = new OrganizationModel({ id: model.get('organization_id') });
-              o.fetch({ async: false });
-              model.set('organization_id', o.attributes);
+              if ( view.model_type == 'person' ) {
+                var o = new OrganizationModel({ id: model.get('organization_id') });
+                o.fetch({ async: false });
+                model.set('organization_id', o.attributes);
+              } else if ( view.model_type == 'organization' ) {
+                var person = new PersonModel({ id: model.get('person_id') });
+                person.fetch({ async: false });
+                model.set('person_id', person.attributes);
+              }
+
               if ( post_id ) {
-                var p = new PostModel({ id: model.get('post_id') });
-                p.fetch({ async: false });
-                model.set('post_id', p.attributes);
+                var post = new PostModel({ id: model.get('post_id') });
+                post.fetch({ async: false });
+                model.set('post_id', post.attributes);
               }
               var template_args = {
-                type: 'person',
+                type: view.model_type,
                 membership: model.toJSON()
               };
 
