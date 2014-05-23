@@ -6,6 +6,7 @@ require.config({
     'jquery.jeditable': './libs/jquery.jeditable-1.7.1',
     'jquery.pulse':     './libs/jquery.pulse',
     'jquery.select2':   './libs/jquery.select2-3.2',
+    'jquery.easytabs':   './libs/jquery.easytabs',
 
     'jsoneditor': './libs/jsoneditor/jsoneditor',
 
