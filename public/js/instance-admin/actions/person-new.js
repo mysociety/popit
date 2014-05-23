@@ -1,10 +1,12 @@
 /*global popit:false console:false alert:false */
 define(
   [
-    'jquery'
+    'jquery',
+    'instance-admin/views/suggestions'
   ],
   function (
-    $
+    $,
+    SuggestionsView
   ) {
     "use strict";
 
@@ -22,6 +24,9 @@ define(
         }
       }
     };
+
+    var suggestionsView = new SuggestionsView({ url_type: 'persons' });
+    suggestionsView.collection.url = '/autocomplete/persons';
 
 
     var goNewPerson = function() {
@@ -86,6 +91,18 @@ define(
       $('.entity-cancel-new-mode').on('click', cancelEdit);
       $('.entity-save-new').on('click', saveChanges);
       $('.new-person').on('click', goNewPerson);
+
+      $('input[data-api-name="name"]').on('keyup', function(e) {
+          suggestionsView.setName($('input[data-api-name="name"]').val());
+          $('ul.suggestions').show();
+        }
+      );
+      $('input[data-api-name="name"]').on('blur', function(e) {
+          $('ul.suggestions').hide();
+        }
+      );
+      $('ul.suggestions').hide();
+      $('ul.suggestions').html(suggestionsView.render().el);
     });
 
   }
