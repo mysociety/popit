@@ -1,5 +1,5 @@
 /*global popit:false console:false */
-define(['jquery'], function ($) {
+define(['jquery', 'jquery.easytabs'], function ($) {
   "use strict";
 
   var fields = [ 'name', 'summary', 'birth_date', 'death_date' ];
@@ -128,6 +128,7 @@ define(['jquery'], function ($) {
     $('#cancel-person-edit').on('click', cancelEdit);
     $('#save-person').on('click', saveChanges);
     $('#delete-person').on('click', deletePersonConfirm);
+    $('.tabs').easytabs({animate: false});
   });
 
 });

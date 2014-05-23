@@ -27,6 +27,7 @@
           <% } %>
       </div>
     </div>
+
     <div class="btn-toolbar pull-right edit-mode">
       <div class="btn-group">
         <a id="cancel-person-edit" class="btn btn-default entity-leave-edit-mode"><span class="glyphicon glyphicon-remove glyphicon-space-after"></span> Cancel</a>
@@ -38,6 +39,7 @@
         <a id="save-person" class="btn btn-success entity-save-changes"><span class="glyphicon glyphicon-ok glyphicon-space-after"></span> Save changes</a>
       </div>
     </div>
+
     <p><a href="/persons">People</a> / <a href="<%- person.url %>"><%- person.id %></a></p>
   </div>
 </div>
@@ -80,66 +82,94 @@
   </aside>
 
   <dl class="dl-horizontal">
-
     <dt class="entity-attr-name">Name</dt>
     <dd class="entity-attr-name">
       <h1 itemprop="name" class="view-mode" data-api-name="name"><%- person.name %></h1>
       <strong class="control-label edit-mode-error" style="display: none">This person must have a name</strong>
       <input type="text" class="form-control edit-mode" data-api-name="name" value="<%- person.name %>">
     </dd>
-
-    <dt>Summary</dt>
-    <dd itemprop="description">
-      <p class="view-mode" data-api-name="summary"><%- person.summary %></p>
-      <textarea class="form-control edit-mode" data-api-name="summary"><%- person.summary %></textarea>
-    </dd>
-
-    <dt>Born</dt>
-    <dd>
-      <p class="view-mode" data-api-name="birth_date"><%- person.birth_date || '' %></p>
-      <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
-      <input type="date" class="form-control edit-mode" data-api-name="birth_date" value="<%- person.birth_date || '' %>">
-    </dd>
-
-    <dt>Died</dt>
-    <dd>
-      <p class="view-mode" data-api-name="death_date"><%- person.death_date || '' %></p>
-      <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
-      <input type="date" class="form-control edit-mode" data-api-name="death_date" value="<%- person.death_date || '' %>">
-    </dd>
-
-    <dt>Other names</dt>
-    <dd>
-      <%= render( 'other_name/list.html', { other_names: person.other_names } ) %>
-    </dd>
-
-    <dt>Memberships</dt>
-    <dd>
-      <ul class="cleared memberships">
-        <% _.each( memberships, function (membership) { %>
-          <%= render( 'membership/list-item.html', { membership: membership, type: 'person' } ) %>
-        <% }); %>
-        <li class="edit-mode">
-          <a class="add edit-membership btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(memberships.length){ %>nother<% } %> membership</a>
-        </li>
-      </ul>
-    </dd>
-
-    <dt>Contact details</dt>
-    <dd>
-      <%= render( 'contact/list.html', { contact_details: person.contact_details } ) %>
-    </dd>
-
-    <dt>Links</dt>
-    <dd>
-      <%= render( 'link/list.html', { links: person.links } ) %>
-    </dd>
-
-    <dt>Identifiers</dt>
-    <dd>
-      <%= render( 'identifier/list.html', { identifiers: person.identifiers } ) %>
-    </dd>
   </dl>
+
+  <div class="tabs">
+    <ul>
+      <li><a href="#biography">Biography</a></li>
+      <li><a href="#websites">Websites</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#political-career">Political career</a></li>
+      <li><a href="#career">Career</a></li>
+      <li><a href="#advanced">Advanced</a></li>
+    </ul>
+
+    <div id="biography">
+
+      <dt>Other names</dt>
+      <dd>
+        <%= render( 'other_name/list.html', { other_names: person.other_names } ) %>
+      </dd>
+
+      <dt>Summary</dt>
+      <dd itemprop="description">
+        <p class="view-mode" data-api-name="summary"><%- person.summary %></p>
+        <textarea class="form-control edit-mode" data-api-name="summary"><%- person.summary %></textarea>
+      </dd>
+
+      <dt>Born</dt>
+      <dd>
+        <p class="view-mode" data-api-name="birth_date"><%- person.birth_date || '' %></p>
+        <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
+        <input type="date" class="form-control edit-mode" data-api-name="birth_date" value="<%- person.birth_date || '' %>">
+      </dd>
+
+      <dt>Died</dt>
+      <dd>
+        <p class="view-mode" data-api-name="death_date"><%- person.death_date || '' %></p>
+        <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
+        <input type="date" class="form-control edit-mode" data-api-name="death_date" value="<%- person.death_date || '' %>">
+      </dd>
+
+    </div>
+
+    <div id="websites">
+      <dt>Links</dt>
+      <dd>
+        <%= render( 'link/list.html', { links: person.links } ) %>
+      </dd>
+    </div>
+
+    <div id="contact">
+
+      <dt>Contact details</dt>
+      <dd>
+        <%= render( 'contact/list.html', { contact_details: person.contact_details } ) %>
+      </dd>
+    </div>
+
+    <div id="political-career">
+
+      <dt>Memberships</dt>
+      <dd>
+        <ul class="cleared memberships">
+          <% _.each( memberships, function (membership) { %>
+            <%= render( 'membership/list-item.html', { membership: membership, type: 'person' } ) %>
+          <% }); %>
+          <li class="edit-mode">
+            <a class="add edit-membership btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(memberships.length){ %>nother<% } %> membership</a>
+          </li>
+        </ul>
+      </dd>
+    </div>
+
+    <div id="career">
+      Career
+    </div>
+
+    <div id="advanced">
+      <dt>Identifiers</dt>
+      <dd>
+        <%= render( 'identifier/list.html', { identifiers: person.identifiers } ) %>
+      </dd>
+    </div>
+  </div>
 
   <section class="custom-data" style="display: none">
     <h2>Custom data:</h2>
