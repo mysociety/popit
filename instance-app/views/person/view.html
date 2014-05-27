@@ -17,7 +17,7 @@
   <div class="container">
     <div class="btn-toolbar pull-right view-mode">
       <div class="btn-group">
-        <a class="btn btn-default" href="/api/v0.1/persons/<%- person.id %>">JSON API</a>
+        <a class="btn btn-default" href="/api/v0.1/persons/<%- person.id %>">Get this data</a>
       </div>
       <div class="btn-group">
         <% if (user || guest) { %>
@@ -40,7 +40,7 @@
       </div>
     </div>
 
-    <p><a href="/persons">People</a> / <a href="<%- person.url %>"><%- person.id %></a></p>
+    <p><a href="/persons">People</a> / <a href="<%- person.url %>"><%- person.name %></a></p>
   </div>
 </div>
 
