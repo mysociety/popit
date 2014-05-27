@@ -103,52 +103,50 @@
 
     <div class="entity-details__section" id="biography">
 
-      <dt>Other names</dt>
-      <dd>
+      <div class="entity-details__property">
+        <label>Other names</label>
         <%= render( 'other_name/list.html', { other_names: person.other_names } ) %>
-      </dd>
+      </div>
 
-      <dt>Summary</dt>
-      <dd itemprop="description">
-        <p class="view-mode" data-api-name="summary"><%- person.summary %></p>
+      <div class="entity-details__property">
+        <label>Summary</label>
+        <p class="view-mode" itemprop="description" data-api-name="summary"><%- person.summary %></p>
         <textarea class="form-control edit-mode" data-api-name="summary"><%- person.summary %></textarea>
-      </dd>
+      </div>
 
-      <dt>Born</dt>
-      <dd>
+      <div class="entity-details__property">
+        <label>Born</label>
         <p class="view-mode" data-api-name="birth_date"><%- person.birth_date || '' %></p>
         <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
         <input type="date" class="form-control edit-mode" data-api-name="birth_date" value="<%- person.birth_date || '' %>">
-      </dd>
+      </div>
 
-      <dt>Died</dt>
-      <dd>
+      <div class="entity-details__property">
+        <label>Died</label>
         <p class="view-mode" data-api-name="death_date"><%- person.death_date || '' %></p>
         <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
         <input type="date" class="form-control edit-mode" data-api-name="death_date" value="<%- person.death_date || '' %>">
-      </dd>
+      </div>
 
     </div>
 
     <div class="entity-details__section" id="websites">
-      <dt>Links</dt>
-      <dd>
+      <div class="entity-details__property">
+        <label>Links</label>
         <%= render( 'link/list.html', { links: person.links } ) %>
-      </dd>
+      </div>
     </div>
 
     <div class="entity-details__section" id="contact">
-
-      <dt>Contact details</dt>
-      <dd>
+      <div class="entity-details__property">
+        <label>Contact details</label>
         <%= render( 'contact/list.html', { contact_details: person.contact_details } ) %>
-      </dd>
+      </div>
     </div>
 
     <div class="entity-details__section" id="political-career">
-
-      <dt>Memberships</dt>
-      <dd>
+      <div class="entity-details__property">
+        <label>Memberships</label>
         <ul class="cleared memberships">
           <% _.each( memberships, function (membership) { %>
             <%= render( 'membership/list-item.html', { membership: membership, type: 'person' } ) %>
@@ -157,7 +155,7 @@
             <a class="add edit-membership btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(memberships.length){ %>nother<% } %> membership</a>
           </li>
         </ul>
-      </dd>
+      </div>
     </div>
 
     <div class="entity-details__section" id="career">
@@ -165,10 +163,10 @@
     </div>
 
     <div class="entity-details__section" id="advanced">
-      <dt>Identifiers</dt>
-      <dd>
+      <div class="entity-details__property">
+        <label>Identifiers</label>
         <%= render( 'identifier/list.html', { identifiers: person.identifiers } ) %>
-      </dd>
+      </div>
     </div>
   </div>
 

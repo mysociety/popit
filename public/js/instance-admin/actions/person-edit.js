@@ -128,7 +128,7 @@ define(['jquery', 'jquery.easytabs'], function ($) {
     $('#cancel-person-edit').on('click', cancelEdit);
     $('#save-person').on('click', saveChanges);
     $('#delete-person').on('click', deletePersonConfirm);
-    $('.tabs').easytabs({animate: false});
+    $('.entity-details').easytabs({animate: false});
   });
 
 });

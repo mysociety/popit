@@ -79,6 +79,7 @@ $entity-photo-sidebar-width: 285px;
     color: #ccc;
     font-weight: normal;
     font-size: 13px;
+    margin: 0;
   }
 
   .nav-tabs {
@@ -90,12 +91,55 @@ $entity-photo-sidebar-width: 285px;
     border: 0;
     @include box-shadow(none);
     border-radius: 0;
-    height: auto;
     padding: 10px 12px; // more vertical padding than normal
     margin: -10px 0; // compensate for vertical padding
 
     &:focus {
       @include box-shadow(inset 0 1px 3px rgba(0,0,0,0.1));
+    }
+  }
+
+  ul {
+    @include list-reset;
+
+    a.add, a.edit, a.delete {
+      cursor: pointer;
+    }
+  }
+
+  .edit-group {
+    padding: 10px 12px; // to match .form-controls
+    margin: -10px 0; // to match .form-controls
+    background-color: $light-grey-background;
+
+    .delete, .edit {
+      float: right;
+
+      .glyphicon {
+        font-size: 12px;
+      }
+    }
+
+    .delete + .edit,
+    .edit + .delete {
+      margin-right: 20px;
+    }
+  }
+
+  .add.btn {
+    display: block;
+    text-align: left;
+    padding: 0 12px; // to match .form-controls
+    border-radius: 0;
+    border: 0;
+
+    &:hover, &:focus {
+      text-decoration: underline; // make it act less like a btn, more like a link
+      color: $link-hover-color; // make it act less like a btn, more like a link
+    }
+
+    .glyphicon {
+      font-size: 12px;
     }
   }
 
@@ -115,15 +159,15 @@ $entity-photo-sidebar-width: 285px;
   margin: 30px 0;
   @include clearfix();
 
-  h1, label, p {
-    margin: 0;
-  }
-
   h1 {
     font-size: 38px; // slightly smaller than normal, since there's lots of small type nearby
     line-height: 48px; // ideally, we'd make this smaller, but it needs to match an input with a hard-coded minimum line-height
     font-weight: 600; // bolder than normal, to make it stand out
     margin: -3px 0; // compensate for 48px line-height by making it look like 42px
+  }
+
+  p {
+    margin: 0;
   }
 }
 
@@ -167,6 +211,7 @@ $entity-photo-sidebar-width: 285px;
     line-height: 48px; // ideally we'd make this smaller, but Chrome, at least, won't let you reduce past a certain size
     font-weight: 600;
     padding: (10px - 3px) 12px; // compensate for 48px line-height by removing 6px from total vertical padding
+    height: auto;
   }
 }
 
@@ -175,6 +220,22 @@ $entity-photo-sidebar-width: 285px;
 
   & + .entity-header__secondary-property {
     margin-left: 40px;
+  }
+}
+
+.entity-details {
+  margin-bottom: 40px;
+}
+
+.entity-details__section {
+  padding: 15px;
+}
+
+.entity-details__property {
+  margin-bottom: 20px;
+
+  li {
+    margin-bottom: 15px; // this is larger than you expect, because it also compensates for negative margin on .form-controls
   }
 }
 
