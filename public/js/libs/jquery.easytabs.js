@@ -9,6 +9,8 @@
  *
  * Date: Thu May 09 17:30:00 2013 -0500
  */
+
+define(['jquery'], function($) {
 ( function($) {
 
   $.easytabs = function(container, options) {
@@ -702,3 +704,4 @@
   };
 
 })(jQuery);
+});
