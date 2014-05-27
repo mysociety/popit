@@ -1,14 +1,46 @@
-<div id="new-organization">
-  <h1>Add an organization</h1>
-  
-  <form name="create-new-organization">
+<%= render(
+  'html_head.html',
+  {
+    title:       organization.name,
+    description: organization.name + ' ' + ( organization.summary || '' ),
+  }
+) %>
 
-    <% // more content inserted in the Backbone view %>
+<script>
+    var popit = popit || {};
+    popit.type = 'organization';
+    popit.data = <%= JSON.stringify(organization.toJSON()) %>;
+</script>
 
-    <h2>Suggestions</h2>
-
-    <ul class="suggestions" />
-    
-    <input type='submit' value="Create new organization">
-  </form>
+<div class="popit-toolbar entity-toolbar">
+  <div class="container">
+    <div class="btn-toolbar pull-right view-mode">
+      <div class="btn-group">
+        <a class="btn btn-default entity-cancel-new-mode"><span class="glyphicon glyphicon-remove glyphicon-space-after"></span> Cancel</a>
+      </div>
+      <div class="btn-group">
+        <a class="btn btn-success entity-save-new"><span class="glyphicon glyphicon-ok glyphicon-space-after"></span> Save Organization</a>
+      </div>
+    </div>
+    <p><a href="/organizations">Organizations</a> / New Organization</p>
+  </div>
 </div>
+
+<article class="container entity organization organization-view" itemscope itemtype="http://schema.org/Organization">
+
+  <div class="entity-header">
+
+    <div class="entity-header__primary-property">
+      <label for="input-name">Name</label>
+      <strong class="control-label edit-mode-error" style="display: none">This organization must have a name</strong>
+      <input type="text" class="form-control view-mode" id="input-name" data-api-name="name" value="<%- organization.name %>">
+    </div>
+
+    <div class="entity-header__secondary-property">
+      <label for="input-classification">Organization type</label>
+      <input type="text" class="form-control view-mode" id="input-classification" data-api-name="classification" value="<%- organization.classification %>">
+    </div>
+  </div>
+
+<%= render('html_footer.html' )%>
+
