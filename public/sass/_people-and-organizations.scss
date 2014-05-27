@@ -99,6 +99,12 @@ $entity-photo-sidebar-width: 285px;
     }
   }
 
+  .edit-mode-error {
+    display: block;
+    margin-top: 15px;
+    margin-left: 12px;
+  }
+
   span.placeholder {
     @extend .label;
     background-color: #FFFFA8;
