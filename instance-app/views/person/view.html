@@ -73,19 +73,19 @@
       <label for="input-name">Name</label>
       <h1 itemprop="name" class="view-mode" data-api-name="name"><%- person.name %></h1>
       <strong class="control-label edit-mode-error" style="display: none">This person must have a name</strong>
-      <input type="text" class="form-control edit-mode" id="input-name" data-api-name="name" value="<%- person.name %>">
+      <input type="text" class="form-control edit-mode" id="input-name" data-api-name="name" placeholder="John Doe" value="<%- person.name %>">
     </div>
 
     <div class="entity-header__secondary-property">
       <label for="input-party">Party</label>
       <p itemprop="name" class="view-mode" data-api-name="name">Conservative</p>
-      <input type="text" class="form-control edit-mode" id="input-party" data-api-name="organization" value="">
+      <input type="text" class="form-control edit-mode" id="input-party" data-api-name="organization" placeholder="Republican" value="">
     </div>
 
     <div class="entity-header__secondary-property">
       <label for="input-constituency">Represents</label>
       <p itemprop="name" class="view-mode" data-api-name="membership-area">Witney</p>
-      <input type="text" class="form-control edit-mode" id="input-constituency" data-api-name="membership-area" value="">
+      <input type="text" class="form-control edit-mode" id="input-constituency" data-api-name="membership-area" placeholder="Witney" value="">
     </div>
 
   </div>

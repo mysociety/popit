@@ -84,6 +84,29 @@ $entity-photo-sidebar-width: 285px;
   .nav-tabs {
     border-color: $header-footer-background;
   }
+
+  .form-control {
+    background-color: $light-grey-background;
+    border: 0;
+    @include box-shadow(none);
+    border-radius: 0;
+    height: auto;
+    padding: 10px 12px; // more vertical padding than normal
+    margin: -10px 0; // compensate for vertical padding
+
+    &:focus {
+      @include box-shadow(inset 0 1px 3px rgba(0,0,0,0.1));
+    }
+  }
+
+  &.editing {
+    label {
+      color: #000;
+      position: relative;
+      z-index: 1;
+      padding-left: 12px; // to line up with text inside .form-controls
+    }
+  }
 }
 
 .entity-header {
@@ -98,7 +121,9 @@ $entity-photo-sidebar-width: 285px;
 
   h1 {
     font-size: 38px; // slightly smaller than normal, since there's lots of small type nearby
+    line-height: 48px; // ideally, we'd make this smaller, but it needs to match an input with a hard-coded minimum line-height
     font-weight: 600; // bolder than normal, to make it stand out
+    margin: -3px 0; // compensate for 48px line-height by making it look like 42px
   }
 }
 
@@ -126,7 +151,8 @@ $entity-photo-sidebar-width: 285px;
     }
   }
 
-  &:hover .add-photo {
+  &:hover .add-photo,
+  .entity.editing & .add-photo {
     display: block;
   }
 }
@@ -135,6 +161,13 @@ $entity-photo-sidebar-width: 285px;
   padding-bottom: 10px;
   border-bottom: 1px solid $header-footer-background;
   margin-bottom: 10px;
+
+  .form-control {
+    font-size: 38px;
+    line-height: 48px; // ideally we'd make this smaller, but Chrome, at least, won't let you reduce past a certain size
+    font-weight: 600;
+    padding: (10px - 3px) 12px; // compensate for 48px line-height by removing 6px from total vertical padding
+  }
 }
 
 .entity-header__secondary-property {
