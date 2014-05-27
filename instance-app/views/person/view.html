@@ -54,15 +54,15 @@
       <% if (person.images.length) { %>
         <% if (person.images[0].url) { %>
           <% // TODO - proxy will need changes to allow us to proxy remote images %>
-          <img src="<%- person.images[0].url %>" width="280" />
+          <img src="<%- person.images[0].url %>" width="128" />
         <% } else { %>
-          <img src="<%- image_proxy(image_url('person', person, person.images[0]), "", 280) %>" />
+          <img src="<%- image_proxy(image_url('person', person, person.images[0]), "", 128) %>" />
         <% } %>
         <a class="delete-photo" data-image-url="<%- image_url( 'person', person, person.images[0] ) %>">
           <span class="glyphicon glyphicon-trash glyphicon-space-after"></span> Delete photo
         </a>
       <% } else { %>
-        <img src='/img/placeholder-person.gif' width="280" />
+        <img src='/img/placeholder-person.gif' width="128" />
         <a class="add-photo" href="<%- person.url %>/images/upload">
           <span class="glyphicon glyphicon-plus glyphicon-space-after"></span> Add photo
         </a>

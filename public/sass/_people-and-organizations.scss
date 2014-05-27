@@ -72,6 +72,79 @@ $entity-photo-sidebar-width: 285px;
   margin-top: -1px; // overlap the previous bar's (or the edit-toolbar's) border
 }
 
+
+
+.entity {
+  label {
+    color: #ccc;
+    font-weight: normal;
+    font-size: 13px;
+  }
+
+  .nav-tabs {
+    border-color: $header-footer-background;
+  }
+}
+
+.entity-header {
+  position: relative;
+  padding-left: 160px; // 128px for the photo, plus ~30px whitespace
+  margin: 30px 0;
+  @include clearfix();
+
+  h1, label, p {
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 38px; // slightly smaller than normal, since there's lots of small type nearby
+    font-weight: 600; // bolder than normal, to make it stand out
+  }
+}
+
+.entity-header__photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  .add-photo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    width: 100%;
+    height: 100%;
+    padding-top: 40%;
+    background-color: rgba(66, 139, 202, 0.5);
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    text-shadow: 0 1px 1px rgb(66,139,202);
+
+    .glyphicon {
+      font-size: 0.8em;
+    }
+  }
+
+  &:hover .add-photo {
+    display: block;
+  }
+}
+
+.entity-header__primary-property {
+  padding-bottom: 10px;
+  border-bottom: 1px solid $header-footer-background;
+  margin-bottom: 10px;
+}
+
+.entity-header__secondary-property {
+  float: left;
+
+  & + .entity-header__secondary-property {
+    margin-left: 40px;
+  }
+}
+
 .old-entity {
 
   .photo-sidebar {
