@@ -202,7 +202,8 @@ $entity-photo-sidebar-width: 285px;
   }
 
   &:hover .add-photo,
-  .entity.editing & .add-photo {
+  .entity.editing & .add-photo,
+  &:hover .delete-photo {
     display: block;
   }
 }
