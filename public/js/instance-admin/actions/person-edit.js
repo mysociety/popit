@@ -124,7 +124,7 @@ define(['jquery', 'jquery.easytabs'], function ($) {
   };
 
   $(function(){
-    $('#edit-person').on('click', enterEditMode);
+    $('.entity-enter-edit-mode').on('click', enterEditMode);
     $('#cancel-person-edit').on('click', cancelEdit);
     $('#save-person').on('click', saveChanges);
     $('#delete-person').on('click', deletePersonConfirm);
