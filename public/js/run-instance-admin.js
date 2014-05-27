@@ -21,7 +21,7 @@ require ([
   'instance-admin/actions/identifier-edit',
   'instance-admin/actions/links-edit',
   'instance-admin/actions/person-edit',
-  'instance-admin/actions/person-new',
+  'instance-admin/actions/entity-new',
   'instance-admin/actions/organization-edit'
 ]);
 
