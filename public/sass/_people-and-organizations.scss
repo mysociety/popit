@@ -245,6 +245,15 @@ $entity-photo-sidebar-width: 285px;
   }
 }
 
+.upload-image {
+  max-width: 400px;
+  padding: 40px 0;
+
+  .form-group {
+    margin-top: 20px;
+  }
+}
+
 .old-entity {
 
   .photo-sidebar {

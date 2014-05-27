@@ -6,18 +6,18 @@
   }
 ) %>
 
-<h1>Upload an image</h1>
+<form action="" method="post" enctype="multipart/form-data" class="container upload-image">
 
-<form action="" method="post" enctype="multipart/form-data">
+  <h1 class="text-center">Add an image</h1>
 
-  <p>
-    <label for="image_upload">Image</label>
+  <p class="form-group">
+    <label for="image_upload">Upload image</label>
     <input type="file" id="image_upload" name="image" />
   </p>
-  
-  <p>
-    <label for="image_url">Or URL</label>
-    <input type="text" id="image_url" name="url" />
+
+  <p class="form-group">
+    <label for="image_url">Or specify URL</label>
+    <input class="form-control" type="text" id="image_url" name="url" />
 
     <%
       //- if opts.form_help_text
@@ -28,9 +28,9 @@
     %>
   </p>
 
-  <div>
-    <input type="submit" class="btn" value="Upload" />
-  </div>
+  <p class="form-group text-center">
+    <button class="btn btn-primary" type="submit">Upload</button>
+  </p>
 
 </form>
 
