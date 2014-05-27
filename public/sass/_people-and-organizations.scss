@@ -176,7 +176,13 @@ $entity-photo-sidebar-width: 285px;
   top: 0;
   left: 0;
 
-  .add-photo {
+  // crop the photo to fit 128px square
+  // perhaps we should float the photo to the left, and set a height, so we don't have to crop?
+  max-height: 128px;
+  overflow: hidden;
+
+  .add-photo,
+  .delete-photo {
     position: absolute;
     top: 0;
     left: 0;
