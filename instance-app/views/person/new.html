@@ -28,31 +28,25 @@
   </div>
 </div>
 
-<article class="container entity person person-view" itemscope itemtype="http://schema.org/Person">
+<article class="container entity person person-view editing" itemscope itemtype="http://schema.org/Person">
 
-  <dl class="dl-horizontal">
+  <div class="entity-header">
 
-    <dt class="entity-attr-name">Name</dt>
-    <dd class="entity-attr-name">
-      <input type="text" class="form-control view-mode" data-api-name="name" value="">
-    </dd>
+    <div class="entity-header__photo">
+      <img src='/img/placeholder-person.gif' width="128" />
+    </div>
 
-    <dt>Summary</dt>
-    <dd itemprop="description">
-      <textarea class="form-control view-mode" data-api-name="summary"></textarea>
-    </dd>
+    <div class="entity-header__primary-property">
+      <label for="input-name">Name</label>
+      <input type="text" class="form-control" data-api-name="name" placeholder="John Doe">
+    </div>
 
-    <dt>Born</dt>
-    <dd>
-      <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
-      <input type="date" class="form-control view-mode" data-api-name="birth_date" value="">
-    </dd>
+    <div class="entity-header__secondary-property" style="float:none">
+      <label for="input-party">Summary</label>
+      <input type="text" class="form-control" data-api-name="summary" placeholder="Republican">
+    </div>
 
-    <dt>Died</dt>
-    <dd>
-      <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
-      <input type="date" class="form-control view-mode" data-api-name="death_date" value="">
-    </dd>
+  </div>
 
 </article>
 <% } else { %>

@@ -156,7 +156,7 @@ $entity-photo-sidebar-width: 285px;
 .entity-header {
   position: relative;
   padding-left: 160px; // 128px for the photo, plus ~30px whitespace
-  margin: 30px 0;
+  margin: 30px 0 40px 0;
   @include clearfix();
 
   h1 {
