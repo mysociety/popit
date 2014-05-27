@@ -252,6 +252,14 @@ $entity-photo-sidebar-width: 285px;
 .entity-details__property {
   margin-bottom: 20px;
 
+  &.empty {
+    display: none;
+
+    .entity.editing & {
+      display: block;
+    }
+  }
+
   li {
     margin-bottom: 15px; // this is larger than you expect, because it also compensates for negative margin on .form-controls
   }
