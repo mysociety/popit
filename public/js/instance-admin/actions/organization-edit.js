@@ -1,10 +1,12 @@
 /*global popit:false console:false */
 define(
   [
-    'jquery'
+    'jquery',
+    'instance-admin/utils/select2-helpers'
   ],
   function (
-    $
+    $,
+    select2Helpers
   ) {
     "use strict";
 
@@ -25,6 +27,7 @@ define(
     var enterEditMode = function(){
       $('.view-mode').hide();
       $('.edit-mode').show();
+      $('#input-classification.edit-mode').hide();
       $('.entity').addClass('editing');
       popit.model.on('invalid', onInvalid);
     };
@@ -133,9 +136,23 @@ define(
 
     $(function(){
       $('#edit-organization').on('click', enterEditMode);
+      $('.placeholder.entity-enter-edit-mode').on('click', enterEditMode);
       $('#cancel-org-edit').on('click', cancelEdit);
       $('#save-organization').on('click', saveChanges);
       $('#delete-organization').on('click', deleteOrganizationConfirm);
+
+      var classification_input = $('.organization-view input[data-api-name="classification"]');
+      if ( classification_input.length ) {
+        classification_input.select2(
+          select2Helpers.create_arguments_for_autocompleter({
+            placeholder:      "e.g Parliament, Party",
+            autocomplete_url: "/autocomplete/classifications"
+          })
+        );
+        if ( popit.data.classification ) {
+          classification_input.select2('data', { id: popit.data.classification, text: popit.data.classification });
+        }
+      }
     });
 
   }
