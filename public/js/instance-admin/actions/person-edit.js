@@ -61,21 +61,24 @@ define(['jquery', 'jquery.easytabs'], function ($) {
     return person;
   };
 
+  var populatePerson = function populatePerson() {
+    _.each(fields, function(field) {
+      var selector = '.view-mode[data-api-name="' + field + '"]';
+      var value = popit.model.get(field);
+      if ( value === null ) {
+          value = '';
+      }
+      $(selector).text(value);
+    });
+  };
+
   var saveChanges = function(){
     toggleSavingButton();
     popit.model.save(
       serializePerson(),
       {
         success: function() {
-          for ( var i = 0; i < fields.length; i++ ) {
-            var field = fields[i];
-            var selector = '.view-mode[data-api-name="' + field + '"]';
-            var value = popit.model.get(field);
-            if ( value === null ) {
-                value = '';
-            }
-            $(selector).text(value);
-          }
+          populatePerson();
           toggleSavingButton();
           leaveEditMode();
         },
