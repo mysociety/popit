@@ -80,7 +80,13 @@
 
     <div class="entity-header__secondary-property">
       <label for="input-classification">Organization type</label>
-      <p itemprop="name" class="view-mode" data-api-name="classification"><%- organization.classification %></p>
+      <p itemprop="name" class="view-mode" data-api-name="classification">
+        <% if (organization.classification) { %>
+          <%- organization.classification %>
+        <% } else { %>
+          <span class="placeholder entity-enter-edit-mode">What type of organization is <%- organization.name %>?</span>
+        <% } %>
+      </p>
       <input type="text" class="form-control edit-mode" id="input-classification" data-api-name="classification" value="<%- organization.classification %>">
     </div>
   </div>
