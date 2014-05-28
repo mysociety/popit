@@ -103,62 +103,62 @@
     </ul>
 
     <div class="entity-details__section" id="other-names">
-      <dt>Other names</dt>
-      <dd>
+      <div class="entity-detail__property">
+        <label>Other names</label>
         <%= render( 'other_name/list.html', { other_names: organization.other_names } ) %>
-      </dd>
+      </div>
     </div>
 
     <div class="entity-details__section" id="ownership">
-      <dt>Parent</dt>
-      <dd>
+      <div class="entity-detail__property">
+        <label>Parent</label>
         <p class="view-mode" data-api-name="parent_id">
           <% if (organization.parent_id) { %>
             <%- organization.parent_id.name %>
           <% } %>
         </p>
         <input type="text" class="form-control edit-mode" data-api-name="parent_id" value="<%- organization.parent_id %>">
-      </dd>
+      </div>
     </div>
 
     <div class="entity-details__section" id="dates">
-      <dt>Founded</dt>
-      <dd>
+      <div class="entity-detail__property">
+        <label>Founded</label>
         <p class="view-mode" data-api-name="founding_date"><%- organization.founding_date || '' %></p>
         <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
         <input type="date" class="form-control edit-mode" data-api-name="founding_date" value="<%- organization.founding_date || '' %>">
-      </dd>
+      </div>
 
-      <dt>Dissolved</dt>
-      <dd>
+      <div class="entity-detail__property">
+        <label>Dissolved</label>
         <p class="view-mode" data-api-name="dissolution_date"><%- organization.dissolution_date || '' %></p>
         <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
         <input type="date" class="form-control edit-mode" data-api-name="dissolution_date" value="<%- organization.dissolution_date || '' %>">
-      </dd>
+      </div>
     </div>
 
     <div class="entity-details__section" id="contact">
-      <dt>Contact details</dt>
-      <dd>
+      <div class="entity-detail__property">
+        <label>Contact details</label>
         <%= render( 'contact/list.html', { contact_details: organization.contact_details } ) %>
-      </dd>
+      </div>
     </div>
 
     <div class="entity-details__section" id="websites">
-      <dt>Links</dt>
-      <dd>
+      <div class="entity-detail__property">
+        <label>Links</label>
         <%= render( 'link/list.html', { links: organization.links } ) %>
-      </dd>
-
-      <dt>Identifiers</dt>
-      <dd>
-        <%= render( 'identifier/list.html', { identifiers: organization.identifiers } ) %>
-      </dd>
+      </div>
     </div>
 
     <div class="entity-details__section" id="advanced">
-      <dt>Posts</dt>
-      <dd>
+      <div class="entity-detail__property">
+        <label>Identifiers</label>
+        <%= render( 'identifier/list.html', { identifiers: organization.identifiers } ) %>
+      </div>
+
+      <div class="entity-detail__property">
+        <label>Posts</label>
         <ul class="cleared posts">
           <% _.each( posts, function ( post ) { %>
             <li><%= render( 'post/view.html', { item: post }) %></li>
@@ -167,10 +167,10 @@
             <a class="add edit-post btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(posts.length){ %>nother<% } %> post</a>
           </li>
         </ul>
-      </dd>
+      </div>
 
-      <dt>Members</dt>
-      <dd>
+      <div class="entity-detail__property">
+        <label>Members</label>
         <ul class="cleared memberships">
           <% _.each( memberships, function ( membership ) { %>
             <%= render( 'membership/list-item.html', { membership: membership, type: 'organization' } ) %>
@@ -179,7 +179,7 @@
             <a class="add edit-membership btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(posts.length){ %>nother<% } %> member</a>
           </li>
         </ul>
-      </dd>
+      </div>
     </div>
   </div>
 
