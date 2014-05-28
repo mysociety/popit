@@ -1,15 +1,19 @@
 /*global popit:false console:false alert:false */
 define(
   [
-    'jquery'
+    'jquery',
+    'instance-admin/views/suggestions'
   ],
   function (
-    $
+    $,
+    SuggestionsView
   ) {
     "use strict";
 
     var fields = [];
     var actionLabel = 'Save', progressLabel = 'Saving';
+
+    var suggestionsView;
 
     var onInvalid = function(model, err) {
       for ( var i = 0; i < fields.length; i++ ) {
@@ -104,13 +108,27 @@ define(
           fields = [ 'name', 'summary', 'birth_date', 'death_date' ];
           actionLabel = 'Save Person';
           progressLabel = 'Saving Person';
+          suggestionsView = new SuggestionsView({ url_type: 'persons' });
+          suggestionsView.collection.url = '/autocomplete/persons';
         } else if ( popit.type === 'organization' ) {
           var fields = [ 'name', 'classification' ];
           actionLabel = 'Save Organization';
           progressLabel = 'Saving Organization';
+          suggestionsView = new SuggestionsView({ el: $('ul.suggestions'), url_type: 'organisations' });
+          suggestionsView.collection.url = '/autocomplete/organizations';
         }
       }
 
+      $('input[data-api-name="name"]').on('keyup', function(e) {
+          suggestionsView.setName($('input[data-api-name="name"]').val());
+          $('ul.suggestions').show();
+        }
+      );
+      $('input[data-api-name="name"]').on('blur', function(e) {
+          $('ul.suggestions').hide();
+        }
+      );
+      $('ul.suggestions').hide();
     });
 
   }

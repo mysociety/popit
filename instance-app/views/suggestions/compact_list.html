@@ -1,7 +1,7 @@
 <% if (items.length) { %>
   <% _.each( items, function ( item ) { %>
     <li>
-      <a href="/<%- url_type %>/<%- item.id %>"><%- item.name %> (<%- item.id %>)</a>
+      <a href="/<%- url_type %>/<%- item.id %>"><%- item.name %></a>
     </li>
   <% }); %>
 <% } else { %>
