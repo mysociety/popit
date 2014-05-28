@@ -119,7 +119,7 @@ define(
           suggestionsView = new SuggestionsView({ el: $('ul.suggestions'), url_type: 'organisations' });
           suggestionsView.collection.url = '/autocomplete/organizations';
 
-          $('input[data-api-name="classification"]').select2(
+          $('.organization-new input[data-api-name="classification"]').select2(
             select2Helpers.create_arguments_for_autocompleter({
               placeholder:      "e.g Parliament, Party",
               autocomplete_url: "/autocomplete/classifications"
