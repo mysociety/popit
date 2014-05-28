@@ -2,7 +2,7 @@
 define(['jquery', 'jquery.easytabs'], function ($) {
   "use strict";
 
-  var fields = [ 'name', 'summary', 'birth_date', 'death_date', 'organization', 'organization_id' ];
+  var fields = [ 'name', 'summary', 'birth_date', 'death_date', 'organization', 'organization_id', 'membership-area' ];
 
   var onInvalid = function(model, err) {
       for ( var i = 0; i < fields.length; i++ ) {
