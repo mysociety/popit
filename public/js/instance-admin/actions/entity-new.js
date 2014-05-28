@@ -2,11 +2,13 @@
 define(
   [
     'jquery',
-    'instance-admin/views/suggestions'
+    'instance-admin/views/suggestions',
+    'instance-admin/utils/select2-helpers'
   ],
   function (
     $,
-    SuggestionsView
+    SuggestionsView,
+    select2Helpers
   ) {
     "use strict";
 
@@ -116,6 +118,13 @@ define(
           progressLabel = 'Saving Organization';
           suggestionsView = new SuggestionsView({ el: $('ul.suggestions'), url_type: 'organisations' });
           suggestionsView.collection.url = '/autocomplete/organizations';
+
+          $('input[data-api-name="classification"]').select2(
+            select2Helpers.create_arguments_for_autocompleter({
+              placeholder:      "e.g Parliament, Party",
+              autocomplete_url: "/autocomplete/classifications"
+            })
+          );
         }
       }
 
