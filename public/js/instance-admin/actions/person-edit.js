@@ -68,7 +68,7 @@ define(['jquery', 'jquery.easytabs'], function ($) {
       if ( value === null ) {
           value = '';
       }
-      $(selector).text(value);
+      $(selector).text($.trim(value));
     });
   };
 
