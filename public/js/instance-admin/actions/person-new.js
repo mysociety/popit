@@ -2,7 +2,7 @@
 define(['jquery'], function ($) {
   "use strict";
 
-  var fields = [ 'name', 'summary', 'birth_date', 'death_date' ];
+  var fields = [ 'name' ];
 
   var onInvalid = function(model, err) {
     for ( var i = 0; i < fields.length; i++ ) {
@@ -29,7 +29,7 @@ define(['jquery'], function ($) {
     toggleSavingButton();
     var name = $('.view-mode[data-api-name="name"]').val();
     if ( !name ) {
-        $('.view-mode[data-api-name="name"]').parent().addClass('has-error');
+        $('.view-mode[data-api-name="name"]').parent().addClass('has-error').find('.edit-mode-error').show();
         toggleSavingButton();
         return;
     }
