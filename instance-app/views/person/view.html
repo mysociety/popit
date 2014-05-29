@@ -83,7 +83,7 @@
           <%- person.party %>
           <input type="hidden" class="edit-mode" data-api-name="organization_id" value="<%- person.party_id %>">
         <% } else { %>
-          <span class="placeholder entity-enter-edit-mode">Is <%- person.name %> in a party?</span>
+          <span class="placeholder entity-enter-edit-mode" data-input-selector="#input-party">Is <%- person.name %> in a party?</span>
         <% } %>
       </p>
       <input type="text" class="form-control edit-mode" id="input-party" data-api-name="organization" placeholder="Republican" value="<%- person.party %>">
@@ -95,7 +95,7 @@
         <% if (person.constituency) { %>
           <%- person.constituency %>
         <% } else { %>
-          <span class="placeholder entity-enter-edit-mode">What area does <%- person.name %> represent?</span>
+          <span class="placeholder entity-enter-edit-mode" data-input-selector="#input-constituency">What area does <%- person.name %> represent?</span>
         <% } %>
       </p>
       <input type="text" class="form-control edit-mode" id="input-constituency" data-api-name="membership-area" placeholder="Witney" value="<%- person.constituency %>">

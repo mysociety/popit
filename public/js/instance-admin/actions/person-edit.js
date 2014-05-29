@@ -26,6 +26,11 @@ define(['jquery', 'underscore', 'jquery.easytabs'], function ($, _) {
       var input = $('.edit-mode[data-api-name="' + field + '"]');
       input.data('original', input.val());
     });
+
+    var inputToFocus = $(this).data('input-selector');
+    if (inputToFocus !== '') {
+      $(inputToFocus).focus();
+    }
   };
 
   var leaveEditMode = function(){
