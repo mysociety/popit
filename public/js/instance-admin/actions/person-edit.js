@@ -22,6 +22,10 @@ define(['jquery', 'underscore', 'jquery.easytabs'], function ($, _) {
     $('.edit-mode').show();
     $('.entity').addClass('editing');
       popit.model.on('invalid', onInvalid);
+    _.each(fields, function(field) {
+      var input = $('.edit-mode[data-api-name="' + field + '"]');
+      input.data('original', input.val());
+    });
   };
 
   var leaveEditMode = function(){
@@ -47,9 +51,8 @@ define(['jquery', 'underscore', 'jquery.easytabs'], function ($, _) {
       leaveEditMode();
       for ( var i = 0; i < fields.length; i++ ) {
         var field = fields[i];
-        var original = '.view-mode[data-api-name="' + field + '"]';
         var changed = '.edit-mode[data-api-name="' + field + '"]';
-        $(changed).val($(original).text());
+        $(changed).val($(changed).data('original'));
       }
   };
 
