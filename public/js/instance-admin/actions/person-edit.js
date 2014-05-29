@@ -1,5 +1,5 @@
 /*global popit:false console:false */
-define(['jquery', 'jquery.easytabs'], function ($) {
+define(['jquery', 'underscore', 'jquery.easytabs'], function ($, _) {
   "use strict";
 
   var fields = [ 'name', 'summary', 'birth_date', 'death_date', 'organization', 'organization_id', 'membership-area' ];
