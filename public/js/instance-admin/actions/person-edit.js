@@ -47,6 +47,12 @@ define(['jquery', 'underscore', 'jquery.easytabs'], function ($, _) {
     $alert.hide().insertBefore('.entity').slideDown(100);
   };
 
+  var showBackboneNotice = function(msg){
+    $('.alert.alert-info').remove();
+    var $alert = $('<div class="alert alert-info"><p class="container"><strong>' + msg + '</strong></p></div>');
+    $alert.hide().insertBefore('.entity').slideDown(100);
+  };
+
   var cancelEdit = function(){
       leaveEditMode();
       for ( var i = 0; i < fields.length; i++ ) {
@@ -84,6 +90,7 @@ define(['jquery', 'underscore', 'jquery.easytabs'], function ($, _) {
           populatePerson();
           toggleSavingButton();
           leaveEditMode();
+          showBackboneNotice("You've added enough data for now - you can continue to add more information or <a href='/persons/new'>Add a new person</a>");
         },
         error: function(obj, err) {
             console.log(err);
