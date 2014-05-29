@@ -119,7 +119,14 @@ exports.route = function (app) {
     });
     
     app.get( '/instances/:instanceSlug', function (req, res) {
-        res.redirect(format(config.instance_server.base_url_format, req.param('instanceSlug')));
+      if ( req.instance.status !== 'pending' ) {
+        return res.redirect(format(config.instance_server.base_url_format, req.param('instanceSlug')));
+      }
+
+      res.render('instance_pending.html', {
+        instance: req.instance,
+        moment: moment,
+      });
     });
     
     
