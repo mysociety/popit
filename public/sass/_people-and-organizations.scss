@@ -73,7 +73,6 @@ $entity-photo-sidebar-width: 285px;
 }
 
 
-
 .entity {
   label {
     color: #ccc;
@@ -97,6 +96,13 @@ $entity-photo-sidebar-width: 285px;
     &:focus {
       @include box-shadow(inset 0 1px 3px rgba(0,0,0,0.1));
     }
+  }
+
+  .form-control.select2-container {
+    padding: 0;
+    height: auto;
+    margin-top: 3px;
+    min-width: 280px;
   }
 
   .edit-mode-error {
@@ -233,6 +239,16 @@ $entity-photo-sidebar-width: 285px;
     font-weight: 600;
     padding: (10px - 3px) 12px; // compensate for 48px line-height by removing 6px from total vertical padding
     height: auto;
+  }
+
+  .suggestions {
+    margin-top: 10px;
+
+    a {
+      padding: 10px 12px;
+      font-size: 21px;
+      font-weight: 600;
+    }
   }
 }
 

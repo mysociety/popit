@@ -25,7 +25,7 @@
   <div class="container">
     <div class="btn-toolbar pull-right view-mode">
       <div class="btn-group">
-        <a class="btn btn-default" href="/api/v0.1/organizations/<%- organization.id %>">JSON API</a>
+        <a class="btn btn-default" href="/api/v0.1/organizations/<%- organization.id %>">Get this data</a>
       </div>
       <div class="btn-group">
         <% if (user || guest) { %>
@@ -46,137 +46,144 @@
         <a id="save-organization" class="btn btn-success entity-save-changes"><span class="glyphicon glyphicon-ok glyphicon-space-after"></span> Save changes</a>
       </div>
     </div>
-    <p><a href="/organizations">Organizations</a> / <a href="/organizations/<%- organization.slug %>"><%- organization.id %></a></p>
   </div>
 </div>
 
 <article class="container entity organization organization-view" itemscope itemtype="http://schema.org/Organization">
 
-  <aside class="photo-sidebar">
-    <ul class="photos">
+  <div class="entity-header">
+    <div class="entity-header__photo">
       <% if (organization.images.length) { %>
-        <% _.each( organization.images, function ( image ) { %>
-          <li>
-            <% if (image.url) { %>
-              <% //- TODO - proxy will need changes to allow us to proxy remote images %>
-              <img src="<%- image.url %>"  width="280" />
-            <% } else { %>
-              <img src="<%- image_proxy(image_url( 'organization', organization, image ) , "", 280) %>" />
-            <% } %>
-
-            <p class="photo-actions edit-mode">
-            <a class="delete-photo btn btn-default btn-sm" data-image-url="<%- image_url( 'organization', organization, image ) %>">
-                <span class="glyphicon glyphicon-trash glyphicon-space-after"></span>
-                Delete this photograph
-              </a>
-            </p>
-          </li>
-        <% }); %>
+        <% if (organization.images[0].url) { %>
+          <% // TODO - proxy will need changes to allow us to proxy remote images %>
+          <img src="<%- organization.images[0].url %>" width="128" />
+        <% } else { %>
+          <img src="<%- image_proxy(image_url('organization', organization, organization.images[0]), "", 128) %>" />
+        <% } %>
+        <a class="delete-photo" data-image-url="<%- image_url( 'organization', organization, organization.images[0] ) %>">
+          <span class="glyphicon glyphicon-trash glyphicon-space-after"></span> Delete photo
+        </a>
       <% } else { %>
-        <li>
-          <img src='/img/placeholder-organization.gif' width="280" />
-        </li>
+        <img src='/img/placeholder-organization.gif' width="128" />
+        <a class="add-photo" href="<%- organization.url %>/images/upload">
+          <span class="glyphicon glyphicon-plus glyphicon-space-after"></span> Add photo
+        </a>
       <% } %>
-    </ul>
+    </div>
 
-    <p class="edit-mode">
-      <a class="add btn btn-default btn-sm" href="<%- organization.url %>/images/upload">
-        <span class="glyphicon glyphicon-plus glyphicon-space-after"></span>
-        Add a photograph
-      </a>
-    </p>
-  </aside>
-
-  <dl class="dl-horizontal">
-
-    <dt class="entity-attr-name">Name</dt>
-    <dd class="entity-attr-name">
+    <div class="entity-header__primary-property">
+      <label for="input-name">Name</label>
       <h1 itemprop="name" class="view-mode" data-api-name="name"><%- organization.name %></h1>
       <strong class="control-label edit-mode-error" style="display: none">This organization must have a name</strong>
-      <input type="text" class="form-control edit-mode" data-api-name="name" value="<%- organization.name %>">
-    </dd>
+      <input type="text" class="form-control edit-mode" id="input-name" data-api-name="name" value="<%- organization.name %>">
+    </div>
 
-    <dt>Summary</dt>
-    <dd itemprop="description">
-      <p class="view-mode" data-api-name="summary"><%- organization.summary %></p>
-      <textarea class="form-control edit-mode" data-api-name="summary"><%- organization.summary %></textarea>
-    </dd>
-
-    <dt>Classification</dt>
-    <dd>
-      <p class="view-mode" data-api-name="classification"><%- organization.classification %></p>
-      <input type="text" class="form-control edit-mode" data-api-name="classification" value="<%- organization.classification %>">
-    </dd>
-
-    <dt>Parent</dt>
-    <dd>
-      <p class="view-mode" data-api-name="parent_id">
-        <% if (organization.parent_id) { %>
-          <%- organization.parent_id.name %>
+    <div class="entity-header__secondary-property">
+      <label for="input-classification">Organization type</label>
+      <p itemprop="name" class="view-mode" data-api-name="classification">
+        <% if (organization.classification) { %>
+          <%- organization.classification %>
+        <% } else { %>
+          <span class="placeholder entity-enter-edit-mode">What type of organization is <%- organization.name %>?</span>
         <% } %>
       </p>
-      <input type="text" class="form-control edit-mode" data-api-name="parent_id" value="<%- organization.parent_id %>">
-    </dd>
+      <div>
+        <input type="text" class="form-control edit-mode" id="input-classification" data-api-name="classification" value="<%- organization.classification %>">
+      </div>
+    </div>
+  </div>
 
-    <dt>Founded</dt>
-    <dd>
-      <p class="view-mode" data-api-name="founding_date"><%- organization.founding_date || '' %></p>
-      <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
-      <input type="date" class="form-control edit-mode" data-api-name="founding_date" value="<%- organization.founding_date || '' %>">
-    </dd>
+  <div class="entity-details">
 
-    <dt>Dissolved</dt>
-    <dd>
-      <p class="view-mode" data-api-name="dissolution_date"><%- organization.dissolution_date || '' %></p>
-      <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
-      <input type="date" class="form-control edit-mode" data-api-name="dissolution_date" value="<%- organization.dissolution_date || '' %>">
-    </dd>
+    <ul class="nav nav-tabs">
+      <li><a href="#other-names">Other Names</a></li>
+      <li><a href="#ownership">Ownership</a></li>
+      <li><a href="#dates">Dates and Locations</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#websites">Websites</a></li>
+      <li><a href="#advanced">Advanced</a></li>
+    </ul>
 
-    <dt>Other names</dt>
-    <dd>
-      <%= render( 'other_name/list.html', { other_names: organization.other_names } ) %>
-    </dd>
+    <div class="entity-details__section" id="other-names">
+      <div class="entity-detail__property">
+        <label>Other names</label>
+        <%= render( 'other_name/list.html', { other_names: organization.other_names } ) %>
+      </div>
+    </div>
 
-    <dt>Posts</dt>
-    <dd>
-      <ul class="cleared posts">
-        <% _.each( posts, function ( post ) { %>
-          <li><%= render( 'post/view.html', { item: post }) %></li>
-        <% }); %>
-        <li class="edit-mode">
-          <a class="add edit-post btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(posts.length){ %>nother<% } %> post</a>
-        </li>
-      </ul>
-    </dd>
+    <div class="entity-details__section" id="ownership">
+      <div class="entity-detail__property">
+        <label>Parent</label>
+        <p class="view-mode" data-api-name="parent_id">
+          <% if (organization.parent_id) { %>
+            <%- organization.parent_id.name %>
+          <% } %>
+        </p>
+        <input type="text" class="form-control edit-mode" data-api-name="parent_id" value="<%- organization.parent_id %>">
+      </div>
+    </div>
 
-    <dt>Members</dt>
-    <dd>
-      <ul class="cleared memberships">
-        <% _.each( memberships, function ( membership ) { %>
-          <%= render( 'membership/list-item.html', { membership: membership, type: 'organization' } ) %>
-        <% }); %>
-        <li class="edit-mode">
-          <a class="add edit-membership btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(posts.length){ %>nother<% } %> member</a>
-        </li>
-      </ul>
-    </dd>
+    <div class="entity-details__section" id="dates">
+      <div class="entity-detail__property">
+        <label>Founded</label>
+        <p class="view-mode" data-api-name="founding_date"><%- organization.founding_date || '' %></p>
+        <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
+        <input type="date" class="form-control edit-mode" data-api-name="founding_date" value="<%- organization.founding_date || '' %>">
+      </div>
 
-    <dt>Contact details</dt>
-    <dd>
-      <%= render( 'contact/list.html', { contact_details: organization.contact_details } ) %>
-    </dd>
+      <div class="entity-detail__property">
+        <label>Dissolved</label>
+        <p class="view-mode" data-api-name="dissolution_date"><%- organization.dissolution_date || '' %></p>
+        <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
+        <input type="date" class="form-control edit-mode" data-api-name="dissolution_date" value="<%- organization.dissolution_date || '' %>">
+      </div>
+    </div>
 
-    <dt>Links</dt>
-    <dd>
-      <%= render( 'link/list.html', { links: organization.links } ) %>
-    </dd>
+    <div class="entity-details__section" id="contact">
+      <div class="entity-detail__property">
+        <label>Contact details</label>
+        <%= render( 'contact/list.html', { contact_details: organization.contact_details } ) %>
+      </div>
+    </div>
 
-    <dt>Identifiers</dt>
-    <dd>
-      <%= render( 'identifier/list.html', { identifiers: organization.identifiers } ) %>
-    </dd>
-  </dl>
+    <div class="entity-details__section" id="websites">
+      <div class="entity-detail__property">
+        <label>Links</label>
+        <%= render( 'link/list.html', { links: organization.links } ) %>
+      </div>
+    </div>
 
+    <div class="entity-details__section" id="advanced">
+      <div class="entity-detail__property">
+        <label>Identifiers</label>
+        <%= render( 'identifier/list.html', { identifiers: organization.identifiers } ) %>
+      </div>
+
+      <div class="entity-detail__property">
+        <label>Posts</label>
+        <ul class="cleared posts">
+          <% _.each( posts, function ( post ) { %>
+            <li><%= render( 'post/view.html', { item: post }) %></li>
+          <% }); %>
+          <li class="edit-mode">
+            <a class="add edit-post btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(posts.length){ %>nother<% } %> post</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="entity-detail__property">
+        <label>Members</label>
+        <ul class="cleared memberships">
+          <% _.each( memberships, function ( membership ) { %>
+            <%= render( 'membership/list-item.html', { membership: membership, type: 'organization' } ) %>
+          <% }); %>
+          <li class="edit-mode">
+            <a class="add edit-membership btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(posts.length){ %>nother<% } %> member</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
   <section class="custom-data" style="display: none">
     <h2>Custom data:</h2>
