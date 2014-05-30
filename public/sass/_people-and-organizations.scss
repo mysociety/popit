@@ -236,6 +236,16 @@ $entity-photo-sidebar-width: 285px;
     padding: (10px - 3px) 12px; // compensate for 48px line-height by removing 6px from total vertical padding
     height: auto;
   }
+
+  .suggestions {
+    margin-top: 10px;
+
+    a {
+      padding: 10px 12px;
+      font-size: 21px;
+      font-weight: 600;
+    }
+  }
 }
 
 .entity-header__secondary-property {
