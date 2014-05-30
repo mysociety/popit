@@ -84,7 +84,9 @@
         <% if (organization.classification) { %>
           <%- organization.classification %>
         <% } else { %>
-          <span class="placeholder entity-enter-edit-mode">What type of organization is <%- organization.name %>?</span>
+          <% if (user || guest) { %>
+            <span class="placeholder entity-enter-edit-mode">What type of organization is <%- organization.name %>?</span>
+          <% } %>
         <% } %>
       </p>
       <div>
