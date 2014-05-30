@@ -60,14 +60,18 @@
         <% } else { %>
           <img src="<%- image_proxy(image_url('organization', organization, organization.images[0]), "", 128) %>" />
         <% } %>
+        <% if (user || guest) { %>
         <a class="delete-photo" data-image-url="<%- image_url( 'organization', organization, organization.images[0] ) %>">
           <span class="glyphicon glyphicon-trash glyphicon-space-after"></span> Delete photo
         </a>
+        <% } %>
       <% } else { %>
         <img src='/img/placeholder-organization.gif' width="128" />
+        <% if (user || guest) { %>
         <a class="add-photo" href="<%- organization.url %>/images/upload">
           <span class="glyphicon glyphicon-plus glyphicon-space-after"></span> Add photo
         </a>
+        <% } %>
       <% } %>
     </div>
 
