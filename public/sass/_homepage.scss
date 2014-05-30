@@ -164,6 +164,13 @@
         @include rotate(3deg);
         @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
         background: #fff;
+
+        @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+          // The <a> is slightly shorter on mid-sized screens, so adjust accordingly
+          top: -160px;
+          height: 160px;
+          margin-bottom: -160px;
+        }
       }
     }
   }
