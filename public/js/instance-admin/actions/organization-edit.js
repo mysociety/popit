@@ -136,6 +136,7 @@ define(
 
     $(function(){
       $('#edit-organization').on('click', enterEditMode);
+      $('.placeholder.entity-enter-edit-mode').on('click', enterEditMode);
       $('#cancel-org-edit').on('click', cancelEdit);
       $('#save-organization').on('click', saveChanges);
       $('#delete-organization').on('click', deleteOrganizationConfirm);
@@ -145,7 +146,7 @@ define(
         classification_input.select2(
           select2Helpers.create_arguments_for_autocompleter({
             placeholder:      "e.g Parliament, Party",
-            autocomplete_url: "/autocomplete/classifications",
+            autocomplete_url: "/autocomplete/classifications"
           })
         );
         if ( popit.data.classification ) {

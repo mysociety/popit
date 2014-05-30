@@ -113,7 +113,7 @@ define(
           suggestionsView = new SuggestionsView({ url_type: 'persons' });
           suggestionsView.collection.url = '/autocomplete/persons';
         } else if ( popit.type === 'organization' ) {
-          var fields = [ 'name', 'classification' ];
+          fields = [ 'name', 'classification' ];
           actionLabel = 'Save Organization';
           progressLabel = 'Saving Organization';
           suggestionsView = new SuggestionsView({ el: $('ul.suggestions'), url_type: 'organisations' });

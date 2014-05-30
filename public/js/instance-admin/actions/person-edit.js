@@ -1,8 +1,8 @@
 /*global popit:false console:false */
-define(['jquery', 'jquery.easytabs'], function ($) {
+define(['jquery', 'underscore', 'jquery.easytabs'], function ($, _) {
   "use strict";
 
-  var fields = [ 'name', 'summary', 'birth_date', 'death_date' ];
+  var fields = [ 'name', 'summary', 'birth_date', 'death_date', 'organization', 'organization_id', 'membership-area' ];
 
   var onInvalid = function(model, err) {
       for ( var i = 0; i < fields.length; i++ ) {
@@ -53,33 +53,32 @@ define(['jquery', 'jquery.easytabs'], function ($) {
       }
   };
 
+  var serializePerson = function serializePerson(){
+    var person = {};
+    _.each(fields, function(field) {
+      person[field] = $('.edit-mode[data-api-name="' + field + '"]').val() || null;
+    });
+    return person;
+  };
+
+  var populatePerson = function populatePerson() {
+    _.each(fields, function(field) {
+      var selector = '.view-mode[data-api-name="' + field + '"]';
+      var value = popit.model.get(field);
+      if ( value === null ) {
+          value = '';
+      }
+      $(selector).text($.trim(value));
+    });
+  };
+
   var saveChanges = function(){
     toggleSavingButton();
-    var name = $('.edit-mode[data-api-name="name"]').val();
-    popit.model.set('name', name);
-    popit.model.set('summary', $('.edit-mode[data-api-name="summary"]').val());
-    var dates = ['death_date', 'birth_date'];
-    for ( var i = 0; i < dates.length; i++ ) {
-        var selector = '.edit-mode[data-api-name="' + dates[i] + '"]';
-        var value = $(selector).val();
-        if ( ! value ) {
-            value = null;
-        }
-        popit.model.set(dates[i], value);
-    }
     popit.model.save(
-      {},
+      serializePerson(),
       {
         success: function() {
-          for ( var i = 0; i < fields.length; i++ ) {
-            var field = fields[i];
-            var selector = '.view-mode[data-api-name="' + field + '"]';
-            var value = popit.model.get(field);
-            if ( value === null ) {
-                value = '';
-            }
-            $(selector).text(value);
-          }
+          populatePerson();
           toggleSavingButton();
           leaveEditMode();
         },
