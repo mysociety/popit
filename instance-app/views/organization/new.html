@@ -12,6 +12,7 @@
     popit.data = <%= JSON.stringify(organization.toJSON()) %>;
 </script>
 
+<% if (user || guest) { %>
 <div class="popit-toolbar entity-toolbar">
   <div class="container">
     <div class="btn-toolbar pull-right view-mode">
@@ -46,6 +47,30 @@
       </div>
     </div>
   </div>
+</article>
+<% } else { %>
+<div class="popit-toolbar entity-toolbar">
+  <div class="container">
+    <div class="btn-toolbar pull-right view-mode">
+      <div class="btn-group">
+        <a class="add btn btn-default" href="/login">Log in to add a new organization <span class="glyphicon glyphicon-chevron-right glyphicon-space-before"></span></a>
+      </div>
+    </div>
+    <p><a href="/persons">Organizations</a> / <span style="margin-left: 5px">New Organization</span></p>
+  </div>
+</div>
+
+<div class="container fourohfour-container">
+
+  <span class="glyphicon glyphicon-remove"></span>
+
+  <h1>You must be logged in to do that</h1>
+
+  <p style="margin-top: 30px;"><a class="btn btn-primary" href="/login">Log in to add a new organization <span class="glyphicon glyphicon-chevron-right glyphicon-space-before"></span></a></p>
+
+</div>
+<% } %>
+
 
 <%= render('html_footer.html' )%>
 
