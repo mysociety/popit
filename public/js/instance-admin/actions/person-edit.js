@@ -1,5 +1,5 @@
 /*global popit:false console:false */
-define(['jquery', 'underscore', 'jquery.easytabs'], function ($, _) {
+define(['jquery', 'underscore'], function ($, _) {
   "use strict";
 
   var fields = [ 'name', 'summary', 'birth_date', 'death_date', 'organization', 'organization_id', 'membership-area' ];
@@ -142,7 +142,6 @@ define(['jquery', 'underscore', 'jquery.easytabs'], function ($, _) {
     $('#cancel-person-edit').on('click', cancelEdit);
     $('#save-person').on('click', saveChanges);
     $('#delete-person').on('click', deletePersonConfirm);
-    $('.entity-details').easytabs({animate: false});
   });
 
 });
