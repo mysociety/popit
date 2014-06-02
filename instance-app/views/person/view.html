@@ -92,7 +92,7 @@
           <% } %>
         <% } %>
       </p>
-      <input type="text" class="form-control edit-mode" id="input-party" data-api-name="organization" placeholder="Republican" value="<%- person.party.name %>">
+      <input type="text" class="form-control edit-mode" id="input-party" data-api-name="organization" placeholder="Republican" <% if (person.party) { %>value="<%- person.party.name %>"<% } %>>
     </div>
 
     <div class="entity-header__secondary-property">
