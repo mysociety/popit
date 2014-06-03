@@ -1,5 +1,4 @@
 <li>
-<% if ( membership.organization_id !== null ) { %>
   <div class="view-mode">
     <% if (membership.post_id) { %> <%- membership.post_id.label %>: <% } %>
     <% if (membership.label) { %> <%- membership.label %> <% } %>
@@ -30,5 +29,4 @@
       <span class="text-muted">(to <%- membership.end_date %>)</span>
     <% } %>
   </div>
-<% } %>
 </li>
