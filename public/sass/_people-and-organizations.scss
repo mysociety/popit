@@ -222,9 +222,8 @@ $entity-photo-sidebar-width: 285px;
     }
   }
 
-  &:hover .add-photo,
   .entity.editing & .add-photo,
-  &:hover .delete-photo {
+  .entity.editing & .delete-photo {
     display: block;
   }
 }
@@ -260,6 +259,20 @@ $entity-photo-sidebar-width: 285px;
 
   & + .entity-header__secondary-property {
     margin-left: 40px;
+  }
+}
+
+.entity-little-edit-icon {
+  @extend .glyphicon;
+  @extend .glyphicon-pencil;
+  color: #bbb;
+  font-size: 12px;
+  padding: 5px;
+  margin: -5px 0;
+
+  &:hover,
+  &:focus {
+    color: #888;
   }
 }
 
