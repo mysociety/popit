@@ -139,11 +139,17 @@
       <li class="<% if (!person.links.length) { %>empty<% } %>"><a href="#websites">Websites</a></li>
       <li class="<% if (!person.contact_details.length) { %>empty<% } %>"><a href="#contact">Contact</a></li>
       <li class="<% if (!memberships) { %>empty<% } %>"><a href="#political-career">Political career</a></li>
-      <li class="<% if (!false) { %>empty<% } %>"><a href="#career">Career</a></li>
+      <!-- <li class="<% if (!false) { %>empty<% } %>"><a href="#career">Career</a></li> -->
       <li class="<% if (!person.identifiers.length) { %>empty<% } %>"><a href="#advanced">Advanced</a></li>
     </ul>
 
     <div class="entity-details__section" id="biography">
+      <% if ((user || guest) && !person.other_names.length && !person.summary && !person.birth_date && !person.death_date) { %>
+        <p class="entity-details__hint view-mode entity-enter-edit-mode">
+          <span class="btn btn-xs btn-default pull-right">Add details</span>
+          You can use PopIt to store extra information about this person, like who they are and when they were born.
+        </p>
+      <% } %>
 
       <div class="entity-details__property <% if(!person.other_names.length){ %>empty<% } %>">
         <label>Other names</label>
@@ -173,6 +179,13 @@
     </div>
 
     <div class="entity-details__section" id="websites">
+      <% if ((user || guest) && !person.links.length) { %>
+        <p class="entity-details__hint view-mode entity-enter-edit-mode">
+          <span class="btn btn-xs btn-default pull-right">Add links to websites</span>
+          If this person has a website, or any online profile pages, you can add them here.
+        </p>
+      <% } %>
+
       <div class="entity-details__property <% if(!person.links.length){ %>empty<% } %>">
         <label>Links</label>
         <%= render( 'link/list.html', { links: person.links } ) %>
@@ -180,6 +193,13 @@
     </div>
 
     <div class="entity-details__section" id="contact">
+      <% if ((user || guest) && !person.contact_details.length) { %>
+        <p class="entity-details__hint view-mode entity-enter-edit-mode">
+          <span class="btn btn-xs btn-default pull-right">Add contact details</span>
+          PopIt is most useful when people have contact details, like their phone, email, and Twitter.
+        </p>
+      <% } %>
+
       <div class="entity-details__property <% if(!person.contact_details.length){ %>empty<% } %>">
         <label>Contact details</label>
         <%= render( 'contact/list.html', { contact_details: person.contact_details } ) %>
@@ -187,6 +207,13 @@
     </div>
 
     <div class="entity-details__section" id="political-career">
+      <% if ((user || guest) && !memberships.length) { %>
+        <p class="entity-details__hint view-mode entity-enter-edit-mode">
+          <span class="btn btn-xs btn-default pull-right">Add a membership</span>
+          Is this person a member of an organization or party?
+        </p>
+      <% } %>
+
       <div class="entity-details__property <% if(!memberships){ %>empty<% } %>">
         <label>Memberships</label>
         <ul class="cleared memberships">
@@ -200,10 +227,16 @@
       </div>
     </div>
 
-    <div class="entity-details__section" id="career">
-    </div>
+    <!-- <div class="entity-details__section" id="career"></div> -->
 
     <div class="entity-details__section" id="advanced">
+      <% if ((user || guest) && !person.identifiers.length) { %>
+        <p class="entity-details__hint view-mode entity-enter-edit-mode">
+          <span class="btn btn-xs btn-default pull-right">Add identifiers</span>
+          If this person has special registration or ID numbers, you can add them here.
+        </p>
+      <% } %>
+
       <div class="entity-details__property <% if(!person.identifiers.length){ %>empty<% } %>">
         <label>Identifiers</label>
         <%= render( 'identifier/list.html', { identifiers: person.identifiers } ) %>

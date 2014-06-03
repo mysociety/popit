@@ -132,6 +132,13 @@
     </ul>
 
     <div class="entity-details__section" id="details">
+      <% if ((user || guest) && !organization.other_names.length && !organization.parent_id && !organization.founding_date && !organization.dissolution_date) { %>
+        <p class="entity-details__hint view-mode entity-enter-edit-mode">
+          <span class="btn btn-xs btn-default pull-right">Add more info</span>
+          You can use PopIt to store previous names and other important details about this organization.
+        </p>
+      <% } %>
+
       <div class="entity-details__property <% if (!organization.other_names.length) { %>empty<% } %>">
         <label>Other names</label>
         <%= render( 'other_name/list.html', { other_names: organization.other_names } ) %>
@@ -191,6 +198,13 @@
     </div>
 
     <div class="entity-details__section" id="websites">
+      <% if ((user || guest) && !organization.links.length) { %>
+        <p class="entity-details__hint view-mode entity-enter-edit-mode">
+          <span class="btn btn-xs btn-default pull-right">Add links to websites</span>
+          PopIt can optionally store extra information about organizations, like their websites.
+        </p>
+      <% } %>
+
       <div class="entity-details__property <% if (!organization.links.length) { %>empty<% } %>">
         <label>Links</label>
         <%= render( 'link/list.html', { links: organization.links } ) %>
@@ -198,6 +212,13 @@
     </div>
 
     <div class="entity-details__section" id="contact">
+      <% if ((user || guest) && !organization.contact_details.length) { %>
+        <p class="entity-details__hint view-mode entity-enter-edit-mode">
+          <span class="btn btn-xs btn-default pull-right">Add contact details</span>
+          PopIt is most useful when organizations have contact details.
+        </p>
+      <% } %>
+
       <div class="entity-details__property <% if (!organization.contact_details.length) { %>empty<% } %>">
         <label>Contact details</label>
         <%= render( 'contact/list.html', { contact_details: organization.contact_details } ) %>
@@ -205,6 +226,13 @@
     </div>
 
     <div class="entity-details__section" id="advanced">
+      <% if ((user || guest) && !organization.identifiers.length) { %>
+        <p class="entity-details__hint view-mode entity-enter-edit-mode">
+          <span class="btn btn-xs btn-default pull-right">Add identifiers</span>
+          If this organization has special ID numbers, you can add them here.
+        </p>
+      <% } %>
+
       <div class="entity-details__property <% if (!organization.identifiers.length) { %>empty<% } %>">
         <label>Identifiers</label>
         <%= render( 'identifier/list.html', { identifiers: organization.identifiers } ) %>
