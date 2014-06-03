@@ -107,7 +107,9 @@ exports.route = function (app) {
         req.popit.model('Instance').findOne(
             { slug: slug },
             function ( err, instance ) {
-                if (err) return next(err);
+                if (err) {
+                    return next(err);
+                }
     
                 // should 404 here instead.
                 if (!instance) return next( new Error404('no instance found') );
@@ -161,7 +163,7 @@ exports.route = function (app) {
         return res.render( 'instance_confirm.html' );
     });
     
-    app.post( '/instances/:instanceSlug/confirm/:token', check_pending_and_token, function (req, res) {
+    app.post( '/instances/:instanceSlug/confirm/:token', check_pending_and_token, function (req, res, next) {
         var instance = req.instance;
         
         // If we've gotten this far then we should be able to create the new
@@ -175,21 +177,30 @@ exports.route = function (app) {
 
         // save the user's email address to the 'email_from' setting
         new_popit.load_settings( function (err) {
+            if (err) {
+                return next(err);
+            }
             new_popit.set_setting( 'email_from', instance.email, function (err) {
-                if (err) throw err;
-            
+                if (err) {
+                    return next(err);
+                }
+
                 // create the entry needed in the users table
                 var user = new User({
                     email: instance.email,
                     hashed_password: instance.setup_info.password_hash,
                 });
                 user.save( function (err ) {
-                    if (err) throw err;
-            
+                    if (err) {
+                        return next(err);
+                    }
+
                     // update the master database
                     instance.status = 'active';
                     instance.save( function (err) {
-                        if ( err ) throw err;
+                        if (err) {
+                            return next(err);
+                        }
 
                         // create a token in the instance to log the user in
                         var Token = new_popit.model('Token');
@@ -202,7 +213,10 @@ exports.route = function (app) {
                         });
 
                         token.save(function(err) {
-                          if (err) throw err;
+                          if (err) {
+                            return next(err);
+                          }
+
                           res.redirect( instance.base_url + '/token/' + token.id );
                         });
                     });
@@ -217,7 +231,9 @@ exports.route = function (app) {
         var query = req.popit.model('Instance').find({status: 'active'});
 
         query.exec(function(err, docs) {
-          if (err) throw err;
+          if (err) {
+            return next(err);
+          }
 
           res.locals.instances = docs;
           res.render('instances.html');
