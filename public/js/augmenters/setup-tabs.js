@@ -9,7 +9,10 @@ define(
     "use strict";
 
     $(function(){
-      $('.entity-details').easytabs({animate: false});
+      $('.entity-details').easytabs({
+        animate: false,
+        defaultTab: 'li:not(.empty):eq(0)'
+      });
     });
   }
 );

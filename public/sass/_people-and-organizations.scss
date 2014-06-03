@@ -303,6 +303,14 @@ $entity-photo-sidebar-width: 285px;
 
 .entity-details {
   margin-bottom: 40px;
+
+  .nav-tabs li.empty {
+    display: none;
+
+    .entity.editing & {
+      display: block;
+    }
+  }
 }
 
 .entity-details__section {

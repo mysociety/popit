@@ -135,17 +135,17 @@
   <div class="entity-details">
 
     <ul class="nav nav-tabs">
-      <li><a href="#biography">Biography</a></li>
-      <li><a href="#websites">Websites</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="#political-career">Political career</a></li>
-      <li><a href="#career">Career</a></li>
-      <li><a href="#advanced">Advanced</a></li>
+      <li class="<% if (!person.other_names.length && !person.summary && !person.birth_date && !person.death_date) { %>empty<% } %>"><a href="#biography">Biography</a></li>
+      <li class="<% if (!person.links.length) { %>empty<% } %>"><a href="#websites">Websites</a></li>
+      <li class="<% if (!person.contact_details.length) { %>empty<% } %>"><a href="#contact">Contact</a></li>
+      <li class="<% if (!memberships) { %>empty<% } %>"><a href="#political-career">Political career</a></li>
+      <li class="<% if (!false) { %>empty<% } %>"><a href="#career">Career</a></li>
+      <li class="<% if (!person.identifiers.length) { %>empty<% } %>"><a href="#advanced">Advanced</a></li>
     </ul>
 
     <div class="entity-details__section" id="biography">
 
-      <div class="entity-details__property">
+      <div class="entity-details__property <% if(!person.other_names.length){ %>empty<% } %>">
         <label>Other names</label>
         <%= render( 'other_name/list.html', { other_names: person.other_names } ) %>
       </div>
@@ -173,21 +173,21 @@
     </div>
 
     <div class="entity-details__section" id="websites">
-      <div class="entity-details__property">
+      <div class="entity-details__property <% if(!person.links.length){ %>empty<% } %>">
         <label>Links</label>
         <%= render( 'link/list.html', { links: person.links } ) %>
       </div>
     </div>
 
     <div class="entity-details__section" id="contact">
-      <div class="entity-details__property">
+      <div class="entity-details__property <% if(!person.contact_details.length){ %>empty<% } %>">
         <label>Contact details</label>
         <%= render( 'contact/list.html', { contact_details: person.contact_details } ) %>
       </div>
     </div>
 
     <div class="entity-details__section" id="political-career">
-      <div class="entity-details__property">
+      <div class="entity-details__property <% if(!memberships){ %>empty<% } %>">
         <label>Memberships</label>
         <ul class="cleared memberships">
           <% _.each( memberships, function (membership) { %>
@@ -201,11 +201,10 @@
     </div>
 
     <div class="entity-details__section" id="career">
-      Career
     </div>
 
     <div class="entity-details__section" id="advanced">
-      <div class="entity-details__property">
+      <div class="entity-details__property <% if(!person.identifiers.length){ %>empty<% } %>">
         <label>Identifiers</label>
         <%= render( 'identifier/list.html', { identifiers: person.identifiers } ) %>
       </div>

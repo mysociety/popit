@@ -123,23 +123,23 @@
   <div class="entity-details">
 
     <ul class="nav nav-tabs">
-      <li><a href="#other-names">Other Names</a></li>
-      <li><a href="#ownership">Ownership</a></li>
-      <li><a href="#dates">Dates and Locations</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="#websites">Websites</a></li>
-      <li><a href="#advanced">Advanced</a></li>
+      <li class="<% if (!organization.other_names.length) { %>empty<% } %>"><a href="#other-names">Other Names</a></li>
+      <li class="<% if (!organization.parent_id) { %>empty<% } %>"><a href="#ownership">Ownership</a></li>
+      <li class="<% if (!organization.founding_date && !organization.dissolution_date) { %>empty<% } %>"><a href="#dates">Dates and Locations</a></li>
+      <li class="<% if (!organization.contact_details.length) { %>empty<% } %>"><a href="#contact">Contact</a></li>
+      <li class="<% if (!organization.links.length) { %>empty<% } %>"><a href="#websites">Websites</a></li>
+      <li class="<% if (!organization.identifiers.length && !posts.length && !memberships.length) { %>empty<% } %>"><a href="#advanced">Advanced</a></li>
     </ul>
 
     <div class="entity-details__section" id="other-names">
-      <div class="entity-detail__property">
+      <div class="entity-detail__property <% if (!organization.other_names.length) { %>empty<% } %>">
         <label>Other names</label>
         <%= render( 'other_name/list.html', { other_names: organization.other_names } ) %>
       </div>
     </div>
 
     <div class="entity-details__section" id="ownership">
-      <div class="entity-detail__property">
+      <div class="entity-detail__property <% if (!organization.parent_id) { %>empty<% } %>">
         <label>Parent</label>
         <p class="view-mode" data-api-name="parent_id">
           <% if (organization.parent_id) { %>
@@ -151,14 +151,14 @@
     </div>
 
     <div class="entity-details__section" id="dates">
-      <div class="entity-detail__property">
+      <div class="entity-detail__property <% if (!organization.founding_date) { %>empty<% } %>">
         <label>Founded</label>
         <p class="view-mode" data-api-name="founding_date"><%- organization.founding_date || '' %></p>
         <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
         <input type="date" class="form-control edit-mode" data-api-name="founding_date" value="<%- organization.founding_date || '' %>">
       </div>
 
-      <div class="entity-detail__property">
+      <div class="entity-detail__property <% if (!organization.dissolution_date) { %>empty<% } %>">
         <label>Dissolved</label>
         <p class="view-mode" data-api-name="dissolution_date"><%- organization.dissolution_date || '' %></p>
         <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
@@ -167,26 +167,26 @@
     </div>
 
     <div class="entity-details__section" id="contact">
-      <div class="entity-detail__property">
+      <div class="entity-detail__property <% if (!organization.contact_details.length) { %>empty<% } %>">
         <label>Contact details</label>
         <%= render( 'contact/list.html', { contact_details: organization.contact_details } ) %>
       </div>
     </div>
 
     <div class="entity-details__section" id="websites">
-      <div class="entity-detail__property">
+      <div class="entity-detail__property <% if (!organization.links.length) { %>empty<% } %>">
         <label>Links</label>
         <%= render( 'link/list.html', { links: organization.links } ) %>
       </div>
     </div>
 
     <div class="entity-details__section" id="advanced">
-      <div class="entity-detail__property">
+      <div class="entity-detail__property <% if (!organization.identifiers.length) { %>empty<% } %>">
         <label>Identifiers</label>
         <%= render( 'identifier/list.html', { identifiers: organization.identifiers } ) %>
       </div>
 
-      <div class="entity-detail__property">
+      <div class="entity-detail__property <% if (!posts.length) { %>empty<% } %>">
         <label>Posts</label>
         <ul class="cleared posts">
           <% _.each( posts, function ( post ) { %>
@@ -198,7 +198,7 @@
         </ul>
       </div>
 
-      <div class="entity-detail__property">
+      <div class="entity-detail__property <% if (!memberships.length) { %>empty<% } %>">
         <label>Members</label>
         <ul class="cleared memberships">
           <% _.each( memberships, function ( membership ) { %>
