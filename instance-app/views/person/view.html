@@ -120,6 +120,16 @@
       <input type="text" class="form-control edit-mode" id="input-constituency" data-api-name="membership-area" placeholder="Witney" value="<%- person.constituency %>">
     </div>
 
+    <div class="entity-header__social">
+      <% _.each( person.contact_details, function (item) { %>
+        <% if (item.type.toLowerCase() == 'twitter') { %>
+          <a href="http://twitter.com/<%= item.value %>" title="@<%= item.value %> on Twitter" class="socicon socicon-color socicon-twitter"></a>
+        <% } else if (item.type.toLowerCase() == 'facebook') { %>
+          <a href="http://facebook.com/<%= item.value %>" title="facebook.com/<%= item.value %>" class="socicon socicon-color socicon-facebook"></a>
+        <% } %>
+      <% }) %>
+    </div>
+
   </div>
 
   <div class="entity-details">

@@ -262,6 +262,27 @@ $entity-photo-sidebar-width: 285px;
   }
 }
 
+.entity-header__social {
+  position: absolute;
+  top: 32px;
+  right: -5px;
+
+  .entity.editing & {
+    display: none;
+  }
+
+  a {
+    font-size: 21px;
+    padding: 5px;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: $light-grey-background;
+      text-decoration: none;
+    }
+  }
+}
+
 .entity-little-edit-icon {
   @extend .glyphicon;
   @extend .glyphicon-pencil;
