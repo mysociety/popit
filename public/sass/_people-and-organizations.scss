@@ -60,6 +60,21 @@ $entity-photo-sidebar-width: 285px;
 
 }
 
+.enough-toolbar {
+  display: none;
+  position: relative;
+  z-index: 2;
+  margin-bottom: -78px; // toolbar has 36px line-height, plus 20px padding and 1px border top and bottom
+  border-top: 1px solid #CED5CB;
+  border-bottom: 1px solid #E3E9DE;
+  background-color: #EEF3ED;
+
+  & > .container > p {
+    color: #26741C;
+    font-weight: 400;
+  }
+}
+
 .edit-mode {
   display: none;
 }
@@ -342,6 +357,21 @@ $entity-photo-sidebar-width: 285px;
   .form-group {
     margin-top: 20px;
   }
+}
+
+.save-and-add-another,
+.continue-editing {
+  @extend .btn;
+  @extend .btn-xs;
+  @extend .pull-right;
+  @extend .btn-success;
+  margin-left: 10px;
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+.continue-editing {
+  @extend .btn-info;
 }
 
 .old-entity {

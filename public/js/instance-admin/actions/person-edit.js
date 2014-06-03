@@ -21,7 +21,7 @@ define(['jquery', 'underscore'], function ($, _) {
     $('.view-mode').hide();
     $('.edit-mode').show();
     $('.entity').addClass('editing');
-      popit.model.on('invalid', onInvalid);
+    popit.model.on('invalid', onInvalid);
     _.each(fields, function(field) {
       var input = $('.edit-mode[data-api-name="' + field + '"]');
       input.data('original', input.val());
@@ -37,6 +37,7 @@ define(['jquery', 'underscore'], function ($, _) {
     $('.view-mode').show();
     $('.edit-mode').hide();
     $('.entity').removeClass('editing');
+    $('.enough-toolbar:visible').hide();
     resetErrorStates();
     popit.model.off('invalid', onInvalid);
   };
@@ -49,12 +50,6 @@ define(['jquery', 'underscore'], function ($, _) {
 
   var showBackboneError = function(msg){
     var $alert = $('<div class="alert alert-danger backbone-error"><p class="container"><strong>' + msg + '</strong> Please try again.</p></div>');
-    $alert.hide().insertBefore('.entity').slideDown(100);
-  };
-
-  var showBackboneNotice = function(msg){
-    $('.alert.alert-info').remove();
-    var $alert = $('<div class="alert alert-info"><p class="container"><strong>' + msg + '</strong></p></div>');
     $alert.hide().insertBefore('.entity').slideDown(100);
   };
 
@@ -86,16 +81,19 @@ define(['jquery', 'underscore'], function ($, _) {
     });
   };
 
-  var saveChanges = function(){
+  var saveChanges = function(arg){
     toggleSavingButton();
     popit.model.save(
       serializePerson(),
       {
         success: function() {
-          populatePerson();
-          toggleSavingButton();
-          leaveEditMode();
-          showBackboneNotice("You've added enough data for now - you can continue to add more information or <a href='/persons/new'>Add a new person</a>");
+          if(typeof arg == 'function'){
+            arg(); // optional success callback
+          } else {
+            populatePerson();
+            toggleSavingButton();
+            leaveEditMode();
+          }
         },
         error: function(obj, err) {
             console.log(err);
@@ -104,6 +102,13 @@ define(['jquery', 'underscore'], function ($, _) {
         }
       }
     );
+  };
+
+  var saveAndAddAnother = function(){
+    $('.enough-toolbar:visible').fadeOut(100);
+    saveChanges(function(){
+      window.location.href = '/persons/new';
+    })
   };
 
   var toggleSavingButton = function(){
@@ -137,11 +142,37 @@ define(['jquery', 'underscore'], function ($, _) {
     });
   };
 
+  var checkWhetherHeaderIsComplete = function(){
+    var $requiredInputs = $('#input-name, #input-party, #input-constituency');
+    var filledInputs = 0;
+
+    $requiredInputs.each(function(){
+      if( $.trim($(this).val()).length > 2 ){
+        filledInputs += 1;
+      }
+    })
+
+    if($requiredInputs.length == filledInputs) {
+      $('.enough-toolbar:hidden').fadeIn(250);
+    } else {
+      $('.enough-toolbar:visible').fadeOut(250);
+    }
+  };
+
+  var hideHeaderCompletionMessage = function(){
+    $('.enough-toolbar').fadeOut(250, function(){
+      $(this).remove(); // stop the message appearing again until the page is reloaded
+    });
+  };
+
   $(function(){
     $('.entity-enter-edit-mode').on('click', enterEditMode);
-    $('#cancel-person-edit').on('click', cancelEdit);
-    $('#save-person').on('click', saveChanges);
-    $('#delete-person').on('click', deletePersonConfirm);
+    $('.entity-leave-edit-mode').on('click', cancelEdit);
+    $('.entity-save-changes').on('click', saveChanges);
+    $('.entity-save-and-add-another').on('click', saveAndAddAnother);
+    $('.entity-delete').on('click', deletePersonConfirm);
+    $('.entity-header').on('keyup', checkWhetherHeaderIsComplete);
+    $('.carry-on-editing').on('click', hideHeaderCompletionMessage);
   });
 
 });
