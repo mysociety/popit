@@ -174,7 +174,6 @@ $entity-photo-sidebar-width: 285px;
 
 .entity-header {
   position: relative;
-  padding-left: 160px; // 128px for the photo, plus ~30px whitespace
   margin: 30px 0 40px 0;
   min-height: 100px;
   @include clearfix();
@@ -192,14 +191,15 @@ $entity-photo-sidebar-width: 285px;
 }
 
 .entity-header__photo {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
+  height: 128px;
+  float: left;
+  margin-right: 30px; // 30px space between image and primary-property
 
-  // crop the photo to fit 128px square
-  // perhaps we should float the photo to the left, and set a height, so we don't have to crop?
-  max-height: 128px;
-  overflow: hidden;
+  img {
+    width: auto;
+    height: 128px; // image is always 128px high, but can be variable width
+  }
 
   .add-photo,
   .delete-photo {
@@ -232,6 +232,8 @@ $entity-photo-sidebar-width: 285px;
   padding-bottom: 10px;
   border-bottom: 1px solid $header-footer-background;
   margin-bottom: 10px;
+
+  overflow: auto; // establish a new Block Formatting Context, to stop primary-property extending behind the floated image
 
   .form-control {
     font-size: 38px;
