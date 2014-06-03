@@ -183,7 +183,7 @@
         <label>Members</label>
         <ul class="cleared memberships">
           <% _.each( memberships, function ( membership ) { %>
-            <%= render( 'membership/list-item.html', { membership: membership, type: 'organization' } ) %>
+            <%= render( 'membership/list-item.html', { membership: membership, type: 'organization', object_id: organization.id, relatedObject: relatedObject(membership, organization.id) } ) %>
           <% }); %>
           <li class="edit-mode">
             <a class="add edit-membership btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(posts.length){ %>nother<% } %> member</a>
