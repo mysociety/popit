@@ -124,7 +124,7 @@
 
     <ul class="nav nav-tabs">
       <li class="<% if (!organization.other_names.length && !organization.parent_id && !organization.founding_date && !organization.dissolution_date) { %>empty<% } %>"><a href="#details">Details</a></li>
-      <li class="<% if (!memberships.length) { %>empty<% } %>"><a href="#members">Members</a></li>
+      <li class=""><a href="#members">Members</a></li>
       <li class="<% if (!posts.length) { %>empty<% } %>"><a href="#posts">Posts</a></li>
       <li class="<% if (!organization.links.length) { %>empty<% } %>"><a href="#websites">Websites</a></li>
       <li class="<% if (!organization.contact_details.length) { %>empty<% } %>"><a href="#contact">Contact</a></li>
@@ -170,8 +170,13 @@
     </div>
 
     <div class="entity-details__section" id="members">
-      <div class="entity-detail__property <% if (!memberships.length) { %>empty<% } %>">
-        <label>Members</label>
+      <% if ((user || guest) && !memberships.length) { %>
+        <p class="entity-details__hint view-mode entity-enter-edit-mode">
+          <span class="btn btn-xs btn-default pull-right">Add members</span>
+          PopIt is most useful when organizations have members.
+        </p>
+      <% } %>
+      <div class="entity-details__property ">
         <ul class="cleared memberships">
           <% _.each( memberships, function ( membership ) { %>
             <% if (validMembership(membership, organization.id)) { %>
@@ -186,8 +191,13 @@
     </div>
 
     <div class="entity-details__section" id="posts">
+      <% if ((user || guest) && !posts.length) { %>
+        <p class="entity-details__hint view-mode entity-enter-edit-mode">
+          <span class="btn btn-xs btn-default pull-right">Add posts</span>
+          Organizations in PopIt can have pre-defined posts that members can then fill.
+        </p>
+      <% } %>
       <div class="entity-details__property <% if (!posts.length) { %>empty<% } %>">
-        <label>Posts</label>
         <ul class="cleared posts">
           <% _.each( posts, function ( post ) { %>
             <li><%= render( 'post/view.html', { item: post }) %></li>

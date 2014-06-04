@@ -142,10 +142,6 @@ $entity-photo-sidebar-width: 285px;
   }
 
   .edit-group {
-    padding: 10px 12px; // to match .form-controls
-    margin: -10px 0; // to match .form-controls
-    background-color: $light-grey-background;
-
     .delete, .edit {
       float: right;
 
@@ -157,6 +153,25 @@ $entity-photo-sidebar-width: 285px;
     .delete + .edit,
     .edit + .delete {
       margin-right: 20px;
+    }
+
+    .form-control {
+      // inline form controls, like the select boxes in a membership sentence
+      width: auto;
+      display: inline-block;
+      max-width: 8em;
+      margin: 0 5px;
+      height: 32px;
+    }
+
+    .membership__delete {
+      @extend .pull-right;
+      color: #C54747;
+
+      &:hover,
+      &:focus {
+        color: darken(#C54747, 20%);
+      }
     }
   }
 

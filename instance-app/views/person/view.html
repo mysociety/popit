@@ -229,7 +229,6 @@
       <% } %>
 
       <div class="entity-details__property <% if(!memberships){ %>empty<% } %>">
-        <label>Memberships</label>
         <ul class="cleared memberships">
           <% _.each( memberships, function (membership) { %>
             <% if (validMembership(membership, person.id)) { %>

@@ -1,32 +1,90 @@
-<li>
+<li class="membership">
   <div class="view-mode">
-    <% if (membership.post_id) { %> <%- membership.post_id.label %>: <% } %>
-    <% if (membership.label) { %> <%- membership.label %> <% } %>
-    <% if (membership.role) { %> (<%- membership.role %>) <% } %>
-    <% if (membership.role || membership.label) { %> : <% } %>
-    <a href="<%- relatedObject.url %>"><%- relatedObject.name %></a>
-    <% if (membership.start_date && membership.end_date) { %>
-      <span class="text-muted">(from <%- membership.start_date %> to <%- membership.end_date %>)</span>
+    <%- membership.person_id.name %>
+    <% if (membership.end_date) { %>
+      <% if (new Date(membership.end_date) < new Date()) { %>
+        was
+      <% } else {%>
+        will be
+      <% } %>
     <% } else if (membership.start_date) { %>
-      <span class="text-muted">(from <%- membership.start_date %>)</span>
-    <% } else if (membership.end_date) { %>
-      <span class="text-muted">(to <%- membership.end_date %>)</span>
+      <% if (new Date(membership.start_date) < new Date()) { %>
+        has been
+      <% } else {%>
+        will be
+      <% } %>
+    <% } else { %>
+      is
     <% } %>
+    <% if (membership.post_id) { %>
+      <% if (membership.post_id.role) { %>
+        <%- membership.post_id.role %>
+      <% } else if (membership.post_id.label) { %>
+        <%- membership.post_id.label %>
+      <% } %>
+    <% } else if (membership.role) { %>
+      <%- membership.role %>
+    <% } else if (membership.label) { %>
+      <%- membership.label %>
+    <% } else { %>
+      a member
+    <% } %>
+
+    <!-- :TODO: This is wrong on Organization pages (relatedObject is the subject (eg: person), not the object, of the membership) -->
+    of <a href="<%- relatedObject.url %>"><%- relatedObject.name %></a>
+
+    <% if (membership.post_id && membership.post_id.get('area') && membership.post_id.get('area').name) { %>
+      representing <%- membership.post_id.get('area').name %>
+    <% } %>
+    <% if (membership.start_date && membership.end_date) { %>
+      between <%- membership.start_date %> and <%- membership.end_date %>
+    <% } else if(membership.end_date) { %>
+      until <%- membership.end_date %>
+    <% } else if(membership.start_date) { %>
+      <% if (new Date(membership.start_date) < new Date()) { %>
+        since <%- membership.start_date %>
+      <% } else {%>
+        after <%- membership.start_date %>
+      <% } %>
+    <% } %>
+    <span class="entity-little-edit-icon entity-enter-edit-mode"></span>
   </div>
   <div class="edit-mode edit-group">
-    <a class="delete delete-membership"><span class="glyphicon glyphicon-ban-circle glyphicon-space-after"></span>Delete</a>
-    <a class="edit edit-membership"><span class="glyphicon glyphicon-pencil glyphicon-space-after"></span>Edit</a>
-    <% if (membership.post_id) { %> <%- membership.post_id.label %>: <% } %>
-    <% if (membership.label) { %> <%- membership.label %> <% } %>
-    <% if (membership.role) { %> (<%- membership.role %>) <% } %>
-    <% if (membership.role || membership.label) { %> : <% } %>
-    <%- relatedObject.name %>
-    <% if (membership.start_date && membership.end_date) { %>
-      <span class="text-muted">(from <%- membership.start_date %> to <%- membership.end_date %>)</span>
-    <% } else if (membership.start_date) { %>
-      <span class="text-muted">(from <%- membership.start_date %>)</span>
-    <% } else if (membership.end_date) { %>
-      <span class="text-muted">(to <%- membership.end_date %>)</span>
+    <%- membership.person_id.name %>
+    is/was
+    <select class="form-control" title="The post this person fills in the organization">
+      <option>Member</option>
+      <option>Leader</option>
+      <option>Deputy-leader</option>
+      <option>Chair</option>
+      <option>Vice-chair</option>
+      <option>Secretary</option>
+      <option>Treasurer</option>
+    </select>
+    of
+    <select class="form-control" title="The organization of which this person a member">
+      <option>Acme Party</option>
+      <option>Parliament</option>
+      <option>House of Commons</option>
+    </select>
+    <% if (membership.post_id && membership.post_id.get('area') && membership.post_id.get('area').name) { %>
+      representing <input type="text" class="form-control" value="<%- membership.post_id.get('area').name %>">
     <% } %>
+    <% if (membership.start_date) { %>
+      from <input type="text" class="form-control" title="The date this membership started (YYYY-MM-DD)" value="<%- membership.start_date %>">
+    <% } %>
+    <% if(membership.end_date) { %>
+      to <input type="text" class="form-control" title="The date this membership ended (YYYY-MM-DD)" value="<%- membership.end_date %>">
+    <% } %>
+    <% if (!membership.start_date) { %>
+      <a class="btn btn-sm membership__add-start-date">+ from</a>
+    <% } %>
+    <% if(!membership.end_date) { %>
+      <a class="btn btn-sm membership__add-end-date">+ to</a>
+    <% } %>
+    <% if (!membership.post_id || (membership.post_id.get('area') && !membership.post_id.get('area').name)) { %>
+      <a class="btn btn-sm membership__add-area">+ area represented</a>
+    <% } %>
+    <a class="btn btn-sm membership__delete"><span class="glyphicon glyphicon-trash"></span> Delete</a>
   </div>
 </li>
