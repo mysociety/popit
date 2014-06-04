@@ -634,3 +634,34 @@ $entity-photo-sidebar-width: 285px;
     }
   }
 }
+
+// Modal window, for anonymous users to suggest edits
+.entity-suggestion {
+  text-align: center;
+  padding: 20px;
+
+  & > :first-child {
+    margin-top: 0;
+  }
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  p {
+    margin-bottom: 15px;
+  }
+
+  label {
+    margin-bottom: 0;
+  }
+
+  textarea {
+    width: 100%;
+    height: 5em;
+  }
+}
