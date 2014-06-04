@@ -21,10 +21,10 @@ class InstanceAboutTests < PopItWatirTestCase
     assert_equal @b.header.h1.text, 'test'
     assert_equal @b.title, 'test'
 
-    # check that the about us details are empty (ie that settings have been
+    # check that the About details are empty (ie that settings have been
     # cleared as part of database deleteing)
     goto '/about'
-    assert_equal 'About Us', @b.title
+    assert_equal 'About', @b.title
     assert_equal 'Description:', @b.element(:class => 'about-field-description').text
 
     # Check that the edit link is not displayed
@@ -120,7 +120,7 @@ class InstanceAboutTests < PopItWatirTestCase
     login_as_instance_guest
     
     goto '/about'
-    assert_equal 'About Us', @b.title
+    assert_equal 'About', @b.title
 
     # Check that the edit link is not displayed
     assert ! @b.link(:text, '(edit)').present?
