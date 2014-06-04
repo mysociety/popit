@@ -232,7 +232,9 @@
         <label>Memberships</label>
         <ul class="cleared memberships">
           <% _.each( memberships, function (membership) { %>
-            <%= render( 'membership/list-item.html', { membership: membership, type: 'person' } ) %>
+            <% if (validMembership(membership, person.id)) { %>
+              <%= render( 'membership/list-item.html', { membership: membership, relatedObject: relatedObject(membership, person.id) } ) %>
+            <% } %>
           <% }); %>
           <li class="edit-mode">
             <a class="add edit-membership btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(memberships.length){ %>nother<% } %> membership</a>

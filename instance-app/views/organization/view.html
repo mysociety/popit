@@ -170,11 +170,13 @@
     </div>
 
     <div class="entity-details__section" id="members">
-      <div class="entity-details__property <% if (!memberships.length) { %>empty<% } %>">
+      <div class="entity-detail__property <% if (!memberships.length) { %>empty<% } %>">
         <label>Members</label>
         <ul class="cleared memberships">
           <% _.each( memberships, function ( membership ) { %>
-            <%= render( 'membership/list-item.html', { membership: membership, type: 'organization' } ) %>
+            <% if (validMembership(membership, organization.id)) { %>
+              <%= render( 'membership/list-item.html', { membership: membership, relatedObject: relatedObject(membership, organization.id) } ) %>
+            <% } %>
           <% }); %>
           <li class="edit-mode">
             <a class="add edit-membership btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(posts.length){ %>nother<% } %> member</a>

@@ -1,15 +1,10 @@
 <li>
-<% if ( membership.organization_id !== null ) { %>
   <div class="view-mode">
     <% if (membership.post_id) { %> <%- membership.post_id.label %>: <% } %>
     <% if (membership.label) { %> <%- membership.label %> <% } %>
     <% if (membership.role) { %> (<%- membership.role %>) <% } %>
     <% if (membership.role || membership.label) { %> : <% } %>
-    <% if (type == 'person') { %>
-      <a href="<%- membership.organization_id.url %>"><%- membership.organization_id.name %></a>
-    <% } else if (type == 'organization') { %>
-      <a href="<%- membership.person_id.url %>" ><%- membership.person_id.name %></a>
-    <% } %>
+    <a href="<%- relatedObject.url %>"><%- relatedObject.name %></a>
     <% if (membership.start_date && membership.end_date) { %>
       <span class="text-muted">(from <%- membership.start_date %> to <%- membership.end_date %>)</span>
     <% } else if (membership.start_date) { %>
@@ -25,11 +20,7 @@
     <% if (membership.label) { %> <%- membership.label %> <% } %>
     <% if (membership.role) { %> (<%- membership.role %>) <% } %>
     <% if (membership.role || membership.label) { %> : <% } %>
-    <% if (type == 'person') { %>
-      <%- membership.organization_id.name %>
-    <% } else if (type == 'organization') { %>
-      <%- membership.person_id.name %>
-    <% } %>
+    <%- relatedObject.name %>
     <% if (membership.start_date && membership.end_date) { %>
       <span class="text-muted">(from <%- membership.start_date %> to <%- membership.end_date %>)</span>
     <% } else if (membership.start_date) { %>
@@ -38,5 +29,4 @@
       <span class="text-muted">(to <%- membership.end_date %>)</span>
     <% } %>
   </div>
-<% } %>
 </li>

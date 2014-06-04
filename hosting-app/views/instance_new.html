@@ -25,7 +25,9 @@
         <input id="slug" class="form-control" type="text" name="slug" data-validation="required url_safe" required value="<%- slug %>" />
         <span class="input-group-addon"><%- config.instance_site_base_url_suffix %></span>
       </span>
-      <% if (errors.slug) { %>
+      <% if (errors.slug == 'slug_not_unique' ) { %>
+      <span class="help-block">A Popit instance with that name already exists at <a href="http://<%- slug %><%- config.instance_site_base_url_suffix %>">http://<%- slug %><%- config.instance_site_base_url_suffix %></a></span>
+      <% } else if (errors.slug) { %>
         <span class="help-block">Your website name can only contain letters and numbers. It should be at least four letters long but no longer than 20.</span>
       <% } %>
     </p>
