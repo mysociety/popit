@@ -13,6 +13,7 @@
     popit.memberships = <%= JSON.stringify( _.map( memberships, function(m) { return m.id; } ) ) %>;
 </script>
 
+<% if (user || guest) { %>
 <div class="popit-toolbar enough-toolbar">
   <div class="container">
     <div class="btn-toolbar pull-right">
@@ -26,6 +27,7 @@
     <p>Great! You&rsquo;ve added enough information for now.</p>
   </div>
 </div>
+<% } %>
 
 <div class="popit-toolbar entity-toolbar">
   <div class="container">
