@@ -108,7 +108,7 @@ define(['jquery', 'underscore'], function ($, _) {
     $('.enough-toolbar:visible').fadeOut(100);
     saveChanges(function(){
       window.location.href = '/persons/new';
-    })
+    });
   };
 
   var toggleSavingButton = function(){
@@ -150,7 +150,7 @@ define(['jquery', 'underscore'], function ($, _) {
       if( $.trim($(this).val()).length > 2 ){
         filledInputs += 1;
       }
-    })
+    });
 
     if($requiredInputs.length == filledInputs) {
       $('.enough-toolbar:hidden').fadeIn(250);

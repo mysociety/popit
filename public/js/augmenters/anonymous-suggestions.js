@@ -21,13 +21,13 @@ require(['jquery', 'jquery.fancybox'], function($) {
           $(this).attr('disabled', true).html('Sending suggestion&hellip;');
           // :TODO: this is just me simulating the delay of a POST to the server.
           setTimeout(suggestionSubmitted, 1000);
-        }
+        };
 
         var suggestionSubmitted = function(){
           $div.html('<h2>Thanks for your suggestion!</h2>');
           $div.append('<p>It has been emailed to the instance owner.</p>');
           setTimeout($.fancybox.close, 3000);
-        }
+        };
 
         var $div = $('<div class="entity-suggestion">');
         $div.append('<h2>Hello stranger!</h2>');
