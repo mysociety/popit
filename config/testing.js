@@ -11,7 +11,6 @@ module.exports = {
 
     // log to the console, and log more
     logging: {
-      log_to_console: true,
       log_level:      'info',
     },
 
