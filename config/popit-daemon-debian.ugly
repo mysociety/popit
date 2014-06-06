@@ -14,8 +14,9 @@
 NAME=!!(*= $daemon_name *)!!
 DIR=/data/vhost/!!(*= $vhost *)!!
 DAEMON="$DIR/node/bin/node"
-DAEMON_ARGS="node_modules/.bin/supervisor --ignore . --exec ../node/bin/node ./server.js"
+DAEMON_ARGS="node_modules/.bin/supervisor --quiet --ignore . --exec ../node/bin/node ./server.js"
 PIDFILE=$DIR/popit.pid
+LOGFILE=$DIR/logs/app_log
 DUSER=!!(*= $user *)!!
 
 !!(*
@@ -29,7 +30,7 @@ if ($vhost eq 'popit.mysociety.org' || $vhost eq 'popit.staging.mysociety.org') 
 case "$1" in
   start)
     echo -n "Starting PopIt app server: $NAME"
-    NODE_ENV=!!(*= $node_env *)!! start-stop-daemon --start --background --make-pidfile --pidfile $PIDFILE --chuid $DUSER --chdir $DIR/popit --exec $DAEMON -- $DAEMON_ARGS > /dev/null
+    NODE_ENV=!!(*= $node_env *)!! start-stop-daemon --start --background --make-pidfile --pidfile $PIDFILE --chuid $DUSER --chdir $DIR/popit --exec /bin/bash -- -c "exec $DAEMON $DAEMON_ARGS >> $LOGFILE 2>&1" > /dev/null
     ;;
   stop)
     echo -n "Stopping PopIt app server: $NAME"
@@ -38,7 +39,7 @@ case "$1" in
   restart)
     echo -n "Restarting PopIt app server: $NAME"
     start-stop-daemon --stop --pidfile $PIDFILE --oknodo
-    NODE_ENV=!!(*= $node_env *)!! start-stop-daemon --start --background --make-pidfile --pidfile $PIDFILE --chuid $DUSER --chdir $DIR/popit --exec $DAEMON -- $DAEMON_ARGS > /dev/null
+    NODE_ENV=!!(*= $node_env *)!! start-stop-daemon --start --background --make-pidfile --pidfile $PIDFILE --chuid $DUSER --chdir $DIR/popit --exec /bin/bash -- -c "exec $DAEMON $DAEMON_ARGS >> $LOGFILE 2>&1" > /dev/null
     ;;
   *)
     echo "Usage: /etc/init.d/$NAME {start|stop|restart}"

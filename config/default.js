@@ -14,10 +14,8 @@ module.exports = {
     },
 
     logging: {
-      log_to_file:    true,
-      log_to_console: false,
       log_level:      'info',
-      log_directory:  path.normalize(__dirname + '/../../popit_logs'),
+      colorize: false,
     },
 
     image_proxy: {

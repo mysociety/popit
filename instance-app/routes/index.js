@@ -29,10 +29,8 @@ exports.route = function (app) {
                   var membershipWithRole = _.find(memberships, function(m) { return m.role; });
                   if (membershipWithRole) {
                     person.position = membershipWithRole.role + ' at ' + membershipWithRole.organization_id.name;
-                  } else {
-                    if (memberships[0]) {
-                      person.position = memberships[0].organization_id.name;
-                    }
+                  } else if (memberships[0] && memberships[0].organization_id) {
+                    person.position = memberships[0].organization_id.name;
                   }
                   done(null, person);
                 });
