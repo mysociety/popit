@@ -1,3 +1,4 @@
+/*global alert:false */
 // ------------------------
 //  When anonymous users click one of the "edit" links on a person/org page,
 //  they are shown a modal window that tells them to log in or suggest an edit.
@@ -16,11 +17,24 @@ require(['jquery', 'jquery.fancybox'], function($) {
         // :TODO: this might be useful to put in the email, so the
         // instance owner knows what field the suggestion is for.
         var inputSelector = $(this).attr('data-input-selector');
+        var $div = $('<div class="entity-suggestion">');
 
         var submitButtonPressed = function(){
           $(this).attr('disabled', true).html('Sending suggestion&hellip;');
-          // :TODO: this is just me simulating the delay of a POST to the server.
-          setTimeout(suggestionSubmitted, 1000);
+          $.ajax({
+            url: '/suggestion',
+            type: 'POST',
+            data: {
+              field: $(inputSelector).data('api-name'),
+              suggestion: $div.find('#suggestion').val(),
+              url: window.location.toString()
+            },
+            success: suggestionSubmitted,
+            error: function() {
+              $div.find('button').attr('disabled', false).html('Send suggestion');
+              alert("There was a problem sending your message, please try again later");
+            }
+          });
         };
 
         var suggestionSubmitted = function(){
@@ -29,7 +43,6 @@ require(['jquery', 'jquery.fancybox'], function($) {
           setTimeout($.fancybox.close, 3000);
         };
 
-        var $div = $('<div class="entity-suggestion">');
         $div.append('<h2>Hello stranger!</h2>');
         $div.append('<p>If you have an account, <a href="/login">please log in</a> to make this change.</p>');
         $div.append('<hr>');

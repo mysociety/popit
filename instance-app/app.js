@@ -13,7 +13,8 @@ var express           = require('express'),
     image_proxy       = require('connect-image-proxy'),
     connect_flash     = require('connect-flash'),
     UTA               = require('underscore-template-additions'),
-    current_absolute_pathname = require('../lib/middleware/route').current_absolute_pathname;
+    current_absolute_pathname = require('../lib/middleware/route').current_absolute_pathname,
+    engines           = require('consolidate');
 
 var app = module.exports = express();
 
@@ -43,6 +44,7 @@ app.configure(function(){
     
   app.set('views', __dirname + '/views');
   app.engine('html', templates.forExpress() );
+  app.engine('txt',  engines.hogan);
     
   app.use(express.bodyParser());
   app.use(express.methodOverride());
@@ -100,6 +102,7 @@ app.configure( function () {
   app.use('/memberships',    require('../lib/apps/membership')() );
   app.use('/organizations',  require('../lib/apps/organization')() );
   app.use('/about',          require('../lib/apps/about')() );
+  app.use('/suggestion',     require('../lib/apps/suggestion'));
 
   app.use(config.image_proxy.path , image_proxy() );
 

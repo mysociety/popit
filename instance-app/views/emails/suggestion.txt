@@ -1,0 +1,3 @@
+A change has been suggested for {{url}}.
+
+{{field}}: {{suggestion}}
