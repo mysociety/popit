@@ -1,6 +1,6 @@
 <li class="membership">
   <div class="view-mode">
-    <%- membership.person_id.name %>
+    <a href="<%- member.url %>"><%- member.name %></a>
     <% if (membership.end_date) { %>
       <% if (new Date(membership.end_date) < new Date()) { %>
         was
@@ -30,8 +30,7 @@
       a member
     <% } %>
 
-    <!-- :TODO: This is wrong on Organization pages (relatedObject is the subject (eg: person), not the object, of the membership) -->
-    of <a href="<%- relatedObject.url %>"><%- relatedObject.name %></a>
+    of <a href="<%- organization.url %>"><%- organization.name %></a>
 
     <% if (membership.post_id && membership.post_id.get('area') && membership.post_id.get('area').name) { %>
       representing <%- membership.post_id.get('area').name %>
@@ -50,7 +49,7 @@
     <span class="entity-little-edit-icon entity-enter-edit-mode"></span>
   </div>
   <div class="edit-mode edit-group">
-    <%- membership.person_id.name %>
+    <%- member.name %>
     is/was
     <select class="form-control" title="The post this person fills in the organization">
       <option>Member</option>

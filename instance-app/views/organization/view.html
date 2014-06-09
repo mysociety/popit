@@ -171,7 +171,7 @@
         <ul class="cleared memberships">
           <% _.each( memberships, function ( membership ) { %>
             <% if (validMembership(membership, organization.id)) { %>
-              <%= render( 'membership/list-item.html', { membership: membership, relatedObject: relatedObject(membership, organization.id) } ) %>
+              <%= render( 'membership/list-item.html', { membership: membership, member: relatedObject(membership, organization.id), organization: organization } ) %>
             <% } %>
           <% }); %>
           <li class="edit-mode">
