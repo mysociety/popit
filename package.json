@@ -51,7 +51,7 @@
   "devDependencies": {},
   "optionalDependencies": {},
   "engines": {
-    "node": "0.8.x"
+    "node": "0.10.x"
   },
   "author": "mySociety <popit@mysociety.org> (http://www.mysociety.org/)",
   "description": "People, Organizations and Positions database website",
