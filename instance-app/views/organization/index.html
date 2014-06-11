@@ -14,7 +14,7 @@
       </div>
       <div class="btn-group">
         <% if (user || guest) { %>
-          <a class="btn btn-default new-organization add" href="#"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span> Add a new organization</a>
+          <a class="btn btn-default new-organization add" href="/organizations/new"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span> Add a new organization</a>
         <% } else { %>
           <a class="btn btn-default" href="/login"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span> Log in to add an organization</a>
         <% } %>
@@ -53,7 +53,7 @@
 
     <% if (user || guest) { %>
       <p>
-        <a class="btn btn-primary new-organization add">Add your first organization</a>
+        <a class="btn btn-primary new-organization add" href="/organizations/new">Add your first organization</a>
         <a class="btn btn-default" href="/migration">Upload a CSV of members</a>
       </p>
     <% } %>

@@ -30,14 +30,6 @@ define(
       }
     };
 
-    var goNewPerson = function() {
-        window.location = '/persons/new';
-    };
-
-    var goNewOrganization = function() {
-        window.location = '/organizations/new';
-    };
-
     var cancelEdit = function(){
         window.location = '/' + popit.type + 's';
     };
@@ -102,8 +94,6 @@ define(
     $(function(){
       $('.entity-cancel-new-mode').on('click', cancelEdit);
       $('.entity-save-new').on('click', saveChanges);
-      $('.new-person').on('click', goNewPerson);
-      $('.new-organization').on('click', goNewOrganization);
 
       if ( typeof(popit) !== 'undefined' ) {
         if ( popit.type === 'person' ) {
