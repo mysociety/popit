@@ -61,11 +61,8 @@
       <option>Treasurer</option>
     </select>
     of
-    <select class="form-control" title="The organization of which this person a member">
-      <option>Acme Party</option>
-      <option>Parliament</option>
-      <option>House of Commons</option>
-    </select>
+    <input class="form-control" name="organization_id" value="<%- organization.name %>" title="The organization of which this person a member">
+
     <% if (membership.post_id && membership.post_id.get('area') && membership.post_id.get('area').name) { %>
       representing <input type="text" class="form-control" value="<%- membership.post_id.get('area').name %>">
     <% } %>
