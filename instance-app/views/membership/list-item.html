@@ -70,10 +70,10 @@
       representing <input type="text" class="form-control" value="<%- membership.post_id.get('area').name %>">
     <% } %>
     <% if (membership.start_date) { %>
-      from <input type="text" class="form-control" title="The date this membership started (YYYY-MM-DD)" value="<%- membership.start_date %>">
+      from <input type="text" class="form-control" title="The date this membership started (YYYY-MM-DD)" placeholder="YYYY-MM-DD" value="<%- membership.start_date %>">
     <% } %>
     <% if(membership.end_date) { %>
-      to <input type="text" class="form-control" title="The date this membership ended (YYYY-MM-DD)" value="<%- membership.end_date %>">
+      to <input type="text" class="form-control" title="The date this membership ended (YYYY-MM-DD)" placeholder="YYYY-MM-DD" value="<%- membership.end_date %>">
     <% } %>
     <% if (!membership.start_date) { %>
       <a class="btn btn-sm membership__add-start-date">+ from</a>
