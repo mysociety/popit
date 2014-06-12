@@ -3,7 +3,6 @@ define(
   [
     'jquery',
     'Backbone',
-    'backbone-forms',
     'underscore',
     'text!templates/membership/new.html',
     'text!templates/membership/list-item.html',
@@ -17,7 +16,6 @@ define(
   function (
     $,
     Backbone,
-    BackboneForms,
     _,
     membershipTemplate,
     membershipItemTemplate,
