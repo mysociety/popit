@@ -70,8 +70,7 @@ define(
         return object;
       }
 
-      $('.edit-membership').live('click', function(event) {
-        event.preventDefault();
+      $('li.membership').each(function() {
 
         var object = fetch_model($(this));
 
@@ -96,10 +95,11 @@ define(
           source_el: $element,
           model: object,
           type: popit.type,
-          fields_to_hide: fields_to_hide
+          fields_to_hide: fields_to_hide,
+          el: $(this).find('.edit-group')
         });
 
-        $.fancybox( view.render().el );
+        view.render();
 
       });
 

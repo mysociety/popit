@@ -224,7 +224,10 @@
         <ul class="cleared memberships">
           <% _.each( memberships, function (membership) { %>
             <% if (validMembership(membership, person.id)) { %>
-              <%= render( 'membership/list-item.html', { membership: membership, member: person, organization: relatedObject(membership, person.id) } ) %>
+            <li class="membership">
+              <%= render( 'membership/list-item.html', { membership: membership, member: person, organization: relatedObject(membership, person.id), type: 'person' } ) %>
+              <%= render('membership/new.html', { membership: membership, member: person, organization: relatedObject(membership, person.id), type: 'person' }) %>
+            </li>
             <% } %>
           <% }); %>
           <li class="edit-mode">
