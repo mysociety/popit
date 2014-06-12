@@ -237,12 +237,11 @@ define(
               };
 
               var $changed = $( view.membershipItemTemplate( template_args ) );
-              view.$source_el.replaceWith( $changed );
               $changed.children('.view-mode').hide();
               $changed.children('.edit-mode').show();
+              view.$source_el.find('.view-mode').replaceWith( $changed );
               popit.model.memberships.add(model);
               $changed.data('id', model.cid);
-              $.fancybox.close();
             },
             error: function (model, response) {
               view.$errors_list.append('<li>Something went wrong saving the membership to the server.</li>');

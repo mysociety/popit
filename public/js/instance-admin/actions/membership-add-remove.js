@@ -73,17 +73,6 @@ define(
       $('li.membership').each(function() {
 
         var object = fetch_model($(this));
-
-        var $link    = $(this);
-        var $element = $link.hasClass('add') ?
-            null :
-            $link.closest('li');
-
-        if (!$element || !$element.length) {
-            $element = $('<li/>');
-            $link.closest('ul').prepend($element);
-        }
-
         var fields_to_hide = {};
         if (popit.type == 'person') {
           fields_to_hide.person = true;
@@ -92,7 +81,7 @@ define(
         }
 
         var view = new MembershipNewView({
-          source_el: $element,
+          source_el: $(this),
           model: object,
           type: popit.type,
           fields_to_hide: fields_to_hide,
