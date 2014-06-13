@@ -4,12 +4,12 @@
 define(
   [
     'jquery',
-    'instance-admin/actions/list-item-editor',
-    'text!templates/contact/view.html'
+    'underscore',
+    'text!templates/contact/edit.html'
   ],
   function (
     $,
-    ListItemEditor,
+    _,
     contactTemplate
   ) {
     "use strict"; 
@@ -19,14 +19,13 @@ define(
          return;
       }
 
-      $('#content').on(
-        'click',
-        '.contact-edit',
-        new ListItemEditor({
-          collection: popit.model.get('contact_details'),
-          template: contactTemplate
-        })
-      );
+      $('#content').on('click', '.contact-edit', function(e) {
+        e.preventDefault();
+
+        var template = _.template(contactTemplate);
+        var newLi = $('<li/>').html(template({i: $('ul.contact_details li').length, contact: {}}));
+        $('ul.contact_details').append(newLi);
+      });
 
     });
   }
