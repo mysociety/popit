@@ -210,15 +210,12 @@
           <% _.each( memberships, function (membership, i) { %>
             <% if (validMembership(membership, person.id)) { %>
             <li class="membership">
-              <%= render( 'membership/list-item.html', { membership: membership, member: person, organization: relatedObject(membership, person.id), type: 'person' } ) %>
               <%= render('membership/new.html', { membership: membership, member: person, organization: relatedObject(membership, person.id), type: 'person', i: i }) %>
             </li>
             <% } %>
           <% }); %>
-          <li class="edit-mode">
-            <a class="add add-membership btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(memberships.length){ %>nother<% } %> membership</a>
-          </li>
         </ul>
+        <a class="add add-membership btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(memberships.length){ %>nother<% } %> membership</a>
       </div>
     </div>
 

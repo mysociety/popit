@@ -3,28 +3,27 @@
 // Launch a backbone powered entry box when someone clicks the new membership button
 // ------------------------
 
-define(
-  [
-    'jquery',
-    'instance-admin/models/membership',
-    'instance-admin/models/person',
-    'instance-admin/models/organization',
-    'instance-admin/models/post',
-    'instance-admin/views/membership-new',
-    'instance-admin/views/remove-model',
-    'text!templates/membership/remove.html',
-    'jquery.fancybox'
-  ],
-  function (
-    $,
-    MembershipModel,
-    PersonModel,
-    OrganizationModel,
-    PostModel,
-    MembershipNewView,
-    RemoveModelView,
-    mTemplate
-  ) {
-    "use strict";
-  }
-);
+define([
+  'jquery',
+  'underscore',
+  'text!templates/membership/new.html',
+  'jquery.select2'
+], function($, _, membershipTemplate) {
+  "use strict";
+
+  var template = _.template(membershipTemplate);
+
+  $(function() {
+    $('.add-membership').click(function(e) {
+      e.preventDefault();
+      var newLi = $('<li/>').html(template({
+        i: $('ul.membership li').length,
+        type: popit.type,
+        member: {id: popit.data.id, name: popit.data.name},
+        membership: {},
+        organization: {}
+      }));
+      $('ul.memberships').append(newLi);
+    });
+  });
+});
