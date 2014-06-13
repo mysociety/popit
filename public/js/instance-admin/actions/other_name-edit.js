@@ -4,12 +4,12 @@
 define(
   [
     'jquery',
-    'instance-admin/actions/list-item-editor',
-    'text!templates/other_name/view.html'
+    'underscore',
+    'text!templates/other_name/edit.html'
   ],
   function (
     $,
-    ListItemEditor,
+    _,
     otherNameTemplate
   ) {
     "use strict"; 
@@ -18,15 +18,13 @@ define(
       if (typeof popit === 'undefined') {
          return;
       }
+      var template = _.template(otherNameTemplate);
 
-      $('#content').on(
-        'click',
-        '.other_name-edit',
-        new ListItemEditor({
-          collection: popit.model.get('other_names'),
-          template: otherNameTemplate
-        })
-      );
+      $('#content').on('click', '.other_name-edit', function(e) {
+        e.preventDefault();
+        var newLi = $('<li/>').html(template({i: $('ul.other_names li').length}));
+        $('ul.other_names').append(newLi);
+      });
 
     });
   }
