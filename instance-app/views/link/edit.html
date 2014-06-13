@@ -1,5 +1,5 @@
 <label for="link_url_<%= i %>">Url</label>
-<input type="text" id="link_url_<%= i %>" name="links[<%= i %>][url]" value="<%= link.url %>">
+<input type="text" id="link_url_<%= i %>" name="links[<%= i %>][url]" value="<%= link.url || '' %>">
 
 <label for="link_note_<%= i %>">Note</label>
-<input type="text" id="link_note_<%= i %>" name="links[<%= i %>][note]" value="<%= link.note %>">
+<input type="text" id="link_note_<%= i %>" name="links[<%= i %>][note]" value="<%= link.note || '' %>">
