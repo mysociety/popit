@@ -125,7 +125,13 @@
 
       <div class="entity-details__property">
         <label>Other names</label>
-        <%= render( 'other_name/list.html', { other_names: person.other_names } ) %>
+        <ul class="other_names">
+          <% _.each(person.other_names, function(name, i) { %>
+            <li>
+              <%= render('other_name/edit.html', {name: name, i: i}) %>
+            </li>
+          <% }) %>
+        </ul>
       </div>
 
       <div class="entity-details__property">
@@ -157,7 +163,13 @@
 
       <div class="entity-details__property">
         <label>Links</label>
-        <%= render( 'link/list.html', { links: person.links } ) %>
+        <ul class="links">
+          <% _.each(person.links, function(link, i) { %>
+          <li>
+            <%= render('link/edit.html', {link: link, i: i}) %>
+          </li>
+          <% }) %>
+        </ul>
       </div>
     </div>
 
@@ -171,7 +183,15 @@
 
       <div class="entity-details__property">
         <label>Contact details</label>
-        <%= render( 'contact/list.html', { contact_details: person.contact_details } ) %>
+
+        <ul class="contact_details">
+          <% _.each(person.contact_details, function(contact, i) { %>
+          <li>
+            <%= render('contact/edit.html', {contact: contact, i: i}) %>
+          </li>
+          <% }) %>
+        </ul>
+        <a class="add contact-edit btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add contact details</a>
       </div>
     </div>
 
@@ -210,7 +230,13 @@
 
       <div class="entity-details__property">
         <label>Identifiers</label>
-        <%= render( 'identifier/list.html', { identifiers: person.identifiers } ) %>
+        <ul class="identifiers">
+          <% _.each(person.identifiers, function(identifier, i) { %>
+          <li>
+          <%= render('identifier/edit.html', {identifier: identifier, i: i}) %>
+          </li>
+          <% }) %>
+        </ul>
       </div>
     </div>
 
