@@ -21,7 +21,7 @@
       </div>
       <div class="btn-group">
         <% if (user || guest) { %>
-          <a id="edit-person" class="btn btn-default entity-enter-edit-mode">Edit person <span class="glyphicon glyphicon-chevron-right"></span></a>
+          <a href="<%= person.url %>/edit" id="edit-person" class="btn btn-default entity-enter-edit-mode">Edit person <span class="glyphicon glyphicon-chevron-right"></span></a>
         <% } else { %>
           <a class="btn btn-default" href="/login">Log in to edit <span class="glyphicon glyphicon-chevron-right"></span></a>
           <% } %>
