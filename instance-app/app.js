@@ -14,7 +14,8 @@ var express           = require('express'),
     connect_flash     = require('connect-flash'),
     UTA               = require('underscore-template-additions'),
     current_absolute_pathname = require('../lib/middleware/route').current_absolute_pathname,
-    engines           = require('consolidate');
+    engines           = require('consolidate'),
+    popitApiStorageSelector = require('popit-api/src/middleware/storage-selector');
 
 var app = module.exports = express();
 
@@ -86,6 +87,10 @@ app.configure( function () {
   
   app.locals( require('../lib/middleware/config') );
   app.use(instanceSelector());
+  app.use(popitApiStorageSelector({
+    storageSelector: 'popit',
+    databasePrefix: config.MongoDB.popit_prefix
+  }));
   
   app.use( require('../lib/apps/auth').middleware );
   app.use( require('../lib/apps/auth').app );
