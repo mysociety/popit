@@ -129,6 +129,7 @@
           <% _.each(person.other_names, function(name, i) { %>
             <li>
               <%= render('other_name/edit.html', {name: name, i: i}) %>
+              <a href="#" class="other_name-delete">Delete</a>
             </li>
           <% }) %>
         </ul>
@@ -168,6 +169,7 @@
           <% _.each(person.links, function(link, i) { %>
           <li>
             <%= render('link/edit.html', {link: link, i: i}) %>
+            <a href="delete" class="link-delete">Delete</a>
           </li>
           <% }) %>
         </ul>
@@ -190,6 +192,7 @@
           <% _.each(person.contact_details, function(contact, i) { %>
           <li>
             <%= render('contact/edit.html', {contact: contact, i: i}) %>
+            <a href="delete" class="contact-delete">Delete</a>
           </li>
           <% }) %>
         </ul>
@@ -233,6 +236,7 @@
           <% _.each(person.identifiers, function(identifier, i) { %>
           <li>
           <%= render('identifier/edit.html', {identifier: identifier, i: i}) %>
+          <a class="identifier-delete" href="#">Delete</a>
           </li>
           <% }) %>
         </ul>

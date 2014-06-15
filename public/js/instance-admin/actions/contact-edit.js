@@ -27,6 +27,11 @@ define(
         $('ul.contact_details').append(newLi);
       });
 
+      $('.contact-delete').click(function(e) {
+        e.preventDefault();
+        $(this).closest('li').remove();
+      });
+
     });
   }
 );

@@ -26,4 +26,9 @@ define([
       $('ul.memberships').append(newLi);
     });
   });
+
+  $('#content').on('click', '.delete-membership', function(e) {
+    e.preventDefault();
+    $(this).closest('li').remove();
+  });
 });

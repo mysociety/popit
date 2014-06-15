@@ -28,6 +28,11 @@ define(
         $('ul.identifiers').append(newLi);
       });
 
+      $('.identifier-delete').click(function(e) {
+        e.preventDefault();
+        $(this).closest('li').remove();
+      });
+
     });
   }
 );

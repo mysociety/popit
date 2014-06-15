@@ -26,6 +26,11 @@ define(
         $('ul.other_names').append(newLi);
       });
 
+      $('.other_name-delete').click(function(e) {
+        e.preventDefault();
+        $(this).closest('li').remove();
+      });
+
     });
   }
 );
