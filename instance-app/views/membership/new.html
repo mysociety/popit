@@ -14,23 +14,12 @@
     <input class="form-control js-membership-organization" title="The organization of which this person a member" name="memberships[<%= i %>][organization_id]" value="<%= organization.id || '' %>" data-org-name="<%= organization.name || '' %>">
     <input class="js-membership-organization-name" type="hidden" name="memberships[<%= i %>][organization_name]">
 
-    <% if (membership.post_id && membership.post_id.get('area') && membership.post_id.get('area').name) { %>
-    representing <input type="text" class="form-control" value="<%- membership.post_id.get('area').name %>" name="memberships[<%= i %>][area_name]" value="<%= membership.post_id.get('area.name') %>">
-    <% } %>
-    <% if (membership.start_date) { %>
-    from <input type="text" class="form-control" title="The date this membership started (YYYY-MM-DD)" placeholder="YYYY-MM-DD" value="<%- membership.start_date %>" name="memberships[<%= i %>][start_date]">
-    <% } %>
-    <% if(membership.end_date) { %>
-    to <input type="text" class="form-control" title="The date this membership ended (YYYY-MM-DD)" placeholder="YYYY-MM-DD" value="<%- membership.end_date %>" name="memberships[<%= i %>][end_date]">
-    <% } %>
-    <% if (!membership.start_date) { %>
-      <a class="btn btn-sm membership__add-start-date">+ from</a>
-    <% } %>
-    <% if(!membership.end_date) { %>
-      <a class="btn btn-sm membership__add-end-date">+ to</a>
-    <% } %>
-    <% if (!membership.post_id || (membership.post_id.get('area') && !membership.post_id.get('area').name)) { %>
-      <a class="btn btn-sm membership__add-area">+ area represented</a>
+    from <input type="text" class="form-control" title="The date this membership started (YYYY-MM-DD)" placeholder="YYYY-MM-DD" value="<%- membership.start_date || '' %>" name="memberships[<%= i %>][start_date]">
+    to <input type="text" class="form-control" title="The date this membership ended (YYYY-MM-DD)" placeholder="YYYY-MM-DD" value="<%- membership.end_date || '' %>" name="memberships[<%= i %>][end_date]">
+    <% if (membership.area && membership.area.name) { %>
+    representing <input type="text" class="form-control" name="memberships[<%= i %>][area][name]" value="<%= membership.area.name %>">
+    <% } else { %>
+      representing <input type="text" class="form-control" name="memberships[<%= i %>][area][name]">
     <% } %>
     <a class="btn btn-sm membership__delete delete-membership"><span class="glyphicon glyphicon-trash"></span> Delete</a>
 </div>
