@@ -1,4 +1,7 @@
 <div class="edit-mode edit-group">
+    <% if (membership.id) { %>
+      <input type="hidden" name="memberships[<%= i %>][id]" value="<%- membership.id %>">
+    <% } %>
     <% if (type === 'person') { %>
       <%- member.name %>
       <input class="form-control" type="hidden" title="The person which is a member of an organization" value="<%= member.id %>" name="memberships[<%= i %>][person_id]">

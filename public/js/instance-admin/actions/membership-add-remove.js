@@ -17,7 +17,7 @@ define([
     $('.add-membership').click(function(e) {
       e.preventDefault();
       var newLi = $('<li/>').html(template({
-        i: $('ul.membership li').length,
+        i: $('ul.memberships li').length,
         type: popit.type,
         member: {id: popit.data.id, name: popit.data.name},
         membership: {},
