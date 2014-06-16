@@ -16,14 +16,12 @@ define(['jquery', 'Backbone', 'underscore'], function($, Backbone, _) {
     },
 
     enterEditMode: function(e) {
+      e.preventDefault();
       $('.view-mode').hide();
       $('.edit-mode').show();
+      $('article.entity').hide();
+      $('.edit-form').show();
       $('.entity').addClass('editing');
-      popit.model.on('invalid', this.onInvalid);
-      _.each(this.fields, function(field) {
-        var input = $('.edit-mode[data-api-name="' + field + '"]');
-        input.data('original', input.val());
-      });
 
       var inputToFocus = $(e.target).data('input-selector');
       if (inputToFocus !== '') {
@@ -31,59 +29,29 @@ define(['jquery', 'Backbone', 'underscore'], function($, Backbone, _) {
       }
     },
 
-    cancelEdit: function() {
+    cancelEdit: function(e) {
+      e.preventDefault();
       this.leaveEditMode();
-      _.each(this.fields, function(field) {
-        var changed = '.edit-mode[data-api-name="' + field + '"]';
-        $(changed).val($(changed).data('original'));
-      });
     },
 
     saveChanges: function(arg) {
-      var _this = this;
-      _this.toggleSavingButton();
-      popit.model.save(_this.serialize(), {
-        success: function() {
-          if (typeof arg == 'function') {
-            arg(); // optional success callback
-          } else {
-            _this.populate();
-            _this.toggleSavingButton();
-            _this.leaveEditMode();
-          }
-        },
-        error: function(obj, err) {
-          console.error(err);
-          _this.showBackboneError('There was a problem saving your changes.');
-          _this.toggleSavingButton();
-        }
-      });
+      this.toggleSavingButton();
+      $('form.entity').submit();
     },
 
     leaveEditMode: function() {
       $('.view-mode').show();
       $('.edit-mode').hide();
+      $('.edit-form').hide();
+      $('article.entity').show();
       $('.entity').removeClass('editing');
       this.resetErrorStates();
-      popit.model.off('invalid', this.onInvalid);
     },
 
     resetErrorStates: function() {
       $('.edit-mode-error').hide();
       $('.has-error').removeClass('has-error');
       $('.alert.backbone-error').slideUp(100);
-    },
-
-    onInvalid: function(model, err) {
-      _.each(this.fields, function(field) {
-        if ( err[field] ) {
-          var $dd = $('.edit-mode[data-api-name="' + field + '"]').parent();
-          $dd.addClass('has-error'); // the text input and error text
-          $dd.prev().addClass('has-error'); // the label
-          $('.edit-mode-error', $dd).show();
-          this.toggleSavingButton();
-        }
-      }, this);
     },
 
     toggleSavingButton: function(){
@@ -98,25 +66,6 @@ define(['jquery', 'Backbone', 'underscore'], function($, Backbone, _) {
         $btn.addClass('btn-loading');
         $btn.html(newHtml);
       }
-    },
-
-    serialize: function() {
-      var object = {};
-      _.each(this.fields, function(field) {
-        object[field] = $('.edit-mode[data-api-name="' + field + '"]').val() || null;
-      });
-      return object;
-    },
-
-    populate: function() {
-      _.each(this.fields, function(field) {
-        var selector = '.view-mode[data-api-name="' + field + '"]';
-        var value = popit.model.get(field);
-        if ( value === null ) {
-            value = '';
-        }
-        $(selector).text($.trim(value));
-      });
     },
 
     deleteConfirm: function() {

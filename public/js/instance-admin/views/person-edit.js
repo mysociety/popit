@@ -16,6 +16,11 @@ define([
       });
     },
 
+    initialize: function(options) {
+      $('.edit-form').hide();
+      $('form button[type="submit"]').hide();
+    },
+
     saveAndAddAnother: function() {
       $('.enough-toolbar:visible').fadeOut(100);
       this.saveChanges(function(){
