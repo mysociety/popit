@@ -1,4 +1,4 @@
-<div class="edit-mode edit-group">
+<div class="edit-group">
     <% if (membership.id) { %>
       <input type="hidden" name="memberships[<%= i %>][id]" value="<%- membership.id %>">
     <% } %>
@@ -9,9 +9,9 @@
       <input class="form-control" title="The person which is a member of an organization" name="memberships[<%= i %>][person_id]" value="<%= member.id || '' %>">
     <% } %>
     is/was
-    <input class="form-control" title="The post this person fills in the organization" name="memberships[<%= i %>][role]" value="<%= membership.role || '' %>">
+    <input class="form-control js-membership-role" title="The post this person fills in the organization" name="memberships[<%= i %>][role]" value="<%= membership.role || '' %>">
     of
-    <input class="form-control js-membership-organization" title="The organization of which this person a member" name="memberships[<%= i %>][organization_id]" value="<%= organization.id || '' %>">
+    <input class="form-control js-membership-organization" title="The organization of which this person a member" name="memberships[<%= i %>][organization_id]" value="<%= organization.id || '' %>" data-org-name="<%= organization.name || '' %>">
 
     <% if (membership.post_id && membership.post_id.get('area') && membership.post_id.get('area').name) { %>
     representing <input type="text" class="form-control" value="<%- membership.post_id.get('area').name %>" name="memberships[<%= i %>][area_name]" value="<%= membership.post_id.get('area.name') %>">
