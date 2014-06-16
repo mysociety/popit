@@ -22,6 +22,11 @@ define([
       var $input = $(this);
       $input.select2(select2orgArgs);
       $input.select2('data', {id: $input.val(), text: $input.data('org-name')});
+
+      $input.on('change', function(e) {
+        var data = $input.select2('data');
+        $('input.js-membership-organization-name').val(data.text);
+      });
     });
 
     var select2membershipArgs = select2helpers.create_arguments_for_autocompleter({
