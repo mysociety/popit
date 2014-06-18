@@ -11,8 +11,9 @@ define(['jquery', 'Backbone', 'underscore'], function($, Backbone, _) {
     },
 
     constructor: function(options) {
-      this.fields = options.fields || [];
       Backbone.View.apply(this, arguments);
+      this.fields = options.fields || [];
+      $('.edit-form').hide();
     },
 
     enterEditMode: function(e) {

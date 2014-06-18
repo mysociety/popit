@@ -17,7 +17,6 @@ define([
     },
 
     initialize: function(options) {
-      $('.edit-form').hide();
       $('form button[type="submit"]').hide();
     },
 
