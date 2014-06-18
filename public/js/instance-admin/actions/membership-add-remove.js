@@ -32,7 +32,7 @@ define([
     var select2membershipArgs = select2helpers.create_arguments_for_autocompleter({
       placeholder:      "e.g President, CEO, Professor, Coach",
       autocomplete_url: "/autocomplete/memberships"
-    })
+    });
 
     $('.js-membership-role').each(function() {
       var $input = $(this);

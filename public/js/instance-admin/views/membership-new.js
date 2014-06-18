@@ -210,6 +210,7 @@ define(
 
           new_model.person_id = person_id;
           new_model.organization_id = organization_id;
+          var person;
           view.model.save(new_model, {
             success: function (model, response ) {
               if ( view.model_type == 'person' ) {
@@ -217,7 +218,7 @@ define(
                 o.fetch({ async: false });
                 model.set('organization_id', o.attributes);
               } else if ( view.model_type == 'organization' ) {
-                var person = new PersonModel({ id: model.get('person_id') });
+                person = new PersonModel({ id: model.get('person_id') });
                 person.fetch({ async: false });
                 model.set('person_id', person.attributes);
               }
@@ -227,7 +228,7 @@ define(
                 post.fetch({ async: false });
                 model.set('post_id', post.attributes);
               }
-              var person = new PersonModel({id: model.get('person_id')});
+              person = new PersonModel({id: model.get('person_id')});
               person.fetch({async: false});
               var template_args = {
                 type: view.model_type,
