@@ -13,7 +13,7 @@ define([
     },
 
     setupAutocomplete: function() {
-      var classification_input = $('.organization-view input[data-api-name="classification"]');
+      var classification_input = $('.organization-view input[name="classification"]');
       if (classification_input.length) {
         var autocomplete_args = select2Helpers.create_arguments_for_autocompleter({
           placeholder:      "e.g Parliament, Party",

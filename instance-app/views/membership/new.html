@@ -6,13 +6,18 @@
       <%- member.name %>
       <input class="form-control" type="hidden" title="The person which is a member of an organization" value="<%= member.id %>" name="memberships[<%= i %>][person_id]">
     <% } else { %>
-      <input class="form-control" title="The person which is a member of an organization" name="memberships[<%= i %>][person_id]" value="<%= member.id || '' %>">
+      <input class="form-control js-membership-person" title="The person which is a member of an organization" name="memberships[<%= i %>][person_id]" value="<%= member.id || '' %>" data-person-name="<%- member.name || '' %>">
     <% } %>
     is/was
     <input class="form-control js-membership-role" title="The post this person fills in the organization" name="memberships[<%= i %>][role]" value="<%= membership.role || '' %>">
     of
-    <input class="form-control js-membership-organization" title="The organization of which this person a member" name="memberships[<%= i %>][organization_id]" value="<%= organization.id || '' %>" data-org-name="<%= organization.name || '' %>">
-    <input class="js-membership-organization-name" type="hidden" name="memberships[<%= i %>][organization_name]">
+    <% if (type === 'person') { %>
+      <input class="form-control js-membership-organization" title="The organization of which this person a member" name="memberships[<%= i %>][organization_id]" value="<%= organization.id || '' %>" data-org-name="<%= organization.name || '' %>">
+      <input class="js-membership-organization-name" type="hidden" name="memberships[<%= i %>][organization_name]">
+    <% } else { %>
+      <%- organization.name %>
+      <input type="hidden" name="memberships[<%= i %>][organization_id]" value="<%- organization.id || '' %>">
+    <% } %>
 
     from <input type="text" class="form-control" title="The date this membership started (YYYY-MM-DD)" placeholder="YYYY-MM-DD" value="<%- membership.start_date || '' %>" name="memberships[<%= i %>][start_date]">
     to <input type="text" class="form-control" title="The date this membership ended (YYYY-MM-DD)" placeholder="YYYY-MM-DD" value="<%- membership.end_date || '' %>" name="memberships[<%= i %>][end_date]">

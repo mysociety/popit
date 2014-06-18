@@ -1,4 +1,4 @@
-<form action="<%= organization.url %>" method="post" class="container entity organization organization-view">
+<form action="<%= organization.url %>" method="post" class="container entity organization organization-view editing">
   <input type="hidden" name="_method" value="put">
 
   <div class="entity-header">
@@ -32,7 +32,7 @@
         <span class="entity-little-edit-icon entity-enter-edit-mode" data-input-selector="#input-name"></span>
       </h1>
       <strong class="control-label edit-mode-error" style="display: none">This organization must have a name</strong>
-      <input type="text" class="form-control edit-mode" id="input-name" data-api-name="name" value="<%- organization.name %>">
+      <input type="text" class="form-control edit-mode" id="input-name" name="name" value="<%- organization.name %>">
     </div>
 
     <div class="entity-header__secondary-property">
@@ -46,7 +46,7 @@
         <% } %>
       </p>
       <div>
-        <input type="text" class="form-control edit-mode" id="input-classification" data-api-name="classification" value="<%- organization.classification %>">
+        <input type="text" class="form-control edit-mode" id="input-classification" name="classification" value="<%- organization.classification %>">
       </div>
     </div>
 
@@ -81,9 +81,18 @@
         </p>
       <% } %>
 
-      <div class="entity-details__property <% if (!organization.other_names.length) { %>empty<% } %>">
+
+      <div class="entity-details__property">
         <label>Other names</label>
-        <%= render( 'other_name/list.html', { other_names: organization.other_names } ) %>
+        <ul class="other_names">
+          <% _.each(organization.other_names, function(name, i) { %>
+            <li>
+              <%= render('other_name/edit.html', {name: name, i: i}) %>
+              <a href="#" class="other_name-delete">Delete</a>
+            </li>
+          <% }) %>
+        </ul>
+        <a class="add other_name-edit btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(organization.other_names.length){ %>nother<% } %> name</a>
       </div>
 
       <div class="entity-details__property <% if (!organization.parent_id) { %>empty<% } %>">
@@ -93,44 +102,39 @@
             <%- organization.parent_id.name %>
           <% } %>
         </p>
-        <input type="text" class="form-control edit-mode" data-api-name="parent_id" value="<%- organization.parent_id %>">
+        <input type="text" class="form-control edit-mode" name="parent_id" value="<%- organization.parent_id %>">
       </div>
 
       <div class="entity-details__property <% if (!organization.founding_date) { %>empty<% } %>">
         <label>Founded</label>
         <p class="view-mode" data-api-name="founding_date"><%- organization.founding_date || '' %></p>
         <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
-        <input type="date" class="form-control edit-mode" data-api-name="founding_date" value="<%- organization.founding_date || '' %>">
+        <input type="date" class="form-control edit-mode" name="founding_date" value="<%- organization.founding_date || '' %>">
       </div>
 
       <div class="entity-details__property <% if (!organization.dissolution_date) { %>empty<% } %>">
         <label>Dissolved</label>
         <p class="view-mode" data-api-name="dissolution_date"><%- organization.dissolution_date || '' %></p>
         <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
-        <input type="date" class="form-control edit-mode" data-api-name="dissolution_date" value="<%- organization.dissolution_date || '' %>">
+        <input type="date" class="form-control edit-mode" name="dissolution_date" value="<%- organization.dissolution_date || '' %>">
       </div>
     </div>
 
     <div class="entity-details__section" id="members">
-      <% if (!memberships.length) { %>
-        <p class="entity-details__hint view-mode entity-enter-edit-mode">
-          <span class="btn btn-xs btn-default pull-right">Add members</span>
-          PopIt is most useful when organizations have members.
-        </p>
-      <% } %>
-      <div class="entity-details__property ">
+      <div class="entity-details__property">
         <ul class="cleared memberships">
-          <% _.each( memberships, function ( membership ) { %>
+          <% _.each( memberships, function (membership, i) { %>
             <% if (validMembership(membership, organization.id)) { %>
-              <%= render( 'membership/list-item.html', { membership: membership, member: relatedObject(membership, organization.id), organization: organization } ) %>
+            <li class="membership">
+              <%= render('membership/new.html', { membership: membership, organization: organization, member: relatedObject(membership, organization.id), type: 'organization', i: i }) %>
+            </li>
             <% } %>
           <% }); %>
-          <li class="edit-mode">
-            <a class="add edit-membership btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(posts.length){ %>nother<% } %> member</a>
-          </li>
         </ul>
+        <a class="add add-membership btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(memberships.length){ %>nother<% } %> membership</a>
       </div>
     </div>
+
 
     <div class="entity-details__section" id="posts">
       <% if (!posts.length) { %>
@@ -155,13 +159,21 @@
       <% if (!organization.links.length) { %>
         <p class="entity-details__hint view-mode entity-enter-edit-mode">
           <span class="btn btn-xs btn-default pull-right">Add links to websites</span>
-          PopIt can optionally store extra information about organizations, like their websites.
+          If this organization has a website, or any online profile pages, you can add them here.
         </p>
       <% } %>
 
-      <div class="entity-details__property <% if (!organization.links.length) { %>empty<% } %>">
+      <div class="entity-details__property">
         <label>Links</label>
-        <%= render( 'link/list.html', { links: organization.links } ) %>
+        <ul class="links">
+          <% _.each(organization.links, function(link, i) { %>
+          <li>
+            <%= render('link/edit.html', {link: link, i: i}) %>
+            <a href="delete" class="link-delete">Delete</a>
+          </li>
+          <% }) %>
+        </ul>
+        <a class="add link-edit btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(organization.links.length){ %>nother<% } %> link</a>
       </div>
     </div>
 
@@ -169,13 +181,22 @@
       <% if (!organization.contact_details.length) { %>
         <p class="entity-details__hint view-mode entity-enter-edit-mode">
           <span class="btn btn-xs btn-default pull-right">Add contact details</span>
-          PopIt is most useful when organizations have contact details.
+          PopIt is most useful when people have contact details, like their phone, email, and Twitter.
         </p>
       <% } %>
 
-      <div class="entity-details__property <% if (!organization.contact_details.length) { %>empty<% } %>">
+      <div class="entity-details__property">
         <label>Contact details</label>
-        <%= render( 'contact/list.html', { contact_details: organization.contact_details } ) %>
+
+        <ul class="contact_details">
+          <% _.each(organization.contact_details, function(contact, i) { %>
+          <li>
+            <%= render('contact/edit.html', {contact: contact, i: i}) %>
+            <a href="delete" class="contact-delete">Delete</a>
+          </li>
+          <% }) %>
+        </ul>
+        <a class="add contact-edit btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add contact details</a>
       </div>
     </div>
 
@@ -183,13 +204,21 @@
       <% if (!organization.identifiers.length) { %>
         <p class="entity-details__hint view-mode entity-enter-edit-mode">
           <span class="btn btn-xs btn-default pull-right">Add identifiers</span>
-          If this organization has special ID numbers, you can add them here.
+          If this organization has special registration or ID numbers, you can add them here.
         </p>
       <% } %>
 
-      <div class="entity-details__property <% if (!organization.identifiers.length) { %>empty<% } %>">
+      <div class="entity-details__property">
         <label>Identifiers</label>
-        <%= render( 'identifier/list.html', { identifiers: organization.identifiers } ) %>
+        <ul class="identifiers">
+          <% _.each(organization.identifiers, function(identifier, i) { %>
+          <li>
+          <%= render('identifier/edit.html', {identifier: identifier, i: i}) %>
+          <a class="identifier-delete" href="#">Delete</a>
+          </li>
+          <% }) %>
+        </ul>
+        <a class="add identifier-edit btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add an<% if(organization.identifiers.length){ %>other<% } %> identifier</a>
       </div>
     </div>
   </div>

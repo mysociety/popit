@@ -39,6 +39,17 @@ define([
       $input.select2(select2membershipArgs);
       $input.select2('data', {id: $input.val(), text: $input.val()});
     });
+
+    var select2personArgs = select2helpers.create_arguments_for_model({
+      placeholder: "e.g Joe Bloggs, Jane Smith",
+      url: '/autocomplete/persons'
+    });
+
+    $('.js-membership-person').each(function() {
+      var $input = $(this);
+      $input.select2(select2personArgs);
+      $input.select2('data', {id: $input.val(), text: $input.data('person-name')});
+    });
   }
 
   var template = _.template(membershipTemplate);
@@ -46,12 +57,21 @@ define([
   $(function() {
     $('#content').on('click', '.add-membership', function(e) {
       e.preventDefault();
+      var member, organization;
+
+      if (popit.type === 'person') {
+        member = popit.data;
+        organization = {};
+      } else if (popit.type === 'organization') {
+        member = {};
+        organization = popit.data;
+      }
       var newLi = $('<li/>').html(template({
         i: $('form.editing ul.memberships li').length,
         type: popit.type,
-        member: {id: popit.data.id, name: popit.data.name},
+        member: member,
         membership: {},
-        organization: {}
+        organization: organization
       }));
       $('form.editing ul.memberships').append(newLi);
       setupSelect2();
