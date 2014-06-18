@@ -7,6 +7,7 @@
       <input class="form-control" type="hidden" title="The person which is a member of an organization" value="<%= member.id %>" name="memberships[<%= i %>][person_id]">
     <% } else { %>
       <input class="form-control js-membership-person" title="The person which is a member of an organization" name="memberships[<%= i %>][person_id]" value="<%= member.id || '' %>" data-person-name="<%- member.name || '' %>">
+    <input class="js-membership-person-name" type="hidden" name="memberships[<%= i %>][person_name]">
     <% } %>
     is/was
     <input class="form-control js-membership-role" title="The post this person fills in the organization" name="memberships[<%= i %>][role]" value="<%= membership.role || '' %>">

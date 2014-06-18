@@ -49,6 +49,11 @@ define([
       var $input = $(this);
       $input.select2(select2personArgs);
       $input.select2('data', {id: $input.val(), text: $input.data('person-name')});
+
+      $input.on('change', function(e) {
+        var data = $input.select2('data');
+        $('input.js-membership-person-name').val(data.text);
+      });
     });
   }
 
