@@ -1,0 +1,105 @@
+#!/bin/bash
+
+# This script takes as input some dumped collections, in monogexport's
+# one-JSON-object-per-line format, and uses them to replace those
+# collections in a live PopIt database.  FIXME: there doesn't seem to
+# be any way to atomically replace a database MongoDB (see
+# https://jira.mongodb.org/browse/SERVER-701) so there will be some
+# period while this is happening where results will be missing.  When
+# https://github.com/mysociety/popit/issues/516 is fixed, this script
+# should start by making the popit interface unavailable, and bring it
+# up again on successful completion.
+
+set -ex
+
+COLLECTIONS=('organizations' 'persons' 'memberships')
+
+if [ "$#" != "2" ]
+then
+    echo "Usage: $0 COLLECTION-DUMP-ROOT MONGO-DB-NAME"
+    exit 1
+fi
+
+DUMP_ROOT="$1"
+MONGO_DB_NAME="$2"
+
+if ! which node
+then
+    echo "The node binary couldn't be found on your PATH"
+    exit 1
+fi
+
+# The node_modules directory must be in the current directory:
+
+if ! [ -d node_modules ]
+then
+    echo "The current directory must contain node_modules"
+    exit 1
+fi
+
+# Check that all the dump files exist:
+
+MISSING_FILES=""
+for COLLECTION in "${COLLECTIONS[@]}"
+do
+    FILENAME="$DUMP_ROOT$COLLECTION.json"
+    if ! [ -e "$FILENAME" ]
+    then
+        MISSING_FILES="$FILENAME $MISSING_FILES"
+    fi
+done
+
+if [ -n "$MISSING_FILES" ]
+then
+    echo "Couldn't find $MISSING_FILES"
+    exit 1
+fi
+
+# Create a script that removes the existing collections:
+
+SCRIPT_NAME="$(mktemp --suffix=.js)"
+
+cat > "$SCRIPT_NAME" <<EOF
+conn = new Mongo();
+db = conn.getDB("$MONGO_DB_NAME");
+EOF
+
+for COLLECTION in "${COLLECTIONS[@]}"
+do
+    echo "db.$COLLECTION.remove({});" >> "$SCRIPT_NAME"
+done
+
+# Actually run that script:
+
+mongo < "$SCRIPT_NAME"
+
+# Now import the new data:
+
+for COLLECTION in "${COLLECTIONS[@]}"
+do
+    mongoimport \
+        --db "$MONGO_DB_NAME" \
+        --collection "$COLLECTION" \
+        "$DUMP_ROOT$COLLECTION.json"
+done
+
+rm "$SCRIPT_NAME"
+
+# And finally reindex it:
+
+read -r -d '' REINDEX_SCRIPT <<'EOF' || true
+var reIndex = require('popit-api').reIndex;
+
+var databaseName = process.argv[1];
+console.warn("Reindexing the database: " + databaseName);
+
+reIndex(databaseName, function(err, total) {
+  if (err) {
+    throw err;
+  }
+  console.log("Re-indexed " + total + " docs from " + databaseName);
+  process.exit();
+});
+EOF
+
+node --eval "$REINDEX_SCRIPT" "$MONGO_DB_NAME"
