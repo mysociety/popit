@@ -14,9 +14,7 @@ require(['jquery', 'jquery.fancybox'], function($) {
     $('.entity-enter-edit-mode').on('click', function(){
       if (isAnonymous) {
 
-        // :TODO: this might be useful to put in the email, so the
-        // instance owner knows what field the suggestion is for.
-        var inputSelector = $(this).attr('data-input-selector');
+        var inputText = $(this).text();
         var $div = $('<div class="entity-suggestion">');
 
         var submitButtonPressed = function(){
@@ -25,7 +23,7 @@ require(['jquery', 'jquery.fancybox'], function($) {
             url: '/suggestion',
             type: 'POST',
             data: {
-              field: $(inputSelector).data('api-name'),
+              field: $.trim(inputText),
               suggestion: $div.find('#suggestion').val(),
               url: window.location.toString()
             },
