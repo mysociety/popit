@@ -1,0 +1,150 @@
+@font-face {
+  font-family: 'socicon';
+  src: url('../fonts/socicon-webfont.eot');
+  src: url('../fonts/socicon-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/socicon-webfont.woff') format('woff'),
+       url('../fonts/socicon-webfont.ttf') format('truetype'),
+       url('../fonts/socicon-webfont.svg#sociconregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.socicon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'socicon';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.socicon-easid:before { content: "5" }
+.socicon-twitter:before { content: "a" }
+.socicon-facebook:before { content: "b" }
+.socicon-google:before { content: "c" }
+.socicon-pinterest:before { content: "d" }
+.socicon-foursquare:before { content: "e" }
+.socicon-yahoo:before { content: "f" }
+.socicon-skype:before { content: "g" }
+.socicon-yelp:before { content: "h" }
+.socicon-feedburner:before { content: "i" }
+.socicon-linkedin:before { content: "j" }
+.socicon-viadeo:before { content: "k" }
+.socicon-xing:before { content: "l" }
+.socicon-myspace:before { content: "m" }
+.socicon-soundcloud:before { content: "n" }
+.socicon-spotify:before { content: "o" }
+.socicon-grooveshark:before { content: "p" }
+.socicon-lastfm:before { content: "q" }
+.socicon-youtube:before { content: "r" }
+.socicon-vimeo:before { content: "s" }
+.socicon-dailymotion:before { content: "t" }
+.socicon-vine:before { content: "u" }
+.socicon-flickr:before { content: "v" }
+.socicon-500px:before { content: "w" }
+.socicon-instagram:before { content: "x" }
+.socicon-wordpress:before { content: "y" }
+.socicon-tumblr:before { content: "z" }
+.socicon-blogger:before { content: "A" }
+.socicon-technorati:before { content: "B" }
+.socicon-reddit:before { content: "C" }
+.socicon-dribbble:before { content: "D" }
+.socicon-stumbleupon:before { content: "E" }
+.socicon-digg:before { content: "F" }
+.socicon-envato:before { content: "G" }
+.socicon-behance:before { content: "H" }
+.socicon-delicious:before { content: "I" }
+.socicon-deviantart:before { content: "J" }
+.socicon-forrst:before { content: "K" }
+.socicon-play:before { content: "L" }
+.socicon-zerply:before { content: "M" }
+.socicon-wikipedia:before { content: "N" }
+.socicon-apple:before { content: "O" }
+.socicon-flattr:before { content: "P" }
+.socicon-github:before { content: "Q" }
+.socicon-chimein:before { content: "R" }
+.socicon-friendfeed:before { content: "S" }
+.socicon-newsvine:before { content: "T" }
+.socicon-identica:before { content: "U" }
+.socicon-bebo:before { content: "V" }
+.socicon-zynga:before { content: "W" }
+.socicon-steam:before { content: "X" }
+.socicon-xbox:before { content: "Y" }
+.socicon-windows:before { content: "Z" }
+.socicon-outlook:before { content: "1" }
+.socicon-coderwall:before { content: "2" }
+.socicon-tripadvisor:before { content: "3" }
+.socicon-netcodes:before { content: "4" }
+.socicon-lanyrd:before { content: "7" }
+.socicon-slideshare:before { content: "8" }
+.socicon-buffer:before { content: "9" }
+.socicon-rss:before { content: "," }
+.socicon-vkontakte:before { content: ";" }
+.socicon-disqus:before { content: ":" }
+
+.socicon-color.socicon-easid { color: #1ABC9C }
+.socicon-color.socicon-twitter { color: #4da7de }
+.socicon-color.socicon-facebook { color: #3e5b98 }
+.socicon-color.socicon-google { color: #d93e2d }
+.socicon-color.socicon-pinterest { color: #c92619 }
+.socicon-color.socicon-foursquare { color: #23b7e0 }
+.socicon-color.socicon-yahoo { color: #6E2A85 }
+.socicon-color.socicon-skype { color: #28abe3 }
+.socicon-color.socicon-yelp { color: #c83218 }
+.socicon-color.socicon-feedburner { color: #FFCC00 }
+.socicon-color.socicon-linkedin { color: #3371b7 }
+.socicon-color.socicon-viadeo { color: #e4a000 }
+.socicon-color.socicon-xing { color: #005a60 }
+.socicon-color.socicon-myspace { color: #323232 }
+.socicon-color.socicon-soundcloud { color: #fe3801 }
+.socicon-color.socicon-spotify { color: #7bb342 }
+.socicon-color.socicon-grooveshark { color: #000000 }
+.socicon-color.socicon-lastfm { color: #d41316 }
+.socicon-color.socicon-youtube { color: #e02a20 }
+.socicon-color.socicon-vimeo { color: #51b5e7 }
+.socicon-color.socicon-dailymotion { color: #004e72 }
+.socicon-color.socicon-vine { color: #00b389 }
+.socicon-color.socicon-flickr { color: #1e1e1b }
+.socicon-color.socicon-500px { color: #58a9de }
+.socicon-color.socicon-instagram { color: #9c7c6e }
+.socicon-color.socicon-wordpress { color: #464646 }
+.socicon-color.socicon-tumblr { color: #45556c }
+.socicon-color.socicon-blogger { color: #ec661c }
+.socicon-color.socicon-technorati { color: #5cb030 }
+.socicon-color.socicon-reddit { color: #e74a1e }
+.socicon-color.socicon-dribbble { color: #e84d88 }
+.socicon-color.socicon-stumbleupon { color: #e64011 }
+.socicon-color.socicon-digg { color: #1d1d1b }
+.socicon-color.socicon-envato { color: #597c3a }
+.socicon-color.socicon-behance { color: #000000 }
+.socicon-color.socicon-delicious { color: #020202 }
+.socicon-color.socicon-deviantart { color: #c5d200 }
+.socicon-color.socicon-forrst { color: #5B9A68 }
+.socicon-color.socicon-play { color: #000000 }
+.socicon-color.socicon-zerply { color: #9DBC7A }
+.socicon-color.socicon-wikipedia { color: #000000 }
+.socicon-color.socicon-apple { color: #B9BFC1 }
+.socicon-color.socicon-flattr { color: #F67C1A }
+.socicon-color.socicon-github { color: #5380c0 }
+.socicon-color.socicon-chimein { color: #888688 }
+.socicon-color.socicon-friendfeed { color: #2F72C4 }
+.socicon-color.socicon-newsvine { color: #075B2F }
+.socicon-color.socicon-identica { color: #000000 }
+.socicon-color.socicon-bebo { color: #EF1011 }
+.socicon-color.socicon-zynga { color: #DC0606 }
+.socicon-color.socicon-steam { color: #8F8D8A }
+.socicon-color.socicon-xbox { color: #92C83E }
+.socicon-color.socicon-windows { color: #00BDF6 }
+.socicon-color.socicon-outlook { color: #0072C6 }
+.socicon-color.socicon-coderwall { color: #3E8DCC }
+.socicon-color.socicon-tripadvisor { color: #000000 }
+.socicon-color.socicon-netcodes { color: #2E3436 }
+.socicon-color.socicon-lanyrd { color: #3c80c9 }
+.socicon-color.socicon-slideshare { color: #4ba3a6 }
+.socicon-color.socicon-buffer { color: #000000 }
+.socicon-color.socicon-rss { color: #f26109 }
+.socicon-color.socicon-vkontakte { color: #5a7fa6 }
+.socicon-color.socicon-disqus { color: #2e9fff }

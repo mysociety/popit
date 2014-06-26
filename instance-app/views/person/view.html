@@ -13,6 +13,22 @@
     popit.memberships = <%= JSON.stringify( _.map( memberships, function(m) { return m.id; } ) ) %>;
 </script>
 
+<% if (user || guest) { %>
+<div class="popit-toolbar enough-toolbar">
+  <div class="container">
+    <div class="btn-toolbar pull-right">
+      <div class="btn-group">
+        <a class="btn btn-default carry-on-editing">Carry on editing</a>
+      </div>
+      <div class="btn-group">
+        <a class="btn btn-success entity-save-and-add-another"><span class="glyphicon glyphicon-ok glyphicon-space-after"></span> Save and add another person</a>
+      </div>
+    </div>
+    <p>Great! You&rsquo;ve added enough information for now.</p>
+  </div>
+</div>
+<% } %>
+
 <div class="popit-toolbar entity-toolbar">
   <div class="container">
     <div class="btn-toolbar pull-right view-mode">
@@ -21,25 +37,23 @@
       </div>
       <div class="btn-group">
         <% if (user || guest) { %>
-          <a id="edit-person" class="btn btn-default entity-enter-edit-mode">Edit person <span class="glyphicon glyphicon-chevron-right"></span></a>
+          <a href="<%= person.url %>/edit" id="edit-person" class="btn btn-default entity-enter-edit-mode">Edit person <span class="glyphicon glyphicon-chevron-right"></span></a>
         <% } else { %>
           <a class="btn btn-default" href="/login">Log in to edit <span class="glyphicon glyphicon-chevron-right"></span></a>
           <% } %>
       </div>
     </div>
-
     <div class="btn-toolbar pull-right edit-mode">
       <div class="btn-group">
-        <a id="cancel-person-edit" class="btn btn-default entity-leave-edit-mode"><span class="glyphicon glyphicon-remove glyphicon-space-after"></span> Cancel</a>
+        <a href="<%= person.url %>" class="btn btn-default entity-leave-edit-mode"><span class="glyphicon glyphicon-remove glyphicon-space-after"></span> Cancel</a>
       </div>
       <div class="btn-group">
-        <a id="delete-person" class="btn btn-danger entity-delete"><span class="glyphicon glyphicon-ban-circle glyphicon-space-after"></span> Delete person</a>
+        <a class="btn btn-danger entity-delete"><span class="glyphicon glyphicon-ban-circle glyphicon-space-after"></span> Delete person</a>
       </div>
       <div class="btn-group">
-        <a id="save-person" class="btn btn-success entity-save-changes"><span class="glyphicon glyphicon-ok glyphicon-space-after"></span> Save changes</a>
+        <a class="btn btn-success entity-save-changes"><span class="glyphicon glyphicon-ok glyphicon-space-after"></span> Save changes</a>
       </div>
     </div>
-
     <p><a href="/persons">People</a> / <a href="<%- person.url %>"><%- person.name %></a></p>
   </div>
 </div>
@@ -75,24 +89,23 @@
 
     <div class="entity-header__primary-property">
       <label for="input-name">Name</label>
-      <h1 itemprop="name" class="view-mode" data-api-name="name"><%- person.name %></h1>
-      <input type="text" class="form-control edit-mode" id="input-name" data-api-name="name" placeholder="John Doe" value="<%- person.name %>">
-      <strong class="control-label edit-mode-error" style="display: none">This person must have a name</strong>
+      <h1 itemprop="name" class="view-mode" data-api-name="name">
+        <%- person.name %>
+        <span class="entity-little-edit-icon entity-enter-edit-mode" data-input-selector="#input-name"></span>
+      </h1>
     </div>
 
     <div class="entity-header__secondary-property">
       <label for="input-party">Party</label>
       <p itemprop="name" class="view-mode" data-api-name="organization">
         <% if (person.party) { %>
-          <%- person.party %>
-          <input type="hidden" class="edit-mode" data-api-name="organization_id" value="<%- person.party_id %>">
+          <a href="<%- person.party.url %>"><%- person.party.name %></a>
+          <span class="entity-little-edit-icon entity-enter-edit-mode" data-input-selector="#input-party"></span>
+          <input type="hidden" class="edit-mode" data-api-name="organization_id" value="<%- person.party.id %>">
         <% } else { %>
-          <% if (user || guest) { %>
-            <span class="placeholder entity-enter-edit-mode" data-input-selector="#input-party">Is <%- person.name %> in a party?</span>
-          <% } %>
+          <span class="placeholder entity-enter-edit-mode" data-input-selector="#input-party">Is <%- person.name %> in a party?</span>
         <% } %>
       </p>
-      <input type="text" class="form-control edit-mode" id="input-party" data-api-name="organization" placeholder="Republican" value="<%- person.party %>">
     </div>
 
     <div class="entity-header__secondary-property">
@@ -100,13 +113,21 @@
       <p itemprop="name" class="view-mode" data-api-name="membership-area">
         <% if (person.constituency) { %>
           <%- person.constituency %>
+          <span class="entity-little-edit-icon entity-enter-edit-mode" data-input-selector="#input-constituency"></span>
         <% } else { %>
-          <% if (user || guest) { %>
-            <span class="placeholder entity-enter-edit-mode" data-input-selector="#input-constituency">What area does <%- person.name %> represent?</span>
-          <% } %>
+          <span class="placeholder entity-enter-edit-mode" data-input-selector="#input-constituency">What area does <%- person.name %> represent?</span>
         <% } %>
       </p>
-      <input type="text" class="form-control edit-mode" id="input-constituency" data-api-name="membership-area" placeholder="Witney" value="<%- person.constituency %>">
+    </div>
+
+    <div class="entity-header__social">
+      <% _.each( person.contact_details, function (item) { %>
+        <% if (item.type.toLowerCase() == 'twitter') { %>
+          <a href="http://twitter.com/<%= item.value %>" title="@<%= item.value %> on Twitter" class="socicon socicon-color socicon-twitter"></a>
+        <% } else if (item.type.toLowerCase() == 'facebook') { %>
+          <a href="http://facebook.com/<%= item.value %>" title="facebook.com/<%= item.value %>" class="socicon socicon-color socicon-facebook"></a>
+        <% } %>
+      <% }) %>
     </div>
 
   </div>
@@ -114,17 +135,23 @@
   <div class="entity-details">
 
     <ul class="nav nav-tabs">
-      <li><a href="#biography">Biography</a></li>
-      <li><a href="#websites">Websites</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="#political-career">Political career</a></li>
-      <li><a href="#career">Career</a></li>
-      <li><a href="#advanced">Advanced</a></li>
+      <li class="<% if (!person.other_names.length && !person.summary && !person.birth_date && !person.death_date) { %>empty<% } %>"><a href="#biography">Biography</a></li>
+      <li class="<% if (!person.links.length) { %>empty<% } %>"><a href="#websites">Websites</a></li>
+      <li class="<% if (!person.contact_details.length) { %>empty<% } %>"><a href="#contact">Contact</a></li>
+      <li class="<% if (!memberships) { %>empty<% } %>"><a href="#political-career">Political career</a></li>
+      <!-- <li class="<% if (!false) { %>empty<% } %>"><a href="#career">Career</a></li> -->
+      <li class="<% if (!person.identifiers.length) { %>empty<% } %>"><a href="#advanced">Advanced</a></li>
     </ul>
 
     <div class="entity-details__section" id="biography">
+      <% if (!person.other_names.length && !person.summary && !person.birth_date && !person.death_date) { %>
+        <p class="entity-details__hint view-mode entity-enter-edit-mode">
+          <span class="btn btn-xs btn-default pull-right">Add details</span>
+          You can use PopIt to store extra information about this person, like who they are and when they were born.
+        </p>
+      <% } %>
 
-      <div class="entity-details__property">
+      <div class="entity-details__property <% if(!person.other_names.length){ %>empty<% } %>">
         <label>Other names</label>
         <%= render( 'other_name/list.html', { other_names: person.other_names } ) %>
       </div>
@@ -152,41 +179,68 @@
     </div>
 
     <div class="entity-details__section" id="websites">
-      <div class="entity-details__property">
+      <% if (!person.links.length) { %>
+        <p class="entity-details__hint view-mode entity-enter-edit-mode">
+          <span class="btn btn-xs btn-default pull-right">Add links to websites</span>
+          If this person has a website, or any online profile pages, you can add them here.
+        </p>
+      <% } %>
+
+      <div class="entity-details__property <% if(!person.links.length){ %>empty<% } %>">
         <label>Links</label>
         <%= render( 'link/list.html', { links: person.links } ) %>
       </div>
     </div>
 
     <div class="entity-details__section" id="contact">
-      <div class="entity-details__property">
+      <% if (!person.contact_details.length) { %>
+        <p class="entity-details__hint view-mode entity-enter-edit-mode">
+          <span class="btn btn-xs btn-default pull-right">Add contact details</span>
+          PopIt is most useful when people have contact details, like their phone, email, and Twitter.
+        </p>
+      <% } %>
+
+      <div class="entity-details__property <% if(!person.contact_details.length){ %>empty<% } %>">
         <label>Contact details</label>
         <%= render( 'contact/list.html', { contact_details: person.contact_details } ) %>
       </div>
     </div>
 
     <div class="entity-details__section" id="political-career">
-      <div class="entity-details__property">
-        <label>Memberships</label>
+      <% if (!memberships.length) { %>
+        <p class="entity-details__hint view-mode entity-enter-edit-mode">
+          <span class="btn btn-xs btn-default pull-right">Add a membership</span>
+          Is this person a member of an organization or party?
+        </p>
+      <% } %>
+
+      <div class="entity-details__property <% if(!memberships){ %>empty<% } %>">
         <ul class="cleared memberships">
-          <% _.each( memberships, function (membership) { %>
+          <% _.each( memberships, function (membership, i) { %>
             <% if (validMembership(membership, person.id)) { %>
-              <%= render( 'membership/list-item.html', { membership: membership, relatedObject: relatedObject(membership, person.id) } ) %>
+            <li class="membership">
+              <%= render( 'membership/list-item.html', { membership: membership, member: person, organization: relatedObject(membership, person.id), type: 'person' } ) %>
+            </li>
             <% } %>
           <% }); %>
           <li class="edit-mode">
-            <a class="add edit-membership btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(memberships.length){ %>nother<% } %> membership</a>
+            <a class="add add-membership btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(memberships.length){ %>nother<% } %> membership</a>
           </li>
         </ul>
       </div>
     </div>
 
-    <div class="entity-details__section" id="career">
-      Career
-    </div>
+    <!-- <div class="entity-details__section" id="career"></div> -->
 
     <div class="entity-details__section" id="advanced">
-      <div class="entity-details__property">
+      <% if (!person.identifiers.length) { %>
+        <p class="entity-details__hint view-mode entity-enter-edit-mode">
+          <span class="btn btn-xs btn-default pull-right">Add identifiers</span>
+          If this person has special registration or ID numbers, you can add them here.
+        </p>
+      <% } %>
+
+      <div class="entity-details__property <% if(!person.identifiers.length){ %>empty<% } %>">
         <label>Identifiers</label>
         <%= render( 'identifier/list.html', { identifiers: person.identifiers } ) %>
       </div>
@@ -199,5 +253,11 @@
   </section>
 
 </article>
+
+<% if (user || guest) { %>
+<div class="edit-form">
+  <%= render('person/form.html') %>
+</div>
+<% } %>
 
 <%= render('html_footer.html' )%>

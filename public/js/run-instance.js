@@ -3,5 +3,6 @@ require([
   'augmenters/click-to-copy',
   'augmenters/close-link',
   'augmenters/ajax-loader',
-  'augmenters/setup-tabs'
+  'augmenters/setup-tabs',
+  'augmenters/anonymous-suggestions'
 ]);

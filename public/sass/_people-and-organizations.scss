@@ -60,6 +60,21 @@ $entity-photo-sidebar-width: 285px;
 
 }
 
+.enough-toolbar {
+  display: none;
+  position: relative;
+  z-index: 2;
+  margin-bottom: -78px; // toolbar has 36px line-height, plus 20px padding and 1px border top and bottom
+  border-top: 1px solid #CED5CB;
+  border-bottom: 1px solid #E3E9DE;
+  background-color: #EEF3ED;
+
+  & > .container > p {
+    color: #26741C;
+    font-weight: 400;
+  }
+}
+
 .edit-mode {
   display: none;
 }
@@ -127,10 +142,6 @@ $entity-photo-sidebar-width: 285px;
   }
 
   .edit-group {
-    padding: 10px 12px; // to match .form-controls
-    margin: -10px 0; // to match .form-controls
-    background-color: $light-grey-background;
-
     .delete, .edit {
       float: right;
 
@@ -142,6 +153,25 @@ $entity-photo-sidebar-width: 285px;
     .delete + .edit,
     .edit + .delete {
       margin-right: 20px;
+    }
+
+    .form-control {
+      // inline form controls, like the select boxes in a membership sentence
+      width: auto;
+      display: inline-block;
+      max-width: 8em;
+      margin: 0 5px;
+      height: 32px;
+    }
+
+    .membership__delete {
+      @extend .pull-right;
+      color: #C54747;
+
+      &:hover,
+      &:focus {
+        color: darken(#C54747, 20%);
+      }
     }
   }
 
@@ -174,7 +204,6 @@ $entity-photo-sidebar-width: 285px;
 
 .entity-header {
   position: relative;
-  padding-left: 160px; // 128px for the photo, plus ~30px whitespace
   margin: 30px 0 40px 0;
   min-height: 100px;
   @include clearfix();
@@ -192,14 +221,15 @@ $entity-photo-sidebar-width: 285px;
 }
 
 .entity-header__photo {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
+  height: 128px;
+  float: left;
+  margin-right: 30px; // 30px space between image and primary-property
 
-  // crop the photo to fit 128px square
-  // perhaps we should float the photo to the left, and set a height, so we don't have to crop?
-  max-height: 128px;
-  overflow: hidden;
+  img {
+    width: auto;
+    height: 128px; // image is always 128px high, but can be variable width
+  }
 
   .add-photo,
   .delete-photo {
@@ -209,21 +239,21 @@ $entity-photo-sidebar-width: 285px;
     display: none;
     width: 100%;
     height: 100%;
-    padding-top: 40%;
+    padding-top: 54px; // 128px image, minus 20px line-height, divided by 2
     background-color: rgba(66, 139, 202, 0.5);
     text-align: center;
     text-decoration: none;
     color: #fff;
     text-shadow: 0 1px 1px rgb(66,139,202);
+    cursor: pointer;
 
     .glyphicon {
       font-size: 0.8em;
     }
   }
 
-  &:hover .add-photo,
   .entity.editing & .add-photo,
-  &:hover .delete-photo {
+  .entity.editing & .delete-photo {
     display: block;
   }
 }
@@ -232,6 +262,8 @@ $entity-photo-sidebar-width: 285px;
   padding-bottom: 10px;
   border-bottom: 1px solid $header-footer-background;
   margin-bottom: 10px;
+
+  overflow: auto; // establish a new Block Formatting Context, to stop primary-property extending behind the floated image
 
   .form-control {
     font-size: 38px;
@@ -260,12 +292,56 @@ $entity-photo-sidebar-width: 285px;
   }
 }
 
+.entity-header__social {
+  position: absolute;
+  top: 32px;
+  right: -5px;
+
+  .entity.editing & {
+    display: none;
+  }
+
+  a {
+    font-size: 21px;
+    padding: 5px;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: $light-grey-background;
+      text-decoration: none;
+    }
+  }
+}
+
+.entity-little-edit-icon {
+  @extend .glyphicon;
+  @extend .glyphicon-pencil;
+  color: #bbb;
+  font-size: 12px;
+  padding: 5px;
+  margin: -5px 0;
+
+  &:hover,
+  &:focus {
+    color: #888;
+  }
+}
+
 .entity-enter-edit-mode {
   cursor: pointer;
 }
 
 .entity-details {
   margin-bottom: 40px;
+
+  .nav-tabs li.empty {
+    display: none;
+
+    .entity.editing &,
+    body.signed_in & {
+      display: block;
+    }
+  }
 }
 
 .entity-details__section {
@@ -278,7 +354,8 @@ $entity-photo-sidebar-width: 285px;
   &.empty {
     display: none;
 
-    .entity.editing & {
+    .entity.editing &,
+     {
       display: block;
     }
   }
@@ -295,6 +372,21 @@ $entity-photo-sidebar-width: 285px;
   .form-group {
     margin-top: 20px;
   }
+}
+
+.save-and-add-another,
+.continue-editing {
+  @extend .btn;
+  @extend .btn-xs;
+  @extend .pull-right;
+  @extend .btn-success;
+  margin-left: 10px;
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+.continue-editing {
+  @extend .btn-info;
 }
 
 .old-entity {
@@ -540,5 +632,36 @@ $entity-photo-sidebar-width: 285px;
         color: #777;
       }
     }
+  }
+}
+
+// Modal window, for anonymous users to suggest edits
+.entity-suggestion {
+  text-align: center;
+  padding: 20px;
+
+  & > :first-child {
+    margin-top: 0;
+  }
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  p {
+    margin-bottom: 15px;
+  }
+
+  label {
+    margin-bottom: 0;
+  }
+
+  textarea {
+    width: 100%;
+    height: 5em;
   }
 }

@@ -22,19 +22,6 @@ define(
     "use strict"; 
 
     $(function(){
-
-      $('a.new-organization').click(function(event) {
-
-        event.preventDefault();
-
-        var organization = new OrganizationModel({});
-        var view         = new OrganizationNewView({model: organization});
-        
-        // render in lightbox, focus on first input
-        $.fancybox( view.render().el );
-        view.$(':input:first').focus();
-      });
-      
       $('a.delete-organization').click(function(event) {
         event.preventDefault();
 

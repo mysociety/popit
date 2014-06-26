@@ -4,12 +4,12 @@
 define(
   [
     'jquery',
-    'instance-admin/actions/list-item-editor',
-    'text!templates/identifier/view.html'
+    'underscore',
+    'text!templates/identifier/edit.html'
   ],
   function (
     $,
-    ListItemEditor,
+    _,
     identifierTemplate
   ) {
     "use strict";
@@ -19,14 +19,19 @@ define(
          return;
       }
 
-      $('#content').on(
-        'click',
-        '.identifier-edit',
-        new ListItemEditor({
-          collection: popit.model.get('identifiers'),
-          template: identifierTemplate
-        })
-      );
+      var template = _.template(identifierTemplate);
+
+      $('#content').on('click', '.identifier-edit', function(e) {
+        e.preventDefault();
+
+        var newLi = $('<li/>').html(template({i: $('ul.identifiers li').length, identifier: {}}));
+        $('ul.identifiers').append(newLi);
+      });
+
+      $('.identifier-delete').click(function(e) {
+        e.preventDefault();
+        $(this).closest('li').remove();
+      });
 
     });
   }

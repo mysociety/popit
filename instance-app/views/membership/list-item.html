@@ -1,32 +1,49 @@
-<li>
-  <div class="view-mode">
-    <% if (membership.post_id) { %> <%- membership.post_id.label %>: <% } %>
-    <% if (membership.label) { %> <%- membership.label %> <% } %>
-    <% if (membership.role) { %> (<%- membership.role %>) <% } %>
-    <% if (membership.role || membership.label) { %> : <% } %>
-    <a href="<%- relatedObject.url %>"><%- relatedObject.name %></a>
-    <% if (membership.start_date && membership.end_date) { %>
-      <span class="text-muted">(from <%- membership.start_date %> to <%- membership.end_date %>)</span>
-    <% } else if (membership.start_date) { %>
-      <span class="text-muted">(from <%- membership.start_date %>)</span>
-    <% } else if (membership.end_date) { %>
-      <span class="text-muted">(to <%- membership.end_date %>)</span>
+<div class="view-mode">
+  <a href="<%- member.url %>"><%- member.name %></a>
+  <% if (membership.end_date) { %>
+    <% if (new Date(membership.end_date) < new Date()) { %>
+      was
+    <% } else {%>
+      will be
     <% } %>
-  </div>
-  <div class="edit-mode edit-group">
-    <a class="delete delete-membership"><span class="glyphicon glyphicon-ban-circle glyphicon-space-after"></span>Delete</a>
-    <a class="edit edit-membership"><span class="glyphicon glyphicon-pencil glyphicon-space-after"></span>Edit</a>
-    <% if (membership.post_id) { %> <%- membership.post_id.label %>: <% } %>
-    <% if (membership.label) { %> <%- membership.label %> <% } %>
-    <% if (membership.role) { %> (<%- membership.role %>) <% } %>
-    <% if (membership.role || membership.label) { %> : <% } %>
-    <%- relatedObject.name %>
-    <% if (membership.start_date && membership.end_date) { %>
-      <span class="text-muted">(from <%- membership.start_date %> to <%- membership.end_date %>)</span>
-    <% } else if (membership.start_date) { %>
-      <span class="text-muted">(from <%- membership.start_date %>)</span>
-    <% } else if (membership.end_date) { %>
-      <span class="text-muted">(to <%- membership.end_date %>)</span>
+  <% } else if (membership.start_date) { %>
+    <% if (new Date(membership.start_date) < new Date()) { %>
+      has been
+    <% } else {%>
+      will be
     <% } %>
-  </div>
-</li>
+  <% } else { %>
+    is
+  <% } %>
+  <% if (membership.post_id) { %>
+    <% if (membership.post_id.role) { %>
+      <%- membership.post_id.role %>
+    <% } else if (membership.post_id.label) { %>
+      <%- membership.post_id.label %>
+    <% } %>
+  <% } else if (membership.role) { %>
+    <%- membership.role %>
+  <% } else if (membership.label) { %>
+    <%- membership.label %>
+  <% } else { %>
+    a member
+  <% } %>
+
+  of <a href="<%- organization.url %>"><%- organization.name %></a>
+
+  <% if (membership.post_id && membership.post_id.area && membership.post_id.area.name) { %>
+    representing <%- membership.post_id.get('area').name %>
+  <% } %>
+  <% if (membership.start_date && membership.end_date) { %>
+    between <%- membership.start_date %> and <%- membership.end_date %>
+  <% } else if(membership.end_date) { %>
+    until <%- membership.end_date %>
+  <% } else if(membership.start_date) { %>
+    <% if (new Date(membership.start_date) < new Date()) { %>
+      since <%- membership.start_date %>
+    <% } else {%>
+      after <%- membership.start_date %>
+    <% } %>
+  <% } %>
+  <span class="entity-little-edit-icon entity-enter-edit-mode"></span>
+</div>

@@ -23,7 +23,7 @@
           </h3>
           <p>Add people and organizations to your PopIt instance.</p>
           <% if (user || guest) { %>
-            <a class="new-person add btn <% if (current_step === 1) { %>btn-primary<% } else { %>btn-default<% } %>" href="#"><% if (current_step < 2) { %>
+            <a class="new-person add btn <% if (current_step === 1) { %>btn-primary<% } else { %>btn-default<% } %>" href="/persons/new"><% if (current_step < 2) { %>
                 Add your first person
               <% } else { %>
                 Add another person
@@ -168,7 +168,7 @@
         <ul class="homepage-summary-toolbar">
           <li>
             <% if (user || guest) { %>
-              <a class="new-organization add btn btn-default btn-xs" href="#">+ Add new organization</a>
+              <a class="new-organization add btn btn-default btn-xs" href="/organizations/new">+ Add new organization</a>
             <% } else { %>
               <a class="add btn btn-default btn-xs" href="/login">Log in to add a new organization</a>
             <% } %>

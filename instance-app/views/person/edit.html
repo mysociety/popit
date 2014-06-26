@@ -1,0 +1,61 @@
+<%= render(
+  'html_head.html',
+  {
+    title:       person.name,
+    description: person.name + ': ' + ( person.summary || '' ),
+  }
+) %>
+
+<script>
+    var popit = popit || {};
+    popit.type = 'person';
+    popit.data = <%= JSON.stringify(person.toJSON()) %>;
+    popit.memberships = <%= JSON.stringify( _.map( memberships, function(m) { return m.id; } ) ) %>;
+</script>
+
+<style>
+.view-mode {
+  display: none;
+}
+.edit-mode {
+  display: block;
+}
+</style>
+
+<% if (user || guest) { %>
+<div class="popit-toolbar enough-toolbar">
+  <div class="container">
+    <div class="btn-toolbar pull-right">
+      <div class="btn-group">
+        <a class="btn btn-default carry-on-editing">Carry on editing</a>
+      </div>
+      <div class="btn-group">
+        <a class="btn btn-success entity-save-and-add-another"><span class="glyphicon glyphicon-ok glyphicon-space-after"></span> Save and add another person</a>
+      </div>
+    </div>
+    <p>Great! You&rsquo;ve added enough information for now.</p>
+  </div>
+</div>
+<% } %>
+
+<div class="popit-toolbar entity-toolbar">
+  <div class="container">
+    <div class="btn-toolbar pull-right">
+      <div class="btn-group">
+        <a href="<%= person.url %>" class="btn btn-default entity-leave-edit-mode"><span class="glyphicon glyphicon-remove glyphicon-space-after"></span> Cancel</a>
+      </div>
+      <div class="btn-group">
+        <a class="btn btn-danger entity-delete"><span class="glyphicon glyphicon-ban-circle glyphicon-space-after"></span> Delete person</a>
+      </div>
+      <div class="btn-group">
+        <a class="btn btn-success entity-save-changes"><span class="glyphicon glyphicon-ok glyphicon-space-after"></span> Save changes</a>
+      </div>
+    </div>
+
+    <p><a href="/persons">People</a> / <a href="<%- person.url %>"><%- person.name %></a></p>
+  </div>
+</div>
+
+<%= render('person/form.html') %>
+
+<%= render('html_footer.html' )%>
