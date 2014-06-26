@@ -253,9 +253,11 @@
 
 </article>
 
+<% if (user || guest) { %>
 <div class="edit-form">
   <%= render('organization/form.html' )%>
 </div>
+<% } %>
 
 <%= render('html_footer.html' )%>
 
