@@ -21,6 +21,7 @@ define(['jquery', 'Backbone', 'underscore'], function($, Backbone, _) {
       $('.view-mode').hide();
       $('.edit-mode').show();
       $('article.entity').hide();
+      $('.edit-form .entity-details').easytabs('select', window.location.hash);
       $('.edit-form').show();
       $('.entity').addClass('editing');
 
