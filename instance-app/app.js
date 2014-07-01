@@ -15,7 +15,8 @@ var express           = require('express'),
     UTA               = require('underscore-template-additions'),
     current_absolute_pathname = require('../lib/middleware/route').current_absolute_pathname,
     engines           = require('consolidate'),
-    popitApiStorageSelector = require('popit-api/src/middleware/storage-selector');
+    popitApiStorageSelector = require('popit-api/src/middleware/storage-selector'),
+    passport          = require('passport');
 
 var app = module.exports = express();
 
@@ -92,6 +93,8 @@ app.configure( function () {
     databasePrefix: config.MongoDB.popit_prefix
   }));
   
+  app.use(passport.initialize());
+  app.use(passport.session());
   app.use( require('../lib/apps/auth').middleware );
   app.use( require('../lib/apps/auth').app );
 
