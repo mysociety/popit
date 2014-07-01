@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 NODE_VERSION="v0.10.24"
 NODE_PLATFORM="linux"
 NODE_ARCH="x64"
