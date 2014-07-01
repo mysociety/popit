@@ -31,7 +31,8 @@ fi
 
 export PATH="$NODE_DIR/bin:$PATH"
 
-export GEM_HOME=../gems
+mkdir -p ../gems
+export GEM_HOME="$(cd ../gems && pwd -P)"
 
 if [ ! -f ../gems/bin/sass ]; then
   gem install sass --version=3.2.14 --no-rdoc --no-ri
