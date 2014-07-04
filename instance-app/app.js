@@ -72,6 +72,7 @@ app.configure( function () {
   app.use( express.session({
       secret: config.instance_server.cookie_secret,
       store: session_store,
+      cookie: { domain: config.instance_server.cookie_domain  },
   }) );
   
   // set up the flash and make it available to the templates - https://gist.github.com/3070950

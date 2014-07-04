@@ -33,6 +33,7 @@ module.exports = {
         // replaced with the instance name.
         base_url_format: "http://%s.127.0.0.1.xip.io:3000",
         cookie_secret: 'hurgleflurdle',
+        cookie_domain: '.127.0.0.1.xip.io',
         files_dir:     path.normalize(__dirname + '/../../popit_files'),
     },
     MongoDB: {
