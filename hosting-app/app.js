@@ -40,8 +40,9 @@ app.configure(function(){
 
   app.use( '/docs', require('../lib/apps/docs.js')() );
   app.use('/info', require('../lib/apps/info')() );
-});
 
+  app.use(require('../lib/apps/registration'));
+});
 
 app.configure('development', 'testing', function() {
   var helpers = require('../lib/apps/dev-helpers');
