@@ -16,6 +16,7 @@
     "doublemetaphone": "*",
     "express": ">=3.0.0",
     "form-data": ">= 0.0.4",
+    "fs-extra": ">= 0.10.0",
     "hogan.js": ">= 2.0.0",
     "iconv": ">= 1.2.3",
     "jquery": ">= 1.6.3",
