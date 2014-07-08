@@ -62,5 +62,20 @@ module.exports = {
         test.done();
       });
     });
+  },
+  "login": function(test) {
+    request(app)
+    .get('/login')
+    .set('Host', 'www.127.0.0.1.xip.io')
+    .expect(200)
+    .end(function(err, res) {
+      if (err) {
+        return test.done(err);
+      }
+
+      test.ok(res.text.indexOf('Log in') !== -1);
+
+      test.done();
+    });
   }
 };

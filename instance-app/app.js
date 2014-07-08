@@ -8,7 +8,6 @@ var express           = require('express'),
     config            = require('config'),
     instanceSelector  = require('../lib/middleware/instance-selector'),
     image_proxy       = require('connect-image-proxy'),
-    connect_flash     = require('connect-flash'),
     UTA               = require('underscore-template-additions'),
     current_absolute_pathname = require('../lib/middleware/route').current_absolute_pathname,
     engines           = require('consolidate'),
@@ -51,12 +50,6 @@ app.configure(function(){
 app.configure( function () {
   app.use(express.static(__dirname + '/../' + config.public_dir));
   
-  // set up the flash and make it available to the templates - https://gist.github.com/3070950
-  app.use( connect_flash() );
-  app.use( function (req, res, next) {
-    res.locals.flash = req.flash.bind(req);
-    next();
-  });
 
   app.use( function (req,res,next) {
     res.locals.current_absolute_pathname = current_absolute_pathname(req);
@@ -70,6 +63,7 @@ app.configure( function () {
     databasePrefix: config.MongoDB.popit_prefix
   }));
   
+  app.use( require('../lib/apps/auth').middleware );
 
   app.use('/api',   require('../lib/apps/api') );
 

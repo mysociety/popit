@@ -1,0 +1,43 @@
+<%= render(
+  'html_head.html',
+  {
+    title:       'Login',
+    description: '',
+  }
+) %>
+
+<div class="login-form container">
+
+  <h1>Log in</h1>
+
+  <% if (errors.length) { %>
+    <ul id="errors">
+      <% _.each(errors, function(error) { %>
+        <li class="error"><%- error %></li>
+      <%}); %>
+    </ul>
+  <% } %>
+
+  <form action='/login' method='post'>
+
+      <p class="form-group">
+        <label for="email" class="control-label"> Email:</label>
+        <input id="email" type="text" name="email" class="form-control" value="<%- email %>">
+      </p>
+
+      <p class="form-group">
+        <label for="password" class="control-label">Password:</label>
+        <input id="password" type="password" name="password" class="form-control">
+        <a href="/forgotten-password" class="pull-right">Forgotten?</a>
+      </p>
+
+      <p class="form-group">
+        <button id="login" class="btn btn-primary" type="submit">Log in</button>
+      </p>
+
+  </form>
+
+</div>
+
+
+<%= render('html_footer.html' )%>

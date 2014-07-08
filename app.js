@@ -6,7 +6,6 @@ var hosting_app = require('./hosting-app/app');
 var instance_app = require('./instance-app/app');
 var passport = require('passport');
 var masterSelector = require('./lib/middleware/master-selector');
-var authApp = require('./lib/apps/auth');
 
 var app = module.exports = express();
 
@@ -27,13 +26,17 @@ app.use(express.cookieSession({
   cookie: { domain: config.instance_server.cookie_domain },
 }));
 
+// set up the flash and make it available to the templates - https://gist.github.com/3070950
+app.use(require('connect-flash')());
+app.use(function(req, res, next) {
+  res.locals.flash = req.flash.bind(req);
+  next();
+});
+
 app.use(masterSelector());
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use(authApp.middleware);
-app.use(authApp.app);
 
 // match the hosting app host...
 app.use(

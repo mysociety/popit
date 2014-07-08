@@ -41,6 +41,9 @@ app.configure(function(){
 
   app.locals( require('../lib/middleware/config') );
 
+  app.use( require('../lib/apps/auth').middleware );
+  app.use( require('../lib/apps/auth').app );
+
   app.use( '/docs', require('../lib/apps/docs.js')() );
   app.use('/info', require('../lib/apps/info')() );
 
