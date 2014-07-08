@@ -16,7 +16,6 @@ DIR=/data/vhost/!!(*= $vhost *)!!
 DAEMON="$DIR/node/bin/node"
 DAEMON_ARGS="node_modules/.bin/supervisor --quiet --ignore . --exec ../node/bin/node ./server.js"
 PIDFILE=$DIR/popit.pid
-LOGFILE=$DIR/logs/app_log
 DUSER=!!(*= $user *)!!
 
 !!(*
@@ -26,6 +25,8 @@ if ($vhost eq 'popit.mysociety.org' || $vhost eq 'popit.staging.mysociety.org') 
     $node_env = 'development';
 }
 *)!!
+
+LOGFILE=$DIR/applogs/!!(*= $node_env *)!!.log
 
 case "$1" in
   start)
