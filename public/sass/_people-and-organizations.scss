@@ -114,6 +114,7 @@ $entity-photo-sidebar-width: 285px;
   }
 
   .form-control.select2-container {
+    background-color: transparent;
     padding: 0;
     height: auto;
     margin-top: 3px;
@@ -160,7 +161,7 @@ $entity-photo-sidebar-width: 285px;
       width: auto;
       display: inline-block;
       max-width: 8em;
-      margin: 0 5px;
+      margin: 5px 5px 0;
       height: 32px;
     }
 
