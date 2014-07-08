@@ -57,6 +57,19 @@
 
   <header id="header">
     <div class="container">
+
+      <!--
+        <% if ( user || guest ) { %>
+          <li id="signed_in">
+            Signed in as
+            <span class="username"><%- guest ? 'a Guest' : (user.email || user.username) %></span>
+          </li>
+          <li>
+            <a href="/logout">Sign Out</a>
+          </li>
+        <% } %>
+      -->
+
       <h1 class="logo">
         <a href='/'>PopIt</a>
       </h1>
