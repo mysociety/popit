@@ -4,6 +4,9 @@ var express = require('express');
 var config = require('config');
 var hosting_app = require('./hosting-app/app');
 var instance_app = require('./instance-app/app');
+var passport = require('passport');
+var masterSelector = require('./lib/middleware/master-selector');
+var authApp = require('./lib/apps/auth');
 
 var app = module.exports = express();
 
@@ -15,6 +18,22 @@ app.use( function (req, res, next) {
   }
   next();
 });
+
+// sessions and auth
+app.use(express.cookieParser());
+
+app.use(express.cookieSession({
+  secret: config.instance_server.cookie_secret,
+  cookie: { domain: config.instance_server.cookie_domain },
+}));
+
+app.use(masterSelector());
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(authApp.middleware);
+app.use(authApp.app);
 
 // match the hosting app host...
 app.use(

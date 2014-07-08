@@ -7,16 +7,12 @@
 var express           = require('express'),
     config            = require('config'),
     instanceSelector  = require('../lib/middleware/instance-selector'),
-    Db                = require('mongodb').Db,
-    Server            = require('mongodb').Server,
-    mongoStore        = require('connect-mongodb'),
     image_proxy       = require('connect-image-proxy'),
     connect_flash     = require('connect-flash'),
     UTA               = require('underscore-template-additions'),
     current_absolute_pathname = require('../lib/middleware/route').current_absolute_pathname,
     engines           = require('consolidate'),
-    popitApiStorageSelector = require('popit-api/src/middleware/storage-selector'),
-    passport          = require('passport');
+    popitApiStorageSelector = require('popit-api/src/middleware/storage-selector');
 
 var app = module.exports = express();
 
@@ -55,26 +51,6 @@ app.configure(function(){
 app.configure( function () {
   app.use(express.static(__dirname + '/../' + config.public_dir));
   
-  // sessions and auth
-  app.use( express.cookieParser( config.instance_server.cookie_secret ) );
-  var session_db_name = config.MongoDB.popit_prefix + config.MongoDB.session_name;
-  var session_server  = new Server(
-      config.MongoDB.host,
-      config.MongoDB.port,
-      {
-        auto_reconnect: true,
-        native_parser: true,
-      }
-  );
-  var session_db = new Db( session_db_name, session_server, {safe: true} );
-  var session_store = new mongoStore({ db: session_db });
-  
-  app.use( express.session({
-      secret: config.instance_server.cookie_secret,
-      store: session_store,
-      cookie: { domain: config.instance_server.cookie_domain  },
-  }) );
-  
   // set up the flash and make it available to the templates - https://gist.github.com/3070950
   app.use( connect_flash() );
   app.use( function (req, res, next) {
@@ -94,10 +70,6 @@ app.configure( function () {
     databasePrefix: config.MongoDB.popit_prefix
   }));
   
-  app.use(passport.initialize());
-  app.use(passport.session());
-  app.use( require('../lib/apps/auth').middleware );
-  app.use( require('../lib/apps/auth').app );
 
   app.use('/api',   require('../lib/apps/api') );
 

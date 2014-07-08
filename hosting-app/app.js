@@ -6,13 +6,17 @@
 
 var express           = require('express'),
     config            = require('config'),
-    masterSelector    = require('../lib/middleware/master-selector'),
     engines           = require('consolidate'),
     UTA               = require('underscore-template-additions');
 
 
 var app = module.exports = express();
 
+app.locals({
+  user:  null,
+  guest: null,
+  popit: null,
+});
 
 // Configuration
 app.configure('development', function(){
@@ -36,7 +40,6 @@ app.configure(function(){
   app.use(express.static(__dirname + '/../' + config.public_dir));
 
   app.locals( require('../lib/middleware/config') );
-  app.use(masterSelector());
 
   app.use( '/docs', require('../lib/apps/docs.js')() );
   app.use('/info', require('../lib/apps/info')() );
