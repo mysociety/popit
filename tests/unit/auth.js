@@ -34,7 +34,7 @@ module.exports = {
   },
 
   "registering": function(test) {
-    test.expect(1);
+    test.expect(2);
     request(app)
     .post('/register')
     .set('Host', 'www.127.0.0.1.xip.io')
@@ -47,7 +47,20 @@ module.exports = {
 
       test.equal('/', res.headers.location);
 
-      test.done();
+      request(app)
+      .post('/register')
+      .set('Host', 'www.127.0.0.1.xip.io')
+      .send({ email: 'bob@example.com', password: 's3cret' })
+      .expect(200)
+      .end(function(err, res) {
+        if (err) {
+          return test.done(err);
+        }
+
+        test.ok(res.text.indexOf('User already exists with name') !== -1, "duplicate emails should not be allowed");
+
+        test.done();
+      });
     });
   }
 };
