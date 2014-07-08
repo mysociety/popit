@@ -77,5 +77,11 @@ module.exports = {
 
       test.done();
     });
+  },
+  "logout": function(test) {
+    request(app)
+    .get('/logout')
+    .set('Host', 'www.127.0.0.1.xip.io')
+    .expect(302, test.done);
   }
 };
