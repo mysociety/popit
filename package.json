@@ -52,7 +52,9 @@
   "scripts": {
     "test": "make test"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "supertest": "~0.13.0"
+  },
   "optionalDependencies": {},
   "engines": {
     "node": "0.10.x"
