@@ -25,10 +25,13 @@ define(['jquery', 'Backbone', 'underscore'], function($, Backbone, _) {
       if ( tab ) {
         // first find and hide the active edit tab content otherwise we see both
         var edit_tab = $('.edit-form .entity-details li.active a').attr('href');
-        var tab_content_selector = '.entity-details__section' + edit_tab;
-        $(tab_content_selector).hide();
-        // and now set the active edit tab to the same as the view tab
-        $('.edit-form .entity-details').easytabs('select', tab.children('a').attr('href'));
+        var view_tab = tab.children('a').attr('href');
+        if ( edit_tab != view_tab ) {
+          var tab_content_selector = '.entity-details__section' + edit_tab;
+          $(tab_content_selector).hide();
+          // and now set the active edit tab to the same as the view tab
+          $('.edit-form .entity-details').easytabs('select', view_tab);
+        }
       }
       $('.edit-form').show();
       $('.entity').addClass('editing');
