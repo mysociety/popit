@@ -18,15 +18,6 @@ app.locals({
   popit: null,
 });
 
-// Configuration
-app.configure('development', function(){
-  app.use(express.logger('dev'));
-});
-
-app.configure('production', function(){
-  app.use(express.logger());
-});
-
 var templates = new UTA();
 templates.cacheTemplates = app.get('env') == 'development' ? false : true;
 
@@ -37,7 +28,6 @@ app.configure(function(){
 
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(express.static(__dirname + '/../' + config.public_dir));
 
   app.locals( require('../lib/middleware/config') );
 
