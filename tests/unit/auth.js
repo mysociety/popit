@@ -63,7 +63,7 @@ module.exports = {
       });
     });
   },
-  "login": function(test) {
+  "login page": function(test) {
     request(app)
     .get('/login')
     .set('Host', 'www.127.0.0.1.xip.io')
@@ -76,6 +76,24 @@ module.exports = {
       test.ok(res.text.indexOf('Log in') !== -1);
 
       test.done();
+    });
+  },
+  "login processing": function(test) {
+    utils.load_test_fixtures(function() {
+      request(app)
+      .post('/login')
+      .set('Host', 'www.127.0.0.1.xip.io')
+      .send({ email: 'bob@example.com', password: 's3cret' })
+      .expect(302)
+      .end(function(err, res) {
+        if (err) {
+          return test.done(err);
+        }
+
+        test.equal('/', res.headers.location);
+
+        test.done();
+      });
     });
   },
   "logout": function(test) {
