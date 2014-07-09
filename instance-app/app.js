@@ -54,6 +54,11 @@ app.configure( function () {
   
   app.use( require('../lib/apps/auth').middleware );
 
+  app.get('/login', function(req, res) {
+    req.session.post_login_redirect_to = req.header('Referrer');
+    res.redirect(config.hosting_server.base_url + '/login');
+  });
+
   app.use('/api',   require('../lib/apps/api') );
 
   app.use('/info',   require('../lib/apps/info')() );
