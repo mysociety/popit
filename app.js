@@ -18,6 +18,16 @@ app.use( function (req, res, next) {
   next();
 });
 
+app.configure('development', function(){
+  app.use(express.logger('dev'));
+});
+
+app.configure('production', function(){
+  app.use(express.logger());
+});
+
+app.use(express.static(__dirname + '/' + config.public_dir));
+
 // sessions and auth
 app.use(express.cookieParser());
 
