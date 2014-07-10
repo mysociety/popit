@@ -14,6 +14,7 @@ describe("API v0.1", function() {
         persons_api_url: "http://test.popit.example.org/api/v0.1/persons",
         organizations_api_url: "http://test.popit.example.org/api/v0.1/organizations",
         memberships_api_url: "http://test.popit.example.org/api/v0.1/memberships",
+        posts_api_url: "http://test.popit.example.org/api/v0.1/posts",
         image_proxy_url: "http://test.popit.example.org/image-proxy/"
       }
     }, done)
