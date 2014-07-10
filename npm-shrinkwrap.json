@@ -762,7 +762,7 @@
     "popit-api": {
       "version": "0.0.14",
       "from": "git://github.com/mysociety/popit-api.git#master",
-      "resolved": "git://github.com/mysociety/popit-api.git#954242015d8831335e2cfad66ab5868cdee0c256",
+      "resolved": "git://github.com/mysociety/popit-api.git#699f88941e5e661c81461c35f87f967bca17dea7",
       "dependencies": {
         "express": {
           "version": "3.1.2",
