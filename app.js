@@ -4,8 +4,6 @@ var express = require('express');
 var config = require('config');
 var hosting_app = require('./hosting-app/app');
 var instance_app = require('./instance-app/app');
-var passport = require('passport');
-var masterSelector = require('./lib/middleware/master-selector');
 
 var app = module.exports = express();
 
@@ -28,7 +26,7 @@ app.configure('production', function(){
 
 app.use(express.static(__dirname + '/' + config.public_dir));
 
-// sessions and auth
+// sessions
 app.use(express.cookieParser());
 
 app.use(express.cookieSession({
@@ -42,11 +40,6 @@ app.use(function(req, res, next) {
   res.locals.flash = req.flash.bind(req);
   next();
 });
-
-app.use(masterSelector());
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 // match the hosting app host...
 app.use(

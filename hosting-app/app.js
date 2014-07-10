@@ -7,7 +7,9 @@
 var express           = require('express'),
     config            = require('config'),
     engines           = require('consolidate'),
-    UTA               = require('underscore-template-additions');
+    UTA               = require('underscore-template-additions'),
+    masterSelector    = require('../lib/middleware/master-selector'),
+    passport          = require('passport');
 
 
 var app = module.exports = express();
@@ -31,8 +33,12 @@ app.configure(function(){
 
   app.locals( require('../lib/middleware/config') );
 
-  app.use( require('../lib/apps/auth').middleware );
-  app.use( require('../lib/apps/auth').app );
+  app.use(masterSelector());
+
+  app.use(passport.initialize());
+  app.use(passport.session());
+
+  app.use(require('../lib/apps/auth').middleware);
 
   app.use( '/docs', require('../lib/apps/docs.js')() );
   app.use('/info', require('../lib/apps/info')() );
