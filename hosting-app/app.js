@@ -44,6 +44,7 @@ app.configure(function(){
   app.use('/info', require('../lib/apps/info')() );
 
   app.use(require('../lib/apps/registration'));
+  app.use(require('../lib/apps/login'));
 });
 
 app.configure('development', 'testing', function() {
