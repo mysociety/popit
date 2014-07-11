@@ -1290,6 +1290,27 @@
           }
         }
       }
+    },
+    "passport-http": {
+      "version": "0.2.2",
+      "from": "passport-http@",
+      "resolved": "https://registry.npmjs.org/passport-http/-/passport-http-0.2.2.tgz",
+      "dependencies": {
+        "pkginfo": {
+          "version": "0.2.3",
+          "from": "pkginfo@0.2.x"
+        },
+        "passport": {
+          "version": "0.1.18",
+          "from": "passport@~0.1.3",
+          "dependencies": {
+            "pause": {
+              "version": "0.0.1",
+              "from": "pause@0.0.1"
+            }
+          }
+        }
+      }
     }
   }
 }
