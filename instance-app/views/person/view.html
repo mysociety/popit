@@ -13,7 +13,7 @@
     popit.memberships = <%= JSON.stringify( _.map( memberships, function(m) { return m.id; } ) ) %>;
 </script>
 
-<% if (user || guest) { %>
+<% if (permissions.can_edit_instance) { %>
 <div class="popit-toolbar enough-toolbar">
   <div class="container">
     <div class="btn-toolbar pull-right">
@@ -36,7 +36,7 @@
         <a class="btn btn-default" href="/api/v0.1/persons/<%- person.id %>">Get this data</a>
       </div>
       <div class="btn-group">
-        <% if (user || guest) { %>
+        <% if (permissions.can_edit_instance) { %>
           <a href="<%= person.url %>/edit" id="edit-person" class="btn btn-default entity-enter-edit-mode">Edit person <span class="glyphicon glyphicon-chevron-right"></span></a>
         <% } else { %>
           <a class="btn btn-default" href="/login">Log in to edit <span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -72,14 +72,14 @@
         <% } else { %>
           <img src="<%- image_proxy(image_url('person', person, person.images[0]), "", 128) %>" />
         <% } %>
-        <% if (user || guest) { %>
+        <% if (permissions.can_edit_instance) { %>
         <a class="delete-photo" data-image-url="<%- image_url( 'person', person, person.images[0] ) %>">
           <span class="glyphicon glyphicon-trash glyphicon-space-after"></span> Delete photo
         </a>
         <% } %>
       <% } else { %>
         <img src='/img/placeholder-person.gif' width="128" />
-        <% if (user || guest) { %>
+        <% if (permissions.can_edit_instance) { %>
         <a class="add-photo" href="<%- person.url %>/images/upload">
           <span class="glyphicon glyphicon-plus glyphicon-space-after"></span> Add photo
         </a>
@@ -254,7 +254,7 @@
 
 </article>
 
-<% if (user || guest) { %>
+<% if (permissions.can_edit_instance) { %>
 <div class="edit-form">
   <%= render('person/form.html') %>
 </div>

@@ -28,7 +28,7 @@
         <a class="btn btn-default" href="/api/v0.1/organizations/<%- organization.id %>">Get this data</a>
       </div>
       <div class="btn-group">
-        <% if (user || guest) { %>
+        <% if (permissions.can_edit_instance) { %>
           <a id="edit-organization" class="btn btn-default entity-enter-edit-mode" href="<%= organization.url %>/edit">Edit organization <span class="glyphicon glyphicon-chevron-right"></span></a>
         <% } else { %>
           <a class="btn btn-default" href="/login">Log in to edit <span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -62,14 +62,14 @@
         <% } else { %>
           <img src="<%- image_proxy(image_url('organization', organization, organization.images[0]), "", 128) %>" />
         <% } %>
-        <% if (user || guest) { %>
+        <% if (permissions.can_edit_instance) { %>
         <a class="delete-photo" data-image-url="<%- image_url( 'organization', organization, organization.images[0] ) %>">
           <span class="glyphicon glyphicon-trash glyphicon-space-after"></span> Delete photo
         </a>
         <% } %>
       <% } else { %>
         <img src='/img/placeholder-organization.gif' width="128" />
-        <% if (user || guest) { %>
+        <% if (permissions.can_edit_instance) { %>
         <a class="add-photo" href="<%- organization.url %>/images/upload">
           <span class="glyphicon glyphicon-plus glyphicon-space-after"></span> Add photo
         </a>
@@ -253,7 +253,7 @@
 
 </article>
 
-<% if (user || guest) { %>
+<% if (permissions.can_edit_instance) { %>
 <div class="edit-form">
   <%= render('organization/form.html' )%>
 </div>
