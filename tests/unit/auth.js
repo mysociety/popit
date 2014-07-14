@@ -90,7 +90,7 @@ module.exports = {
           return test.done(err);
         }
 
-        test.equal('/', res.headers.location);
+        test.equal('/instances', res.headers.location);
 
         test.done();
       });
