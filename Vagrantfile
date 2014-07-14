@@ -17,5 +17,5 @@ Vagrant.configure("2") do |config|
   end
 
   # Provision using the shell provisioner
-  config.vm.provision :shell, :path => "provision.sh"
+  config.vm.provision :shell, :path => "config/provision.sh"
 end
