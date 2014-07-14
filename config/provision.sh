@@ -51,3 +51,9 @@ Xvfb :99 -ac &
 cp /etc/rc.local /etc/rc.local.old
 sed -i 's/^exit 0/Xvfb :99 -ac\n\nexit 0/' /etc/rc.local
 echo "export DISPLAY=:99" >> /home/vagrant/.bashrc
+
+echo "cd /vagrant" >> /home/vagrant/.bashrc
+cd /vagrant
+
+make
+cp config/development.js-example config/development.js
