@@ -2,10 +2,12 @@
 
 process.env.NODE_ENV = 'testing';
 
-var request = require('supertest');
+var supertest = require('supertest');
 var app = require('../../app');
 var utils = require('../../lib/utils');
 var PopIt = require('../../lib/popit');
+
+var request = supertest(app);
 
 module.exports = {
   setUp: function(cb) {
@@ -19,87 +21,58 @@ module.exports = {
   },
 
   "registration page": function(test) {
-    test.expect(1);
-    request(app)
+    request
     .get('/register')
     .set('Host', 'www.127.0.0.1.xip.io')
     .expect(200)
-    .end(function(err, res) {
-      if (err) {
-        return test.done(err);
-      }
-      test.ok(res.text.indexOf("Register") !== -1, "registration page didn't contain 'Register'");
-      test.done();
-    });
+    .expect(/Register/, test.done);
   },
 
   "registering": function(test) {
-    test.expect(2);
-    request(app)
+    request
     .post('/register')
     .set('Host', 'www.127.0.0.1.xip.io')
     .send({ email: 'bob@example.com', password: 's3cret' })
     .expect(302)
+    .expect('Location', '/')
     .end(function(err, res) {
       if (err) {
         return test.done(err);
       }
 
-      test.equal('/', res.headers.location);
-
-      request(app)
+      request
       .post('/register')
       .set('Host', 'www.127.0.0.1.xip.io')
       .send({ email: 'bob@example.com', password: 's3cret' })
       .expect(200)
-      .end(function(err, res) {
-        if (err) {
-          return test.done(err);
-        }
-
-        test.ok(res.text.indexOf('User already exists with name') !== -1, "duplicate emails should not be allowed");
-
-        test.done();
-      });
+      .expect(/User already exists with name/, test.done);
     });
   },
+
   "login page": function(test) {
-    request(app)
+    request
     .get('/login')
     .set('Host', 'www.127.0.0.1.xip.io')
     .expect(200)
-    .end(function(err, res) {
-      if (err) {
-        return test.done(err);
-      }
-
-      test.ok(res.text.indexOf('Log in') !== -1);
-
-      test.done();
-    });
+    .expect(/Log in/, test.done);
   },
+
   "login processing": function(test) {
     utils.load_test_fixtures(function() {
-      request(app)
+      request
       .post('/login')
       .set('Host', 'www.127.0.0.1.xip.io')
       .send({ email: 'bob@example.com', password: 's3cret' })
       .expect(302)
-      .end(function(err, res) {
-        if (err) {
-          return test.done(err);
-        }
-
-        test.equal('/instances', res.headers.location);
-
-        test.done();
-      });
+      .expect('Location', '/instances', test.done);
     });
   },
+
   "logout": function(test) {
-    request(app)
+    request
     .get('/logout')
     .set('Host', 'www.127.0.0.1.xip.io')
     .expect(302, test.done);
-  }
+  },
+
 };
