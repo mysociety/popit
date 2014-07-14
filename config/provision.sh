@@ -31,7 +31,7 @@ apt-get update -y
 apt-get install -y openjdk-6-jre elasticsearch
 
 # Install other packages
-apt-get install -y ruby1.9.1 ruby1.9.1-dev chromium-browser xvfb git graphicsmagick unzip sendmail
+apt-get install -y ruby1.9.1 ruby1.9.1-dev chromium-browser xvfb git graphicsmagick unzip postfix
 
 # Download and install chromedriver
 wget -q http://chromedriver.storage.googleapis.com/2.8/chromedriver_linux64.zip
