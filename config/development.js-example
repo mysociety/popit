@@ -22,7 +22,7 @@ module.exports = {
     },
     
     instance_server: {
-        files_dir:     path.normalize(__dirname + '/../../popitdev_files'),  
+        files_dir:     path.normalize(__dirname + '/../uploads'),
     },
     email: {
         send_by_transport: true,
