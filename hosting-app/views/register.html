@@ -33,6 +33,9 @@
       <p class="form-group">
         <button id="login" class="btn btn-primary" type="submit">Register</button>
       </p>
+      <% if (isUpgrading) { %>
+      <p>When you click <b>Register</b> your PopIt account will be associated with this instance and the legacy account will be removed.</p>
+      <% } %>
 
   </form>
 

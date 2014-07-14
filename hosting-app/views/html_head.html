@@ -55,6 +55,17 @@
   </div>
   <% } %>
 
+  <% var flash_info = flash('info'); %>
+  <% if (flash_info.length) { %>
+    <div id="flash-info" class="alert alert-warning">
+      <ul>
+        <% _.each(flash_info, function (message) { %>
+          <li><%- message %></li>
+        <% }); %>
+      </ul>
+    </div>
+  <% } %>
+
   <header id="header">
     <div class="container">
 
