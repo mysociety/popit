@@ -1,0 +1,22 @@
+<%= render(
+  'html_head.html',
+  {
+    title:       'Admin',
+    description: '',
+  }
+) %>
+
+<div class="login-form container">
+
+  <% if ( user && permissions.is_admin ) { %>
+  <ul>
+  <% _.each( instance_permissions, function(permission)  { %>
+      <li><%= permission.account.username %></li>
+  <% }) %>
+  </ul>
+  <% } %>
+
+</div>
+
+
+<%= render('html_footer.html' )%>
