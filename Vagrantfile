@@ -2,6 +2,7 @@
 # vi: set ft=ruby :
 
 POPIT_VAGRANT_PORT = ENV['POPIT_VAGRANT_PORT'] || 3000
+POPIT_VAGRANT_NFS = ENV['POPIT_VAGRANT_NFS'] == '1'
 
 Vagrant.configure("2") do |config|
   # Every Vagrant virtual environment requires a box to build off of.
@@ -12,6 +13,11 @@ Vagrant.configure("2") do |config|
   config.vm.box_url = "http://files.vagrantup.com/precise64.box"
 
   config.vm.network :forwarded_port, guest: 3000, host: POPIT_VAGRANT_PORT
+
+  if POPIT_VAGRANT_NFS
+    config.vm.network "private_network", ip: "192.168.33.10"
+    config.vm.synced_folder ".", "/vagrant", type: "nfs"
+  end
 
   config.vm.provider :virtualbox do |v|
     # assign memory and CPU as needed
