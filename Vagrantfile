@@ -3,6 +3,7 @@
 
 POPIT_VAGRANT_PORT = ENV['POPIT_VAGRANT_PORT'] || 3000
 POPIT_VAGRANT_NFS = ENV['POPIT_VAGRANT_NFS'] == '1'
+POPIT_VAGRANT_MEMORY = ENV['POPIT_VAGRANT_MEMORY'] || 1024
 
 Vagrant.configure("2") do |config|
   # Every Vagrant virtual environment requires a box to build off of.
@@ -21,7 +22,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider :virtualbox do |v|
     # assign memory and CPU as needed
-    v.customize ["modifyvm", :id, "--memory", "1024"]
+    v.customize ["modifyvm", :id, "--memory", POPIT_VAGRANT_MEMORY]
   end
 
   # Provision using the shell provisioner
