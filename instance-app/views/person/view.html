@@ -135,13 +135,37 @@
   <div class="entity-details">
 
     <ul class="nav nav-tabs">
+      <li class="<% if (!memberships) { %>empty<% } %>"><a href="#political-career">Political career</a></li>
       <li class="<% if (!person.other_names.length && !person.summary && !person.birth_date && !person.death_date) { %>empty<% } %>"><a href="#biography">Biography</a></li>
       <li class="<% if (!person.links.length) { %>empty<% } %>"><a href="#websites">Websites</a></li>
       <li class="<% if (!person.contact_details.length) { %>empty<% } %>"><a href="#contact">Contact</a></li>
-      <li class="<% if (!memberships) { %>empty<% } %>"><a href="#political-career">Political career</a></li>
       <!-- <li class="<% if (!false) { %>empty<% } %>"><a href="#career">Career</a></li> -->
       <li class="<% if (!person.identifiers.length) { %>empty<% } %>"><a href="#advanced">Advanced</a></li>
     </ul>
+
+    <div class="entity-details__section" id="political-career">
+      <% if (!memberships.length) { %>
+        <p class="entity-details__hint view-mode entity-enter-edit-mode">
+          <span class="btn btn-xs btn-default pull-right">Add a membership</span>
+          Is this person a member of an organization or party?
+        </p>
+      <% } %>
+
+      <div class="entity-details__property <% if(!memberships){ %>empty<% } %>">
+        <ul class="cleared memberships">
+          <% _.each( memberships, function (membership, i) { %>
+            <% if (validMembership(membership, person.id)) { %>
+            <li class="membership">
+              <%= render( 'membership/list-item.html', { membership: membership, member: person, organization: relatedObject(membership, person.id), type: 'person' } ) %>
+            </li>
+            <% } %>
+          <% }); %>
+          <li class="edit-mode">
+            <a class="add add-membership btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(memberships.length){ %>nother<% } %> membership</a>
+          </li>
+        </ul>
+      </div>
+    </div>
 
     <div class="entity-details__section" id="biography">
       <% if (!person.other_names.length && !person.summary && !person.birth_date && !person.death_date) { %>
@@ -203,30 +227,6 @@
       <div class="entity-details__property <% if(!person.contact_details.length){ %>empty<% } %>">
         <label>Contact details</label>
         <%= render( 'contact/list.html', { contact_details: person.contact_details } ) %>
-      </div>
-    </div>
-
-    <div class="entity-details__section" id="political-career">
-      <% if (!memberships.length) { %>
-        <p class="entity-details__hint view-mode entity-enter-edit-mode">
-          <span class="btn btn-xs btn-default pull-right">Add a membership</span>
-          Is this person a member of an organization or party?
-        </p>
-      <% } %>
-
-      <div class="entity-details__property <% if(!memberships){ %>empty<% } %>">
-        <ul class="cleared memberships">
-          <% _.each( memberships, function (membership, i) { %>
-            <% if (validMembership(membership, person.id)) { %>
-            <li class="membership">
-              <%= render( 'membership/list-item.html', { membership: membership, member: person, organization: relatedObject(membership, person.id), type: 'person' } ) %>
-            </li>
-            <% } %>
-          <% }); %>
-          <li class="edit-mode">
-            <a class="add add-membership btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(memberships.length){ %>nother<% } %> membership</a>
-          </li>
-        </ul>
       </div>
     </div>
 
