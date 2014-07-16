@@ -17,7 +17,10 @@
 
   <p class="form-group">
     <label for="image_url">Or specify URL</label>
-    <input class="form-control" type="text" id="image_url" name="url" />
+    <input class="form-control" type="text" id="image_url" name="url" value="<%= url %>"/>
+    <% if ( errors && errors.image_url ) { %>
+    <strong><%= errors.image_url %></strong>
+    <% } %>
 
     <%
       //- if opts.form_help_text
