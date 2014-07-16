@@ -22,6 +22,7 @@ define([
 
     saveAndAddAnother: function() {
       $('.enough-toolbar:visible').fadeOut(100);
+      $('input[name="_add_another"]').val(1);
       this.saveChanges(function(){
         window.location.href = '/persons/new';
       });
