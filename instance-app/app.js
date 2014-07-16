@@ -7,11 +7,7 @@
 var express           = require('express'),
     config            = require('config'),
     instanceSelector  = require('../lib/middleware/instance-selector'),
-    Db                = require('mongodb').Db,
-    Server            = require('mongodb').Server,
-    mongoStore        = require('connect-mongodb'),
     image_proxy       = require('connect-image-proxy'),
-    connect_flash     = require('connect-flash'),
     UTA               = require('underscore-template-additions'),
     current_absolute_pathname = require('../lib/middleware/route').current_absolute_pathname,
     engines           = require('consolidate'),
@@ -30,14 +26,6 @@ app.locals({
 
 // Configuration
 
-app.configure('development', function(){
-  app.use(express.logger('dev'));
-});
-
-app.configure('production', function(){
-  app.use(express.logger());
-});
-
 var templates = new UTA();
 templates.cacheTemplates = app.get('env') == 'development' ? false : true;
 
@@ -52,34 +40,6 @@ app.configure(function(){
 });
 
 app.configure( function () {
-  app.use(express.static(__dirname + '/../' + config.public_dir));
-  
-  // sessions and auth
-  app.use( express.cookieParser( config.instance_server.cookie_secret ) );
-  var session_db_name = config.MongoDB.popit_prefix + config.MongoDB.session_name;
-  var session_server  = new Server(
-      config.MongoDB.host,
-      config.MongoDB.port,
-      {
-        auto_reconnect: true,
-        native_parser: true,
-      }
-  );
-  var session_db = new Db( session_db_name, session_server, {safe: true} );
-  var session_store = new mongoStore({ db: session_db });
-  
-  app.use( express.session({
-      secret: config.instance_server.cookie_secret,
-      store: session_store,
-  }) );
-  
-  // set up the flash and make it available to the templates - https://gist.github.com/3070950
-  app.use( connect_flash() );
-  app.use( function (req, res, next) {
-    res.locals.flash = req.flash.bind(req);
-    next();
-  });
-
   app.use( function (req,res,next) {
     res.locals.current_absolute_pathname = current_absolute_pathname(req);
     next();    
@@ -93,7 +53,11 @@ app.configure( function () {
   }));
   
   app.use( require('../lib/apps/auth').middleware );
-  app.use( require('../lib/apps/auth').app );
+
+  app.get('/login', function(req, res) {
+    req.session.post_login_redirect_to = req.header('Referrer');
+    res.redirect(config.hosting_server.base_url + '/login');
+  });
 
   app.use('/api',   require('../lib/apps/api') );
 

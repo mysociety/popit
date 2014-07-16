@@ -86,7 +86,7 @@
         <% if ( user || guest ) { %>
           <li id="signed_in">
             Signed in as
-            <span class="username"><%- guest ? 'a Guest' : user.email %></span>
+            <span class="username"><%- guest ? 'a Guest' : (user.email || user.username) %></span>
           </li>
           <li>
             <a href="/logout">Sign Out</a>

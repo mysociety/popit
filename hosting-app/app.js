@@ -6,21 +6,16 @@
 
 var express           = require('express'),
     config            = require('config'),
-    masterSelector    = require('../lib/middleware/master-selector'),
     engines           = require('consolidate'),
     UTA               = require('underscore-template-additions');
 
 
 var app = module.exports = express();
 
-
-// Configuration
-app.configure('development', function(){
-  app.use(express.logger('dev'));
-});
-
-app.configure('production', function(){
-  app.use(express.logger());
+app.locals({
+  user:  null,
+  guest: null,
+  popit: null,
 });
 
 var templates = new UTA();
@@ -33,15 +28,17 @@ app.configure(function(){
 
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(express.static(__dirname + '/../' + config.public_dir));
 
   app.locals( require('../lib/middleware/config') );
-  app.use(masterSelector());
+
+  app.use( require('../lib/apps/auth').middleware );
+  app.use( require('../lib/apps/auth').app );
 
   app.use( '/docs', require('../lib/apps/docs.js')() );
   app.use('/info', require('../lib/apps/info')() );
-});
 
+  app.use(require('../lib/apps/registration'));
+});
 
 app.configure('development', 'testing', function() {
   var helpers = require('../lib/apps/dev-helpers');
