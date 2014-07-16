@@ -75,6 +75,7 @@ $entity-photo-sidebar-width: 285px;
   }
 }
 
+.edit-form,
 .edit-mode {
   display: none;
 }
@@ -346,7 +347,11 @@ $entity-photo-sidebar-width: 285px;
 }
 
 .entity-details__section {
+  display: none;
   padding: 15px;
+  &:first-of-type {
+    display: block;
+  }
 }
 
 .entity-details__property {
