@@ -1,0 +1,13 @@
+.admin-container {
+  @include simple-container(100%);
+}
+
+.admin-layout {
+  @include make-row();
+  .primary-column {
+    @include make-md-column(8);
+  }
+  .secondary-column {
+    @include make-md-column(4);
+  }
+}
