@@ -13,6 +13,24 @@
   </div>
 </div>
 <div class="container admin-container">
+  <!-- example of the "are you sure" modal that fires when you remove access from a user -->
+  <div class="modal fade" id="example-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Are you sure?</h4>
+      </div>
+      <div class="modal-body">
+        <p>This will remove Johnny Appleseed's access to this PopIt</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Remove access</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
   <p class="lead">Add, edit or remove users' access to this PopIt</p>
   <div class="admin-layout">
     <div class="primary-column">
@@ -23,7 +41,7 @@
               <p class="access-control-listed-user__name">Martin Wright <span class="text-muted">&ndash; You</span> <!-- Show this when it's you --></p>
               <p class="access-control-listed-user__email">martin@mysociety.org</p>
               <div class="btn-group access-control__dropdown">
-                <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+                <button type="button" class="btn btn-default btn-sm dropdown-toggle disabled" data-toggle="dropdown"> <!-- button is disabled for yourself -->
                   Owner <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
@@ -37,34 +55,34 @@
           </li>
           <li>
             <div class="access-control-listed-user">
-              <p class="access-control-listed-user__name">Martin Wright</p>
-              <p class="access-control-listed-user__email">martin@mysociety.org</p>
+              <p class="access-control-listed-user__name">Johnny Appleseed</p>
+              <p class="access-control-listed-user__email">johnny.appleseed@googlemail.com</p>
               <div class="btn-group access-control__dropdown">
                 <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
                   Editor <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
                   <li><a href="#">Owner</a></li>
-                  <li><a href="#">Editor</a></li>
+                  <li><a href="#" class="current-access-state">Editor</a></li>
                   <li class="divider"></li>
-                  <li><a href="#">Remove</a></li>
+                  <li><a href="#" data-toggle="modal" data-target="#example-modal">Remove</a></li>
                 </ul>
               </div>
             </div>
           </li>
           <li>
             <div class="access-control-listed-user">
-              <p class="access-control-listed-user__name">Martin Wright</p>
-              <p class="access-control-listed-user__email">martin@mysociety.org</p>
+              <p class="access-control-listed-user__name">Jenny Appleseed</p>
+              <p class="access-control-listed-user__email">jenny.appleseed@yahoo.co.uk</p>
               <div class="btn-group access-control__dropdown">
                 <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
                   Editor <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
                   <li><a href="#">Owner</a></li>
-                  <li><a href="#">Editor</a></li>
+                  <li><a href="#" class="current-access-state">Editor</a></li>
                   <li class="divider"></li>
-                  <li><a href="#">Remove</a></li>
+                  <li><a href="#" data-toggle="modal" data-target="#example-modal">Remove</a></li>
                 </ul>
               </div>
             </div>
