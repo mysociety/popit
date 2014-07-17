@@ -6,16 +6,84 @@
   }
 ) %>
 
-<div class="login-form container">
 
-  <% if ( user && permissions.is_admin ) { %>
+<div class="popit-toolbar entity-toolbar">
+  <div class="container">
+    <p><a href="/admin">Users</a></p>
+  </div>
+</div>
+<div class="container">
+  <p class="lead">Add, edit or remove users' access to this PopIt</p>
+  <ul class="list-unstyled">
+      <!-- This list should be in descending order of access level, then alphabetical. -->
+      <li>
+        <div class="access-control-listed-user">
+          <p>Martin Wright <span class="text-muted">&ndash; You</span></p>
+          <p class="text-muted">martin@mysociety.org</p>
+          <div class="btn-group">
+            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+              Owner <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Owner</a></li>
+              <li><a href="#">Editor</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Remove</a></li>   {# Remove should trigger a modal 'Are you Sure' box #}
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="access-control-listed-user">
+          <p>Johnny Appleseed</p>
+          <p class="text-muted">johnny.appleseed@gmail.com</p>
+          <div class="btn-group">
+            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+              Editor <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Owner</a></li>
+              <li><a href="#">Editor</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Remove</a></li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="access-control-listed-user">
+          <p>Martin Wright <span class="text-muted">&ndash; You</span></p>
+          <p class="text-muted">martin@mysociety.org</p>
+          <div class="btn-group">
+            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+              Owner <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Owner</a></li>
+              <li><a href="#">Editor</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Remove</a></li>
+            </ul>
+          </div>
+        </div>
+      </li>
+  </ul>
   <ul>
   <% _.each( instance_permissions, function(permission)  { %>
       <li><%= permission.account.username %></li>
   <% }) %>
   </ul>
-  <% } %>
-
+  <div class="add-a-new-person">
+    <form role="form" action="#">
+      <h2>Add a user</h2>
+      <p>Invite a person to collaborate on this PopIt</p>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" autocorrect="off" autocapitalize="off" />
+      </div>
+      <button type="submit" class="btn btn-default btn-primary">Invite</button>
+    </form>
+  </div>
 </div>
 
 
