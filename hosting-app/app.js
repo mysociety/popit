@@ -9,7 +9,7 @@ var express           = require('express'),
     engines           = require('consolidate'),
     UTA               = require('underscore-template-additions'),
     masterSelector    = require('../lib/middleware/master-selector'),
-    passport          = require('passport');
+    passport          = require('../lib/passport');
 
 
 var app = module.exports = express();

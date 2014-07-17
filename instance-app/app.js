@@ -12,7 +12,7 @@ var express           = require('express'),
     current_absolute_pathname = require('../lib/middleware/route').current_absolute_pathname,
     engines           = require('consolidate'),
     popitApiStorageSelector = require('popit-api/src/middleware/storage-selector'),
-    passport          = require('passport');
+    passport          = require('../lib/passport');
 
 var app = module.exports = express();
 
