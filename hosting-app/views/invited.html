@@ -1,0 +1,37 @@
+<%= render(
+  'html_head.html',
+  {
+    title:       'Invited',
+    description: '',
+  }
+) %>
+
+<div class="container">
+  <h1>Invite accepted</h1>
+  <p class="lead">You're nearly ready to go, we just need to confirm a few details</p>
+  <form role="form">
+    <div class="form-group">
+      <label for="name">Your name</label>
+      <input type="text" class="form-control" id="name" name="name">
+      <p class="help-block">Your name will be visible to other members of this PopIt</p>
+      {# Is this help block correct, or will their name be viewable publicly?  #}
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" name="email" value="prefilled-email@gmail.com" autocorrect="off" autocapitalize="off" />
+      {# This field should be prefilled with the email address they were invited with, if they can change it, great! If not, it should be in a disabled state #}
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" name="password" >
+    </div>
+    <div class="form-group">
+      <label for="password-confirmation">Confirm password</label>
+      <input type="password-confirmation" class="form-control" id="password-confirmation" name="password-confirmation" >
+    </div>
+    <button type="submit" class="btn btn-default btn-primary">Join</button>
+  </form>
+</div>
+
+
+<%= render('html_footer.html' )%>
