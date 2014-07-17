@@ -14,7 +14,10 @@
 
 .add-a-new-person {
   background-color: $gray-lighter;
-  padding: $grid-gutter-width;
+  padding: $grid-gutter-width/2;
+  @media (min-width: $screen-sm-min) {
+    padding: $grid-gutter-width;
+  }
   h2 {
     font-size: 21px;
     margin-top: 0;
