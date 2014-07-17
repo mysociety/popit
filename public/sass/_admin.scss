@@ -11,3 +11,49 @@
     @include make-md-column(4);
   }
 }
+
+.add-a-new-person {
+  background-color: $gray-lighter;
+  padding: $grid-gutter-width;
+  h2 {
+    font-size: 21px;
+    margin-top: 0;
+  }
+  p {
+    font-size: 16px;
+    color: $gray;
+  }
+}
+
+.access-control-list-users {
+  border-top: 1px solid $gray-lighter;
+}
+
+.access-control-listed-user {
+  border-bottom: 1px solid $gray-lighter;
+  position: relative;
+  padding: 8px 0 12px;
+}
+
+.access-control-listed-user__name {
+  font-size: 21px;
+  margin-bottom: 4px;
+}
+
+.access-control-listed-user__email {
+  color: $gray-light;
+  font-size: 14px;
+  margin-bottom: 4px;
+  @media (min-width: $screen-sm-min) {
+    margin-bottom: 0;
+  }
+}
+
+.access-control__dropdown {
+  position: relative;
+  @media (min-width: $screen-sm-min) {
+    position: absolute;
+    right: 0;
+    top: 18px;
+  }
+}

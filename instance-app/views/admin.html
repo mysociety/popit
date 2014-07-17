@@ -16,13 +16,13 @@
   <p class="lead">Add, edit or remove users' access to this PopIt</p>
   <div class="admin-layout">
     <div class="primary-column">
-      <ul class="list-unstyled">
+      <ul class="list-unstyled access-control-list-users">
           <!-- This list should be in descending order of access level, then alphabetical. -->
           <li>
             <div class="access-control-listed-user">
-              <p>Martin Wright <span class="text-muted">&ndash; You</span></p>
-              <p class="text-muted">martin@mysociety.org</p>
-              <div class="btn-group">
+              <p class="access-control-listed-user__name">Martin Wright <span class="text-muted">&ndash; You</span> <!-- Show this when it's you --></p>
+              <p class="access-control-listed-user__email">martin@mysociety.org</p>
+              <div class="btn-group access-control__dropdown">
                 <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
                   Owner <span class="caret"></span>
                 </button>
@@ -30,16 +30,16 @@
                   <li><a href="#">Owner</a></li>
                   <li><a href="#">Editor</a></li>
                   <li class="divider"></li>
-                  <li><a href="#">Remove</a></li>   {# Remove should trigger a modal 'Are you Sure' box #}
+                  <li><a href="#">Remove</a></li>   <!-- Remove should trigger a modal 'Are you Sure' box -->
                 </ul>
               </div>
             </div>
           </li>
           <li>
             <div class="access-control-listed-user">
-              <p>Johnny Appleseed</p>
-              <p class="text-muted">johnny.appleseed@gmail.com</p>
-              <div class="btn-group">
+              <p class="access-control-listed-user__name">Martin Wright</p>
+              <p class="access-control-listed-user__email">martin@mysociety.org</p>
+              <div class="btn-group access-control__dropdown">
                 <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
                   Editor <span class="caret"></span>
                 </button>
@@ -54,11 +54,11 @@
           </li>
           <li>
             <div class="access-control-listed-user">
-              <p>Martin Wright <span class="text-muted">&ndash; You</span></p>
-              <p class="text-muted">martin@mysociety.org</p>
-              <div class="btn-group">
+              <p class="access-control-listed-user__name">Martin Wright</p>
+              <p class="access-control-listed-user__email">martin@mysociety.org</p>
+              <div class="btn-group access-control__dropdown">
                 <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-                  Owner <span class="caret"></span>
+                  Editor <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
                   <li><a href="#">Owner</a></li>
