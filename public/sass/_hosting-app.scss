@@ -93,3 +93,7 @@
   }
 
 }
+
+.invited-container {
+  @include simple-container;
+}
