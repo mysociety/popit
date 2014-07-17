@@ -6,6 +6,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
+define(['jquery'], function(jQuery) {
 
 +function ($) {
   'use strict';
@@ -2105,3 +2106,4 @@
 
 }(jQuery);
 
+});

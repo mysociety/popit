@@ -4,5 +4,6 @@ require([
   'augmenters/close-link',
   'augmenters/ajax-loader',
   'augmenters/setup-tabs',
-  'augmenters/anonymous-suggestions'
+  'augmenters/anonymous-suggestions',
+  'libs/bootstrap-amd'
 ]);

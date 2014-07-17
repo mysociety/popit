@@ -1,4 +1,5 @@
 require([
   'augmenters/mailchecker',
-  'augmenters/slug-validation'
+  'augmenters/slug-validation',
+  'libs/bootstrap-amd'
 ]);
