@@ -1,0 +1,25 @@
+.upgrade-account-container {
+    @include simple-container(740px);
+    .form-group {
+        margin-bottom: 1.5em;
+        @media (min-width: $screen-md-min){
+            max-width: 370px;
+        }
+
+    }
+}
+
+.password-and-confirmation {
+    @include make-row;
+    .field-column {
+        @include make-sm-column(12);
+        @include make-md-column(6);
+    }
+}
+
+.create-account-container {
+    border-bottom: 1px solid $gray-lighter;
+    margin-bottom: 40px;
+    padding-bottom: 1.5em;
+    margin-top: 1.5em;
+}

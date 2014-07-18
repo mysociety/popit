@@ -5,11 +5,64 @@
 
 
 <div class="container">
-  <h1>You need to upgrade your account</h1>
+  <div class="upgrade-account-container">
+    <h2>Upgrade your account</h2>
+    <p>We’ve changed the way PopIt accounts work. Now, rather than have a separate username and password for each PopIt you’ll have one global account that can access all of your PopIts.</p>
+    <p>To continute to access this PopIt, you need to merge this local account with a global account.</p>
+    <div class="create-account-container">
+      <h3>Don’t have a global PopIt account? Create one now</h3>
+      <form action='/register' method='post'>
+        <div class="form-group">
+          <label for="name" class="control-label">Name</label>
+          <input id="name" type="text" name="name" class="form-control">
+          <p class="help-block">This will be visible to other PopIt users</p>
+        </div>
+        <div class="form-group">
+          <label for="email" class="control-label">Email</label>
+          <input id="email" type="text" name="email" class="form-control">
+        </div>
+        <div class="password-and-confirmation">
+          <div class="field-column">
+            <div class="form-group">
+              <label for="password" class="control-label">Password</label>
+              <input id="password" type="password" name="password" class="form-control">
+            </div>
+          </div>
+          <div class="field-column">
+            <div class="form-group">
+              <label for="password" class="control-label">Confirm password</label>
+              <input id="password" type="password" name="password" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button id="login" class="btn btn-primary" type="submit">Create</button>
+        </div>
 
-  <p>PopIt now uses site-wide accounts, which means you can have one account that manages multiple PopIt instances.</p>
+        <p>When you click <b>Register</b> your PopIt account will be associated with this instance and the legacy account will be removed.</p>
 
-  <p>To upgrade to to a site-wide account, either <a href="<%= config.hosting_site_base_url %>/register">register for a new account</a> or <a href="/login">login to an existing site-wide account</a></p>
+      </form>
+    </div>
+    <h3>Got a global PopIt account? Login to merge your accounts</h3>
+
+    <form action='/login' method='post'>
+        <div class="form-group">
+          <label for="email" class="control-label">Email</label>
+          <input id="email" type="text" name="email" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="control-label">Password</label>
+          <input id="password" type="password" name="password" class="form-control">
+          <a href="/forgotten-password" class="pull-right">Forgotten?</a>
+        </div>
+
+        <div class="form-group">
+          <button id="login" class="btn btn-primary" type="submit">Log in</button>
+        </div>
+
+    </form>
+  </div>
 </div>
 
 <%= render('html_footer.html') %>
