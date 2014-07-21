@@ -8,7 +8,8 @@ var winston       = require('winston'),
     _             = require('underscore'),     
     config        = require('config'),
     Error404      = require('../../lib/errors').Error404,
-    format        = require('util').format;
+    format        = require('util').format,
+    requireUser   = require('../../lib/apps/auth').requireUser;
 
 exports.route = function (app) {
 
@@ -98,8 +99,8 @@ exports.route = function (app) {
       res.render('instance_new.html');
     };
     
-    app.post( '/instances/new', new_post );
-    app.get(  '/instances/new', new_get  );
+    app.post( '/instances/new', requireUser, new_post );
+    app.get(  '/instances/new', requireUser, new_get  );
     
     
     // auto-load instance for the param instanceSlug
