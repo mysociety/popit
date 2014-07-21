@@ -11,7 +11,7 @@
   <h1>Make your own PopIt instance</h1>
 
   <p class="lead">
-    Creating your own PopIt instance is quick, easy, and free. Once you fill in this form, we&rsquo;ll email you a temporary password to log in.
+    Creating your own PopIt instance is quick, easy, and free. Once you fill in this form, we&rsquo;ll take you straight to your new instance.
   </p>
 
   <hr>
@@ -29,19 +29,6 @@
       <span class="help-block">A Popit instance with that name already exists at <a href="http://<%- slug %><%- config.instance_site_base_url_suffix %>">http://<%- slug %><%- config.instance_site_base_url_suffix %></a></span>
       <% } else if (errors.slug) { %>
         <span class="help-block">Your website name can only contain letters and numbers. It should be at least four letters long but no longer than 20.</span>
-      <% } %>
-    </p>
-
-    <p class="form-group <%- errors.email ? 'has-error' : '' %>">
-      <label class="control-label" for='email'>Your Email address</label>
-      <input id="email" class="form-control" type='email' name='email' data-validation='required email' required value='<%- email %>' />
-      <span class="suggestion" /></span>
-      <% if (errors.email) { %>
-        <% if (errors.email.message == 'required') { %>
-          <span class="help-block">You forgot to enter your email address.</span>
-        <% } else { %>
-          <span class="help-block">Error: <%- errors.email.message %>.</span>
-        <% } %>
       <% } %>
     </p>
 
