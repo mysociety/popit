@@ -29,7 +29,7 @@ exports.route = function (app) {
     var Permission = req.popit.permissions();
     var instance = new Instance();
     instance.slug = slug;
-    instance.email = req.user.username;
+    instance.email = req.user.email;
     instance.status = 'active';
     instance.save(function(err, newInstance) {
       if (err) {
