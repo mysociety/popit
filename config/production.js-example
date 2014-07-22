@@ -15,6 +15,7 @@ module.exports = {
     instance_server: {
         base_url_format: "http://%s.popit.example.com:3000",
         cookie_secret: 'something-really-secret',
+        cookie_domain: '.popit.example.com',
     },
     email: {
         transport:         'SMTP',
