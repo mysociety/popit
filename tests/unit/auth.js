@@ -32,7 +32,7 @@ module.exports = {
     request
     .post('/register')
     .set('Host', 'www.127.0.0.1.xip.io')
-    .send({ email: 'bob@example.com', password: 's3cret' })
+    .send({ name: 'Bob', email: 'bob@example.com', password: 's3cret' })
     .expect(302)
     .expect('Location', '/')
     .end(function(err, res) {
@@ -43,7 +43,7 @@ module.exports = {
       request
       .post('/register')
       .set('Host', 'www.127.0.0.1.xip.io')
-      .send({ email: 'bob@example.com', password: 's3cret' })
+      .send({ name: 'Bob', email: 'bob@example.com', password: 's3cret' })
       .expect(200)
       .expect(/User already exists with name/, test.done);
     });

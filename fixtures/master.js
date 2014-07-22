@@ -10,6 +10,7 @@ exports.instances = [
 
 exports.accounts = [
   {
+    "name": "Bob",
     "email" : "bob@example.com",
     // password == s3cret
     "salt" : "1a5155778922d8abac9de65649878f82645026b70b60a54ad018d825347002e4",
