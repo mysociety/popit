@@ -59,6 +59,8 @@ app.configure( function () {
   app.use( require('../lib/apps/auth').middleware );
   app.use( require('../lib/apps/auth').app );
 
+  app.use(require('../lib/authorization').middleware());
+
   app.use('/api',   require('../lib/apps/api') );
 
   app.use('/info',   require('../lib/apps/info')() );

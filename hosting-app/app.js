@@ -40,6 +40,8 @@ app.configure(function(){
 
   app.use(require('../lib/apps/auth').middleware);
 
+  app.use(require('../lib/authorization').middleware());
+
   app.use( '/docs', require('../lib/apps/docs.js')() );
   app.use('/info', require('../lib/apps/info')() );
 

@@ -36,8 +36,12 @@ exports.route = function (app) {
         res.locals.errors = err.errors;
         return res.render('instance_new.html');
       }
-      // Give the user access to the instance
-      Permission.grantPermission(req.user._id, newInstance._id, function(err) {
+      // Make the user owner of the instance
+      Permission.create({
+        account: req.user._id,
+        instance: newInstance._id,
+        role: 'owner',
+      }, function(err) {
         if (err) {
           return next(err);
         }

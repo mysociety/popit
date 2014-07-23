@@ -12,14 +12,14 @@
         <% } else { %>
           <img src="<%- image_proxy(image_url('person', person, person.images[0]), "", 128) %>" />
         <% } %>
-        <% if (user || guest) { %>
+        <% if (userCan('edit instance')) { %>
         <a class="delete-photo" data-image-url="<%- image_url( 'person', person, person.images[0] ) %>">
           <span class="glyphicon glyphicon-trash glyphicon-space-after"></span> Delete photo
         </a>
         <% } %>
       <% } else { %>
         <img src='/img/placeholder-person.gif' width="128" />
-        <% if (user || guest) { %>
+        <% if (userCan('edit instance')) { %>
         <a class="add-photo" href="<%- person.url %>/images/upload">
           <span class="glyphicon glyphicon-plus glyphicon-space-after"></span> Add photo
         </a>

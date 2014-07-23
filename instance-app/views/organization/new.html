@@ -12,7 +12,7 @@
     popit.data = <%= JSON.stringify(organization.toJSON()) %>;
 </script>
 
-<% if (user || guest) { %>
+<% if (userCan('edit instance')) { %>
 <div class="popit-toolbar entity-toolbar">
   <div class="container">
     <div class="btn-toolbar pull-right view-mode">

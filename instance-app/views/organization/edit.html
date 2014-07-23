@@ -40,7 +40,7 @@
         <a class="btn btn-default" href="/api/v0.1/organizations/<%- organization.id %>">Get this data</a>
       </div>
       <div class="btn-group">
-        <% if (user || guest) { %>
+        <% if (userCan('edit instance')) { %>
           <a id="edit-organization" class="btn btn-default entity-enter-edit-mode" href="<%= organization.url %>/edit">Edit organization <span class="glyphicon glyphicon-chevron-right"></span></a>
         <% } else { %>
           <a class="btn btn-default" href="/login">Log in to edit <span class="glyphicon glyphicon-chevron-right"></span></a>

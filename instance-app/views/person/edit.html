@@ -22,7 +22,7 @@
 }
 </style>
 
-<% if (user || guest) { %>
+<% if (userCan('edit instance')) { %>
 <div class="popit-toolbar enough-toolbar">
   <div class="container">
     <div class="btn-toolbar pull-right">

@@ -22,7 +22,7 @@
             Populate
           </h3>
           <p>Add people and organizations to your PopIt instance.</p>
-          <% if (permissions.can_edit_instance) { %>
+          <% if (userCan('edit instance')) { %>
             <a class="new-person add btn <% if (current_step === 1) { %>btn-primary<% } else { %>btn-default<% } %>" href="/persons/new"><% if (current_step < 2) { %>
                 Add your first person
               <% } else { %>
@@ -46,7 +46,7 @@
             Describe
           </h3>
           <p>Tell visitors a little more about your instance.</p>
-          <% if (permissions.can_edit_instance) { %>
+          <% if (userCan('edit instance')) { %>
             <a href="/about/edit" class="btn <% if (current_step === 2) { %>btn-primary<% } else { %>btn-default<% } %>">Edit details</a>
           <% } else { %>
             <a href="/login" class="btn <% if (current_step === 2) { %>btn-primary<% } else { %>btn-default<% } %>">Log in to edit details</a>
@@ -131,7 +131,7 @@
 
         <ul class="homepage-summary-toolbar">
           <li>
-            <% if (permissions.can_edit_instance) { %>
+            <% if (userCan('edit instance')) { %>
               <a class="new-person add btn btn-default btn-xs" href="/persons/new">+ Add new person</a>
             <% } else { %>
               <a class="add btn btn-default btn-xs" href="/login">Log in to add a new person</a>
@@ -167,7 +167,7 @@
 
         <ul class="homepage-summary-toolbar">
           <li>
-            <% if (permissions.can_edit_instance) { %>
+            <% if (userCan('edit instance')) { %>
               <a class="new-organization add btn btn-default btn-xs" href="/organizations/new">+ Add new organization</a>
             <% } else { %>
               <a class="add btn btn-default btn-xs" href="/login">Log in to add a new organization</a>
