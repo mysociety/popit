@@ -74,7 +74,7 @@ app.configure( function () {
   app.use('/organizations',  require('../lib/apps/organization')() );
   app.use('/about',          require('../lib/apps/about')() );
   app.use('/suggestion',     require('../lib/apps/suggestion'));
-  app.use('/admin',          require('../lib/apps/admin')());
+  app.use('/admin',          require('../lib/apps/admin'));
 
   app.use(config.image_proxy.path , image_proxy() );
 
