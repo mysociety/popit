@@ -12,37 +12,43 @@
     <p><a href="/admin">Users</a></p>
   </div>
 </div>
+
 <div class="container admin-container">
   <!-- example of the "are you sure" modal that fires when you remove access from a user -->
   <div class="modal fade" id="example-modal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title">Are you sure?</h4>
-      </div>
-      <div class="modal-body">
-        <p>This will remove Johnny Appleseed's access to this PopIt</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Remove access</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title">Are you sure?</h4>
+        </div>
+        <div class="modal-body">
+          <p>This will remove Johnny Appleseed's access to this PopIt</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary">Remove access</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
   <p class="lead">Add, edit or remove users' access to this PopIt</p>
+
   <div class="admin-layout">
     <div class="primary-column">
+
       <ul class="list-unstyled access-control-list-users">
           <!-- This list should be in descending order of access level, then alphabetical. -->
+          <% _.each(permissions, function(permission) { %>
+          <% if (permission.account.id === user.id) { var isYou = true; } %>
           <li>
             <div class="access-control-listed-user">
-              <p class="access-control-listed-user__name">Martin Wright <span class="text-muted">&ndash; You</span> <!-- Show this when it's you --></p>
-              <p class="access-control-listed-user__email">martin@mysociety.org</p>
+              <p class="access-control-listed-user__name"><%- permission.account.name %> <% if (isYou) { %><span class="text-muted">&ndash; You</span><% } %></p>
+              <p class="access-control-listed-user__email"><%- permission.account.email %></p>
               <div class="btn-group access-control__dropdown">
-                <button type="button" class="btn btn-default btn-sm dropdown-toggle disabled" data-toggle="dropdown"> <!-- button is disabled for yourself -->
-                  Owner <span class="caret"></span>
+                <button type="button" class="btn btn-default btn-sm dropdown-toggle <% if (isYou) { %>disabled<% } %>" data-toggle="dropdown">
+                  <%- permission.role.charAt(0).toUpperCase() + permission.role.slice(1) %> <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
                   <li><a href="#">Owner</a></li>
@@ -53,6 +59,8 @@
               </div>
             </div>
           </li>
+          <% }) %>
+
           <li>
             <div class="access-control-listed-user">
               <p class="access-control-listed-user__name">Johnny Appleseed</p>
@@ -87,11 +95,6 @@
               </div>
             </div>
           </li>
-      </ul>
-      <ul>
-      <% _.each( instance_permissions, function(permission)  { %>
-          <li><%= permission.account.username %></li>
-      <% }) %>
       </ul>
     </div>
     <div class="secondary-column">
