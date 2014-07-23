@@ -35,10 +35,10 @@ h1.logo {
   @include list-reset;
   float: right;
 
-  li {
+  > li {
     float: left;
 
-    a {
+    > a {
       display: inline-block;
       padding: 0 10px;
       line-height: 50px;
@@ -82,5 +82,32 @@ h1.logo {
     margin-bottom: 0.7em;
     font-size: 0.8em;
     line-height: 1em;
+  }
+}
+
+.user-dropdown {
+  border: none;
+  background-color: transparent;
+  line-height: 50px;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-radius: 0;
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: transparent;
+    color: #009fc7;
+  }
+}
+
+.open > .btn-default.dropdown-toggle {
+  background-color: transparent;
+  color: #009fc7;
+}
+
+.user-login-button {
+  .glyphicon {
+    font-size: 12px;
+    color: darken($header-footer-background, 15%);
   }
 }
