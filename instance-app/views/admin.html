@@ -46,12 +46,28 @@
             <div class="access-control-listed-user">
               <p class="access-control-listed-user__name"><%- permission.account.name %> <% if (isYou) { %><span class="text-muted">&ndash; You</span><% } %></p>
               <p class="access-control-listed-user__email"><%- permission.account.email %></p>
+
+              <form action="/admin" method="post" class="form-horizontal clearfix" role="form">
+                <input type="hidden" name="permission_id" value="<%- permission.id %>">
+                <div class="radio">
+                  <label for="role_owner"><input type="radio" name="role" id="role_owner" value="owner" <% if (permission.role === 'owner') { %>checked<% } %>> Owner</label>
+                </div>
+                <div class="radio">
+                  <label for="role_editor"><input type="radio" name="role" id="role_editor" value="editor" <% if (permission.role === 'editor') { %>checked<% } %>> Editor</label>
+                </div>
+                <div class="checkbox">
+                  <label for="remove"><input type="checkbox" name="remove" id="remove" value="1"> Remove?</label>
+                </div>
+                <button type="submit" class="btn btn-default pull-right">Update</button>
+              </form>
+
               <div class="btn-group access-control__dropdown">
                 <button type="button" class="btn btn-default btn-sm dropdown-toggle <% if (isYou) { %>disabled<% } %>" data-toggle="dropdown">
                   <%- permission.role.charAt(0).toUpperCase() + permission.role.slice(1) %> <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Owner</a></li>
+                  <li>
+                  </li>
                   <li><a href="#">Editor</a></li>
                   <li class="divider"></li>
                   <li><a href="#">Remove</a></li>   <!-- Remove should trigger a modal 'Are you Sure' box -->
