@@ -56,10 +56,10 @@ app.configure( function () {
   app.use(passport.initialize());
   app.use(passport.session());
 
+  app.use(require('../lib/authorization').middleware());
+
   app.use( require('../lib/apps/auth').middleware );
   app.use( require('../lib/apps/auth').app );
-
-  app.use(require('../lib/authorization').middleware());
 
   app.use('/api',   require('../lib/apps/api') );
 
