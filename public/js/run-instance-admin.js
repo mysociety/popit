@@ -23,7 +23,8 @@ require ([
   'instance-admin/actions/links-edit',
   'instance-admin/actions/person-edit',
   'instance-admin/actions/entity-new',
-  'instance-admin/actions/organization-edit'
+  'instance-admin/actions/organization-edit',
+  'instance-admin/actions/user-admin'
 ]);
 
 require (
