@@ -81,19 +81,6 @@
 
   <header id="header">
     <div class="container">
-
-      <!--
-        <% if ( user || guest ) { %>
-          <li id="signed_in">
-            Signed in as
-            <span class="username"><%- guest ? 'a Guest' : (user.email || user.username) %></span>
-          </li>
-          <li>
-            <a href="/logout">Sign Out</a>
-          </li>
-        <% } %>
-      -->
-
       <h1 class="logo">
         <a href='/'>
           <% if (popit) { %>
@@ -116,6 +103,22 @@
               <input id="header_search_box" type="search" class="form-control input-xs" placeholder="Search..." name="q">
             </form>
           </li>
+          <% if ( user ) { %>
+            <li>
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle user-dropdown" type="button" id="user-controls-dropdown" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-user"></span> <%- user.email %> <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu user-dropdown-menu" role="menu" aria-labelledby="user-controls-dropdown">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="/logout">Sign out</a></li>
+              </ul>
+            </div>
+          </li>
+          <% } else { %>
+          <li>
+            <a href="/login" class="user-login-button"><span class="glyphicon glyphicon-user"></span> Log in</a>
+          </li>
+          <% } %>
         </ul>
       <% } %>
     </div>

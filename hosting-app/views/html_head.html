@@ -79,12 +79,11 @@
         <li><a href="/">Home</a></li>
         <li><a href="/instances">Existing instances</a></li>
         <li><a href="http://popit.poplus.org/about/">About PopIt</a></li>
-        <!-- if the user is logged in, show this -->
-        <% if ( user || guest ) { %>
+        <% if ( user ) { %>
           <li>
           <div class="dropdown">
             <button class="btn btn-default dropdown-toggle user-dropdown" type="button" id="user-controls-dropdown" data-toggle="dropdown">
-             <span class="glyphicon glyphicon-user"></span> <%- guest ? 'Guest' : (user.email || user.username) %> <span class="caret"></span>
+              <span class="glyphicon glyphicon-user"></span> <%- user.email %> <span class="caret"></span>
             </button>
             <ul class="dropdown-menu user-dropdown-menu" role="menu" aria-labelledby="user-controls-dropdown">
               <li role="presentation"><a role="menuitem" tabindex="-1" href="/logout">Sign out</a></li>
