@@ -8,11 +8,20 @@
 
 <div class="container invited-container">
   <h1>Invite accepted</h1>
+
+  <% if (errors.length) { %>
+    <ul id="errors">
+      <% _.each(errors, function(error) { %>
+        <li class="error"><%- error %></li>
+      <%}); %>
+    </ul>
+  <% } %>
+
   <p class="lead">You're nearly ready to go, we just need to confirm a few details</p>
-  <form role="form">
+  <form role="form" action="/invited/<%- invite.code %>" method="post">
     <div class="form-group">
       <label for="name">Your name</label>
-      <input type="text" class="form-control" id="name" name="name">
+      <input type="text" class="form-control" id="name" name="name" value="<%- userName %>">
       <p class="help-block">Your name will be visible to other members of this PopIt</p>
       <!-- Is this help block correct, or will their name be viewable publicly?  -->
     </div>
@@ -24,10 +33,6 @@
     <div class="form-group">
       <label for="password">Password</label>
       <input type="password" class="form-control" id="password" name="password" >
-    </div>
-    <div class="form-group">
-      <label for="password-confirmation">Confirm password</label>
-      <input type="password-confirmation" class="form-control" id="password-confirmation" name="password-confirmation" >
     </div>
     <button type="submit" class="btn btn-default btn-primary">Join</button>
   </form>
