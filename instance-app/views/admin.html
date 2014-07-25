@@ -87,12 +87,15 @@
     </div>
     <div class="secondary-column">
       <div class="add-a-new-person">
-        <form role="form" action="#">
+        <form role="form" action="/admin/invite" method="post">
           <h2>Add a user</h2>
           <p>Invite a person to collaborate on this PopIt</p>
-          <div class="form-group">
+          <div class="form-group <% if (errors.email) { %>has-error<% } %>">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email" autocorrect="off" autocapitalize="off" />
+            <input type="text" class="form-control" id="email" name="email" autocorrect="off" autocapitalize="off" value="<%- inviteEmail %>" />
+            <% if (errors.email) { %>
+            <span class="help-block"><%- errors.email %></span>
+            <% } %>
           </div>
           <button type="submit" class="btn btn-default btn-primary">Invite</button>
         </form>
