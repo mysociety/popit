@@ -21,6 +21,7 @@
     <div class="primary-column">
 
       <ul class="list-unstyled access-control-list-users">
+
           <!-- This list should be in descending order of access level, then alphabetical. -->
           <% _.each(permissions, function(permission) { %>
           <% if (permission.account.id === user.id) { var isYou = true; } %>
@@ -56,8 +57,8 @@
                   </ul>
                 </div>
               </div>
-
             </div>
+
             <div class="modal fade" id="remove-confirm-modal-<%- permission.id %>">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -79,9 +80,27 @@
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
+
           </li>
 
           <% }) %>
+
+          <% _.each(invites, function(invite) { %>
+          <li>
+            <div class="access-control-listed-user">
+              <p class="access-control-listed-user__name"><%- invite.email %></p>
+              <p class="access-control-listed-user__email"><%- invite.email %></p>
+              <div class="js-access-control__controls">
+                <div class="btn-group access-control__dropdown">
+                  <button type="button" class="btn btn-default btn-sm disabled">
+                    Invited
+                  </button>
+                </div>
+              </div>
+            </div>
+          </li>
+          <% }) %>
+
       </ul>
 
     </div>
