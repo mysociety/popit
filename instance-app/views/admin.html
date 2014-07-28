@@ -58,29 +58,29 @@
               </div>
 
             </div>
+            <div class="modal fade" id="remove-confirm-modal-<%- permission.id %>">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Are you sure?</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>This will remove <%- permission.account.name %>'s access to this PopIt</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <form action="/admin" method="post" style="display: inline">
+                      <input type="hidden" name="permission_id" value="<%- permission.id %>">
+                      <input type="hidden" name="remove" value="1">
+                      <button type="submit" class="btn btn-primary">Remove access</button>
+                    </form>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
           </li>
 
-          <div class="modal fade" id="remove-confirm-modal-<%- permission.id %>">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <h4 class="modal-title">Are you sure?</h4>
-                </div>
-                <div class="modal-body">
-                  <p>This will remove <%- permission.account.name %>'s access to this PopIt</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                  <form action="/admin" method="post" style="display: inline">
-                    <input type="hidden" name="permission_id" value="<%- permission.id %>">
-                    <input type="hidden" name="remove" value="1">
-                    <button type="submit" class="btn btn-primary">Remove access</button>
-                  </form>
-                </div>
-              </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-          </div><!-- /.modal -->
           <% }) %>
       </ul>
 
