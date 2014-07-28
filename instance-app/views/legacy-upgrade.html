@@ -11,7 +11,7 @@
     <p>To continute to access this PopIt, you need to merge this local account with a global account.</p>
     <div class="create-account-container">
       <h3>Don’t have a global PopIt account? Create one now</h3>
-      <form action='/register' method='post'>
+      <form action='<%= config.hosting_site_base_url %>/register' method='post'>
         <div class="form-group">
           <label for="name" class="control-label">Name</label>
           <input id="name" type="text" name="name" class="form-control">
