@@ -2,4 +2,9 @@ You have been invited to edit a PopIt
 
 Title: {{ instance_name }}
 
-{{ host }}/invited/{{ invite.code }}
+{{#invite}}
+Please visit {{ host }}/invited/{{ invite.code }} to complete your registration.
+{{/invite}}
+{{^invite}}
+To start editing this instance sign into your PopIt account and visit {{ instance_url }}
+{{/invite}}
