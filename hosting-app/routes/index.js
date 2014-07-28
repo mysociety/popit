@@ -55,13 +55,26 @@ exports.route = function (app) {
   });
 
   app.get('/instances', function(req, res, next){
-    req.popit.model('Instance').find({status: 'active'}, function(err, docs) {
+    res.locals.instances = [];
+    req.popit.model('Instance').find(function(err, instances) {
       if (err) {
         return next(err);
       }
+      res.locals.all_instances = instances;
+      if (!req.user) {
+        return res.render('instances.html');
+      }
 
-      res.locals.instances = docs;
-      res.render('instances.html');
+      req.popit.permissions().find({ account: req.user.id }).populate('instance').exec(function(err, permissions) {
+        if (err) {
+          return next(err);
+        }
+        res.locals.instances = permissions.map(function(permission) {
+          return permission.instance;
+        });
+
+        res.render('instances.html');
+      });
     });
   });
 
