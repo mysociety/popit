@@ -96,6 +96,9 @@
           <li><a href="/">Home</a></li>
           <li><a href="/persons">People</a></li>
           <li><a href="/organizations">Organizations</a></li>
+          <% if (userCan('access admin page')) { %>
+          <li><a href="/admin">Admin</a></li>
+          <% } %>
           <li><a href="/about">About</a></li>
           <li><a href="/api">API</a></li>
           <li>
