@@ -34,7 +34,7 @@ module.exports = {
     .set('Host', 'www.127.0.0.1.xip.io')
     .send({ name: 'Bob', email: 'bob@example.com', password: 's3cret' })
     .expect(302)
-    .expect('Location', '/')
+    .expect('Location', '/instances/new')
     .end(function(err, res) {
       if (err) {
         return test.done(err);
