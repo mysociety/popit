@@ -9,6 +9,7 @@
     <h2>Upgrade your account</h2>
     <p>We’ve changed the way PopIt accounts work. Now, rather than have a separate username and password for each PopIt you’ll have one global account that can access all of your PopIts.</p>
     <p>To continute to access this PopIt, you need to merge this local account with a global account.</p>
+
     <div class="create-account-container">
       <h3>Don’t have a global PopIt account? Create one now</h3>
       <form action='<%= config.hosting_site_base_url %>/register' method='post'>
@@ -33,7 +34,11 @@
           <button id="login" class="btn btn-primary" type="submit">Create</button>
         </div>
 
-        <p>When you click <b>Register</b> your PopIt account will be associated with this instance and the legacy account will be removed.</p>
+
+        <p>When you click <b>Register</b> your PopIt account will be associated with this instance and the legacy account will be deactivated.</p>
+        <div class="alert alert-info" role="alert">
+          <p><b>Note</b>: Legacy login credentials will continue to work for API access for the time being to prevent breaking existing API clients.</p>
+        </div>
 
       </form>
     </div>
