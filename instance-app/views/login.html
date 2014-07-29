@@ -51,6 +51,7 @@
       <p class="form-group">
         <button id="login" class="btn btn-primary" type="submit">Log in<% if ( as_guest ) { %> as Guest<% } %></button>
       </p>
+      <p><a href="<%- config.hosting_site_base_url %>/register">Not got an account? Register here</a></p>
       <% if (isUpgrading) { %>
       <p>When you click <b>Log in</b> your PopIt account will be associated with this instance and the legacy account will be removed.</p>
       <% } %>
