@@ -45,18 +45,18 @@ app.configure( function () {
     res.locals.current_absolute_pathname = current_absolute_pathname(req);
     next();    
   });
-  
+
+  app.use(passport.initialize());
+  app.use(passport.session());
+
+  app.use(require('../lib/authorization').middleware());
+
   app.locals( require('../lib/middleware/config') );
   app.use(instanceSelector());
   app.use(popitApiStorageSelector({
     storageSelector: 'popit',
     databasePrefix: config.MongoDB.popit_prefix
   }));
-  
-  app.use(passport.initialize());
-  app.use(passport.session());
-
-  app.use(require('../lib/authorization').middleware());
 
   app.use( require('../lib/apps/auth').middleware );
   app.use( require('../lib/apps/auth').app );
