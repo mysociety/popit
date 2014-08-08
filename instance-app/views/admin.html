@@ -92,12 +92,37 @@
               <p class="access-control-listed-user__email"><%- invite.email %></p>
               <div class="js-access-control__controls">
                 <div class="btn-group access-control__dropdown">
-                  <button type="button" class="btn btn-default btn-sm disabled">
-                    Invited
+                  <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+                    Invited <span class="caret"></span>
                   </button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#" class="js-resend" data-toggle="modal" data-target="#resend-confirm-modal-<%- invite.id %>">Resend</a></li>   <!-- Resend should trigger a modal 'Are you Sure' box -->
+                  </ul>
                 </div>
               </div>
             </div>
+
+            <div class="modal fade" id="resend-confirm-modal-<%- invite.id %>">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Are you sure?</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>This will resend and invitaion to <%- invite.email %></p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <form action="/admin/invite" method="post" style="display: inline">
+                      <input type="hidden" name="invite_id" value="<%- invite.id %>">
+                      <input type="hidden" name="resend" value="1">
+                      <button type="submit" class="btn btn-primary">Resend invite</button>
+                    </form>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
           </li>
           <% }) %>
 
