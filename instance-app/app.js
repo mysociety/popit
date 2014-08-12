@@ -6,6 +6,7 @@
 
 var express           = require('express'),
     config            = require('config'),
+    assets            = require('connect-assets'),
     instanceSelector  = require('../lib/middleware/instance-selector'),
     image_proxy       = require('connect-image-proxy'),
     UTA               = require('underscore-template-additions'),
@@ -38,6 +39,7 @@ app.configure(function(){
     
   app.use(express.bodyParser());
   app.use(express.methodOverride());
+  app.use(assets({ paths: [ config.public_dir + '/js', config.public_dir + '/css' ] }));
 });
 
 app.configure( function () {

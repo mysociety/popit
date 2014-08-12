@@ -8,6 +8,7 @@
     "bson": ">= 0.0.4",
     "config": ">= 0.4.11",
     "connect": ">=2.6.1",
+    "connect-assets": ">= 4.3.0",
     "connect-flash": ">= 0.1.0",
     "connect-image-proxy": ">= 0.0.5",
     "connect-mongodb": ">= 1.1.5",

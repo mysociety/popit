@@ -9,6 +9,7 @@ var express           = require('express'),
     engines           = require('consolidate'),
     UTA               = require('underscore-template-additions'),
     masterSelector    = require('../lib/middleware/master-selector'),
+    assets            = require('connect-assets'),
     passport          = require('../lib/passport');
 
 
@@ -30,6 +31,7 @@ app.configure(function(){
 
   app.use(express.bodyParser());
   app.use(express.methodOverride());
+  app.use(assets({ paths: [ config.public_dir + '/js', config.public_dir + '/css' ] }));
 
   app.locals( require('../lib/middleware/config') );
 

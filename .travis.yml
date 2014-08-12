@@ -37,6 +37,9 @@ before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - export WATIR_BROWSER=firefox
+  # this is to point connect-assets at the correct directory for css
+  - sed -i -e 's/public-production/public/' config/default.js
+  - make css
 
 notifications:
   irc:
