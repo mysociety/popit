@@ -1,4 +1,4 @@
-Thanks for signing up for PopIt!
+Welcome to PopIt!
 
 Here are a some links that might be useful:
 
@@ -6,5 +6,6 @@ Here are a some links that might be useful:
 - Discover other PopIts - http://popit.mysociety.org/instances
 - Create your own PopIt - http://popit.mysociety.org/instances/new
 
-Thanks,
+Enjoy PopIt!
+
 The PopIt team

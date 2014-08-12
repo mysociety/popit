@@ -1,10 +1,15 @@
-You have been invited to edit a PopIt
+Well, look here: {{ user_name }} has invited you to help edit a PopIt.
+What's a PopIt? Just a super-easy way of storing and publishing lists of people on the web.
 
-Title: {{ instance_name }}
+{{ user_name }} would like you to help out with {{ instance_name }}.
 
 {{#invite}}
 Please visit {{ host }}/invited/{{ invite.code }} to complete your registration.
+
+Once you’re registered, you can return to {{ instance_url }} at any time to continue editing.
 {{/invite}}
 {{^invite}}
 To start editing this instance sign into your PopIt account and visit {{ instance_url }}
 {{/invite}}
+
+Find out more about PopIt at http://popit.poplus.org/.

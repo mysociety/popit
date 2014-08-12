@@ -5,10 +5,12 @@
 
         <div class="col-sm-5">
           <% if (popit) { %>
-            <p><strong><%- popit.pretty_name() %></strong> is an instance of PopIt, a new service from mySociety that lowers the barrier to getting started with transparency projects.</p>
+            <p><strong><%- popit.pretty_name() %></strong> is an instance of PopIt, a new service that lowers the barrier to starting up transparency projects.</p>
           <% } else { %>
-            <p>PopIt is a new service from mySociety that lowers the barrier to getting started with transparency projects. Try it here, or self host it!</p>
+          <p>This is the <a href="http://en.wikipedia.org/wiki/Software_release_life_cycle#Alpha">alpha</a> of <a href="<%= config.hosting_site_base_url %>">PopIt</a>, a new service that lowers the barrier to starting up transparency projects.</p>
           <% } %>
+
+          <p>PopIt is a <a href="http://poplus.org/">Poplus Component</a>: please do join the <a href="https://groups.google.com/forum/#!forum/poplus">Poplus mailing list</a> for community, support and queries. PopIt is Open Source and its <a href="https://github.com/mysociety/popit">source code is available on GitHub</a>.</p>
         </div>
 
         <div class="col-sm-3 col-sm-offset-1">

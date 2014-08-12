@@ -7,7 +7,7 @@
 ) %>
 
 <div class="container invited-container">
-  <h1>Invite accepted</h1>
+  <h1>Invitation accepted</h1>
 
   <% if (errors.length) { %>
     <ul id="errors">
@@ -17,7 +17,7 @@
     </ul>
   <% } %>
 
-  <p class="lead">You're nearly ready to go, we just need to confirm a few details</p>
+  <p class="lead">You're nearly ready to go: we just need to confirm a few details.</p>
   <form role="form" action="/invited/<%- invite.code %>" method="post">
     <div class="form-group">
       <label for="name">Your name</label>
