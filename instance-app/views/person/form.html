@@ -33,19 +33,6 @@
       <strong class="control-label edit-mode-error" style="display: none">This person must have a name</strong>
     </div>
 
-    <div class="entity-header__secondary-property">
-      <label for="input-party">Party</label>
-      <% if (person.party) { %>
-        <input type="hidden" class="edit-mode" name="organization_id" value="<%- person.party.id %>">
-      <% } %>
-      <input type="text" class="form-control" id="input-party" name="organization" placeholder="Republican" <% if (person.party) { %>value="<%- person.party.name %>"<% } %>>
-    </div>
-
-    <div class="entity-header__secondary-property">
-      <label for="input-constituency">Represents</label>
-      <input type="text" class="form-control" id="input-constituency" name="membership-area" placeholder="Witney" value="<%- person.constituency %>">
-    </div>
-
   </div>
 
   <div class="entity-details">
