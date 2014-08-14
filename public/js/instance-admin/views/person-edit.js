@@ -29,7 +29,7 @@ define([
     },
 
     checkWhetherHeaderIsComplete: function() {
-      var requiredFields = ['#input-name', '#input-party', '#input-constituency'];
+      var requiredFields = ['#input-name'];
       var headerComplete = _.every(requiredFields, function(selector) {
         return $.trim($(selector).val()).length > 2;
       });
