@@ -87,19 +87,6 @@ define([
 
   $('#content').on('click', '.delete-membership', function(e) {
     e.preventDefault();
-    // if we are removing the primary membership then we need to empty the
-    // party and consituency inputs as otherwise the membership is recreated
-    // when we save
-    var parent = $(this).closest('li');
-    var main_org_id = $('input[name="organization_id"]').val();
-    if ( main_org_id ) {
-      var org_id = parent.find('.js-membership-organization').select2('val');
-      if (org_id == main_org_id) {
-        $('input[name="organization_id"]').val('');
-        $('#input-party').val('');
-        $('#input-constituency').val('');
-      }
-    }
-    parent.remove();
+    $(this).closest('li').remove();
   });
 });
