@@ -1,0 +1,51 @@
+<%= render(
+  'html_head.html',
+  {
+    title:       'API key',
+    description: '',
+  }
+) %>
+
+<div class="container">
+
+  <% if ( user ) { %>
+    <h1>API Key</h1>
+
+    <% if (errors.length) { %>
+      <ul id="errors">
+        <% _.each(errors, function(error) { %>
+          <li class="error"><%- error %></li>
+        <%}); %>
+      </ul>
+    <% } %>
+
+    <% if ( user.apikey ) { %>
+    <p>
+      Your api key is <code><%= user.apikey %></code>
+      <form method="POST" action="/apikey">
+        <p class="form-group">
+          <input type="hidden" name="delete" value="1">
+          <button id="login" class="btn btn-primary" type="submit">Delete API key</button>
+        </p>
+      </form>
+    </p>
+    <% } else { %>
+    <p>
+      You have no api key.
+    </p>
+
+    <form method="POST" action="/apikey">
+      <p class="form-group">
+        <button id="login" class="btn btn-primary" type="submit">Request API key</button>
+      </p>
+    </form>
+    <% } %>
+  <% } else { %>
+    <h1>API Key</h1>
+
+    <p>
+    You need to be logged in to access this page.
+    </p>
+  <% } %>
+
+<%= render('html_footer.html' )%>
