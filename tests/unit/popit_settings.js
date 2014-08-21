@@ -144,21 +144,5 @@ module.exports = {
             test.done();
         });
     },
-    
-
-    "test that guest access is correctly presented": function (test) {
-      test.expect(3);
-      
-      var foo = this.foo;
-      
-      test.equal( foo.allow_guest_access(), false, "guest access false by default" );
-
-      foo.set_setting('allow_guest_access', true, function (err) {
-        test.ifError(err);
-        test.equal( foo.allow_guest_access(), true,  "guest access now enabled" );
-        test.done();        
-      });
-      
-    },
 
 };

@@ -8,20 +8,7 @@
 
 <div class="login-form container">
 
-  <% if ( as_guest ) { %>
-
-    <h1>Guest login</h1>
-    <p class="form-group">You are about to log in to this web site as a guest user, letting you anonymously add and edit content.</p>
-    <p class="form-group">Please be nice - for this to work we're relying on the wisdom of the crowd and the kindness of strangers.</p>
-
-  <% } else { %>
-
-    <h1>Log in</h1>
-    <% if ( popit.allow_guest_access() ) { %>
-      <p>You can also <a href="?as_guest=1">log in anonymously as a guest</a>.</p>
-    <% } %>
-
-  <% } %>
+  <h1>Log in</h1>
 
   <% if (errors.length) { %>
     <ul id="errors">
@@ -33,9 +20,6 @@
 
   <form action='/login' method='post'>
 
-    <% if ( as_guest ) { %>
-      <input type="hidden" name="as_guest", value="1">
-    <% } else { %>
       <p class="form-group">
         <label for="email" class="control-label"> Email:</label>
         <input id="email" type="text" name="email" class="form-control" value="<%- email %>">
@@ -46,10 +30,9 @@
         <input id="password" type="password" name="password" class="form-control">
         <a href="<%- config.hosting_site_base_url %>/password-reset" class="pull-right">Forgotten?</a>
       </p>
-    <% } %>
 
       <p class="form-group">
-        <button id="login" class="btn btn-primary" type="submit">Log in<% if ( as_guest ) { %> as Guest<% } %></button>
+        <button id="login" class="btn btn-primary" type="submit">Log in</button>
       </p>
       <p><a href="<%- config.hosting_site_base_url %>/register">Not got an account? Register here</a></p>
       <% if (isUpgrading) { %>

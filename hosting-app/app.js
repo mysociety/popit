@@ -17,7 +17,6 @@ var app = module.exports = express();
 
 app.locals({
   user:  null,
-  guest: null,
   popit: null,
 });
 

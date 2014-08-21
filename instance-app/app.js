@@ -21,7 +21,6 @@ var app = module.exports = express();
 // the edge cases where an instance has not been loaded, or a user is not logged in.
 app.locals({
   user:  null,
-  guest: null,
   popit: null,
 });
 
