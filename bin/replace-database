@@ -65,6 +65,10 @@ do
         "$DUMP_ROOT$COLLECTION.json"
 done
 
+# now copy the settings data across which has instance name etc
+
+mongoexport -d $MONGO_DB_NAME -c settings | mongoimport -d $MONGO_NEW_DB_NAME -c settings --drop
+
 # reindex it:
 
 read -r -d '' REINDEX_SCRIPT <<'EOF' || true
