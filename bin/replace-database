@@ -2,26 +2,26 @@
 
 # This script takes as input some dumped collections, in monogexport's
 # one-JSON-object-per-line format, and uses them to replace those
-# collections in a live PopIt database.  FIXME: there doesn't seem to
-# be any way to atomically replace a database MongoDB (see
-# https://jira.mongodb.org/browse/SERVER-701) so there will be some
-# period while this is happening where results will be missing.  When
-# https://github.com/mysociety/popit/issues/516 is fixed, this script
-# should start by making the popit interface unavailable, and bring it
-# up again on successful completion.
+# collections in a live PopIt database. This will create a new database
+# with the current date appended to the database name and then point the
+# instance at it.
 
 set -ex
 
 COLLECTIONS=('organizations' 'persons' 'memberships')
+DATE=$(date +%Y%m%d)
 
-if [ "$#" != "2" ]
+if [ "$#" != "4" ]
 then
-    echo "Usage: $0 COLLECTION-DUMP-ROOT MONGO-DB-NAME"
+    echo "Usage: $0 COLLECTION-DUMP-ROOT MONGO-DB-NAME SLUG MASTER-DB-NAME"
     exit 1
 fi
 
 DUMP_ROOT="$1"
 MONGO_DB_NAME="$2"
+SLUG="$3"
+MASTER_DB_NAME="$4"
+MONGO_NEW_DB_NAME="${MONGO_DB_NAME}_$DATE"
 
 if ! which node
 then
@@ -55,37 +55,17 @@ then
     exit 1
 fi
 
-# Create a script that removes the existing collections:
-
-SCRIPT_NAME="$(mktemp --suffix=.js)"
-
-cat > "$SCRIPT_NAME" <<EOF
-conn = new Mongo();
-db = conn.getDB("$MONGO_DB_NAME");
-EOF
-
-for COLLECTION in "${COLLECTIONS[@]}"
-do
-    echo "db.$COLLECTION.remove({});" >> "$SCRIPT_NAME"
-done
-
-# Actually run that script:
-
-mongo < "$SCRIPT_NAME"
-
 # Now import the new data:
 
 for COLLECTION in "${COLLECTIONS[@]}"
 do
     mongoimport \
-        --db "$MONGO_DB_NAME" \
+        --db "$MONGO_NEW_DB_NAME" \
         --collection "$COLLECTION" \
         "$DUMP_ROOT$COLLECTION.json"
 done
 
-rm "$SCRIPT_NAME"
-
-# And finally reindex it:
+# reindex it:
 
 read -r -d '' REINDEX_SCRIPT <<'EOF' || true
 var reIndex = require('popit-api').reIndex;
@@ -102,4 +82,39 @@ reIndex(databaseName, function(err, total) {
 });
 EOF
 
-node --eval "$REINDEX_SCRIPT" "$MONGO_DB_NAME"
+node --eval "$REINDEX_SCRIPT" "$MONGO_NEW_DB_NAME"
+
+# Now tell the instance where to find the new database
+
+# Now update the dbname for the instance
+
+read -r -d '' CHANGE_DB_SCRIPT <<"EOF" || true
+var PopIt = require('./lib/popit');
+var config = require('config');
+
+var new_db_name = process.argv[1];
+var slug = process.argv[2];
+var master = new PopIt();
+master.set_as_master();
+
+master.model('Instance').findOne(
+  { slug: slug },
+  function (err, instance) {
+    if (err) throw err;
+
+    if ( instance ) {
+      var new_db_suffix = new_db_name.substr(config.MongoDB.popit_prefix.length);
+      instance.update({ $set: { dbname: new_db_suffix } }, function() { process.exit(); });
+    } else {
+      throw new Error('No instance called ' + slug + ' found');
+    }
+  }
+);
+EOF
+
+node --eval "$CHANGE_DB_SCRIPT" "$MONGO_NEW_DB_NAME" "$SLUG"
+
+set +x
+echo "Files imported into $MONGO_NEW_DB_NAME"
+echo "You may need to restart the popit process for the new database to be used"
+echo "You will also have to delete the old instance DB"
