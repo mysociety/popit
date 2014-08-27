@@ -10,6 +10,7 @@
 MANIFEST
 npm-debug.log
 node_modules
+builtAssets
 .sass-cache
 chromedriver.log
 public/css
