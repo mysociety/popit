@@ -13,20 +13,36 @@ var PopIt = require('../lib/popit');
 var master = new PopIt();
 master.set_as_master();
 
+function reindexDatabase(slug, done) {
+  var databaseName = config.MongoDB.popit_prefix + slug;
+  reIndex(databaseName, function(err, total) {
+    if (err) {
+      return done(err);
+    }
+    console.log("Re-indexed " + total + " docs from " + databaseName);
+    done();
+  });
+}
+
+var instanceSlug = process.argv[2];
+
+if (instanceSlug) {
+  reindexDatabase(instanceSlug, function(err) {
+    if (err) {
+      throw err;
+    }
+    process.exit();
+  });
+  return;
+}
+
 master.model('Instance').find(function(err, instances) {
   if (err) {
     throw err;
   }
 
   async.forEachSeries(instances, function(instance, done) {
-    var databaseName = config.MongoDB.popit_prefix + instance.slug;
-    reIndex(databaseName, function(err, total) {
-      if (err) {
-        return done(err);
-      }
-      console.log("Re-indexed " + total + " docs from " + databaseName);
-      done();
-    });
+    reindexDatabase(instance.slug, done);
   }, function(err) {
     if (err) {
       throw err;

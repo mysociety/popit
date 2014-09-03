@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# This script imports a set of json files into a fresh database and adds
+# the instance to the master database so it appears in the list of
+# available instance in the hosting app. It then reindexes the database
+# so it will appear correctly in search results.
+
+set -ex
+
+if [ "$#" != "3" ]; then
+  echo "Usage: $0 <path_to_json_files> <slug> <email>" >&2
+  exit 1
+fi
+
+IMPORT_ROOT=$1
+SLUG=$2
+EMAIL=$3
+
+DB_PREFIX=${POPIT_DB_PREFIX:-popit}
+DB_NAME=${DB_PREFIX}_${SLUG}
+MASTER_DB_NAME=${DB_PREFIX}__master
+COLLECTIONS="persons organizations memberships posts settings users"
+
+# Loop through collections adding them to the new database
+for COLLECTION in $COLLECTIONS; do
+  FILENAME="${IMPORT_ROOT}/${COLLECTION}.json"
+  if [ ! -f "$FILENAME" ]; then
+    echo "Couldn't find $FILENAME, skipping..." >&2
+    continue
+  fi
+  mongoimport --jsonArray --db="$DB_NAME" --collection="$COLLECTION" < "$FILENAME"
+done
+
+# Add the new instance to the master database
+mongo $MASTER_DB_NAME --eval "db.instances.insert({slug: '$SLUG', email: '$EMAIL', status: 'active', created_date: new Date()})"
+
+# Reindex the database
+$(dirname $0)/reindex "$SLUG"

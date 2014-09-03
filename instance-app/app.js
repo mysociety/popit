@@ -8,6 +8,7 @@ var express           = require('express'),
     config            = require('config'),
     assets            = require('connect-assets'),
     instanceSelector  = require('../lib/middleware/instance-selector'),
+    checkInstanceAvailable = require('../lib/middleware/check-instance-available'),
     image_proxy       = require('connect-image-proxy'),
     UTA               = require('underscore-template-additions'),
     current_absolute_pathname = require('../lib/middleware/route').current_absolute_pathname,
@@ -54,6 +55,7 @@ app.configure( function () {
 
   app.locals( require('../lib/middleware/config') );
   app.use(instanceSelector());
+  app.use(checkInstanceAvailable());
   app.use(popitApiStorageSelector({
     storageSelector: 'popit',
     databasePrefix: config.MongoDB.popit_prefix

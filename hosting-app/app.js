@@ -48,6 +48,7 @@ app.configure(function(){
 
   app.use(require('../lib/apps/registration'));
   app.use(require('../lib/apps/login'));
+  app.use(require('../lib/apps/apikey'));
 });
 
 app.configure('development', 'testing', function() {

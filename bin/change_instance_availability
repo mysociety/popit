@@ -1,0 +1,85 @@
+#!/bin/bash
+
+# This script is for setting the unavailable flag on an an instance. It
+# take the instance name (the slug) and either 1, to set as unavailable
+# or 0, to set as available, as arguments. After running this script you
+# will probably need to restart the popit process for the change to take
+# effect as the settings are cached in process
+
+set -ex
+
+if [ "$#" != "2" ]
+then
+    echo "Usage: $0 INSTANCE_NAME AVAILABILITY"
+    exit 1
+fi
+
+INSTANCE_NAME="$1"
+AVAILABILITY="$2"
+
+if [ "$AVAILABILITY" != "0" -a "$AVAILABILITY" != "1" ]
+then
+    echo "AVAILABILTY should be 0 or 1"
+    exit 1
+fi
+
+if ! which node
+then
+    echo "The node binary couldn't be found on your PATH"
+    exit 1
+fi
+
+# The node_modules directory must be in the current directory:
+
+if ! [ -d node_modules ]
+then
+    echo "The current directory must contain node_modules"
+    exit 1
+fi
+
+read -r -d '' CHANGE_UNAVAILABLE_SCRIPT <<'EOF' || true
+var PopIt = require('./lib/popit');
+
+var instanceName = process.argv[1];
+var availabilty = parseInt(process.argv[2]);
+
+var req = {};
+
+var master = new PopIt();
+master.set_as_master();
+
+master.model('Instance').findOne(
+  { slug: instanceName },
+  function (err, instance) {
+    if (err) throw err;
+
+    if ( instance ) {
+      var popit = new PopIt();
+      popit.set_instance( instance.slug );
+      if ( instance.dbname ) {
+        popit.set_dbname( instance.dbname );
+      }
+      popit.load_settings(function(error){
+        if ( error ) throw error;
+        req.popit = popit;
+        next();
+      });
+    } else {
+      next();
+    }
+  }
+);
+
+function next(){
+  req.popit.load_settings(function(err) {
+    if (err ) { throw err; }
+      req.popit.set_setting('unavailable', availabilty, function(){ process.exit(); });
+  });
+}
+EOF
+
+node --eval "$CHANGE_UNAVAILABLE_SCRIPT" "$INSTANCE_NAME" $AVAILABILITY
+
+
+set +x
+echo "You may need to restart the popit process for the change to take effect"

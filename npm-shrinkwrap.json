@@ -1008,6 +1008,30 @@
       "from": "https://registry.npmjs.org/passport-local-mongoose/-/passport-local-mongoose-0.3.0.tgz",
       "resolved": "https://registry.npmjs.org/passport-local-mongoose/-/passport-local-mongoose-0.3.0.tgz"
     },
+    "passport-localapikey": {
+      "version": "0.0.3",
+      "from": "passport-localapikey@0.0.3",
+      "resolved": "https://registry.npmjs.org/passport-localapikey/-/passport-localapikey-0.0.3.tgz",
+      "dependencies": {
+        "pkginfo": {
+          "version": "0.2.3",
+          "from": "pkginfo@0.2.3",
+          "resolved": "https://registry.npmjs.org/pkginfo/-/pkginfo-0.2.3.tgz"
+        },
+        "passport": {
+          "version": "0.1.18",
+          "from": "passport@0.1.18",
+          "resolved": "https://registry.npmjs.org/passport/-/passport-0.1.18.tgz",
+          "dependencies": {
+            "pause": {
+              "version": "0.0.1",
+              "from": "pause@0.0.1",
+              "resolved": "https://registry.npmjs.org/pause/-/pause-0.0.1.tgz"
+            }
+          }
+        }
+      }
+    },
     "popit-api": {
       "version": "0.0.14",
       "from": "popit-api@git://github.com/mysociety/popit-api.git#699f88941e5e661c81461c35f87f967bca17dea7",
