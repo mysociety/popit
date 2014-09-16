@@ -131,7 +131,7 @@
             <% } %>
           <% }); %>
         </ul>
-        <a class="add add-membership btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(memberships.length){ %>nother<% } %> membership</a>
+        <a class="add add-membership btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(memberships.length){ %>nother<% } %> member</a>
       </div>
     </div>
 
@@ -196,7 +196,7 @@
           </li>
           <% }) %>
         </ul>
-        <a class="add contact-edit btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add contact details</a>
+        <a class="add contact-edit btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add <% if(organization.contact_details.length){ %>more <% } %>contact details</a>
       </div>
     </div>
 

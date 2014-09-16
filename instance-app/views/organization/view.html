@@ -222,6 +222,8 @@
         <p class="entity-details__hint view-mode entity-enter-edit-mode">
           <span class="btn btn-xs btn-default pull-right">Add contact details</span>
           PopIt is most useful when organizations have contact details.
+      <% } else { %>
+          <span class="entity-details__hint view-mode entity-enter-edit-mode btn btn-xs btn-default pull-right">Add more contact details</span>
         </p>
       <% } %>
 
@@ -237,6 +239,8 @@
           <span class="btn btn-xs btn-default pull-right">Add identifiers</span>
           If this organization has special ID numbers, you can add them here.
         </p>
+      <% } else { %>
+        <span class="entity-details__hint view-mode entity-enter-edit-mode btn btn-xs btn-default pull-right">Add more identifiers</span>
       <% } %>
 
       <div class="entity-details__property <% if (!organization.identifiers.length) { %>empty<% } %>">
