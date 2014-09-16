@@ -54,6 +54,9 @@ define(['jquery', 'Backbone', 'underscore'], function($, Backbone, _) {
 
     saveChanges: function(arg) {
       this.toggleSavingButton();
+      var hash = window.location.hash;
+      var action = $('form.entity').attr('action') + hash;
+      $('form.entity').attr('action', action);
       $('form.entity').submit();
     },
 
