@@ -21,7 +21,12 @@ define(['jquery', 'Backbone', 'underscore'], function($, Backbone, _) {
       $('.view-mode').hide();
       $('.edit-mode').show();
       $('article.entity').hide();
-      var tab = $('.person-view .entity-details li.active');
+      var tab;
+      if ( $('.person-view').length ) {
+        tab = $('.person-view .entity-details li.active');
+      } else {
+        tab = $('.organization-view .entity-details li.active');
+      }
       if ( tab ) {
         // first find and hide the active edit tab content otherwise we see both
         var edit_tab = $('.edit-form .entity-details li.active a').attr('href');
