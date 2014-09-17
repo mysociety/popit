@@ -4,8 +4,8 @@
 
 ### BEGIN INIT INFO
 # Provides:          !!(*= $daemon_name *)!!
-# Required-Start:    $network mongodb
-# Required-Stop:     $network mongodb
+# Required-Start:    $network mongod
+# Required-Stop:     $network mongod
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
 # Short-Description: Run PopIt service.
