@@ -1008,27 +1008,15 @@
       "from": "https://registry.npmjs.org/passport-local-mongoose/-/passport-local-mongoose-0.3.0.tgz",
       "resolved": "https://registry.npmjs.org/passport-local-mongoose/-/passport-local-mongoose-0.3.0.tgz"
     },
-    "passport-localapikey": {
-      "version": "0.0.3",
-      "from": "passport-localapikey@0.0.3",
-      "resolved": "https://registry.npmjs.org/passport-localapikey/-/passport-localapikey-0.0.3.tgz",
+    "passport-localapikey-update": {
+      "version": "0.4.2",
+      "from": "passport-localapikey-update@",
+      "resolved": "https://registry.npmjs.org/passport-localapikey-update/-/passport-localapikey-update-0.4.2.tgz",
       "dependencies": {
         "pkginfo": {
           "version": "0.2.3",
-          "from": "pkginfo@0.2.3",
+          "from": "pkginfo@0.2.x",
           "resolved": "https://registry.npmjs.org/pkginfo/-/pkginfo-0.2.3.tgz"
-        },
-        "passport": {
-          "version": "0.1.18",
-          "from": "passport@0.1.18",
-          "resolved": "https://registry.npmjs.org/passport/-/passport-0.1.18.tgz",
-          "dependencies": {
-            "pause": {
-              "version": "0.0.1",
-              "from": "pause@0.0.1",
-              "resolved": "https://registry.npmjs.org/pause/-/pause-0.0.1.tgz"
-            }
-          }
         }
       }
     },
