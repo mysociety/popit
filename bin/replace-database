@@ -37,6 +37,36 @@ then
     exit 1
 fi
 
+# check that NODE_ENV has been set
+
+if [ -z "$NODE_ENV" ]
+then
+    echo 'You need to set NODE_ENV to the same as the popit process. This is most likely ' \
+         'either production or development. If you do not then this script may end up ' \
+         'altering the instances collection in the wrong master database'
+    exit 1
+fi
+
+read -r -d '' CHECK_MASTER_DB_CORRECT <<"EOF" || true
+var PopIt = require('./lib/popit');
+var config = require('config');
+
+var master_db = process.argv[1];
+var master = new PopIt();
+master.set_as_master();
+
+var connection = master.instance_db();
+if ( connection.name != master_db ) {
+  console.log('Expected to be using ' + master_db + ' but using ' + connection.name + ' instead');
+  console.log('Check that NODE_ENV is set correctly');
+  process.exit(1);
+}
+process.exit();
+
+EOF
+
+node --eval "$CHECK_MASTER_DB_CORRECT" "$MASTER_DB_NAME"
+
 # Check that all the dump files exist:
 
 MISSING_FILES=""
