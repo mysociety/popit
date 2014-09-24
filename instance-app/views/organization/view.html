@@ -212,7 +212,6 @@
       <% } %>
 
       <div class="entity-details__property <% if (!organization.links.length) { %>empty<% } %>">
-        <label>Links</label>
         <%= render( 'link/list.html', { links: organization.links } ) %>
       </div>
     </div>
@@ -222,11 +221,12 @@
         <p class="entity-details__hint view-mode entity-enter-edit-mode">
           <span class="btn btn-xs btn-default pull-right">Add contact details</span>
           PopIt is most useful when organizations have contact details.
+      <% } else { %>
+          <span class="entity-details__hint view-mode entity-enter-edit-mode btn btn-xs btn-default pull-right">Add more contact details</span>
         </p>
       <% } %>
 
       <div class="entity-details__property <% if (!organization.contact_details.length) { %>empty<% } %>">
-        <label>Contact details</label>
         <%= render( 'contact/list.html', { contact_details: organization.contact_details } ) %>
       </div>
     </div>
@@ -237,10 +237,11 @@
           <span class="btn btn-xs btn-default pull-right">Add identifiers</span>
           If this organization has special ID numbers, you can add them here.
         </p>
+      <% } else { %>
+        <span class="entity-details__hint view-mode entity-enter-edit-mode btn btn-xs btn-default pull-right">Add more identifiers</span>
       <% } %>
 
       <div class="entity-details__property <% if (!organization.identifiers.length) { %>empty<% } %>">
-        <label>Identifiers</label>
         <%= render( 'identifier/list.html', { identifiers: organization.identifiers } ) %>
       </div>
     </div>

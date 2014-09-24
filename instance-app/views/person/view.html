@@ -124,6 +124,8 @@
           <span class="btn btn-xs btn-default pull-right">Add a membership</span>
           Is this person a member of an organization or party?
         </p>
+      <% } else { %>
+          <span class="entity-details__hint view-mode entity-enter-edit-mode btn btn-xs btn-default pull-right">Add another membership</span>
       <% } %>
 
       <div class="entity-details__property <% if(!memberships){ %>empty<% } %>">
@@ -183,10 +185,11 @@
           <span class="btn btn-xs btn-default pull-right">Add links to websites</span>
           If this person has a website, or any online profile pages, you can add them here.
         </p>
+      <% } else { %>
+        <span class="entity-details__hint view-mode entity-enter-edit-mode btn btn-xs btn-default pull-right">Add another link</span>
       <% } %>
 
       <div class="entity-details__property <% if(!person.links.length){ %>empty<% } %>">
-        <label>Links</label>
         <%= render( 'link/list.html', { links: person.links } ) %>
       </div>
     </div>
@@ -197,10 +200,11 @@
           <span class="btn btn-xs btn-default pull-right">Add contact details</span>
           PopIt is most useful when people have contact details, like their phone, email, and Twitter.
         </p>
+      <% } else { %>
+        <span class="entity-details__hint view-mode entity-enter-edit-mode btn btn-xs btn-default pull-right">Add more contact details</span>
       <% } %>
 
       <div class="entity-details__property <% if(!person.contact_details.length){ %>empty<% } %>">
-        <label>Contact details</label>
         <%= render( 'contact/list.html', { contact_details: person.contact_details } ) %>
       </div>
     </div>
@@ -213,10 +217,11 @@
           <span class="btn btn-xs btn-default pull-right">Add identifiers</span>
           If this person has special registration or ID numbers, you can add them here.
         </p>
+      <% } else { %>
+          <span class="entity-details__hint view-mode entity-enter-edit-mode btn btn-xs btn-default pull-right">Add another identifier</span>
       <% } %>
 
       <div class="entity-details__property <% if(!person.identifiers.length){ %>empty<% } %>">
-        <label>Identifiers</label>
         <%= render( 'identifier/list.html', { identifiers: person.identifiers } ) %>
       </div>
     </div>

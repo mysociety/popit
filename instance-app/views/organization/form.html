@@ -131,7 +131,7 @@
             <% } %>
           <% }); %>
         </ul>
-        <a class="add add-membership btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(memberships.length){ %>nother<% } %> membership</a>
+        <a class="add add-membership btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(memberships.length){ %>nother<% } %> member</a>
       </div>
     </div>
 
@@ -164,7 +164,6 @@
       <% } %>
 
       <div class="entity-details__property">
-        <label>Links</label>
         <ul class="links">
           <% _.each(organization.links, function(link, i) { %>
           <li>
@@ -186,8 +185,6 @@
       <% } %>
 
       <div class="entity-details__property">
-        <label>Contact details</label>
-
         <ul class="contact_details">
           <% _.each(organization.contact_details, function(contact, i) { %>
           <li>
@@ -196,7 +193,7 @@
           </li>
           <% }) %>
         </ul>
-        <a class="add contact-edit btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add contact details</a>
+        <a class="add contact-edit btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add <% if(organization.contact_details.length){ %>more <% } %>contact details</a>
       </div>
     </div>
 
@@ -209,7 +206,6 @@
       <% } %>
 
       <div class="entity-details__property">
-        <label>Identifiers</label>
         <ul class="identifiers">
           <% _.each(organization.identifiers, function(identifier, i) { %>
           <li>
