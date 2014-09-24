@@ -64,13 +64,14 @@
 
   <div class="entity-header">
 
+      <%= popit.instance_name() %>
+
     <div class="entity-header__photo">
       <% if (person.images.length) { %>
         <% if (person.images[0].url) { %>
-          <% // TODO - proxy will need changes to allow us to proxy remote images %>
-          <img src="<%- person.images[0].url %>" width="128" />
+          <img src="<%- image_proxy(person.images[0].url, "", 128, popit.instance_name(), true) %>" />
         <% } else { %>
-          <img src="<%- image_proxy(image_url('person', person, person.images[0]), "", 128) %>" />
+          <img src="<%- image_proxy(image_url('person', person, person.images[0]), "", 128, popit.instance_name()) %>" />
         <% } %>
         <% if (userCan('edit instance')) { %>
         <a class="delete-photo" data-image-url="<%- image_url( 'person', person, person.images[0] ) %>">
