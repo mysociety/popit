@@ -78,6 +78,8 @@
           <span class="glyphicon glyphicon-trash glyphicon-space-after"></span> Delete photo
         </a>
         <% } %>
+      <% } else if ( person.image ) { %>
+          <img src="<%- image_proxy(person.image, "", 128, popit.instance_name(), true) %>" />
       <% } else { %>
         <img src='/img/placeholder-person.gif' width="128" />
         <% if (userCan('edit instance')) { %>
