@@ -30,6 +30,8 @@ before_install:
   - gem install compass -v 0.12.2
   # tell npm to use known registrars
   - npm config set ca ""
+  # see https://github.com/npm/npm/issues/4984
+  - npm install -g npm@1.4.4
 
 
 # The Watir tests will be set up to use FireFox which will then run headless using xvfb
