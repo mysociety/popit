@@ -16,13 +16,13 @@ app.use( function (req, res, next) {
   next();
 });
 
-app.configure('development', function(){
+if (app.get('env') === 'development') {
   app.use(express.logger('dev'));
-});
+}
 
-app.configure('production', function(){
+if (app.get('env') === 'production') {
   app.use(express.logger());
-});
+}
 
 app.use(express.static(__dirname + '/' + config.public_dir));
 

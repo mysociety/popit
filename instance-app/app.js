@@ -1,4 +1,4 @@
-"use strict"; 
+"use strict";
 
 /**
  *  Instance Server
@@ -31,81 +31,67 @@ app.locals({
 var templates = new UTA();
 templates.cacheTemplates = app.get('env') == 'development' ? false : true;
 
-app.configure(function(){
-    
-  app.set('views', __dirname + '/views');
-  app.engine('html', templates.forExpress() );
-  app.engine('txt',  engines.hogan);
-    
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(assets({ paths: [ config.public_dir + '/js', config.public_dir + '/css' ] }));
+app.set('views', __dirname + '/views');
+app.engine('html', templates.forExpress() );
+app.engine('txt',  engines.hogan);
+
+app.use(express.bodyParser());
+app.use(express.methodOverride());
+app.use(assets({ paths: [ config.public_dir + '/js', config.public_dir + '/css' ] }));
+
+app.use( function (req,res,next) {
+  res.locals.current_absolute_pathname = current_absolute_pathname(req);
+  next();
 });
 
-app.configure( function () {
-  app.use( function (req,res,next) {
-    res.locals.current_absolute_pathname = current_absolute_pathname(req);
-    next();    
-  });
+app.use(passport.initialize());
+app.use(passport.session());
 
-  app.use(passport.initialize());
-  app.use(passport.session());
+app.use(require('../lib/authorization').middleware());
 
-  app.use(require('../lib/authorization').middleware());
+app.locals( require('../lib/middleware/config') );
+app.use(instanceSelector());
+app.use(checkInstanceAvailable());
+app.use(popitApiStorageSelector({
+  storageSelector: 'popit',
+  databasePrefix: config.MongoDB.popit_prefix
+}));
 
-  app.locals( require('../lib/middleware/config') );
-  app.use(instanceSelector());
-  app.use(checkInstanceAvailable());
-  app.use(popitApiStorageSelector({
-    storageSelector: 'popit',
-    databasePrefix: config.MongoDB.popit_prefix
-  }));
+app.use( require('../lib/apps/auth').middleware );
+app.use( require('../lib/apps/auth').app );
 
-  app.use( require('../lib/apps/auth').middleware );
-  app.use( require('../lib/apps/auth').app );
+app.use('/api',   require('../lib/apps/api') );
 
-  app.use('/api',   require('../lib/apps/api') );
+app.use('/info',   require('../lib/apps/info')() );
+app.use('/token',  require('../lib/apps/token') );
 
-  app.use('/info',   require('../lib/apps/info')() );
-  app.use('/token',  require('../lib/apps/token') );
+app.use('/autocomplete',   require('../lib/apps/autocomplete') );
 
-  app.use('/autocomplete',   require('../lib/apps/autocomplete') );
+app.use('/migration',      require('../lib/apps/migration')() );
+app.use('/persons',        require('../lib/apps/person')() );
+app.use('/memberships',    require('../lib/apps/membership')() );
+app.use('/organizations',  require('../lib/apps/organization')() );
+app.use('/about',          require('../lib/apps/about')() );
+app.use('/suggestion',     require('../lib/apps/suggestion'));
+app.use('/admin',          require('../lib/apps/admin'));
 
-  app.use('/migration',      require('../lib/apps/migration')() );
-  app.use('/persons',        require('../lib/apps/person')() );
-  app.use('/memberships',    require('../lib/apps/membership')() );
-  app.use('/organizations',  require('../lib/apps/organization')() );
-  app.use('/about',          require('../lib/apps/about')() );
-  app.use('/suggestion',     require('../lib/apps/suggestion'));
-  app.use('/admin',          require('../lib/apps/admin'));
+app.use(config.image_proxy.path , image_proxy() );
 
-  app.use(config.image_proxy.path , image_proxy() );
-
-});
-
-
-app.configure('development', 'testing', function() {
+if (app.get('env') === 'development' || app.get('env') === 'testing') {
   var helpers = require('../lib/apps/dev-helpers');
   app.use( '/_dev', helpers() );
-});
+}
 
+app.use(app.router);
+app.use( require('../lib/errors').errorHandler );
 
-app.configure(function(){
-  app.use(app.router);
-  
-  app.use( require('../lib/errors').errorHandler );
-    
-});
-
-app.configure('development', function(){
+if (app.get('env') === 'development') {
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-});
+}
 
-app.configure('production', function(){
+if (app.get('env') === 'production') {
   app.use(express.errorHandler());
-});
+}
 
 
-require('./routes').route(app);      
-
-
+require('./routes').route(app);
