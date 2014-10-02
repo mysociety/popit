@@ -18,12 +18,10 @@
     "hogan.js": ">= 2.0.0",
     "iconv": ">= 1.2.3",
     "image-proxy": "git://github.com/opennorth/image-proxy.git#master",
-    "jshint": ">= 0.9.1",
     "mkdirp": ">= 0.3.1",
     "mongodb": ">= 0.9.9-7",
     "mongoose": "=3.8.4",
     "nodemailer": ">= 0.3.10",
-    "nodeunit": ">= 0.7.4",
     "passgen": ">= 1.0.1",
     "passport": ">= 0.2.0",
     "passport-http": "~0.2.2",
@@ -47,6 +45,8 @@
     "test": "make test"
   },
   "devDependencies": {
+    "jshint": ">= 0.9.1",
+    "nodeunit": ">= 0.7.4",
     "supertest": "~0.13.0"
   },
   "optionalDependencies": {},
