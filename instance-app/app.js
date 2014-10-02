@@ -11,7 +11,6 @@ var express           = require('express'),
     checkInstanceAvailable = require('../lib/middleware/check-instance-available'),
     image_proxy       = require('image-proxy/lib/proxy'),
     UTA               = require('underscore-template-additions'),
-    current_absolute_pathname = require('../lib/middleware/route').current_absolute_pathname,
     engines           = require('consolidate'),
     popitApiStorageSelector = require('popit-api/src/middleware/storage-selector'),
     passport          = require('../lib/passport');
@@ -38,11 +37,6 @@ app.engine('txt',  engines.hogan);
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(assets({ paths: [ config.public_dir + '/js', config.public_dir + '/css' ] }));
-
-app.use( function (req,res,next) {
-  res.locals.current_absolute_pathname = current_absolute_pathname(req);
-  next();
-});
 
 app.use(passport.initialize());
 app.use(passport.session());
