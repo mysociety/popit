@@ -17,7 +17,7 @@ app.use( function (req, res, next) {
 });
 
 if (app.get('env') === 'development') {
-  app.use(express.logger('dev'));
+  app.use(express.logger({ format: 'dev' }));
 }
 
 if (app.get('env') === 'production') {
