@@ -1,0 +1,23 @@
+<div class="entity-header__photo">
+  <% if (person.images.length) { %>
+    <% if (person.images[0].url) { %>
+      <img src="<%- image_proxy(person.images[0].url, "", 128, popit.instance_name(), true) %>" />
+    <% } else { %>
+      <img src="<%- image_proxy(image_url('person', person, person.images[0]), "", 128, popit.instance_name()) %>" />
+    <% } %>
+    <% if (userCan('edit instance')) { %>
+    <a class="delete-photo" data-image-url="<%- image_url( 'person', person, person.images[0] ) %>">
+      <span class="glyphicon glyphicon-trash glyphicon-space-after"></span> Delete photo
+    </a>
+    <% } %>
+  <% } else if ( person.image ) { %>
+      <img src="<%- image_proxy(person.image, "", 128, popit.instance_name(), true) %>" />
+  <% } else { %>
+    <img src='/img/placeholder-person.gif' width="128" />
+    <% if (userCan('edit instance')) { %>
+    <a class="add-photo" href="<%- person.url %>/images/upload">
+      <span class="glyphicon glyphicon-plus glyphicon-space-after"></span> Add photo
+    </a>
+    <% } %>
+  <% } %>
+</div>

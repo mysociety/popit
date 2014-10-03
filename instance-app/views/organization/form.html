@@ -2,28 +2,8 @@
   <input type="hidden" name="_method" value="put">
 
   <div class="entity-header">
-    <div class="entity-header__photo">
-      <% if (organization.images.length) { %>
-        <% if (organization.images[0].url) { %>
-          <% // TODO - proxy will need changes to allow us to proxy remote images %>
-          <img src="<%- organization.images[0].url %>" width="128" />
-        <% } else { %>
-          <img src="<%- image_proxy(image_url('organization', organization, organization.images[0]), "", 128) %>" />
-        <% } %>
-        <% if (userCan('edit instance')) { %>
-        <a class="delete-photo" data-image-url="<%- image_url( 'organization', organization, organization.images[0] ) %>">
-          <span class="glyphicon glyphicon-trash glyphicon-space-after"></span> Delete photo
-        </a>
-        <% } %>
-      <% } else { %>
-        <img src='/img/placeholder-organization.gif' width="128" />
-        <% if (userCan('edit instance')) { %>
-        <a class="add-photo" href="<%- organization.url %>/images/upload">
-          <span class="glyphicon glyphicon-plus glyphicon-space-after"></span> Add photo
-        </a>
-        <% } %>
-      <% } %>
-    </div>
+
+    <%= render('organization/image.html') %>
 
     <div class="entity-header__primary-property">
       <label for="input-name">Name</label>

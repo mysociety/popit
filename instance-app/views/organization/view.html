@@ -54,29 +54,8 @@
 <article class="container entity organization organization-view" itemscope itemtype="http://schema.org/Organization">
 
   <div class="entity-header">
-    <div class="entity-header__photo">
-      <% if (organization.images.length) { %>
-        <% if (organization.images[0].url) { %>
-          <img src="<%- image_proxy(organization.images[0].url, "", 128, popit.instance_name(), true) %>" />
-        <% } else { %>
-          <img src="<%- image_proxy(image_url('organization', organization, organization.images[0]), "", 128, popit.instance_name()) %>" />
-        <% } %>
-        <% if (userCan('edit instance')) { %>
-        <a class="delete-photo" data-image-url="<%- image_url( 'organization', organization, organization.images[0] ) %>">
-          <span class="glyphicon glyphicon-trash glyphicon-space-after"></span> Delete photo
-        </a>
-        <% } %>
-      <% } else if (organization.image ) { %>
-          <img src="<%- image_proxy(organization.image, "", 128, popit.instance_name(), true) %>" />
-      <% } else { %>
-        <img src='/img/placeholder-organization.gif' width="128" />
-        <% if (userCan('edit instance')) { %>
-        <a class="add-photo" href="<%- organization.url %>/images/upload">
-          <span class="glyphicon glyphicon-plus glyphicon-space-after"></span> Add photo
-        </a>
-        <% } %>
-      <% } %>
-    </div>
+
+    <%= render('organization/image.html') %>
 
     <div class="entity-header__primary-property">
       <label for="input-name">Name</label>
