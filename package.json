@@ -17,7 +17,7 @@
     "fs-extra": ">= 0.10.0",
     "hogan.js": ">= 2.0.0",
     "iconv": ">= 1.2.3",
-    "image-proxy": "git://github.com/opennorth/image-proxy.git#master",
+    "image-proxy": "0.0.2",
     "mkdirp": ">= 0.3.1",
     "mongodb": ">= 0.9.9-7",
     "mongoose": "=3.8.4",
