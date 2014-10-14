@@ -1176,8 +1176,8 @@
     },
     "popit-api": {
       "version": "0.0.14",
-      "from": "popit-api@git://github.com/mysociety/popit-api.git#4417bd8151aafda3978dd040bccdf97b57a5e051",
-      "resolved": "git://github.com/mysociety/popit-api.git#4417bd8151aafda3978dd040bccdf97b57a5e051",
+      "from": "git://github.com/mysociety/popit-api.git#master",
+      "resolved": "git://github.com/mysociety/popit-api.git#a38c17ba4b6eab3fca519523b6a58419718abc30",
       "dependencies": {
         "JSV": {
           "version": "4.0.2",
@@ -1359,6 +1359,11 @@
               }
             }
           }
+        },
+        "mpath": {
+          "version": "0.2.1",
+          "from": "mpath@~0.2.1",
+          "resolved": "https://registry.npmjs.org/mpath/-/mpath-0.2.1.tgz"
         },
         "underscore": {
           "version": "1.4.4",
