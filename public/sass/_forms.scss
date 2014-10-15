@@ -83,3 +83,9 @@ input[type="search"].form-control {
   margin-bottom: 0;
 }
 
+/* these are only made visible if flash is available
+ * as they don't work without it
+ */
+.click-to-copy .btn {
+  display: none;
+}

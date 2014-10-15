@@ -41,15 +41,18 @@ require(['jquery', '/js/libs/zeroclipboard/ZeroClipboard.js'], function($, ZeroC
 
       clip.setText($ipt.val());
 
-      clip.on('dataRequested', function ( client, args ) {
-        clip.setText($ipt.val());
-      }).on('complete', function(){
-        var btnHtml = $btn.html();
-        $btn.html('Copied!').addClass('zeroclipboard-is-copied').blur();
-        marioFloat($ipt);
-        setTimeout(function(){
-          $btn.html(btnHtml).removeClass('zeroclipboard-is-copied');
-        }, 2000);
+      clip.on('load', function() {
+        clip.on('dataRequested', function ( client, args ) {
+          clip.setText($ipt.val());
+        }).on('complete', function(){
+          var btnHtml = $btn.html();
+          $btn.html('Copied!').addClass('zeroclipboard-is-copied').blur();
+          marioFloat($ipt);
+          setTimeout(function(){
+            $btn.html(btnHtml).removeClass('zeroclipboard-is-copied');
+          }, 2000);
+        });
+        $btn.show();
       });
     });
 
