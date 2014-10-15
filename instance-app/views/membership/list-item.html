@@ -1,13 +1,22 @@
 <div class="view-mode">
   <a href="<%- member.url %>"><%- member.name %></a>
-  <% if (membership.end_date) { %>
-    <% if (new Date(membership.end_date) < new Date()) { %>
+  <% var today = new Date(); %>
+  <% if (membership.start_date && membership.end_date ) { %>
+    <% if ( new Date(membership.start_date) < today && new Date(membership.end_date) > today ) { %>
+      is
+    <% } else if ( new Date(membership.end_date) < today ) { %>
+      was
+    <% } else { %>
+      will be
+    <% } %>
+  <% } else if (membership.end_date) { %>
+    <% if (new Date(membership.end_date) < today ){ %>
       was
     <% } else {%>
       will be
     <% } %>
   <% } else if (membership.start_date) { %>
-    <% if (new Date(membership.start_date) < new Date()) { %>
+    <% if (new Date(membership.start_date) < today ) { %>
       has been
     <% } else {%>
       will be
