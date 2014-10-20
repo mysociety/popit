@@ -10,21 +10,13 @@ var express           = require('express'),
     instanceSelector  = require('../lib/middleware/instance-selector'),
     checkInstanceAvailable = require('../lib/middleware/check-instance-available'),
     image_proxy       = require('image-proxy'),
-    UTA               = require('underscore-template-additions'),
-    engines           = require('consolidate'),
+    setupTemplates    = require('../lib/templates'),
     popitApiStorageSelector = require('popit-api/src/middleware/storage-selector'),
     passport          = require('../lib/passport');
 
 var app = module.exports = express();
 
-// Configuration
-
-var templates = new UTA();
-templates.cacheTemplates = app.get('env') == 'development' ? false : true;
-
-app.set('views', __dirname + '/views');
-app.engine('html', templates.forExpress() );
-app.engine('txt',  engines.hogan);
+setupTemplates(app, __dirname + '/views');
 
 app.use(express.bodyParser());
 app.use(express.methodOverride());

@@ -6,8 +6,7 @@
 
 var express           = require('express'),
     config            = require('config'),
-    engines           = require('consolidate'),
-    UTA               = require('underscore-template-additions'),
+    setupTemplates    = require('../lib/templates'),
     masterSelector    = require('../lib/middleware/master-selector'),
     assets            = require('connect-assets'),
     passport          = require('../lib/passport');
@@ -15,12 +14,7 @@ var express           = require('express'),
 
 var app = module.exports = express();
 
-var templates = new UTA();
-templates.cacheTemplates = app.get('env') == 'development' ? false : true;
-
-app.set('views', __dirname + '/views');
-app.engine('html', templates.forExpress() );
-app.engine('txt',  engines.hogan);
+setupTemplates(app, __dirname + '/views');
 
 app.use(express.bodyParser());
 app.use(express.methodOverride());
