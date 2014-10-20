@@ -15,11 +15,6 @@ var express           = require('express'),
 
 var app = module.exports = express();
 
-app.locals({
-  user:  null,
-  popit: null,
-});
-
 var templates = new UTA();
 templates.cacheTemplates = app.get('env') == 'development' ? false : true;
 
