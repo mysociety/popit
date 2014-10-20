@@ -39,7 +39,6 @@
     "underscore-template-additions": ">= 0.0.1",
     "unorm": "*",
     "validator": ">= 0.4.5",
-    "version": ">= 0.1.0",
     "winston": ">= 0.6.2"
   },
   "scripts": {

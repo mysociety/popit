@@ -1638,18 +1638,6 @@
       "from": "https://registry.npmjs.org/validator/-/validator-0.4.17.tgz",
       "resolved": "https://registry.npmjs.org/validator/-/validator-0.4.17.tgz"
     },
-    "version": {
-      "version": "0.1.0",
-      "from": "https://registry.npmjs.org/version/-/version-0.1.0.tgz",
-      "resolved": "https://registry.npmjs.org/version/-/version-0.1.0.tgz",
-      "dependencies": {
-        "request": {
-          "version": "2.9.202",
-          "from": "https://registry.npmjs.org/request/-/request-2.9.202.tgz",
-          "resolved": "https://registry.npmjs.org/request/-/request-2.9.202.tgz"
-        }
-      }
-    },
     "winston": {
       "version": "0.6.2",
       "from": "https://registry.npmjs.org/winston/-/winston-0.6.2.tgz",

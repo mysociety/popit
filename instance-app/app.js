@@ -43,7 +43,7 @@ app.use(passport.session());
 
 app.use(require('../lib/authorization').middleware());
 
-app.locals( require('../lib/middleware/config') );
+app.use( require('../lib/middleware/config') );
 app.use(instanceSelector());
 app.use(checkInstanceAvailable());
 app.use(popitApiStorageSelector({

@@ -31,7 +31,7 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(assets({ paths: [ config.public_dir + '/js', config.public_dir + '/css' ] }));
 
-app.locals( require('../lib/middleware/config') );
+app.use( require('../lib/middleware/config') );
 
 app.use(masterSelector());
 
