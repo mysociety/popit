@@ -41,6 +41,8 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.use(require('./lib/middleware/route'));
+
 // match the hosting app host...
 app.use(
   express.vhost(
