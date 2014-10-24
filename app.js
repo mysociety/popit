@@ -7,6 +7,8 @@ var instance_app = require('./instance-app/app');
 
 var app = module.exports = express();
 
+app.enable('trust proxy');
+
 // Intercept JSON content type GET requests and change the header.
 // this is a workaround for https://github.com/senchalabs/connect/issues/680 which hopefully will be fixed upstream
 app.use( function (req, res, next) {
