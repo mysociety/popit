@@ -13,6 +13,8 @@ module.exports = {
       port: 3000,
     },
 
+    force_https: false,
+
     logging: {
       log_level:      'info',
       colorize: false,

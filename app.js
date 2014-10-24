@@ -24,6 +24,10 @@ if (app.get('env') === 'production') {
   app.use(express.logger());
 }
 
+if (config.force_https) {
+  app.use(require('./lib/middleware/secure'));
+}
+
 app.use(express.static(__dirname + '/' + config.public_dir));
 
 // sessions

@@ -7,6 +7,9 @@ module.exports = {
         port: 3000,
     },
 
+    // Uncomment the line below to force all non-api urls to redirect to https
+    // force_https: true,
+
     hosting_server: {
         host:       'popit.example.com',
         base_url:   'http://popit.example.com:3000',
