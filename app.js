@@ -37,7 +37,8 @@ app.use(express.cookieParser());
 
 app.use(express.cookieSession({
   secret: config.instance_server.cookie_secret,
-  cookie: { domain: config.instance_server.cookie_domain },
+  cookie: { domain: config.instance_server.cookie_domain, secure: config.force_https },
+  proxy: true,
 }));
 
 // set up the flash and make it available to the templates - https://gist.github.com/3070950
