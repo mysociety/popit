@@ -53,14 +53,14 @@
   "engines": {
     "node": "0.10.x"
   },
-  "author": "mySociety <popit@mysociety.org> (http://www.mysociety.org/)",
+  "author": "mySociety <popit@mysociety.org> (https://www.mysociety.org/)",
   "description": "People, Organizations and Positions database website",
-  "homepage": "http://popit.mysociety.org/",
+  "homepage": "http://popit.poplus.org/",
   "repository": {
     "type": "git",
-    "url": "http://github.com/mysociety/popit.git"
+    "url": "https://github.com/mysociety/popit.git"
   },
   "bugs": {
-    "url": "http://github.com/mysociety/popit/issues"
+    "url": "https://github.com/mysociety/popit/issues"
   }
 }
