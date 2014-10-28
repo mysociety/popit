@@ -12,19 +12,23 @@
 
   <h1><%- membership.role %></h1>
 
+  <% if (membership.person_id) { %>
     <section class="person">
       <p>
         Person:
         <a href="<%- membership.person_id.url %>"><%- membership.person_id.name %></a>
       </p>
     </section>
+  <% } %>
 
+  <% if (membership.organization_id) { %>
     <section class="organization">
       <p>
         Organization:
         <a href="<%- membership.organization_id.url %>"><%- membership.organization_id.name %></a>
       </p>
     </section>
+  <% } %>
 
   <p>Start Date: <%- membership.start_date || 'Unknown' %></p>
   <p>End Date:   <%- membership.end_date   || 'Unknown' %></p>
