@@ -34,6 +34,7 @@ exports.route = function (app) {
     instance.save(function(err, newInstance) {
       if (err) {
         res.locals.errors = err.errors;
+        res.locals.existing_instance_url = instance.base_url;
         return res.render('instance_new.html');
       }
       // Make the user owner of the instance
