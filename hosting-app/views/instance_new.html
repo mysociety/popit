@@ -21,7 +21,7 @@
     <p class="form-group <%- errors.slug ? 'has-error' : '' %>">
       <label class="control-label" for="slug">Pick a website name</label>
       <span class="input-group">
-        <span class="input-group-addon">http://</span>
+        <span class="input-group-addon"><%= config.force_https ? 'https' : 'http' %>://</span>
         <input id="slug" class="form-control" type="text" name="slug" data-validation="required url_safe" required value="<%- slug %>" />
         <span class="input-group-addon"><%- config.instance_site_base_url_suffix %></span>
       </span>
