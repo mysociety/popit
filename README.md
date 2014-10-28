@@ -12,5 +12,5 @@ PopIt helps you create and maintain reusable fundamental 'who's who' open data a
 
 ## How can I set up a PopIt server myself?
 
-- You can use our hosted version of PopIt at [popit.mysociety.org](http://popit.mysociety.org/instances/new)
+- You can use our hosted version of PopIt at [popit.mysociety.org](https://popit.mysociety.org/instances/new)
 - If you want to host it yourself check out out [install documentation](http://popit.poplus.org/docs/install/)

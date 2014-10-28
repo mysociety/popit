@@ -3,8 +3,8 @@ Welcome to PopIt!
 Here are a some links that might be useful:
 
 - Help and Guides - http://popit.poplus.org/docs/
-- Discover other PopIts - http://popit.mysociety.org/instances
-- Create your own PopIt - http://popit.mysociety.org/instances/new
+- Discover other PopIts - https://popit.mysociety.org/instances
+- Create your own PopIt - https://popit.mysociety.org/instances/new
 
 Enjoy PopIt!
 
