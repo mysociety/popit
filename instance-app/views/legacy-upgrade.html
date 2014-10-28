@@ -12,7 +12,7 @@
 
     <div class="create-account-container">
       <h3>Create your global PopIt account now</h3>
-      <form action='<%= config.hosting_site_base_url %>/register' method='post'>
+      <form action='<%= config.hosting_server.base_url %>/register' method='post'>
         <div class="form-group">
           <label for="name" class="control-label">Name</label>
           <input id="name" type="text" name="name" class="form-control">
@@ -53,7 +53,7 @@
         <div class="form-group">
           <label for="password" class="control-label">Password</label>
           <input id="password" type="password" name="password" class="form-control">
-          <a href="<%= config.hosting_site_base_url %>/password-reset" class="pull-right">Forgotten?</a>
+          <a href="<%= config.hosting_server.base_url %>/password-reset" class="pull-right">Forgotten?</a>
         </div>
 
         <div class="form-group">

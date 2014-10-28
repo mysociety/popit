@@ -28,13 +28,13 @@
       <p class="form-group">
         <label for="password" class="control-label">Password:</label>
         <input id="password" type="password" name="password" class="form-control">
-        <a href="<%- config.hosting_site_base_url %>/password-reset" class="pull-right">Forgotten?</a>
+        <a href="<%- config.hosting_server.base_url %>/password-reset" class="pull-right">Forgotten?</a>
       </p>
 
       <p class="form-group">
         <button id="login" class="btn btn-primary" type="submit">Log in</button>
       </p>
-      <p><a href="<%- config.hosting_site_base_url %>/register">Not got an account? Register here</a></p>
+      <p><a href="<%- config.hosting_server.base_url %>/register">Not got an account? Register here</a></p>
       <% if (isUpgrading) { %>
       <p>When you click <b>Log in</b> your PopIt account will be associated with this instance and the legacy account will be removed.</p>
       <% } %>

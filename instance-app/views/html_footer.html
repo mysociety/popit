@@ -7,7 +7,7 @@
           <% if (popit) { %>
             <p><strong><%- popit.pretty_name() %></strong> is an instance of PopIt, a new service that lowers the barrier to starting up transparency projects.</p>
           <% } else { %>
-          <p>This is the <a href="http://en.wikipedia.org/wiki/Software_release_life_cycle#Alpha">alpha</a> of <a href="<%= config.hosting_site_base_url %>">PopIt</a>, a new service that lowers the barrier to starting up transparency projects.</p>
+          <p>This is the <a href="http://en.wikipedia.org/wiki/Software_release_life_cycle#Alpha">alpha</a> of <a href="<%= config.hosting_server.base_url %>">PopIt</a>, a new service that lowers the barrier to starting up transparency projects.</p>
           <% } %>
 
           <p>PopIt is a <a href="http://poplus.org/">Poplus Component</a>: please do join the <a href="https://groups.google.com/forum/#!forum/poplus">Poplus mailing list</a> for community, support and queries. PopIt is Open Source and its <a href="https://github.com/mysociety/popit">source code is available on GitHub</a>.</p>
@@ -27,7 +27,7 @@
               <img id="mysociety-logo" src="/img/mysociety-logo.png" />
             </a>
           </p>
-          <p class="copyright">&copy; 2014 mySociety.org - v<%- config.popit_version %></p>
+          <p class="copyright">&copy; 2014 mySociety.org - v<%- popit_version %></p>
           <p class="terms"><a href="http://popit.poplus.org/about/privacy/">Terms &amp; Privacy Policy</a></p>
           <% // This is used to indicate to the test suite that the admin app is loaded. %>
           <!-- <p id="instance-app-activated" class="admin-options">admin on</p> -->

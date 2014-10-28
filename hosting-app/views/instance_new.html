@@ -23,7 +23,7 @@
       <span class="input-group">
         <span class="input-group-addon"><%= config.force_https ? 'https' : 'http' %>://</span>
         <input id="slug" class="form-control" type="text" name="slug" data-validation="required url_safe" required value="<%- slug %>" />
-        <span class="input-group-addon"><%- config.instance_site_base_url_suffix %></span>
+        <span class="input-group-addon"><%- config.instance_server.base_url_format.replace(/^.*%s/, '') %></span>
       </span>
       <% if (errors.slug == 'slug_not_unique' ) { %>
       <span class="help-block">A Popit instance with that name already exists at <a href="<%= existing_instance_url %>"><%= existing_instance_url %></a></span>

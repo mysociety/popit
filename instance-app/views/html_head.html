@@ -38,7 +38,7 @@
 
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <script>var require = { urlArgs: 'v<%- config.popit_version %>' };</script>
+  <script>var require = { urlArgs: 'v<%- popit_version %>' };</script>
   <% if ( settings.env == 'development' ) { %>
   <script src="/js/libs/require-1.0.8.js" data-main="/js/main-instance" type="text/javascript" charset="utf-8"></script>
   <% } else { %>
@@ -121,8 +121,8 @@
                 <span class="glyphicon glyphicon-user"></span> <%- user.email %> <span class="caret"></span>
               </button>
               <ul class="dropdown-menu user-dropdown-menu" role="menu" aria-labelledby="user-controls-dropdown">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="<%- config.hosting_site_base_url %>/apikey">Get API key</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="<%- config.hosting_site_base_url %>/instances">Your PopIt sites</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="<%- config.hosting_server.base_url %>/apikey">Get API key</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="<%- config.hosting_server.base_url %>/instances">Your PopIt sites</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="/logout">Sign out</a></li>
               </ul>
             </div>
