@@ -176,6 +176,31 @@
         </ul>
       </div>
 
+      <div id="posts-summary" class="homepage-summary-box">
+        <h2><%- post_count || 'no' %> <%- post_count == 1 ? 'post' : 'posts' %></h2>
+        <% if (posts.length) { %>
+          <ul class="homepage-summary-list row">
+            <% _.each( posts, function(post) { %>
+              <li class="col-md-2 col-sm-4">
+                <a href="<%- post.url %>">
+                  <span class="initials"><%- post.initials %></span>
+                  <strong title="<%- post.name %>"><%- post.name %></strong>
+                  <small title="<%= post.personCount %> member<%= post.personCount !== 1 ? 's' : '' %>"><%= post.personCount %> member<%= post.personCount !== 1 ? 's' : '' %></small>
+                </a>
+              </li>
+            <% }); %>
+            <% if (post_count > posts.length) { %>
+            <li class="col-md-2 col-sm-4 homepage-summary-show-all">
+              <a href="/posts/">
+                <img src="/img/icon-posts.gif" width="115" height="85" alt="">
+                <strong>Show all <%- post_count %>&hellip;</strong>
+              </a>
+            </li>
+            <% } %>
+          </ul>
+        <% } %>
+      </div>
+
     </div>
   </div>
 

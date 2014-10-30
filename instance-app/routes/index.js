@@ -68,7 +68,20 @@ exports.route = function (app) {
             .model('Organization')
             .count()
             .exec(callback);
-        }
+        },
+        posts: function (callback) {
+          req.popit
+            .model('Post')
+            .find()
+            .limit(summary_listing_count)
+            .exec(callback);
+        },
+        post_count: function (callback) {
+          req.popit
+            .model('Post')
+            .count()
+            .exec(callback);
+        },
       },
       function(err, results) {
         if (err) return next(err);
