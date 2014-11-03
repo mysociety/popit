@@ -184,8 +184,10 @@
               <li class="col-md-2 col-sm-4">
                 <a href="<%- post.url %>">
                   <span class="initials"><%- post.initials %></span>
-                  <strong title="<%- post.name %>"><%- post.name %></strong>
-                  <small title="<%= post.personCount %> member<%= post.personCount !== 1 ? 's' : '' %>"><%= post.personCount %> member<%= post.personCount !== 1 ? 's' : '' %></small>
+                  <strong title="<%- post.label %>"><%- post.label %></strong>
+                  <% if (post.area) { %>
+                  <small title="<%- post.area.name %>"><%- post.area.name %></small>
+                  <% } %>
                 </a>
               </li>
             <% }); %>
