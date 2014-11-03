@@ -14,6 +14,8 @@ var express           = require('express'),
 
 var app = module.exports = express();
 
+app.enable('trust proxy');
+
 setupTemplates(app, __dirname + '/views');
 
 app.use(express.bodyParser());
