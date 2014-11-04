@@ -51,6 +51,7 @@ app.use('/migration',      require('../lib/apps/migration')() );
 app.use('/persons',        require('../lib/apps/person')() );
 app.use('/memberships',    require('../lib/apps/membership')() );
 app.use('/organizations',  require('../lib/apps/organization')() );
+app.use('/posts',          require('../lib/apps/post') );
 app.use('/about',          require('../lib/apps/about')() );
 app.use('/suggestion',     require('../lib/apps/suggestion'));
 app.use('/admin',          require('../lib/apps/admin'));

@@ -1,0 +1,50 @@
+<%= render(
+  'html_head.html',
+  {
+    title:       'Posts',
+    description: 'A list of all the posts.',
+  }
+) %>
+
+<div class="popit-toolbar entity-toolbar">
+  <div class="container">
+    <div class="btn-toolbar pull-right">
+      <div class="btn-group">
+        <a class="btn btn-default" href="/api/v0.1/posts">Get this data</a>
+      </div>
+    </div>
+    <p><a href="/posts">Posts</a></p>
+  </div>
+</div>
+
+<div class="container entity-list post">
+
+<% if (posts.length) { %>
+
+  <ul class="row">
+    <% _.each(posts, function(post) { %>
+      <li class="col-sm-12 col-md-6 col-lg-4">
+        <a class="media" href="<%- post.url %>">
+          <span class="pull-left media-object initials"><%- post.initials %></span>
+          <div class="media-body">
+            <h4><%- post.label %></h4>
+            <% if (post.area) { %>
+              <p><%- post.area.name %></p>
+            <% } %>
+          </div>
+        </a>
+      </li>
+    <% }); %>
+  </ul>
+
+<% } else { %>
+  <div class="empty-entity-message">
+
+    <img src="/img/icon-posts.gif" width="115" height="85" alt="">
+
+    <h2>There are no posts in the system yet</h2>
+
+  </div>
+<% } %>
+
+<%= render('html_footer.html' )%>
