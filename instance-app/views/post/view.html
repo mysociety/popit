@@ -30,15 +30,33 @@
 
     <% if (post.role) { %>
     <div class="entity-header__secondary-property">
-      <label for="input-classification">Post role</label>
+      <label for="input-classification">Role</label>
       <p class="view-mode"><%- post.role %></p>
     </div>
     <% } %>
 
     <% if (post.area) { %>
     <div class="entity-header__secondary-property">
-      <label for="input-classification">Post area</label>
+      <label for="input-classification">Area</label>
       <p class="view-mode"><%- post.area.name %></p>
+    </div>
+    <% } %>
+
+    <% if (post.organization_id) { %>
+    <div class="entity-header__secondary-property">
+      <label for="input-classification">Organization</label>
+      <p class="view-mode">
+        <a href="<%- post.organization_id.url %>"><%- post.organization_id.name %></a>
+      </p>
+    </div>
+    <% } %>
+
+    <% if (post.person_id) { %>
+    <div class="entity-header__secondary-property">
+      <label for="input-classification">Person</label>
+      <p class="view-mode">
+        <a href="<%- post.person_id.url %>"><%- post.person_id.name %></a>
+      </p>
     </div>
     <% } %>
 
