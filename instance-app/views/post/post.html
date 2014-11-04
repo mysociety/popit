@@ -1,5 +1,5 @@
 <div class="view-mode">
-  <%- item.label %>
+  <a href="<%- item.url %>"><%- item.label %></a>
 
   <% if (item.role) { %>
     (<%- item.role %>)
@@ -16,7 +16,7 @@
 <div class="edit-mode edit-group">
   <a class="delete"><span class="glyphicon glyphicon-ban-circle glyphicon-space-after"></span>Delete</a>
   <a class="edit edit-post"><span class="glyphicon glyphicon-pencil glyphicon-space-after"></span>Edit</a>
-  <%- item.label %>
+  <a href="<%- item.url %>"><%- item.label %></a>
 
   <% if (item.role) { %>
     (<%- item.role %>)
