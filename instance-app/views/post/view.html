@@ -51,15 +51,24 @@
     </div>
     <% } %>
 
-    <% if (post.person_id) { %>
-    <div class="entity-header__secondary-property">
-      <label for="input-classification">Person</label>
-      <p class="view-mode">
-        <a href="<%- post.person_id.url %>"><%- post.person_id.name %></a>
-      </p>
-    </div>
-    <% } %>
+  </div>
 
+  <div class="entity-details">
+    <ul class="nav nav-tabs">
+      <li><a href="#memberships">Memberships</a></li>
+    </ul>
+
+    <div class="entity-details__section" id="memberships">
+      <div class="entity-details__property <% if(!memberships){ %>empty<% } %>">
+        <ul class="cleared memberships">
+          <% _.each( memberships, function (membership, i) { %>
+            <li class="membership">
+              <%= render( 'membership/list-item.html', { membership: membership, member: membership.person_id, organization: relatedObject(membership, post) } ) %>
+            </li>
+          <% }); %>
+        </ul>
+      </div>
+    </div>
   </div>
 
 </article>

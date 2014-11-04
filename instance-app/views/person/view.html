@@ -112,7 +112,7 @@
           <% _.each( memberships, function (membership, i) { %>
             <% if (validMembership(membership, person.id)) { %>
             <li class="membership">
-              <%= render( 'membership/list-item.html', { membership: membership, member: person, organization: relatedObject(membership, person.id), type: 'person' } ) %>
+              <%= render( 'membership/list-item.html', { membership: membership, member: person, organization: relatedObject(membership, person), type: 'person' } ) %>
             </li>
             <% } %>
           <% }); %>
