@@ -126,7 +126,7 @@
       <div class="entity-details__property <% if (!posts.length) { %>empty<% } %>">
         <ul class="cleared posts">
           <% _.each( posts, function ( post ) { %>
-            <li><%= render( 'post/view.html', { item: post }) %></li>
+            <li><%= render( 'post/post.html', { item: post }) %></li>
           <% }); %>
           <li class="edit-mode">
             <a class="add edit-post btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(posts.length){ %>nother<% } %> post</a>

@@ -6,7 +6,7 @@ define(
     'jquery',
     'instance-admin/actions/list-item-editor',
     'instance-admin/collections/posts',
-    'text!templates/post/view.html',
+    'text!templates/post/post.html',
     'jquery.fancybox'
   ],
   function (
