@@ -1,0 +1,49 @@
+<%= render(
+  'html_head.html',
+  {
+    title:       post.label,
+    description: '',
+  }
+) %>
+
+<div class="popit-toolbar entity-toolbar">
+  <div class="container">
+    <div class="btn-toolbar pull-right view-mode">
+      <div class="btn-group">
+        <a class="btn btn-default" href="/api/v0.1/posts/<%- post.id %>">Get this data</a>
+      </div>
+    </div>
+    <p><a href="/posts">Posts</a> / <a href="<%- post.url %>"><%- post.label %></a></p>
+  </div>
+</div>
+
+<article class="container entity post post-view">
+
+  <div class="entity-header">
+
+    <div class="entity-header__primary-property">
+      <label for="input-name">Name</label>
+      <h1 itemprop="name" class="view-mode">
+        <%- post.label %>
+      </h1>
+    </div>
+
+    <% if (post.role) { %>
+    <div class="entity-header__secondary-property">
+      <label for="input-classification">Post role</label>
+      <p class="view-mode"><%- post.role %></p>
+    </div>
+    <% } %>
+
+    <% if (post.area) { %>
+    <div class="entity-header__secondary-property">
+      <label for="input-classification">Post area</label>
+      <p class="view-mode"><%- post.area.name %></p>
+    </div>
+    <% } %>
+
+  </div>
+
+</article>
+
+<%= render('html_footer.html' )%>
