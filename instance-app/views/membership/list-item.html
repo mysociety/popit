@@ -26,9 +26,9 @@
   <% } %>
   <% if (membership.post_id) { %>
     <% if (membership.post_id.role) { %>
-      <%- membership.post_id.role %>
+      <a href="<%- membership.post_id.url %>"><%- membership.post_id.role %></a>
     <% } else if (membership.post_id.label) { %>
-      <%- membership.post_id.label %>
+      <a href="<%- membership.post_id.url %>"><%- membership.post_id.label %></a>
     <% } %>
   <% } else if (membership.role) { %>
     <%- membership.role %>
