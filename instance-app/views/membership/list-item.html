@@ -25,7 +25,9 @@
     is
   <% } %>
   <% if (membership.post_id) { %>
-    <% if (membership.post_id.role) { %>
+    <% if (membership.post_id.role && membership.role) { %>
+      <a href="<%- membership.post_id.url %>"><%- membership.post_id.role %></a> <%- membership.role %>
+    <% } else if (membership.post_id.role) { %>
       <a href="<%- membership.post_id.url %>"><%- membership.post_id.role %></a>
     <% } else if (membership.post_id.label) { %>
       <a href="<%- membership.post_id.url %>"><%- membership.post_id.label %></a>
