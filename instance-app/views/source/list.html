@@ -1,0 +1,8 @@
+<ul class="sources">
+  <% _.each( sources, function (item) { %>
+    <li><%= render( 'source/view.html', { item: item }) %></li>
+  <% }); %>
+  <li class="edit-mode">
+    <a class="add source-edit btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(sources.length){ %>nother<% } %> source</a>
+  </li>
+</ul>

@@ -94,6 +94,7 @@
       <li class="<% if (!person.links.length) { %>empty<% } %>"><a href="#websites">Websites</a></li>
       <li class="<% if (!person.contact_details.length) { %>empty<% } %>"><a href="#contact">Contact</a></li>
       <!-- <li class="<% if (!false) { %>empty<% } %>"><a href="#career">Career</a></li> -->
+      <li class="<% if (!person.sources.length) { %>empty<% } %>"><a href="#sources">Sources</a></li>
       <li class="<% if (!person.identifiers.length) { %>empty<% } %>"><a href="#advanced">Advanced</a></li>
     </ul>
 
@@ -190,6 +191,21 @@
 
     <!-- <div class="entity-details__section" id="career"></div> -->
 
+    <div class="entity-details__section" id="sources">
+      <% if (!person.sources.length) { %>
+        <p class="entity-details__hint view-mode entity-enter-edit-mode">
+          <span class="btn btn-xs btn-default pull-right">Add sources</span>
+          Add any URLs to documents from which the person is derived here.
+        </p>
+      <% } else { %>
+          <span class="entity-details__hint view-mode entity-enter-edit-mode btn btn-xs btn-default pull-right">Add another source</span>
+      <% } %>
+
+      <div class="entity-details__property <% if(!person.sources.length){ %>empty<% } %>">
+        <%= render( 'source/list.html', { sources: person.sources } ) %>
+      </div>
+    </div>
+
     <div class="entity-details__section" id="advanced">
       <% if (!person.identifiers.length) { %>
         <p class="entity-details__hint view-mode entity-enter-edit-mode">
@@ -204,6 +220,7 @@
         <%= render( 'identifier/list.html', { identifiers: person.identifiers } ) %>
       </div>
     </div>
+
   </div>
 
   <section class="custom-data" style="display: none">

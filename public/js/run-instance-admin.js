@@ -21,6 +21,7 @@ require ([
   'instance-admin/actions/other_name-edit',
   'instance-admin/actions/identifier-edit',
   'instance-admin/actions/links-edit',
+  'instance-admin/actions/source-edit',
   'instance-admin/actions/person-edit',
   'instance-admin/actions/entity-new',
   'instance-admin/actions/organization-edit',

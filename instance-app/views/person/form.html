@@ -21,6 +21,7 @@
       <li><a href="#biography">Biography</a></li>
       <li><a href="#websites">Websites</a></li>
       <li><a href="#contact">Contact</a></li>
+      <li><a href="#sources">Sources</a></li>
       <li><a href="#advanced">Advanced</a></li>
     </ul>
 
@@ -126,6 +127,27 @@
           <% }); %>
         </ul>
         <a class="add add-membership btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(memberships.length){ %>nother<% } %> membership</a>
+      </div>
+    </div>
+
+    <div class="entity-details__section" id="sources">
+      <% if (!person.sources.length) { %>
+        <p class="entity-details__hint view-mode entity-enter-edit-mode">
+          <span class="btn btn-xs btn-default pull-right">Add sources</span>
+          Add any URLs to documents from which the person is derived here.
+        </p>
+      <% } %>
+
+      <div class="entity-details__property">
+        <ul class="sources">
+          <% _.each(person.sources, function(source, i) { %>
+          <li>
+          <%= render('source/edit.html', {source: source, i: i}) %>
+          <a class="source-delete" href="#">Delete</a>
+          </li>
+          <% }) %>
+        </ul>
+        <a class="add source-edit btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(person.sources.length){ %>nother<% } %> source</a>
       </div>
     </div>
 
