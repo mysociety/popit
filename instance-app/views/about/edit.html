@@ -26,7 +26,7 @@
       <dt><%- val.label %>:</dt>
       <dd class="about-field about-field-<%- val.key %>">
         <% if (val.type == 'textarea') { %>
-          <textarea class="form-control" name="<%- field %>"><%- val.value %></textarea>
+          <textarea class="form-control" name="<%- field %>" placeholder="<%- val.placeholder %>"><%- val.value %></textarea>
         <% } else if (val.type == 'checkbox') { %>
           <input
             class="checkbox-inline"
@@ -36,7 +36,7 @@
             <% if (val.value) { %>checked="checked"<% } %>
           />
         <% } else { %>
-          <input class="form-control" name="<%- field %>" value="<%- val.value %>">
+          <input class="form-control" name="<%- field %>" value="<%- val.value %>" placeholder="<%- val.placeholder %>">
         <% } %>
       </dd>
     <% }); %>
