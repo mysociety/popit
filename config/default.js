@@ -59,6 +59,8 @@ module.exports = {
 
         // used if instance owners do not set an email address
         email_from: 'DO NOT REPLY <popit@mysociety.org>',
+
+        language: 'en',
     },
     
 };
