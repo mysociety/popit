@@ -102,6 +102,7 @@
       <li class="<% if (!posts.length) { %>empty<% } %>"><a href="#posts">Posts</a></li>
       <li class="<% if (!organization.links.length) { %>empty<% } %>"><a href="#websites">Websites</a></li>
       <li class="<% if (!organization.contact_details.length) { %>empty<% } %>"><a href="#contact">Contact</a></li>
+      <li class="<% if (!organization.sources.length) { %>empty<% } %>"><a href="#sources">Sources</a></li>
       <li class="<% if (!organization.identifiers.length) { %>empty<% } %>"><a href="#advanced">Advanced</a></li>
     </ul>
 
@@ -208,6 +209,21 @@
 
       <div class="entity-details__property <% if (!organization.contact_details.length) { %>empty<% } %>">
         <%= render( 'contact/list.html', { contact_details: organization.contact_details } ) %>
+      </div>
+    </div>
+
+    <div class="entity-details__section" id="sources">
+      <% if (!organization.sources.length) { %>
+        <p class="entity-details__hint view-mode entity-enter-edit-mode">
+          <span class="btn btn-xs btn-default pull-right">Add sources</span>
+          Add any URLs to documents from which the organization is derived here.
+        </p>
+      <% } else { %>
+          <span class="entity-details__hint view-mode entity-enter-edit-mode btn btn-xs btn-default pull-right">Add another source</span>
+      <% } %>
+
+      <div class="entity-details__property <% if(!organization.sources.length){ %>empty<% } %>">
+        <%= render( 'source/list.html', { sources: organization.sources } ) %>
       </div>
     </div>
 
