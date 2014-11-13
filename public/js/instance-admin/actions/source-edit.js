@@ -24,7 +24,7 @@ define(
       $('#content').on('click', '.source-edit', function(e) {
         e.preventDefault();
 
-        var newLi = $('<li/>').html(template({i: $('ul.sources li').length, source: ''}));
+        var newLi = $('<li/>').html(template({i: $('ul.sources li').length, source: {}}));
         $('ul.sources').append(newLi);
       });
 
