@@ -59,6 +59,7 @@ app.use('/posts',          require('../lib/apps/post') );
 app.use('/about',          require('../lib/apps/about')() );
 app.use('/suggestion',     require('../lib/apps/suggestion'));
 app.use('/admin',          require('../lib/apps/admin'));
+app.use('/setlanguage',    require('../lib/apps/setlanguage'));
 
 app.use(config.image_proxy.path , image_proxy() );
 

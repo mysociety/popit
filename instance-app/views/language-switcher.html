@@ -1,0 +1,14 @@
+<% if ( altLang ) { %>
+<div class="btn-group">
+   <form action="/setlanguage" method="POST">
+     <input type="hidden" name="redirect_to" value="<%= path %>">
+   <% if ( lang == defaultLang ) { %>
+     <input type="hidden" name="lang" value="<%- altLang %>">
+     <input type="submit" class="btn btn-default" value="<%= altLang %>">
+   <% } else if ( lang == altLang ) { %>
+     <input type="hidden" name="lang" value="<%- defaultLang %>">
+     <input type="submit" class="btn btn-default" value="<%= defaultLang %>">
+   <% } %>
+   </form>
+</div>
+<% } %>

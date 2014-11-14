@@ -9,6 +9,7 @@
 <div class="popit-toolbar entity-toolbar">
   <div class="container">
     <div class="btn-toolbar pull-right">
+      <%= render("language-switcher.html", { altLang: altLang, default: defaultLang, lang: lang } ) %>
       <div class="btn-group">
         <a class="btn btn-default" href="/api/v0.1/organizations/">Get this data</a>
       </div>

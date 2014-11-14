@@ -22,6 +22,10 @@ $entity-photo-sidebar-width: 285px;
     margin-left: 20px;
   }
 
+  input[type=submit].btn {
+    width: auto;
+  }
+
   & > .container > p,
   & > .container > h1 {
     display: inline;
