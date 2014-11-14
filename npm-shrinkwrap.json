@@ -842,6 +842,11 @@
       "from": "https://registry.npmjs.org/hogan.js/-/hogan.js-2.0.0.tgz",
       "resolved": "https://registry.npmjs.org/hogan.js/-/hogan.js-2.0.0.tgz"
     },
+    "http-accept": {
+      "version": "0.1.6",
+      "from": "http-accept@",
+      "resolved": "https://registry.npmjs.org/http-accept/-/http-accept-0.1.6.tgz"
+    },
     "iconv": {
       "version": "1.2.4",
       "from": "https://registry.npmjs.org/iconv/-/iconv-1.2.4.tgz",
@@ -883,6 +888,18 @@
               "resolved": "https://registry.npmjs.org/through/-/through-2.3.6.tgz"
             }
           }
+        }
+      }
+    },
+    "language-tags": {
+      "version": "1.0.2",
+      "from": "language-tags@",
+      "resolved": "https://registry.npmjs.org/language-tags/-/language-tags-1.0.2.tgz",
+      "dependencies": {
+        "language-subtag-registry": {
+          "version": "0.3.5",
+          "from": "language-subtag-registry@~0.3.2",
+          "resolved": "https://registry.npmjs.org/language-subtag-registry/-/language-subtag-registry-0.3.5.tgz"
         }
       }
     },

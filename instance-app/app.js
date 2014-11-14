@@ -7,7 +7,9 @@
 var express           = require('express'),
     config            = require('config'),
     assets            = require('connect-assets'),
+    accept            = require('http-accept'),
     instanceSelector  = require('../lib/middleware/instance-selector'),
+    langSettings = require('../lib/middleware/lang-settings'),
     checkInstanceAvailable = require('../lib/middleware/check-instance-available'),
     image_proxy       = require('image-proxy'),
     setupTemplates    = require('../lib/templates'),
@@ -39,6 +41,8 @@ app.use(popitApiStorageSelector({
 
 app.use( require('../lib/apps/auth').middleware );
 app.use( require('../lib/apps/auth').app );
+app.use(accept);
+app.use(langSettings());
 
 app.use('/api',   require('../lib/apps/api') );
 
