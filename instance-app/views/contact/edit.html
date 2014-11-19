@@ -1,3 +1,4 @@
+<input type="hidden" id="contact_id_<%= i %>" name="contact_details[<%= i %>][id]" value="<%= contact._id || '' %>">
 <label for="contact_label_<%= i %>">Label (e.g. 'Office Address', 'Twitter Account', 'Work Phone Number', etc.)</label>
 <input type="text" id="contact_label_<%= i %>" name="contact_details[<%= i %>][label]" value="<%= contact.label || '' %>">
 
