@@ -2,6 +2,7 @@
 
 var Error404 = require('../../lib/errors').Error404,
     async    = require('async'),
+    translationDecorator = require('../../lib/utils').translationDecorator,
     _        = require('underscore');
 
 exports.route = function (app) {
@@ -32,7 +33,7 @@ exports.route = function (app) {
                   } else if (memberships[0] && memberships[0].organization_id) {
                     person.position = memberships[0].organization_id.name;
                   }
-                  done(null, person);
+                  done(null, translationDecorator(person, req));
                 });
               }, callback);
             });
@@ -58,7 +59,7 @@ exports.route = function (app) {
                     return done(err);
                   }
                   organization.personCount = count;
-                  done(null, organization);
+                  done(null, translationDecorator(organization, req));
                 });
               }, callback);
             });
