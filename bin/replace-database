@@ -11,17 +11,17 @@ set -ex
 COLLECTIONS=('organizations' 'persons' 'memberships' 'posts')
 DATE=$(date +%Y%m%d%H%M%S)
 
-if [ "$#" != "4" ]
+if [ "$#" != "3" ]
 then
-    echo "Usage: $0 COLLECTION-DUMP-ROOT MONGO-DB-NAME SLUG MASTER-DB-NAME"
+    echo "Usage: $0 COLLECTION-DUMP-ROOT INSTANCE-SLUG MASTER-DB-NAME"
+    echo "(MASTER-DB-NAME is only needed to double-check that NODE_ENV is"
+    echo "set correctly.)"
     exit 1
 fi
 
 DUMP_ROOT="$1"
-MONGO_DB_NAME="$2"
-SLUG="$3"
-MASTER_DB_NAME="$4"
-MONGO_NEW_DB_NAME="${MONGO_DB_NAME}_$DATE"
+INSTANCE_SLUG="$2"
+MASTER_DB_NAME="$3"
 
 if ! which node
 then
@@ -66,6 +66,38 @@ process.exit();
 EOF
 
 node --eval "$CHECK_MASTER_DB_CORRECT" "$MASTER_DB_NAME"
+
+# Now find the old database name:
+
+read -r -d '' FIND_DB_NAME_SCRIPT <<"EOF" || true
+var PopIt = require('./lib/popit');
+var config = require('config');
+
+var slug = process.argv[1];
+
+var master = new PopIt();
+master.set_as_master();
+
+master.model('Instance').findOne(
+  { slug: slug },
+  function (err, instance) {
+    var prefix = config.MongoDB.popit_prefix;
+    if (err) throw err;
+
+    if (instance.dbname) {
+      console.log(prefix + instance.dbname);
+    } else {
+      console.log(prefix + instance.slug);
+    }
+    process.exit();
+  }
+);
+EOF
+
+MONGO_DB_NAME="$(node --eval "$FIND_DB_NAME_SCRIPT" "$INSTANCE_SLUG")"
+
+# Strip any existing date suffix before adding the current date and time:
+MONGO_NEW_DB_NAME="$(echo "$MONGO_DB_NAME" | sed 's/_[0-9]\{14\}$//')_$DATE"
 
 # Check that all the dump files exist:
 
@@ -146,7 +178,7 @@ master.model('Instance').findOne(
 );
 EOF
 
-node --eval "$CHANGE_DB_SCRIPT" "$MONGO_NEW_DB_NAME" "$SLUG"
+node --eval "$CHANGE_DB_SCRIPT" "$MONGO_NEW_DB_NAME" "$INSTANCE_SLUG"
 
 set +x
 echo "Files imported into $MONGO_NEW_DB_NAME"
