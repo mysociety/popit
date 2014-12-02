@@ -8,7 +8,7 @@
 
 set -ex
 
-COLLECTIONS=('organizations' 'persons' 'memberships')
+COLLECTIONS=('organizations' 'persons' 'memberships' 'posts')
 DATE=$(date +%Y%m%d%H%M%S)
 
 if [ "$#" != "4" ]
