@@ -104,7 +104,7 @@ MONGO_NEW_DB_NAME="$(echo "$MONGO_DB_NAME" | sed 's/_[0-9]\{14\}$//')_$DATE"
 MISSING_FILES=""
 for COLLECTION in "${COLLECTIONS[@]}"
 do
-    FILENAME="$DUMP_ROOT$COLLECTION.json"
+    FILENAME="$DUMP_ROOT$COLLECTION.dump"
     if ! [ -e "$FILENAME" ]
     then
         MISSING_FILES="$FILENAME $MISSING_FILES"
@@ -124,7 +124,7 @@ do
     mongoimport \
         --db "$MONGO_NEW_DB_NAME" \
         --collection "$COLLECTION" \
-        "$DUMP_ROOT$COLLECTION.json"
+        "$DUMP_ROOT$COLLECTION.dump"
 done
 
 # now copy the settings data across which has instance name etc
