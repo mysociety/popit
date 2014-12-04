@@ -93,6 +93,8 @@
     </div>
   </div>
 
+  <%= render("language-switcher.html", { altLang: altLang, default: defaultLang, lang: lang } ) %>
+
 <% } %>
 
 <% if (person_count > 0 || organization_count > 0) { %>
