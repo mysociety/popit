@@ -64,6 +64,15 @@ $entity-photo-sidebar-width: 285px;
 
 }
 
+.language-toolbar {
+  border-top: 0px;
+  padding: 5px 0px;
+  & .btn,
+  & .btn-group {
+    font-size: 12px;
+  }
+}
+
 .enough-toolbar {
   display: none;
   position: relative;

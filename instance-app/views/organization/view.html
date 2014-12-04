@@ -24,7 +24,6 @@
 <div class="popit-toolbar entity-toolbar">
   <div class="container">
     <div class="btn-toolbar pull-right view-mode">
-      <%= render("language-switcher.html", { altLang: altLang, default: defaultLang, lang: lang } ) %>
       <div class="btn-group">
         <a class="btn btn-default" href="/api/v0.1/organizations/<%- organization.id %>">Get this data</a>
       </div>
@@ -51,6 +50,8 @@
     <p><a href="/organizations">Organizations</a> / <a href="<%- organization.url %>"><%- organization.name %></a></p>
   </div>
 </div>
+
+<%= render("language-switcher.html", { altLang: altLang, default: defaultLang, lang: lang } ) %>
 
 <article class="container entity organization organization-view" itemscope itemtype="http://schema.org/Organization">
 
