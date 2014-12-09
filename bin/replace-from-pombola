@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# This script will replace a PopIt database with the data from a
+# Pombola instance. This relies on the Pombola site regularly running
+# core_export_to_popolo_json to dump the Pombola site's data in Popolo
+# JSON format to a popolo_json subdirectory of the MEDIA_ROOT,
+# e.g. with:
+#
+#   ./manage.py core_export_to_popolo_json ../media_root/popolo_json/ http://ww.pa.org.za/
+
+set -e
+set -o pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "$BASH_SOURCE")" && pwd -P)"
+POPIT_DIR="$SCRIPT_DIR/.."
+REPLACE_DATABASE="$SCRIPT_DIR/replace-database"
+
+if [ "$#" != "3" ]
+then
+    echo "Usage: $0 POMBOLA-BASE-URL INSTANCE-SLUG MASTER-DB-NAME"
+    echo "   e.g. bin/replace-from-pombola \\"
+    echo "            http://www.pa.org.za/ \\"
+    echo "            za-new-import \\"
+    echo "            popit__master"
+    exit 1
+fi
+
+POMBOLA_BASE_URL="$1"
+INSTANCE_SLUG="$2"
+MASTER_DB_NAME="$3"
+
+D="$(mktemp -d)"
+
+cd "$D"
+
+for c in organizations persons memberships
+do
+    URL="${POMBOLA_BASE_URL%/}/media_root/popolo_json/mongo-$c.dump"
+    echo "Downloading $URL"
+    curl -f -O "$URL"
+done
+
+# Pombola doesn't output posts at the moment, so just create an empty file:
+touch mongo-posts.dump
+
+# Change into the PopIt directory (which should contain node_modules)
+# and run the replace-database script:
+cd "$POPIT_DIR"
+
+"$REPLACE_DATABASE" "$D/mongo-" "$INSTANCE_SLUG" "$MASTER_DB_NAME"
+
+rm -rf "$D"
