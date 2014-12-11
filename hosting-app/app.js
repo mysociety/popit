@@ -27,6 +27,7 @@ app.use(express.methodOverride());
 app.use(assets({ paths: [ config.public_dir + '/js', config.public_dir + '/css' ] }));
 
 app.use( require('../lib/middleware/config') );
+app.use('/robots.txt', require('../lib/robots'));
 
 app.use(masterSelector());
 

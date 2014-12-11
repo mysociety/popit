@@ -49,6 +49,7 @@ app.use( require('../lib/apps/auth').app );
 app.use(accept);
 app.use(langSettings());
 
+app.use('/robots.txt', require('../lib/robots'));
 app.use('/api',   require('../lib/apps/api') );
 
 app.use('/info',   require('../lib/apps/info')() );
