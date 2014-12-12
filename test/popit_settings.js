@@ -112,14 +112,4 @@ describe("popit settings", function() {
     });
   });
 
-  it("test that guest access is correctly presented", function(done) {
-    assert.equal( foo.allow_guest_access(), false, "guest access false by default" );
-
-    foo.set_setting('allow_guest_access', true, function (err) {
-      assert.ifError(err);
-      assert.equal( foo.allow_guest_access(), true,  "guest access now enabled" );
-      done();
-    });
-  });
-
 });

@@ -79,7 +79,7 @@ test: node-modules jshint test-unit
 	@echo "ALL TESTS PASS"
 
 test-unit:
-	@NODE_ENV=testing ./node_modules/.bin/mocha
+	@NODE_ENV=testing ./node_modules/.bin/mocha --recursive
 
 test-browser: css public-production
 	$(START_TEST_SERVER)

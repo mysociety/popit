@@ -54,8 +54,9 @@
   "devDependencies": {
     "jshint": "^2.5.6",
     "nodeunit": "^0.9.0",
-    "supertest": "^0.14.0"
+    "supertest": "^0.14.0",
     "mocha": "~1.18.2",
+    "zombie": "2.5.1"
   },
   "optionalDependencies": {},
   "engines": {
