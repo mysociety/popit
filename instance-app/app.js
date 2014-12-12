@@ -39,6 +39,7 @@ app.use(popitApiStorageSelector({
   databasePrefix: config.MongoDB.popit_prefix
 }));
 
+app.use( require('../lib/middleware/disclaimer') );
 app.use( require('../lib/apps/auth').middleware );
 app.use( require('../lib/apps/auth').app );
 app.use(accept);
