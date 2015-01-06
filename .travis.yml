@@ -1,10 +1,5 @@
 language: node_js
-
-# Run tests on 0.8 to match what we deploy on and 0.10 to match what most
-# people are using in the wild.
 node_js:
-#   - "0.6"
-  - "0.8"
   - "0.10"
 
 # don't test production - the only real difference is that production has static
