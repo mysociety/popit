@@ -14,7 +14,9 @@ var express           = require('express'),
     image_proxy       = require('image-proxy'),
     setupTemplates    = require('../lib/templates'),
     popitApiStorageSelector = require('popit-api/src/middleware/storage-selector'),
-    passport          = require('../lib/passport');
+    passport          = require('../lib/passport'),
+    bodyParser        = require('body-parser'),
+    multer            = require('multer');
 
 var app = module.exports = express();
 
@@ -22,7 +24,9 @@ app.enable('trust proxy');
 
 setupTemplates(app, __dirname + '/views');
 
-app.use(express.bodyParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(multer());
 app.use(express.methodOverride());
 app.use(assets({ paths: [ config.public_dir + '/js', config.public_dir + '/css' ] }));
 

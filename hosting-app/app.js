@@ -9,7 +9,9 @@ var express           = require('express'),
     setupTemplates    = require('../lib/templates'),
     masterSelector    = require('../lib/middleware/master-selector'),
     assets            = require('connect-assets'),
-    passport          = require('../lib/passport');
+    passport          = require('../lib/passport'),
+    bodyParser        = require('body-parser'),
+    multer            = require('multer');
 
 
 var app = module.exports = express();
@@ -18,7 +20,9 @@ app.enable('trust proxy');
 
 setupTemplates(app, __dirname + '/views');
 
-app.use(express.bodyParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(multer());
 app.use(express.methodOverride());
 app.use(assets({ paths: [ config.public_dir + '/js', config.public_dir + '/css' ] }));
 
