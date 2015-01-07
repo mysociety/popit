@@ -231,6 +231,18 @@
       "from": "https://registry.npmjs.org/consolidate/-/consolidate-0.5.0.tgz",
       "resolved": "https://registry.npmjs.org/consolidate/-/consolidate-0.5.0.tgz"
     },
+    "cors": {
+      "version": "2.5.2",
+      "from": "cors@",
+      "resolved": "https://registry.npmjs.org/cors/-/cors-2.5.2.tgz",
+      "dependencies": {
+        "vary": {
+          "version": "1.0.0",
+          "from": "vary@^1",
+          "resolved": "https://registry.npmjs.org/vary/-/vary-1.0.0.tgz"
+        }
+      }
+    },
     "csv": {
       "version": "0.2.4",
       "from": "https://registry.npmjs.org/csv/-/csv-0.2.4.tgz",
