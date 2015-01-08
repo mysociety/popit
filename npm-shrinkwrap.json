@@ -1335,7 +1335,7 @@
     "popit-api": {
       "version": "0.0.14",
       "from": "git://github.com/mysociety/popit-api.git#master",
-      "resolved": "git://github.com/mysociety/popit-api.git#ac485a41660829df61f5d79f38673c517a3a8346",
+      "resolved": "git://github.com/mysociety/popit-api.git#707e45440ec9db822a04cae2ceb5098e47dfa0f7",
       "dependencies": {
         "JSV": {
           "version": "4.0.2",
@@ -1344,8 +1344,19 @@
         },
         "async": {
           "version": "0.2.10",
-          "from": "https://registry.npmjs.org/async/-/async-0.2.10.tgz",
-          "resolved": "https://registry.npmjs.org/async/-/async-0.2.10.tgz"
+          "from": "async@~0.2.6"
+        },
+        "cors": {
+          "version": "2.5.2",
+          "from": "cors@>=2.5.2",
+          "resolved": "https://registry.npmjs.org/cors/-/cors-2.5.2.tgz",
+          "dependencies": {
+            "vary": {
+              "version": "1.0.0",
+              "from": "vary@^1",
+              "resolved": "https://registry.npmjs.org/vary/-/vary-1.0.0.tgz"
+            }
+          }
         },
         "doublemetaphone": {
           "version": "0.1.2",
