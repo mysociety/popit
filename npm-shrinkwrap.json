@@ -928,8 +928,8 @@
     },
     "image-proxy": {
       "version": "0.0.2",
-      "from": "https://registry.npmjs.org/image-proxy/-/image-proxy-0.0.2.tgz",
-      "resolved": "https://registry.npmjs.org/image-proxy/-/image-proxy-0.0.2.tgz",
+      "from": "git://github.com/jpmckinney/image-proxy",
+      "resolved": "git://github.com/jpmckinney/image-proxy#19972dee54192ea7864843f855abc3ead635c00a",
       "dependencies": {
         "gm": {
           "version": "1.16.0",
