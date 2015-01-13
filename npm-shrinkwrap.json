@@ -929,7 +929,7 @@
     "image-proxy": {
       "version": "0.0.2",
       "from": "git://github.com/jpmckinney/image-proxy",
-      "resolved": "git://github.com/jpmckinney/image-proxy#19972dee54192ea7864843f855abc3ead635c00a",
+      "resolved": "git://github.com/jpmckinney/image-proxy#fd6c784ef222df096b9e41be3f6fbf6c27c85e7c",
       "dependencies": {
         "gm": {
           "version": "1.16.0",
