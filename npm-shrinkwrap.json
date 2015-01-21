@@ -977,6 +977,11 @@
         }
       }
     },
+    "marked": {
+      "version": "0.3.2",
+      "from": "marked@",
+      "resolved": "https://registry.npmjs.org/marked/-/marked-0.3.2.tgz"
+    },
     "mime": {
       "version": "1.2.7",
       "from": "https://registry.npmjs.org/mime/-/mime-1.2.7.tgz",

@@ -44,6 +44,7 @@ app.use(popitApiStorageSelector({
 }));
 
 app.use( require('../lib/middleware/disclaimer') );
+app.use( require('../lib/middleware/license') );
 app.use( require('../lib/apps/auth').middleware );
 app.use( require('../lib/apps/auth').app );
 app.use(accept);
