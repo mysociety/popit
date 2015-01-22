@@ -1334,7 +1334,7 @@
     },
     "popit-api": {
       "version": "0.0.14",
-      "from": "git://github.com/mysociety/popit-api.git#master",
+      "from": "popit-api@git://github.com/mysociety/popit-api.git#04a02862f2fad8aad360da315c792b2615905989",
       "resolved": "git://github.com/mysociety/popit-api.git#04a02862f2fad8aad360da315c792b2615905989",
       "dependencies": {
         "JSV": {
