@@ -549,7 +549,7 @@ module.exports = {
         var data = { '1': [ 'foo', ' foo@mail.com', ' fo.co.uk', 'orange' ],
                  '2': [ '', '', ' foo.de', 'blue' ],
                  '3': [ '', '', ' bar.de', '' ], 
-                 '4': [ '', '', , 'purple' ]};
+                 '4': [ '', '', '', 'purple' ]};
 
         var that = this;
 
