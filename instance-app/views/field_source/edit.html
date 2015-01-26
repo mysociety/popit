@@ -1,11 +1,11 @@
 <% if (popit.setting('require-sources')) { %>
   <div class="source  source--editing">
     <% if (value) { %>
-      <a class="source__link  source__link--has-source">Change source</a>
+      <a class="js-source__link  source__link  source__link--has-source">Change source</a>
     <% } else { %>
-      <a class="source__link  source__link--no-source">Add source</a>
+      <a class="js-source__link  source__link  source__link--no-source">Add source</a>
     <% } %>
-    <div class="source__popup">
+    <div class="js-source__popup  source__popup">
       <input class="source__input" type="url" name="<%- field %>" value="<%- value %>">
     </div>
   </div>

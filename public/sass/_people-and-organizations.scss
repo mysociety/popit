@@ -689,3 +689,16 @@ $entity-photo-sidebar-width: 285px;
     height: 5em;
   }
 }
+
+// Per-field sourcing
+.source__popup {
+  display: none;
+}
+
+.source__popup--display {
+  display: block;
+}
+
+.source__link {
+  cursor: pointer;
+}
