@@ -1,6 +1,9 @@
 <ul class="identifiers">
-  <% _.each( identifiers, function (item) { %>
-    <li><%= render( 'identifier/view.html', { item: item }) %></li>
+  <% _.each( identifiers, function (item, i) { %>
+    <li>
+      <%= render( 'identifier/view.html', { item: item }) %>
+      <%= render('field_source/view.html', { value: object.get('field_sources.identifiers.' + i) }) %>
+    </li>
   <% }); %>
   <li class="edit-mode">
     <a class="add identifier-edit btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add an<% if(identifiers.length){ %>other<% } %> identifier</a>

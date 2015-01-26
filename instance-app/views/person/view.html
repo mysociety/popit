@@ -74,6 +74,7 @@
         <%- person.name %>
         <span class="entity-little-edit-icon entity-enter-edit-mode" data-input-selector="#input-name"></span>
       </h1>
+      <%= render('field_source/view.html', { value: person.get('field_sources.name') }) %>
     </div>
 
     <div class="entity-header__social">
@@ -116,6 +117,7 @@
             <% if (validMembership(membership, person.id)) { %>
             <li class="membership">
               <%= render( 'membership/list-item.html', { membership: membership, member: person, organization: relatedObject(membership, person, lang, defaultLang), type: 'person' } ) %>
+              <%= render('field_source/view.html', { value: person.get('field_sources.memberships.' + i) }) %>
             </li>
             <% } %>
           <% }); %>
@@ -136,13 +138,14 @@
 
       <div class="entity-details__property <% if(!person.other_names.length){ %>empty<% } %>">
         <label>Other names</label>
-        <%= render( 'other_name/list.html', { other_names: person.other_names } ) %>
+        <%= render( 'other_name/list.html', { other_names: person.other_names, object: person } ) %>
       </div>
 
       <div class="entity-details__property <% if(!person.summary){ %>empty<% } %>">
         <label>Summary</label>
         <p class="view-mode" itemprop="description" data-api-name="summary"><%- person.summary %></p>
         <textarea class="form-control edit-mode" data-api-name="summary"><%- person.summary %></textarea>
+        <%= render('field_source/view.html', { value: person.get('field_sources.summary') }) %>
       </div>
 
       <div class="entity-details__property <% if(!person.birth_date){ %>empty<% } %>">
@@ -150,6 +153,7 @@
         <p class="view-mode" data-api-name="birth_date"><%- person.birth_date || '' %></p>
         <input type="date" class="form-control edit-mode" data-api-name="birth_date" value="<%- person.birth_date || '' %>">
         <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
+        <%= render('field_source/view.html', { value: person.get('field_sources.birth_date') }) %>
       </div>
 
       <div class="entity-details__property <% if(!person.death_date){ %>empty<% } %>">
@@ -157,6 +161,7 @@
         <p class="view-mode" data-api-name="death_date"><%- person.death_date || '' %></p>
         <input type="date" class="form-control edit-mode" data-api-name="death_date" value="<%- person.death_date || '' %>">
         <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
+        <%= render('field_source/view.html', { value: person.get('field_sources.death_date') }) %>
       </div>
 
     </div>
@@ -172,7 +177,7 @@
       <% } %>
 
       <div class="entity-details__property <% if(!person.links.length){ %>empty<% } %>">
-        <%= render( 'link/list.html', { links: person.links } ) %>
+        <%= render( 'link/list.html', { links: person.links, object: person } ) %>
       </div>
     </div>
 
@@ -187,7 +192,7 @@
       <% } %>
 
       <div class="entity-details__property <% if(!person.contact_details.length){ %>empty<% } %>">
-        <%= render( 'contact/list.html', { contact_details: person.contact_details } ) %>
+        <%= render( 'contact/list.html', { contact_details: person.contact_details, object: person } ) %>
       </div>
     </div>
 
@@ -204,7 +209,7 @@
       <% } %>
 
       <div class="entity-details__property <% if(!person.sources.length){ %>empty<% } %>">
-        <%= render( 'source/list.html', { sources: person.sources } ) %>
+        <%= render( 'source/list.html', { sources: person.sources, object: person } ) %>
       </div>
     </div>
 
@@ -219,7 +224,7 @@
       <% } %>
 
       <div class="entity-details__property <% if(!person.identifiers.length){ %>empty<% } %>">
-        <%= render( 'identifier/list.html', { identifiers: person.identifiers } ) %>
+        <%= render( 'identifier/list.html', { identifiers: person.identifiers, object: person } ) %>
       </div>
     </div>
 
