@@ -65,6 +65,7 @@
         <%- organization.name %>
         <span class="entity-little-edit-icon entity-enter-edit-mode" data-input-selector="#input-name"></span>
       </h1>
+      <%= render('field_source/view.html', { value: organization.get('field_sources.name') }) %>
       <strong class="control-label edit-mode-error" style="display: none">This organization must have a name</strong>
       <input type="text" class="form-control edit-mode" id="input-name" data-api-name="name" value="<%- organization.name %>">
     </div>
@@ -79,6 +80,7 @@
           <span class="placeholder entity-enter-edit-mode">What type of organization is <%- organization.name %>?</span>
         <% } %>
       </p>
+      <%= render('field_source/view.html', { value: organization.get('field_sources.classification') }) %>
       <div>
         <input type="text" class="form-control edit-mode" id="input-classification" data-api-name="classification" value="<%- organization.classification %>">
       </div>
@@ -118,7 +120,7 @@
 
       <div class="entity-details__property <% if (!organization.other_names.length) { %>empty<% } %>">
         <label>Other names</label>
-        <%= render( 'other_name/list.html', { other_names: organization.other_names } ) %>
+        <%= render( 'other_name/list.html', { other_names: organization.other_names, object: organization } ) %>
       </div>
 
       <div class="entity-details__property <% if (!organization.parent_id) { %>empty<% } %>">
@@ -129,6 +131,7 @@
           <% } %>
         </p>
         <input type="text" class="form-control edit-mode" data-api-name="parent_id" value="<%- organization.parent_id %>">
+        <%= render('field_source/view.html', { value: organization.get('field_sources.parent_id') }) %>
       </div>
 
       <div class="entity-details__property <% if (!organization.founding_date) { %>empty<% } %>">
@@ -136,6 +139,7 @@
         <p class="view-mode" data-api-name="founding_date"><%- organization.founding_date || '' %></p>
         <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
         <input type="date" class="form-control edit-mode" data-api-name="founding_date" value="<%- organization.founding_date || '' %>">
+        <%= render('field_source/view.html', { value: organization.get('field_sources.founding_date') }) %>
       </div>
 
       <div class="entity-details__property <% if (!organization.dissolution_date) { %>empty<% } %>">
@@ -143,6 +147,7 @@
         <p class="view-mode" data-api-name="dissolution_date"><%- organization.dissolution_date || '' %></p>
         <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
         <input type="date" class="form-control edit-mode" data-api-name="dissolution_date" value="<%- organization.dissolution_date || '' %>">
+        <%= render('field_source/view.html', { value: organization.get('field_sources.dissolution_date') }) %>
       </div>
     </div>
 
@@ -195,7 +200,7 @@
       <% } %>
 
       <div class="entity-details__property <% if (!organization.links.length) { %>empty<% } %>">
-        <%= render( 'link/list.html', { links: organization.links } ) %>
+        <%= render( 'link/list.html', { links: organization.links, object: organization } ) %>
       </div>
     </div>
 
@@ -210,7 +215,7 @@
       <% } %>
 
       <div class="entity-details__property <% if (!organization.contact_details.length) { %>empty<% } %>">
-        <%= render( 'contact/list.html', { contact_details: organization.contact_details } ) %>
+        <%= render( 'contact/list.html', { contact_details: organization.contact_details, object: organization } ) %>
       </div>
     </div>
 
@@ -225,7 +230,7 @@
       <% } %>
 
       <div class="entity-details__property <% if(!organization.sources.length){ %>empty<% } %>">
-        <%= render( 'source/list.html', { sources: organization.sources } ) %>
+        <%= render( 'source/list.html', { sources: organization.sources, object: organization } ) %>
       </div>
     </div>
 
@@ -240,7 +245,7 @@
       <% } %>
 
       <div class="entity-details__property <% if (!organization.identifiers.length) { %>empty<% } %>">
-        <%= render( 'identifier/list.html', { identifiers: organization.identifiers } ) %>
+        <%= render( 'identifier/list.html', { identifiers: organization.identifiers, object: organization } ) %>
       </div>
     </div>
 
