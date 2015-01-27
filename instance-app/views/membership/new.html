@@ -2,30 +2,58 @@
     <% if (membership.id) { %>
       <input type="hidden" name="memberships[<%= i %>][id]" value="<%- membership.id %>">
     <% } %>
-    <% if (type === 'person') { %>
-      <%- member.name %>
-      <input class="form-control" type="hidden" title="The person which is a member of an organization" value="<%= member.id %>" name="memberships[<%= i %>][person_id]">
-    <% } else { %>
-      <input class="form-control js-membership-person" title="The person which is a member of an organization" name="memberships[<%= i %>][person_id]" value="<%= member.id || '' %>" data-person-name="<%- member.name || '' %>">
-    <input class="js-membership-person-name" type="hidden" name="memberships[<%= i %>][person_name]">
-    <% } %>
-    is/was
-    <input class="form-control js-membership-role" title="The post this person fills in the organization" name="memberships[<%= i %>][role]" value="<%= membership.role || '' %>">
-    of
-    <% if (type === 'person') { %>
-      <input class="form-control js-membership-organization" title="The organization of which this person a member" name="memberships[<%= i %>][organization_id]" value="<%= organization.id || '' %>" data-org-name="<%= organization.name || '' %>">
-      <input class="js-membership-organization-name" type="hidden" name="memberships[<%= i %>][organization_name]">
-    <% } else { %>
-      <%- organization.name %>
-      <input type="hidden" name="memberships[<%= i %>][organization_id]" value="<%- organization.id || '' %>">
-    <% } %>
+    <% if ( membership.post_id ) { %>
+        <%= render( 'membership/list-item-content.html', { membership: membership, member: member, organization: organization, type: type } ) %>
+        <input type="hidden" value="<%= membership.post_id._id %>" name="memberships[<%= i %>][post_id]">
+        <% if (type === 'person') { %>
+          <input type="hidden" value="<%= member.id %>" name="memberships[<%= i %>][person_id]">
+        <% } else { %>
+          <input type="hidden" name="memberships[<%= i %>][person_id]" value="<%= member.id || '' %>" data-person-name="<%- member.name || '' %>">
+          <input type="hidden" name="memberships[<%= i %>][person_name]">
+        <% } %>
+        <input type="hidden" name="memberships[<%= i %>][role]" value="<%= membership.role || '' %>">
+        <% if ( membership.organization_id ) { %>
+          <% if (type === 'person') { %>
+            <input type="hidden" name="memberships[<%= i %>][organization_id]" value="<%= organization.id || '' %>" data-org-name="<%= organization.name || '' %>">
+            <input type="hidden" name="memberships[<%= i %>][organization_name]">
+          <% } else { %>
+            <input type="hidden" name="memberships[<%= i %>][organization_id]" value="<%- organization.id || '' %>">
+          <% } %>
+        <% } %>
 
-    from <input type="text" class="form-control" title="The date this membership started (YYYY-MM-DD)" placeholder="YYYY-MM-DD" value="<%- membership.start_date || '' %>" name="memberships[<%= i %>][start_date]">
-    to <input type="text" class="form-control" title="The date this membership ended (YYYY-MM-DD)" placeholder="YYYY-MM-DD" value="<%- membership.end_date || '' %>" name="memberships[<%= i %>][end_date]">
-    <% if (membership.area && membership.area.name) { %>
-    representing <input type="text" class="form-control" name="memberships[<%= i %>][area][name]" value="<%= membership.area.name %>">
+        <input type="hidden" class="form-control" title="The date this membership started (YYYY-MM-DD)" placeholder="YYYY-MM-DD" value="<%- membership.start_date || '' %>" name="memberships[<%= i %>][start_date]">
+        <input type="hidden" class="form-control" title="The date this membership ended (YYYY-MM-DD)" placeholder="YYYY-MM-DD" value="<%- membership.end_date || '' %>" name="memberships[<%= i %>][end_date]">
+        <% if (membership.area && membership.area.name) { %>
+          <input type="hidden" class="form-control" name="memberships[<%= i %>][area][name]" value="<%= membership.area.name %>">
+        <% } else { %>
+          <input type="hidden" class="form-control" name="memberships[<%= i %>][area][name]">
+        <% } %>
     <% } else { %>
-      representing <input type="text" class="form-control" name="memberships[<%= i %>][area][name]">
+        <% if (type === 'person') { %>
+          <%- member.name %>
+          <input class="form-control" type="hidden" title="The person which is a member of an organization" value="<%= member.id %>" name="memberships[<%= i %>][person_id]">
+        <% } else { %>
+          <input class="form-control js-membership-person" title="The person which is a member of an organization" name="memberships[<%= i %>][person_id]" value="<%= member.id || '' %>" data-person-name="<%- member.name || '' %>">
+        <input class="js-membership-person-name" type="hidden" name="memberships[<%= i %>][person_name]">
+        <% } %>
+        is/was
+        <input class="form-control js-membership-role" title="The post this person fills in the organization" name="memberships[<%= i %>][role]" value="<%= membership.role || '' %>">
+        of
+        <% if (type === 'person') { %>
+          <input class="form-control js-membership-organization" title="The organization of which this person a member" name="memberships[<%= i %>][organization_id]" value="<%= organization.id || '' %>" data-org-name="<%= organization.name || '' %>">
+          <input class="js-membership-organization-name" type="hidden" name="memberships[<%= i %>][organization_name]">
+        <% } else { %>
+          <%- organization.name %>
+          <input type="hidden" name="memberships[<%= i %>][organization_id]" value="<%- organization.id || '' %>">
+        <% } %>
+
+        from <input type="text" class="form-control" title="The date this membership started (YYYY-MM-DD)" placeholder="YYYY-MM-DD" value="<%- membership.start_date || '' %>" name="memberships[<%= i %>][start_date]">
+        to <input type="text" class="form-control" title="The date this membership ended (YYYY-MM-DD)" placeholder="YYYY-MM-DD" value="<%- membership.end_date || '' %>" name="memberships[<%= i %>][end_date]">
+        <% if (membership.area && membership.area.name) { %>
+        representing <input type="text" class="form-control" name="memberships[<%= i %>][area][name]" value="<%= membership.area.name %>">
+        <% } else { %>
+          representing <input type="text" class="form-control" name="memberships[<%= i %>][area][name]">
+        <% } %>
     <% } %>
     <a class="btn btn-sm membership__delete delete-membership"><span class="glyphicon glyphicon-trash"></span> Delete</a>
 </div>
