@@ -35,15 +35,15 @@ D="$(mktemp -d)"
 
 cd "$D"
 
-for c in organizations persons memberships
+for c in organizations persons memberships posts
 do
     URL="${POMBOLA_BASE_URL%/}/media_root/popolo_json/mongo-$c.dump"
     echo "Downloading $URL"
     curl -f -O "$URL"
+    # If a response is zero bytes then curl won't create it, so touch
+    # the file just to make sure it exists:
+    touch "mongo-$c.dump"
 done
-
-# Pombola doesn't output posts at the moment, so just create an empty file:
-touch mongo-posts.dump
 
 # Change into the PopIt directory (which should contain node_modules)
 # and run the replace-database script:
