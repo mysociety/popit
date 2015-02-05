@@ -1,12 +1,12 @@
-<input type="hidden" id="contact_id_<%= i %>" name="contact_details[<%= i %>][id]" value="<%= contact._id || '' %>">
+<input type="hidden" id="contact_id_<%= i %>" name="contact_details[<%= i %>][id]" value="<%- contact._id || '' %>">
 <label for="contact_label_<%= i %>">Label (e.g. 'Office Address', 'Twitter Account', 'Work Phone Number', etc.)</label>
-<input type="text" id="contact_label_<%= i %>" name="contact_details[<%= i %>][label]" value="<%= contact.label || '' %>">
+<input type="text" id="contact_label_<%= i %>" name="contact_details[<%= i %>][label]" value="<%- contact.label || '' %>">
 
 <label for="contact_type_<%= i %>">Type (e.g. 'twitter', 'facebook', 'cell', 'address', 'fax', etc.)</label>
-<input type="text" id="contact_type_<%= i %>" name="contact_details[<%= i %>][type]" value="<%= contact.type || '' %>">
+<input type="text" id="contact_type_<%= i %>" name="contact_details[<%= i %>][type]" value="<%- contact.type || '' %>">
 
 <label for="contact_value_<%= i %>">Value (e.g. a phone number, a Twitter or Facebook username, an address, etc.)</label>
-<input type="text" id="contact_value_<%= i %>" name="contact_details[<%= i %>][value]" value="<%= contact.value || '' %>">
+<input type="text" id="contact_value_<%= i %>" name="contact_details[<%= i %>][value]" value="<%- contact.value || '' %>">
 
 <label for="contact_note_<%= i %>">Note</label>
-<input type="text" id="contact_note_<%= i %>" name="contact_details[<%= i %>][note]" value="<%= contact.note || '' %>">
+<input type="text" id="contact_note_<%= i %>" name="contact_details[<%= i %>][note]" value="<%- contact.note || '' %>">
