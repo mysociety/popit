@@ -7,6 +7,8 @@
 # e.g. with:
 #
 #   ./manage.py core_export_to_popolo_json ../media_root/popolo_json/ http://ww.pa.org.za/
+#
+# ... assuming the NODE_ENV is set appropriately.
 
 set -e
 set -o pipefail
