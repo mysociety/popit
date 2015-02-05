@@ -9,8 +9,8 @@
 <script>
     var popit = popit || {};
     popit.type = 'person';
-    popit.data = <%= JSON.stringify(person.toJSON()) %>;
-    popit.memberships = <%= JSON.stringify( _.map( memberships, function(m) { return m.id; } ) ) %>;
+    popit.data = <%= jsonify(person.toJSON()) %>;
+    popit.memberships = <%= jsonify( _.map( memberships, function(m) { return m.id; } ) ) %>;
 </script>
 
 <style>

@@ -9,7 +9,7 @@
 <script>
     var popit = popit || {};
     popit.type = 'organization';
-    popit.data = <%= JSON.stringify(organization.toJSON()) %>;
+    popit.data = <%= jsonify(organization.toJSON()) %>;
 </script>
 
 <% if (userCan('edit instance')) { %>

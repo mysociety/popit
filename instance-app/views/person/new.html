@@ -9,7 +9,7 @@
 <script>
     var popit = popit || {};
     popit.type = 'person';
-    popit.data = <%= JSON.stringify(person.toJSON()) %>;
+    popit.data = <%= jsonify(person.toJSON()) %>;
 </script>
 
 

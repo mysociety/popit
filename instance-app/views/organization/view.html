@@ -15,10 +15,10 @@
         // Only want the ID in the popit data, for correct saving from client
         o.parent_id = o.parent_id.id;
       }
-      print( JSON.stringify(o) );
+      print( jsonify(o) );
     %>;
-    popit.posts = <%= JSON.stringify(posts) %>;
-    popit.memberships = <%= JSON.stringify( _.map( memberships, function(m) { return m.id; } ) ) %>;
+    popit.posts = <%= jsonify(posts) %>;
+    popit.memberships = <%= jsonify( _.map( memberships, function(m) { return m.id; } ) ) %>;
 </script>
 
 <div class="popit-toolbar entity-toolbar">
