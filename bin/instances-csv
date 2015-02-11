@@ -45,6 +45,6 @@ forEachInstance(function(instanceDoc, next) {
     }
     var row = [instance.instance_name()].concat(results).join(',');
     console.log(row);
-    next();
+    instance.instance_db().close(next);
   });
 });
