@@ -1,0 +1,50 @@
+#!/usr/bin/env node
+var PopIt = require('../lib/popit');
+var async = require('async');
+
+function forEachInstance(instance_iterator) {
+  var master = new PopIt();
+  master.set_as_master();
+  var Instance = master.model('Instance')
+  Instance.find(function(err, instances) {
+    if (err) {
+      throw err;
+    }
+    async.forEachSeries(instances, instance_iterator, function(err) {
+        if (err) {
+          throw err;
+        }
+        process.exit();
+      }
+    );
+  });
+}
+
+console.log("instance_name,person_count,organization_count,membership_count,post_count");
+
+forEachInstance(function(instanceDoc, next) {
+  var instance = new PopIt();
+  instance.set_instance(instanceDoc.slug);
+  var Person = instance.model('Person');
+  var Organization = instance.model('Organization');
+  var Membership = instance.model('Membership');
+  var Post = instance.model('Post');
+  function count(model) {
+    return function(callback) {
+      model.count(callback);
+    }
+  }
+  async.parallel([
+    count(Person),
+    count(Organization),
+    count(Membership),
+    count(Post),
+  ], function(err, results) {
+    if (err) {
+      return next(err);
+    }
+    var row = [instance.instance_name()].concat(results).join(',');
+    console.log(row);
+    next();
+  });
+});
