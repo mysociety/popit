@@ -24,7 +24,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
 sudo gem install sass --version=3.2.14 --no-rdoc --no-ri
 sudo gem install compass --version=0.12.2 --no-rdoc --no-ri
 
-echo "cd /vagrant" >> /home/vagrant/.bashrc
+grep -qG 'cd /vagrant' "$HOME/.bashrc" || echo "cd /vagrant" >> "$HOME/.bashrc"
 cd /vagrant
 
 make
