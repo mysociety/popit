@@ -21,7 +21,9 @@ Vagrant.configure("2") do |config|
   end
 
   # Provision using the shell provisioner
-  config.vm.provision :shell, :path => "config/provision.sh"
+  config.vm.provision :shell,
+    :path => "config/provision.sh",
+    :privileged => false
 end
 
 # If you want to add additional configuration options then create a file
