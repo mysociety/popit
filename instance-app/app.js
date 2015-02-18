@@ -24,7 +24,7 @@ app.enable('trust proxy');
 
 setupTemplates(app, __dirname + '/views');
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());
 app.use(express.methodOverride());
