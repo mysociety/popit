@@ -14,7 +14,7 @@
 NAME=!!(*= $daemon_name *)!!
 DIR=/data/vhost/!!(*= $vhost *)!!
 DAEMON="$DIR/node/bin/node"
-DAEMON_ARGS="$DIR/node_modules/.bin/popit-api-worker"
+DAEMON_ARGS="node_modules/.bin/popit-api-worker"
 PIDFILE=$DIR/popit-worker.pid
 DUSER=!!(*= $user *)!!
 
