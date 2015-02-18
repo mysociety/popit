@@ -3,3 +3,4 @@ ruby-compass
 imagemagick
 graphicsmagick
 elasticsearch
+redis-server
