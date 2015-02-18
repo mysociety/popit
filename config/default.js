@@ -70,6 +70,10 @@ module.exports = {
           '[Database Contents License](http://opendatacommons.org/licenses/dbcl/1.0/).',
         ].join(' '),
     },
+
+    queue: {
+      prefix: 'popit_default_',
+    },
     
 };
      

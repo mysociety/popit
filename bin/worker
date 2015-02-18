@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+
+var worker = require('popit-api/src/worker');
+var config = require('config');
+
+worker(config.queue.prefix);
+console.log("kue worker started");

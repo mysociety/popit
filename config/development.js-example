@@ -30,4 +30,8 @@ module.exports = {
         print_to_console:  true,
         bcc_to_sender:     false,
     },
+
+    queue: {
+        prefix: 'popit_development_',
+    },
 };
