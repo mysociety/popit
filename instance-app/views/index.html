@@ -6,7 +6,9 @@
   }
 ) %>
 
-<% if (typeof current_step !== 'undefined') { %>
+<% if (!user) { %>
+  <% // Don't render anything set up instance screen %>
+<% } else if (typeof current_step !== 'undefined') { %>
 
   <div class="homepage-setup-guide container <% if (person_count + organization_count === 0) { %>solo<% } %>">
     <div class="container">
