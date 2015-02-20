@@ -1349,8 +1349,8 @@
     },
     "popit-api": {
       "version": "0.0.14",
-      "from": "git://github.com/mysociety/popit-api#321-popolo-import",
-      "resolved": "git://github.com/mysociety/popit-api#101e236b09f376c279658c7fcf901a0646cc025e",
+      "from": "git://github.com/mysociety/popit-api#master",
+      "resolved": "git://github.com/mysociety/popit-api#d013d2d6b18147567e092b1f3e09b1e006081ada",
       "dependencies": {
         "JSV": {
           "version": "4.0.2",
