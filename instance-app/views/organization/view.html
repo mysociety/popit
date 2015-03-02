@@ -66,8 +66,6 @@
         <span class="entity-little-edit-icon entity-enter-edit-mode" data-input-selector="#input-name"></span>
       </h1>
       <%= render('field_source/view.html', { value: organization.get('field_sources.name') }) %>
-      <strong class="control-label edit-mode-error" style="display: none">This organization must have a name</strong>
-      <input type="text" class="form-control edit-mode" id="input-name" data-api-name="name" value="<%- organization.name %>">
     </div>
 
     <div class="entity-header__secondary-property">
@@ -81,9 +79,6 @@
         <% } %>
       </p>
       <%= render('field_source/view.html', { value: organization.get('field_sources.classification') }) %>
-      <div>
-        <input type="text" class="form-control edit-mode" id="input-classification" data-api-name="classification" value="<%- organization.classification %>">
-      </div>
     </div>
 
     <div class="entity-header__social">
@@ -130,23 +125,18 @@
             <%- organization.parent_id.name %>
           <% } %>
         </p>
-        <input type="text" class="form-control edit-mode" data-api-name="parent_id" value="<%- organization.parent_id %>">
         <%= render('field_source/view.html', { value: organization.get('field_sources.parent_id') }) %>
       </div>
 
       <div class="entity-details__property <% if (!organization.founding_date) { %>empty<% } %>">
         <label>Founded</label>
         <p class="view-mode" data-api-name="founding_date"><%- organization.founding_date || '' %></p>
-        <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
-        <input type="date" class="form-control edit-mode" data-api-name="founding_date" value="<%- organization.founding_date || '' %>">
         <%= render('field_source/view.html', { value: organization.get('field_sources.founding_date') }) %>
       </div>
 
       <div class="entity-details__property <% if (!organization.dissolution_date) { %>empty<% } %>">
         <label>Dissolved</label>
         <p class="view-mode" data-api-name="dissolution_date"><%- organization.dissolution_date || '' %></p>
-        <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
-        <input type="date" class="form-control edit-mode" data-api-name="dissolution_date" value="<%- organization.dissolution_date || '' %>">
         <%= render('field_source/view.html', { value: organization.get('field_sources.dissolution_date') }) %>
       </div>
     </div>
@@ -165,9 +155,6 @@
               <%= render( 'membership/list-item.html', { membership: membership, member: relatedObject(membership, organization, lang, defaultLang), organization: organization, type: 'organization' } ) %>
             <% } %>
           <% }); %>
-          <li class="edit-mode">
-            <a class="add edit-membership btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(posts.length){ %>nother<% } %> member</a>
-          </li>
         </ul>
       </div>
     </div>
@@ -184,9 +171,6 @@
           <% _.each( posts, function ( post ) { %>
             <li><%= render( 'post/post.html', { item: post }) %></li>
           <% }); %>
-          <li class="edit-mode">
-            <a class="add edit-post btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(posts.length){ %>nother<% } %> post</a>
-          </li>
         </ul>
       </div>
     </div>

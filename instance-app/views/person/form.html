@@ -27,13 +27,6 @@
     </ul>
 
     <div class="entity-details__section" id="biography">
-      <% if (!person.other_names.length && !person.summary && !person.birth_date && !person.death_date) { %>
-        <p class="entity-details__hint view-mode entity-enter-edit-mode">
-          <span class="btn btn-xs btn-default pull-right">Add details</span>
-          You can use PopIt to store extra information about this person, like who they are and when they were born.
-        </p>
-      <% } %>
-
       <div class="entity-details__property">
         <label>Other names</label>
         <ul class="other_names">
@@ -71,13 +64,6 @@
     </div>
 
     <div class="entity-details__section" id="websites">
-      <% if (!person.links.length) { %>
-        <p class="entity-details__hint view-mode entity-enter-edit-mode">
-          <span class="btn btn-xs btn-default pull-right">Add links to websites</span>
-          If this person has a website, or any online profile pages, you can add them here.
-        </p>
-      <% } %>
-
       <div class="entity-details__property">
         <ul class="links">
           <% _.each(person.links, function(link, i) { %>
@@ -93,15 +79,7 @@
     </div>
 
     <div class="entity-details__section" id="contact">
-      <% if (!person.contact_details.length) { %>
-        <p class="entity-details__hint view-mode entity-enter-edit-mode">
-          <span class="btn btn-xs btn-default pull-right">Add contact details</span>
-          PopIt is most useful when people have contact details, like their phone, email, and Twitter.
-        </p>
-      <% } %>
-
       <div class="entity-details__property">
-
         <ul class="contact_details">
           <% _.each(person.contact_details, function(contact, i) { %>
           <li>
@@ -116,13 +94,6 @@
     </div>
 
     <div class="entity-details__section" id="political-career">
-      <% if (!memberships.length) { %>
-        <p class="entity-details__hint view-mode entity-enter-edit-mode">
-          <span class="btn btn-xs btn-default pull-right">Add a membership</span>
-          Is this person a member of an organization or party?
-        </p>
-      <% } %>
-
       <div class="entity-details__property">
         <ul class="cleared memberships">
           <% _.each( memberships, function (membership, i) { %>
@@ -139,13 +110,6 @@
     </div>
 
     <div class="entity-details__section" id="sources">
-      <% if (!person.sources.length) { %>
-        <p class="entity-details__hint view-mode entity-enter-edit-mode">
-          <span class="btn btn-xs btn-default pull-right">Add sources</span>
-          Add any URLs to documents from which the person is derived here.
-        </p>
-      <% } %>
-
       <div class="entity-details__property">
         <ul class="sources">
           <% _.each(person.sources, function(source, i) { %>
@@ -160,13 +124,6 @@
     </div>
 
     <div class="entity-details__section" id="advanced">
-      <% if (!person.identifiers.length) { %>
-        <p class="entity-details__hint view-mode entity-enter-edit-mode">
-          <span class="btn btn-xs btn-default pull-right">Add identifiers</span>
-          If this person has special registration or ID numbers, you can add them here.
-        </p>
-      <% } %>
-
       <div class="entity-details__property">
         <ul class="identifiers">
           <% _.each(person.identifiers, function(identifier, i) { %>

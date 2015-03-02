@@ -102,15 +102,6 @@
     </ul>
 
     <div class="entity-details__section" id="political-career">
-      <% if (!memberships.length) { %>
-        <p class="entity-details__hint view-mode entity-enter-edit-mode">
-          <span class="btn btn-xs btn-default pull-right">Add a membership</span>
-          Is this person a member of an organization or party?
-        </p>
-      <% } else { %>
-          <span class="entity-details__hint view-mode entity-enter-edit-mode btn btn-xs btn-default pull-right">Add another membership</span>
-      <% } %>
-
       <div class="entity-details__property <% if(!memberships){ %>empty<% } %>">
         <ul class="cleared memberships">
           <% _.each( memberships, function (membership, i) { %>
@@ -121,11 +112,17 @@
             </li>
             <% } %>
           <% }); %>
-          <li class="edit-mode">
-            <a class="add add-membership btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(memberships.length){ %>nother<% } %> membership</a>
-          </li>
         </ul>
       </div>
+
+      <% if (!memberships.length) { %>
+        <p class="entity-details__hint view-mode entity-enter-edit-mode">
+          <span class="btn btn-xs btn-default pull-right">Add a membership</span>
+          Is this person a member of an organization or party?
+        </p>
+      <% } else { %>
+          <span class="entity-details__hint view-mode entity-enter-edit-mode btn btn-xs btn-default">Add another membership</span>
+      <% } %>
     </div>
 
     <div class="entity-details__section" id="biography">
@@ -144,88 +141,83 @@
       <div class="entity-details__property <% if(!person.summary){ %>empty<% } %>">
         <label>Summary</label>
         <p class="view-mode" itemprop="description" data-api-name="summary"><%- person.summary %></p>
-        <textarea class="form-control edit-mode" data-api-name="summary"><%- person.summary %></textarea>
         <%= render('field_source/view.html', { value: person.get('field_sources.summary') }) %>
       </div>
 
       <div class="entity-details__property <% if(!person.birth_date){ %>empty<% } %>">
         <label>Born</label>
         <p class="view-mode" data-api-name="birth_date"><%- person.birth_date || '' %></p>
-        <input type="date" class="form-control edit-mode" data-api-name="birth_date" value="<%- person.birth_date || '' %>">
-        <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
         <%= render('field_source/view.html', { value: person.get('field_sources.birth_date') }) %>
       </div>
 
       <div class="entity-details__property <% if(!person.death_date){ %>empty<% } %>">
         <label>Died</label>
         <p class="view-mode" data-api-name="death_date"><%- person.death_date || '' %></p>
-        <input type="date" class="form-control edit-mode" data-api-name="death_date" value="<%- person.death_date || '' %>">
-        <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
         <%= render('field_source/view.html', { value: person.get('field_sources.death_date') }) %>
       </div>
 
     </div>
 
     <div class="entity-details__section" id="websites">
+      <div class="entity-details__property <% if(!person.links.length){ %>empty<% } %>">
+        <%= render( 'link/list.html', { links: person.links, object: person } ) %>
+      </div>
+
       <% if (!person.links.length) { %>
         <p class="entity-details__hint view-mode entity-enter-edit-mode">
           <span class="btn btn-xs btn-default pull-right">Add links to websites</span>
           If this person has a website, or any online profile pages, you can add them here.
         </p>
       <% } else { %>
-        <span class="entity-details__hint view-mode entity-enter-edit-mode btn btn-xs btn-default pull-right">Add another link</span>
+        <span class="entity-details__hint view-mode entity-enter-edit-mode btn btn-xs btn-default">Add another link</span>
       <% } %>
-
-      <div class="entity-details__property <% if(!person.links.length){ %>empty<% } %>">
-        <%= render( 'link/list.html', { links: person.links, object: person } ) %>
-      </div>
     </div>
 
     <div class="entity-details__section" id="contact">
+      <div class="entity-details__property <% if(!person.contact_details.length){ %>empty<% } %>">
+        <%= render( 'contact/list.html', { contact_details: person.contact_details, object: person } ) %>
+      </div>
+
       <% if (!person.contact_details.length) { %>
         <p class="entity-details__hint view-mode entity-enter-edit-mode">
           <span class="btn btn-xs btn-default pull-right">Add contact details</span>
           PopIt is most useful when people have contact details, like their phone, email, and Twitter.
         </p>
       <% } else { %>
-        <span class="entity-details__hint view-mode entity-enter-edit-mode btn btn-xs btn-default pull-right">Add more contact details</span>
+        <span class="entity-details__hint view-mode entity-enter-edit-mode btn btn-xs btn-default">Add more contact details</span>
       <% } %>
-
-      <div class="entity-details__property <% if(!person.contact_details.length){ %>empty<% } %>">
-        <%= render( 'contact/list.html', { contact_details: person.contact_details, object: person } ) %>
-      </div>
     </div>
 
     <!-- <div class="entity-details__section" id="career"></div> -->
 
     <div class="entity-details__section" id="sources">
+      <div class="entity-details__property <% if(!person.sources.length){ %>empty<% } %>">
+        <%= render( 'source/list.html', { sources: person.sources, object: person } ) %>
+      </div>
+
       <% if (!person.sources.length) { %>
         <p class="entity-details__hint view-mode entity-enter-edit-mode">
           <span class="btn btn-xs btn-default pull-right">Add sources</span>
           Add any URLs to documents from which the person is derived here.
         </p>
       <% } else { %>
-          <span class="entity-details__hint view-mode entity-enter-edit-mode btn btn-xs btn-default pull-right">Add another source</span>
+          <span class="entity-details__hint view-mode entity-enter-edit-mode btn btn-xs btn-default">Add another source</span>
       <% } %>
-
-      <div class="entity-details__property <% if(!person.sources.length){ %>empty<% } %>">
-        <%= render( 'source/list.html', { sources: person.sources, object: person } ) %>
-      </div>
     </div>
 
     <div class="entity-details__section" id="advanced">
+      <div class="entity-details__property <% if(!person.identifiers.length){ %>empty<% } %>">
+        <%= render( 'identifier/list.html', { identifiers: person.identifiers, object: person } ) %>
+      </div>
+
       <% if (!person.identifiers.length) { %>
         <p class="entity-details__hint view-mode entity-enter-edit-mode">
           <span class="btn btn-xs btn-default pull-right">Add identifiers</span>
           If this person has special registration or ID numbers, you can add them here.
         </p>
       <% } else { %>
-          <span class="entity-details__hint view-mode entity-enter-edit-mode btn btn-xs btn-default pull-right">Add another identifier</span>
+          <span class="entity-details__hint view-mode entity-enter-edit-mode btn btn-xs btn-default">Add another identifier</span>
       <% } %>
-
-      <div class="entity-details__property <% if(!person.identifiers.length){ %>empty<% } %>">
-        <%= render( 'identifier/list.html', { identifiers: person.identifiers, object: person } ) %>
-      </div>
     </div>
 
     <%= render('disclaimer.html' )%>

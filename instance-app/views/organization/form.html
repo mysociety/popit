@@ -7,29 +7,17 @@
 
     <div class="entity-header__primary-property">
       <label for="input-name">Name</label>
-      <h1 itemprop="name" class="view-mode" data-api-name="name">
-        <%- organization.name %>
-        <span class="entity-little-edit-icon entity-enter-edit-mode" data-input-selector="#input-name"></span>
-      </h1>
-      <strong class="control-label edit-mode-error" style="display: none">This organization must have a name</strong>
       <input type="text" class="form-control edit-mode" id="input-name" name="name" value="<%- organization.name %>">
+      <strong class="control-label edit-mode-error" style="display: none">This organization must have a name</strong>
       <%= render('field_source/edit.html', { field: 'field_sources[name]', value: organization.get('field_sources.name') }) %>
     </div>
 
     <div class="entity-header__secondary-property">
       <label for="input-classification">Organization type</label>
-      <p itemprop="name" class="view-mode" data-api-name="classification">
-        <% if (organization.classification) { %>
-          <%- organization.classification %>
-          <span class="entity-little-edit-icon entity-enter-edit-mode" data-input-selector="#input-classification"></span>
-        <% } else { %>
-          <span class="placeholder entity-enter-edit-mode">What type of organization is <%- organization.name %>?</span>
-        <% } %>
-      </p>
-      <%= render('field_source/edit.html', { field: 'field_sources[classification]', value: organization.get('field_sources.classification') }) %>
       <div>
         <input type="text" class="form-control edit-mode" id="input-classification" name="classification" value="<%- organization.classification %>">
       </div>
+      <%= render('field_source/edit.html', { field: 'field_sources[classification]', value: organization.get('field_sources.classification') }) %>
     </div>
 
     <div class="entity-header__social">
@@ -57,14 +45,6 @@
     </ul>
 
     <div class="entity-details__section" id="details">
-      <% if (!organization.other_names.length && !organization.parent_id && !organization.founding_date && !organization.dissolution_date) { %>
-        <p class="entity-details__hint view-mode entity-enter-edit-mode">
-          <span class="btn btn-xs btn-default pull-right">Add more info</span>
-          You can use PopIt to store previous names and other important details about this organization.
-        </p>
-      <% } %>
-
-
       <div class="entity-details__property">
         <label>Other names</label>
         <ul class="other_names">
@@ -81,28 +61,21 @@
 
       <div class="entity-details__property <% if (!organization.parent_id) { %>empty<% } %>">
         <label>Parent</label>
-        <p class="view-mode" data-api-name="parent_id">
-          <% if (organization.parent_id) { %>
-            <%- organization.parent_id.name %>
-          <% } %>
-        </p>
         <input type="text" class="form-control edit-mode" name="parent_id" value="<%- organization.parent_id %>">
         <%= render('field_source/edit.html', { field: 'field_sources[parent_id]', value: organization.get('field_sources.parent_id') }) %>
       </div>
 
       <div class="entity-details__property <% if (!organization.founding_date) { %>empty<% } %>">
         <label>Founded</label>
-        <p class="view-mode" data-api-name="founding_date"><%- organization.founding_date || '' %></p>
-        <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
         <input type="date" class="form-control edit-mode" name="founding_date" value="<%- organization.founding_date || '' %>">
+        <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
         <%= render('field_source/edit.html', { field: 'field_sources[founding_date]', value: organization.get('field_sources.founding_date') }) %>
       </div>
 
       <div class="entity-details__property <% if (!organization.dissolution_date) { %>empty<% } %>">
         <label>Dissolved</label>
-        <p class="view-mode" data-api-name="dissolution_date"><%- organization.dissolution_date || '' %></p>
-        <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
         <input type="date" class="form-control edit-mode" name="dissolution_date" value="<%- organization.dissolution_date || '' %>">
+        <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
         <%= render('field_source/edit.html', { field: 'field_sources[dissolution_date]', value: organization.get('field_sources.dissolution_date') }) %>
       </div>
     </div>
@@ -125,12 +98,6 @@
 
 
     <div class="entity-details__section" id="posts">
-      <% if (!posts.length) { %>
-        <p class="entity-details__hint view-mode entity-enter-edit-mode">
-          <span class="btn btn-xs btn-default pull-right">Add posts</span>
-          Organizations in PopIt can have pre-defined posts that members can then fill.
-        </p>
-      <% } %>
       <div class="entity-details__property <% if (!posts.length) { %>empty<% } %>">
         <ul class="cleared posts">
           <% _.each( posts, function ( post ) { %>
@@ -144,13 +111,6 @@
     </div>
 
     <div class="entity-details__section" id="websites">
-      <% if (!organization.links.length) { %>
-        <p class="entity-details__hint view-mode entity-enter-edit-mode">
-          <span class="btn btn-xs btn-default pull-right">Add links to websites</span>
-          If this organization has a website, or any online profile pages, you can add them here.
-        </p>
-      <% } %>
-
       <div class="entity-details__property">
         <ul class="links">
           <% _.each(organization.links, function(link, i) { %>
@@ -166,13 +126,6 @@
     </div>
 
     <div class="entity-details__section" id="contact">
-      <% if (!organization.contact_details.length) { %>
-        <p class="entity-details__hint view-mode entity-enter-edit-mode">
-          <span class="btn btn-xs btn-default pull-right">Add contact details</span>
-          PopIt is most useful when people have contact details, like their phone, email, and Twitter.
-        </p>
-      <% } %>
-
       <div class="entity-details__property">
         <ul class="contact_details">
           <% _.each(organization.contact_details, function(contact, i) { %>
@@ -188,13 +141,6 @@
     </div>
 
     <div class="entity-details__section" id="sources">
-      <% if (!organization.sources.length) { %>
-        <p class="entity-details__hint view-mode entity-enter-edit-mode">
-          <span class="btn btn-xs btn-default pull-right">Add sources</span>
-          Add any URLs to documents from which the organization is derived here.
-        </p>
-      <% } %>
-
       <div class="entity-details__property">
         <ul class="sources">
           <% _.each(organization.sources, function(source, i) { %>
@@ -209,13 +155,6 @@
     </div>
 
     <div class="entity-details__section" id="advanced">
-      <% if (!organization.identifiers.length) { %>
-        <p class="entity-details__hint view-mode entity-enter-edit-mode">
-          <span class="btn btn-xs btn-default pull-right">Add identifiers</span>
-          If this organization has special registration or ID numbers, you can add them here.
-        </p>
-      <% } %>
-
       <div class="entity-details__property">
         <ul class="identifiers">
           <% _.each(organization.identifiers, function(identifier, i) { %>
