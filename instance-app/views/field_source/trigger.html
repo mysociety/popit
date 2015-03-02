@@ -1,0 +1,7 @@
+<% if (popit.setting('require-sources')) { %>
+  <% if (sourceText) { %>
+    <a class="js-source__link  source__link  source__link--has-source" href="#<%- sourceID %>">Show source</a>
+  <% } else { %>
+    <span class="js-source__link  source__link  source__link--no-source">No source</span>
+  <% } %>
+<% } %>

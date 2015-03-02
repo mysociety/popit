@@ -693,12 +693,11 @@ $entity-photo-sidebar-width: 285px;
 // Per-field sourcing
 .source__popup {
   display: none;
+  padding: 15px;
+  background: #ffc;
+  margin-top: 10px;
 }
 
 .source__popup--display {
   display: block;
-}
-
-.source__link {
-  cursor: pointer;
 }

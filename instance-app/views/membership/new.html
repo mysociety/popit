@@ -56,4 +56,7 @@
         <% } %>
     <% } %>
     <a class="btn btn-sm membership__delete delete-membership"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+    <%= render( 'field_source/trigger-editing.html', { sourceText: sourceText, sourceID: 'source-membership-' + membership.id } )%>
 </div>
+
+<%= render( 'field_source/display-editing.html', { sourceText: sourceText, sourceID: 'source-membership-' + membership.id, field: 'field_sources[identifier][' + i + ']' } )%>

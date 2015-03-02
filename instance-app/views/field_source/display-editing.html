@@ -1,0 +1,5 @@
+<% if (popit.setting('require-sources')) { %>
+  <div class="js-source__popup  source__popup" id="<%- sourceID %>">
+    <input class="source__input" type="url" name="<%- field %>" value="<%- sourceText %>">
+  </div>
+<% } %>
