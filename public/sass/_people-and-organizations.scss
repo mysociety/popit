@@ -385,7 +385,8 @@ $entity-photo-sidebar-width: 285px;
   }
 
   li {
-    margin-bottom: 15px; // this is larger than you expect, because it also compensates for negative margin on .form-controls
+    margin-top: 10px;
+    margin-bottom: 30px;
   }
 }
 
