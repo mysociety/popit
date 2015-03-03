@@ -189,7 +189,7 @@
 
     <div class="entity-details__section" id="contact">
       <div class="entity-details__property <% if(!person.contact_details.length){ %>empty<% } %>">
-        <%= render( 'contact/list.html', { contact_details: person.contact_details, object: person } ) %>
+        <%= render( 'contact/view-list.html', { contact_details: person.contact_details, object: person } ) %>
       </div>
 
       <% if (!person.contact_details.length) { %>

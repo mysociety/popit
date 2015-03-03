@@ -102,7 +102,6 @@
       </div>
     </div>
 
-
     <div class="entity-details__section" id="posts">
       <div class="entity-details__property <% if (!posts.length) { %>empty<% } %>">
         <ul class="cleared posts">
@@ -118,30 +117,14 @@
 
     <div class="entity-details__section" id="websites">
       <div class="entity-details__property">
-        <ul class="links">
-          <% _.each(organization.links, function(link, i) { %>
-          <li>
-            <%= render('link/edit.html', {link: link, i: i}) %>
-            <%= render('field_source/edit.html', { field: 'field_sources[links][' + i + ']', value: organization.get('field_sources.links.' + i) }) %>
-            <a href="delete" class="link-delete">Delete</a>
-          </li>
-          <% }) %>
-        </ul>
+        <%= render( 'link/edit-list.html', { links: organization.links, object: organization } ) %>
         <a class="add link-edit btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(organization.links.length){ %>nother<% } %> link</a>
       </div>
     </div>
 
     <div class="entity-details__section" id="contact">
       <div class="entity-details__property">
-        <ul class="contact_details">
-          <% _.each(organization.contact_details, function(contact, i) { %>
-          <li>
-            <%= render('contact/edit.html', {contact: contact, i: i}) %>
-            <%= render('field_source/edit.html', { field: 'field_sources[contact_details][' + i + ']', value: organization.get('field_sources.contact_details.' + i) }) %>
-            <a href="delete" class="contact-delete">Delete</a>
-          </li>
-          <% }) %>
-        </ul>
+        <%= render( 'contact/edit-list.html', { contact_details: organization.contact_details, object: organization } ) %>
         <a class="add contact-edit btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add <% if(organization.contact_details.length){ %>more <% } %>contact details</a>
       </div>
     </div>
