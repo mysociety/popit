@@ -206,7 +206,7 @@
 
     <div class="entity-details__section" id="sources">
       <div class="entity-details__property <% if(!person.sources.length){ %>empty<% } %>">
-        <%= render( 'source/list.html', { sources: person.sources, object: person } ) %>
+        <%= render( 'source/view-list.html', { sources: person.sources, object: person } ) %>
       </div>
 
       <% if (!person.sources.length) { %>

@@ -1,0 +1,7 @@
+<ul class="sources">
+  <% _.each( sources, function (item, i) { %>
+    <li>
+      <%= render( 'source/view.html', { item: item, sourceText: object.get('field_sources.sources.' + i) }) %>
+    </li>
+  <% }); %>
+</ul>

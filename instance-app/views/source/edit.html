@@ -1,6 +1,18 @@
-<input type="hidden" id="source_id_<%= i %>" name="sources[<%= i %>][id]" value="<%= source._id || '' %>">
-<label for="source_url_<%= i %>">Url</label>
-<input type="text" id="source_url_<%= i %>" name="sources[<%= i %>][url]" value="<%= source.url || '' %>">
+<div class="field-with-metadata">
+  <input type="hidden" id="source_id_<%= i %>" name="sources[<%= i %>][id]" value="<%= item._id || '' %>">
+  <p>
+    <label for="source_url_<%= i %>">Url</label>
+    <input type="text" class="form-control" id="source_url_<%= i %>" name="sources[<%= i %>][url]" value="<%= item.url || '' %>">
+  </p>
 
-<label for="source_note_<%= i %>">Note</label>
-<input type="text" id="source_note_<%= i %>" name="sources[<%= i %>][note]" value="<%= source.note || '' %>">
+  <p>
+    <label for="source_note_<%= i %>">Note</label>
+    <input type="text" class="form-control" id="source_note_<%= i %>" name="sources[<%= i %>][note]" value="<%= item.note || '' %>">
+  </p>
+
+  <div class="field-with-metadata__metadata">
+    <a class="other_name-delete"><span class="glyphicon glyphicon-trash glyphicon-space-after"></span>Delete</a>
+    <%= render( 'field_source/trigger-editing.html', { sourceText: sourceText, sourceID: 'source-source-' + item.id } )%>
+  </div>
+</div>
+<%= render( 'field_source/display-editing.html', { sourceText: sourceText, sourceID: 'source-source-' + item.id, field: 'field_sources[sources][' + i + ']' } )%>

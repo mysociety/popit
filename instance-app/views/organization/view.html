@@ -231,7 +231,7 @@
       <% } %>
 
       <div class="entity-details__property <% if(!organization.sources.length){ %>empty<% } %>">
-        <%= render( 'source/list.html', { sources: organization.sources, object: organization } ) %>
+        <%= render( 'source/view-list.html', { sources: organization.sources, object: organization } ) %>
       </div>
     </div>
 

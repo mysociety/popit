@@ -131,14 +131,7 @@
 
     <div class="entity-details__section" id="sources">
       <div class="entity-details__property">
-        <ul class="sources">
-          <% _.each(organization.sources, function(source, i) { %>
-          <li>
-          <%= render('source/edit.html', {source: source, i: i}) %>
-          <a class="source-delete" href="#">Delete</a>
-          </li>
-          <% }) %>
-        </ul>
+        <%= render( 'source/edit-list.html', { sources: organization.sources, object: organization } ) %>
         <a class="add source-edit btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(organization.sources.length){ %>nother<% } %> source</a>
       </div>
     </div>
