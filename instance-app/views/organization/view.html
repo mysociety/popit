@@ -216,7 +216,7 @@
       <% } %>
 
       <div class="entity-details__property <% if (!organization.contact_details.length) { %>empty<% } %>">
-        <%= render( 'contact/list.html', { contact_details: organization.contact_details, object: organization } ) %>
+        <%= render( 'contact/view-list.html', { contact_details: organization.contact_details, object: organization } ) %>
       </div>
     </div>
 
@@ -246,7 +246,7 @@
       <% } %>
 
       <div class="entity-details__property <% if (!organization.identifiers.length) { %>empty<% } %>">
-        <%= render( 'identifier/list.html', { identifiers: organization.identifiers, object: organization } ) %>
+        <%= render( 'identifier/view-list.html', { identifiers: organization.identifiers, object: organization } ) %>
       </div>
     </div>
 

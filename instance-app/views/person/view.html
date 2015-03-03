@@ -221,7 +221,7 @@
 
     <div class="entity-details__section" id="advanced">
       <div class="entity-details__property <% if(!person.identifiers.length){ %>empty<% } %>">
-        <%= render( 'identifier/list.html', { identifiers: person.identifiers, object: person } ) %>
+        <%= render( 'identifier/view-list.html', { identifiers: person.identifiers, object: person } ) %>
       </div>
 
       <% if (!person.identifiers.length) { %>
