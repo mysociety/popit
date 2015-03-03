@@ -115,7 +115,7 @@
 
       <div class="entity-details__property <% if (!organization.other_names.length) { %>empty<% } %>">
         <label>Other names</label>
-        <%= render( 'other_name/list.html', { other_names: organization.other_names, object: organization } ) %>
+        <%= render( 'other_name/view-list.html', { other_names: organization.other_names, object: organization } ) %>
       </div>
 
       <div class="entity-details__property <% if (!organization.parent_id) { %>empty<% } %>">

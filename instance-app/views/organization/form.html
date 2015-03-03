@@ -47,15 +47,7 @@
     <div class="entity-details__section" id="details">
       <div class="entity-details__property">
         <label>Other names</label>
-        <ul class="other_names">
-          <% _.each(organization.other_names, function(name, i) { %>
-            <li>
-              <%= render('other_name/edit.html', {name: name, i: i}) %>
-              <%= render('field_source/edit.html', { field: 'field_sources[other_names][' + i + ']', value: organization.get('field_sources.other_names.' + i) }) %>
-              <a href="#" class="other_name-delete">Delete</a>
-            </li>
-          <% }) %>
-        </ul>
+        <%= render( 'other_name/edit-list.html', { other_names: organization.other_names, object: organization } ) %>
         <a class="add other_name-edit btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(organization.other_names.length){ %>nother<% } %> name</a>
       </div>
 

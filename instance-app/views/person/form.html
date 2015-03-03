@@ -29,15 +29,7 @@
     <div class="entity-details__section" id="biography">
       <div class="entity-details__property">
         <label>Other names</label>
-        <ul class="other_names">
-          <% _.each(person.other_names, function(name, i) { %>
-            <li>
-              <%= render('other_name/edit.html', {name: name, i: i}) %>
-              <%= render('field_source/edit.html', { field: 'field_sources[other_names][' + i + ']', value: person.get('field_sources.other_names.' + i) }) %>
-              <a href="#" class="other_name-delete">Delete</a>
-            </li>
-          <% }) %>
-        </ul>
+        <%= render( 'other_name/edit-list.html', { other_names: person.other_names, object: person } ) %>
         <a class="add other_name-edit btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(person.other_names.length){ %>nother<% } %> name</a>
       </div>
 

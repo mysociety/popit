@@ -178,14 +178,15 @@ $entity-photo-sidebar-width: 285px;
       margin: 5px 5px 0;
       height: 32px;
     }
+  }
 
-    .membership__delete {
-      color: #C54747;
+  .membership__delete,
+  .other_name-delete {
+    color: #C54747;
 
-      &:hover,
-      &:focus {
-        color: darken(#C54747, 20%);
-      }
+    &:hover,
+    &:focus {
+      color: darken(#C54747, 20%);
     }
   }
 
