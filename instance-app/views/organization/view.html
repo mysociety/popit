@@ -150,9 +150,11 @@
       <% } %>
       <div class="entity-details__property ">
         <ul class="cleared memberships">
-          <% _.each( memberships, function ( membership ) { %>
+          <% _.each( memberships, function ( membership, i ) { %>
             <% if (validMembership(membership, organization.id)) { %>
-              <%= render( 'membership/list-item.html', { membership: membership, member: relatedObject(membership, organization, lang, defaultLang), organization: organization, type: 'organization' } ) %>
+              <li class="membership">
+                <%= render( 'membership/list-item.html', { membership: membership, member: relatedObject(membership, organization, lang, defaultLang), organization: organization, type: 'organization', sourceText: organization.get('field_sources.memberships.' + i) } ) %>
+              </li>
             <% } %>
           <% }); %>
         </ul>

@@ -78,8 +78,7 @@
           <% _.each( memberships, function (membership, i) { %>
             <% if (validMembership(membership, organization.id)) { %>
             <li class="membership">
-              <%= render('membership/new.html', { membership: membership, organization: organization, member: relatedObject(membership, organization, lang, defaultLang), type: 'organization', i: i }) %>
-              <%= render('field_source/edit.html', { field: 'field_sources[memberships][' + i + ']', value: organization.get('field_sources.memberships.' + i) }) %>
+              <%= render('membership/new.html', { membership: membership, organization: organization, member: relatedObject(membership, organization, lang, defaultLang), type: 'organization', sourceText: organization.get('field_sources.memberships.' + i), i: i }) %>
             </li>
             <% } %>
           <% }); %>
