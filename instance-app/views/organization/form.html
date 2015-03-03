@@ -20,20 +20,15 @@
 
     <div class="entity-header__secondary-property">
       <label for="input-classification">Organization type</label>
-      <div>
-        <input type="text" class="form-control edit-mode" id="input-classification" name="classification" value="<%- organization.classification %>">
+      <div class="field-with-metadata">
+        <p>
+          <input type="text" class="form-control edit-mode" id="input-classification" name="classification" value="<%- organization.classification %>">
+        </p>
+        <div class="field-with-metadata__metadata">
+          <%= render( 'field_source/trigger-editing.html', { sourceText: organization.get('field_sources.classification'), sourceID: 'source-classification-' + organization.id } )%>
+        </div>
       </div>
-      <%= render('field_source/edit.html', { field: 'field_sources[classification]', value: organization.get('field_sources.classification') }) %>
-    </div>
-
-    <div class="entity-header__social">
-      <% _.each( organization.contact_details, function (item) { %>
-        <% if (item.type.toLowerCase() == 'twitter') { %>
-          <a href="http://twitter.com/<%= item.value %>" title="@<%= item.value %> on Twitter" class="socicon socicon-color socicon-twitter"></a>
-        <% } else if (item.type.toLowerCase() == 'facebook') { %>
-          <a href="http://facebook.com/<%= item.value %>" title="facebook.com/<%= item.value %>" class="socicon socicon-color socicon-facebook"></a>
-        <% } %>
-      <% }) %>
+      <%= render( 'field_source/display-editing.html', { sourceText: organization.get('field_sources.classification'), sourceID: 'source-classification-' + organization.id, field: 'field_sources[classification]' } )%>
     </div>
 
   </div>
