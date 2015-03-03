@@ -53,8 +53,13 @@
 
       <div class="entity-details__property <% if (!organization.parent_id) { %>empty<% } %>">
         <label>Parent</label>
-        <input type="text" class="form-control edit-mode" name="parent_id" value="<%- organization.parent_id %>">
-        <%= render('field_source/edit.html', { field: 'field_sources[parent_id]', value: organization.get('field_sources.parent_id') }) %>
+        <div class="field-with-metadata">
+          <input type="text" class="form-control edit-mode" name="parent_id" value="<%- organization.parent_id %>">
+          <div class="field-with-metadata__metadata">
+            <%= render( 'field_source/trigger-editing.html', { sourceText: organization.get('field_sources.parent_id'), sourceID: 'source-parent_id-' + organization.id } )%>
+          </div>
+        </div>
+        <%= render( 'field_source/display-editing.html', { sourceText: organization.get('field_sources.parent_id'), sourceID: 'source-parent_id-' + organization.id, field: 'field_sources[parent_id]' } )%>
       </div>
 
       <div class="entity-details__property <% if (!organization.founding_date) { %>empty<% } %>">
