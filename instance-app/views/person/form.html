@@ -108,15 +108,7 @@
 
     <div class="entity-details__section" id="advanced">
       <div class="entity-details__property">
-        <ul class="identifiers">
-          <% _.each(person.identifiers, function(identifier, i) { %>
-          <li>
-          <%= render('identifier/edit.html', {identifier: identifier, i: i}) %>
-          <%= render('field_source/edit.html', { field: 'field_sources[identifier][' + i + ']', value: person.get('field_sources.identifier.' + i) }) %>
-          <a class="identifier-delete" href="#">Delete</a>
-          </li>
-          <% }) %>
-        </ul>
+        <%= render( 'source/edit-list.html', { sources: person.identifiers, object: person } ) %>
         <a class="add identifier-edit btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add an<% if(person.identifiers.length){ %>other<% } %> identifier</a>
       </div>
     </div>
