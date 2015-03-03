@@ -185,8 +185,8 @@
       <% } %>
       <div class="entity-details__property <% if (!posts.length) { %>empty<% } %>">
         <ul class="cleared posts">
-          <% _.each( posts, function ( post ) { %>
-            <li><%= render( 'post/post.html', { item: post }) %></li>
+          <% _.each( posts, function ( post, i ) { %>
+            <li><%= render( 'post/post.html', { item: post, i: i }) %></li>
           <% }); %>
         </ul>
       </div>

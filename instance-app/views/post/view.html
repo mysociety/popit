@@ -65,7 +65,7 @@
         <ul class="cleared memberships">
           <% _.each( memberships, function (membership, i) { %>
             <li class="membership">
-              <%= render( 'membership/list-item.html', { membership: membership, member: membership.person_id, organization: relatedObject(membership, post, lang, defaultLang), type: 'post' } ) %>
+              <%= render( 'membership/list-item.html', { membership: membership, member: membership.person_id, organization: relatedObject(membership, post, lang, defaultLang), type: 'post', sourceText: post.get('field_sources.memberships.' + i) } ) %>
             </li>
           <% }); %>
         </ul>

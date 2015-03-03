@@ -106,8 +106,8 @@
     <div class="entity-details__section" id="posts">
       <div class="entity-details__property <% if (!posts.length) { %>empty<% } %>">
         <ul class="cleared posts">
-          <% _.each( posts, function ( post ) { %>
-            <li><%= render( 'post/post.html', { item: post }) %></li>
+          <% _.each( posts, function ( post, i ) { %>
+            <li><%= render( 'post/post.html', { item: post, sourceText: organization.get('field_sources.posts.' + i), i: i }) %></li>
           <% }); %>
           <li class="edit-mode">
             <a class="add edit-post btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(posts.length){ %>nother<% } %> post</a>
