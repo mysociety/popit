@@ -46,16 +46,26 @@
 
       <div class="entity-details__property">
         <label>Born</label>
-        <input type="date" class="form-control" name="birth_date" value="<%- person.birth_date || '' %>">
-        <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
-        <%= render('field_source/edit.html', { field: 'field_sources[birth_date]', value: person.get('field_sources.birth_date') }) %>
+        <div class="field-with-metadata">
+          <input type="date" class="form-control" name="birth_date" value="<%- person.birth_date || '' %>">
+          <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
+          <div class="field-with-metadata__metadata">
+            <%= render( 'field_source/trigger-editing.html', { sourceText: person.get('field_sources.birth_date'), sourceID: 'source-birth_date-' + person.id } )%>
+          </div>
+        </div>
+        <%= render( 'field_source/display-editing.html', { sourceText: person.get('field_sources.birth_date'), sourceID: 'source-birth_date-' + person.id, field: 'field_sources[birth_date]' } )%>
       </div>
 
       <div class="entity-details__property">
         <label>Died</label>
-        <input type="date" class="form-control" name="death_date" value="<%- person.death_date || '' %>">
-        <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
-        <%= render('field_source/edit.html', { field: 'field_sources[death_date]', value: person.get('field_sources.death_date') }) %>
+        <div class="field-with-metadata">
+          <input type="date" class="form-control" name="death_date" value="<%- person.death_date || '' %>">
+          <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
+          <div class="field-with-metadata__metadata">
+            <%= render( 'field_source/trigger-editing.html', { sourceText: person.get('field_sources.death_date'), sourceID: 'source-death_date-' + person.id } )%>
+          </div>
+        </div>
+        <%= render( 'field_source/display-editing.html', { sourceText: person.get('field_sources.death_date'), sourceID: 'source-death_date-' + person.id, field: 'field_sources[death_date]' } )%>
       </div>
 
     </div>

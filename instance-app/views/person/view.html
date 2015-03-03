@@ -150,14 +150,24 @@
 
       <div class="entity-details__property <% if(!person.birth_date){ %>empty<% } %>">
         <label>Born</label>
-        <p class="view-mode" data-api-name="birth_date"><%- person.birth_date || '' %></p>
-        <%= render('field_source/view.html', { value: person.get('field_sources.birth_date') }) %>
+        <div class="field-with-metadata">
+          <p class="view-mode" data-api-name="birth_date"><%- person.birth_date || '' %></p>
+          <div class="field-with-metadata__metadata">
+            <%= render( 'field_source/trigger.html', { sourceText: person.get('field_sources.birth_date'), sourceID: 'source-birth_date-' + person.id } )%>
+          </div>
+        </div>
+        <%= render( 'field_source/display.html', { sourceText: person.get('field_sources.birth_date'), sourceID: 'source-birth_date-' + person.id } )%>
       </div>
 
       <div class="entity-details__property <% if(!person.death_date){ %>empty<% } %>">
         <label>Died</label>
-        <p class="view-mode" data-api-name="death_date"><%- person.death_date || '' %></p>
-        <%= render('field_source/view.html', { value: person.get('field_sources.death_date') }) %>
+        <div class="field-with-metadata">
+          <p class="view-mode" data-api-name="death_date"><%- person.death_date || '' %></p>
+          <div class="field-with-metadata__metadata">
+            <%= render( 'field_source/trigger.html', { sourceText: person.get('field_sources.death_date'), sourceID: 'source-death_date-' + person.id } )%>
+          </div>
+        </div>
+        <%= render( 'field_source/display.html', { sourceText: person.get('field_sources.death_date'), sourceID: 'source-death_date-' + person.id } )%>
       </div>
 
     </div>

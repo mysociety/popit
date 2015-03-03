@@ -130,14 +130,24 @@
 
       <div class="entity-details__property <% if (!organization.founding_date) { %>empty<% } %>">
         <label>Founded</label>
-        <p class="view-mode" data-api-name="founding_date"><%- organization.founding_date || '' %></p>
-        <%= render('field_source/view.html', { value: organization.get('field_sources.founding_date') }) %>
+        <div class="field-with-metadata">
+          <p class="view-mode" data-api-name="founding_date"><%- organization.founding_date || '' %></p>
+          <div class="field-with-metadata__metadata">
+            <%= render( 'field_source/trigger.html', { sourceText: organization.get('field_sources.founding_date'), sourceID: 'source-founding_date-' + organization.id } )%>
+          </div>
+        </div>
+        <%= render( 'field_source/display.html', { sourceText: organization.get('field_sources.founding_date'), sourceID: 'source-founding_date-' + organization.id } )%>
       </div>
 
       <div class="entity-details__property <% if (!organization.dissolution_date) { %>empty<% } %>">
         <label>Dissolved</label>
-        <p class="view-mode" data-api-name="dissolution_date"><%- organization.dissolution_date || '' %></p>
-        <%= render('field_source/view.html', { value: organization.get('field_sources.dissolution_date') }) %>
+        <div class="field-with-metadata">
+          <p class="view-mode" data-api-name="dissolution_date"><%- organization.dissolution_date || '' %></p>
+          <div class="field-with-metadata__metadata">
+            <%= render( 'field_source/trigger.html', { sourceText: organization.get('field_sources.dissolution_date'), sourceID: 'source-dissolution_date-' + organization.id } )%>
+          </div>
+        </div>
+        <%= render( 'field_source/display.html', { sourceText: organization.get('field_sources.dissolution_date'), sourceID: 'source-dissolution_date-' + organization.id } )%>
       </div>
     </div>
 
