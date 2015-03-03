@@ -7,9 +7,15 @@
 
     <div class="entity-header__primary-property">
       <label for="input-name">Name</label>
-      <input type="text" class="form-control edit-mode" id="input-name" name="name" value="<%- organization.name %>">
-      <strong class="control-label edit-mode-error" style="display: none">This organization must have a name</strong>
-      <%= render('field_source/edit.html', { field: 'field_sources[name]', value: organization.get('field_sources.name') }) %>
+      <div class="field-with-metadata">
+        <input type="text" class="form-control edit-mode" id="input-name" name="name" value="<%- organization.name %>">
+        <strong class="control-label edit-mode-error" style="display: none">This organization must have a name</strong>
+
+        <div class="field-with-metadata__metadata">
+          <%= render( 'field_source/trigger-editing.html', { sourceText: organization.get('field_sources.name'), sourceID: 'source-name-' + organization.id } )%>
+        </div>
+      </div>
+      <%= render( 'field_source/display-editing.html', { sourceText: organization.get('field_sources.name'), sourceID: 'source-name-' + organization.id, field: 'field_sources[name]' } )%>
     </div>
 
     <div class="entity-header__secondary-property">

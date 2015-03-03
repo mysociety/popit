@@ -70,21 +70,23 @@
 
     <div class="entity-header__primary-property">
       <label for="input-name">Name</label>
-      <h1 itemprop="name" class="view-mode" data-api-name="name">
-        <%- person.name %>
-        <span class="entity-little-edit-icon entity-enter-edit-mode" data-input-selector="#input-name"></span>
-      </h1>
-      <%= render('field_source/view.html', { value: person.get('field_sources.name') }) %>
-    </div>
-
-    <div class="entity-header__social">
-      <% _.each( person.contact_details, function (item) { %>
-        <% if (item.type.toLowerCase() == 'twitter') { %>
-          <a href="http://twitter.com/<%= item.value %>" title="@<%= item.value %> on Twitter" class="socicon socicon-color socicon-twitter"></a>
-        <% } else if (item.type.toLowerCase() == 'facebook') { %>
-          <a href="http://facebook.com/<%= item.value %>" title="facebook.com/<%= item.value %>" class="socicon socicon-color socicon-facebook"></a>
-        <% } %>
-      <% }) %>
+      <div class="field-with-metadata">
+        <h1 itemprop="name" class="view-mode" data-api-name="name">
+          <%- person.name %>
+          <span class="entity-little-edit-icon entity-enter-edit-mode" data-input-selector="#input-name"></span>
+        </h1>
+        <div class="field-with-metadata__metadata">
+          <% _.each( person.contact_details, function (item) { %>
+            <% if (item.type.toLowerCase() == 'twitter') { %>
+              <a href="http://twitter.com/<%= item.value %>" title="@<%= item.value %> on Twitter" class="socicon socicon-color socicon-twitter"></a>
+            <% } else if (item.type.toLowerCase() == 'facebook') { %>
+              <a href="http://facebook.com/<%= item.value %>" title="facebook.com/<%= item.value %>" class="socicon socicon-color socicon-facebook"></a>
+            <% } %>
+          <% }) %>
+          <%= render( 'field_source/trigger.html', { sourceText: person.get('field_sources.name'), sourceID: 'source-name-' + person.id } )%>
+        </div>
+      </div>
+      <%= render( 'field_source/display.html', { sourceText: person.get('field_sources.name'), sourceID: 'source-name-' + person.id, field: 'field_sources[name]' } )%>
     </div>
 
   </div>

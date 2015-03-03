@@ -25,9 +25,15 @@
 
     <div class="entity-header__primary-property">
       <label for="input-name">Name</label>
-      <h1 itemprop="name" class="view-mode">
-        <%- post.label %>
-      </h1>
+      <div class="field-with-metadata">
+        <h1 itemprop="name" class="view-mode">
+          <%- post.label %>
+        </h1>
+        <div class="field-with-metadata__metadata">
+          <%= render( 'field_source/trigger-editing.html', { sourceText: post.get('field_sources.label'), sourceID: 'source-label-' + post.id } )%>
+        </div>
+      </div>
+      <%= render( 'field_source/display-editing.html', { sourceText: post.get('field_sources.label'), sourceID: 'source-label-' + post.id, field: 'field_sources[label]' } )%>
     </div>
 
     <% if (post.role) { %>
