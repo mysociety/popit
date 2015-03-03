@@ -138,7 +138,7 @@
 
     <div class="entity-details__section" id="advanced">
       <div class="entity-details__property">
-        <%= render( 'indentifier/edit-list.html', { sources: organization.identifiers, object: organization } ) %>
+        <%= render( 'indentifier/edit-list.html', { identifiers: organization.identifiers, object: organization } ) %>
         <a class="add identifier-edit btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add an<% if(organization.identifiers.length){ %>other<% } %> identifier</a>
       </div>
     </div>
