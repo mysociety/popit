@@ -35,8 +35,13 @@
 
       <div class="entity-details__property">
         <label>Summary</label>
-        <textarea class="form-control" name="summary"><%- person.summary %></textarea>
-        <%= render('field_source/edit.html', { field: 'field_sources[summary]', value: person.get('field_sources.summary') }) %>
+        <div class="field-with-metadata">
+          <textarea class="form-control" name="summary"><%- person.summary %></textarea>
+          <div class="field-with-metadata__metadata">
+            <%= render( 'field_source/trigger-editing.html', { sourceText: person.get('field_sources.summary'), sourceID: 'source-summary-' + person.id } )%>
+          </div>
+        </div>
+        <%= render( 'field_source/display-editing.html', { sourceText: person.get('field_sources.summary'), sourceID: 'source-summary-' + person.id, field: 'field_sources[summary]' } )%>
       </div>
 
       <div class="entity-details__property">

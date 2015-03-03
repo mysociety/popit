@@ -139,8 +139,13 @@
 
       <div class="entity-details__property <% if(!person.summary){ %>empty<% } %>">
         <label>Summary</label>
-        <p class="view-mode" itemprop="description" data-api-name="summary"><%- person.summary %></p>
-        <%= render('field_source/view.html', { value: person.get('field_sources.summary') }) %>
+        <div class="field-with-metadata">
+          <p class="view-mode" itemprop="description" data-api-name="summary"><%- person.summary %></p>
+          <div class="field-with-metadata__metadata">
+            <%= render( 'field_source/trigger.html', { sourceText: person.get('field_sources.summary'), sourceID: 'source-summary-' + person.id } )%>
+          </div>
+        </div>
+        <%= render( 'field_source/display.html', { sourceText: person.get('field_sources.summary'), sourceID: 'source-summary-' + person.id } )%>
       </div>
 
       <div class="entity-details__property <% if(!person.birth_date){ %>empty<% } %>">
