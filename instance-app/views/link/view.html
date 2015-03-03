@@ -1,14 +1,10 @@
-<div class="view-mode">
+<div class="field-with-metadata">
   <strong>
     <%- item.note %>:
   </strong>
   <a href="<%- item.url %>"><%- item.url %></a>
+  <div class="field-with-metadata__metadata">
+    <%= render( 'field_source/trigger.html', { sourceText: sourceText, sourceID: 'source-link-' + item.id } )%>
+  </div>
 </div>
-<div class="edit-mode edit-group">
-  <a class="delete"><span class="glyphicon glyphicon-ban-circle glyphicon-space-after"></span>Delete</a>
-  <a class="edit link-edit"><span class="glyphicon glyphicon-pencil glyphicon-space-after"></span>Edit</a>
-  <strong>
-    <%- item.note %>:
-  </strong>
-  <a href="<%- item.url %>"><%- item.url %></a>
-</div>
+<%= render( 'field_source/display.html', { sourceText: sourceText, sourceID: 'source-link-' + item.id } )%>

@@ -174,7 +174,7 @@
 
     <div class="entity-details__section" id="websites">
       <div class="entity-details__property <% if(!person.links.length){ %>empty<% } %>">
-        <%= render( 'link/list.html', { links: person.links, object: person } ) %>
+        <%= render( 'link/view-list.html', { links: person.links, object: person } ) %>
       </div>
 
       <% if (!person.links.length) { %>

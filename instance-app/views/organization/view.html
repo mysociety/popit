@@ -201,7 +201,7 @@
       <% } %>
 
       <div class="entity-details__property <% if (!organization.links.length) { %>empty<% } %>">
-        <%= render( 'link/list.html', { links: organization.links, object: organization } ) %>
+        <%= render( 'link/view-list.html', { links: organization.links, object: organization } ) %>
       </div>
     </div>
 
