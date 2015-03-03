@@ -180,7 +180,6 @@ $entity-photo-sidebar-width: 285px;
     }
 
     .membership__delete {
-      @extend .pull-right;
       color: #C54747;
 
       &:hover,
@@ -366,7 +365,7 @@ $entity-photo-sidebar-width: 285px;
 
 .entity-details__section {
   display: none;
-  padding: 15px;
+  padding: 15px 0;
   &:first-of-type {
     display: block;
   }
@@ -693,11 +692,58 @@ $entity-photo-sidebar-width: 285px;
 // Per-field sourcing
 .source__popup {
   display: none;
+  position: relative;
   padding: 15px;
-  background: #ffc;
-  margin-top: 10px;
+  margin: 15px 0 20px 0;
+  background: #FAFAD5;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-align: right;
+
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -20px;
+    right: 15px;
+    border: 10px solid transparent;
+    border-bottom-color: #FAFAD5;
+  }
+
+  input {
+    display: inline-block;
+    width: 30em;
+  }
 }
 
 .source__popup--display {
   display: block;
+}
+
+.field-with-metadata {
+  position: relative;
+  padding-right: 10em;
+}
+
+.field-with-metadata__metadata {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  & > * {
+    font-size: 14px;
+    margin-left: 15px;
+  }
+
+  a {
+    cursor: pointer;
+  }
+
+  .glyphicon {
+    font-size: 12px;
+    margin-right: 5px;
+  }
+}
+
+.source__link--no-source {
+  color: #999;
 }
