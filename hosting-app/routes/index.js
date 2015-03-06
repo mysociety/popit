@@ -98,7 +98,13 @@ exports.route = function (app) {
         if (err) {
           return done(err);
         }
-        _.extend(details, popit._get_cached_settings());
+        var settings = popit._get_cached_settings();
+        _.each(settings, function(value, key) {
+          // Check that value is truth-y
+          if (value) {
+            details[key] = value;
+          }
+        });
         done(null, details);
       });
     }, function(err, result) {
