@@ -1350,7 +1350,7 @@
     "popit-api": {
       "version": "0.0.14",
       "from": "git://github.com/mysociety/popit-api#master",
-      "resolved": "git://github.com/mysociety/popit-api#5c49daf70498a94eda4afcb8623cef981f7e456b",
+      "resolved": "git://github.com/mysociety/popit-api#b3df8f8456ef54212a5386c6297ade3fa9f41695",
       "dependencies": {
         "JSV": {
           "version": "4.0.2",
@@ -1680,7 +1680,7 @@
                         },
                         "optimist": {
                           "version": "0.3.7",
-                          "from": "optimist@0.3.7",
+                          "from": "optimist@~0.3.5",
                           "resolved": "https://registry.npmjs.org/optimist/-/optimist-0.3.7.tgz",
                           "dependencies": {
                             "wordwrap": {
