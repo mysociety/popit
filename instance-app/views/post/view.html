@@ -10,7 +10,7 @@
   <div class="container">
     <div class="btn-toolbar pull-right view-mode">
       <div class="btn-group">
-        <a class="btn btn-default" href="/api/v0.1/posts/<%- post.id %>">Get this data</a>
+        <a class="btn btn-default" href="/api/v0.1/posts/<%- encodeURIComponent(post.id) %>">Get this data</a>
       </div>
     </div>
     <p><a href="/posts">Posts</a> / <a href="<%- post.url %>"><%- post.label %></a></p>
