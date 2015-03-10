@@ -178,15 +178,15 @@ $entity-photo-sidebar-width: 285px;
       margin: 5px 5px 0;
       height: 32px;
     }
+  }
 
-    .membership__delete {
-      @extend .pull-right;
-      color: #C54747;
+  .membership__delete,
+  .other_name-delete {
+    color: #C54747;
 
-      &:hover,
-      &:focus {
-        color: darken(#C54747, 20%);
-      }
+    &:hover,
+    &:focus {
+      color: darken(#C54747, 20%);
     }
   }
 
@@ -312,27 +312,6 @@ $entity-photo-sidebar-width: 285px;
   }
 }
 
-.entity-header__social {
-  position: absolute;
-  top: 32px;
-  right: -5px;
-
-  .entity.editing & {
-    display: none;
-  }
-
-  a {
-    font-size: 21px;
-    padding: 5px;
-    border-radius: 4px;
-
-    &:hover {
-      background-color: $light-grey-background;
-      text-decoration: none;
-    }
-  }
-}
-
 .entity-little-edit-icon {
   @extend .glyphicon;
   @extend .glyphicon-pencil;
@@ -366,7 +345,7 @@ $entity-photo-sidebar-width: 285px;
 
 .entity-details__section {
   display: none;
-  padding: 15px;
+  padding: 15px 0;
   &:first-of-type {
     display: block;
   }
@@ -385,7 +364,8 @@ $entity-photo-sidebar-width: 285px;
   }
 
   li {
-    margin-bottom: 15px; // this is larger than you expect, because it also compensates for negative margin on .form-controls
+    margin-top: 10px;
+    margin-bottom: 30px;
   }
 }
 
@@ -688,4 +668,73 @@ $entity-photo-sidebar-width: 285px;
     width: 100%;
     height: 5em;
   }
+}
+
+// Per-field sourcing
+.source__popup {
+  display: none;
+  position: relative;
+  padding: 15px;
+  margin: 15px 0 20px 0;
+  background: #FAFAD5;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-align: right;
+
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -20px;
+    right: 15px;
+    border: 10px solid transparent;
+    border-bottom-color: #FAFAD5;
+  }
+
+  input {
+    display: inline-block;
+    width: 30em;
+  }
+}
+
+.source__popup--display {
+  display: block;
+}
+
+.field-with-metadata {
+  position: relative;
+  padding-right: 10em;
+}
+
+.field-with-metadata__metadata {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  & > * {
+    font-size: 14px;
+    margin-left: 15px;
+  }
+
+  a {
+    cursor: pointer;
+  }
+
+  .glyphicon {
+    font-size: 12px;
+  }
+
+  .socicon {
+    font-size: 21px;
+    padding: 5px;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: $light-grey-background;
+      text-decoration: none;
+    }
+  }
+}
+
+.source__link--no-source {
+  color: #999;
 }

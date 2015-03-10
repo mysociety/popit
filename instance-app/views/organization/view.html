@@ -61,37 +61,41 @@
 
     <div class="entity-header__primary-property">
       <label for="input-name">Name</label>
-      <h1 itemprop="name" class="view-mode" data-api-name="name">
-        <%- organization.name %>
-        <span class="entity-little-edit-icon entity-enter-edit-mode" data-input-selector="#input-name"></span>
-      </h1>
-      <strong class="control-label edit-mode-error" style="display: none">This organization must have a name</strong>
-      <input type="text" class="form-control edit-mode" id="input-name" data-api-name="name" value="<%- organization.name %>">
+      <div class="field-with-metadata">
+        <h1 itemprop="name" class="view-mode" data-api-name="name">
+          <%- organization.name %>
+          <span class="entity-little-edit-icon entity-enter-edit-mode" data-input-selector="#input-name"></span>
+        </h1>
+        <div class="field-with-metadata__metadata">
+          <% _.each( organization.contact_details, function (item) { %>
+            <% if (item.type.toLowerCase() == 'twitter') { %>
+              <a href="http://twitter.com/<%= item.value %>" title="@<%= item.value %> on Twitter" class="socicon socicon-color socicon-twitter"></a>
+            <% } else if (item.type.toLowerCase() == 'facebook') { %>
+              <a href="http://facebook.com/<%= item.value %>" title="facebook.com/<%= item.value %>" class="socicon socicon-color socicon-facebook"></a>
+            <% } %>
+          <% }) %>
+          <%= render( 'field_source/trigger.html', { sourceText: organization.get('field_sources.name'), sourceID: 'source-name-' + organization.id } )%>
+        </div>
+      </div>
+      <%= render( 'field_source/display.html', { sourceText: organization.get('field_sources.name'), sourceID: 'source-name-' + organization.id, field: 'field_sources[name]' } )%>
     </div>
 
     <div class="entity-header__secondary-property">
       <label for="input-classification">Organization type</label>
-      <p itemprop="name" class="view-mode" data-api-name="classification">
-        <% if (organization.classification) { %>
-          <%- organization.classification %>
-          <span class="entity-little-edit-icon entity-enter-edit-mode" data-input-selector="#input-classification"></span>
-        <% } else { %>
-          <span class="placeholder entity-enter-edit-mode">What type of organization is <%- organization.name %>?</span>
-        <% } %>
-      </p>
-      <div>
-        <input type="text" class="form-control edit-mode" id="input-classification" data-api-name="classification" value="<%- organization.classification %>">
+      <div class="field-with-metadata">
+        <p itemprop="name" class="view-mode" data-api-name="classification">
+          <% if (organization.classification) { %>
+            <%- organization.classification %>
+            <span class="entity-little-edit-icon entity-enter-edit-mode" data-input-selector="#input-classification"></span>
+          <% } else { %>
+            <span class="placeholder entity-enter-edit-mode">What type of organization is <%- organization.name %>?</span>
+          <% } %>
+        </p>
+        <div class="field-with-metadata__metadata">
+          <%= render( 'field_source/trigger.html', { sourceText: organization.get('field_sources.classification'), sourceID: 'source-classification-' + organization.id } )%>
+        </div>
       </div>
-    </div>
-
-    <div class="entity-header__social">
-      <% _.each( organization.contact_details, function (item) { %>
-        <% if (item.type.toLowerCase() == 'twitter') { %>
-          <a href="http://twitter.com/<%= item.value %>" title="@<%= item.value %> on Twitter" class="socicon socicon-color socicon-twitter"></a>
-        <% } else if (item.type.toLowerCase() == 'facebook') { %>
-          <a href="http://facebook.com/<%= item.value %>" title="facebook.com/<%= item.value %>" class="socicon socicon-color socicon-facebook"></a>
-        <% } %>
-      <% }) %>
+      <%= render( 'field_source/display.html', { sourceText: organization.get('field_sources.classification'), sourceID: 'source-classification-' + organization.id, field: 'field_sources[classification]' } )%>
     </div>
 
   </div>
@@ -118,31 +122,44 @@
 
       <div class="entity-details__property <% if (!organization.other_names.length) { %>empty<% } %>">
         <label>Other names</label>
-        <%= render( 'other_name/list.html', { other_names: organization.other_names } ) %>
+        <%= render( 'other_name/view-list.html', { other_names: organization.other_names, object: organization } ) %>
       </div>
 
       <div class="entity-details__property <% if (!organization.parent_id) { %>empty<% } %>">
         <label>Parent</label>
-        <p class="view-mode" data-api-name="parent_id">
-          <% if (organization.parent_id) { %>
-            <%- organization.parent_id.name %>
-          <% } %>
-        </p>
-        <input type="text" class="form-control edit-mode" data-api-name="parent_id" value="<%- organization.parent_id %>">
+        <div class="field-with-metadata">
+          <p class="view-mode" data-api-name="parent_id">
+            <% if (organization.parent_id) { %>
+              <%- organization.parent_id.name %>
+            <% } %>
+          </p>
+          <div class="field-with-metadata__metadata">
+            <%= render( 'field_source/trigger.html', { sourceText: organization.get('field_sources.parent_id'), sourceID: 'source-parent_id-' + organization.id } )%>
+          </div>
+        </div>
+        <%= render( 'field_source/display.html', { sourceText: organization.get('field_sources.parent_id'), sourceID: 'source-parent_id-' + organization.id } )%>
       </div>
 
       <div class="entity-details__property <% if (!organization.founding_date) { %>empty<% } %>">
         <label>Founded</label>
-        <p class="view-mode" data-api-name="founding_date"><%- organization.founding_date || '' %></p>
-        <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
-        <input type="date" class="form-control edit-mode" data-api-name="founding_date" value="<%- organization.founding_date || '' %>">
+        <div class="field-with-metadata">
+          <p class="view-mode" data-api-name="founding_date"><%- organization.founding_date || '' %></p>
+          <div class="field-with-metadata__metadata">
+            <%= render( 'field_source/trigger.html', { sourceText: organization.get('field_sources.founding_date'), sourceID: 'source-founding_date-' + organization.id } )%>
+          </div>
+        </div>
+        <%= render( 'field_source/display.html', { sourceText: organization.get('field_sources.founding_date'), sourceID: 'source-founding_date-' + organization.id } )%>
       </div>
 
       <div class="entity-details__property <% if (!organization.dissolution_date) { %>empty<% } %>">
         <label>Dissolved</label>
-        <p class="view-mode" data-api-name="dissolution_date"><%- organization.dissolution_date || '' %></p>
-        <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
-        <input type="date" class="form-control edit-mode" data-api-name="dissolution_date" value="<%- organization.dissolution_date || '' %>">
+        <div class="field-with-metadata">
+          <p class="view-mode" data-api-name="dissolution_date"><%- organization.dissolution_date || '' %></p>
+          <div class="field-with-metadata__metadata">
+            <%= render( 'field_source/trigger.html', { sourceText: organization.get('field_sources.dissolution_date'), sourceID: 'source-dissolution_date-' + organization.id } )%>
+          </div>
+        </div>
+        <%= render( 'field_source/display.html', { sourceText: organization.get('field_sources.dissolution_date'), sourceID: 'source-dissolution_date-' + organization.id } )%>
       </div>
     </div>
 
@@ -155,14 +172,13 @@
       <% } %>
       <div class="entity-details__property ">
         <ul class="cleared memberships">
-          <% _.each( memberships, function ( membership ) { %>
+          <% _.each( memberships, function ( membership, i ) { %>
             <% if (validMembership(membership, organization.id)) { %>
-              <%= render( 'membership/list-item.html', { membership: membership, member: relatedObject(membership, organization, lang, defaultLang), organization: organization, type: 'organization' } ) %>
+              <li class="membership">
+                <%= render( 'membership/list-item.html', { membership: membership, member: relatedObject(membership, organization, lang, defaultLang), organization: organization, type: 'organization', sourceText: organization.get('field_sources.memberships.' + i) } ) %>
+              </li>
             <% } %>
           <% }); %>
-          <li class="edit-mode">
-            <a class="add edit-membership btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(posts.length){ %>nother<% } %> member</a>
-          </li>
         </ul>
       </div>
     </div>
@@ -176,12 +192,9 @@
       <% } %>
       <div class="entity-details__property <% if (!posts.length) { %>empty<% } %>">
         <ul class="cleared posts">
-          <% _.each( posts, function ( post ) { %>
-            <li><%= render( 'post/post.html', { item: post }) %></li>
+          <% _.each( posts, function ( post, i ) { %>
+            <li><%= render( 'post/post.html', { item: post, i: i }) %></li>
           <% }); %>
-          <li class="edit-mode">
-            <a class="add edit-post btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(posts.length){ %>nother<% } %> post</a>
-          </li>
         </ul>
       </div>
     </div>
@@ -195,7 +208,7 @@
       <% } %>
 
       <div class="entity-details__property <% if (!organization.links.length) { %>empty<% } %>">
-        <%= render( 'link/list.html', { links: organization.links } ) %>
+        <%= render( 'link/view-list.html', { links: organization.links, object: organization } ) %>
       </div>
     </div>
 
@@ -210,7 +223,7 @@
       <% } %>
 
       <div class="entity-details__property <% if (!organization.contact_details.length) { %>empty<% } %>">
-        <%= render( 'contact/list.html', { contact_details: organization.contact_details } ) %>
+        <%= render( 'contact/view-list.html', { contact_details: organization.contact_details, object: organization } ) %>
       </div>
     </div>
 
@@ -225,7 +238,7 @@
       <% } %>
 
       <div class="entity-details__property <% if(!organization.sources.length){ %>empty<% } %>">
-        <%= render( 'source/list.html', { sources: organization.sources } ) %>
+        <%= render( 'source/view-list.html', { sources: organization.sources, object: organization } ) %>
       </div>
     </div>
 
@@ -240,7 +253,7 @@
       <% } %>
 
       <div class="entity-details__property <% if (!organization.identifiers.length) { %>empty<% } %>">
-        <%= render( 'identifier/list.html', { identifiers: organization.identifiers } ) %>
+        <%= render( 'identifier/view-list.html', { identifiers: organization.identifiers, object: organization } ) %>
       </div>
     </div>
 

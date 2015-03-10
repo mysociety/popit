@@ -1,4 +1,7 @@
-<div class="view-mode">
+<div class="field-with-metadata">
   <%= render( 'membership/list-item-content.html', { membership: membership, member: member, organization: organization, type: type } ) %>
-  <span class="entity-little-edit-icon entity-enter-edit-mode"></span>
+  <div class="field-with-metadata__metadata">
+    <%= render( 'field_source/trigger.html', { sourceText: sourceText, sourceID: 'source-membership-' + membership.id } )%>
+  </div>
 </div>
+<%= render( 'field_source/display.html', { sourceText: sourceText, sourceID: 'source-membership-' + membership.id } )%>

@@ -1,0 +1,7 @@
+<% if (popit.setting('require-sources')) { %>
+  <% if (sourceText) { %>
+    <div class="source__popup" id="<%- sourceID %>">
+      <%- sourceText %>
+    </div>
+  <% } %>
+<% } %>

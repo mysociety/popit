@@ -1,0 +1,7 @@
+<ul class="identifiers">
+  <% _.each( identifiers, function (item, i) { %>
+    <li>
+      <%= render( 'identifier/edit.html', { item: item, sourceText: object.get('field_sources.identifiers.' + i), i: i }) %>
+    </li>
+  <% }); %>
+</ul>

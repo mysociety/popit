@@ -5,7 +5,8 @@ require([
   'augmenters/migration',
   'augmenters/slug-validation',
   'augmenters/edit-in-place',
-  'augmenters/enter-to-save'
+  'augmenters/enter-to-save',
+  'augmenters/source-field'
 ]);
 
 // PopIt editing app - load it and add bits needed

@@ -8,8 +8,15 @@
 
     <div class="entity-header__primary-property">
       <label for="input-name">Name</label>
-      <input type="text" class="form-control" id="input-name" name="name" placeholder="John Doe" value="<%- person.name %>">
-      <strong class="control-label edit-mode-error" style="display: none">This person must have a name</strong>
+      <div class="field-with-metadata">
+        <input type="text" class="form-control" id="input-name" name="name" placeholder="John Doe" value="<%- person.name %>">
+        <strong class="control-label edit-mode-error" style="display: none">This person must have a name</strong>
+
+        <div class="field-with-metadata__metadata">
+          <%= render( 'field_source/trigger-editing.html', { sourceText: person.get('field_sources.name'), sourceID: 'source-name-' + person.id } )%>
+        </div>
+      </div>
+      <%= render( 'field_source/display-editing.html', { sourceText: person.get('field_sources.name'), sourceID: 'source-name-' + person.id, field: 'field_sources[name]' } )%>
     </div>
 
   </div>
@@ -26,102 +33,70 @@
     </ul>
 
     <div class="entity-details__section" id="biography">
-      <% if (!person.other_names.length && !person.summary && !person.birth_date && !person.death_date) { %>
-        <p class="entity-details__hint view-mode entity-enter-edit-mode">
-          <span class="btn btn-xs btn-default pull-right">Add details</span>
-          You can use PopIt to store extra information about this person, like who they are and when they were born.
-        </p>
-      <% } %>
-
       <div class="entity-details__property">
         <label>Other names</label>
-        <ul class="other_names">
-          <% _.each(person.other_names, function(name, i) { %>
-            <li>
-              <%= render('other_name/edit.html', {name: name, i: i}) %>
-              <a href="#" class="other_name-delete">Delete</a>
-            </li>
-          <% }) %>
-        </ul>
+        <%= render( 'other_name/edit-list.html', { other_names: person.other_names, object: person } ) %>
         <a class="add other_name-edit btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(person.other_names.length){ %>nother<% } %> name</a>
       </div>
 
       <div class="entity-details__property">
         <label>Summary</label>
-        <textarea class="form-control" name="summary"><%- person.summary %></textarea>
+        <div class="field-with-metadata">
+          <textarea class="form-control" name="summary"><%- person.summary %></textarea>
+          <div class="field-with-metadata__metadata">
+            <%= render( 'field_source/trigger-editing.html', { sourceText: person.get('field_sources.summary'), sourceID: 'source-summary-' + person.id } )%>
+          </div>
+        </div>
+        <%= render( 'field_source/display-editing.html', { sourceText: person.get('field_sources.summary'), sourceID: 'source-summary-' + person.id, field: 'field_sources[summary]' } )%>
       </div>
 
       <div class="entity-details__property">
         <label>Born</label>
-        <input type="date" class="form-control" name="birth_date" value="<%- person.birth_date || '' %>">
-        <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
+        <div class="field-with-metadata">
+          <input type="date" class="form-control" name="birth_date" value="<%- person.birth_date || '' %>">
+          <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
+          <div class="field-with-metadata__metadata">
+            <%= render( 'field_source/trigger-editing.html', { sourceText: person.get('field_sources.birth_date'), sourceID: 'source-birth_date-' + person.id } )%>
+          </div>
+        </div>
+        <%= render( 'field_source/display-editing.html', { sourceText: person.get('field_sources.birth_date'), sourceID: 'source-birth_date-' + person.id, field: 'field_sources[birth_date]' } )%>
       </div>
 
       <div class="entity-details__property">
         <label>Died</label>
-        <input type="date" class="form-control" name="death_date" value="<%- person.death_date || '' %>">
-        <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
+        <div class="field-with-metadata">
+          <input type="date" class="form-control" name="death_date" value="<%- person.death_date || '' %>">
+          <strong class="control-label edit-mode-error" style="display: none">Dates should be in YYYY, YYYY-MM or YYYY-MM-DD format</strong>
+          <div class="field-with-metadata__metadata">
+            <%= render( 'field_source/trigger-editing.html', { sourceText: person.get('field_sources.death_date'), sourceID: 'source-death_date-' + person.id } )%>
+          </div>
+        </div>
+        <%= render( 'field_source/display-editing.html', { sourceText: person.get('field_sources.death_date'), sourceID: 'source-death_date-' + person.id, field: 'field_sources[death_date]' } )%>
       </div>
 
     </div>
 
     <div class="entity-details__section" id="websites">
-      <% if (!person.links.length) { %>
-        <p class="entity-details__hint view-mode entity-enter-edit-mode">
-          <span class="btn btn-xs btn-default pull-right">Add links to websites</span>
-          If this person has a website, or any online profile pages, you can add them here.
-        </p>
-      <% } %>
-
       <div class="entity-details__property">
-        <ul class="links">
-          <% _.each(person.links, function(link, i) { %>
-          <li>
-            <%= render('link/edit.html', {link: link, i: i}) %>
-            <a href="delete" class="link-delete">Delete</a>
-          </li>
-          <% }) %>
-        </ul>
+        <%= render( 'link/edit-list.html', { links: person.links, object: person } ) %>
         <a class="add link-edit btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(person.links.length){ %>nother<% } %> link</a>
       </div>
     </div>
 
     <div class="entity-details__section" id="contact">
-      <% if (!person.contact_details.length) { %>
-        <p class="entity-details__hint view-mode entity-enter-edit-mode">
-          <span class="btn btn-xs btn-default pull-right">Add contact details</span>
-          PopIt is most useful when people have contact details, like their phone, email, and Twitter.
-        </p>
-      <% } %>
-
       <div class="entity-details__property">
-
-        <ul class="contact_details">
-          <% _.each(person.contact_details, function(contact, i) { %>
-          <li>
-            <%= render('contact/edit.html', {contact: contact, i: i}) %>
-            <a href="delete" class="contact-delete">Delete</a>
-          </li>
-          <% }) %>
-        </ul>
+        <%= render( 'contact/edit-list.html', { contact_details: person.contact_details, object: person } ) %>
         <a class="add contact-edit btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add <% if ( person.contact_details.length > 0 ) { %>more <% } %>contact details</a>
       </div>
     </div>
 
     <div class="entity-details__section" id="political-career">
-      <% if (!memberships.length) { %>
-        <p class="entity-details__hint view-mode entity-enter-edit-mode">
-          <span class="btn btn-xs btn-default pull-right">Add a membership</span>
-          Is this person a member of an organization or party?
-        </p>
-      <% } %>
-
       <div class="entity-details__property">
         <ul class="cleared memberships">
           <% _.each( memberships, function (membership, i) { %>
             <% if (validMembership(membership, person.id)) { %>
             <li class="membership">
-              <%= render('membership/new.html', { membership: membership, member: person, organization: relatedObject(membership, person, lang, defaultLang), type: 'person', i: i }) %>
+              <%= render('membership/new.html', { membership: membership, member: person, organization: relatedObject(membership, person, lang, defaultLang), type: 'person', sourceText: person.get('field_sources.memberships.' + i), i: i }) %>
             </li>
             <% } %>
           <% }); %>
@@ -131,43 +106,15 @@
     </div>
 
     <div class="entity-details__section" id="sources">
-      <% if (!person.sources.length) { %>
-        <p class="entity-details__hint view-mode entity-enter-edit-mode">
-          <span class="btn btn-xs btn-default pull-right">Add sources</span>
-          Add any URLs to documents from which the person is derived here.
-        </p>
-      <% } %>
-
       <div class="entity-details__property">
-        <ul class="sources">
-          <% _.each(person.sources, function(source, i) { %>
-          <li>
-          <%= render('source/edit.html', {source: source, i: i}) %>
-          <a class="source-delete" href="#">Delete</a>
-          </li>
-          <% }) %>
-        </ul>
+        <%= render( 'source/edit-list.html', { sources: person.sources, object: person } ) %>
         <a class="add source-edit btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add a<% if(person.sources.length){ %>nother<% } %> source</a>
       </div>
     </div>
 
     <div class="entity-details__section" id="advanced">
-      <% if (!person.identifiers.length) { %>
-        <p class="entity-details__hint view-mode entity-enter-edit-mode">
-          <span class="btn btn-xs btn-default pull-right">Add identifiers</span>
-          If this person has special registration or ID numbers, you can add them here.
-        </p>
-      <% } %>
-
       <div class="entity-details__property">
-        <ul class="identifiers">
-          <% _.each(person.identifiers, function(identifier, i) { %>
-          <li>
-          <%= render('identifier/edit.html', {identifier: identifier, i: i}) %>
-          <a class="identifier-delete" href="#">Delete</a>
-          </li>
-          <% }) %>
-        </ul>
+        <%= render( 'identifier/edit-list.html', { identifiers: person.identifiers, object: person } ) %>
         <a class="add identifier-edit btn"><span class="glyphicon glyphicon-plus glyphicon-space-after"></span>Add an<% if(person.identifiers.length){ %>other<% } %> identifier</a>
       </div>
     </div>

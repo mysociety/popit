@@ -1,0 +1,7 @@
+<ul class="links">
+  <% _.each( links, function (item, i) { %>
+    <li>
+      <%= render( 'link/edit.html', { item: item, sourceText: object.get('field_sources.links.' + i), i: i }) %>
+    </li>
+  <% }); %>
+</ul>

@@ -25,31 +25,55 @@
 
     <div class="entity-header__primary-property">
       <label for="input-name">Name</label>
-      <h1 itemprop="name" class="view-mode">
-        <%- post.label %>
-      </h1>
+      <div class="field-with-metadata">
+        <h1 itemprop="name" class="view-mode">
+          <%- post.label %>
+        </h1>
+        <div class="field-with-metadata__metadata">
+          <%= render( 'field_source/trigger-editing.html', { sourceText: post.get('field_sources.label'), sourceID: 'source-label-' + post.id } )%>
+        </div>
+      </div>
+      <%= render( 'field_source/display-editing.html', { sourceText: post.get('field_sources.label'), sourceID: 'source-label-' + post.id, field: 'field_sources[label]' } )%>
     </div>
 
     <% if (post.role) { %>
     <div class="entity-header__secondary-property">
       <label for="input-classification">Role</label>
-      <p class="view-mode"><%- post.role %></p>
+      <div class="field-with-metadata">
+        <p><%- post.role %></p>
+        <div class="field-with-metadata__metadata">
+          <%= render( 'field_source/trigger-editing.html', { sourceText: post.get('field_sources.role'), sourceID: 'source-role-' + post.id } )%>
+        </div>
+      </div>
+      <%= render( 'field_source/display-editing.html', { sourceText: post.get('field_sources.role'), sourceID: 'source-role-' + post.id, field: 'field_sources[role]' } )%>
     </div>
     <% } %>
 
     <% if (post.area) { %>
     <div class="entity-header__secondary-property">
       <label for="input-classification">Area</label>
-      <p class="view-mode"><%- post.area.name %></p>
+      <div class="field-with-metadata">
+        <p><%- post.area.name %></p>
+        <div class="field-with-metadata__metadata">
+          <%= render( 'field_source/trigger-editing.html', { sourceText: post.get('field_sources.area.name'), sourceID: 'source-area-' + post.id } )%>
+        </div>
+      </div>
+      <%= render( 'field_source/display-editing.html', { sourceText: post.get('field_sources.area.name'), sourceID: 'source-area-' + post.id, field: 'field_sources[area][name]' } )%>
     </div>
     <% } %>
 
     <% if (post.organization_id) { %>
     <div class="entity-header__secondary-property">
       <label for="input-classification">Organization</label>
-      <p class="view-mode">
-        <a href="<%- post.organization_id.url %>"><%- post.organization_id.name %></a>
-      </p>
+      <div class="field-with-metadata">
+        <p>
+          <a href="<%- post.organization_id.url %>"><%- post.organization_id.name %></a>
+        </p>
+        <div class="field-with-metadata__metadata">
+          <%= render( 'field_source/trigger.html', { sourceText: post.get('field_sources.organization_id.name'), sourceID: 'source-organization-' + post.id } )%>
+        </div>
+      </div>
+      <%= render( 'field_source/display.html', { sourceText: post.get('field_sources.organization_id.name'), sourceID: 'source-organization-' + post.id, field: 'field_sources[organization_id][name]' } )%>
     </div>
     <% } %>
 
@@ -65,7 +89,7 @@
         <ul class="cleared memberships">
           <% _.each( memberships, function (membership, i) { %>
             <li class="membership">
-              <%= render( 'membership/list-item.html', { membership: membership, member: membership.person_id, organization: relatedObject(membership, post, lang, defaultLang), type: 'post' } ) %>
+              <%= render( 'membership/list-item.html', { membership: membership, member: membership.person_id, organization: relatedObject(membership, post, lang, defaultLang), type: 'post', sourceText: post.get('field_sources.memberships.' + i) } ) %>
             </li>
           <% }); %>
         </ul>

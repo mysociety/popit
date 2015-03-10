@@ -1,0 +1,12 @@
+<% if (popit.setting('require-sources')) { %>
+  <div class="source">
+    <% if (value) { %>
+      <a class="js-source__link  source__link  source__link--has-source">Show source</a>
+    <% } else { %>
+      <a class="js-source__link  source__link  source__link--no-source">No source</a>
+    <% } %>
+    <div class="js-source__popup  source__popup">
+      <span class="source__url"><%- value %></span>
+    </div>
+  </div>
+<% } %>

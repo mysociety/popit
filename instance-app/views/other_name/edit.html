@@ -1,12 +1,20 @@
-<input type="hidden" id="other_name_id_<%= i %>" name="other_names[<%= i %>][id]" value="<%- name._id || '' %>">
-<label for="other_name_name_<%= i %>">Name</label>
-<input type="text" id="other_name_name_<%= i %>" name="other_names[<%= i %>][name]" value="<%- name.name || '' %>">
+<div class="field-with-metadata">
+  <input type="hidden" id="other_name_id_<%= i %>" name="other_names[<%= i %>][id]" value="<%- item._id || '' %>">
+  <label for="other_name_name_<%= i %>">Name</label>
+  <input type="text" id="other_name_name_<%= i %>" name="other_names[<%= i %>][name]" value="<%- item.name || '' %>">
 
-<label for="other_name_start_date_<%= i %>">Start date</label>
-<input type="text" id="other_name_start_date_<%= i %>" name="other_names[<%= i %>][start_date]" value="<%- name.start_date || '' %>" placeholder="YYYY-MM-DD">
+  <label for="other_name_start_date_<%= i %>">Start date</label>
+  <input type="text" id="other_name_start_date_<%= i %>" name="other_names[<%= i %>][start_date]" value="<%- item.start_date || '' %>" placeholder="YYYY-MM-DD">
 
-<label for="other_name_end_date_<%= i %>">End date</label>
-<input type="text" id="other_name_end_date_<%= i %>" name="other_names[<%= i %>][end_date]" value="<%- name.end_date || '' %>" placeholder="YYYY-MM-DD">
+  <label for="other_name_end_date_<%= i %>">End date</label>
+  <input type="text" id="other_name_end_date_<%= i %>" name="other_names[<%= i %>][end_date]" value="<%- item.end_date || '' %>" placeholder="YYYY-MM-DD">
 
-<label for="other_name_note_<%= i %>">Note</label>
-<input type="text" id="other_name_note_<%= i %>" name="other_names[<%= i %>][note]" value="<%- name.note || '' %>">
+  <label for="other_name_note_<%= i %>">Note</label>
+  <input type="text" id="other_name_note_<%= i %>" name="other_names[<%= i %>][note]" value="<%- item.note || '' %>">
+
+  <div class="field-with-metadata__metadata">
+    <a class="other_name-delete"><span class="glyphicon glyphicon-trash glyphicon-space-after"></span>Delete</a>
+    <%= render( 'field_source/trigger-editing.html', { sourceText: sourceText, sourceID: 'source-other_name-' + item.id } )%>
+  </div>
+</div>
+<%= render( 'field_source/display-editing.html', { sourceText: sourceText, sourceID: 'source-other_name-' + item.id, field: 'field_sources[other_name][' + i + ']' } )%>

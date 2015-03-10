@@ -1,6 +1,19 @@
-<input type="hidden" id="identifier_id_<%= i %>" name="identifiers[<%= i %>][id]" value="<%- identifier._id || '' %>">
-<label for="identifier_identifier_<%= i %>">Identifier</label>
-<input id="identifier_identifier_<%= i %>" name="identifiers[<%= i %>][identifier]" value="<%- identifier.identifier || '' %>">
+<div class="field-with-metadata">
+  <input type="hidden" id="identifier_id_<%= i %>" name="identifiers[<%= i %>][id]" value="<%- identifier._id || '' %>">
 
-<label for="identifier_scheme_<%= i %>">Schema</label>
-<input id="identifier_scheme_<%= i %>" name="identifiers[<%= i %>][scheme]" value="<%- identifier.scheme || '' %>">
+  <p>
+    <label for="identifier_identifier_<%= i %>">Identifier</label>
+    <input class="form-control" id="identifier_identifier_<%= i %>" name="identifiers[<%= i %>][identifier]" value="<%- identifier.identifier || '' %>">
+  </p>
+
+  <p>
+    <label for="identifier_scheme_<%= i %>">Schema</label>
+    <input class="form-control" id="identifier_scheme_<%= i %>" name="identifiers[<%= i %>][scheme]" value="<%- identifier.scheme || '' %>">
+  </p>
+
+  <div class="field-with-metadata__metadata">
+    <a class="other_name-delete"><span class="glyphicon glyphicon-trash glyphicon-space-after"></span>Delete</a>
+    <%= render( 'field_source/trigger-editing.html', { sourceText: sourceText, sourceID: 'source-identifier-' + item.id } )%>
+  </div>
+</div>
+<%= render( 'field_source/display-editing.html', { sourceText: sourceText, sourceID: 'source-identifier-' + item.id, field: 'field_sources[identifiers][' + i + ']' } )%>

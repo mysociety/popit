@@ -1,4 +1,4 @@
-<div class="edit-group">
+<div class="edit-group field-with-metadata">
     <% if (membership.id) { %>
       <input type="hidden" name="memberships[<%= i %>][id]" value="<%- membership.id %>">
     <% } %>
@@ -55,5 +55,10 @@
           representing <input type="text" class="form-control" name="memberships[<%= i %>][area][name]">
         <% } %>
     <% } %>
-    <a class="btn btn-sm membership__delete delete-membership"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+    <div class="field-with-metadata__metadata">
+      <a class="membership__delete delete-membership"><span class="glyphicon glyphicon-trash glyphicon-space-after"></span>Delete</a>
+      <%= render( 'field_source/trigger-editing.html', { sourceText: sourceText, sourceID: 'source-membership-' + membership.id } )%>
+    </div>
 </div>
+
+<%= render( 'field_source/display-editing.html', { sourceText: sourceText, sourceID: 'source-membership-' + membership.id, field: 'field_sources[membership][' + i + ']' } )%>
