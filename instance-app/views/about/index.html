@@ -26,6 +26,8 @@
       <dd class="about-field about-field-<%- val.key %>">
         <% if ( val.type == 'checkbox' ) { %>
           <%- val.value ? 'Yes' : 'No' %>
+        <% } else if (field === 'license') { %>
+          <%= license %>
         <% } else { %>
           <%- val.value %>
         <% } %>
