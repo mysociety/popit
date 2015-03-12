@@ -2,13 +2,6 @@ language: node_js
 node_js:
   - "0.10"
 
-# don't test production - the only real difference is that production has static
-# assets committed. As these are generated as part of the test suite testing
-# production would not tell us anything new.
-branches:
-  except:
-    - production
-
 services:
   - mongodb
   - elasticsearch
@@ -16,24 +9,11 @@ services:
 before_install:
   - export DEBIAN_FRONTEND=noninteractive
   - sudo apt-get -y update
-  # don't try to install mongo as it conflicts with the mongo provided by travis
-  # don't install compass using apt as the paths then get confused with the rnm. Use gem instead.
-  - sudo apt-get -y install `cut -d " " -f 1 config/packages | egrep -v "(^#|mongodb|compass)"`
-  - gem install watir-webdriver -v 0.6.7
-  - gem install pry -v 0.9.12.6
-  - gem install sass -v 3.2.14
-  - gem install compass -v 0.12.2
-  # tell npm to use known registrars
-  - npm config set ca ""
-  # see https://github.com/npm/npm/issues/4984
-  - npm install -g npm@1.4.4
+  # Don't install packages which conflict with travis
+  - sudo apt-get -y install `cut -d " " -f 1 config/packages | egrep -v "(^#|mongodb|elasticsearch|redis-server|bundler)"`
+  - bundle install
 
-
-# The Watir tests will be set up to use FireFox which will then run headless using xvfb
 before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - export WATIR_BROWSER=firefox
   - make css
 
 notifications:
@@ -41,9 +21,4 @@ notifications:
     channels:
       - "irc.mysociety.org#popit"
     use_notice: true
-
-env:
-  global:
-    - LOGGLY_SUBDOMAIN=mysociety
-    # the encrypted LOGGLY_INPUT_TOKEN entry
-    - secure: "eR3a6RbnYMdNZcSeASapaYZSUO0gaUb8RVmOikHRQJUujsS0aGKIHPFwk22U\nmvhZlBeXwIX/jngK9A4kk8eRBDXybWG+JwZ1fWVH2GVe4pCEGQhONvsodXzF\njWOXXQyE7HFL/xyd+eE1r52hrDf+KvJCjRPmNJyMUATSZM9zSMA="
+    skip_join: true
