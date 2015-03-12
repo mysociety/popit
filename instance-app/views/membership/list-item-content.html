@@ -43,6 +43,8 @@
 
   <% if (membership.post_id && membership.post_id.area && membership.post_id.area.name) { %>
     representing <%- membership.post_id.get('area').name %>
+  <% } else if (membership && membership.area && membership.area.name) { %>
+    representing <%- membership.get('area').name %>
   <% } %>
   <% if (membership.start_date && membership.end_date) { %>
     between <%- membership.start_date %> and <%- membership.end_date %>
