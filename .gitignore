@@ -6,6 +6,8 @@
 /config/httpd.conf.deployed
 
 *~
+.bundle
+vendor
 .DS_Store
 MANIFEST
 npm-debug.log

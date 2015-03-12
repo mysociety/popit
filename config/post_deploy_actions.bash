@@ -31,18 +31,9 @@ fi
 
 export PATH="$NODE_DIR/bin:$PATH"
 
-mkdir -p ../gems
-export GEM_HOME="$(cd ../gems && pwd -P)"
+bundle install --deployment --binstubs "vendor/bundle-bin"
 
-if [ ! -f ../gems/bin/sass ]; then
-  gem install sass --version=3.2.14 --no-rdoc --no-ri
-fi
-
-if [ ! -f ../gems/bin/compass ]; then
-  gem install compass --version=0.12.2 --no-rdoc --no-ri
-fi
-
-export PATH="$GEM_HOME/bin:$PATH"
+export PATH="vendor/bundle-bin:$PATH"
 
 # Fetch NPM modules, compile CSS
 make all public-production

@@ -21,8 +21,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
   openjdk-6-jre elasticsearch \
   git imagemagick graphicsmagick postfix redis-server
 
-sudo gem install sass --version=3.2.14 --no-rdoc --no-ri
-sudo gem install compass --version=0.12.2 --no-rdoc --no-ri
+bundle install --path vendor/bundle --binstubs vendor/bundle-bin
 
 grep -qG 'cd /vagrant' "$HOME/.bashrc" || echo "cd /vagrant" >> "$HOME/.bashrc"
 cd /vagrant
