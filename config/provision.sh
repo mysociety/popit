@@ -19,12 +19,14 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
   nodejs build-essential \
   mongodb-org \
   openjdk-6-jre elasticsearch \
-  git imagemagick graphicsmagick postfix redis-server
-
-bundle install --path vendor/bundle --binstubs vendor/bundle-bin
+  git imagemagick graphicsmagick postfix redis-server bundler
 
 grep -qG 'cd /vagrant' "$HOME/.bashrc" || echo "cd /vagrant" >> "$HOME/.bashrc"
 cd /vagrant
 
+bundle install
 make
-cp config/development.js-example config/development.js
+
+if [[ ! -f config/development.js ]]; then
+  cp config/development.js-example config/development.js
+fi

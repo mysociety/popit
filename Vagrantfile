@@ -17,7 +17,7 @@ $ vagrant ssh -c 'cd /vagrant; npm test'"
 
 Vagrant.configure("2") do |config|
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "hashicorp/precise64"
+  config.vm.box = "ubuntu/trusty64"
 
   config.vm.network :forwarded_port, guest: 3000, host: POPIT_VAGRANT_PORT
 
