@@ -997,6 +997,18 @@
       "from": "https://registry.npmjs.org/mkdirp/-/mkdirp-0.3.4.tgz",
       "resolved": "https://registry.npmjs.org/mkdirp/-/mkdirp-0.3.4.tgz"
     },
+    "mmmagic": {
+      "version": "0.3.13",
+      "from": "mmmagic@",
+      "resolved": "https://registry.npmjs.org/mmmagic/-/mmmagic-0.3.13.tgz",
+      "dependencies": {
+        "nan": {
+          "version": "1.5.3",
+          "from": "nan@~1.5.3",
+          "resolved": "https://registry.npmjs.org/nan/-/nan-1.5.3.tgz"
+        }
+      }
+    },
     "mongodb": {
       "version": "1.2.0",
       "from": "https://registry.npmjs.org/mongodb/-/mongodb-1.2.0.tgz",
