@@ -74,6 +74,6 @@ module.exports = {
     queue: {
       prefix: 'popit_default_',
     },
-    
+
+    offline: false,
 };
-     
