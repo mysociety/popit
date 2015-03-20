@@ -28,7 +28,10 @@
       <% if (errors.slug == 'slug_not_unique' ) { %>
       <span class="help-block">A Popit instance with that name already exists at <a href="<%= existing_instance_url %>"><%= existing_instance_url %></a></span>
       <% } else if (errors.slug) { %>
-        <span class="help-block">Your website name can only contain letters and numbers. It should be at least four letters long but no longer than 20.</span>
+        <span class="help-block">Your website name can only contain letters,
+        numbers, and hyphens. It should be at least four letters long but no
+        longer than <%= (63 - config.MongoDB.popit_prefix.length) %>.</span>
+
       <% } %>
     </p>
 
