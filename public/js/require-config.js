@@ -1,6 +1,6 @@
 require.config({    
   paths: {
-    'jquery' :          'https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min',
+    'jquery' :          './libs/jquery-1.7.2',
     'jquery.mailcheck': './libs/jquery.mailcheck.1.0.3.min',
     'jquery.fancybox':  './libs/jquery.fancybox-2.0.6',
     'jquery.jeditable': './libs/jquery.jeditable-1.7.1',

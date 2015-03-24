@@ -34,4 +34,8 @@ module.exports = {
     queue: {
         prefix: 'popit_development_',
     },
+
+    // Set this to true to skip loading external fonts (useful for
+    // developing with no internet connection).
+    offline: false,
 };
