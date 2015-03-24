@@ -11,13 +11,7 @@ var async = require('async');
 exports.route = function (app) {
 
   app.get('/', function(req, res){
-    // Redirect production site to the documentation site for now.
-    // TODO: Undo this once we're happy with the homepage.
-    if (req.host === 'popit.mysociety.org') {
-      res.redirect('http://popit.poplus.org/');
-    } else {
-      res.render('index.html');
-    }
+    res.render('index.html');
   });
 
   app.get('/instances/new', requireUser, function(req, res, next) {
