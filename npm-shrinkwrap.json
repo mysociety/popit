@@ -1357,7 +1357,7 @@
     "popit-api": {
       "version": "0.0.14",
       "from": "git://github.com/mysociety/popit-api#master",
-      "resolved": "git://github.com/mysociety/popit-api#8bbf91d1d65dddd27d5691d65d86d59f1acc7576",
+      "resolved": "git://github.com/mysociety/popit-api#9b117900041f37e6fd650c084e3e48041d4d404c",
       "dependencies": {
         "JSV": {
           "version": "4.0.2",
@@ -1792,9 +1792,9 @@
                   "resolved": "https://registry.npmjs.org/constantinople/-/constantinople-1.0.2.tgz",
                   "dependencies": {
                     "uglify-js": {
-                      "version": "2.4.17",
+                      "version": "2.4.19",
                       "from": "uglify-js@~2.4.0",
-                      "resolved": "https://registry.npmjs.org/uglify-js/-/uglify-js-2.4.17.tgz",
+                      "resolved": "https://registry.npmjs.org/uglify-js/-/uglify-js-2.4.19.tgz",
                       "dependencies": {
                         "source-map": {
                           "version": "0.1.34",
@@ -1809,9 +1809,31 @@
                           }
                         },
                         "yargs": {
-                          "version": "1.3.3",
-                          "from": "yargs@~1.3.3",
-                          "resolved": "https://registry.npmjs.org/yargs/-/yargs-1.3.3.tgz"
+                          "version": "3.5.4",
+                          "from": "yargs@~3.5.4",
+                          "resolved": "https://registry.npmjs.org/yargs/-/yargs-3.5.4.tgz",
+                          "dependencies": {
+                            "camelcase": {
+                              "version": "1.0.2",
+                              "from": "camelcase@^1.0.2",
+                              "resolved": "https://registry.npmjs.org/camelcase/-/camelcase-1.0.2.tgz"
+                            },
+                            "decamelize": {
+                              "version": "1.0.0",
+                              "from": "decamelize@^1.0.0",
+                              "resolved": "https://registry.npmjs.org/decamelize/-/decamelize-1.0.0.tgz"
+                            },
+                            "window-size": {
+                              "version": "0.1.0",
+                              "from": "window-size@0.1.0",
+                              "resolved": "https://registry.npmjs.org/window-size/-/window-size-0.1.0.tgz"
+                            },
+                            "wordwrap": {
+                              "version": "0.0.2",
+                              "from": "wordwrap@~0.0.2",
+                              "resolved": "https://registry.npmjs.org/wordwrap/-/wordwrap-0.0.2.tgz"
+                            }
+                          }
                         },
                         "uglify-to-browserify": {
                           "version": "1.0.2",
