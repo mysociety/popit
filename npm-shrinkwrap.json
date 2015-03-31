@@ -1357,7 +1357,7 @@
     "popit-api": {
       "version": "0.0.14",
       "from": "git://github.com/mysociety/popit-api#master",
-      "resolved": "git://github.com/mysociety/popit-api#aa6ae23e4589cec861115c8fa29a6ad8f2eadd6b",
+      "resolved": "git://github.com/mysociety/popit-api#475f2664a4a9432a58559d670ebf3d0764cac177",
       "dependencies": {
         "JSV": {
           "version": "4.0.2",
@@ -1830,7 +1830,7 @@
                             },
                             "wordwrap": {
                               "version": "0.0.2",
-                              "from": "wordwrap@~0.0.2",
+                              "from": "wordwrap@0.0.2",
                               "resolved": "https://registry.npmjs.org/wordwrap/-/wordwrap-0.0.2.tgz"
                             }
                           }
