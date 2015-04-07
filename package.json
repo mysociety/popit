@@ -14,7 +14,7 @@
     "consolidate": ">= 0.5.0",
     "csv": ">= 0.0.13",
     "doublemetaphone": "*",
-    "express": "^3.19.2",
+    "express": "^3.20.2",
     "fs-extra": ">= 0.10.0",
     "hogan.js": ">= 2.0.0",
     "http-accept": "~0.1.6",
