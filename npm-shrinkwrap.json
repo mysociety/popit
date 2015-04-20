@@ -942,9 +942,9 @@
       "resolved": "https://registry.npmjs.org/iconv/-/iconv-1.2.4.tgz"
     },
     "image-proxy": {
-      "version": "0.0.4",
-      "from": "https://registry.npmjs.org/image-proxy/-/image-proxy-0.0.4.tgz",
-      "resolved": "https://registry.npmjs.org/image-proxy/-/image-proxy-0.0.4.tgz",
+      "version": "0.0.6",
+      "from": "https://registry.npmjs.org/image-proxy/-/image-proxy-0.0.6.tgz",
+      "resolved": "https://registry.npmjs.org/image-proxy/-/image-proxy-0.0.6.tgz",
       "dependencies": {
         "gm": {
           "version": "1.17.0",
