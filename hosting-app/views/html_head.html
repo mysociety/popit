@@ -51,7 +51,7 @@
 
 </head>
 
-<body class="brand_page">
+<body class="brand_page <% if (path == '/') { %>homepage<% } %>">
 
   <% if ( config.show_dev_site_warning ) { %>
   <div id="dev-site-warning" class="alert alert-danger">
