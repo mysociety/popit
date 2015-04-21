@@ -1,9 +1,6 @@
 
 JSHINT = ./node_modules/.bin/jshint
 
-STOP_TEST_SERVER  = tests/test-server-stop.bash
-START_TEST_SERVER = $(STOP_TEST_SERVER); tests/test-server-start.bash
-
 # see http://stackoverflow.com/questions/4493205/unix-sort-of-version-numbers
 GET_LATEST_TAG  = git tag | sort -t. -k 1,1n -k 2,2n -k 3,3n -k 4,4n | tail -1
 
@@ -32,7 +29,7 @@ npm-shrinkwrap:
 
 
 jshint:
-	$(JSHINT) *.js lib/ hosting-app/ instance-app/ tests/ test/
+	$(JSHINT) *.js lib/ hosting-app/ instance-app/ test/
 	cd public/js; ../../$(JSHINT) .
 
 css:
@@ -81,11 +78,6 @@ test: node-modules jshint test-unit
 test-unit:
 	@NODE_ENV=testing ./node_modules/.bin/mocha --recursive
 
-test-browser: css public-production
-	$(START_TEST_SERVER)
-	@NODE_ENV=testing ruby tests/browser_based/run_tests.rb -v
-	$(STOP_TEST_SERVER)
-
 clean:
 	compass clean
 	rm -rf public/css
@@ -94,5 +86,5 @@ clean:
 	find . -name chromedriver.log -delete
 
 
-.PHONY: test test-unit test-browser css public-production clean tidy node-modules npm-update npm-shrinkwrap
+.PHONY: test test-unit css public-production clean tidy node-modules npm-update npm-shrinkwrap
 
