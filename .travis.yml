@@ -14,7 +14,7 @@ before_install:
   - bundle install
 
 before_script:
-  - make css
+  - make
 
 notifications:
   irc:
