@@ -531,7 +531,7 @@ describe("migration tool", function() {
       '1': ['foo', ' foo@mail.com', ' fo.co.uk', 'orange'],
       '2': ['', '', ' foo.de', 'blue'],
       '3': ['', '', ' bar.de', ''],
-      '4': ['', '', , 'purple']
+      '4': ['', '', null, 'purple']
     };
 
     migration.doImport(popit, schema, mappings, data, function() {}, function(err, people) {
