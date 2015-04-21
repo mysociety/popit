@@ -3,12 +3,15 @@
 var assert = require('assert');
 var Browser = require('zombie');
 var app = require('../../app');
+var config = require('config');
+
+Browser.localhost(config.hosting_server.host, config.server.port);
 
 describe("basic headless test", function() {
   var server, browser;
 
   before(function() {
-    server = app.listen(3001);
+    server = app.listen(config.server.port);
   });
 
   after(function() {
@@ -20,9 +23,11 @@ describe("basic headless test", function() {
   });
 
   it("loads front page", function(done) {
-   browser.visit('http://www.127.0.0.1.xip.io:3001/', function() {
-      assert(browser.text(".hosting-app-welcome h1.text-center") === "Welcome to PopIt",
-        "welcome text present");
+    browser.visit('/', function() {
+      assert(
+        browser.text(".hosting-app-welcome h1.text-center") === "Welcome to PopIt",
+        "welcome text present"
+      );
       done();
     });
   });

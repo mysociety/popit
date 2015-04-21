@@ -56,7 +56,7 @@
     "nodeunit": "^0.9.0",
     "supertest": "^0.14.0",
     "mocha": "~1.18.2",
-    "zombie": "2.5.1"
+    "zombie": "3.1.1"
   },
   "optionalDependencies": {},
   "engines": {
