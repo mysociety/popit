@@ -88,3 +88,124 @@
 .invited-container {
   @include simple-container;
 }
+
+.homepage-hero {
+  padding: 2em 0 3.5em;
+  @media (min-width: $screen-md-min) {
+    padding: 5em 0 7em;
+  }
+  background-image: url('../img/hosted-app-home-bg.jpg');
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+}
+
+.hero__intro {
+  @include make-md-column(6);
+  max-width: 540px;
+  h1 {
+    font-weight: 600;
+    font-size: 2.625em;
+    @media (min-width: $screen-md-min) {
+      font-size: 3.625em;
+    }
+    color: #4b4b4b;
+  }
+  .lead {
+    font-size: 1.125em;
+    @media (min-width: $screen-md-min) {
+      font-size: 1.3125em;
+    }
+    line-height: 1.5em;
+    font-weight: normal;
+    color: #fff;
+    text-shadow: 0 0 2px rgba(0,0,0,0.66);
+    @media (min-width: 600px) {
+      color: $gray-light;
+      text-shadow: none;
+    }
+    margin-bottom: 2em;
+  }
+  .btn {
+    width: 100%;
+    margin-bottom: 1em;
+    @media (min-width: 600px) {
+      width: auto;
+      margin-bottom: 0;
+    }
+  }
+  .btn-default {
+    @media (min-width: 600px) {
+      margin-left: 1em;
+    }
+  }
+}
+
+.homepage-screenshot {
+  text-align: center;
+  border-bottom: 1px solid $gray-lighter;
+  margin: 0 1em;
+  @media (min-width: $screen-md-min) {
+    media: 0;
+  }
+}
+
+.screenshot__content {
+  @include make-md-column(10);
+  @include make-md-column-offset(1);
+  padding: 1.5em 0 0;
+  @media (min-width: $screen-md-min) {
+    padding: 3em 0 0;
+  }
+  h2 {
+    font-weight: 600;
+  }
+  .lead {
+    font-size: 1.125em;
+    @media (min-width: $screen-md-min) {
+      font-size: 1.3125em;
+    }
+    line-height: 1.5em;
+    font-weight: normal;
+    color: $gray-light;
+    margin-bottom: 2em;
+  }
+}
+
+.screenshot__screenshot {
+  max-width: 100%;
+  position: relative;
+  bottom: 1px; //without this, it overlaps the bottom border of its container
+}
+
+.homepage-examples {
+  padding: 1.5em 0;
+  @media (min-width: $screen-md-min) {
+    padding: 3em 0;
+  }
+}
+
+.examples__intro {
+  @include make-md-column(4);
+  h2 {
+    font-weight: 600;
+    font-size: 1.5em;
+  }
+  p {
+    color: $gray-light;
+  }
+}
+
+.examples__column-1,
+.examples__column-2  {
+  @include make-md-column(3);
+  @media (min-width: $screen-md-min) {
+    padding-top: 3.5em;
+  }
+}
+
+.examples__link {
+  font-size: 1.125em;
+  display: block;
+  margin-bottom: 0.5em;
+}
