@@ -1,14 +1,8 @@
-JSHINT = ./node_modules/.bin/jshint
-
 all: node-modules css
 
 node-modules:
 	npm install
 	npm prune
-
-jshint:
-	$(JSHINT) *.js lib/ hosting-app/ instance-app/ test/
-	cd public/js; ../../$(JSHINT) .
 
 css:
 	compass compile
