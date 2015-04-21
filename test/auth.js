@@ -3,32 +3,26 @@
 process.env.NODE_ENV = 'testing';
 
 var supertest = require('supertest');
-var app = require('../../app');
-var utils = require('../../lib/utils');
-var PopIt = require('../../lib/popit');
+var app = require('../app');
+var utils = require('../lib/utils');
+var PopIt = require('../lib/popit');
+var assert = require('assert');
 
 var request = supertest(app);
 
-module.exports = {
-  setUp: function(cb) {
-    this.popit = new PopIt();
-    utils.delete_all_testing_databases(cb);
-  },
+describe("auth", function() {
+  var popit = new PopIt();
+  beforeEach(utils.delete_all_testing_databases);
 
-  tearDown: function(cb) {
-    // close the connections so that the test script can exit
-    this.popit.close_db_connections(cb);
-  },
-
-  "registration page": function(test) {
+  it("has a registration page", function(done) {
     request
     .get('/register')
     .set('Host', 'www.127.0.0.1.xip.io')
     .expect(200)
-    .expect(/Register/, test.done);
-  },
+    .expect(/Register/, done);
+  });
 
-  "registering": function(test) {
+  it("allows registering", function(done) {
     request
     .post('/register')
     .set('Host', 'www.127.0.0.1.xip.io')
@@ -36,43 +30,40 @@ module.exports = {
     .expect(302)
     .expect('Location', '/instances/new')
     .end(function(err, res) {
-      if (err) {
-        return test.done(err);
-      }
-
+      assert.ifError(err);
       request
       .post('/register')
       .set('Host', 'www.127.0.0.1.xip.io')
       .send({ name: 'Bob', email: 'bob@example.com', password: 's3cret' })
       .expect(200)
-      .expect(/User already exists with name/, test.done);
+      .expect(/User already exists with name/, done);
     });
-  },
+  });
 
-  "login page": function(test) {
+  it("has a login page", function(done) {
     request
     .get('/login')
     .set('Host', 'www.127.0.0.1.xip.io')
     .expect(200)
-    .expect(/Log in/, test.done);
-  },
+    .expect(/Log in/, done);
+  });
 
-  "login processing": function(test) {
+  it("processes the login", function(done) {
     utils.load_test_fixtures(function() {
       request
       .post('/login')
       .set('Host', 'www.127.0.0.1.xip.io')
       .send({ email: 'bob@example.com', password: 's3cret' })
       .expect(302)
-      .expect('Location', '/instances', test.done);
+      .expect('Location', '/instances', done);
     });
-  },
+  });
 
-  "logout": function(test) {
+  it("allows logout", function(done) {
     request
     .get('/logout')
     .set('Host', 'www.127.0.0.1.xip.io')
-    .expect(302, test.done);
-  },
+    .expect(302, done);
+  });
 
-};
+});
