@@ -2,7 +2,6 @@
 // All the augmenters - add features to various discreet parts of the site
 require([
   'augmenters/mailchecker',
-  'augmenters/migration',
   'augmenters/slug-validation',
   'augmenters/edit-in-place',
   'augmenters/enter-to-save'
