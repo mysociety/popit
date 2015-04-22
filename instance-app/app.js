@@ -58,7 +58,6 @@ app.use('/token',  require('../lib/apps/token') );
 
 app.use('/autocomplete',   require('../lib/apps/autocomplete') );
 
-app.use('/migration',      require('../lib/apps/migration')() );
 app.use('/persons',        require('../lib/apps/person')() );
 app.use('/memberships',    require('../lib/apps/membership')() );
 app.use('/organizations',  require('../lib/apps/organization')() );

@@ -4,9 +4,6 @@ User-agent: *
 # non-html parts of the site:
 Disallow: /api
 
-# logged in users only
-Disallow: /migration
-
 # one off or non-content pages
 Disallow: /welcome
 Disallow: /login
