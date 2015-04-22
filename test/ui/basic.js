@@ -8,6 +8,7 @@ var config = require('config');
 Browser.localhost(config.hosting_server.host, config.server.port);
 
 describe("basic headless test", function() {
+  this.timeout(5000);
   var server, browser;
 
   before(function() {
