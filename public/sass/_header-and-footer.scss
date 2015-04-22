@@ -111,3 +111,19 @@ h1.logo {
     color: darken($header-footer-background, 15%);
   }
 }
+
+.homepage {
+  #header {
+    background-color: $gray-dark;
+    .user-login-button .glyphicon,
+    a {
+      color: #fff;
+      &:hover,
+      &:active,
+      &:focus {
+        color: $gray-light;
+      }
+    }
+  }
+
+}

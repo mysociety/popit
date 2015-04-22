@@ -5,25 +5,50 @@
     description: 'PopIt, a really easy way to store and share information about politicians or other public figures.',
   }
 ) %>
+<div class="homepage-hero">
 
-<div class="container hosting-app-welcome">
-  <h1 class="text-center">Welcome to PopIt</h1>
-  <p class="lead text-center">
-    PopIt makes it simple to start and maintain a public database of
-    people, organizations and positions.
-  </p>
-
-  <p class="text-center"><a href="/instances" class="btn btn-primary">Browse existing sites</a></p>
-
-  <p>
-    Create your own site and you can start to enter details
-    and share them with others as web pages or over an API. You can store
-    contact details and links to other sites, and photos.
-  </p>
-
-  <p class="text-center"><a href="/instances/new" class="btn btn-primary">Create your PopIt site</a></p>
-  <p><a href="/register">Not got a PopIt account? Register here</a></p>
-
+  <div class="container">
+    <div class="row">
+      <div class="hero__intro">
+        <h1>Create, store and share public lists of politicians</h1>
+        <p class="lead">PopIt helps you create, use, and maintain lists of
+        public figures as structured, open data, accessible through a simple
+        web&ndash;based interface.</p>
+        <a class="btn btn-primary btn-lg" href="/instances/new">Start your own PopIt</a>
+        <a class="btn btn-default btn-lg" href="/instances">Browse existing PopIts</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="homepage-screenshot">
+  <div class="container">
+    <div class="row">
+      <div class="screenshot__content">
+        <h2>No developer required</h2>
+        <p class="lead">Make your list with our powerful, user&ndash;friendly, web&ndash;based interface</p>
+        <img src="img/hosted-app-home-screenshot.jpg" alt="" class="screenshot__screenshot" />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="homepage-examples">
+  <div class="container">
+    <div class="row">
+      <div class="examples__intro">
+        <h2>See some examples</h2>
+        <p>People are using PopIt to make public, shareable databases of polticians right now.</p>
+        <p><a href="/instances">Browse existing PopIts</a></p>
+      </div>
+      <div class="examples__column-1">
+        <a class="examples__link" href="https://kenyan-politicians.popit.mysociety.org/">Kenyan Politicians</a>
+        <a class="examples__link" href="https://za-peoples-assembly.popit.mysociety.org/">South African Politicians</a>
+      </div>
+      <div class="examples__column-2">
+        <a class="examples__link" href="https://eduskunta.popit.mysociety.org/">Finnish Parliament</a>
+        <a class="examples__link" href="https://parliament.popit.mysociety.org/">UK Parliament</a>
+      </div>
+    </div>
+  </div>
 </div>
 
 <%= render('html_footer.html' )%>
