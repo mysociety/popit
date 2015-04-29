@@ -57,3 +57,8 @@
       after <%- membership.start_date %>
     <% } %>
   <% } %>
+
+  <% if (membership.on_behalf_of_id) { %>
+    on behalf of
+    <a href="<%- membership.on_behalf_of_id.url %>"><%- membership.on_behalf_of_id.name %></a>
+  <% } %>
