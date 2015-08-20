@@ -61,6 +61,12 @@
 
 <body id="popit-<%- popit ? popit.instance_name() : 'no-site-found' %>" class="<%- userCan('edit instance')  ? 'signed_in instance-admin-app-active' : '' %>">
 
+  <div id="dev-site-warning" class="alert alert-danger">
+    <strong>Development has been stopped on PopIt.</strong>
+    <span>Existing instances will be hosted until July 2016.</span>
+    <a href="https://groups.google.com/d/msg/poplus/hIFdan_rIS8/36rx3dLPCQAJ" class="btn btn-danger btn-xs">Find out more…</a></p>
+  </div>
+
   <% if ( config.show_dev_site_warning ) { %>
   <div id="dev-site-warning" class="alert alert-danger">
     <strong>This is a development site.</strong>
