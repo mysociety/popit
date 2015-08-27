@@ -14,6 +14,10 @@ describe("homepage", function() {
     browser.assert.success();
   });
 
+  it("contains link to create new instance", function() {
+    browser.assert.link('a', 'Start your own PopIt', '/instances/new');
+  });
+
   it("contains link to all instances", function() {
     browser.assert.link('a', 'Browse existing PopIts', '/instances');
   });

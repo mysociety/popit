@@ -14,16 +14,38 @@ exports.route = function (app) {
     res.render('index.html');
   });
 
-  app.get('/instance_creation_disabled', function(req, res, next) {
-    res.render('instance_creation_disabled.html');
-  });
-
   app.get('/instances/new', requireUser, function(req, res, next) {
-    return res.redirect('/instance_creation_disabled');
+    res.locals.errors = {};
+    res.locals.slug = '';
+    res.render('instance_new.html');
   });
 
   app.post('/instances/new', requireUser, function(req, res, next) {
-    return res.redirect('/instance_creation_disabled');
+    var slug = res.locals.slug = req.param('slug', '').trim();
+    var Instance = req.popit.model('Instance');
+    var Permission = req.popit.permissions();
+    var instance = new Instance();
+    instance.slug = slug;
+    instance.email = req.user.email;
+    instance.status = 'active';
+    instance.save(function(err, newInstance) {
+      if (err) {
+        res.locals.errors = err.errors;
+        res.locals.existing_instance_url = instance.base_url;
+        return res.render('instance_new.html');
+      }
+      // Make the user owner of the instance
+      Permission.create({
+        account: req.user._id,
+        instance: newInstance._id,
+        role: 'owner',
+      }, function(err) {
+        if (err) {
+          return next(err);
+        }
+        res.redirect('/instances/' + slug);
+      });
+    });
   });
 
   app.get('/instances/:slug', function(req, res) {
