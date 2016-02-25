@@ -56,7 +56,7 @@ def remove_database(database_name):
 for popit_site in ('popit', 'popit_staging'):
     for popit_instance in ('kenyan-politicians', 'za-peoples-assembly', 'za-new-import'):
         if popit_site == 'popit':
-            fmt = "https://{0}.popit.mysociety.org"
+            fmt = "http://{0}.popit.mysociety.org"
             base_api_url = fmt.format(popit_instance)
         elif popit_site == 'popit_staging':
             fmt = "http://{0}.popit.staging.mysociety.org"
