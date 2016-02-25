@@ -4,3 +4,4 @@ imagemagick
 graphicsmagick
 elasticsearch
 redis-server
+python-requests
