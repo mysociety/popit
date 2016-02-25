@@ -41,7 +41,7 @@ def remove_database(database_name):
         )
         es_index_url = 'http://localhost:9200/{0}/'.format(database_name)
         r = requests.delete(es_index_url)
-        response_data = r.json()
+        response_data = r.json
         if not response_data.get('ok'):
             raise Exception("DELETE on {0} failed: {1}".format(
                 es_index_url, response_data
@@ -63,7 +63,7 @@ for popit_site in ('popit', 'popit_staging'):
         # Now get the in-use database name to make sure we don't
         # remove that one:
         url = base_api_url + '/api/v0.1'
-        api_info = requests.get(url).json()
+        api_info = requests.get(url).json
         in_use_database_name = api_info['info']['databaseName']
         # Go through each database that starts with the right prefix.
         # Ignore the one that's in use, and any less than three days old.
