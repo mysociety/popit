@@ -42,7 +42,10 @@ def remove_database(database_name):
         es_index_url = 'http://localhost:9200/{0}/'.format(database_name)
         r = requests.delete(es_index_url)
         response_data = r.json
-        if not response_data.get('ok'):
+        if response_data.get('status') == 404:
+            msg = "The Elasticsearch index {0} wasn't found"
+            print(msg.format(database_name))
+        elif not response_data.get('ok'):
             raise Exception("DELETE on {0} failed: {1}".format(
                 es_index_url, response_data
             ))
