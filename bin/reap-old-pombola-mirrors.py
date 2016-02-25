@@ -12,6 +12,7 @@ import sys
 parser = argparse.ArgumentParser()
 parser.add_argument(
     '--commit',
+    action='store_true',
     help='Actually delete the MongoDB databases and Elastisearch indexes'
 )
 args = parser.parse_args()
