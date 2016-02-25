@@ -51,7 +51,7 @@ def remove_database(database_name):
         print(msg.format(database_name))
 
 for popit_site in ('popit', 'popit_staging'):
-    for popit_instance in ('kenyan-politicians', 'za-peoples-assembly'):
+    for popit_instance in ('kenyan-politicians', 'za-peoples-assembly', 'za-new-import'):
         if popit_site == 'popit':
             fmt = "https://{0}.popit.mysociety.org"
             base_api_url = fmt.format(popit_instance)
@@ -64,6 +64,11 @@ for popit_site in ('popit', 'popit_staging'):
         # remove that one:
         url = base_api_url + '/api/v0.1'
         api_info = requests.get(url).json
+        api_info = requests.get(url).json
+        if not api_info:
+            msg = "No database metadata found at {0} - skipping"
+            print(msg.format(url))
+            continue
         in_use_database_name = api_info['info']['databaseName']
         # Go through each database that starts with the right prefix.
         # Ignore the one that's in use, and any less than three days old.
