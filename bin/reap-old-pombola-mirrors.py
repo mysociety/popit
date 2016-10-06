@@ -41,7 +41,7 @@ def remove_database(database_name):
         )
         es_index_url = 'http://localhost:9200/{0}/'.format(database_name)
         r = requests.delete(es_index_url)
-        response_data = r.json
+        response_data = r.json()
         if response_data.get('status') == 404:
             msg = "The Elasticsearch index {0} wasn't found"
             print(msg.format(database_name))
@@ -66,8 +66,8 @@ for popit_site in ('popit', 'popit_staging'):
         # Now get the in-use database name to make sure we don't
         # remove that one:
         url = base_api_url + '/api/v0.1'
-        api_info = requests.get(url).json
-        api_info = requests.get(url).json
+        api_info = requests.get(url).json()
+        api_info = requests.get(url).json()
         if not api_info:
             msg = "No database metadata found at {0} - skipping"
             print(msg.format(url))
