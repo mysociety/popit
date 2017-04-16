@@ -54,3 +54,9 @@ make all public-production
 
 # Take a copy of the updated node_modules directory.
 cp -R "$RELEASE_DIR/node_modules" "$CACHE_DIR/"
+
+TMP_DIR="$VHOST_ROOT/tmp"
+mkdir -p "$TMP_DIR"
+
+# Restart the application
+touch "$TMP_DIR/restart.txt"
